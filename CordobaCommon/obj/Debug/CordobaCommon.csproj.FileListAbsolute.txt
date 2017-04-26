@@ -1,0 +1,9 @@
+D:\Cordoba\CordobaCommon\bin\Debug\CordobaCommon.dll
+D:\Cordoba\CordobaCommon\bin\Debug\CordobaCommon.pdb
+D:\Cordoba\CordobaCommon\obj\Debug\CordobaCommon.dll
+D:\Cordoba\CordobaCommon\obj\Debug\CordobaCommon.pdb
+D:\Cordoba - Copy (2)\CordobaCommon\bin\Debug\CordobaCommon.dll
+D:\Cordoba - Copy (2)\CordobaCommon\bin\Debug\CordobaCommon.pdb
+D:\Cordoba - Copy (2)\CordobaCommon\obj\Debug\CordobaCommon.dll
+D:\Cordoba - Copy (2)\CordobaCommon\obj\Debug\CordobaCommon.pdb
+D:\Cordoba - Copy (2)\CordobaCommon\obj\Debug\CordobaCommon.csprojResolveAssemblyReference.cache

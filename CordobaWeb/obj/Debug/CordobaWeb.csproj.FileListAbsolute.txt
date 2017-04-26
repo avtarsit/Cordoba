@@ -1,0 +1,118 @@
+D:\Cordoba\CordobaWeb\bin\CordobaWeb.dll.config
+D:\Cordoba\CordobaWeb\bin\CordobaWeb.dll
+D:\Cordoba\CordobaWeb\bin\CordobaWeb.pdb
+D:\Cordoba\CordobaWeb\bin\Antlr3.Runtime.dll
+D:\Cordoba\CordobaWeb\bin\CordobaCommon.dll
+D:\Cordoba\CordobaWeb\bin\EntityFramework.dll
+D:\Cordoba\CordobaWeb\bin\EntityFramework.SqlServer.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Google.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Cordoba\CordobaWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\Cordoba\CordobaWeb\bin\Newtonsoft.Json.dll
+D:\Cordoba\CordobaWeb\bin\Owin.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.Helpers.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.Http.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.Mvc.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.Optimization.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.Razor.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.Deployment.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.dll
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.Razor.dll
+D:\Cordoba\CordobaWeb\bin\WebGrease.dll
+D:\Cordoba\CordobaWeb\bin\CordobaCommon.pdb
+D:\Cordoba\CordobaWeb\bin\System.Web.Http.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.Helpers.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.Mvc.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.Optimization.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.Razor.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.Deployment.xml
+D:\Cordoba\CordobaWeb\bin\System.Web.WebPages.Razor.xml
+D:\Cordoba\CordobaWeb\bin\Antlr3.Runtime.pdb
+D:\Cordoba\CordobaWeb\bin\Newtonsoft.Json.xml
+D:\Cordoba\CordobaWeb\bin\EntityFramework.xml
+D:\Cordoba\CordobaWeb\bin\EntityFramework.SqlServer.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Google.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Cordoba\CordobaWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Cordoba\CordobaWeb\obj\Debug\CordobaWeb.csprojResolveAssemblyReference.cache
+D:\Cordoba\CordobaWeb\obj\Debug\CordobaWeb.dll
+D:\Cordoba\CordobaWeb\obj\Debug\CordobaWeb.pdb
+D:\Cordoba - Copy (2)\CordobaWeb\bin\CordobaWeb.dll.config
+D:\Cordoba - Copy (2)\CordobaWeb\bin\CordobaWeb.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\CordobaWeb.pdb
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Antlr3.Runtime.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\CordobaCommon.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\EntityFramework.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\EntityFramework.SqlServer.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Google.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Newtonsoft.Json.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Owin.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Helpers.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Http.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Mvc.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Optimization.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Razor.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.Deployment.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.Razor.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\WebGrease.dll
+D:\Cordoba - Copy (2)\CordobaWeb\bin\CordobaCommon.pdb
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Http.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Helpers.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Mvc.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Optimization.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.Razor.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.Deployment.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\System.Web.WebPages.Razor.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Antlr3.Runtime.pdb
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Newtonsoft.Json.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\EntityFramework.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\EntityFramework.SqlServer.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Google.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Cordoba - Copy (2)\CordobaWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Cordoba - Copy (2)\CordobaWeb\obj\Debug\CordobaWeb.csprojResolveAssemblyReference.cache
+D:\Cordoba - Copy (2)\CordobaWeb\obj\Debug\CordobaWeb.dll
+D:\Cordoba - Copy (2)\CordobaWeb\obj\Debug\CordobaWeb.pdb

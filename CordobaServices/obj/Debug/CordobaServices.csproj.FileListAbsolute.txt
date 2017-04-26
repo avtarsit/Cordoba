@@ -1,0 +1,18 @@
+D:\Cordoba\CordobaServices\bin\Debug\CordobaServices.dll
+D:\Cordoba\CordobaServices\bin\Debug\CordobaServices.pdb
+D:\Cordoba\CordobaServices\bin\Debug\ProjectModels.dll
+D:\Cordoba\CordobaServices\bin\Debug\EntityFramework.dll
+D:\Cordoba\CordobaServices\bin\Debug\ProjectModels.pdb
+D:\Cordoba\CordobaServices\bin\Debug\EntityFramework.xml
+D:\Cordoba\CordobaServices\obj\Debug\CordobaServices.csprojResolveAssemblyReference.cache
+D:\Cordoba\CordobaServices\obj\Debug\CordobaServices.dll
+D:\Cordoba\CordobaServices\obj\Debug\CordobaServices.pdb
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\CordobaServices.dll
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\CordobaServices.pdb
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\ProjectModels.dll
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\EntityFramework.dll
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\ProjectModels.pdb
+D:\Cordoba - Copy (2)\CordobaServices\bin\Debug\EntityFramework.xml
+D:\Cordoba - Copy (2)\CordobaServices\obj\Debug\CordobaServices.csprojResolveAssemblyReference.cache
+D:\Cordoba - Copy (2)\CordobaServices\obj\Debug\CordobaServices.dll
+D:\Cordoba - Copy (2)\CordobaServices\obj\Debug\CordobaServices.pdb

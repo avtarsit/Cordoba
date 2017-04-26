@@ -1,0 +1,27 @@
+D:\Cordoba\ProjectModels\bin\Debug\ProjectModels.dll
+D:\Cordoba\ProjectModels\bin\Debug\ProjectModels.pdb
+D:\Cordoba\ProjectModels\obj\Debug\ProjectModels.dll
+D:\Cordoba\ProjectModels\obj\Debug\ProjectModels.pdb
+D:\Cordoba\ProjectModels\bin\Debug\EntityFramework.dll
+D:\Cordoba\ProjectModels\bin\Debug\EntityFramework.SqlServer.dll
+D:\Cordoba\ProjectModels\bin\Debug\EntityFramework.xml
+D:\Cordoba\ProjectModels\bin\Debug\EntityFramework.SqlServer.xml
+D:\Cordoba\CordobaModels\bin\Debug\ProjectModels.dll.config
+D:\Cordoba\CordobaModels\bin\Debug\ProjectModels.dll
+D:\Cordoba\CordobaModels\bin\Debug\ProjectModels.pdb
+D:\Cordoba\CordobaModels\bin\Debug\EntityFramework.dll
+D:\Cordoba\CordobaModels\bin\Debug\EntityFramework.SqlServer.dll
+D:\Cordoba\CordobaModels\bin\Debug\EntityFramework.xml
+D:\Cordoba\CordobaModels\bin\Debug\EntityFramework.SqlServer.xml
+D:\Cordoba\CordobaModels\obj\Debug\ProjectModels.dll
+D:\Cordoba\CordobaModels\obj\Debug\ProjectModels.pdb
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\ProjectModels.dll.config
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\ProjectModels.dll
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\ProjectModels.pdb
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\EntityFramework.dll
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\EntityFramework.SqlServer.dll
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\EntityFramework.xml
+D:\Cordoba - Copy (2)\CordobaModels\bin\Debug\EntityFramework.SqlServer.xml
+D:\Cordoba - Copy (2)\CordobaModels\obj\Debug\ProjectModels.dll
+D:\Cordoba - Copy (2)\CordobaModels\obj\Debug\ProjectModels.pdb
+D:\Cordoba - Copy (2)\CordobaModels\obj\Debug\CordobaModels.csprojResolveAssemblyReference.cache
