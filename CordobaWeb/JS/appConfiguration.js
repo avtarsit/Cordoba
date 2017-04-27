@@ -3,20 +3,16 @@
 'use strict';
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular"]);
 
-debugger;
-var HostName = window.location.hostname;
 GetLayoutName();
 function GetLayoutName()
 {
     $.ajax({
-        url: window.location.origin+"/Home/GetLayoutName?HostName=" + HostName,
+        url: window.location.origin + "/Home/GetLayoutName?HostName=" + window.location.hostname,
         async: false,
         success: function (data) {
-            var LayoutName = data;
-            debugger;
+            var LayoutName = data;            
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                debugger;
-
+        
                 var HomeIndex = {
                     name: 'Home',
                     url: '/Home',
@@ -42,11 +38,17 @@ function GetLayoutName()
                      url: '/ShowCategory',
                      templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                  }
+                , ManageCategory = {
+                    name: 'ManageCategory',
+                    url: '/ManageCategory',
+                    templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
+                }
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
                 $stateProvider.state(ManageCountry);
                 $stateProvider.state(ShowCategory);
+                $stateProvider.state(ManageCategory);
                 $stateProvider.state(TestPage);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
