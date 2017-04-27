@@ -15,11 +15,21 @@ namespace CordobaAPI.Controllers
         /// Index this instance.
         /// </summary>
         /// <returns>view</returns>
+        /// 
+
+        
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
             return View();
         }
+
+
+        public string GetLayoutName(string HostName)
+        {
+            return "localhost";
+        }
+     
     }
 }

@@ -29,5 +29,12 @@ namespace CordobaWeb.Controllers
 
             return View();
         }
+
+        
+        public string GetLayoutName(string HostName)
+        {
+           
+            return "Admin";
+        }
     }
 }

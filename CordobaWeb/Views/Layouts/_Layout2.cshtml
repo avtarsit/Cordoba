@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cordoba</title>
 
-    @Styles.Render("~/bundles/css")
     @Styles.Render("~/bundles/AdminCSS")
     
 
-
-
+    
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -231,7 +229,7 @@
                                     <div class="text-size-mini text-muted">
                                         <i class="icon-pin text-size-small"></i> &nbsp;India
                                     </div>
-                                </div>
+                                </div>                               
                             </div>
                         </div>
                     </div>
@@ -243,16 +241,16 @@
                                 <!-- Main -->
                                 <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
                                 <li class="active"><a href="#" ui-sref="Home"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-
+                             
                                 <li>
                                     <a href="#"><i class="fa fa-tags fa-fw"></i> <span>Catalog</span></a>
-                                    <ul>
+                                    <ul>                                     
                                         <li><a href="#" ui-sref="ShowCountry"><i class="icon-forward"></i> <span> Countries</span></a></li>
                                         <li><a href="#"><i class="icon-forward"></i> <span> Banners</span></a></li>
-                                        <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>
+                                        <li><a href="#"><i class="icon-forward"></i> <span> Categories</span></a></li>
                                         <li><a href="#"><i class="icon-forward"></i> <span> Supplier</span></a></li>
                                         <li><a href="#"><i class="icon-forward"></i> <span> Product</span></a></li>
-
+                                      
                                     </ul>
                                 </li>
                             </ul>
@@ -266,6 +264,7 @@
             <div class="loader" data-loading><img class="Centerloader" src="~/Content/Images/Loading.gif" /></div>
             <div class="content-wrapper">
                 <!-- Page header -->
+            
                 <!-- /page header -->
                 <!-- Content area -->
                 <div class="content">
@@ -273,7 +272,7 @@
                     @RenderBody()
                     <!-- Footer -->
                     <div class="footer text-muted">
-                        &nbsp;&nbsp;&nbsp;  &copy; 2017-18. <a href="#">Cordoba</a> by <a href="#" target="_blank">Shaligram Infotech</a>
+                      &nbsp;&nbsp;&nbsp;  &copy; 2017-18. <a href="#">Cordoba</a> by <a href="#" target="_blank">Shaligram Infotech</a>
                     </div>
                     <!-- /footer -->
                 </div>
@@ -285,8 +284,8 @@
     </div>
     <!-- /page container -->
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/AdminJs")
+    @Scripts.Render("~/bundles/angular") 
+    @Scripts.Render("~/bundles/AdminJs") 
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/AdminControllers")
 </body>
