@@ -85,6 +85,8 @@ namespace CordobaWeb
             //////////////////////////////////////////////////////////////////
             // this for Admin Theme
             bundles.Add(new StyleBundle("~/bundles/AdminCSS").Include(
+                        "~/Content/css/bootstrap.css",
+                      "~/Content/css/font-awesome.min.css",
                      "~/Content/admin/css/icons/icomoon/styles.css",                                    
                      "~/Content/admin/css/core.css",
                      "~/Content/admin/css/components.css",
@@ -108,7 +110,7 @@ namespace CordobaWeb
             var AdminControllerBundle = new Bundle("~/bundles/AdminControllers");
             AdminControllerBundle.IncludeDirectory("~/JS/Home", "*.js", false);
             AdminControllerBundle.IncludeDirectory("~/JS/Test", "*.js", false);
-            AdminControllerBundle.IncludeDirectory("~/JS/Admin/Country/Controllers", "*.js", false);
+            AdminControllerBundle.IncludeDirectory("~/JS/Admin", "*.js", true);
             bundles.Add(AdminControllerBundle);  
       
            /////////////////////////

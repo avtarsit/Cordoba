@@ -37,10 +37,16 @@ function GetLayoutName()
                     url: '/TestPage',
                     templateUrl: 'Templates/TestPage/Index.html'
                 }
+                 , ShowCategory = {
+                     name: 'ShowCategory',
+                     url: '/ShowCategory',
+                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
+                 }
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
                 $stateProvider.state(ManageCountry);
+                $stateProvider.state(ShowCategory);
                 $stateProvider.state(TestPage);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
