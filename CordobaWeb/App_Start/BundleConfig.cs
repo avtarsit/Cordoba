@@ -113,6 +113,7 @@ namespace CordobaWeb
             AdminControllerBundle.IncludeDirectory("~/JS/Home", "*.js", false);
             AdminControllerBundle.IncludeDirectory("~/JS/Test", "*.js", false);
             AdminControllerBundle.IncludeDirectory("~/JS/Admin/Country/Controllers", "*.js", false);
+            AdminControllerBundle.IncludeDirectory("~/JS/Admin", "*.js", true);
             bundles.Add(AdminControllerBundle);   
 
         }

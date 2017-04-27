@@ -35,11 +35,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/TestPage',
         templateUrl: 'Templates/TestPage/Index.html'
     }
-        ;
+
+    ,ShowCategory = {
+        name: 'ShowCategory',
+        url: '/ShowCategory',
+        templateUrl: 'Templates/Admin/Category/Index.html'
+    }
+
+    ;
     $stateProvider.state(HomeIndex);
     $stateProvider.state(ShowCountry);
     $stateProvider.state(ManageCountry);
     $stateProvider.state(TestPage);
+    $stateProvider.state(ShowCategory);
+
+    
     //any url that doesn't exist in routes redirect to '/'
     $urlRouterProvider.otherwise('/Home');
     //$locationProvider.html5Mode({

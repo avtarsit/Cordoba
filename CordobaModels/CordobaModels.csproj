@@ -78,6 +78,7 @@
     <Compile Include="Edmx\tblCompanyLayout.cs">
       <DependentUpon>Cordoba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CategoryEntity.cs" />
     <Compile Include="Entities\CountryEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

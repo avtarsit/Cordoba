@@ -166,6 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CategoryApiController.cs" />
     <Compile Include="API\CountryApiController.cs" />
     <Compile Include="API\TestApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

@@ -477,6 +477,7 @@
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
     <Content Include="JS\appConfiguration.js" />
@@ -3085,6 +3086,8 @@
     <Content Include="Scripts\textAngular.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
+    <Content Include="Templates\Admin\Category\Index.html" />
+    <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
     <Content Include="Templates\TestPage\Index.html" />
