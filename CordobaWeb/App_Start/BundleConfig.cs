@@ -85,8 +85,8 @@ namespace CordobaWeb
             //////////////////////////////////////////////////////////////////
             // this for Admin Theme
             bundles.Add(new StyleBundle("~/bundles/AdminCSS").Include(
-                        "~/Content/css/bootstrap.css",
-                      "~/Content/css/font-awesome.min.css",
+                        "~/Content/admin/css/bootstrap.css",
+                      "~/Content/admin/css/font-awesome.min.css",
                      "~/Content/admin/css/icons/icomoon/styles.css",                                    
                      "~/Content/admin/css/core.css",
                      "~/Content/admin/css/components.css",
