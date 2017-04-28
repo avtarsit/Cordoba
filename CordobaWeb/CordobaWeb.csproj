@@ -476,6 +476,10 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
+    <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Category\Controllers\ManageCategoryController.js" />
