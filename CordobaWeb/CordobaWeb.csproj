@@ -488,6 +488,8 @@
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
+    <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
+    <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
     <Content Include="JS\appConfiguration.js" />
     <Content Include="JS\Common.js" />
     <Content Include="JS\Directives\appDirectives.js" />
@@ -3100,6 +3102,8 @@
     <Content Include="Templates\Admin\Country\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
+    <Content Include="Templates\Admin\Supplier\Index.html" />
+    <Content Include="Templates\Admin\Supplier\ManageSupplier.html" />
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
