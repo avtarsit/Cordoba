@@ -68,7 +68,11 @@ function GetLayoutName()
                      url: '/ShowStore',
                      templateUrl: 'Templates/' + LayoutName + '/Store/Index.html'
                  }
-
+                  , ManageStore = {
+                      name: 'ManageStore',
+                      url: '/ManageStore?StoreID:storeID',
+                      templateUrl: 'Templates/' + LayoutName + '/Store/ManageStore.html'
+                  }
                 
                 ;
                 $stateProvider.state(HomeIndex);
@@ -81,6 +85,7 @@ function GetLayoutName()
                 $stateProvider.state(ShowSupplier);
                 $stateProvider.state(ManageSupplier);
                 $stateProvider.state(ShowStore);
+                $stateProvider.state(ManageStore);
                 $stateProvider.state(TestPage);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
