@@ -1,9 +1,627 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
+﻿<div ng-controller="ManageCategoryController">
+    <style>
+        .control-label{
+                text-align: right;
+        }
+            
+    </style>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home -</span> {{PageTitle}}</h4>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li>  This page allows you to manage category.</li>
+            </ul>
+            <ul class="breadcrumb-elements" ng-if="IsEditMode==true">
+                <li>
+                    <button type="button" ui-sref="ShowCategory" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                </li>
+                <li>
+                    <button type="submit" ng-click="SaveCountry(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
 
-</body>
-</html>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Country" ng-click="DeleteCategory(CategoryId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-header-content">
+        <!-- Centered forms -->
+        <div class="row">
+            <div class="col-md-12">
+                <form name="form" id="form" class="form-horizontal" novalidate>
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+
+                                    <div role="tabpanel" class="form-horizontal" id="messages">
+                                        <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
+                                            <ul ng-show="validationErrors">
+                                                <li ng-repeat="error in validationErrors">{{error}}</li>
+                                            </ul>
+                                            <ul ng-show="form.$submitted && (!form.$valid)">
+                                                <li ng-show="form.CountryCd.$error.required">Country code is required.</li>
+                                                <li ng-show="form.CountryName.$error.required">Country name is required.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
+                                    <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="GenaralTab">
+                                        <!--General Tab-->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active in" id="tab-general">
+                                                <ul class="nav nav-tabs" id="language">
+                                                    <li class="active"><a data-target="#language1" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/gb.png" title="English"> English</a></li>
+                                                    <li><a data-target="#language2" data-toggle="tab"><img src="../../../Content/admin/images/flags/de.png" title="Deutsch"> Deutsch</a></li>
+                                                    <li><a data-target="#language3" data-toggle="tab"><img src="../../../Content/admin/images/flags/fr.png" title="Français"> Français</a></li>
+                                                    <li><a data-target="#language4" data-toggle="tab"><img src="../../../Content/admin/images/flags/it.png" title="Italiano"> Italiano</a></li>
+                                                    <li><a data-target="#language5" data-toggle="tab"><img src="../../../Content/admin/images/flags/es.png" title="Español"> Español</a></li>
+                                                    <li><a data-target="#language6" data-toggle="tab"><img src="../../../Content/admin/images/flags/pt.png" title="Português"> Português</a></li>
+                                                    <li><a data-target="#language7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="language1">
+                                                        <div class="form-group required">
+                                                            <label class="col-lg-2 control-label" for="input-name1">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[1][name]" value="" placeholder="Category Name" id="input-name1" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description1">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[1][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title1">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[1][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title1" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description1">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[1][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description1" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword1">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[1][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword1" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language2">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name2">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[2][name]" value="" placeholder="Category Name" id="input-name2" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description2">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[2][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title2">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[2][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title2" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description2">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[2][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description2" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword2">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[2][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword2" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language3">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name3">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[3][name]" value="" placeholder="Category Name" id="input-name3" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description3">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[3][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title3">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[3][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title3" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description3">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[3][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description3" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword3">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[3][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword3" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language4">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name4">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[4][name]" value="" placeholder="Category Name" id="input-name4" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description4">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[4][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title4">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[4][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title4" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description4">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[4][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description4" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword4">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[4][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword4" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language5">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name5">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[5][name]" value="" placeholder="Category Name" id="input-name5" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description5">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[5][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title5">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[5][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title5" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description5">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[5][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description5" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword5">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[5][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword5" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language6">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name6">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[6][name]" value="" placeholder="Category Name" id="input-name6" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description6">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[6][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title6">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[6][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title6" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description6">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[6][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description6" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword6">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[6][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword6" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="language7">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-name7">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[7][name]" value="" placeholder="Category Name" id="input-name7" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-description7">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[7][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-meta-title7">Meta Tag Title</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" name="category_description[7][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title7" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-description7">Meta Tag Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[7][meta_description]" rows="5" placeholder="Meta Tag Description" id="input-meta-description7" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="input-meta-keyword7">Meta Tag Keywords</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea name="category_description[7][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword7" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End General Tab-->
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="DataTab">
+                                        <div class="tab-pane fade active in" id="tab-data">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-parent">Parent</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="path" value="" placeholder="Parent" id="input-parent" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="top: 35px; left: 15px; display: none;"><li data-value="0"><a href="#"> --- None --- </a></li><li data-value="50"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Accessories</a></li><li data-value="116"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Ballpoint</a></li><li data-value="39"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fine Liner</a></li><li data-value="20"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fountain Pen</a></li><li data-value="45"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Rollerball</a></li></ul>
+                                                    <input type="hidden" name="parent_id" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="" data-original-title="(Autocomplete)">Filters</span></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="filter" value="" placeholder="Filters" id="input-filter" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="display: none;"></ul>
+                                                    <div id="category-filter" class="well well-sm" style="height: 150px; overflow: auto;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Stores</label>
+                                                <div class="col-sm-10">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="0" checked="checked">
+                                                                Default
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="38" checked="checked">
+                                                                Make a Difference Thank You AE
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="32" checked="checked">
+                                                                Arkle Finance rewards 2015
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="43" checked="checked">
+                                                                Make a Difference Thank You AU
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="41" checked="checked">
+                                                                Make a Difference Thank You CA
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="47">
+                                                                Make a Difference Thank You FR
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="37" checked="checked">
+                                                                Make a Difference Thank You IN
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="36" checked="checked">
+                                                                Make a Difference Thank You JP
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="39" checked="checked">
+                                                                Make a Difference Thank You NZ
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="42" checked="checked">
+                                                                Make a Difference Thank You US
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="25" checked="checked">
+                                                                Example
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="29" checked="checked">
+                                                                Annodata Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="35" checked="checked">
+                                                                Arkle Finance rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="26" checked="checked">
+                                                                Asset Advantage Store
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="19" checked="checked">
+                                                                Blizzard Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="28" checked="checked">
+                                                                BT Local Business Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="18" checked="checked">
+                                                                Clear Asset Finance
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="31" checked="checked">
+                                                                Conker this Autumn
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="27" checked="checked">
+                                                                CVD Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="3" checked="checked">
+                                                                D and D Leasing Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="4" checked="checked">
+                                                                Econocom Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="34" checked="checked">
+                                                                GO SKIPPY
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="44" checked="checked">
+                                                                Grenke Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="23" checked="checked">
+                                                                Grenke Rewards IR
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="17" checked="checked">
+                                                                Henry Howard Finance Loyalty
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="20" checked="checked">
+                                                                Kennet Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="24" checked="checked">
+                                                                Maxxia Group Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="16" checked="checked">
+                                                                More Choice
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="40" checked="checked">
+                                                                Make a Difference Thank You UK
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="45" checked="checked">
+                                                                Make a Difference Thank You
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="30" checked="checked">
+                                                                SCC Capital Portal
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="15" checked="checked">
+                                                                ShoreTel Financial Services Choice Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="14" checked="checked">
+                                                                Shore Tel Rewards UK
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="46" checked="checked">
+                                                                ShoreTel Rewards EU
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="21" checked="checked">
+                                                                UR Rewards
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="22" checked="checked">
+                                                                Vitrx
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="category_store[]" value="33" checked="checked">
+                                                                XPO Rewards
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="" data-original-title="Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.">SEO Keyword</span></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="keyword" value="" placeholder="SEO Keyword" id="input-keyword" class="form-control">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Image</label>
+                                                <div class="col-sm-10">
+                                                    <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png"></a>
+                                                    <input type="hidden" name="image" value="" id="input-image">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" title="" data-original-title="Display in the top menu bar. Only works for the top parent categories.">Top</span></label>
+                                                <div class="col-sm-10">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="top" value="1" id="input-top">
+                                                            &nbsp;
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-column"><span data-toggle="tooltip" title="" data-original-title="Number of columns to use for the bottom 3 categories. Only works for the top parent categories.">Columns</span></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="column" value="0" placeholder="Columns" id="input-column" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-sort-order">Sort Order</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="sort_order" value="0" placeholder="Sort Order" id="input-sort-order" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-status">Status</label>
+                                                <div class="col-sm-10">
+                                                    <select name="status" id="input-status" class="form-control">
+                                                        <option value="1" selected="selected">Enabled</option>
+                                                        <option value="0">Disabled</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /form centered -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

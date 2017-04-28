@@ -40,7 +40,7 @@ function GetLayoutName()
                  }
                 , ManageCategory = {
                     name: 'ManageCategory',
-                    url: '/ManageCategory',
+                    url: '/ManageCategory?CategoryId:categoryId',
                     templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
                 }
                 ;

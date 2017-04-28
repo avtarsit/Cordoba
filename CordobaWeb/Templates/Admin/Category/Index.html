@@ -24,12 +24,14 @@
             <thead>
                 <tr>
                     <th>Category Name</th>
+                    <th>Sort Order</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="Item in CategoryList">
                     <td ng-bind="Item.CategoryName"></td>
+                    <td ng-bind="Item.SortOrder"></td>
                     <td class="cursor-pointer text-center" ui-sref="ManageCategory({CategoryId:Item.CategoryId})"><i class="glyphicon glyphicon-edit curso"></i></td>
                 </tr>
             </tbody>

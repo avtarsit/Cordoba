@@ -478,6 +478,7 @@
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="JS\Admin\Category\Controllers\ManageCategoryController.js" />
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
