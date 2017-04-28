@@ -36,6 +36,26 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetCategoryById(int CategoryId)
+        {
+            try
+            {
+                var result = _categoryServices.GetCategoryById(CategoryId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
     }
 }

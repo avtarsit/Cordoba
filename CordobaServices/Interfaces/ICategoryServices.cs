@@ -10,5 +10,7 @@ namespace CordobaServices.Interfaces
     public interface ICategoryServices
     {
         List<CategoryEntity> GetCategoryList(int CategoryId = 0);
+
+        CategoryEntity GetCategoryById(int CategoryId);
     }
 }
