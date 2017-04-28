@@ -171,6 +171,8 @@
     <Compile Include="API\CountryApiController.cs" />
     <Compile Include="API\ManufacturersApiController.cs" />
     <Compile Include="API\ProductCatalogueApiController.cs" />
+    <Compile Include="API\StoreApiController.cs" />
+    <Compile Include="API\SupplierApiController.cs" />
     <Compile Include="API\TestApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

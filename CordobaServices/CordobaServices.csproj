@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,15 +45,18 @@
     <Compile Include="Interfaces\ICountryServices.cs" />
     <Compile Include="Interfaces\IManufacturerServices.cs" />
     <Compile Include="Interfaces\IProductCatalogueServices.cs" />
+    <Compile Include="Interfaces\IStoreServices.cs" />
+    <Compile Include="Interfaces\ISupplierServices.cs" />
     <Compile Include="Interfaces\ITestServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CountryServices.cs" />
     <Compile Include="Services\ManufacturerServices.cs" />
     <Compile Include="Services\ProductCatalogueService.cs" />
+    <Compile Include="Services\StoreServices.cs" />
+    <Compile Include="Services\SupplierServices.cs" />
     <Compile Include="Services\TestServices.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">
       <Project>{ee2e67ac-8175-424f-bd98-4afb554b8c84}</Project>

@@ -63,6 +63,27 @@ function GetLayoutName()
                       url: '/ManageProductCatalogue?ProductCatalogueId:productCatalogueId',
                       templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/ManageProductCatalogue.html'
                   }
+                  , ShowSupplier = {
+                      name: 'ShowSupplier',
+                      url: '/ShowSupplier',
+                      templateUrl: 'Templates/' + LayoutName + '/Supplier/Index.html'
+                  }
+                  , ManageSupplier = {
+                      name: 'ManageSupplier',
+                      url: '/ManageSupplier?SupplierID:supplierID',
+                      templateUrl: 'Templates/' + LayoutName + '/Supplier/ManageSupplier.html'
+                  }
+                 , ShowStore = {
+                     name: 'ShowStore',
+                     url: '/ShowStore',
+                     templateUrl: 'Templates/' + LayoutName + '/Store/Index.html'
+                 }
+                  , ManageStore = {
+                      name: 'ManageStore',
+                      url: '/ManageStore?StoreID:storeID',
+                      templateUrl: 'Templates/' + LayoutName + '/Store/ManageStore.html'
+                  }
+                
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -71,6 +92,10 @@ function GetLayoutName()
                 $stateProvider.state(ManageCategory);
                 $stateProvider.state(ShowManufacturer);
                 $stateProvider.state(ManageManufacturer);
+                $stateProvider.state(ShowSupplier);
+                $stateProvider.state(ManageSupplier);
+                $stateProvider.state(ShowStore);
+                $stateProvider.state(ManageStore);
                 $stateProvider.state(TestPage);
 
                 $stateProvider.state(ShowProductCatalogue);

@@ -11,5 +11,6 @@ namespace CordobaModels.Entities
        public int? StoreID { get; set; }
        public string StoreName { get; set; }
        public bool IsSelected { get; set; }
+       public string StoreURL { get; set; }
     }
 }
