@@ -19,6 +19,7 @@ CordobaAPI/bin/
 CordobaAPI/obj/
 CordobaServices/bin/
 
+CordobaCommon/obj/
 CordobaModels/bin/
 CordobaModels/obj/
 CordobaModels/obj/Debug/
