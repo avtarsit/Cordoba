@@ -1,10 +1,10 @@
 ﻿ApplicationVersion = '1.0.0.0'
 $(function () {
 
-    $.fn.modal.defaults.maxHeight = function () {
-        // subtract the height of the modal header and footer     
-        return $(window).height() - 165;
-    }
+    //$.fn.modal.defaults.maxHeight = function () {
+    //    // subtract the height of the modal header and footer     
+    //    return $(window).height() - 165;
+    //}
     var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
     $.fn.bootstrapDP = datepicker;
 

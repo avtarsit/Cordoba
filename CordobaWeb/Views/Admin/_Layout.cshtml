@@ -7,9 +7,11 @@
     <title>Cordoba</title>
  
     @Styles.Render("~/bundles/AdminCSS")
+    <link href="~/Content/admin/css/components.css" rel="stylesheet" type="text/css">
    
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+  
 </head>
 <body>
     <!-- Main navbar -->
@@ -287,11 +289,17 @@
         <!-- /page content -->
     </div>
     <!-- /page container -->
+ 
     @Scripts.Render("~/bundles/jquery")
+  
     @Scripts.Render("~/bundles/CommonJs")    
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/AdminJs")
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/AdminControllers")
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="~/Scripts/admin/js/pages/editor_ckeditor.js"></script>
+    <!-- /theme JS files -->
 </body>
 </html>

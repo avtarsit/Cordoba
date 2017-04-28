@@ -31,14 +31,135 @@
         <div class="page-header-content">
        
 
+            <!-- Centered forms -->
+            <div class="row">
+                <div class="col-md-12">
+      
+                        <div class="panel panel-flat">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
 
+                                        <div role="tabpanel" class="form-horizontal" id="messages">
+                                            <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
+                                                <ul ng-show="validationErrors">
+                                                    <li ng-repeat="error in validationErrors">{{error}}</li>
+                                                </ul>
+                                                <ul ng-show="form.$submitted && (!form.$valid)">                                       
+                                                    <li ng-show="form.StoreURL.$error.required">Store Url is required.</li>
+                                                    <li ng-show="form.StoreName.$error.required">Store Name is required.</li>
+                                                    <li ng-show="form.StoreOwner.$error.required">Store Owner is required.</li>
+                                                    <li ng-show="form.StoreAddress.$error.required">Store Address is required.</li>
+                                                    <li ng-show="form.Email.$error.required">Email is required.</li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
+                                        <li role="presentation"><a data-target="#StoreTab" role="tab" data-toggle="tab">Store</a></li>
+                                        <li role="presentation"><a data-target="#LocalTab" role="tab" data-toggle="tab">Local</a></li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="GenaralTab">
+                                            <!--General Tab-->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField">Store URL</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control" name="StoreURL" maxlength="100" placeholder="Enter Store Url" ng-model="StoreObj.StoreURL" required="required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField">Store Name</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control" name="StoreName" maxlength="200" placeholder="Enter Store Name" ng-model="StoreObj.StoreName" required="required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField">Store Owner</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control" name="StoreOwner" maxlength="200" placeholder="Enter Store Owner" ng-model="StoreObj.StoreOwner" required="required">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mandatoryField">
+                                                    <label class="col-lg-2 control-label mandatoryField">Welcome Message</label>
+                                                    <div class="col-lg-9">
+                                                        <textarea name="CkWelcomeMessage" id="CkWelcomeMessage" rows="4" cols="4" ng-model="StoreObj.WelcomeMessage"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mandatoryField">
+                                                    <label class="col-lg-2 control-label mandatoryField">Store Terms and Conditions</label>
+                                                    <div class="col-lg-9">
+                                                        <textarea name="CkStoreTermCondition" id="CkStoreTermCondition" rows="4" cols="4" ng-model="StoreObj.StoreTermCondition"></textarea>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField"> Address</label>
+                                                    <div class="col-lg-9">
+                                                        <textarea type="text" class="form-control" name="StoreAddress" maxlength="2000" placeholder="Enter Store Address" ng-model="StoreObj.StoreAddress"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField">E-mail</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="email" class="form-control" name="Email" maxlength="50" placeholder="Enter Store Email" ng-model="StoreObj.Email" required="required">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label mandatoryField">Telephone</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="StoreObj.Telephone" required="required">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--End General Tab-->
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="StoreTab">
+                                            <div class="tab-pane fade active in" id="tab-data">
+                                                <!--Store Tab-->
+
+                                                <!--End Store Tab-->
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="LocalTab">
+                                            <div class="tab-pane fade active in" id="tab-data">
+                                                <!--Local Tab-->
+
+                                                <!--End Local Tab-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 
+                </div>
+            </div>
+            <!-- /form centered -->
 
 
         </div>
     </form>
 </div>
 
-
+<script>
+    CKEDITOR.replace('CkWelcomeMessage');
+    CKEDITOR.replace('CkStoreTermCondition');
+</script>
 
 
 
