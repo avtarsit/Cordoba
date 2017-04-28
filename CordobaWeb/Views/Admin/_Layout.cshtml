@@ -7,11 +7,7 @@
     <title>Cordoba</title>
  
     @Styles.Render("~/bundles/AdminCSS")
-    
-
-
-
-
+   
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 </head>
@@ -250,8 +246,8 @@
                                         <li><a href="#"><i class="icon-forward"></i> <span> Banners</span></a></li>
                                         <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>
                                         <li><a href="#"><i class="icon-forward"></i> <span> Supplier</span></a></li>
-                                        <li><a href="#"><i class="icon-forward"></i> <span> Product</span></a></li>
-
+                                        <li><a href="#" ui-sref="ShowManufacturer"><i class="icon-forward"></i> <span> Manufacturers</span></a></li>
+                                        <li><a href="#"><i class="icon-forward"></i> <span> Product</span></a></li>                                      
                                     </ul>
                                 </li>
                             </ul>
@@ -284,6 +280,7 @@
     </div>
     <!-- /page container -->
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/CommonJs")    
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/AdminJs")
     @Scripts.Render("~/bundles/appConfig")

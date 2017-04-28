@@ -1,13 +1,16 @@
-﻿app.controller('ManageManufacturerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+﻿app.controller('AddOrUpdateManufacturersController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.IsEditMode = false;
+
+    $scope.ManufacturerID = 0; 
+    $scope.IsEditMode = false;    
     if ($stateParams.ManufacturerID != undefined && $stateParams.ManufacturerID != null) {
         $scope.PageTitle = "Update Manufacturer";
         $scope.IsEditMode = true;
+        $scope.ManufacturerID = $stateParams.ManufacturerID;
     }
     else {
         $scope.PageTitle = "Add Manufacturer";
@@ -16,9 +19,23 @@
 
 
 
+    $scope.GetManufaturerDetail = function () {
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?ManufacturersID=" + $scope.ManufacturerID)
+          .then(function (response) {
+              $scope.ManufacturerObj = response.data;
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
     $scope.SaveManufacturer = function (form) {
         if (form.$valid) {
-            debugger;
+            
         }
     }
 
@@ -40,7 +57,7 @@
                     },
                 danger:
                     {
-                        label: "NO",
+                        label: "No",
                         className: "btn btn-default",
                         callback: function () {
                             return true;
@@ -49,7 +66,6 @@
             }
         });
     };
-
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -66,5 +82,8 @@
         }
 
     }
+
+
+    $scope.GetManufaturerDetail();
 
 });

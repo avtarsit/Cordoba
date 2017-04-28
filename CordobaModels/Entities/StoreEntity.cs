@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-   public class ManufacturersStoreEntity
+   public class StoreEntity
     {
-       public int? ManufacturerID { get; set; }
-       public List<StoreEntity> ManufacturerStore { get; set; }
-
+       public int? StoreID { get; set; }
+       public string StoreName { get; set; }
+       public bool IsSelected { get; set; }
     }
 }

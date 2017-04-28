@@ -1,4 +1,4 @@
-﻿<div ng-controller="ManageManufacturerController">
+﻿<div ng-controller="AddOrUpdateManufacturersController">
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -35,7 +35,7 @@
                                             <ul ng-show="validationErrors">
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
-                                            <ul ng-show="form.$submitted && (!form.$valid)">                                             
+                                            <ul ng-show="form.$submitted && (!form.$valid)">
                                                 <li ng-show="form.ManufacturerName.$error.required">Manufacturer name is required.</li>
                                             </ul>
                                         </div>
@@ -45,11 +45,30 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-8 col-md-offset-1">                                  
+                                <div class="col-md-8 col-md-offset-1">
                                     <div class="form-group">
-                                        <label class="col-lg-2 control-label">Manufacturer Name:</label>
+                                        <label class="col-lg-3 control-label mandatoryField">Manufacturer Name</label>
                                         <div class="col-lg-5">
                                             <input type="text" class="form-control" name="ManufacturerName" maxlength="50" placeholder="Enter Manufacturer Name" ng-model="ManufacturerObj.ManufacturerName" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Manufacturer Description</label>
+                                        <div class="col-lg-5">
+                                            <input type="text" class="form-control" name="ManufacturerDescription" maxlength="2000" placeholder="Enter Manufacturer  Description" ng-model="ManufacturerObj.ManufacturerDescription">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Stores</label>
+                                        <div class="col-lg-5">
+                                            <div class="checkBoxList">
+                                                <ul class="list-unstyled">
+                                                    <li ng-repeat="Item in ManufacturerObj.ManufacturerStoreList.ManufacturerStore">
+                                                        <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.StoreName}}</label>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="text-right">

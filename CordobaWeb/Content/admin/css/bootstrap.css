@@ -254,6 +254,7 @@ th {
   .table td,
   .table th {
     background-color: #fff !important;
+ 
   }
   .table-bordered th,
   .table-bordered td {
@@ -2261,6 +2262,7 @@ caption {
 }
 th {
   text-align: left;
+      font-weight:500;
 }
 .table {
   width: 100%;
@@ -6801,4 +6803,6 @@ button.close {
     display: none !important;
   }
 }
+
+
  

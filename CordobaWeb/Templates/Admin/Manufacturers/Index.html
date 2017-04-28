@@ -24,12 +24,14 @@
             <thead>
                 <tr>
                     <th>Manufacturer Name</th>
+                    <th>Description</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="Item in ManufacturersList">
                     <td ng-bind="Item.ManufacturerName"></td>
+                    <td ng-bind="Item.Description"></td>
                     <td class="cursor-pointer text-center" ui-sref="ManageManufacturer({ManufacturerID:Item.ManufacturerID})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>

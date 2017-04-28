@@ -42,7 +42,7 @@
                     },
                 danger:
                     {
-                        label: "NO",
+                        label: "No",
                         className: "btn btn-default",
                         callback: function () {
                             return true;

@@ -50,7 +50,7 @@ function GetLayoutName()
                  }
                   , ManageManufacturer = {
                       name: 'ManageManufacturer',
-                      url: '/ManageManufacturer',
+                      url: '/ManageManufacturer?ManufacturerID:manufacturerID',
                       templateUrl: 'Templates/' + LayoutName + '/Manufacturers/ManageManufacturer.html'
                   }
                 ;

@@ -48,13 +48,13 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-1">
                                     <div class="form-group">
-                                        <label class="col-lg-2 control-label">Country Code:</label>
+                                        <label class="col-lg-2 control-label mandatoryField">Country Code</label>
                                         <div class="col-lg-5">
                                             <input type="text" class="form-control" name="CountryCd" maxlength="2" placeholder="Enter Country Code" ng-model="CountryObj.CountryCd" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-2 control-label">Country Name:</label>
+                                        <label class="col-lg-2 control-label mandatoryField">Country Name</label>
                                         <div class="col-lg-5">
                                             <input type="text" class="form-control" name="CountryName" maxlength="50" placeholder="Enter Country Name" ng-model="CountryObj.CountryName" required="required">
                                         </div>
@@ -62,7 +62,6 @@
                                     <div class="text-right">
                                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;&nbsp;
                                         <button type="submit" ng-click="SaveCountry(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>
-
                                     </div>
                                 </div>
                             </div>

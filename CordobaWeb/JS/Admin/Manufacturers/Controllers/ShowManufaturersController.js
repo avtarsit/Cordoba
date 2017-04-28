@@ -14,7 +14,7 @@
     $scope.GetManufacturersList = function () {
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0")
           .then(function (response) {
-              if (response.data.length > 0) {
+              if (response.data.length > 0) {                  
                   $scope.ManufacturersList = response.data;
               }
           })

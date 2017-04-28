@@ -481,7 +481,7 @@
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
-    <Content Include="JS\Admin\Manufacturers\Controllers\ManageManufacturersController.js" />
+    <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
     <Content Include="JS\appConfiguration.js" />
     <Content Include="JS\Common.js" />

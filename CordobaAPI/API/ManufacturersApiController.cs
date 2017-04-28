@@ -38,6 +38,26 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetManufaturerDetail(int? ManufacturersID)
+        {
+            try
+            {
+                var result = _ManufacturerServices.GetManufaturerDetail(ManufacturersID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };

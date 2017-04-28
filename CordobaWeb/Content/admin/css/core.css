@@ -6176,3 +6176,16 @@ h6.panel-title,
 {
     border-top:1px;
 }
+
+.mandatoryField:before {
+    content: "*";
+    color: red;
+}
+
+.checkBoxList{
+    height:150px;
+    overflow:auto;
+    background-color:#dce0e3;
+    padding:10px;   
+    border-radius: 10px;
+}

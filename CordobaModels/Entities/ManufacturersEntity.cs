@@ -12,6 +12,8 @@ namespace CordobaModels.Entities
       public string ManufacturerName { get; set; }
       public byte[] image { get;set;}
       public string Description { get; set; }
+      public ManufacturersStoreEntity ManufacturerStoreList { get; set; }
+
       
     }
 }
