@@ -10,7 +10,7 @@
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
 
-    $scope.PageTitle = "Show Categories";
+    $scope.PageTitle = "Categories";
 
 
     $scope.GetCategoryList = function () {

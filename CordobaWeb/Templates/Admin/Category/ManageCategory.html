@@ -1,44 +1,37 @@
 ﻿<div ng-controller="ManageCategoryController">
-    <style>
-        .control-label{
-                text-align: right;
-        }
-            
-    </style>
-    <div class="page-header">
-        <div class="page-header-content">
-            <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home -</span> {{PageTitle}}</h4>
-            </div>
-            <div class="heading-elements">
-                <div class="heading-btn-group">
+    <form name="form" id="form" class="form-horizontal" novalidate>
+        <div class="page-header">
+            <div class="page-header-content">
+                <div class="page-title">
+                    <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home -</span> {{PageTitle}}</h4>
+                </div>
+                <div class="heading-elements">
+                    <div class="heading-btn-group">
+                    </div>
                 </div>
             </div>
+            <div class="breadcrumb-line">
+                <ul class="breadcrumb">
+                    <li>  This page allows you to manage category.</li>
+                </ul>
+                <ul class="breadcrumb-elements" >
+                    <li>
+                        <button type="button" ui-sref="ShowCategory" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                    </li>
+                    <li>
+                        <button type="submit" ng-click="SaveCategory(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                    </li>
+                    <li ng-if="IsEditMode==true">
+                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteCategory(CategoryId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="breadcrumb-line">
-            <ul class="breadcrumb">
-                <li>  This page allows you to manage category.</li>
-            </ul>
-            <ul class="breadcrumb-elements" ng-if="IsEditMode==true">
-                <li>
-                    <button type="button" ui-sref="ShowCategory" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
-                </li>
-                <li>
-                    <button type="submit" ng-click="SaveCountry(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+        <div class="page-header-content">
+            <!-- Centered forms -->
+            <div class="row">
+                <div class="col-md-12">
 
-                </li>
-                <li>
-                    <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Country" ng-click="DeleteCategory(CategoryId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
-
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="page-header-content">
-        <!-- Centered forms -->
-        <div class="row">
-            <div class="col-md-12">
-                <form name="form" id="form" class="form-horizontal" novalidate>
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <div class="row">
@@ -50,8 +43,7 @@
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.CountryCd.$error.required">Country code is required.</li>
-                                                <li ng-show="form.CountryName.$error.required">Country name is required.</li>
+                                                <li ng-show="form.Category_Name_English.$error.required">Category Name is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -83,9 +75,9 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="language1">
                                                         <div class="form-group required">
-                                                            <label class="col-lg-2 control-label" for="input-name1">Category Name</label>
+                                                            <label class="col-lg-2 control-label mandatoryField" for="input-name1">Category Name</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="category_description[1][name]" value="" placeholder="Category Name" id="input-name1" class="form-control">
+                                                                <input type="text" name="Category_Name_English" ng-model="CategoryObj.CategoryName" placeholder="Category Name" id="input-name1" class="form-control" required="required">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -94,7 +86,7 @@
                                                                 <textarea name="category_description[1][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title1">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[1][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title1" class="form-control">
@@ -111,7 +103,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[1][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword1" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language2">
                                                         <div class="form-group required">
@@ -126,7 +118,7 @@
                                                                 <textarea name="category_description[2][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title2">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[2][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title2" class="form-control">
@@ -143,7 +135,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[2][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword2" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language3">
                                                         <div class="form-group required">
@@ -158,7 +150,7 @@
                                                                 <textarea name="category_description[3][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title3">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[3][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title3" class="form-control">
@@ -175,7 +167,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[3][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword3" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language4">
                                                         <div class="form-group required">
@@ -190,7 +182,7 @@
                                                                 <textarea name="category_description[4][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title4">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[4][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title4" class="form-control">
@@ -207,7 +199,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[4][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword4" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language5">
                                                         <div class="form-group required">
@@ -222,7 +214,7 @@
                                                                 <textarea name="category_description[5][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title5">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[5][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title5" class="form-control">
@@ -239,7 +231,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[5][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword5" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language6">
                                                         <div class="form-group required">
@@ -254,7 +246,7 @@
                                                                 <textarea name="category_description[6][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title6">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[6][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title6" class="form-control">
@@ -271,7 +263,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[6][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword6" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                     <div class="tab-pane" id="language7">
                                                         <div class="form-group required">
@@ -286,7 +278,7 @@
                                                                 <textarea name="category_description[7][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group required">
+                                                        <!--<div class="form-group required">
                                                             <label class="col-sm-2 control-label" for="input-meta-title7">Meta Tag Title</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="category_description[7][meta_title]" value="" placeholder="Meta Tag Title" id="input-meta-title7" class="form-control">
@@ -303,7 +295,7 @@
                                                             <div class="col-sm-10">
                                                                 <textarea name="category_description[7][meta_keyword]" rows="5" placeholder="Meta Tag Keywords" id="input-meta-keyword7" class="form-control"></textarea>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -315,18 +307,18 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-parent">Parent</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="path" value="" placeholder="Parent" id="input-parent" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="top: 35px; left: 15px; display: none;"><li data-value="0"><a href="#"> --- None --- </a></li><li data-value="50"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Accessories</a></li><li data-value="116"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Ballpoint</a></li><li data-value="39"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fine Liner</a></li><li data-value="20"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fountain Pen</a></li><li data-value="45"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Rollerball</a></li></ul>
+                                                    <input type="text" ng-model="CategoryObj.ParentCategoryName" name="path" value="" placeholder="Parent" id="input-parent" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="top: 35px; left: 15px; display: none;"><li data-value="0"><a href="#"> --- None --- </a></li><li data-value="50"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Accessories</a></li><li data-value="116"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Ballpoint</a></li><li data-value="39"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fine Liner</a></li><li data-value="20"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fountain Pen</a></li><li data-value="45"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Rollerball</a></li></ul>
                                                     <input type="hidden" name="parent_id" value="0">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="" data-original-title="(Autocomplete)">Filters</span></label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="filter" value="" placeholder="Filters" id="input-filter" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="display: none;"></ul>
                                                     <div id="category-filter" class="well well-sm" style="height: 150px; overflow: auto;">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Stores</label>
                                                 <div class="col-sm-10">
@@ -338,7 +330,7 @@
                                                         <div class="checkbox" ng-repeat="Item in CategoryObj.CategoryStoreList.CategoryStore">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected" name="category_store[]">
-                                                              {{Item.StoreName}}
+                                                                {{Item.StoreName}}
                                                             </label>
                                                         </div>
                                                     </div>
@@ -357,7 +349,7 @@
                                                     <input type="hidden" name="image" value="" id="input-image">
                                                 </div>
                                             </div>-->
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" title="" data-original-title="Display in the top menu bar. Only works for the top parent categories.">Top</span></label>
                                                 <div class="col-sm-10">
                                                     <div class="checkbox">
@@ -367,13 +359,13 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
+                                            </div>-->
+                                            <!--<div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-column"><span data-toggle="tooltip" title="" data-original-title="Number of columns to use for the bottom 3 categories. Only works for the top parent categories.">Columns</span></label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="column" value="0" placeholder="Columns" id="input-column" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-sort-order">Sort Order</label>
                                                 <div class="col-sm-10">
@@ -395,11 +387,12 @@
                             </div>
                         </div>
                     </div>
-                </form>
+
+                </div>
             </div>
+            <!-- /form centered -->
         </div>
-        <!-- /form centered -->
-    </div>
+    </form>
 </div>
 
 

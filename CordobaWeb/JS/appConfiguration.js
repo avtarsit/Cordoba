@@ -53,6 +53,16 @@ function GetLayoutName()
                       url: '/ManageManufacturer?ManufacturerID:manufacturerID',
                       templateUrl: 'Templates/' + LayoutName + '/Manufacturers/ManageManufacturer.html'
                   }
+                  , ShowProductCatalogue = {
+                      name: 'ShowProductCatalogue',
+                      url: '/ShowProductCatalogue',
+                      templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/Index.html'
+                  }
+                  , ManageProductCatalogue = {
+                      name: 'ManageProductCatalogue',
+                      url: '/ManageProductCatalogue?ProductCatalogueId:productCatalogueId',
+                      templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/ManageProductCatalogue.html'
+                  }
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -62,6 +72,9 @@ function GetLayoutName()
                 $stateProvider.state(ShowManufacturer);
                 $stateProvider.state(ManageManufacturer);
                 $stateProvider.state(TestPage);
+
+                $stateProvider.state(ShowProductCatalogue);
+                $stateProvider.state(ManageProductCatalogue);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
