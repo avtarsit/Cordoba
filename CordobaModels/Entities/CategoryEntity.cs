@@ -16,5 +16,6 @@ namespace CordobaModels.Entities
         public Nullable<DateTime> CreatedDate { get; set; }
         public Nullable<DateTime> ModifiedDate { get; set; }
         public bool? IsActive { get; set; }
+        public CategoryStoreEntity CategoryStoreList { get; set; }
     }
 }

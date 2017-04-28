@@ -5,6 +5,7 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
+    $scope.CategoryId = 0;
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.PageTitle = "Update Category";
         $scope.CategoryId = $stateParams.CategoryId;
@@ -50,6 +51,21 @@
         });
     };
 
+
+    $scope.GetCategoryById = function () {
+        $http.get(configurationService.basePath + "api/CategoryApi//GetCategoryById?CategoryId=" + $scope.CategoryId)
+          .then(function (response) {
+              debugger;
+              $scope.CategoryObj = response.data;
+          })
+      .catch(function (response) {
+      })
+      .finally(function () {
+
+      });
+    }
+
+
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -64,5 +80,7 @@
             $state.go('ShowCategory');
         }
     }
+
+    $scope.GetCategoryById();
 
 });
