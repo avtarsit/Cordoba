@@ -1244,7 +1244,7 @@ input[class*=bg-] + .form-control-feedback {
     padding-top: 0;
   }
   .form-horizontal .control-label:not(.text-right) {
-    text-align: left;
+    text-align: right;
   }
 }
 @media (min-width: 480px) {
