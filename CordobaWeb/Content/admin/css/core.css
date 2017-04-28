@@ -622,9 +622,7 @@ pre {
 *  Latest update: Oct 20, 2015
 *
 * ---------------------------------------------------------------------------- */
-th {
-  font-weight: 500;
-}
+
 .table {
   margin-bottom: 0;
 }
@@ -6172,4 +6170,9 @@ h6.panel-title,
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
     z-index: 99999;
+}
+
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th 
+{
+    border-top:1px;
 }
