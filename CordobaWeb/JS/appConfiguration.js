@@ -83,6 +83,17 @@ function GetLayoutName()
                       url: '/System/ManageStore?StoreID:storeID',
                       templateUrl: 'Templates/' + LayoutName + '/Store/ManageStore.html'
                   }
+
+                 , Banner = {
+                     name: 'Banner',
+                     url: '/Catalog/Banner',
+                     templateUrl: 'Templates/' + LayoutName + '/Banner/Index.html'
+                 }
+                  , ManageBanner = {
+                      name: 'ManageBanner',
+                      url: '/Catalog/ManageBanner?BannerId:bannerId',
+                      templateUrl: 'Templates/' + LayoutName + '/Banner/ManageBanner.html'
+                  }
                 
                 ;
                 $stateProvider.state(HomeIndex);
@@ -100,6 +111,9 @@ function GetLayoutName()
 
                 $stateProvider.state(ShowProductCatalogue);
                 $stateProvider.state(ManageProductCatalogue);
+
+                $stateProvider.state(Banner);
+                $stateProvider.state(ManageBanner);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
