@@ -165,18 +165,19 @@
                                                         <div class="col-lg-9">
                                                             <textarea type="text" class="form-control" name="MetaTagKeywords" maxlength="2000" placeholder="Meta Tag Keywords" ng-model="StoreObj.MetaTagDescription"></textarea>
                                                         </div>
-                                                    </div>
-
-
-                                                   
-
+                                                    </div>  
                                                     <div class="form-group">
-                                                        <label class="col-lg-2 control-label">Image</label>
-                                                        <div class="col-lg-5">
-                                                            <img src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                                        <label class="col-lg-2 control-label">Template</label>
+                                                        <div class="col-lg-9">
+                                                            <select class="form-control cursor-pointer" name="TemplateId" ng-model="StoreObj.TemplateId" ng-options="option.TemplateId as option.TemplateName for option in TemplateList"></select>
                                                         </div>
-                                                    </div>
-
+                                                    </div> 
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Default Layout</label>
+                                                        <div class="col-lg-9">
+                                                            <select class="form-control cursor-pointer" name="LayoutId" ng-model="StoreObj.LayoutId" ng-options="option.LayoutId as option.LayoutName for option in LayoutList"></select>
+                                                        </div>
+                                                    </div>                                                                                            
                                                 </div>
                                                 <!--End Store Tab-->
                                             </div>
@@ -184,7 +185,30 @@
                                         <div role="tabpanel" class="tab-pane" id="LocalTab">
                                             <div class="tab-pane fade active in" id="tab-data">
                                                 <!--Local Tab-->
-
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Country</label>
+                                                    <div class="col-lg-9">
+                                                        <select class="form-control cursor-pointer" name="Country" ng-model="StoreObj.CountryCd" ng-options="option.CountryCd as option.CountryName for option in CountryList"></select>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Region/State</label>
+                                                    <div class="col-lg-9">
+                                                        <select class="form-control cursor-pointer" name="State" ng-model="StoreObj.StateId" ng-options="option.StateId as option.StateName for option in StateList"></select>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Language</label>
+                                                    <div class="col-lg-9">
+                                                        <select class="form-control cursor-pointer" name="Language" ng-model="StoreObj.LanguageCd" ng-options="option.LanguageCd as option.LanguageName for option in LanguageList"></select>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Currency</label>
+                                                    <div class="col-lg-9">
+                                                        <select class="form-control cursor-pointer" name="Currency" ng-model="StoreObj.CurrencyCd" ng-options="option.CurrencyCd as option.CurrencyName for option in CurrencyList"></select>
+                                                    </div>
+                                                </div> 
                                                 <!--End Local Tab-->
                                             </div>
                                         </div>
