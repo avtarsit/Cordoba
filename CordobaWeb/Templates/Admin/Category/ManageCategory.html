@@ -83,7 +83,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[1][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[1][description]" id="category_description[1][description]" rows="4" cols="4" ng-model="StoreObj.WelcomeMessage"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -115,7 +115,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description2">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[2][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[2][description]" id="category_description[2][description]" rows="4" cols="4" ></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -147,7 +147,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description3">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[3][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[3][description]" id="category_description[3][description]" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -179,7 +179,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description4">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[4][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[4][description]" id="category_description[4][description]" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -211,7 +211,8 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description5">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[5][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                
+                                                                <textarea name="category_description[5][description]" id="category_description[5][description]" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -243,7 +244,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description6">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[6][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[6][description]" id="category_description[6][description]" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -275,7 +276,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description7">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="category_description[7][description]" placeholder="Description" class="form-control" rows="4" cols="4"></textarea>
+                                                                <textarea name="category_description[7][description]" id="category_description[7][description]" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <!--<div class="form-group required">
@@ -394,7 +395,15 @@
         </div>
     </form>
 </div>
-
+<script>
+    CKEDITOR.replace('category_description[1][description]');
+    CKEDITOR.replace('category_description[2][description]');
+    CKEDITOR.replace('category_description[3][description]');
+    CKEDITOR.replace('category_description[4][description]');
+    CKEDITOR.replace('category_description[5][description]');
+    CKEDITOR.replace('category_description[6][description]');
+    CKEDITOR.replace('category_description[7][description]');
+</script>
 
 
 
