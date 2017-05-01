@@ -20,12 +20,12 @@ function GetLayoutName()
                 }
                 , ShowCountry = {
                     name: 'ShowCountry',
-                    url: '/ShowCountry',
+                    url: '/Catalog/ShowCountry',
                     templateUrl: 'Templates/' + LayoutName + '/Country/Index.html'
                 }
                 , ManageCountry = {
                     name: 'ManageCountry',
-                    url: '/ManageCountry?CountryCd:countryCd',
+                    url: '/Catalog/ManageCountry?CountryCd:countryCd',
                     templateUrl: 'Templates/' + LayoutName + '/Country/AddOrUpdateCountry.html'
                 }
                 , TestPage = {
@@ -35,52 +35,52 @@ function GetLayoutName()
                 }
                  , ShowCategory = {
                      name: 'ShowCategory',
-                     url: '/ShowCategory',
+                     url: '/Catalog/ShowCategory',
                      templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                  }
                 , ManageCategory = {
                     name: 'ManageCategory',
-                    url: '/ManageCategory?CategoryId:categoryId',
+                    url: '/Catalog/ManageCategory?CategoryId:categoryId',
                     templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
                 }
                  , ShowManufacturer = {
                      name: 'ShowManufacturer',
-                     url: '/ShowManufacturer',
+                     url: '/Catalog/ShowManufacturer',
                      templateUrl: 'Templates/' + LayoutName + '/Manufacturers/Index.html'
                  }
                   , ManageManufacturer = {
                       name: 'ManageManufacturer',
-                      url: '/ManageManufacturer?ManufacturerID:manufacturerID',
+                      url: '/Catalog/ManageManufacturer?ManufacturerID:manufacturerID',
                       templateUrl: 'Templates/' + LayoutName + '/Manufacturers/ManageManufacturer.html'
                   }
                   , ShowProductCatalogue = {
                       name: 'ShowProductCatalogue',
-                      url: '/ShowProductCatalogue',
+                      url: '/Catalog/ShowProductCatalogue',
                       templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/Index.html'
                   }
                   , ManageProductCatalogue = {
                       name: 'ManageProductCatalogue',
-                      url: '/ManageProductCatalogue?ProductCatalogueId:productCatalogueId',
+                      url: '/Catalog/ManageProductCatalogue?ProductCatalogueId:productCatalogueId',
                       templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/ManageProductCatalogue.html'
                   }
                   , ShowSupplier = {
                       name: 'ShowSupplier',
-                      url: '/ShowSupplier',
+                      url: '/Catalog/ShowSupplier',
                       templateUrl: 'Templates/' + LayoutName + '/Supplier/Index.html'
                   }
                   , ManageSupplier = {
                       name: 'ManageSupplier',
-                      url: '/ManageSupplier?SupplierID:supplierID',
+                      url: '/Catalog/ManageSupplier?SupplierID:supplierID',
                       templateUrl: 'Templates/' + LayoutName + '/Supplier/ManageSupplier.html'
                   }
                  , ShowStore = {
                      name: 'ShowStore',
-                     url: '/ShowStore',
+                     url: '/System/ShowStore',
                      templateUrl: 'Templates/' + LayoutName + '/Store/Index.html'
                  }
                   , ManageStore = {
                       name: 'ManageStore',
-                      url: '/ManageStore?StoreID:storeID',
+                      url: '/System/ManageStore?StoreID:storeID',
                       templateUrl: 'Templates/' + LayoutName + '/Store/ManageStore.html'
                   }
                 

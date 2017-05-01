@@ -51,7 +51,7 @@
                                                     <li ng-show="form.StoreOwner.$error.required">Store Owner is required.</li>
                                                     <li ng-show="form.StoreAddress.$error.required">Store Address is required.</li>
                                                     <li ng-show="form.Email.$error.required">Email is required.</li>
-                                                    
+                                                    <li ng-show="form.MetaTitle.$error.required">Meta Title is required.</li>                                                                                                                                                         
                                                 </ul>
                                             </div>
                                         </div>
@@ -125,6 +125,13 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Image</label>
+                                                    <div class="col-lg-5">
+                                                        <img src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <!--End General Tab-->
                                         </div>
@@ -132,6 +139,45 @@
                                             <div class="tab-pane fade active in" id="tab-data">
                                                 <!--Store Tab-->
 
+                                                <!--General Tab-->
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label mandatoryField">Meta Title</label>
+                                                        <div class="col-lg-9">
+                                                            <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.MetaTitle" required="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label"> Meta Tag Description</label>
+                                                        <div class="col-lg-9">
+                                                            <textarea type="text" class="form-control" name="MetaTagDescription" maxlength="2000" placeholder="Enter Meta Tag Description" ng-model="StoreObj.MetaTagDescription"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Css Overrides</label>
+                                                        <div class="col-lg-9">
+                                                            <textarea type="text" class="form-control" rows="20" name="Cssoverrides"  ng-model="StoreObj.Cssoverrides"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Meta Tag Keywords</label>
+                                                        <div class="col-lg-9">
+                                                            <textarea type="text" class="form-control" name="MetaTagKeywords" maxlength="2000" placeholder="Meta Tag Keywords" ng-model="StoreObj.MetaTagDescription"></textarea>
+                                                        </div>
+                                                    </div>
+
+
+                                                   
+
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Image</label>
+                                                        <div class="col-lg-5">
+                                                            <img src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                                 <!--End Store Tab-->
                                             </div>
                                         </div>

@@ -71,7 +71,33 @@ $(function () {
     };
     NumberWithMaxLengthEvents();
     SetAnchorLinks();
+
+    setMenu();
+
+
+
+
 });
+
+function setMenu() {
+    debugger;
+    var url = window.location.toString();
+    url = url.split("?")[0];
+    var temp = url.split("/");
+
+    var keyWord = '';
+    for (i = 3; i < temp.length; i++) {
+        keyWord += '/' + temp[i];
+    }
+    $('a[href~="' + keyWord + '"]').parent().addClass("active");
+    //if (!$('body').hasClass("sidebar-xs")) {
+    //    $('a[href~="' + keyWord + '"]').parent().parent().show();
+    //}
+    $('a[href*="/Dashboard/Home"]').find('span').css("cursor", "pointer")
+    $('a[href="/"]').find('span').css("cursor", "pointer")
+    $('a[href="/crm/"]').find('span').css("cursor", "pointer")
+
+}
 
 function BindCustomerSearchBar($scope, $compile, dataTable) {
     var searchBar = '<div class="row searcharea"><div id="customSearch" ><div class="col-sm-12"><label class="control-label">Search Criteria:</label></div>' +
