@@ -502,6 +502,7 @@
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
+    <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
@@ -3496,6 +3497,7 @@
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
+    <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />

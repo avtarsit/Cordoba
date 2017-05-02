@@ -145,6 +145,12 @@ function GetLayoutName()
                       url: '/Reports/Coupons',
                       templateUrl: 'Templates/' + LayoutName + '/Report/CouponsReport.html'
                   }
+
+                , ImportCatalogue = {
+                    name: 'ImportCatalogue',
+                    url: '/Tools/ImportCatalogue',
+                    templateUrl: 'Templates/' + LayoutName + '/ImportCatalogue/Index.html'
+                }
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -174,6 +180,8 @@ function GetLayoutName()
 
                 $stateProvider.state(ProductViewedReport);
                 $stateProvider.state(ProductPurchasedReport);
+                $stateProvider.state(ImportCatalogue);
+                
 
 
                 //any url that doesn't exist in routes redirect to '/'
