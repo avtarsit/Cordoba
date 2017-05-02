@@ -124,6 +124,17 @@ function GetLayoutName()
                       templateUrl: 'Templates/' + LayoutName + '/Product/ManageProduct.html'
                   }
 
+                   , ProductViewedReport = {
+                       name: 'ProductViewedReport',
+                       url: '/Reports/ProductViewedReport',
+                       templateUrl: 'Templates/' + LayoutName + '/Report/ProductViewedReport.html'
+                   }
+                  , ProductPurchasedReport = {
+                      name: 'ProductPurchasedReport',
+                      url: '/Reports/ProductPurchasedReport',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/ProductPurchasedReport.html'
+                  }
+
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -150,6 +161,9 @@ function GetLayoutName()
                 $stateProvider.state(ShippingReport);
                 $stateProvider.state(Product);
                 $stateProvider.state(ManageProduct);
+
+                $stateProvider.state(ProductViewedReport);
+                $stateProvider.state(ProductPurchasedReport);
 
 
                 //any url that doesn't exist in routes redirect to '/'
