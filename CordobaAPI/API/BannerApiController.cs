@@ -9,20 +9,19 @@ using System.Web.Http;
 
 namespace CordobaAPI.API
 {
-    public class ProductCatalogueApiController : ApiController
+    public class BannerApiController : ApiController
     {
-        
-        public IProductCatalogueServices _productCatalogueServices;
-        public ProductCatalogueApiController()
+        public IBannerServices _BannerServices;
+        public BannerApiController()
         {
-            _productCatalogueServices = new ProductCatalogueService();
+            _BannerServices = new BannerService();
         }
         [HttpGet]
-        public HttpResponseMessage GetProductCatalogueList()
+        public HttpResponseMessage GetBannerList()
         {
             try
             {
-                var result = _productCatalogueServices.GetProductCatalogueList();
+                var result = _BannerServices.GetBannerList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -38,11 +37,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductCatalogueById(int ProductCatalogueId)
+        public HttpResponseMessage GetBannerById(int BannerId)
         {
             try
             {
-                var result = _productCatalogueServices.GetProductCatalogueById(ProductCatalogueId);
+                var result = _BannerServices.GetBannerById(BannerId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -56,5 +55,6 @@ namespace CordobaAPI.API
             }
 
         }
+
     }
 }

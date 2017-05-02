@@ -166,6 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\BannerApiController.cs" />
     <Compile Include="API\CategoryApiController.cs" />
     <Compile Include="API\CommonApiController.cs" />
     <Compile Include="API\CountryApiController.cs" />
