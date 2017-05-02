@@ -94,12 +94,12 @@ function GetLayoutName()
                   }
                  , Banner = {
                      name: 'Banner',
-                     url: '/Catalog/Banner',
+                     url: '/System/Design/Banner',
                      templateUrl: 'Templates/' + LayoutName + '/Banner/Index.html'
                  }
                   , ManageBanner = {
                       name: 'ManageBanner',
-                      url: '/Catalog/ManageBanner?BannerId:bannerId',
+                      url: '/System/Design/ManageBanner?BannerId:bannerId',
                       templateUrl: 'Templates/' + LayoutName + '/Banner/ManageBanner.html'
                   }
                  , OrderReport = {
@@ -113,6 +113,17 @@ function GetLayoutName()
                       templateUrl: 'Templates/' + LayoutName + '/Report/ShippingReport.html'
                   }
                 
+                 , Product = {
+                     name: 'Product',
+                     url: '/Catalog/Product',
+                     templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
+                 }
+                  , ManageProduct = {
+                      name: 'ManageProduct',
+                      url: '/Catalog/ManageProduct?ProductId:productId',
+                      templateUrl: 'Templates/' + LayoutName + '/Product/ManageProduct.html'
+                  }
+
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -137,6 +148,10 @@ function GetLayoutName()
 
                 $stateProvider.state(OrderReport);
                 $stateProvider.state(ShippingReport);
+                $stateProvider.state(Product);
+                $stateProvider.state(ManageProduct);
+
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

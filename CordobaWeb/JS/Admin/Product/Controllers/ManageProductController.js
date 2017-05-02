@@ -1,67 +1,67 @@
-﻿app.controller('ManageBannerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-
+﻿app.controller('ManageProductController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-  
+    createDatePicker();
     $scope.EnumStatus = [
                { 'StatusId': 1, 'StatusName': 'Enabled' }
              , { 'StatusId': 2, 'StatusName': 'Disabled' }
     ];
+    $scope.EnumLanguageList = [
+              { 'LangId': 1, 'LangName': 'English' }
+            , { 'LangId': 2, 'LangName': 'Deutsch' }
+             , { 'LangId': 3, 'LangName': 'Français' }
+              , { 'LangId': 4, 'LangName': 'Italiano' }
+               , { 'LangId': 5, 'LangName': 'Español' }
+                , { 'LangId': 6, 'LangName': 'Português' }
+                 , { 'LangId': 7, 'LangName': 'Nederlands' }
+    ];
+
 
     $scope.IsEditMode = false;
-    $scope.BannerId = 0;
+    $scope.ProductId = 0;
 
-    if ($stateParams.BannerId != undefined && $stateParams.BannerId != null) {
-        $scope.PageTitle = "Update Banner";
-        $scope.BannerId = $stateParams.BannerId;
+    if ($stateParams.ProductId != undefined && $stateParams.ProductId != null) {
+        $scope.PageTitle = "Update Product";
+        $scope.ProductId = $stateParams.ProductId;
         $scope.IsEditMode = true;
     }
     else {
-        $scope.PageTitle = "Add Banner";
+        $scope.PageTitle = "Add Product";
     }
     //#endregion
-
-
-    //#region Banner Image Attribute
-    $scope.AddBannerImage = function () {
-        var NewBannerImage = new Object();
-        NewBannerImage.Id = 0;
-        NewBannerImage.Title = null;
-        NewBannerImage.Link = null;
-        NewBannerImage.Image = null;
-        NewBannerImage.SortOrder = null;
-        if ($scope.BannerObj.BannerAttributeList == null) {
-            $scope.BannerObj.BannerAttributeList = [];
+    //#region Image Tab
+    $scope.AddImage = function () {
+        var NewImage = new Object();
+        NewImage.Id = 0;
+        NewImage.Image = null;
+        NewImage.SortOrder = null;
+        if ($scope.ProductObj.ImageList==undefined || $scope.ProductObj.ImageList == null) {
+            $scope.ProductObj.ImageList = [];
         }
-        $scope.BannerObj.BannerAttributeList.push(NewBannerImage);
+        $scope.ProductObj.ImageList.push(NewImage);
     }
 
-    $scope.RemoveBannerImage = function (event, item) {
+    $scope.RemoveImage = function (event, item) {
         if (item.Id != undefined && item.Id != null && item.Id != 0) {
             RemoveBannerImage(item);
         }
         else {
-            $scope.BannerObj.BannerAttributeList.pop(item);
+            $scope.ProductObj.ImageList.pop(item);
         }
     }
-
-    function RemoveBannerImage() {
-
-    }
-
     //#endregion
 
-    $scope.SaveBanner = function (form) {
+    $scope.SaveProduct = function (form) {
         if (form.$valid) {
-       
+            debugger;
         }
     }
 
-    $scope.DeleteBanner = function () {
+    $scope.DeleteProduct = function () {
         bootbox.dialog({
-            message: "Do you want remove Banner?",
+            message: "Do you want remove Product?",
             title: "Confirmation",
             className: "model",
             buttons: {
@@ -88,11 +88,10 @@
     };
 
 
-    $scope.GetBannerById = function () {
-        $http.get(configurationService.basePath + "api/BannerApi//GetBannerById?BannerId=" + $scope.BannerId)
+    $scope.GetProductById = function () {
+        $http.get(configurationService.basePath + "api/ProductApi//GetProductById?ProductId=" + $scope.ProductId)
           .then(function (response) {
-          
-              $scope.BannerObj = response.data;
+              $scope.ProductObj = response.data;
           })
       .catch(function (response) {
       })
@@ -108,15 +107,15 @@
         if (hasAnyUnsavedData) {
             bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
                 if (result) {
-                    $state.go('Banner');
+                    $state.go('Product');
                 }
             });
         }
         else {
-            $state.go('Banner');
+            $state.go('Product');
         }
     }
 
-    $scope.GetBannerById();
+    $scope.GetProductById();
 
 });
