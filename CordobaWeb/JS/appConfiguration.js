@@ -135,6 +135,16 @@ function GetLayoutName()
                       templateUrl: 'Templates/' + LayoutName + '/Report/ProductPurchasedReport.html'
                   }
 
+                 , ReturnReport = {
+                     name: 'ReturnReport',
+                     url: '/Reports/Return',
+                     templateUrl: 'Templates/' + LayoutName + '/Report/ReturnReport.html'
+                 }
+                  , CouponsReport = {
+                      name: 'CouponsReport',
+                      url: '/Reports/Coupons',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/CouponsReport.html'
+                  }
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
