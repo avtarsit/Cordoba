@@ -4,6 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+  
     $scope.EnumStatus = [
                { 'StatusId': 1, 'StatusName': 'Enabled' }
              , { 'StatusId': 2, 'StatusName': 'Disabled' }

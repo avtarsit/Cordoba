@@ -6196,3 +6196,8 @@ h6.panel-title,
     content: "\f059";
     margin-left: 4px;
 }
+
+.scrollbox.well.well-sm .even, .scrollbox.well.well-sm .odd {
+    width: 50%;
+    float: left;
+}
