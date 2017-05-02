@@ -6189,3 +6189,10 @@ h6.panel-title,
     padding:10px;   
     border-radius: 10px;
 }
+
+.table thead td span[data-toggle="tooltip"]:after, label.control-label span:after {
+    font-family: FontAwesome;
+    color: #1E91CF;
+    content: "\f059";
+    margin-left: 4px;
+}
