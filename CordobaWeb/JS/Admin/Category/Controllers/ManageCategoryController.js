@@ -19,7 +19,7 @@
 
     $scope.SaveCategory = function (form) {
         if (form.$valid) {
-            debugger;
+          
         }
     }
 
@@ -55,7 +55,7 @@
     $scope.GetCategoryById = function () {
         $http.get(configurationService.basePath + "api/CategoryApi//GetCategoryById?CategoryId=" + $scope.CategoryId)
           .then(function (response) {
-              debugger;
+          
               $scope.CategoryObj = response.data;
           })
       .catch(function (response) {

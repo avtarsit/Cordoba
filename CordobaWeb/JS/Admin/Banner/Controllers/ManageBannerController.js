@@ -54,7 +54,7 @@
 
     $scope.SaveBanner = function (form) {
         if (form.$valid) {
-            debugger;
+       
         }
     }
 
@@ -90,7 +90,7 @@
     $scope.GetBannerById = function () {
         $http.get(configurationService.basePath + "api/BannerApi//GetBannerById?BannerId=" + $scope.BannerId)
           .then(function (response) {
-              debugger;
+          
               $scope.BannerObj = response.data;
           })
       .catch(function (response) {

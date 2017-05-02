@@ -16,7 +16,7 @@
     $scope.GetCategoryList = function () {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
           .then(function (response) {
-              debugger;
+          
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
 

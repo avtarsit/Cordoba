@@ -80,7 +80,7 @@ $(function () {
 });
 
 function setMenu() {
-    debugger;
+ 
     var url = window.location.toString();
     url = url.split("?")[0];
     var temp = url.split("/");

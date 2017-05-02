@@ -19,7 +19,7 @@
 
     $scope.SaveProductCatalogue = function (form) {
         if (form.$valid) {
-            debugger;
+  
         }
     }
 
@@ -55,7 +55,7 @@
     $scope.GetProductCatalogueById = function () {
         $http.get(configurationService.basePath + "api/ProductCatalogueApi//GetProductCatalogueById?ProductCatalogueId=" + $scope.ProductCatalogueId)
           .then(function (response) {
-              debugger;
+         
               $scope.ProductCatalogueObj = response.data;
           })
       .catch(function (response) {

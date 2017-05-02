@@ -14,7 +14,7 @@
     $scope.GetUserList = function () {
         $http.get(configurationService.basePath + "api/UserApi/GetUserList")
           .then(function (response) {
-              debugger;
+            
               if (response.data.length > 0) {
                   $scope.UserList = response.data;
               }
