@@ -490,6 +490,8 @@
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
     <Content Include="JS\Admin\ProductCatalogue\Controllers\ManageProductCatalogueController.js" />
     <Content Include="JS\Admin\ProductCatalogue\Controllers\ShowProductCatalogue.js" />
+    <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
+    <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
     <Content Include="JS\appConfiguration.js" />
     <Content Include="JS\Common.js" />
     <Content Include="JS\Directives\appDirectives.js" />
@@ -3474,6 +3476,8 @@
     <Content Include="Templates\Admin\Supplier\ManageSupplier.html" />
     <Content Include="Templates\Admin\ProductCatalogue\Index.html" />
     <Content Include="Templates\Admin\ProductCatalogue\ManageProductCatalogue.html" />
+    <Content Include="Templates\Admin\Users\Index.html" />
+    <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
