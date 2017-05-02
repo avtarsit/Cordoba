@@ -151,6 +151,13 @@ function GetLayoutName()
                     url: '/Tools/ImportCatalogue',
                     templateUrl: 'Templates/' + LayoutName + '/ImportCatalogue/Index.html'
                 }
+                 , ErrorLog = {
+                     name: 'ErrorLog',
+                     url: '/Tools/ErrorLog',
+                     templateUrl: 'Templates/' + LayoutName + '/ErrorLog/Index.html'
+                 }
+
+                
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -181,6 +188,8 @@ function GetLayoutName()
                 $stateProvider.state(ProductViewedReport);
                 $stateProvider.state(ProductPurchasedReport);
                 $stateProvider.state(ImportCatalogue);
+
+                $stateProvider.state(ErrorLog);
                 
 
 
