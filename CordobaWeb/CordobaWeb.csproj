@@ -505,6 +505,8 @@
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShippingReportController.js" />
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
@@ -3497,6 +3499,8 @@
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />
+    <Content Include="Templates\Admin\Report\ProductPurchasedReport.html" />
+    <Content Include="Templates\Admin\Report\ProductViewedReport.html" />
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
