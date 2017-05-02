@@ -1,5 +1,4 @@
 ﻿
-
 'use strict';
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular"]);
 
@@ -92,7 +91,7 @@ function GetLayoutName()
                       name: 'ManageUser',
                       url: '/System/ManageUser?UserID:userID',
                       templateUrl: 'Templates/' + LayoutName + '/Users/ManageUser.html'
-
+                  }
                  , Banner = {
                      name: 'Banner',
                      url: '/Catalog/Banner',
