@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\IStoreServices.cs" />
     <Compile Include="Interfaces\ISupplierServices.cs" />
     <Compile Include="Interfaces\ITestServices.cs" />
+    <Compile Include="Interfaces\IUserServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Services\StoreServices.cs" />
     <Compile Include="Services\SupplierServices.cs" />
     <Compile Include="Services\TestServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">

@@ -32,7 +32,7 @@
                 <tr ng-repeat="Item in ManufacturersList">
                     <td ng-bind="Item.ManufacturerName"></td>
                     <td ng-bind="Item.Description"></td>
-                    <td class="cursor-pointer text-center" ui-sref="ManageManufacturer({ManufacturerID:Item.ManufacturerID})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
+                    <td class="cursor-pointer text-center" ui-sref="ManageManufacturer({ManufacturerID:Item.ManufacturerID})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>
         </table>

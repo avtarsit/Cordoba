@@ -1,5 +1,4 @@
 ﻿
-
 'use strict';
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular"]);
 
@@ -83,7 +82,16 @@ function GetLayoutName()
                       url: '/System/ManageStore?StoreID:storeID',
                       templateUrl: 'Templates/' + LayoutName + '/Store/ManageStore.html'
                   }
-
+                  , Users = {
+                      name: 'Users',
+                      url: '/System/Users',
+                      templateUrl: 'Templates/' + LayoutName + '/Users/Index.html'
+                  }
+                  , ManageUser = {
+                      name: 'ManageUser',
+                      url: '/System/ManageUser?UserID:userID',
+                      templateUrl: 'Templates/' + LayoutName + '/Users/ManageUser.html'
+                  }
                  , Banner = {
                      name: 'Banner',
                      url: '/System/Design/Banner',
@@ -118,6 +126,8 @@ function GetLayoutName()
                 $stateProvider.state(ManageSupplier);
                 $stateProvider.state(ShowStore);
                 $stateProvider.state(ManageStore);
+                $stateProvider.state(Users);
+                $stateProvider.state(ManageUser);
                 $stateProvider.state(TestPage);
 
                 $stateProvider.state(ShowProductCatalogue);

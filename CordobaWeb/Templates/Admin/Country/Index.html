@@ -32,7 +32,7 @@
                 <tr ng-repeat="Item in CountryList">
                     <td ng-bind="Item.CountryCd"></td>
                     <td ng-bind="Item.CountryName"></td>
-                    <td class="cursor-pointer text-center" ui-sref="ManageCountry({CountryCd:Item.CountryCd})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
+                    <td class="cursor-pointer text-center" ui-sref="ManageCountry({CountryCd:Item.CountryCd})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>
         </table>

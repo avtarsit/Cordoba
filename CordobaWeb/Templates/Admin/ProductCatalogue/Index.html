@@ -30,7 +30,7 @@
             <tbody>
                 <tr ng-repeat="Item in ProductCatalogueList">
                     <td ng-bind="Item.ProductCatalogueName"></td>
-                    <td class="cursor-pointer text-center" ui-sref="ManageProductCatalogue({ProductCatalogueId:Item.ProductCatalogueId})"><i class="glyphicon glyphicon-edit curso"></i></td>
+                    <td class="cursor-pointer text-center" ui-sref="ManageProductCatalogue({ProductCatalogueId:Item.ProductCatalogueId})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit curso"></i></td>
                 </tr>
             </tbody>
         </table>
