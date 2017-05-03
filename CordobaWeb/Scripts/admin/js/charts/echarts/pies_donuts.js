@@ -16,10 +16,9 @@ $(function () {
 
     require.config({
         paths: {
-            echarts: 'assets/js/plugins/visualization/echarts'
+            echarts: 'Scripts/admin/js/plugins/visualization/echarts'
         }
     });
-
 
     // Configuration
     // ------------------------------

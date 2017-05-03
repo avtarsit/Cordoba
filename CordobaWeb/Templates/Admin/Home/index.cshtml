@@ -1,5 +1,10 @@
-﻿
-<div>
+﻿<!-- /core JS files -->
+<!-- Theme JS files -->
+@*<script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
+    <script src="~/Scripts/admin/js/charts/echarts/pies_donuts.js"></script>*@
+
+<!-- /theme JS files -->
+<div ng-controller="DashboardController">
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -21,8 +26,221 @@
             <ul class="breadcrumb-elements"></ul>
         </div>
     </div>
-    <div class="container">
-      
+    <div class="page-header-content">
+        <div class="row">
+            <!-- Quick stats boxes -->
+
+            <div class="col-lg-3">
+                <!-- Members online -->
+                <div class="panel bg-teal-400">
+                    <div class="panel-body">
+                        <div class="heading-elements">
+                            @*<span class="heading-text badge bg-teal-800">+53,6%</span>*@
+                        </div>
+                        <h3 class="no-margin"> 10.4K </h3>
+                        Total Orders
+                        <div class="text-muted text-size-small"></div>
+                    </div>
+                    @*<div class="container-fluid">
+                            <div id="members-online"></div>
+                        </div>*@
+                </div>
+                <!-- /members online -->
+            </div>
+            <div class="col-lg-3">
+                <!-- Current server load -->
+                <div class="panel bg-pink-400">
+                    <div class="panel-body">
+                        <div class="heading-elements">
+                        </div>
+                        <h3 class="no-margin">10.1k</h3>
+                        Total Customers
+                        <div class="text-muted text-size-small"></div>
+                    </div>
+                    <div id="server-load"></div>
+                </div>
+                <!-- /current server load -->
+            </div>
+            <div class="col-lg-3">
+                <!-- Today's revenue -->
+                <div class="panel bg-blue-400">
+                    <div class="panel-body">
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action=""></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="no-margin">1k</h3>
+                        Total Supplier
+                        <div class="text-muted text-size-small"></div>
+                    </div>
+                    <div id="today-revenue"></div>
+                </div>
+                <!-- /today's revenue -->
+            </div>
+            <div class="col-lg-3">
+                <!-- Today's revenue -->
+                <div class="panel bg-danger-400">
+                    <div class="panel-body">
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action=""></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="no-margin">$18,390</h3>
+                        Total Sales
+                        <div class="text-muted text-size-small"></div>
+                    </div>
+                    <div id="today-revenue"></div>
+                </div>
+                <!-- /today's revenue -->
+            </div>
+
+            <!-- /quick stats boxes -->
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Nightingale roses width hidden labels -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Order Summary(Current Year)</h5>
+                        <div class="heading-elements">
+                            @*<ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>*@
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <div class="chart has-fixed-height" id="rose_diagram_hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /nightingale roses width hidden labels -->
+
+
+
+            </div>
+            <div class="col-lg-6">
+                <!-- Basic bar chart -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Sales Analytics</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <div class="chart has-fixed-height" id="basic_bars"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-sx-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-calendar"></i> Recent Activity</h3>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a>Liam Guinan</a> logged in.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:21:41</small>
+                        </li>
+                        <li class="list-group-item">
+                            <a>Declan McCormack</a> logged in.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:36</small>
+                        </li>
+                        <li class="list-group-item">
+                            <a>Declan McCormack</a> has requested a new password.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:10</small>
+                        </li>
+                        <li class="list-group-item">
+                            <a>John Mullen</a> logged in.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:05:38</small>
+                        </li>
+                        <li class="list-group-item">
+                            <a>Richard Phillips</a> has requested a new password.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 08:28:03</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 col-sx-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-shopping-cart"></i> Latest Orders</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td class="text-right">Order ID</td>
+                                    <td>Customer</td>
+                                    <td>Status</td>
+                                    <td>Date Added</td>
+                                    <td class="text-right">Total</td>
+                                    <td class="text-right">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-right">41232</td>
+                                    <td>Daryl Prance</td>
+                                    <td>Processing</td>
+                                    <td>02/05/2017</td>
+                                    <td class="text-right">446points</td>
+                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">41231</td>
+                                    <td>Arjen Cloake</td>
+                                    <td>Processing</td>
+                                    <td>02/05/2017</td>
+                                    <td class="text-right">1,470points</td>
+                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">41229</td>
+                                    <td>Paul Rushton</td>
+                                    <td>Processing</td>
+                                    <td>02/05/2017</td>
+                                    <td class="text-right">296points</td>
+                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">41228</td>
+                                    <td>Neil Johnston</td>
+                                    <td>Processing</td>
+                                    <td>02/05/2017</td>
+                                    <td class="text-right">1,263points</td>
+                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">41227</td>
+                                    <td>Rob Martin</td>
+                                    <td>Processing</td>
+                                    <td>02/05/2017</td>
+                                    <td class="text-right">790points</td>
+                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
