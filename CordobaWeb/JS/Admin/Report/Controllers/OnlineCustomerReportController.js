@@ -1,4 +1,4 @@
-﻿app.controller('ReturnReportController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('OnlineCustomerReportController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -9,7 +9,7 @@
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
 
-    $scope.PageTitle = "Sales Reports -Returns";
+    $scope.PageTitle = "Customers Online Report ";
 
 
     //$scope.GetManufacturersList = function () {

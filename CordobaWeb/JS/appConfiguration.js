@@ -104,7 +104,7 @@ function GetLayoutName()
                   }
                  , OrderReport = {
                      name: 'OrderReport',
-                     url: '/Reports/Order',
+                     url: '/Reports/Sales/Order',
                      templateUrl: 'Templates/' + LayoutName + '/Report/OrderReport.html'
                  }
                   , ShippingReport = {
@@ -133,6 +133,27 @@ function GetLayoutName()
                       url: '/Reports/Coupons',
                       templateUrl: 'Templates/' + LayoutName + '/Report/CouponsReport.html'
                   }
+                  ,CustomerOnlineReport = {
+                      name: 'CustomerOnlineReport',
+                      url: '/Reports/Customer/OnlineCustomer',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/OnlineCustomerReport.html'
+                  }
+                , CustomerActivityReport = {
+                    name: 'CustomerActivityReport',
+                    url: '/Reports/Customer/CustomerActivity',
+                    templateUrl: 'Templates/' + LayoutName + '/Report/CustomerActivityReport.html'
+                }
+                , CustomerOrderReport = {
+                    name: 'CustomerOrderReport',
+                    url: '/Reports/Customer/Order',
+                    templateUrl: 'Templates/' + LayoutName + '/Report/Order/ShowCustomerOrderReport.html'
+                }
+                , ManageCustomerOrder = {
+                    name: 'ManageCustomerOrder',
+                    url: '/Reports/Customer/ManageCustomerOrder?CustomerId:customerId',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/ManageCustomer.html'
+                }
+                
                 ;
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -162,6 +183,10 @@ function GetLayoutName()
 
                 $stateProvider.state(ReturnReport);
                 $stateProvider.state(CouponsReport);
+                $stateProvider.state(CustomerOnlineReport);
+                $stateProvider.state(CustomerActivityReport);
+                $stateProvider.state(CustomerOrderReport);
+                $stateProvider.state(ManageCustomerOrder);
                 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');

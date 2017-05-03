@@ -4,7 +4,7 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.CountryList = [];
+   
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)

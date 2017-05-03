@@ -1,15 +1,15 @@
-﻿app.controller('ReturnReportController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('CustomerActivityReportController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     createDatePicker();
-
+  
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
 
-    $scope.PageTitle = "Sales Reports -Returns";
+    $scope.PageTitle = "Customer Activity Report ";
 
 
     //$scope.GetManufacturersList = function () {
