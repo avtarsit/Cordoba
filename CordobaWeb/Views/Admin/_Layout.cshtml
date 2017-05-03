@@ -259,14 +259,21 @@
                                     <a href="#"><i class="icon-gear"></i>System <span></span></a>
                                     <ul>
                                         <li><a href="#" ui-sref="ShowStore"><i class="icon-forward"></i> <span> Setting</span></a></li>
-                                        <li><a href="#"><i class="icon-forward"></i> <span> Design</span></a></li>
                                         <li><a href="#" ui-sref="Users"><i class="icon-forward"></i> <span> Users</span></a></li>                       
-                                        <li><a href="#"><i class="fa fa-desktop"></i> <span> Design</span></a>
+                                        <li><a href="#"><i class="icon-forward"></i> <span> Design</span></a>
                                             <ul>
-                                                <li><a href="#" ui-sref="Banner"><i class="fa fa-picture-o"></i> <span> Banners</span></a></li>
+                                                <li><a href="#" ui-sref="Banner"><i class="icon-forward"></i> <span> Banners</span></a></li>
                                             </ul>
                                         </li>                                                          
                                     </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-wrench fa-fw"></i>Tools <span></span></a>
+                                    <ul>
+                                        <li><a href="#" ui-sref="ErrorLog"><i class="icon-forward"></i> <span> Error Logs</span></a></li>
+                                        <li><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
+                                    </ul>
+
                                 </li>
                                 <li>
                                     <a href="#"><i class="icon-graph"></i>Report <span></span></a>
@@ -283,8 +290,8 @@
                                         <li>
                                             <a href="#"><i class="icon-forward"></i> <span> Product</span></a>
                                             <ul>
-                                                <li><a href="#" ><i class="icon-forward"></i> <span> Viewed</span></a></li>
-                                                <li><a href="#"><i class="icon-forward"></i> <span> Purchased</span></a></li>
+                                                <li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>
+                                                <li><a ui-sref="ProductPurchasedReport"><i class="icon-forward"></i> <span> Purchased</span></a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -318,7 +325,9 @@
                     @RenderBody()
                     <!-- Footer -->
                     <div class="footer text-muted">
-                        &nbsp;&nbsp;&nbsp;  &copy; 2017-18. <a href="#">Cordoba</a> by <a href="#" target="_blank">Shaligram Infotech</a>
+                        &nbsp;&nbsp;&nbsp;  &copy; 2017-18. <a href="#">Cordoba
+                        </a>
+                         @*by <a href="#" target="_blank">Shaligram Infotech</a>*@
                     </div>
                     <!-- /footer -->
                 </div>

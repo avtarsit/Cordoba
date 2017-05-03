@@ -123,6 +123,18 @@ function GetLayoutName()
                       url: '/Catalog/ManageProduct?ProductId:productId',
                       templateUrl: 'Templates/' + LayoutName + '/Product/ManageProduct.html'
                   }
+
+                   , ProductViewedReport = {
+                       name: 'ProductViewedReport',
+                       url: '/Reports/ProductViewedReport',
+                       templateUrl: 'Templates/' + LayoutName + '/Report/ProductViewedReport.html'
+                   }
+                  , ProductPurchasedReport = {
+                      name: 'ProductPurchasedReport',
+                      url: '/Reports/ProductPurchasedReport',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/ProductPurchasedReport.html'
+                  }
+
                  , ReturnReport = {
                      name: 'ReturnReport',
                      url: '/Reports/Return',
@@ -153,6 +165,18 @@ function GetLayoutName()
                     url: '/Reports/Customer/ManageCustomerOrder?CustomerId:customerId',
                     templateUrl: 'Templates/' + LayoutName + '/Customer/ManageCustomer.html'
                 }
+
+                , ImportCatalogue = {
+                    name: 'ImportCatalogue',
+                    url: '/Tools/ImportCatalogue',
+                    templateUrl: 'Templates/' + LayoutName + '/ImportCatalogue/Index.html'
+                }
+                 , ErrorLog = {
+                     name: 'ErrorLog',
+                     url: '/Tools/ErrorLog',
+                     templateUrl: 'Templates/' + LayoutName + '/ErrorLog/Index.html'
+                 }
+
                 
                 ;
                 $stateProvider.state(HomeIndex);
@@ -187,7 +211,14 @@ function GetLayoutName()
                 $stateProvider.state(CustomerActivityReport);
                 $stateProvider.state(CustomerOrderReport);
                 $stateProvider.state(ManageCustomerOrder);
+                $stateProvider.state(ProductViewedReport);
+                $stateProvider.state(ProductPurchasedReport);
+                $stateProvider.state(ImportCatalogue);
+
+                $stateProvider.state(ErrorLog);
                 
+
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

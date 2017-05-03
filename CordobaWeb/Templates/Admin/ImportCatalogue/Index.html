@@ -1,0 +1,181 @@
+﻿<div ng-controller="ImportCatalogueController">
+    <form id="form">
+        <div class="page-header">
+            <div class="page-header-content">
+                <div class="page-title">
+                    <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home -</span> {{PageTitle}}</h4>
+                </div>
+                <div class="heading-elements">
+                    <div class="heading-btn-group">
+
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb-line">
+                <ul class="breadcrumb">
+                    <li> This page allows you to import a supplier catalogue by uploading a CSV file</li>
+                </ul>
+                <ul class="breadcrumb-elements">
+                    <li>
+                        <button type="button" ng-click="ImportCatalogue()" class="btn btn-success cursor-pointer">Import <i class="fa fa-cloud-upload position-right"></i></button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="page-header-content">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover list">
+                            <tbody>
+
+                                <tr>
+                                    <td width="25%">Supplier: </td>
+                                    <td>
+                                        <select name="supplier" style="width:45%" class="form-control">
+                                            <option value="1">Procurement International Limited</option>
+                                            <option value="2">Apple</option>
+                                            <option value="3">John Lewis</option>
+                                            <option value="4">Drum Lessons R Us</option>
+                                            <option value="5">Red Letter Day</option>
+                                            <option value="6">Virgin Experience</option>
+                                            <option value="7">All Garden Fun</option>
+                                            <option value="8">Tesco Direct</option>
+                                            <option value="9">Mow Direct</option>
+                                            <option value="10">Splash and Relax</option>
+                                            <option value="11">Home Leisure Direct</option>
+                                            <option value="12">PlayGamesUK</option>
+                                            <option value="13">Bose</option>
+                                            <option value="14">Liberty Games</option>
+                                            <option value="15">Simply Acer</option>
+                                            <option value="16">Best Buy</option>
+                                            <option value="17">Edenred Travel</option>
+                                            <option value="18">Currys</option>
+                                            <option value="19">Waitrose</option>
+                                            <option value="20">Whiskey Exchange</option>
+                                            <option value="21">Waud Wine Club</option>
+                                            <option value="22">Edenred Vouchers</option>
+                                            <option value="23">Jessops</option>
+                                            <option value="24">Detector Distribution </option>
+                                            <option value="25">E-buyer.com</option>
+                                            <option value="26">Jigsaw24 (Apple)</option>
+                                            <option value="27">Amazon</option>
+                                            <option value="28">AV Promotions </option>
+                                            <option value="48">Edenred</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="25%">Language:</td>
+                                    <td>
+                                        <select name="language" style="width:20%" class="form-control" >
+                                            <option value="1">English</option>
+                                            <option value="2">Deutsch</option>
+                                            <option value="3">Français</option>
+                                            <option value="4">Italiano</option>
+                                            <option value="5">Español</option>
+                                            <option value="6">Português</option>
+                                            <option value="7">Nederlands</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="25%">Catalogue source CSV (UTF-8 encoded): </td>
+                                    <td>
+                                    <!--<input type="file" name="upload">-->
+                                        <input type="file" ng-model-instant id="fileToUpload"  onchange="angular.element(this).scope().setFiles(this)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td width="25%">
+                                        Destination Catalogue: 				<span class="help">Nb: All existing products in this catalogue will be removed!</span>
+                                    </td>
+                                    <td>
+                                        <select name="catalouge" style="width:45%" class="form-control">
+                                            <option value=""> --- None --- </option>
+                                            <option value="18">CVD Edenred Vouchers</option>
+                                            <option value="20">Edenred</option>
+                                            <option value="23">Miscellaneous Suppliers</option>
+                                            <option value="24">Xmas Hampers</option>
+                                            <option value="42">SSG Procurement UK (Without Nursery or Apple)</option>
+                                            <option value="45">PB Jigsaw24 Multilingual (Apple)</option>
+                                            <option value="46">AV Promotions (Kindle)</option>
+                                            <option value="47">Procurement (Australia)</option>
+                                            <option value="48">Procurement (India)</option>
+                                            <option value="49">Procurement (Canada)</option>
+                                            <option value="53">Somcan (Canada)</option>
+                                            <option value="55">Spicers Hampers</option>
+                                            <option value="56">Harco (United States)</option>
+                                            <option value="57">Edenred (India)</option>
+                                            <option value="58">Procurement UK (Without Apple)</option>
+                                            <option value="59">Procurement UK (Without HSVouchers or Apple)</option>
+                                            <option value="61">PB Procurement Multilingual (Without Apple)</option>
+                                            <option value="62">PB UK Amazon Vouchers</option>
+                                            <option value="63">Spicers Hampers (No Alcohol)</option>
+                                            <option value="64">Procurement UK (Without Alcohol or Apple)</option>
+                                            <option value="65">CVD Compliments Vouchers</option>
+                                            <option value="66">Edenred (UAE)</option>
+                                            <option value="67">Edenred (Japan)</option>
+                                            <option value="68">Edenred (NZ)</option>
+                                            <option value="69">Jigsaw24 UK 2015 (Apple)</option>
+                                            <option value="72">Grenke Vouchers</option>
+                                            <option value="73">Accumulate (Australia)</option>
+                                            <option value="77">Data Cable 1</option>
+                                            <option value="78">Procurement EU Multilanguage</option>
+                                            <option value="79">Procurement UK (without HS Vouchers)</option>
+                                            <option value="81">All Vouchers</option>
+                                            <option value="82">ngc uk</option>
+                                            <option value="84">Virgin Wines</option>
+                                            <option value="85">Jigsaw Apple 2016</option>
+                                            <option value="86">Spicer Easter Hampers</option>
+                                            <option value="87">Harrods GC</option>
+                                            <option value="88">Irish Catalogue</option>
+                                            <option value="89">Jigsaw Nov 2016</option>
+                                            <option value="90">This is it 2016</option>
+                                            <option value="91">PB CA Vouchers</option>
+                                            <option value="92">PB US Vouchers</option>
+                                            <option value="93"> Black Cactus AU</option>
+                                            <option value="94"> Vouchers AU</option>
+                                            <option value="95">Spicers Valentines 2017</option>
+                                            <option value="96">Interflora 2017</option>
+                                            <option value="97">German Vouchers</option>
+                                            <option value="98">French Vouchers</option>
+                                            <option value="99">ngc-eu</option>
+                                            <option value="100">Spicers Mothers Day 2017</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#fileToUpload").change(function () {
+        debugger;
+        var fileExtension = ['csv'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : " + fileExtension.join(', '));
+        }
+    });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+

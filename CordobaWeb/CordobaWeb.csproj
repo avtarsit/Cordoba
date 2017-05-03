@@ -502,12 +502,15 @@
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
+    <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
     <Content Include="JS\Admin\Report\Controllers\CouponReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\CustomerActivityReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ReturnReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShippingReportController.js" />
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
@@ -3499,6 +3502,7 @@
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
+    <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
@@ -3507,6 +3511,8 @@
     <Content Include="Templates\Admin\Report\OrderReport.html" />
     <Content Include="Templates\Admin\Report\Order\ShowCustomerOrderReport.html" />
     <Content Include="Templates\Admin\Report\ReturnReport.html" />
+    <Content Include="Templates\Admin\Report\ProductPurchasedReport.html" />
+    <Content Include="Templates\Admin\Report\ProductViewedReport.html" />
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
