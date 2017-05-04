@@ -494,6 +494,10 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
+    <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
@@ -704,6 +708,7 @@
     <Content Include="Scripts\admin\js\charts\google\bars\histogram.js" />
     <Content Include="Scripts\admin\js\charts\google\bubbles\bubble.js" />
     <Content Include="Scripts\admin\js\charts\google\bubbles\bubble_gradient.js" />
+    <Content Include="Scripts\admin\js\charts\google\googleJSapi.js" />
     <Content Include="Scripts\admin\js\charts\google\lines\area.js" />
     <Content Include="Scripts\admin\js\charts\google\lines\area_intervals.js" />
     <Content Include="Scripts\admin\js\charts\google\lines\area_stacked.js" />
@@ -3461,6 +3466,7 @@
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_config.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_defaults.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\dialog\dialog.scss" />
+    <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
