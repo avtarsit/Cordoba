@@ -502,6 +502,8 @@
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
+    <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Admin\ErrorLog\Controllers\ErrorLogController.js" />
     <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
@@ -512,6 +514,7 @@
     <Content Include="JS\Admin\Report\Controllers\ReturnReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\RewardPointsReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShippingReportController.js" />
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
@@ -3503,6 +3506,7 @@
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
+    <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />
     <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
@@ -3511,7 +3515,8 @@
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />
-    <Content Include="Templates\Admin\Report\Order\ShowCustomerOrderReport.html" />
+    <Content Include="Templates\Admin\Report\RewardPointsReport.html" />
+    <Content Include="Templates\Admin\Report\ShowCustomerOrderReport.html" />
     <Content Include="Templates\Admin\Report\ReturnReport.html" />
     <Content Include="Templates\Admin\Report\ProductPurchasedReport.html" />
     <Content Include="Templates\Admin\Report\ProductViewedReport.html" />
@@ -3569,7 +3574,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Templates\Admin\Customer\" />
     <Folder Include="Templates\_Layout1\" />
     <Folder Include="Templates\_Layout2\" />
   </ItemGroup>

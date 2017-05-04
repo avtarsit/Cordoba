@@ -5,6 +5,7 @@
     BindToolTip();
     Tab();
     $scope.StoreObj = new Object();
+    debugger;
     $scope.IsEditMode = false;
     if ($stateParams.StoreID != undefined && $stateParams.StoreID != null) {
         $scope.PageTitle = "Update Store";
