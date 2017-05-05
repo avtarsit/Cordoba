@@ -323,7 +323,7 @@
                         xAxis: [
                             {
                                 type: 'category',
-                                data: ['Annodata Rewards', 'Rewards ', '3', '4', '5']
+                                data: ['Annodata', 'Rewards ', 'Vitrx', 'Choice', 'Example']
                                 ,rotated: true
                             }
                         ],
