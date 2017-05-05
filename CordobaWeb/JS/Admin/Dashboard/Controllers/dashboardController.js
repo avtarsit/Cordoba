@@ -25,6 +25,8 @@
                                     { value: 430, name: 'November' },
                                     { value: 200, name: 'December' }
     ];
+
+    $scope.Top5SalerStore = ['Annodata Rewards', 'Blizzard Rewards', 'Clear Asset Finance', 'CVD Rewards', 'GO SKIPPY'];
     //#region Chart
 
 
@@ -61,18 +63,19 @@
 
                     // Initialize charts
                     // ------------------------------
-
                     //var basic_pie = ec.init(document.getElementById('basic_pie'), limitless);
                     //var basic_donut = ec.init(document.getElementById('basic_donut'), limitless);
                     //var nested_pie = ec.init(document.getElementById('nested_pie'), limitless);
                     //var infographic_donut = ec.init(document.getElementById('infographic_donut'), limitless);
-                    var rose_diagram_hidden = ec.init(document.getElementById('rose_diagram_hidden'), limitless);
+                    var OrderSummary = ec.init(document.getElementById('OrderSummary'), limitless);
                     //var rose_diagram_visible = ec.init(document.getElementById('rose_diagram_visible'), limitless);
                     //var lasagna_donut = ec.init(document.getElementById('lasagna_donut'), limitless);
                     //var pie_timeline = ec.init(document.getElementById('pie_timeline'), limitless);
                     //var multiple_donuts = ec.init(document.getElementById('multiple_donuts'), limitless);
-                    var basic_bars = ec.init(document.getElementById('basic_bars'), limitless);
+                    var SalesAnalytics = ec.init(document.getElementById('SalesAnalytics'), limitless);
 
+                    var Top10Sales_Chart = ec.init(document.getElementById('Top10Sales_Chart'), limitless);
+                    
                     // Charts setup
                     // ------------------------------                    
 
@@ -81,7 +84,7 @@
                     // Nightingale roses with hidden labels options
                     //
 
-                    rose_diagram_hidden_options = {
+                    OrderSummary_options = {
 
                         //// Add title
                         //title: {
@@ -191,7 +194,7 @@
                     // Basic bars options
                     //
 
-                    basic_bars_options = {
+                    SalesAnalytics_options = {
 
                         // Setup grid
                         grid: {
@@ -213,7 +216,44 @@
                         //legend: {
                         //    data: ['Year 2013']
                         //},
-
+                        // Display toolbox
+                        toolbox: {
+                            show: true,
+                            orient: 'vertical',
+                            feature: {
+                                //mark: {
+                                //    show: true,
+                                //    title: {
+                                //        mark: 'Markline switch',
+                                //        markUndo: 'Undo markline',
+                                //        markClear: 'Clear markline'
+                                //    }
+                                //},
+                                //dataView: {
+                                //    show: true,
+                                //    readOnly: false,
+                                //    title: 'View data',
+                                //    lang: ['View chart data', 'Close', 'Update']
+                                //},
+                                //magicType: {
+                                //    show: true,
+                                //    title: {
+                                //        pie: 'Switch to pies',
+                                //        funnel: 'Switch to funnel',
+                                //    },
+                                //    type: ['pie', 'funnel']
+                                //},
+                                restore: {
+                                    show: true,
+                                    title: 'Restore'
+                                },
+                                saveAsImage: {
+                                    show: true,
+                                    title: 'Same as image',
+                                    lang: ['Save']
+                                }
+                            }
+                        },
                         // Enable drag recalculate
                         calculable: false,
 
@@ -245,12 +285,72 @@
                         ]
                     };
 
+                    // Top 10 Sales - Bar Chart
+
+                  
+
+                    Top10Sales_Chart_option = {
+                        title: {
+                            text: 'Store'
+                            //subtext: 'dsfg'
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        //legend: {
+                        //    data: ['sdfds']
+                        //},
+                        toolbox: {
+                            show: true,
+                            //orient: 'vertical',
+                            feature: {
+                                //mark: { show: true },
+                                //dataView: { show: true, readOnly: false },
+                                //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                                magicType: {
+                                    show: true,
+                                    title: {
+                                        bar: 'Switch to pies',
+                                        line: 'Switch to line',
+                                    },
+                                    type: ['bar', 'line']
+                                },
+                                restore: { show: true, title: 'Restore' },
+                                saveAsImage: { show: true ,title: 'Same as image'}
+                            }
+                        },
+                        calculable: false,
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: ['Annodata Rewards', 'Rewards ', '3', '4', '5']
+                                ,rotated: true
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: 'Sales',
+                                type: 'bar',
+                                data: [2.0, 2.6, 20.0, 6.4, 3.3],
+                            }
+                        ]
+                    };
+
+
+
 
                     // Apply options
                     // ------------------------------
 
-                    rose_diagram_hidden.setOption(rose_diagram_hidden_options);
-                    basic_bars.setOption(basic_bars_options);
+                    OrderSummary.setOption(OrderSummary_options);
+                    SalesAnalytics.setOption(SalesAnalytics_options);
+
+                    Top10Sales_Chart.setOption(Top10Sales_Chart_option);
                     // Resize charts
                     // ------------------------------
                    
@@ -260,8 +360,9 @@
                             //basic_donut.resize();
                             //nested_pie.resize();
                             //infographic_donut.resize();
-                            rose_diagram_hidden.resize();
-                            basic_bars.resize();
+                            OrderSummary.resize();
+                            SalesAnalytics.resize();
+                            Top10Sales_Chart.resize();
                             //rose_diagram_visible.resize();
                             //lasagna_donut.resize();
                             //pie_timeline.resize();
