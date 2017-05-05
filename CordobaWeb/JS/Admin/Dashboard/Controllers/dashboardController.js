@@ -302,7 +302,7 @@
                         //},
                         toolbox: {
                             show: true,
-                            //orient: 'vertical',
+                            orient: 'vertical',
                             feature: {
                                 //mark: { show: true },
                                 //dataView: { show: true, readOnly: false },
