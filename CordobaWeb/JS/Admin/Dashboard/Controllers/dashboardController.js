@@ -290,10 +290,10 @@
                   
 
                     Top10Sales_Chart_option = {
-                        title: {
-                            text: 'Store'
-                            //subtext: 'dsfg'
-                        },
+                        //title: {
+                        //    text: 'Store'
+                        //    //subtext: 'dsfg'
+                        //},
                         tooltip: {
                             trigger: 'axis'
                         },
