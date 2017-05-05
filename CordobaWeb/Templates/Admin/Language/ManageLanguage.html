@@ -1,0 +1,123 @@
+﻿
+<div ng-controller="AddOrUpdateLanguageController">
+    <form name="form" id="form" class="form-horizontal" novalidate>
+        <div class="page-header">
+            <div class="page-header-content">
+                <div class="page-title">
+                    <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home -</span> {{PageTitle}}</h4>
+                </div>
+                <div class="heading-elements">
+                    <div class="heading-btn-group">
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb-line">
+                <ul class="breadcrumb">
+                    <li>  This page allows you to manage languages.</li>
+                </ul>
+
+                <ul class="breadcrumb-elements">
+                    <li>
+                        <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                    </li>
+                    <li>
+                        <button type="submit" ng-click="SaveLanguage(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                    </li>
+                    <li ng-if="IsEditMode==true">
+                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Country" ng-click="DeleteLanguage(LanguageObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-header-content">
+            <!-- Centered forms -->
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+
+                                    <div role="tabpanel" class="form-horizontal" id="messages">
+                                        <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
+                                            <ul ng-show="validationErrors">
+                                                <li ng-repeat="error in validationErrors">{{error}}</li>
+                                            </ul>
+                                            <ul ng-show="form.$submitted && (!form.$valid)">
+                                                <li ng-show="form.LanguageCd.$error.required">Language code is required.</li>
+                                                <li ng-show="form.LanguageName.$error.required">Language name is required.</li>
+                                                <li ng-show="form.ImageName.$error.required">Image name is required.</li>
+                                                <li ng-show="form.DirectoryName.$error.required">Directory name is required.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Language Code</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="LanguageCd" maxlength="2" placeholder="Enter Language Code" ng-model="LanguageObj.LanguageCd" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Language Name</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="LanguageName" maxlength="50" placeholder="Enter Country Name" ng-model="LanguageObj.LanguageName" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Image</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="ImageName" maxlength="50" placeholder="Enter Image Name" ng-model="LanguageObj.ImageName" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Directory</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="DirectoryName" maxlength="50" placeholder="Enter Directory Name" ng-model="LanguageObj.DirectoryName" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Status</label>
+                                        <div class="col-lg-8">
+                                            <select name="status" id="input-status" class="form-control">
+                                                <option value="1" selected="selected">Enabled</option>
+                                                <option value="0">Disabled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Sort Order</label>
+                                        <div class="col-lg-8">
+                                            <input type="number" class="form-control" name="SortOrder" ng-model="LanguageObj.SortOrder" >
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /form centered -->
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+

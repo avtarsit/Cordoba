@@ -181,6 +181,16 @@ function GetLayoutName()
                      url: '/Reports/RewardPoints',
                      templateUrl: 'Templates/' + LayoutName + '/Report/RewardPointsReport.html'
                  }
+                 , Language = {
+                     name: 'Language',
+                     url: '/System/Language',
+                     templateUrl: 'Templates/' + LayoutName + '/Language/Index.html'
+                 }
+                  , ManageLanguage = {
+                      name: 'ManageLanguage',
+                      url: '/System/ManageLanguage?LanguageCd:languageCd',
+                      templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
+                  }
                 
                 ;
                 $stateProvider.state(HomeIndex);
@@ -222,7 +232,8 @@ function GetLayoutName()
                 $stateProvider.state(ErrorLog);
                 $stateProvider.state(RewardPointsReport);
                 
-
+                $stateProvider.state(Language);
+                $stateProvider.state(ManageLanguage);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
