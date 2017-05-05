@@ -158,7 +158,7 @@ function GetLayoutName()
                 , CustomerOrderReport = {
                     name: 'CustomerOrderReport',
                     url: '/Reports/Customer/Order',
-                    templateUrl: 'Templates/' + LayoutName + '/Report/Order/ShowCustomerOrderReport.html'
+                    templateUrl: 'Templates/' + LayoutName + '/Report/ShowCustomerOrderReport.html'
                 }
                 , ManageCustomerOrder = {
                     name: 'ManageCustomerOrder',
@@ -176,7 +176,11 @@ function GetLayoutName()
                      url: '/Tools/ErrorLog',
                      templateUrl: 'Templates/' + LayoutName + '/ErrorLog/Index.html'
                  }
-
+                 , RewardPointsReport = {
+                     name: 'RewardPointsReport',
+                     url: '/Reports/RewardPoints',
+                     templateUrl: 'Templates/' + LayoutName + '/Report/RewardPointsReport.html'
+                 }
                 
                 ;
                 $stateProvider.state(HomeIndex);
@@ -216,8 +220,8 @@ function GetLayoutName()
                 $stateProvider.state(ImportCatalogue);
 
                 $stateProvider.state(ErrorLog);
+                $stateProvider.state(RewardPointsReport);
                 
-
 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');

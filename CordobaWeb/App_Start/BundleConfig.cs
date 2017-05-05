@@ -33,7 +33,8 @@ namespace CordobaWeb
                        "~/Scripts/bootstrap-modal.js",
                        "~/Scripts/bootstrap-datepicker.js",
                        "~/Scripts/jquery.bootstrap-duallistbox.js",
-                       "~/Scripts/bootbox.js"
+                       "~/Scripts/bootbox.js",
+                          "~/Scripts/ckeditor/ckeditor.js"
                      ));
                    
             bundles.Add(new StyleBundle("~/bundles/css").Include(
@@ -91,6 +92,7 @@ namespace CordobaWeb
                      "~/Content/admin/css/icons/icomoon/styles.css",                                    
                      "~/Content/admin/css/core.css",
                      "~/Content/admin/css/components.css",
+                       "~/Content/admin/css/components.css",
                      "~/Content/admin/css/colors.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/AdminJs").Include(

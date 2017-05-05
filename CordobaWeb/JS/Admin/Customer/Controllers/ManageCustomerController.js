@@ -4,6 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.CustomerObj = new Object();
     $scope.StoreObj = new Object();
     $scope.IsEditMode = false;
     $scope.PageTitle = "Manage Customer";
@@ -11,8 +12,35 @@
        
         $scope.IsEditMode = true;
     }  
-    //#endregion    
+    //#endregion  
+    
+    $scope.AddressList = [];
+    var AddressObj = new Object();    
+    AddressObj.Title = "Address 1";
+    $scope.AddressList.push(AddressObj);
 
+    $scope.AddAddress = function ()
+    {        
+        var AddressObj = new Object();
+        AddressObj.Title = "Address " + ($scope.AddressList.length + 1);            
+        $scope.AddressList.push(AddressObj);
+        $scope.CustomerObj.Address = new Object();
+        
+    }
+    $scope.RemoveAddress = function (item)
+    {
+        if ($scope.AddressList.length>1)
+        {
+            var index = $scope.AddressList.indexOf(item);
+            $scope.AddressList.splice(index, 1);
+        }
+   
+    }
+    $scope.GotoAddress = function (item)
+    {  
+        var index = $scope.AddressList.indexOf(item);
+        $scope.CustomerObj.Address = $scope.AddressList[index];
+    }
 
     $scope.DeleteStore = function () {
         bootbox.dialog({

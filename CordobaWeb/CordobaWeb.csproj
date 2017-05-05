@@ -494,6 +494,10 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
+    <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
+    <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
@@ -503,6 +507,8 @@
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
+    <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Admin\ErrorLog\Controllers\ErrorLogController.js" />
     <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
@@ -510,6 +516,7 @@
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\RewardPointsReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShippingReportController.js" />
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
@@ -3455,6 +3462,7 @@
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_config.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_defaults.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\dialog\dialog.scss" />
+    <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3500,11 +3508,15 @@
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
+    <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />
     <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />
+    <Content Include="Templates\Admin\Report\RewardPointsReport.html" />
+    <Content Include="Templates\Admin\Report\ShowCustomerOrderReport.html" />
+    <Content Include="Templates\Admin\Report\ReturnReport.html" />
     <Content Include="Templates\Admin\Report\ProductPurchasedReport.html" />
     <Content Include="Templates\Admin\Report\ProductViewedReport.html" />
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
