@@ -192,6 +192,7 @@
                     // Add tooltip
                     tooltip: {
                         trigger: 'axis',
+                        formatter: "{a} <br/>{b}: {c} points",
                         axisPointer: {
                             type: 'shadow'
                         }
@@ -265,7 +266,7 @@
                                     color: '#EF5350'
                                 }
                             },
-                            data: [38, 73, 12, 20, 33, 38, 73, 12, 20, 33, 20, 10]
+                            data: [318, 713, 112, 201, 331, 318, 713, 112, 201, 331, 120, 110]
                         }
                     ]
                 };
@@ -366,7 +367,7 @@
                     xAxis: [
                         {
                             type: 'category',
-                            data: ['Marks £50', 'Amazon £50 Gift Code ', 'Amazon £100', 'Marks £50', 'Capital £75']
+                            data: ['Marks','Apple', 'Azz', 'as', 'Capital']
                         }
                     ],
                     yAxis: [
@@ -378,7 +379,7 @@
                         {
                             name: 'Product',
                             type: 'bar',
-                            data: [2.0, 2.6, 20.0, 6.4, 3.3],
+                            data: [20, 55, 20, 64, 33],
                         }
                     ]
                 };

@@ -189,10 +189,13 @@
                     // Add tooltip
                     tooltip: {
                         trigger: 'axis',
-                        axisPointer: {
+                        formatter: "{a} <br/>{b}: {c} points"
+                        ,axisPointer: {
                             type: 'shadow'
                         }
                     },
+
+                 
 
                     // Add legend
                     //legend: {
@@ -262,7 +265,7 @@
                                     color: '#EF5350'
                                 }
                             },
-                            data: [38, 73, 12, 20, 33, 38, 73, 12, 20, 33, 20, 10]
+                            data: [358, 753, 124, 240, 334, 348, 743, 12, 240, 334, 240, 104]
                         }
                     ]
                 };
@@ -275,6 +278,7 @@
                     //},
                     tooltip: {
                         trigger: 'axis'
+                         , formatter: "{a} <br/>{b}: {c}$"
                     },
                     //legend: {
                     //    data: ['sdfds']
@@ -316,7 +320,7 @@
                         {
                             name: 'Sales',
                             type: 'bar',
-                            data: [2.0, 2.6, 20.0, 6.4, 3.3],
+                            data: [243.0, 234.6, 2034.0, 6.4, 3.3],
                         }
                     ]
                 };
@@ -330,6 +334,7 @@
                     //},
                     tooltip: {
                         trigger: 'axis'
+                       
                     },
                     //legend: {
                     //    data: ['sdfds']

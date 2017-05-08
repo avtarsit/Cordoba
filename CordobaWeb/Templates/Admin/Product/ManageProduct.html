@@ -130,64 +130,15 @@
                                                 <input type="text" name="model" value="" placeholder="Model" id="input-model" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="" data-original-title="Stock Keeping Unit">SKU</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="sku" value="" placeholder="SKU" id="input-sku" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-upc"><span data-toggle="tooltip" title="" data-original-title="Universal Product Code">UPC</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="upc" value="" placeholder="UPC" id="input-upc" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-ean"><span data-toggle="tooltip" title="" data-original-title="European Article Number">EAN</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="ean" value="" placeholder="EAN" id="input-ean" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-jan"><span data-toggle="tooltip" title="" data-original-title="Japanese Article Number">JAN</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="jan" value="" placeholder="JAN" id="input-jan" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-isbn"><span data-toggle="tooltip" title="" data-original-title="International Standard Book Number">ISBN</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="isbn" value="" placeholder="ISBN" id="input-isbn" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-mpn"><span data-toggle="tooltip" title="" data-original-title="Manufacturer Part Number">MPN</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="mpn" value="" placeholder="MPN" id="input-mpn" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-location">Location</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="location" value="" placeholder="Location" id="input-location" class="form-control">
-                                            </div>
-                                        </div>
+                                      
+                                      
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-price">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="price" value="0.0000" placeholder="Price" id="input-price" class="form-control">
+                                                <input type="text" name="price" value="0.00" placeholder="Price" id="input-price" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-tax-class">Tax Class</label>
-                                            <div class="col-sm-10">
-                                                <select name="tax_class_id" id="input-tax-class" class="form-control">
-                                                    <option value="0"> --- None --- </option>
-                                                    <option value="9">Taxable Goods</option>
-                                                    <option value="10">Downloadable Products</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-quantity">Quantity</label>
                                             <div class="col-sm-10">
@@ -267,7 +218,7 @@
                                                 </div>
                                             </div>
                                         </div>-->
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-length-class">Length Class</label>
                                             <div class="col-sm-10">
                                                 <select name="length_class_id" id="input-length-class" class="form-control">
@@ -280,7 +231,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-weight">Weight</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="weight" value="0.00000000" placeholder="Weight" id="input-weight" class="form-control">
+                                                <input type="text" name="weight" value="0.0" placeholder="Weight" id="input-weight" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -293,7 +244,7 @@
                                                     <option value="6">Ounce</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-status">Status</label>
                                             <div class="col-sm-10">
@@ -322,29 +273,39 @@
                                             <div class="col-sm-2">
                                                 <input type="hidden" class="form-control" name="product_shipping_costs[0][country_id]" value="222">
                                                 <input type="hidden" class="form-control" name="product_shipping_costs[0][country_name]" value="United Kingdom">
-                                                <input type="text" class="form-control" name="product_shipping_costs[0][shipping_cost]" value="0.0000">
+                                                <input type="text" class="form-control" name="product_shipping_costs[0][shipping_cost]" value="0.00">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab-links">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-manufacturer"><span data-toggle="tooltip" title="" data-original-title="(Autocomplete)">Manufacturer</span></label>
+                                            <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="manufacturer" value="" placeholder="Manufacturer" id="input-manufacturer" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
-                                                <input type="hidden" name="manufacturer_id" value="0">
+                                                <select name="Category" class="form-control">
+                                                    <option value="0" selected="selected"> --- None --- </option>
+                                                    <option value="1">Apple</option>
+                                                    <option value="2">Canon</option>
+                                                    <option value="3">CVD</option>
+                                                    <option value="4">	HTC</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="" data-original-title="(Autocomplete)">Categories</span></label>
+                                            <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+                                                <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
 
 
-                                                <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
-                                                    <div id="product-category133">
-                                                        <i class="fa fa-minus-circle"></i> Vouchers &gt; Gift Card                      <input type="hidden" name="product_category[]" value="133">
-                                                    </div>
-                                                </div>
+                                                <select name="Category" class="form-control">
+                                                    <option value="0" selected="selected"> --- None --- </option>
+                                                    <option value="1">Apple Products</option>
+                                                    <option value="2">BBQs</option>
+                                                    <option value="3">Baby</option>
+                                                    <option value="4">	Computers</option>
+                                                </select>
+
+
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -352,7 +313,7 @@
                                             <div class="col-sm-10">
                                                 <select name="supplier_id" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
-                                                    <option value="1" selected="selected">Procurement International Limited</option>
+                                                    <option value="1" >Procurement International Limited</option>
                                                     <option value="2">Apple</option>
                                                     <option value="3">John Lewis</option>
                                                     <option value="4">Drum Lessons R Us</option>
