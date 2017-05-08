@@ -61,7 +61,7 @@
                 </div>
                 <!-- /current server load -->
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 hidden">
                 <!-- Today's revenue -->
                 <div class="panel bg-blue-400">
                     <div class="panel-body">
@@ -72,6 +72,23 @@
                         </div>
                         <h3 class="no-margin">1k</h3>
                         Total Supplier
+                        <div class="text-muted text-size-small"></div>
+                    </div>
+                    <div id="today-revenue"></div>
+                </div>
+                <!-- /today's revenue -->
+            </div>
+            <div class="col-lg-3">
+                <!-- Today's revenue -->
+                <div class="panel bg-blue-400">
+                    <div class="panel-body">
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action=""></a></li>
+                            </ul>
+                        </div>
+                        <h3 class="no-margin">343</h3>
+                        Credit
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
@@ -131,9 +148,9 @@
                         <h5 class="panel-title">Sales Analytics</h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="reload"></a></li>
-                                <li><a data-action="close"></a></li>
+                                @*<li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>*@
                             </ul>
                         </div>
                     </div>
@@ -147,17 +164,18 @@
 
         </div>
         <div class="row">
-            <div class="col-lg-6">
-                <!-- Top 5 stores Selling -->
+            <!-- - Top 5 stores Selling -->
+            <div class="col-lg-6 hidden" >
+               
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Top 5 Store</h5>
                         <div class="heading-elements">
                             @*<ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="reload"></a></li>
-                                <li><a data-action="close"></a></li>
-                            </ul>*@
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>*@
                         </div>
                     </div>
                     <div class="panel-body">
@@ -166,8 +184,37 @@
                         </div>
                     </div>
                 </div>
-                <!-- - Top 5 stores Selling -->
+             
             </div>
+            <!-- - Top 5 stores Selling -->
+
+            <!-- - Top 5 Product -->
+            <div class="col-lg-6">
+
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Top 5 Products Purchased</h5>
+                        <div class="heading-elements">
+                            @*<ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>*@
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <div class="chart has-fixed-height" id="Top5Product_Chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- - Top 5 Product  -->
+
+
+
+
             <div class="col-lg-6">
                 <!-- Top 5 Customer -->
                 <div class="panel panel-flat">
@@ -175,10 +222,10 @@
                         <h5 class="panel-title">Top 5 Customer</h5>
                         <div class="heading-elements">
                             @*<ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="reload"></a></li>
-                                <li><a data-action="close"></a></li>
-                            </ul>*@
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>*@
                         </div>
                     </div>
                     <div class="panel-body">
@@ -286,7 +333,7 @@
                 </div>
             </div>
         </div>
-      
+
     </div>
 </div>
 
