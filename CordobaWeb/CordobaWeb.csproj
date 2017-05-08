@@ -508,8 +508,11 @@
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Admin\ErrorLog\Controllers\ErrorLogController.js" />
     <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
+    <Content Include="JS\Admin\Language\Controllers\AddOrUpdateLanguageController.js" />
+    <Content Include="JS\Admin\Language\Controllers\ShowLanguageController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
@@ -3510,6 +3513,8 @@
     <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />
     <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
+    <Content Include="Templates\Admin\Language\Index.html" />
+    <Content Include="Templates\Admin\Language\ManageLanguage.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />
