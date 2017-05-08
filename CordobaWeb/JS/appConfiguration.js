@@ -11,7 +11,6 @@ function GetLayoutName()
         success: function (data) {
             var LayoutName = data;            
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        
                 var HomeIndex = {
                     name: 'Home',
                     url: '/Home',
@@ -191,8 +190,22 @@ function GetLayoutName()
                       url: '/System/ManageLanguage?LanguageCd:languageCd',
                       templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
                   }
-                
+
+                 , Login = {
+                     name: 'Login',
+                     url: 'Login',
+                     templateUrl: 'Views/' + LayoutName + '/Login.chtml'
+                 }
+
+                 , StoreDashboard = {
+                     name: 'StoreDashboard',
+                     url: '/StoreDashboard',
+                     templateUrl: 'Templates/' + LayoutName + '/Home/StoreDashboard.html'
+                 }
+               
                 ;
+                
+                $stateProvider.state(StoreDashboard);
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
                 $stateProvider.state(ManageCountry);
@@ -234,6 +247,8 @@ function GetLayoutName()
                 
                 $stateProvider.state(Language);
                 $stateProvider.state(ManageLanguage);
+
+                $stateProvider.state(Login);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

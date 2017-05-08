@@ -1,10 +1,8 @@
 ﻿<!-- /core JS files -->
 <!-- Theme JS files -->
-@*<script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
-    <script src="~/Scripts/admin/js/charts/echarts/pies_donuts.js"></script>*@
 
 <!-- /theme JS files -->
-<div ng-controller="DashboardController">
+<div ng-controller="StoreDashboardController">
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -12,9 +10,9 @@
             </div>
             <div class="heading-elements">
                 <div class="heading-btn-group">
-                    @*<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-                        <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-                        <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>*@
+                    <!--@*<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>*@-->
                 </div>
             </div>
         </div>
@@ -35,15 +33,15 @@
                 <div class="panel bg-teal-400">
                     <div class="panel-body">
                         <div class="heading-elements">
-                            @*<span class="heading-text badge bg-teal-800">+53,6%</span>*@
+                            <!--@*<span class="heading-text badge bg-teal-800">+53,6%</span>*@-->
                         </div>
                         <h3 class="no-margin"> 10.4K </h3>
                         Total Orders
                         <div class="text-muted text-size-small"></div>
                     </div>
-                    @*<div class="container-fluid">
-                            <div id="members-online"></div>
-                        </div>*@
+                    <!--@*<div class="container-fluid">
+                        <div id="members-online"></div>
+                    </div>*@-->
                 </div>
                 <!-- /members online -->
             </div>
@@ -70,8 +68,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">1k</h3>
-                        Total Supplier
+                        <h3 class="no-margin">343</h3>
+                        Credit
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
@@ -106,11 +104,11 @@
                     <div class="panel-heading">
                         <h5 class="panel-title">Order Summary(Current Year)</h5>
                         <div class="heading-elements">
-                            @*<ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>
-                                </ul>*@
+                            <!--@*<ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>*@-->
                         </div>
                     </div>
                     <div class="panel-body">
@@ -131,9 +129,10 @@
                         <h5 class="panel-title">Sales Analytics</h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
-                                @*<li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>*@
+                                <!--@*
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>*@-->
                             </ul>
                         </div>
                     </div>
@@ -147,40 +146,44 @@
 
         </div>
         <div class="row">
-            <!-- - Top 5 stores Selling -->
-            <div class="col-lg-6" >
-               
+            <!-- - Top 5 Product -->
+            <div class="col-lg-6">
+
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Top 5 Store</h5>
+                        <h5 class="panel-title">Top 5 Products Purchased</h5>
                         <div class="heading-elements">
-                            @*<ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>
-                                </ul>*@
+                            <!--@*<ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>*@-->
                         </div>
                     </div>
                     <div class="panel-body">
                         <div class="chart-container">
-                            <div class="chart has-fixed-height" id="Top5Sales_Chart"></div>
+                            <div class="chart has-fixed-height" id="Top5Product_Chart"></div>
                         </div>
                     </div>
                 </div>
-             
+
             </div>
-            <!-- - Top 5 stores Selling -->
+            <!-- - Top 5 Product  -->
+
+
+
+
             <div class="col-lg-6">
                 <!-- Top 5 Customer -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Top 5 Customer</h5>
                         <div class="heading-elements">
-                            @*<ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>
-                                </ul>*@
+                            <!--@*<ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>*@-->
                         </div>
                     </div>
                     <div class="panel-body">
@@ -192,6 +195,7 @@
                 <!-- - Top 5 stores Selling -->
 
             </div>
+
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12 col-sx-12">
@@ -213,11 +217,12 @@
                             <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:10</small>
                         </li>
                         <li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:05:38</small>
+                            <a>hayley Tring</a> added a <a>new order</a>.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> 08/05/2017 08:51:32</small>
                         </li>
                         <li class="list-group-item">
                             <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
+                            hayley Tring added a new order.
                             <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 08:28:03</small>
                         </li>
                     </ul>
@@ -287,6 +292,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

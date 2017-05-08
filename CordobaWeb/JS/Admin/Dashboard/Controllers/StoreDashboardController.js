@@ -1,4 +1,4 @@
-﻿app.controller('DashboardController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('StoreDashboardController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -10,7 +10,7 @@
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
 
- 
+
     $scope.CurrentYearOrderData = [
                                     { value: 300, name: 'January' },
                                     { value: 200, name: 'February' },
@@ -25,8 +25,8 @@
                                     { value: 430, name: 'November' },
                                     { value: 200, name: 'December' }
     ];
-    
-  
+
+
 
     function LoadCharts() {
 
@@ -58,11 +58,14 @@
 
 
                 // Initialize charts
-               
+
                 var OrderSummary = ec.init(document.getElementById('OrderSummary'), limitless);
                 var SalesAnalytics = ec.init(document.getElementById('SalesAnalytics'), limitless);
-                var Top5Sales_Chart = ec.init(document.getElementById('Top5Sales_Chart'), limitless);
+                //var Top5Sales_Chart = ec.init(document.getElementById('Top5Sales_Chart'), limitless);
                 var Top5Customer_Chart = ec.init(document.getElementById('Top5Customer_Chart'), limitless);
+
+                var Top5Product_Chart = ec.init(document.getElementById('Top5Product_Chart'), limitless);
+
 
                 // Charts setup
                 // ------------------------------                    
@@ -267,59 +270,7 @@
                     ]
                 };
 
-                // Top 10 Sales - Bar Chart
-                Top5Sales_Chart_option = {
-                    //title: {
-                    //    text: 'Store'
-                    //    //subtext: 'dsfg'
-                    //},
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    //legend: {
-                    //    data: ['sdfds']
-                    //},
-                    toolbox: {
-                        show: true,
-                        orient: 'vertical',
-                        feature: {
-                            //mark: { show: true },
-                            //dataView: { show: true, readOnly: false },
-                            //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
-                            magicType: {
-                                show: true,
-                                title: {
-                                    bar: 'Switch to pies',
-                                    line: 'Switch to line',
-                                },
-                                type: ['bar', 'line']
-                            },
-                            restore: { show: true, title: 'Restore' },
-                            saveAsImage: { show: true, title: 'Same as image' }
-                        }
-                    },
-                    calculable: false,
-                    xAxis: [
-                        {
-                            type: 'category',
-                            boundaryGap: ['25%', '24%']
-                           , data: ['Annodata', 'Rewards ', 'Vitrx', 'Choice', 'Example']
-                            , rotated: true
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value'
-                        }
-                    ],
-                    series: [
-                        {
-                            name: 'Sales',
-                            type: 'bar',
-                            data: [2.0, 2.6, 20.0, 6.4, 3.3],
-                        }
-                    ]
-                };
+                
 
 
                 // Top 5 Customer   =  Top5Customer_Chart
@@ -359,7 +310,7 @@
                             type: 'category',
                             data: ['Paul', 'Clubb ', 'AJ', 'Adil', 'Adrian']
                             , rotated: true
-                            ,boundaryGap: ['25%', '24%']
+                            , boundaryGap: ['25%', '24%']
                         }
                     ],
                     yAxis: [
@@ -380,27 +331,84 @@
 
                 // END - Top 5 Customer   =  Top5Customer_Chart
 
+                // Top 5 Customer   =  Top5Customer_Chart
+                Top5Product_Chart_option = {
+                    //title: {
+                    //    text: 'Store'
+                    //    //subtext: 'dsfg'
+                    //},
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    //legend: {
+                    //    data: ['sdfds']
+                    //},
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        feature: {
+                            //mark: { show: true },
+                            //dataView: { show: true, readOnly: false },
+                            //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                            magicType: {
+                                show: true,
+                                title: {
+                                    bar: 'Switch to pies',
+                                    line: 'Switch to line',
+                                },
+                                type: ['bar', 'line']
+                            },
+                            restore: { show: true, title: 'Restore' },
+                            saveAsImage: { show: true, title: 'Same as image' }
+                        }
+                    },
+                    calculable: false,
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: ['Marks £50', 'Amazon £50 Gift Code ', 'Amazon £100', 'Marks £50', 'Capital £75']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Product',
+                            type: 'bar',
+                            data: [2.0, 2.6, 20.0, 6.4, 3.3],
+                        }
+                    ]
+                };
+
+
+
+                // END - Top 5 Customer   =  Top5Customer_Chart
+
+
+
                 // Apply options
                 // ------------------------------
 
                 OrderSummary.setOption(OrderSummary_options);
                 SalesAnalytics.setOption(SalesAnalytics_options);
-                Top5Sales_Chart.setOption(Top5Sales_Chart_option);
+              
                 Top5Customer_Chart.setOption(Top5Customer_Chart_option);
-               
-                
+                Top5Product_Chart.setOption(Top5Product_Chart_option);
+
 
                 // Resize charts
                 // ------------------------------
 
                 window.onresize = function () {
                     setTimeout(function () {
-                     
+
                         OrderSummary.resize();
                         SalesAnalytics.resize();
-                        Top5Sales_Chart.resize();
                         Top5Customer_Chart.resize();
-                       
+                        Top5Product_Chart.resize();
                     }, 200);
                 }
             }
@@ -409,5 +417,5 @@
 
 
     LoadCharts();
-        
+
 });

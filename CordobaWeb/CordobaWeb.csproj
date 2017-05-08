@@ -441,6 +441,7 @@
     <Content Include="Content\admin\images\flags\zm.png" />
     <Content Include="Content\admin\images\flags\zw.png" />
     <Content Include="Content\admin\images\login_cover.jpg" />
+    <Content Include="Content\admin\images\logo\logo.png" />
     <Content Include="Content\admin\images\logo_dark.png" />
     <Content Include="Content\admin\images\logo_demo.png" />
     <Content Include="Content\admin\images\logo_light.png" />
@@ -509,6 +510,7 @@
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\StoreDashboardController.js" />
     <Content Include="JS\Admin\ErrorLog\Controllers\ErrorLogController.js" />
     <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
     <Content Include="JS\Admin\Language\Controllers\AddOrUpdateLanguageController.js" />
@@ -3464,6 +3466,7 @@
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_config.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\config\_defaults.scss" />
     <Content Include="Scripts\ckeditor\skins\bootstrapck\scss\dialog\dialog.scss" />
+    <None Include="Properties\PublishProfiles\sd.pubxml" />
     <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3512,6 +3515,7 @@
     <Content Include="Templates\Admin\Country\Index.html" />
     <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />
+    <Content Include="Templates\Admin\Home\StoreDashboard.html" />
     <Content Include="Templates\Admin\ImportCatalogue\Index.html" />
     <Content Include="Templates\Admin\Language\Index.html" />
     <Content Include="Templates\Admin\Language\ManageLanguage.html" />
