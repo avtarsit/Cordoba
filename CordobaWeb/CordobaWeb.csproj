@@ -509,6 +509,7 @@
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\StoreDashboardController.js" />
     <Content Include="JS\Admin\ErrorLog\Controllers\ErrorLogController.js" />
     <Content Include="JS\Admin\ImportCatalogue\Controllers\ImportCatalogueController.js" />
