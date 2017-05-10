@@ -3,6 +3,8 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,36 +34,41 @@ namespace CordobaServices.Services
             return ManufacturersList;
         }
 
-     
 
-       public ManufacturersEntity GetManufaturerDetail(int? ManufacturersID)
+
+        public ManufacturersEntity GetManufaturerDetail(int manufacturer_id)
        {
            ManufacturersEntity Manufacturer = new ManufacturersEntity();
-           if(ManufacturersID>0)
+           List<StoreEntity> StoreList = new List<StoreEntity>();
+           ManufacturersStoreEntity ManufacturerStoreList = new ManufacturersStoreEntity();
+          
+           if (manufacturer_id > 0)
            {
-                Manufacturer = (from t in GetManufacturersList()
-                                          where t.ManufacturerID==ManufacturersID
-                                          select t).FirstOrDefault();
+               var parammanufacturer_id = new SqlParameter
+               {
+                   ParameterName = "manufacturer_id",
+                   DbType = DbType.Int32,
+                   Value = manufacturer_id
+               };
+               var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufaturerDetail", parammanufacturer_id).FirstOrDefault();
+               if (Result != null)
+                   Manufacturer = Result;
            }
            else
            {
                 Manufacturer = new ManufacturersEntity();
-           }        
-            ManufacturersStoreEntity ManufacturerStoreList = new ManufacturersStoreEntity();
-           List<StoreEntity> StoreList = new List<StoreEntity>();
-           StoreList.Add(new StoreEntity() { StoreID = 0, StoreName = "Default"                        ,IsSelected=false });
-           StoreList.Add(new StoreEntity() { StoreID = 1, StoreName = "Make a Difference Thank You AE" ,IsSelected=true});
-           StoreList.Add(new StoreEntity() { StoreID = 2, StoreName = "Arkle Finance rewards 2015"     , IsSelected =false});
-           StoreList.Add(new StoreEntity() { StoreID = 3, StoreName = "Make a Difference Thank You AU" , IsSelected =false});
-           StoreList.Add(new StoreEntity() { StoreID = 4, StoreName = "Make a Difference Thank You CA" , IsSelected =true});
-           StoreList.Add(new StoreEntity() { StoreID = 5, StoreName = "Make a Difference Thank You FR" , IsSelected= false});
-           StoreList.Add(new StoreEntity() { StoreID = 6, StoreName = "Make a Difference Thank You JP" , IsSelected =false});
-           StoreList.Add(new StoreEntity() { StoreID = 7, StoreName = "Make a Difference Thank You IN" , IsSelected =true});
-           StoreList.Add(new StoreEntity() { StoreID = 8, StoreName = "Make a Difference Thank You NZ" , IsSelected =false});
-           StoreList.Add(new StoreEntity() { StoreID = 9, StoreName = "Make a Difference Thank You US" , IsSelected = false });
-           StoreList.Add(new StoreEntity() { StoreID = 10,StoreName= "Annodata rewards"              ,IsSelected= false });
+           }
+           var parammanufacturerIdForStore = new SqlParameter
+           {
+               ParameterName = "manufacturer_id",
+               DbType = DbType.Int32,
+               Value = manufacturer_id
+           };
+           var storeResult = objGenericRepository.ExecuteSQL<StoreEntity>("GetManufacturerStoreList", parammanufacturerIdForStore).ToList<StoreEntity>();
+           if (storeResult != null)
+               StoreList = storeResult.ToList();
 
-           ManufacturerStoreList.ManufacturerID = ManufacturersID;
+           ManufacturerStoreList.manufacturer_id = manufacturer_id;
            ManufacturerStoreList.ManufacturerStore = StoreList;
            Manufacturer.ManufacturerStoreList = ManufacturerStoreList;
            return Manufacturer;

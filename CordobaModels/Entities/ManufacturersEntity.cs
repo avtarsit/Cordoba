@@ -8,11 +8,11 @@ namespace CordobaModels.Entities
 {
   public  class ManufacturersEntity
     {
-      public int? ManufacturerID { get; set; }
-      public string ManufacturerName { get; set; }
-      public byte[] image { get;set;}
-      public string Description { get; set; }
+      public int manufacturer_id { get; set; }
+      public string name { get; set; }
+      public string image { get;set;}
       public ManufacturersStoreEntity ManufacturerStoreList { get; set; }
+      public string StoreIdCSV { get; set; }
 
       
     }

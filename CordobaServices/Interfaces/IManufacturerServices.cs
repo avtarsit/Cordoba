@@ -10,6 +10,6 @@ namespace CordobaServices.Interfaces
    public interface IManufacturerServices
     {
         List<ManufacturersEntity> GetManufacturersList();
-         ManufacturersEntity GetManufaturerDetail(int? ManufacturersID);
+         ManufacturersEntity GetManufaturerDetail(int ManufacturersID);
     }
 }

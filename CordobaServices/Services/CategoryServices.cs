@@ -47,17 +47,17 @@ namespace CordobaServices.Services
             }
             CategoryStoreEntity CategoryStoreList = new CategoryStoreEntity();
             List<StoreEntity> StoreList = new List<StoreEntity>();
-            StoreList.Add(new StoreEntity() { StoreID = 0, StoreName = "Default", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 1, StoreName = "Make a Difference Thank You AE", IsSelected = true });
-            StoreList.Add(new StoreEntity() { StoreID = 2, StoreName = "Arkle Finance rewards 2015", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 3, StoreName = "Make a Difference Thank You AU", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 4, StoreName = "Make a Difference Thank You CA", IsSelected = true });
-            StoreList.Add(new StoreEntity() { StoreID = 5, StoreName = "Make a Difference Thank You FR", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 6, StoreName = "Make a Difference Thank You JP", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 7, StoreName = "Make a Difference Thank You IN", IsSelected = true });
-            StoreList.Add(new StoreEntity() { StoreID = 8, StoreName = "Make a Difference Thank You NZ", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 9, StoreName = "Make a Difference Thank You US", IsSelected = false });
-            StoreList.Add(new StoreEntity() { StoreID = 10, StoreName = "Annodata rewards", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 0, StoreName = "Default", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 1, StoreName = "Make a Difference Thank You AE", IsSelected = true });
+            //StoreList.Add(new StoreEntity() { StoreID = 2, StoreName = "Arkle Finance rewards 2015", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 3, StoreName = "Make a Difference Thank You AU", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 4, StoreName = "Make a Difference Thank You CA", IsSelected = true });
+            //StoreList.Add(new StoreEntity() { StoreID = 5, StoreName = "Make a Difference Thank You FR", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 6, StoreName = "Make a Difference Thank You JP", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 7, StoreName = "Make a Difference Thank You IN", IsSelected = true });
+            //StoreList.Add(new StoreEntity() { StoreID = 8, StoreName = "Make a Difference Thank You NZ", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 9, StoreName = "Make a Difference Thank You US", IsSelected = false });
+            //StoreList.Add(new StoreEntity() { StoreID = 10, StoreName = "Annodata rewards", IsSelected = false });
 
             CategoryStoreList.CategoryId = CategoryId;
             CategoryStoreList.CategoryStore = StoreList;

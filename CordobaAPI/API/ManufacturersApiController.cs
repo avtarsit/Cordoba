@@ -1,5 +1,6 @@
 ﻿using CordobaServices.Interfaces;
 using CordobaServices.Services;
+using CordobaModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufaturerDetail(int? ManufacturersID)
+        public HttpResponseMessage GetManufaturerDetail(int manufacturer_id)
         {
             try
             {
-                var result = _ManufacturerServices.GetManufaturerDetail(ManufacturersID);
+                var result = _ManufacturerServices.GetManufaturerDetail(manufacturer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -57,6 +58,28 @@ namespace CordobaAPI.API
             }
 
         }
+
+         [HttpPost]
+        public HttpResponseMessage InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)  // in progress
+        {
+            try
+            {
+                //var result = _ManufacturerServices.GetManufaturerDetail(manufacturersEntity);
+                //if (result != null)
+                //{
+                //    return Request.CreateResponse(HttpStatusCode.OK, result);
+                //}
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        
 
         public IEnumerable<string> Get()
         {
