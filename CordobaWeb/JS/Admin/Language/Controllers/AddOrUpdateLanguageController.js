@@ -1,13 +1,28 @@
 ﻿app.controller('AddOrUpdateLanguageController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-
+    $scope.StatusForActive = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.LanguageId = 0;
+    $scope.LanguageObj = {};
     $scope.IsEditMode = false;
-    if ($stateParams.LanguageCd != undefined && $stateParams.LanguageCd != null) {
+    if ($stateParams.LanguageId != undefined && $stateParams.LanguageId != null) {
         $scope.PageTitle = "Update Language";
         $scope.IsEditMode = true;
+        $scope.languageId = $stateParams.LanguageId;
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId)
+         .then(function (response) {
+             debugger;
+             $scope.LanguageObj = response.data[0];
+         })
+     .catch(function (response) {
+
+     })
+     .finally(function () {
+
+     });
     }
     else {
         $scope.PageTitle = "Add Language";

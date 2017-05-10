@@ -27,7 +27,7 @@
         $scope.PageTitle = "Add Supplier";
     }
     //#endregion
-   
+
 
     $scope.SaveSupplier = function (form) {
         debugger;
@@ -65,7 +65,14 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.get(configurationService.basePath + "api/SupplierApi/DeleteSupplier?SupplierID=" + $scope.SupplierID)
+                                      .then(function (response) {
+                                          $state.go('ShowSupplier');
+                                      })
+                                  .catch(function (response) {
+                                  })
+                                  .finally(function () {
+                                  });
                             }
                         }
                     },

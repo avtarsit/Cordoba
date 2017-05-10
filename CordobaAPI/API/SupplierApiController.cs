@@ -68,6 +68,22 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage DeleteSupplier(int SupplierID)
+        {
+            try
+            {
+                var result = _SupplierServices.DeleteSupplier(SupplierID);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         // GET: api/SupplierApi
         public IEnumerable<string> Get()
         {

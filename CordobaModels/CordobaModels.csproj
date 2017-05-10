@@ -84,6 +84,7 @@
     <Compile Include="Entities\CategoryStoreEntity.cs" />
     <Compile Include="Entities\CompanyLayoutEntity.cs" />
     <Compile Include="Entities\CountryEntity.cs" />
+    <Compile Include="Entities\LanguageEntity.cs" />
     <Compile Include="Entities\ManufacturersEntity.cs" />
     <Compile Include="Entities\ManufacturersStoreEntity.cs" />
     <Compile Include="Entities\CatalogueEntity.cs" />

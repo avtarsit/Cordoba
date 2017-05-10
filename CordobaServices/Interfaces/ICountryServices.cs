@@ -12,5 +12,7 @@ namespace CordobaServices.Interfaces
        List<CountryEntity> GetCountryList(int countryId);
        
        int InsertOrUpdateCountry(CountryEntity objCountry);
+
+       int DeleteCountry(int countryId);
     }
 }

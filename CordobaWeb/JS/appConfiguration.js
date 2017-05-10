@@ -187,7 +187,7 @@ function GetLayoutName()
                  }
                   , ManageLanguage = {
                       name: 'ManageLanguage',
-                      url: '/System/ManageLanguage?LanguageCd:languageCd',
+                      url: '/System/ManageLanguage?LanguageId:languageId',
                       templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
                   }
 

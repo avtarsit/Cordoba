@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.CountryList = [];
+    $scope.SupplierList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)

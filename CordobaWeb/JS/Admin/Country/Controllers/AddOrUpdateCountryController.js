@@ -68,7 +68,14 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $stateParams.CountryId)
+                                   .then(function (response) {
+                                       $state.go('ShowCountry');
+                                   })
+                               .catch(function (response) {
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },

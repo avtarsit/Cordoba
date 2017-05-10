@@ -18,7 +18,7 @@ namespace CordobaServices.Services
         public List<SupplierEntity> GetSupplierList(int? SupplierID)
         {
             List<SupplierEntity> SupplierList = new List<SupplierEntity>();
-            var paramSupplierId = new SqlParameter { ParameterName = "countryId", DbType = DbType.Int32, Value = SupplierID };
+            var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = SupplierID };
             SupplierList = objGenericRepository.ExecuteSQL<SupplierEntity>("GetSupplierList", paramSupplierId).ToList();
 
             //SupplierList.Add(new SupplierEntity() { SupplierID = 1, SupplierName = "Procurement International Limited", SupplierAddress = "VICTORY HOUSE 17 & 19 MARINO WAY FINCHAMPSTEAD BERKSHIRE RG40 4RF" });
@@ -73,6 +73,13 @@ namespace CordobaServices.Services
 
             return Supplier;
 
+        }
+
+        public int DeleteSupplier(int supplierId)
+        {
+            var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = supplierId };
+            int result = objGenericRepository.ExecuteSQL<int>("DeleteSupplier", paramSupplierId).FirstOrDefault();
+            return result;
         }
     }
 }

@@ -61,41 +61,39 @@
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label mandatoryField">Language Code</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="LanguageCd" maxlength="2" placeholder="Enter Language Code" ng-model="LanguageObj.LanguageCd" required="required">
+                                            <input type="text" class="form-control" name="LanguageCd" maxlength="2" placeholder="Enter Language Code" ng-model="LanguageObj.code" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label mandatoryField">Language Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="LanguageName" maxlength="50" placeholder="Enter Country Name" ng-model="LanguageObj.LanguageName" required="required">
+                                            <input type="text" class="form-control" name="LanguageName" maxlength="50" placeholder="Enter Country Name" ng-model="LanguageObj.name" required="required">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label mandatoryField">Image</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="ImageName" maxlength="50" placeholder="Enter Image Name" ng-model="LanguageObj.ImageName" required="required">
+                                            <input type="text" class="form-control" name="ImageName" maxlength="50" placeholder="Enter Image Name" ng-model="LanguageObj.image" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label mandatoryField">Directory</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="DirectoryName" maxlength="50" placeholder="Enter Directory Name" ng-model="LanguageObj.DirectoryName" required="required">
+                                            <input type="text" class="form-control" name="DirectoryName" maxlength="50" placeholder="Enter Directory Name" ng-model="LanguageObj.directory" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-2 control-label">Status</label>
+                                        <label class="col-lg-2 control-label mandatoryField">Status</label>
                                         <div class="col-lg-8">
-                                            <select name="status" id="input-status" class="form-control">
-                                                <option value="1" selected="selected">Enabled</option>
-                                                <option value="0">Disabled</option>
-                                            </select>
+                                            <select ng-options="status.ID as status.Name  for status in StatusForActive" class="form-control" ng-model="LanguageObj.status" required="required" name="CountryStatus"></select>
+
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label mandatoryField">Sort Order</label>
                                         <div class="col-lg-8">
-                                            <input type="number" class="form-control" name="SortOrder" ng-model="LanguageObj.SortOrder" >
+                                            <input type="number" class="form-control" name="SortOrder" ng-model="LanguageObj.sort_order">
                                         </div>
                                     </div>
 

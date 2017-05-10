@@ -46,6 +46,23 @@ namespace CordobaAPI.API
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+
+        [HttpGet]
+        public HttpResponseMessage DeleteCountry(int countryId)
+        {
+            try
+            {
+                var result = _countryServices.DeleteCountry(countryId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
         // GET: api/CountryApi
         public IEnumerable<string> Get()
         {

@@ -228,5 +228,12 @@ namespace CordobaServices.Services
             int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateCountry", paramCountryId, paramCountryCd, paramCountryName, paramstatus).FirstOrDefault();
             return result;
         }
+
+        public int DeleteCountry(int countryId)
+        {
+            var paramcountryId = new SqlParameter { ParameterName = "countryId", DbType = DbType.Int32, Value = countryId };
+            int result = objGenericRepository.ExecuteSQL<int>("DeleteCountry", paramcountryId).FirstOrDefault();
+            return result;
+        }
     }
 }
