@@ -19,11 +19,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufacturersList(int? ManufacturersID)
+        public HttpResponseMessage GetManufacturersList()
         {
             try
             {
-                var result = _ManufacturerServices.GetManufacturersList(ManufacturersID);
+                var result = _ManufacturerServices.GetManufacturersList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

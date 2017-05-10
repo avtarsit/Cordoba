@@ -1,4 +1,5 @@
-﻿using CordobaModels.Entities;
+﻿using CordobaModels;
+using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,35 @@ namespace CordobaServices.Services
 {
     public class ManufacturerServices : IManufacturerServices
     {
-       public List<ManufacturersEntity> GetManufacturersList(int? ManufacturersID)
-       {
-           List<ManufacturersEntity> ManufacturersList = new List<ManufacturersEntity>();
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 1, ManufacturerName="Apple" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 2, ManufacturerName = "Canon" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 3, ManufacturerName = "CVD" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 4, ManufacturerName = "Hewlett-Packed" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 5, ManufacturerName = "HTC" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 6, ManufacturerName = "Palm" });
-           ManufacturersList.Add(new ManufacturersEntity() { ManufacturerID = 7, ManufacturerName = "Sony" });          
-           return ManufacturersList;
-       }
+
+        private GenericRepository<ManufacturersEntity> objGenericRepository = new GenericRepository<ManufacturersEntity>();
+
+        public List<ManufacturersEntity> GetManufacturersList()
+        {
+            List<ManufacturersEntity> ManufacturersList = new List<ManufacturersEntity>();
+            try
+            {
+                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufacturersList").ToList<ManufacturersEntity>();
+
+                if (Result != null)
+                    ManufacturersList = Result.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                //_logger.Error(ex);
+            }
+            return ManufacturersList;
+        }
+
+     
 
        public ManufacturersEntity GetManufaturerDetail(int? ManufacturersID)
        {
            ManufacturersEntity Manufacturer = new ManufacturersEntity();
            if(ManufacturersID>0)
            {
-                Manufacturer = (from t in GetManufacturersList(ManufacturersID)
+                Manufacturer = (from t in GetManufacturersList()
                                           where t.ManufacturerID==ManufacturersID
                                           select t).FirstOrDefault();
            }

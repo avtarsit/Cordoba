@@ -1,5 +1,6 @@
 ﻿using CordobaServices.Interfaces;
 using CordobaServices.Services;
+using CordobaModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,23 +11,24 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using CordobaModels.Entities;
 
 namespace CordobaAPI.API
 {
     public class CatalogueApiController : ApiController
     {
         
-        public ICatalogueServices _productCatalogueServices;
+        public ICatalogueServices _catalogueServices;
         public CatalogueApiController()
         {
-            _productCatalogueServices = new CatalogueService();
+            _catalogueServices = new CatalogueService();
         }
         [HttpGet]
         public HttpResponseMessage GetCatalogueList()
         {
             try
             {
-                var result = _productCatalogueServices.GetCatalogueList();
+                var result = _catalogueServices.GetCatalogueList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -42,11 +44,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCatalogueById(int CatalogueId)
+        public HttpResponseMessage GetCatalogueById(int catalogue_id)
         {
             try
             {
-                var result = _productCatalogueServices.GetCatalogueById(CatalogueId);
+                var result = _catalogueServices.GetCatalogueById(catalogue_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -61,6 +63,27 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpPost]
+        public HttpResponseMessage InsertUpdateCatalogue(CatalogueEntity catalogueEntity)
+        {
+            try
+            {
+                var result = _catalogueServices.InsertUpdateCatalogue(catalogueEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        
 
         [HttpPost]
         public HttpResponseMessage ImportCatalogue()

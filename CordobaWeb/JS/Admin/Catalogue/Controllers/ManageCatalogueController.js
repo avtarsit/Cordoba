@@ -1,15 +1,17 @@
-﻿app.controller('ManageProductCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+﻿app.controller('ManageCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
-    $scope.CatalogueId = 0;
+    $scope.CatalogueObj = new Object();
+    $scope.catalogue_id = 0;
     if ($stateParams.CatalogueId != undefined && $stateParams.CatalogueId != null) {
         $scope.PageTitle = "Update Product Catalogue";
-        $scope.CatalogueId = $stateParams.CatalogueId;
+        $scope.catalogue_id = $stateParams.CatalogueId;
         $scope.IsEditMode = true;
+        GetCatalogueById();
     }
     else {
         $scope.PageTitle = "Add Product Catalogue";
@@ -17,9 +19,24 @@
     //#endregion
 
 
-    $scope.SaveProductCatalogue = function (form) {
+    $scope.InsertUpdateCatalogue = function (form) {
         if (form.$valid) {
-  
+            var catalogueEntity = JSON.stringify($scope.CatalogueObj);
+            $http.post(configurationService.basePath + "api/CatalogueApi/InsertUpdateCatalogue", catalogueEntity)
+                .then(function (response) {
+                    if (response.data == 1) {
+                        notificationFactory.customSuccess("Product Catalogue Saved Successfully.");
+                        $state.go('ShowProductCatalogue');
+                    }
+                    else if (response.data == -1) {
+                        notificationFactory.customError("Product Catalogue name is already Exists!");
+                    }
+                })
+                .catch(function (response) {
+                })
+                .finally(function () {
+                    
+                });
         }
     }
 
@@ -52,11 +69,11 @@
     };
 
 
-    $scope.GetCatalogueById = function () {
-        $http.get(configurationService.basePath + "api/CatalogueApi//GetCatalogueById?CatalogueId=" + $scope.CatalogueId)
+    function GetCatalogueById() {
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueById?catalogue_id=" + $scope.catalogue_id)
           .then(function (response) {
-         
-              $scope.ProductCatalogueObj = response.data;
+
+              $scope.CatalogueObj = response.data;
           })
       .catch(function (response) {
       })
@@ -81,6 +98,6 @@
         }
     }
 
-    $scope.GetCatalogueById();
+   
 
 });

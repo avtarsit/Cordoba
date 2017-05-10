@@ -12,5 +12,7 @@ namespace CordobaServices.Interfaces
         List<CatalogueEntity> GetCatalogueList();
 
         CatalogueEntity GetCatalogueById(int CategoryId);
+
+        int InsertUpdateCatalogue(CatalogueEntity catalogueEntity);
     }
 }

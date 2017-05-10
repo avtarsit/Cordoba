@@ -9,7 +9,7 @@ namespace CordobaServices.Interfaces
 {
    public interface IManufacturerServices
     {
-        List<ManufacturersEntity> GetManufacturersList(int? ManufacturersID);
+        List<ManufacturersEntity> GetManufacturersList();
          ManufacturersEntity GetManufaturerDetail(int? ManufacturersID);
     }
 }
