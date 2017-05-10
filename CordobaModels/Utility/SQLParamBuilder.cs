@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 
-namespace CordobaAPI.Utility
+namespace CordobaModels
 {
     public class SQLParamBuilder
     {

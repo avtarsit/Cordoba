@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CordobaServices.Interfaces
 {
-    public interface IProductCatalogueServices
+    public interface ICatalogueServices
     {
-        List<ProductCatalogueEntity> GetProductCatalogueList();
+        List<CatalogueEntity> GetCatalogueList();
 
-        ProductCatalogueEntity GetProductCatalogueById(int CategoryId);
+        CatalogueEntity GetCatalogueById(int CategoryId);
     }
 }

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CordobaModels</RootNamespace>
-    <AssemblyName>ProjectModels</AssemblyName>
+    <AssemblyName>CordobaModels</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>Svn</SccProjectName>
@@ -86,7 +86,7 @@
     <Compile Include="Entities\CountryEntity.cs" />
     <Compile Include="Entities\ManufacturersEntity.cs" />
     <Compile Include="Entities\ManufacturersStoreEntity.cs" />
-    <Compile Include="Entities\ProductCatalogueEntity.cs" />
+    <Compile Include="Entities\CatalogueEntity.cs" />
     <Compile Include="Entities\ProductEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />

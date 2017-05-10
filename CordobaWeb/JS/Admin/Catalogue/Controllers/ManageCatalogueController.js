@@ -5,10 +5,10 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
-    $scope.ProductCatalogueId = 0;
-    if ($stateParams.ProductCatalogueId != undefined && $stateParams.ProductCatalogueId != null) {
+    $scope.CatalogueId = 0;
+    if ($stateParams.CatalogueId != undefined && $stateParams.CatalogueId != null) {
         $scope.PageTitle = "Update Product Catalogue";
-        $scope.ProductCatalogueId = $stateParams.ProductCatalogueId;
+        $scope.CatalogueId = $stateParams.CatalogueId;
         $scope.IsEditMode = true;
     }
     else {
@@ -52,8 +52,8 @@
     };
 
 
-    $scope.GetProductCatalogueById = function () {
-        $http.get(configurationService.basePath + "api/ProductCatalogueApi//GetProductCatalogueById?ProductCatalogueId=" + $scope.ProductCatalogueId)
+    $scope.GetCatalogueById = function () {
+        $http.get(configurationService.basePath + "api/CatalogueApi//GetCatalogueById?CatalogueId=" + $scope.CatalogueId)
           .then(function (response) {
          
               $scope.ProductCatalogueObj = response.data;
@@ -81,6 +81,6 @@
         }
     }
 
-    $scope.GetProductCatalogueById();
+    $scope.GetCatalogueById();
 
 });

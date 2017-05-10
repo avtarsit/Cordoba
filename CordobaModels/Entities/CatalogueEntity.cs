@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-    public class ProductCatalogueEntity
+    public class CatalogueEntity
     {
-        public int? ProductCatalogueId { get; set; }
-        public string ProductCatalogueName { get; set; }
+        public int? CatalogueId { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+
 using CordobaModels;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 
-namespace CordobaAPI.Utility
+namespace CordobaModels
 {
     public class GenericRepository<T> where T : class
     {

@@ -43,7 +43,7 @@
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.ProductCatalogueName.$error.required"> Product Name is required.</li>
+                                                <li ng-show="form.Name.$error.required"> Product Name is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">Product Catalogue Name</label>
                                         <div class="col-lg-5">
-                                            <input type="text" class="form-control" name="ProductCatalogueName" maxlength="50" placeholder="Enter Country Name" ng-model="ProductCatalogueObj.ProductCatalogueName" required="required">
+                                            <input type="text" class="form-control" name="Name" maxlength="50" placeholder="Enter Country Name" ng-model="ProductCatalogueObj.Name" required="required">
                                         </div>
                                     </div>
                                     <div class="text-right">

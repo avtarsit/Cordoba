@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.ProductCatalogueList = [];
+    $scope.CatalogueList = [];
     //#endregion  
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -13,11 +13,11 @@
     $scope.PageTitle = "Product Catalogues";
 
 
-    $scope.GetProductCatalogueList = function () {
-        $http.get(configurationService.basePath + "api/ProductCatalogueApi/GetProductCatalogueList")
+    $scope.GetCatalogueList = function () {
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList")
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.ProductCatalogueList = response.data;
+                  $scope.CatalogueList = response.data;
 
               }
           })
@@ -30,7 +30,7 @@
 
 
     }
-    $scope.GetProductCatalogueList();
+    $scope.GetCatalogueList();
 
 
 

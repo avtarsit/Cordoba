@@ -527,8 +527,8 @@
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
-    <Content Include="JS\Admin\ProductCatalogue\Controllers\ManageProductCatalogueController.js" />
-    <Content Include="JS\Admin\ProductCatalogue\Controllers\ShowProductCatalogue.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ManageCatalogueController.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ShowCatalogue.js" />
     <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
     <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
     <Content Include="JS\appConfiguration.js" />

@@ -7,10 +7,10 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
-namespace CordobaModels
+namespace CordobaModels 
 {
 
-    public partial class DBMethods : CordobaEntities
+    public partial class DBMethods : CordobaEntities3
     {
         /// <summary>
         /// Gets the database.
