@@ -3,6 +3,8 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,16 +41,31 @@ namespace CordobaServices.Services
             CatalogueEntity ProductCatalogueEntity = new CatalogueEntity();
             if (CatalogueId > 0)
             {
-                ProductCatalogueEntity = (from t in GetCatalogueList()
-                                  where t.CatalogueId == CatalogueId
-                                  select t).FirstOrDefault();
+                var paramCatalogueId = new SqlParameter
+                {
+                    ParameterName = "CatalogueId",
+                    DbType = DbType.Int32,
+                    Value = CatalogueId
+                };
+                var result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueById", paramCatalogueId).FirstOrDefault();
+                ProductCatalogueEntity = result;
             }
             else
             {
                 ProductCatalogueEntity = new CatalogueEntity();
             }
+             
             return ProductCatalogueEntity;
 
+        }
+
+
+        public int InsertUpdateCatalogue(CatalogueEntity catalogueEntity)
+        {
+            var catalogueIdparam = new SqlParameter { ParameterName = "CatalogueId", DbType = DbType.Int32, Value = catalogueEntity.CatalogueId };   
+            var nameparam = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = catalogueEntity.Name };
+            var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam ).FirstOrDefault();
+            return result;
         }
     }
 }

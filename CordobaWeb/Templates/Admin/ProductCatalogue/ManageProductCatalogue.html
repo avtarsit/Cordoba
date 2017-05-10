@@ -16,7 +16,7 @@
                 </ul>
                 <ul class="breadcrumb-elements">
                     <li>
-                        <button type="submit" ng-click="SaveProductCatalogue(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="submit" ng-click="InsertUpdateCatalogue(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li>
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
@@ -43,7 +43,7 @@
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.Name.$error.required"> Product Name is required.</li>
+                                                <li ng-show="form.Name.$error.required"> Product catalogue name is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">Product Catalogue Name</label>
                                         <div class="col-lg-5">
-                                            <input type="text" class="form-control" name="Name" maxlength="50" placeholder="Enter Country Name" ng-model="ProductCatalogueObj.Name" required="required">
+                                            <input type="text" class="form-control" name="Name" maxlength="50" placeholder="Enter Country Name" ng-model="CatalogueObj.Name" required="required">
                                         </div>
                                     </div>
                                     <div class="text-right">
