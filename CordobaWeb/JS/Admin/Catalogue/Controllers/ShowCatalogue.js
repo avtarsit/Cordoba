@@ -1,4 +1,4 @@
-﻿app.controller('ShowProductCatalogue', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ShowCatalogue', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -17,6 +17,7 @@
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList")
           .then(function (response) {
               if (response.data.length > 0) {
+                  debugger;
                   $scope.CatalogueList = response.data;
 
               }

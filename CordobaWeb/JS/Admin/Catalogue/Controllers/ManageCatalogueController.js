@@ -1,4 +1,4 @@
-﻿app.controller('ManageProductCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+﻿app.controller('ManageCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
@@ -6,10 +6,10 @@
     Tab();
     $scope.IsEditMode = false;
     $scope.CatalogueObj = new Object();
-    $scope.CatalogueId = 0;
+    $scope.catalogue_id = 0;
     if ($stateParams.CatalogueId != undefined && $stateParams.CatalogueId != null) {
         $scope.PageTitle = "Update Product Catalogue";
-        $scope.CatalogueId = $stateParams.CatalogueId;
+        $scope.catalogue_id = $stateParams.CatalogueId;
         $scope.IsEditMode = true;
         GetCatalogueById();
     }
@@ -70,7 +70,7 @@
 
 
     function GetCatalogueById() {
-        $http.get(configurationService.basePath + "api/CatalogueApi//GetCatalogueById?CatalogueId=" + $scope.CatalogueId)
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueById?catalogue_id=" + $scope.catalogue_id)
           .then(function (response) {
 
               $scope.CatalogueObj = response.data;

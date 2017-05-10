@@ -58,7 +58,7 @@ function GetLayoutName()
                   }
                   , ManageProductCatalogue = {
                       name: 'ManageProductCatalogue',
-                      url: '/Catalog/ManageProductCatalogue?CatalogueId:productCatalogueId',
+                      url: '/Catalog/ManageProductCatalogue?CatalogueId:catalogueId',
                       templateUrl: 'Templates/' + LayoutName + '/ProductCatalogue/ManageProductCatalogue.html'
                   }
                   , ShowSupplier = {

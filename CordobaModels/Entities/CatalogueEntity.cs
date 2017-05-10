@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
     public class CatalogueEntity
     {
-        public int CatalogueId { get; set; }
+        public int catalogue_Id { get; set; }
         public string Name { get; set; }
     }
 }

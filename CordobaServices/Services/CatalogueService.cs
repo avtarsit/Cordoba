@@ -62,7 +62,7 @@ namespace CordobaServices.Services
 
         public int InsertUpdateCatalogue(CatalogueEntity catalogueEntity)
         {
-            var catalogueIdparam = new SqlParameter { ParameterName = "CatalogueId", DbType = DbType.Int32, Value = catalogueEntity.CatalogueId };   
+            var catalogueIdparam = new SqlParameter { ParameterName = "catalogue_Id", DbType = DbType.Int32, Value = catalogueEntity.catalogue_Id };   
             var nameparam = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = catalogueEntity.Name };
             var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam ).FirstOrDefault();
             return result;

@@ -44,11 +44,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCatalogueById(int CatalogueId)
+        public HttpResponseMessage GetCatalogueById(int catalogue_id)
         {
             try
             {
-                var result = _catalogueServices.GetCatalogueById(CatalogueId);
+                var result = _catalogueServices.GetCatalogueById(catalogue_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
