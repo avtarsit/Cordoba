@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,13 @@ namespace CordobaAPI.API
                 throw;
             }
 
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertOrUpdateSupplier(SupplierEntity objSupplier)
+        {
+            int result = _SupplierServices.InsertOrUpdateSupplier(objSupplier);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpGet]

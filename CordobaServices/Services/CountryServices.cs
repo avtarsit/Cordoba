@@ -20,7 +20,6 @@ namespace CordobaServices.Services
         {
             List<CountryEntity> Countries = new List<CountryEntity>();
             var paramCountryId = new SqlParameter { ParameterName = "countryId", DbType = DbType.Int32, Value = countryId };
-
             Countries = objGenericRepository.ExecuteSQL<CountryEntity>("GetCountryList", paramCountryId).ToList();
 
             //Countries.Add(new CountryEntity() { CountryName = "Andorra ", CountryCd = "AD" });
@@ -216,22 +215,14 @@ namespace CordobaServices.Services
             //Countries.Add(new CountryEntity() { CountryName = "South Africa                            ", CountryCd = " ZA" });
             //Countries.Add(new CountryEntity() { CountryName = "Zambia                                  ", CountryCd = " ZM" });
             //Countries.Add(new CountryEntity() { CountryName = "Zimbabwe                                ", CountryCd = " ZW" });
-
-
-
-
             return Countries;
-
-
-
-
         }
 
         public int InsertOrUpdateCountry(CountryEntity objCountry)
         {
-            var paramCountryId = new SqlParameter { ParameterName = "countryId", DbType = DbType.Int32, Value = Convert.ToInt32(objCountry.CountryId) };
-            var paramCountryCd = new SqlParameter { ParameterName = "countryCd", DbType = DbType.String, Value = objCountry.CountryCd ?? (object)DBNull.Value };
-            var paramCountryName = new SqlParameter { ParameterName = "countryName", DbType = DbType.String, Value = objCountry.CountryName ?? (object)DBNull.Value };
+            var paramCountryId = new SqlParameter { ParameterName = "countryId", DbType = DbType.Int32, Value = Convert.ToInt32(objCountry.country_id) };
+            var paramCountryCd = new SqlParameter { ParameterName = "countryCd", DbType = DbType.String, Value = objCountry.iso_code_2.Trim() ?? (object)DBNull.Value };
+            var paramCountryName = new SqlParameter { ParameterName = "countryName", DbType = DbType.String, Value = objCountry.name ?? (object)DBNull.Value };
             var paramstatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = objCountry.Status };
 
             int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateCountry", paramCountryId, paramCountryCd, paramCountryName, paramstatus).FirstOrDefault();

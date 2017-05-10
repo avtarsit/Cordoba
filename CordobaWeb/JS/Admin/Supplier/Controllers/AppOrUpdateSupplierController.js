@@ -6,22 +6,15 @@
     Tab();
 
     $scope.SupplierID = 0;
+    $scope.SupplierObj = {};
     $scope.IsEditMode = false;
     if ($stateParams.SupplierID != undefined && $stateParams.SupplierID != null) {
         $scope.PageTitle = "Update Supplier";
         $scope.IsEditMode = true;
         $scope.SupplierID = $stateParams.SupplierID;
-    }
-    else {
-        $scope.PageTitle = "Add Supplier";
-    }
-    //#endregion
-
-
-    $scope.GetSupplierDetail = function () {
-        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierDetail?SupplierID=" + $scope.SupplierID)
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=" + $scope.SupplierID)
           .then(function (response) {
-              $scope.SupplierObj = response.data;
+              $scope.SupplierObj = response.data[0];
           })
       .catch(function (response) {
 
@@ -30,10 +23,33 @@
 
       });
     }
+    else {
+        $scope.PageTitle = "Add Supplier";
+    }
+    //#endregion
+   
 
     $scope.SaveSupplier = function (form) {
+        debugger;
         if (form.$valid) {
+            $http.post(configurationService.basePath + "api/SupplierApi/InsertOrUpdateSupplier", $scope.SupplierObj)
+           .then(function (response) {
+               debugger;
+               if (response.data == 0) {
+                   //alert('already exists');
+                   notificationFactory.customError("Supplier Name is already Exists!!");
+               }
+               if (response.data == 1) {
+                   notificationFactory.customSuccess("Supplier Saved Successfully.");
+                   $state.go('ShowSupplier');
+               }
+           })
+            .catch(function (response) {
 
+            })
+     .finally(function () {
+
+     });
         }
     }
 
@@ -82,6 +98,5 @@
     }
 
 
-    $scope.GetSupplierDetail();
 
 });
