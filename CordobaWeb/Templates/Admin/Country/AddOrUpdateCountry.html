@@ -46,6 +46,8 @@
                                             <ul ng-show="form.$submitted && (!form.$valid)">
                                                 <li ng-show="form.CountryCd.$error.required">Country code is required.</li>
                                                 <li ng-show="form.CountryName.$error.required">Country name is required.</li>
+                                                <li ng-show="form.CountryStatus.$error.required">Status is required.</li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -67,7 +69,13 @@
                                             <input type="text" class="form-control" name="CountryName" maxlength="50" placeholder="Enter Country Name" ng-model="CountryObj.CountryName" required="required">
                                         </div>
                                     </div>
-                                 
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label mandatoryField">Status</label>
+                                        <div class="col-lg-8">
+                                            <select ng-options="status.ID as status.Name  for status in StatusForActive" class="form-control" ng-model="CountryObj.Status" required="required" name="CountryStatus"></select>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

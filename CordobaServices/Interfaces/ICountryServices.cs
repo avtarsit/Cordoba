@@ -9,6 +9,8 @@ namespace CordobaServices.Interfaces
 {
    public interface ICountryServices
     {
-       List<CountryEntity> GetCountryList(string CountryCd = "");
+       List<CountryEntity> GetCountryList(int countryId);
+       
+       int InsertOrUpdateCountry(CountryEntity objCountry);
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-   public class CountryEntity
+    public class CountryEntity
     {
         public int? CountryId { get; set; }
         public string CountryCd { get; set; }
         public string CountryName { get; set; }
         public int? CreatedBy { get; set; }
+        public int Status { get; set; }
     }
 }

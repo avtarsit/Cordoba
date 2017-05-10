@@ -1,14 +1,29 @@
 ﻿app.controller('AddOrUpdateCountryController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-
+    $scope.StatusForActive = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.CountryObj = {};
     $scope.IsEditMode = false;
-    if ($stateParams.CountryCd != undefined && $stateParams.CountryCd != null)
-    {
+    if ($stateParams.CountryId != undefined && $stateParams.CountryId != null) {
         $scope.PageTitle = "Update Country";
         $scope.IsEditMode = true;
+
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + $stateParams.CountryId)
+          .then(function (response) {
+              debugger;
+              if (response.data.length > 0) {
+                  $scope.CountryObj = response.data[0];
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
     }
     else {
         $scope.PageTitle = "Add Country";
@@ -17,16 +32,33 @@
 
 
 
-    $scope.SaveCountry=function(form)
-    {
+    $scope.SaveCountry = function (form) {
         if (form.$valid) {
-          
+            $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
+            .then(function (response) {
+                debugger;
+                if (response.data == 0) {
+                    //alert('already exists');
+                    notificationFactory.customError("Country Code is already Exists!!");
+                }
+                if (response.data == 1) {
+                    notificationFactory.customSuccess("Country Saved Successfully.");
+                    $state.go('ShowCountry');
+                }
+            })
+             .catch(function (response) {
+
+             })
+      .finally(function () {
+
+      });
+
         }
     }
 
     $scope.DeleteCountry = function () {
         bootbox.dialog({
-            message:"Do you want remove country?",
+            message: "Do you want remove country?",
             title: "Confirmation",
             className: "model",
             buttons: {
@@ -36,7 +68,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                
+
                             }
                         }
                     },
@@ -52,25 +84,21 @@
         });
     };
 
-    $scope.Cancel=function()
-    {        
+    $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
-        if (hasAnyUnsavedData)
-        {   
+        if (hasAnyUnsavedData) {
             bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
-                if(result)
-                {
+                if (result) {
                     $state.go('ShowCountry');
                 }
-                    
-                });        
+
+            });
         }
-        else
-        {
+        else {
             $state.go('ShowCountry');
         }
-      
+
     }
 
 });

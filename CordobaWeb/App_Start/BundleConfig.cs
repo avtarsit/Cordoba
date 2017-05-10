@@ -93,7 +93,10 @@ namespace CordobaWeb
                      "~/Content/admin/css/core.css",
                      "~/Content/admin/css/components.css",
                        "~/Content/admin/css/components.css",
-                     "~/Content/admin/css/colors.css"));
+                     "~/Content/admin/css/colors.css",
+                     "~/Content/css/toastr.css"
+                     ));
+                
 
             bundles.Add(new ScriptBundle("~/bundles/AdminJs").Include(
                       "~/Scripts/admin/js/plugins/loaders/pace.min.js",                      

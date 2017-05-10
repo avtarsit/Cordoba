@@ -23,7 +23,7 @@ function GetLayoutName()
                 }
                 , ManageCountry = {
                     name: 'ManageCountry',
-                    url: '/Catalog/ManageCountry?CountryCd:countryCd',
+                    url: '/Catalog/ManageCountry?CountryId:countryId',
                     templateUrl: 'Templates/' + LayoutName + '/Country/AddOrUpdateCountry.html'
                 }
                 , TestPage = {
@@ -259,7 +259,9 @@ function GetLayoutName()
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService) {
                  
-                 
+
+               
+
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());

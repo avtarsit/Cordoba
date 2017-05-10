@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetCountryList(string CountryCd="")
+        public HttpResponseMessage GetCountryList(int countryId)
         {
             try
             {
-                var result = _countryServices.GetCountryList(CountryCd);
+                var result = _countryServices.GetCountryList(countryId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -32,10 +33,17 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertOrUpdateCountry(CountryEntity objCountry)
+        {
+            int result = _countryServices.InsertOrUpdateCountry(objCountry);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         // GET: api/CountryApi

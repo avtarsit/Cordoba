@@ -94,26 +94,26 @@ namespace CordobaModels
         public IEnumerable<TElement> ExecuteSQL<TElement>(string commandText, params object[] parameters)
         {
             //add parameters to command
-            //if (parameters != null && parameters.Length > 0)
-            //{
-            //    for (int i = 0; i <= parameters.Length - 1; i++)
-            //    {
-            //        var p = parameters[i] as DbParameter;
-            //        if (p == null)
-            //        {
-            //            throw new Exception("Not support parameter type");
-            //        }
+            if (parameters != null && parameters.Length > 0)
+            {
+                for (int i = 0; i <= parameters.Length - 1; i++)
+                {
+                    var p = parameters[i] as DbParameter;
+                    if (p == null)
+                    {
+                        throw new Exception("Not support parameter type");
+                    }
 
-            //        commandText += i == 0 ? " " : ", ";
+                    commandText += i == 0 ? " " : ", ";
 
-            //        commandText += "@" + p.ParameterName;
-            //        if (p.Direction == ParameterDirection.InputOutput || p.Direction == ParameterDirection.Output)
-            //        {
-            //            ////output parameter
-            //            commandText += " output";
-            //        }
-            //    }
-            //}
+                    commandText += "@" + p.ParameterName;
+                    if (p.Direction == ParameterDirection.InputOutput || p.Direction == ParameterDirection.Output)
+                    {
+                        ////output parameter
+                        commandText += " output";
+                    }
+                }
+            }
             return this.Database.SqlQuery<TElement>(commandText, parameters);
         }
     }
