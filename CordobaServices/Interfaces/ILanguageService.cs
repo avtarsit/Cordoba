@@ -10,5 +10,9 @@ namespace CordobaServices.Interfaces
     public interface ILanguageService
     {
         List<LanguageEntity> GetLanguageList(int? languageId);
+
+        int InsertOrUpdateLanguage(LanguageEntity objEntity);
+
+        int DeleteLanguage(int languageId);
     }
 }

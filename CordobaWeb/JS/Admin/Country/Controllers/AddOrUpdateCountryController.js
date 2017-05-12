@@ -41,7 +41,7 @@
                     //alert('already exists');
                     notificationFactory.customError("Country Code is already Exists!!");
                 }
-                if (response.data == 1) {
+                if (response.data > 0) {
                     notificationFactory.customSuccess("Country Saved Successfully.");
                     $state.go('ShowCountry');
                 }

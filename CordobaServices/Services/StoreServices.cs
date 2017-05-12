@@ -1,7 +1,10 @@
-﻿using CordobaModels.Entities;
+﻿using CordobaModels;
+using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +13,13 @@ namespace CordobaServices.Services
 {
     public class StoreServices : IStoreServices
     {
+        private GenericRepository<StoreEntity> objGenericRepository = new GenericRepository<StoreEntity>();
+
        public List<StoreEntity> GetStoreList(int? StoreID)
        {
            List<StoreEntity> StoreList = new List<StoreEntity>();
+           var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
+           StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId).ToList();
            //StoreList.Add(new StoreEntity() { StoreID = 1, StoreName = "Main (Default)", StoreURL = "	http://webapp2.cordobarewards.co.uk/ " });
            //StoreList.Add(new StoreEntity() { StoreID = 2, StoreName = "Make a Difference Thank You AE", StoreURL = "http://ae.pbmakeadifferencethankyou.com/ " });
            //StoreList.Add(new StoreEntity() { StoreID = 3, StoreName = "Arkle Finance rewards 2015", StoreURL = "http://ae.pbmakeadifferencethankyou.com/" });

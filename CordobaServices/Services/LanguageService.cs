@@ -22,5 +22,25 @@ namespace CordobaServices.Services
             languages = objGenericRepository.ExecuteSQL<LanguageEntity>("GetLanguageList", paramLanguageId).ToList();
             return languages;
         }
+
+        public int InsertOrUpdateLanguage(LanguageEntity objEntity)
+        {
+            var paramlanguageId = new SqlParameter { ParameterName = "languageId", DbType = DbType.Int32, Value = Convert.ToInt32(objEntity.language_id) };
+            var paramlanguageCd = new SqlParameter { ParameterName = "languageCd", DbType = DbType.String, Value = objEntity.code.Trim() };
+            var paramsort_order = new SqlParameter { ParameterName = "sort_order", DbType = DbType.Int32, Value = objEntity.sort_order };
+            var paramlanguageName = new SqlParameter { ParameterName = "languageName", DbType = DbType.String, Value = objEntity.name };
+            var paramimage = new SqlParameter { ParameterName = "image", DbType = DbType.String, Value = objEntity.image };
+            var paramstatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = objEntity.status };
+
+            var result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateLanguage", paramlanguageId, paramlanguageCd, paramsort_order, paramlanguageName, paramimage, paramstatus).FirstOrDefault();
+            return result;
+        }
+
+        public int DeleteLanguage(int languageId)
+        {
+            var paramLanguageId = new SqlParameter { ParameterName = "languageId", DbType = DbType.Int32, Value = Convert.ToInt32(languageId) };
+            int result = objGenericRepository.ExecuteSQL<int>("DeleteLanguage", paramLanguageId).FirstOrDefault();
+            return result;
+        }
     }
 }

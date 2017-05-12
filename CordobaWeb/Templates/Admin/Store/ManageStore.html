@@ -188,7 +188,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Country</label>
                                                     <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="Country" ng-model="StoreObj.CountryCd" ng-options="option.CountryCd as option.CountryName for option in CountryList"></select>
+                                                        <select class="form-control cursor-pointer" name="Country" ng-model="StoreObj.CountryCd" ng-options="option.code as option.name for option in CountryList"></select>
                                                     </div>
                                                 </div> 
                                                 <div class="form-group">
@@ -200,7 +200,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Language</label>
                                                     <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="Language" ng-model="StoreObj.LanguageCd" ng-options="option.LanguageCd as option.LanguageName for option in LanguageList"></select>
+                                                        <select class="form-control cursor-pointer" name="Language" ng-model="StoreObj.LanguageCd" ng-options="option.language_id as option.code for option in LanguageList"></select>
                                                     </div>
                                                 </div> 
                                                 <div class="form-group">
