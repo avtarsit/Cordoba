@@ -3,13 +3,12 @@
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular"]);
 
 GetLayoutName();
-function GetLayoutName()
-{
+function GetLayoutName() {
     $.ajax({
         url: window.location.origin + "/Home/GetLayoutName?HostName=" + window.location.hostname,
         async: false,
         success: function (data) {
-            var LayoutName = data;            
+            var LayoutName = data;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var HomeIndex = {
                     name: 'Home',
@@ -111,7 +110,7 @@ function GetLayoutName()
                       url: '/Reports/Shipping',
                       templateUrl: 'Templates/' + LayoutName + '/Report/ShippingReport.html'
                   }
-                
+
                  , Product = {
                      name: 'Product',
                      url: '/Catalog/Product',
@@ -144,7 +143,7 @@ function GetLayoutName()
                       url: '/Reports/Coupons',
                       templateUrl: 'Templates/' + LayoutName + '/Report/CouponsReport.html'
                   }
-                  ,CustomerOnlineReport = {
+                  , CustomerOnlineReport = {
                       name: 'CustomerOnlineReport',
                       url: '/Reports/Customer/OnlineCustomer',
                       templateUrl: 'Templates/' + LayoutName + '/Report/OnlineCustomerReport.html'
@@ -202,9 +201,15 @@ function GetLayoutName()
                      url: '/StoreDashboard',
                      templateUrl: 'Templates/' + LayoutName + '/Home/StoreDashboard.html'
                  }
-               
+
+                , Orders = {
+                    name: 'Orders',
+                    url: '/Orders',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/Orders.html'
+                }
+
                 ;
-                
+
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(HomeIndex);
                 $stateProvider.state(ShowCountry);
@@ -244,9 +249,11 @@ function GetLayoutName()
 
                 $stateProvider.state(ErrorLog);
                 $stateProvider.state(RewardPointsReport);
-                
+
                 $stateProvider.state(Language);
                 $stateProvider.state(ManageLanguage);
+
+                $stateProvider.state(Orders);
 
                 $stateProvider.state(Login);
                 //any url that doesn't exist in routes redirect to '/'
@@ -258,9 +265,9 @@ function GetLayoutName()
 
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService) {
-                 
 
-               
+
+
 
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
