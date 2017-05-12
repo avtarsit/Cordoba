@@ -206,10 +206,10 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="product in Products">
-                                                <td><a href="#">{{product.Product}}</a></td>
-                                                <td>{{product.Model}}</td>
-                                                <td>{{product.Quantity}}</td>
-                                                <td>{{product.UnitPrice}}</td>
+                                                <td ng-if="product.Product!=''"><a href="#">{{product.Product}}</a></td>
+                                                <td ng-if="product.Product!=''">{{product.Model}}</td>
+                                                <td ng-if="product.Product!=''">{{product.Quantity}}</td>
+                                                <td colspan="{{product.Product=='' ? '4' : '0'}}" class="{{product.Product==''?'text-right':''}}">{{product.UnitPrice}}</td>
                                                 <td>{{product.Total}}</td>
                                             </tr>
                                             <!--<tr>
@@ -272,9 +272,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
                                                         <div class="col-lg-10">
-                                                            <select ng-options="ordrstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.SelectedOrderStatus" class="form-control">
-
-                                                            </select>
+                                                            <select ng-options="ordrstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.SelectedOrderStatus" class="form-control"></select>
                                                             <!--<select class="form-control">
                                                                 <option>Cancelled</option>
                                                                 <option>PartiallyShipped</option>
