@@ -38,11 +38,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductById(int ProductId)
+        public HttpResponseMessage GetProductById(int product_id)
         {
             try
             {
-                var result = _ProductServices.GetProductById(ProductId);
+                var result = _ProductServices.GetProductById(product_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

@@ -3541,7 +3541,9 @@
     <Content Include="Templates\Admin\Users\Index.html" />
     <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -88,6 +88,7 @@
     <Compile Include="Entities\ManufacturersEntity.cs" />
     <Compile Include="Entities\ManufacturersStoreEntity.cs" />
     <Compile Include="Entities\CatalogueEntity.cs" />
+    <Compile Include="Entities\ProductDescriptionList.cs" />
     <Compile Include="Entities\ProductEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />

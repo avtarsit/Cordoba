@@ -57,13 +57,6 @@
                                     <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
                                     <li> <a data-target="#tab-shipping" data-toggle="tab">Shipping Details</a></li>
                                     <li><a data-target="#tab-links" data-toggle="tab">Links</a></li>
-                                    <!--<li><a data-target="#tab-attribute" data-toggle="tab">Attribute</a></li>-->
-                                    <!--<li><a data-target="#tab-option" data-toggle="tab">Option</a></li>-->
-                                    <!--<li><a data-target="#tab-recurring" data-toggle="tab">Recurring</a></li>-->
-                                    <!--<li><a data-target="#tab-discount" data-toggle="tab">Discount</a></li>-->
-                                    <!--<li><a data-target="#tab-special" data-toggle="tab">Special</a></li>-->
-                                    <!--<li><a data-target="#tab-image" data-toggle="tab">Image</a></li>-->
-                                    <!--<li><a data-target="#tab-reward" data-toggle="tab">Reward Points</a></li>-->
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -83,31 +76,26 @@
                                                     <li><a data-target="#7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>
                                                 </ul>
                                                 <div class="tab-content">
-                                                    <div class="tab-pane {{$index}}" id="{{LangObj.LangId}}" ng-class="LangObj.LangId==1 ? 'active':''" data-ng-repeat="LangObj in EnumLanguageList">
+                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="LangObj.name=='English' ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
                                                             <label class="col-lg-2 control-label mandatoryField" for="input-name1">Product Name</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="ProductNameLang[{{LangObj.LangId}}]" id="ProductNameLang[{{LangObj.LangId}}]" ng-model="ProductObj.ProductName[$index]" placeholder="Product Name" class="form-control" required="required">
+                                                                <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
+                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].ProductName" placeholder="Product Name" class="form-control" required="required">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="ProductDescriptionLang[{{LangObj.LangId}}]" id="ProductDescriptionLang[{{LangObj.LangId}}]" rows="4" cols="4"></textarea>
+                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].description" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <!--<div class="form-group">
-                                                            <label class="col-sm-2 control-label" for="input-meta-title4">Meta Tag Title</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" name="product_meta_title[{{LangObj.LangId}}]" placeholder="Meta Tag Title" id="product_meta_title[{{LangObj.LangId}}]" class="form-control">
-                                                            </div>
-                                                        </div>-->
                                                         <div class="form-group">
-                                                            <label class="col-sm-2 control-label" for="ProductTags{{LangObj.LangId}}">
+                                                            <label class="col-sm-2 control-label" for="ProductTags{{LangObj.language_id}}">
                                                                 <span data-toggle="tooltip" title="comma separated">Product Tags</span>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="ProductTags{{LangObj.LangId}}" value="" placeholder="Product Tags" id="ProductTags{{LangObj.LangId}}" class="form-control">
+                                                                <input type="text" name="ProductTags{{LangObj.language_id}}" value="" placeholder="Product Tags" id="ProductTags{{LangObj.language_id}}" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -127,34 +115,31 @@
                                         <div class="form-group required">
                                             <label class="col-sm-2 control-label" for="input-model">Model</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="model" value="" placeholder="Model" id="input-model" class="form-control">
+                                                <input type="text" name="model" ng-model="ProductObj.model"  placeholder="Model" id="input-model" class="form-control">
                                             </div>
                                         </div>
-                                      
-                                      
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-price">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="price" value="0.00" placeholder="Price" id="input-price" class="form-control">
+                                                <input type="text" name="price" ng-model="ProductObj.price" placeholder="Price" id="input-price" class="form-control">
                                             </div>
                                         </div>
-                                        
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-quantity">Quantity</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="quantity" value="99999" placeholder="Quantity" id="input-quantity" class="form-control">
+                                                <input type="text" name="quantity" ng-model="ProductObj.quantity" placeholder="Quantity" id="input-quantity" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-minimum"><span data-toggle="tooltip" title="" data-original-title="Force a minimum ordered amount">Minimum Quantity</span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="minimum" value="1" placeholder="Minimum Quantity" id="input-minimum" class="form-control">
+                                                <input type="text" name="minimum" ng-model="ProductObj.minimum" placeholder="Minimum Quantity" id="input-minimum" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-subtract">Subtract Stock</label>
                                             <div class="col-sm-10">
-                                                <select name="subtract" id="input-subtract" class="form-control">
+                                                <select name="subtract" id="input-subtract" ng-model="ProductObj.subtract" class="form-control">
                                                     <option value="1">Yes</option>
                                                     <option value="0" selected="selected">No</option>
                                                 </select>
@@ -163,7 +148,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-stock-status"><span data-toggle="tooltip" title="" data-original-title="Status shown when a product is out of stock">Out Of Stock Status</span></label>
                                             <div class="col-sm-10">
-                                                <select name="stock_status_id" id="input-stock-status" class="form-control">
+                                                <select name="stock_status_id" id="input-stock-status" ng-model="ProductObj.stock_status_id" class="form-control">
                                                     <option value="6">2-3 Days</option>
                                                     <option value="7">In Stock</option>
                                                     <option value="5" selected="selected">Out Of Stock</option>
@@ -174,81 +159,32 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Requires Shipping</label>
                                             <div class="col-sm-10">
-                                                <label class="radio-inline">
+                                                <input type="checkbox" ng-false-value="0" ng-true-value="1" name="shipping" ng-model="ProductObj.shipping">
+                                                <!--<label class="radio-inline">
                                                     <input type="radio" name="shipping" value="1" checked="checked">
                                                     Yes
                                                 </label>
                                                 <label class="radio-inline">
                                                     <input type="radio" name="shipping" value="0">
                                                     No
-                                                </label>
+                                                </label>-->
                                             </div>
                                         </div>
-                                        <!--<div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="" data-original-title="Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.">SEO Keyword</span></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="keyword" value="" placeholder="SEO Keyword" id="input-keyword" class="form-control">
-
-                                            </div>
-                                        </div>-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-date-available">Date Available</label>
                                             <div class="col-sm-3">
                                                 <div class="input-group myDatePicker date">
-                                                    <input type="text" class="form-control" placeholder="Date Available(mm/dd/yyyy)" />
+                                                    <input type="text" class="form-control" ng-model="ProductObj.date_added" placeholder="Date Available(mm/dd/yyyy)" />
                                                     <span class="input-group-addon cursor-pointer">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--<div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-length">Dimensions (L x W x H)</label>
-                                            <div class="col-sm-10">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <input type="text" name="length" value="0.00000000" placeholder="Length" id="input-length" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <input type="text" name="width" value="0.00000000" placeholder="Width" id="input-width" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <input type="text" name="height" value="0.00000000" placeholder="Height" id="input-height" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>-->
-                                        <!--<div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-length-class">Length Class</label>
-                                            <div class="col-sm-10">
-                                                <select name="length_class_id" id="input-length-class" class="form-control">
-                                                    <option value="1" selected="selected">Centimeter</option>
-                                                    <option value="2">Millimeter</option>
-                                                    <option value="3">Inch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-weight">Weight</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="weight" value="0.0" placeholder="Weight" id="input-weight" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-weight-class">Weight Class</label>
-                                            <div class="col-sm-10">
-                                                <select name="weight_class_id" id="input-weight-class" class="form-control">
-                                                    <option value="1" selected="selected">Kilogram</option>
-                                                    <option value="2">Gram</option>
-                                                    <option value="5">Pound </option>
-                                                    <option value="6">Ounce</option>
-                                                </select>
-                                            </div>
-                                        </div>-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-status">Status</label>
                                             <div class="col-sm-10">
-                                                <select name="status" id="input-status" class="form-control">
+                                                <select name="status" id="input-status" ng-model="ProductObj.status" class="form-control">
                                                     <option value="1">Enabled</option>
                                                     <option value="0" selected="selected">Disabled</option>
                                                 </select>
@@ -257,7 +193,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-sort-order">Sort Order</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="sort_order" value="0" placeholder="Sort Order" id="input-sort-order" class="form-control">
+                                                <input type="text" name="sort_order" ng-model="ProductObj.sort_order" placeholder="Sort Order" id="input-sort-order" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -294,8 +230,6 @@
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
                                                 <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
-
-
                                                 <select name="Category" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
                                                     <option value="1">Apple Products</option>
@@ -303,9 +237,6 @@
                                                     <option value="3">Baby</option>
                                                     <option value="4">	Computers</option>
                                                 </select>
-
-
-                                               
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -315,37 +246,9 @@
                                                     <option value="0" selected="selected"> --- None --- </option>
                                                     <option value="1" >Procurement International Limited</option>
                                                     <option value="2">Apple</option>
-                                                    <option value="3">John Lewis</option>
-                                                    <option value="4">Drum Lessons R Us</option>
-                                                    <option value="5">Red Letter Day</option>
-                                                    <option value="6">Virgin Experience</option>
-                                                    <option value="7">All Garden Fun</option>
-                                                    <option value="8">Tesco Direct</option>
-                                                    <option value="9">Mow Direct</option>
-                                                    <option value="10">Splash and Relax</option>
-                                                    <option value="11">Home Leisure Direct</option>
-                                                    <option value="12">PlayGamesUK</option>
-                                                    <option value="13">Bose</option>
-                                                    <option value="14">Liberty Games</option>
-                                                    <option value="15">Simply Acer</option>
-                                                    <option value="16">Best Buy</option>
-                                                    <option value="17">Edenred Travel</option>
-                                                    <option value="18">Currys</option>
-                                                    <option value="19">Waitrose</option>
-                                                    <option value="20">Whiskey Exchange</option>
-                                                    <option value="21">Waud Wine Club</option>
-                                                    <option value="22">Edenred Vouchers</option>
-                                                    <option value="23">Jessops</option>
-                                                    <option value="24">Detector Distribution </option>
-                                                    <option value="25">E-buyer.com</option>
-                                                    <option value="26">Jigsaw24 (Apple)</option>
-                                                    <option value="27">Amazon</option>
-                                                    <option value="28">AV Promotions </option>
-                                                    <option value="48">Edenred</option>
                                                 </select>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-category">Catalogue Name</label>
                                             <div class="col-sm-10">
@@ -362,193 +265,7 @@
                                                         <input type="checkbox" name="product_catalogue[]" value="23">
                                                         Miscellaneous Suppliers
                                                     </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="24">
-                                                        Xmas Hampers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="42">
-                                                        SSG Procurement UK (Without Nursery or Apple)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="45">
-                                                        PB Jigsaw24 Multilingual (Apple)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="46">
-                                                        AV Promotions (Kindle)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="47">
-                                                        Procurement (Australia)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="48">
-                                                        Procurement (India)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="49">
-                                                        Procurement (Canada)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="53">
-                                                        Somcan (Canada)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="55">
-                                                        Spicers Hampers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="56">
-                                                        Harco (United States)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="57">
-                                                        Edenred (India)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="58">
-                                                        Procurement UK (Without Apple)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="59">
-                                                        Procurement UK (Without HSVouchers or Apple)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="61">
-                                                        PB Procurement Multilingual (Without Apple)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="62">
-                                                        PB UK Amazon Vouchers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="63">
-                                                        Spicers Hampers (No Alcohol)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="64">
-                                                        Procurement UK (Without Alcohol or Apple)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="65">
-                                                        CVD Compliments Vouchers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="66">
-                                                        Edenred (UAE)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="67">
-                                                        Edenred (Japan)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="68">
-                                                        Edenred (NZ)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="69">
-                                                        Jigsaw24 UK 2015 (Apple)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="72">
-                                                        Grenke Vouchers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="73">
-                                                        Accumulate (Australia)
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="77">
-                                                        Data Cable 1
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="78">
-                                                        Procurement EU Multilanguage
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="79">
-                                                        Procurement UK (without HS Vouchers)
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="81">
-                                                        All Vouchers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="82">
-                                                        ngc uk
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="84">
-                                                        Virgin Wines
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="85">
-                                                        Jigsaw Apple 2016
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="86">
-                                                        Spicer Easter Hampers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="87">
-                                                        Harrods GC
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="88">
-                                                        Irish Catalogue
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="89">
-                                                        Jigsaw Nov 2016
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="90">
-                                                        This is it 2016
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="91">
-                                                        PB CA Vouchers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="92" checked="checked">
-                                                        PB US Vouchers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="93">
-                                                        Black Cactus AU
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="94">
-                                                        Vouchers AU
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="95">
-                                                        Spicers Valentines 2017
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="96">
-                                                        Interflora 2017
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="97">
-                                                        German Vouchers
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="98">
-                                                        French Vouchers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="99">
-                                                        ngc-eu
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="100">
-                                                        Spicers Mothers Day 2017
-                                                    </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -585,7 +302,6 @@
                                             </table>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
