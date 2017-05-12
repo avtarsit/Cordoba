@@ -31,10 +31,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat="Item in UserList">
-                    <td ng-bind="Item.UserName"></td>
+                    <td ng-bind="Item.username"></td>
                     <td ng-bind="Item.StatusName"></td>
-                    <td ng-bind="Item.CreatedDate"></td>
-                    <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageUser({UserID:Item.UserID})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
+                    <td ng-bind="Item.date_added"></td>
+                    <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageUser({UserID:Item.user_id})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>
         </table>

@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,25 @@ namespace CordobaAPI.API
             try
             {
                 var result = _UserServices.GetUserDetail(UserID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+         [HttpPost]
+        public HttpResponseMessage CreateOrUpdateUser(int LoggedInUserId,UserEntity UserModel)
+        {
+            try
+            {
+                var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, UserModel);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

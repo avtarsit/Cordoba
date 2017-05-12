@@ -15,15 +15,12 @@
     }
     //#endregion
 
-
-
     $scope.SaveCountry=function(form)
     {
         if (form.$valid) {
           
         }
     }
-
     $scope.DeleteCountry = function () {
         bootbox.dialog({
             message:"Do you want remove country?",
