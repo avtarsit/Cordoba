@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using CordobaServices.Interfaces;
 using CordobaServices.Services;
+using CordobaModels.Entities;
 
 namespace CordobaAPI.API
 {
@@ -38,6 +39,35 @@ namespace CordobaAPI.API
                 throw;
             }
 
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertOrUpdateLanguage(LanguageEntity objEntity)
+        {
+            try
+            {
+                //HttpContext.Current.Server.MapPath("~/Content/NewsImages)
+                int result = _LanguageServices.InsertOrUpdateLanguage(objEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage DeleteLanguage(int languageId)
+        {
+            try
+            {
+                int result = _LanguageServices.DeleteLanguage(languageId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }

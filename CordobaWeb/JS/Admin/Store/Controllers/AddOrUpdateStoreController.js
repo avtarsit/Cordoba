@@ -51,7 +51,7 @@
 
     ///Get Country List --- START
     $scope.GetCountryList = function () {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?CountryCd=''")
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -103,17 +103,30 @@
 
     ///-- Get Language List ----START
 
-    $scope.LanguageList = [
-        { 'LanguageCd': 'en', 'LanguageName': 'English' }
-      , { 'LanguageCd': 'de', 'LanguageName': 'Deutsch' }
-      , { 'LanguageCd': 'fr', 'LanguageName': 'Français' }
-      , { 'LanguageCd': 'it', 'LanguageName': 'Italiano' }
-      , { 'LanguageCd': 'es', 'LanguageName': 'Español' }
-      , { 'LanguageCd': 'pt', 'LanguageName': 'Português' }
-      , { 'LanguageCd': 'nl', 'LanguageName': 'Nederlands' }
-    ];
 
-    $scope.StoreObj.LanguageCd='en';
+    $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
+         .then(function (response) {
+             debugger;
+             $scope.LanguageList = response.data;
+         })
+        .catch(function (response) {
+
+        })
+        .finally(function () {
+
+        });
+
+    ////$scope.LanguageList = [
+    ////    { 'LanguageCd': 'en', 'LanguageName': 'English' }
+    ////  , { 'LanguageCd': 'de', 'LanguageName': 'Deutsch' }
+    ////  , { 'LanguageCd': 'fr', 'LanguageName': 'Français' }
+    ////  , { 'LanguageCd': 'it', 'LanguageName': 'Italiano' }
+    ////  , { 'LanguageCd': 'es', 'LanguageName': 'Español' }
+    ////  , { 'LanguageCd': 'pt', 'LanguageName': 'Português' }
+    ////  , { 'LanguageCd': 'nl', 'LanguageName': 'Nederlands' }
+    ////];
+
+    //$scope.StoreObj.LanguageCd='en';
     ///END
 
 

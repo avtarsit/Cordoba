@@ -17,12 +17,12 @@
              debugger;
              $scope.LanguageObj = response.data[0];
          })
-     .catch(function (response) {
+        .catch(function (response) {
 
-     })
-     .finally(function () {
+        })
+        .finally(function () {
 
-     });
+        });
     }
     else {
         $scope.PageTitle = "Add Language";
@@ -33,7 +33,26 @@
 
     $scope.SaveLanguage = function (form) {
         if (form.$valid) {
+            //$scope.LanguageObj.image = $scope.LanguageObj.code + '.png';
+            debugger;
+            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage", $scope.LanguageObj)
+           .then(function (response) {
+               debugger;
+               if (response.data == 0) {
+                   //alert('already exists');
+                   notificationFactory.customError("Language Code is already Exists!!");
+               }
+               if (response.data > 0) {
+                   notificationFactory.customSuccess("Language Saved Successfully.");
+                   $state.go('Language');
+               }
+           })
+            .catch(function (response) {
 
+            })
+            .finally(function () {
+
+            });
         }
     }
 
@@ -49,7 +68,14 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId)
+                                   .then(function (response) {
+                                       $state.go('Language');
+                                   })
+                               .catch(function (response) {
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },
