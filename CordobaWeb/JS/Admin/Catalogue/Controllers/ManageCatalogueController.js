@@ -59,7 +59,7 @@
                                        $state.go('ShowProductCatalogue');
                                    })
                                .catch(function (response) {
-                                   notificationFactory.successDelete();
+                                   notificationFactory.errorEdit();
                                })
                                .finally(function () {
                                });

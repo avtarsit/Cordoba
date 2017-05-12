@@ -76,16 +76,25 @@ namespace CordobaServices.Services
        }
 
 
-
-
         public int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)
         {
-            //var catalogueIdparam = new SqlParameter { ParameterName = "catalogue_Id", DbType = DbType.Int32, Value = catalogueEntity.catalogue_Id };
-            //var nameparam = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = catalogueEntity.Name };
-            //var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue", catalogueIdparam, nameparam).FirstOrDefault();
-            //return result;
 
-            throw new NotImplementedException();
+            try
+            {
+                var manufacturerIdParam = new SqlParameter { ParameterName = "manufacturer_id", DbType = DbType.Int32, Value = manufacturersEntity.manufacturer_id };
+                var nameParam = new SqlParameter { ParameterName = "name", DbType = DbType.String, Value = manufacturersEntity.name };
+                var imageUrlParam = new SqlParameter { ParameterName = "image", DbType = DbType.String, Value = manufacturersEntity.image ?? DBNull.Value.ToString() };
+                var sortorderParam = new SqlParameter { ParameterName = "sort_order", DbType = DbType.Int32, Value = manufacturersEntity.sort_order };
+                var storeIdCSVParam = new SqlParameter { ParameterName = "storeIdCSV", DbType = DbType.String, Value = manufacturersEntity.StoreIdCSV ?? DBNull.Value.ToString() };
+                var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateManufacture", manufacturerIdParam, nameParam, imageUrlParam, sortorderParam, storeIdCSVParam).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }
+
