@@ -24,7 +24,7 @@
             var catalogueEntity = JSON.stringify($scope.CatalogueObj);
             $http.post(configurationService.basePath + "api/CatalogueApi/InsertUpdateCatalogue", catalogueEntity)
                 .then(function (response) {
-                    if (response.data == 1) {
+                    if (response.data > 0) {
                         notificationFactory.customSuccess("Product Catalogue Saved Successfully.");
                         $state.go('ShowProductCatalogue');
                     }
@@ -40,9 +40,9 @@
         }
     }
 
-    $scope.DeleteCategory = function () {
+    $scope.DeleteCatalogue = function () {
         bootbox.dialog({
-            message: "Do you want remove category?",
+            message: "Do you want remove product Catalogue?",
             title: "Confirmation",
             className: "model",
             buttons: {
@@ -52,13 +52,23 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.get(configurationService.basePath + "api/CatalogueApi/DeleteCatalogue?catalogue_id=" + $scope.catalogue_id)
+                                   .then(function (response) {
+                                       if (response.data > 0)
+                                           notificationFactory.successDelete();
+                                       $state.go('ShowProductCatalogue');
+                                   })
+                               .catch(function (response) {
+                                   notificationFactory.errorEdit();
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },
                 danger:
                     {
-                        label: "NO",
+                        label: "No",
                         className: "btn btn-default",
                         callback: function () {
                             return true;
@@ -67,7 +77,6 @@
             }
         });
     };
-
 
     function GetCatalogueById() {
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueById?catalogue_id=" + $scope.catalogue_id)

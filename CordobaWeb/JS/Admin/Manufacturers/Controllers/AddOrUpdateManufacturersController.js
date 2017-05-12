@@ -42,19 +42,22 @@
 
     }
     $scope.InsertUpdateManufacture = function (form) {
-
-
         if (form.$valid) {
 
             $scope.ManufacturerObj.StoreIdCSV = GetSelectedStoreListCSV($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore);
             var manufacturersEntity = JSON.stringify($scope.ManufacturerObj);
-            debugger;
             $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture", manufacturersEntity)
               .then(function (response) {
-                  alert(1);
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Manufacturer Saved Successfully.");
+                      $state.go('ShowManufacturer');
+                  }
+                  else if (response.data == -1) {
+                      notificationFactory.customError("Manufacturer name is already Exists!");
+                  }
               })
           .catch(function (response) {
-
+              notificationFactory.error("Error occur during save record.");
           })
           .finally(function () {
 

@@ -69,7 +69,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _catalogueServices.InsertUpdateCatalogue(catalogueEntity);
-                if (result != null)
+                if (result>=-1)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
@@ -83,7 +83,20 @@ namespace CordobaAPI.API
 
         }
 
-        
+           [HttpGet]
+        public HttpResponseMessage DeleteCatalogue(int catalogue_id)
+        {
+            try
+            {
+                var result = _catalogueServices.DeleteCatalogue(catalogue_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         [HttpPost]
         public HttpResponseMessage ImportCatalogue()
