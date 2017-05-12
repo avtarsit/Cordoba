@@ -13,6 +13,7 @@ namespace CordobaServices.Services
         public List<ProductEntity> GetProductList()
         {
             List<ProductEntity> Product = new List<ProductEntity>();
+
             Product.Add(new ProductEntity() { ProductId = 1, ProductName = "GIORGIO ARMANI AR6011 300371 SUNGLASSES MATTE GUNMETAL SIZE 66", StatusId = 1, StatusName = "Enabled", Model = "LAR-002", Quantity = 1, Price = 2323,ImagePath=@"../../../Content/admin/images/Product/BU-026-300-40x40.jpg" });
             Product.Add(new ProductEntity() { ProductId = 2, ProductName = "KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK", StatusId = 1, StatusName = "Enabled", Model = "ZW-1344", Quantity = 2, Price = 2323, ImagePath =@"../../../Content/admin/images/Product/DP-059-300-40x40.jpg" });
             Product.Add(new ProductEntity() { ProductId = 3, ProductName = "ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK", StatusId = 1, StatusName = "Enabled", Model = "RR-026", Quantity = 3, Price = 2323, ImagePath = @"../../../Content/admin/images/Product/DP-059-300-40x40.jpg" });

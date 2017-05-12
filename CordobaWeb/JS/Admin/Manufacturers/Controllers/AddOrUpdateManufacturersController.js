@@ -8,7 +8,7 @@
     $scope.manufacturer_id = 0;
     $scope.ManufacturerObj = new Object();
     $scope.IsEditMode = false;
-    if ($stateParams.ManufacturerID != undefined && $stateParams.ManufacturerID != null) {
+    if ($stateParams.ManufacturerID != undefined && $stateParams.ManufacturerID != null && $stateParams.ManufacturerID>0)  {
         $scope.PageTitle = "Update Manufacturer";
         $scope.IsEditMode = true;
         $scope.manufacturer_id = $stateParams.ManufacturerID;
@@ -77,6 +77,18 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
+
+                                $http.get(configurationService.basePath + "api/ManufacturersApi/DeleteManufacturer?manufacturer_id=" + $scope.manufacturer_id)
+                                  .then(function (response) {
+                                      if (response.data > 0)
+                                          notificationFactory.successDelete();
+                                      $state.go('ShowManufacturer');
+                                  })
+                              .catch(function (response) {
+                                  notificationFactory.errorEdit();
+                              })
+                              .finally(function () {
+                              });
 
                             }
                         }

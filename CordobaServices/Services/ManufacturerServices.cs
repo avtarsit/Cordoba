@@ -37,43 +37,43 @@ namespace CordobaServices.Services
 
 
         public ManufacturersEntity GetManufaturerDetail(int manufacturer_id)
-       {
-           ManufacturersEntity Manufacturer = new ManufacturersEntity();
-           List<StoreEntity> StoreList = new List<StoreEntity>();
-           ManufacturersStoreEntity ManufacturerStoreList = new ManufacturersStoreEntity();
-          
-           if (manufacturer_id > 0)
-           {
-               var parammanufacturer_id = new SqlParameter
-               {
-                   ParameterName = "manufacturer_id",
-                   DbType = DbType.Int32,
-                   Value = manufacturer_id
-               };
-               var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufaturerDetail", parammanufacturer_id).FirstOrDefault();
-               if (Result != null)
-                   Manufacturer = Result;
-           }
-           else
-           {
+        {
+            ManufacturersEntity Manufacturer = new ManufacturersEntity();
+            List<StoreEntity> StoreList = new List<StoreEntity>();
+            ManufacturersStoreEntity ManufacturerStoreList = new ManufacturersStoreEntity();
+
+            if (manufacturer_id > 0)
+            {
+                var parammanufacturer_id = new SqlParameter
+                {
+                    ParameterName = "manufacturer_id",
+                    DbType = DbType.Int32,
+                    Value = manufacturer_id
+                };
+                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufaturerDetail", parammanufacturer_id).FirstOrDefault();
+                if (Result != null)
+                    Manufacturer = Result;
+            }
+            else
+            {
                 Manufacturer = new ManufacturersEntity();
-           }
-           var parammanufacturerIdForStore = new SqlParameter
-           {
-               ParameterName = "manufacturer_id",
-               DbType = DbType.Int32,
-               Value = manufacturer_id
-           };
-           var storeResult = objGenericRepository.ExecuteSQL<StoreEntity>("GetManufacturerStoreList", parammanufacturerIdForStore).ToList<StoreEntity>();
-           if (storeResult != null)
-               StoreList = storeResult.ToList();
+            }
+            var parammanufacturerIdForStore = new SqlParameter
+            {
+                ParameterName = "manufacturer_id",
+                DbType = DbType.Int32,
+                Value = manufacturer_id
+            };
+            var storeResult = objGenericRepository.ExecuteSQL<StoreEntity>("GetManufacturerStoreList", parammanufacturerIdForStore).ToList<StoreEntity>();
+            if (storeResult != null)
+                StoreList = storeResult.ToList();
 
-           ManufacturerStoreList.manufacturer_id = manufacturer_id;
-           ManufacturerStoreList.ManufacturerStore = StoreList;
-           Manufacturer.ManufacturerStoreList = ManufacturerStoreList;
-           return Manufacturer;
+            ManufacturerStoreList.manufacturer_id = manufacturer_id;
+            ManufacturerStoreList.ManufacturerStore = StoreList;
+            Manufacturer.ManufacturerStoreList = ManufacturerStoreList;
+            return Manufacturer;
 
-       }
+        }
 
 
         public int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)
@@ -91,10 +91,29 @@ namespace CordobaServices.Services
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
+
+
+
+        public int DeleteManufacturer(int manufacturer_id)
+        {
+            try
+            {
+                var paramManufacturerId = new SqlParameter { ParameterName = "manufacturer_id", DbType = DbType.Int32, Value = manufacturer_id };
+                int result = objGenericRepository.ExecuteSQL<int>("DeleteManufacturer", paramManufacturerId).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }
 
