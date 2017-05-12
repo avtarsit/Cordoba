@@ -28,8 +28,8 @@
 
     //Get Status List -- START
     $scope.UserStatus = [
-        { 'StatusId': 1, 'StatusName': 'Active' }
-      , { 'StatusId': 0, 'StatusName': 'Inactive' }
+        { 'StatusId': 1, 'StatusName': 'Enabled' }
+      , { 'StatusId': 0, 'StatusName': 'Disabled' }
     ];
     //END
     $scope.GetUserDetail = function () {
