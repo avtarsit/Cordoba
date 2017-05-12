@@ -4,7 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
+    $scope.LoggedInUserId = -1;
     $scope.user_id = 0;
     $scope.IsEditMode = false;
     if ($stateParams.UserID != undefined && $stateParams.UserID != null) {
@@ -54,7 +54,7 @@
     $scope.SaveUser = function (form) {
         if (form.$valid) {      
             $scope.UserObj.user_id = $scope.user_id;
-            $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + -1, $scope.UserObj)
+            $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + $scope.LoggedInUserId, $scope.UserObj)
          .then(function (response) {          
              if (response.data>0)
              {
@@ -85,6 +85,20 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
+                                $http.get(configurationService.basePath + "api/UserApi/DeleteUserDetail?LoggedInUserId=" + $scope.LoggedInUserId + "&UserID=" + $scope.user_id)
+                                        .then(function (response) {                                            
+                                            if (response.data > 0) {
+                                                toastr.success('Successfully Deleted.');
+                                                $state.go('Users');
+                                            }
+                                        })
+                                    .catch(function (response) {
+
+                                    })
+                                    .finally(function () {
+
+                                    });
+
 
                             }
                         }

@@ -63,14 +63,32 @@ namespace CordobaServices.Services
                param[3] = new SqlParameter("password", user.password);
                param[4] = new SqlParameter("firstname", user.firstname);
                param[5] = new SqlParameter("lastname", user.lastname);
-               param[6] = new SqlParameter("email", user.email);
+               param[6] = new SqlParameter("email", user.email!=null?user.email:(object)DBNull.Value);
                param[7] = new SqlParameter("status", user.status);
                param[8] = new SqlParameter("ip", user.ip!=null?user.ip:(object)DBNull.Value);
                param[9] = new SqlParameter("image", user.image != null ? user.image : (object)DBNull.Value);
 
-               var result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC Insert_Update_User @user_id,@user_group_id,@username,@password,@firstname,@lastname,@email,@status,@ip,@image", param).ToList<int>().FirstOrDefault();
+               var result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateUser @user_id,@user_group_id,@username,@password,@firstname,@lastname,@email,@status,@ip,@image", param).ToList<int>().FirstOrDefault();
 
                return result;
+           }
+           catch (Exception)
+           {
+
+               throw;
+           }
+       }
+
+
+       public int DeleteUserDetail(int LoggedInUserId,int UserId)
+       {
+           try
+           {
+               SqlParameter[] param = new SqlParameter[2];
+               param[0] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+               param[1] = new SqlParameter("user_id", UserId);
+               var Result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteUser @LoggedInUserId,@user_id", param).ToList<int>().FirstOrDefault();
+               return Result;
            }
            catch (Exception)
            {

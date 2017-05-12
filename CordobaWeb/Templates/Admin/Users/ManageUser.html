@@ -50,7 +50,9 @@
                                                 <li ng-show="form.FirstName.$error.required">First name is required.</li>
                                                 <li ng-show="form.LastName.$error.required">Last name is required.</li>
                                                 <li ng-show="form.Password.$error.required">Password is required.</li>
+                                                <li ng-show="form.confirm_password.$error.required">Confirm Password is required.</li>
                                                 <li ng-show="form.Email.$error.email">Email address is not valid.</li>
+                                                <li ng-show="form.confirm_password.$error.passwordVerify">Password and Confirm Password must be same.</li>                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -109,6 +111,13 @@
                                             <input type="password" class="form-control" name="Password" maxlength="100" placeholder="Enter Password" ng-model="UserObj.password" required="required">
                                         </div>
                                     </div> 
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label mandatoryField">Confirm Password</label>
+                                        <div class="col-lg-8">
+                                            <input ng-model="UserObj.password_verify" class="form-control" type="password" name='confirm_password' placeholder='Confirm Password' data-password-verify="UserObj.password" required="required">
+                                        </div>
+                                    </div> 
+                                   
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Status</label>
                                         <div class="col-lg-8">
