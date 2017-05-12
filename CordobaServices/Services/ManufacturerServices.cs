@@ -76,5 +76,16 @@ namespace CordobaServices.Services
        }
 
 
+
+
+        public int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)
+        {
+            //var catalogueIdparam = new SqlParameter { ParameterName = "catalogue_Id", DbType = DbType.Int32, Value = catalogueEntity.catalogue_Id };
+            //var nameparam = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = catalogueEntity.Name };
+            //var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue", catalogueIdparam, nameparam).FirstOrDefault();
+            //return result;
+
+            throw new NotImplementedException();
+        }
     }
 }

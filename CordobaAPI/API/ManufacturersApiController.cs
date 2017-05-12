@@ -60,15 +60,15 @@ namespace CordobaAPI.API
         }
 
          [HttpPost]
-        public HttpResponseMessage InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)  // in progress
+        public HttpResponseMessage InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)  
         {
             try
             {
-                //var result = _ManufacturerServices.GetManufaturerDetail(manufacturersEntity);
-                //if (result != null)
-                //{
-                //    return Request.CreateResponse(HttpStatusCode.OK, result);
-                //}
+                var result = _ManufacturerServices.InsertUpdateManufacture(manufacturersEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
             catch (Exception)

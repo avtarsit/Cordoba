@@ -11,5 +11,7 @@ namespace CordobaServices.Interfaces
     {
         List<ManufacturersEntity> GetManufacturersList();
          ManufacturersEntity GetManufaturerDetail(int ManufacturersID);
+
+         int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity);
     }
 }

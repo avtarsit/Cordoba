@@ -67,5 +67,22 @@ namespace CordobaServices.Services
             var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam ).FirstOrDefault();
             return result;
         }
+
+
+        public int DeleteCatalogue(int catalogue_id)
+        {
+            try
+            {
+                var paramCatalogueId = new SqlParameter { ParameterName = "catalogue_id", DbType = DbType.Int32, Value = catalogue_id };
+                int result = objGenericRepository.ExecuteSQL<int>("DeleteCatalogue", paramCatalogueId).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+         
+        }
     }
 }

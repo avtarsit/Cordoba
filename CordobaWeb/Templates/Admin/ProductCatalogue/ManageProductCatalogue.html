@@ -21,9 +21,9 @@
                     <li>
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
-                    <!--<li>
-                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Country" ng-click="DeleteManageProduct(ProductCatalogueObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>&nbsp;
-                    </li>-->
+                    <li ng-if="IsEditMode==true">
+                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Catalogue" ng-click="DeleteCatalogue(CatalogueObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+                    </li>
                 </ul>
             </div>
         </div>
