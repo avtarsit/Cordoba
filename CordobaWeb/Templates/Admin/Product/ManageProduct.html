@@ -207,9 +207,9 @@
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">United Kingdom</label>
                                             <div class="col-sm-2">
-                                                <input type="hidden" class="form-control" name="product_shipping_costs[0][country_id]" value="222">
-                                                <input type="hidden" class="form-control" name="product_shipping_costs[0][country_name]" value="United Kingdom">
-                                                <input type="text" class="form-control" name="product_shipping_costs[0][shipping_cost]" value="0.00">
+                                                <input type="hidden" class="form-control" ng-bind="ProductObj.country_id" name="product_shipping_costs[0][country_id]">
+                                                <input type="hidden" class="form-control" ng-bind="ProductObj.country_name" name="product_shipping_costs[0][country_name]" value="United Kingdom">
+                                                <input type="text" class="form-control"  ng-model="ProductObj.cost" name="product_shipping_costs[0][shipping_cost]" >
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>
                                             <div class="col-sm-10">
-                                                <select name="Category" class="form-control">
+                                                <select name="Category" ng-model="ProductObj.manufacturer_id" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
                                                     <option value="1">Apple</option>
                                                     <option value="2">Canon</option>
@@ -230,7 +230,7 @@
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
                                                 <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
-                                                <select name="Category" class="form-control">
+                                                <select name="Category" ng-model="ProductObj.category_id" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
                                                     <option value="1">Apple Products</option>
                                                     <option value="2">BBQs</option>
@@ -242,9 +242,9 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-category">Supplier</label>
                                             <div class="col-sm-10">
-                                                <select name="supplier_id" class="form-control">
+                                                <select name="supplier_id" ng-model="ProductObj.supplier_id" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
-                                                    <option value="1" >Procurement International Limited</option>
+                                                    <option value="1">Procurement International Limited</option>
                                                     <option value="2">Apple</option>
                                                 </select>
                                             </div>
