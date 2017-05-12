@@ -4,13 +4,13 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
+    $scope.CountryId = 0;
     $scope.CountryObj = {};
     $scope.IsEditMode = false;
     if ($stateParams.CountryId != undefined && $stateParams.CountryId != null) {
         $scope.PageTitle = "Update Country";
         $scope.IsEditMode = true;
-
+        $scope.CountryId = $stateParams.CountryId;
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + $stateParams.CountryId)
           .then(function (response) {
               debugger;
@@ -68,7 +68,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $stateParams.CountryId)
+                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId)
                                    .then(function (response) {
                                        $state.go('ShowCountry');
                                    })
