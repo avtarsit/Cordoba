@@ -92,12 +92,12 @@
         { Id: 3, Name: 'Processing' },
         { Id: 4, Name: 'Returned' },
         { Id: 5, Name: 'Shipped' }
-    ]
+    ];
 
-    $scope.OrderHistory=
+    $scope.OrderHistory =
         {
             SelectedOrderStatus: 1,
             NotifyCustomer: true,
-            Comment:''
-        }
+            Comment: ''
+        };
 });
