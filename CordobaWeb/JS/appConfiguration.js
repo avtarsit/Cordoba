@@ -8,8 +8,8 @@ function GetLayoutName()
     $.ajax({
         url: window.location.origin + "/Home/GetLayoutName?HostName=" + window.location.hostname,
         async: false,
-        success: function (data) {
-            var LayoutName = data;            
+        success: function (data) {            
+            var LayoutName = data;         
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var HomeIndex = {
                     name: 'Home',
