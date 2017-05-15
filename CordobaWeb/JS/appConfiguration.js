@@ -204,7 +204,7 @@ function GetLayoutName() {
 
                 , Orders = {
                     name: 'Orders',
-                    url: '/Orders',
+                    url: '/Orders?OrderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Orders.html'
                 }
 

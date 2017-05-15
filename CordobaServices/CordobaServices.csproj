@@ -44,8 +44,10 @@
     <Compile Include="Interfaces\IBannerServices.cs" />
     <Compile Include="Interfaces\ICategoryServices.cs" />
     <Compile Include="Interfaces\ICountryServices.cs" />
+    <Compile Include="Interfaces\IDashboardService.cs" />
     <Compile Include="Interfaces\IManufacturerServices.cs" />
     <Compile Include="Interfaces\ICatalogueServices.cs" />
+    <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IProductServices.cs" />
     <Compile Include="Interfaces\IStoreServices.cs" />
     <Compile Include="Interfaces\ISupplierServices.cs" />
@@ -56,9 +58,11 @@
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CountryServices.cs" />
+    <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\ManufacturerServices.cs" />
     <Compile Include="Services\CatalogueService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\StoreServices.cs" />
     <Compile Include="Services\SupplierServices.cs" />

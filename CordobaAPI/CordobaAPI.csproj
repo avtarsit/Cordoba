@@ -171,8 +171,10 @@
     <Compile Include="API\CommonApiController.cs" />
     <Compile Include="API\CountryApiController.cs" />
     <Compile Include="API\CustomerOrderApiController.cs" />
+    <Compile Include="API\DashboardApiController.cs" />
     <Compile Include="API\LanguageApiController.cs" />
     <Compile Include="API\ManufacturersApiController.cs" />
+    <Compile Include="API\OrderApiController.cs" />
     <Compile Include="API\ProductApiController.cs" />
     <Compile Include="API\CatalogueApiController.cs" />
     <Compile Include="API\StoreApiController.cs" />

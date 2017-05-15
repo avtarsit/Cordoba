@@ -31,7 +31,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="col-sm-2">Order ID:</td>
-                                                <td>{{OrderDetails.OrderId}}</td>
+                                                <td>{{'#'+OrderDetails.order_id}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Invoice No.:</td>
@@ -39,43 +39,47 @@
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Store Name:</td>
-                                                <td>{{OrderDetails.StoreName}}</td>
+                                                <td>{{OrderDetails.store_name}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Store Url:</td>
-                                                <td><a href="#">{{OrderDetails.StoreUrl}}</a></td>
+                                                <td><a href="#">{{OrderDetails.store_url}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Customer:</td>
-                                                <td><a href="#">{{OrderDetails.Customer}}</a></td>
+                                                <td><a href="#">{{OrderDetails.customer}}</a></td>
+                                            </tr>
+                                            <tr ng-if="OrderDetails.customer_group_id!=0">
+                                                <td class="col-sm-2">Customer:</td>
+                                                <td><a href="#">{{OrderDetails.CustomerGroupName}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">E-Mail:</td>
-                                                <td><a href="#">{{OrderDetails.Email}}</a></td>
+                                                <td><a href="#">{{OrderDetails.email}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Telephone:</td>
-                                                <td>{{OrderDetails.Telephone}}</td>
+                                                <td>{{OrderDetails.telephone}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Fax:</td>
-                                                <td>0796780{{OrderDetails.Fax}}3738</td>
+                                                <td>{{OrderDetails.fax}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Total:</td>
-                                                <td>{{OrderDetails.Total}}</td>
+                                                <td>{{OrderDetails.total}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Order Status:</td>
-                                                <td>{{OrderDetails.OrderStatus}}</td>
+                                                <td>{{OrderDetails.OrderStatusName}}</td>
                                             </tr>
-                                            <tr>
+                                            <tr ng-if="OrderDetails.comment!=''">
                                                 <td class="col-sm-2">Comment:</td>
-                                                <td>{{OrderDetails.Comment}}</td>
+                                                <td>{{OrderDetails.comment}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">IP Address:</td>
-                                                <td>{{OrderDetails.IPAddress}}</td>
+                                                <td>{{OrderDetails.ip}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">User Agent:</td>
@@ -83,15 +87,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Accept Language:</td>
-                                                <td>{{OrderDetails.AcceptLanguage}}</td>
+                                                <td>{{OrderDetails.LanguageName}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Date Added:</td>
-                                                <td>{{OrderDetails.DateAdded}}</td>
+                                                <td>{{OrderDetails.date_added | date : "dd/MM/yyyy"}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Date Modified:</td>
-                                                <td>{{OrderDetails.DateModified}}</td>
+                                                <td>{{OrderDetails.date_modified | date : "dd/MM/yyyy"}}</td>
                                             </tr>
                                         </tbody>
 
@@ -104,39 +108,39 @@
                                         <tbody>
                                             <tr>
                                                 <td class="col-sm-2">First Name:</td>
-                                                <td>{{PaymentDetail.FirstName}}</td>
+                                                <td>{{OrderDetails.payment_firstname}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Last Name:</td>
-                                                <td>{{PaymentDetail.LastName}}</td>
+                                                <td>{{OrderDetails.payment_lastname}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Address 1:</td>
-                                                <td>{{PaymentDetail.Address1}}</td>
+                                                <td>{{OrderDetails.payment_address_1}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Address 2:</td>
-                                                <td>{{PaymentDetail.Address2}}</td>
+                                                <td>{{OrderDetails.Address2}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">City:</td>
-                                                <td>{{PaymentDetail.City}}</td>
+                                                <td>{{OrderDetails.payment_city}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Postcode:</td>
-                                                <td>{{PaymentDetail.Postcode}}</td>
+                                                <td>{{OrderDetails.payment_postcode}}</td>
                                             </tr>
-                                            <tr>
+                                            <!--<tr>
                                                 <td class="col-sm-2">Region / State:</td>
-                                                <td>{{PaymentDetail.RegionState}}</td>
-                                            </tr>
+                                                <td>{{OrderDetails.RegionState}}</td>
+                                            </tr>-->
                                             <tr>
                                                 <td class="col-sm-2">Country:</td>
-                                                <td>{{PaymentDetail.Country}}</td>
+                                                <td>{{OrderDetails.payment_country}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Payment Method:</td>
-                                                <td>{{PaymentDetail.PaymentMethod}}</td>
+                                                <td>{{OrderDetails.payment_method}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -147,47 +151,47 @@
                                         <tbody>
                                             <tr>
                                                 <td class="col-sm-2">First Name:</td>
-                                                <td>{{Shippingdetail.FirstName}}</td>
+                                                <td>{{OrderDetails.shipping_firstname}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Last Name:</td>
-                                                <td>{{Shippingdetail.LastName}}</td>
+                                                <td>{{OrderDetails.shipping_lastname}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Company:</td>
-                                                <td>{{Shippingdetail.Company}}</td>
+                                                <td>{{OrderDetails.shipping_company}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Address 1:</td>
-                                                <td>{{Shippingdetail.Address1}}</td>
+                                                <td>{{OrderDetails.shipping_address_1}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Address 2:</td>
-                                                <td>{{Shippingdetail.Address2}}</td>
+                                                <td>{{OrderDetails.shipping_address_2}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">City:</td>
-                                                <td>{{Shippingdetail.City}}</td>
+                                                <td>{{OrderDetails.shipping_city}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Postcode:</td>
-                                                <td>{{Shippingdetail.Postcode}}</td>
+                                                <td>{{OrderDetails.shipping_postcode}}</td>
                                             </tr>
-                                            <tr>
+                                            <!--<tr>
                                                 <td class="col-sm-2">Region / State:</td>
                                                 <td>{{Shippingdetail.RegionState}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Region / State Code:</td>
                                                 <td>{{Shippingdetail.RegionStateCode}}</td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td class="col-sm-2">Country:</td>
-                                                <td>{{Shippingdetail.Country}}</td>
+                                                <td>{{OrderDetails.shipping_country}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Shipping Method:</td>
-                                                <td>{{Shippingdetail.ShippingMethod}}</td>
+                                                <td>{{OrderDetails.shipping_method}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -206,12 +210,27 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="product in Products">
-                                                <td ng-if="product.Product!=''"><a href="#">{{product.Product}}</a></td>
-                                                <td ng-if="product.Product!=''">{{product.Model}}</td>
-                                                <td ng-if="product.Product!=''">{{product.Quantity}}</td>
-                                                <td colspan="{{product.Product=='' ? '4' : '0'}}" class="{{product.Product==''?'text-right':''}}">{{product.UnitPrice}}</td>
-                                                <td>{{product.Total}}</td>
+                                                <td><a href="#">{{product.name}}</a></td>
+                                                <td>{{product.model}}</td>
+                                                <td class="text-right">{{product.quantity}}</td>
+                                                <td class="text-right">{{product.price | number : 0}}</td>
+                                                <td class="text-right">{{product.total | number : 0}}</td>
                                             </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-right">Sub-Total:</td>
+                                                <td class="text-right">{{MainTotal}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" colspan="4">Total:</td>
+                                                <td class="text-right">{{MainTotal}}</td>
+                                            </tr>
+                                            <!--<tr ng-repeat="product in Products">
+                                                <td ng-if="product.Product!=''"><a href="#">{{product.name}}</a></td>
+                                                <td ng-if="product.Product!=''">{{product.model}}</td>
+                                                <td ng-if="product.Product!=''">{{product.quantity}}</td>
+                                                <td colspan="{{product.name=='' ? '4' : '0'}}" cl class="{{product.name==''?'text-right':''}}">{{>{{product.UnitPrice}}</td>
+                                                <td>{{product.total}}</td>
+                                            </tr>-->
                                             <!--<tr>
                                                 <td class="col-sm-4"><a href="#">Sonos Playbase White</a></td>
                                                 <td class="col-sm-2">SONOS-00004</td>
@@ -249,11 +268,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="col-sm-3">12/05/2017</td>
-                                                <td class="col-sm-3"></td>
-                                                <td class="col-sm-3">Processing</td>
-                                                <td class="col-sm-3">No</td>
+                                            <tr ng-repeat="orderHistory in OrderHistoryList">
+                                                <td class="col-sm-3">{{orderHistory.date_added | date : "dd/MM/yyyy"}}</td>
+                                                <td class="col-sm-3">{{orderHistory.comment}}</td>
+                                                <td class="col-sm-3">{{orderHistory.name}}</td>
+                                                <td class="col-sm-3">{{orderHistory.notify == 1 ? 'Yes' : 'No'}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -272,7 +291,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
                                                         <div class="col-lg-10">
-                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.SelectedOrderStatus" class="form-control"></select>
+                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>
                                                             <!--<select class="form-control">
                                                                 <option>Cancelled</option>
                                                                 <option>PartiallyShipped</option>
@@ -288,7 +307,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 control-label text-right">Notify Customer</label>
                                                         <div class="col-lg-10">
-                                                            <input type="checkbox" ng-model="OrderHistory.NotifyCustomer" />
+                                                            <input type="checkbox" ng-model="OrderHistory.notify" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -297,7 +316,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 control-label text-right">Comment</label>
                                                         <div class="col-lg-10">
-                                                            <textarea class="form-control" ng-model="OrderHistory.Comment"></textarea>
+                                                            <textarea class="form-control" ng-model="OrderHistory.comment"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,8 +324,8 @@
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-lg-2"></div>
-                                                        <div class="col-lg-9 text-right">
-                                                            <input type="button" value="Add History" class="btn btn-primary" />
+                                                        <div class="col-lg-10 text-right">
+                                                            <input type="button" value="Add History" class="btn btn-primary" ng-click="InsertOrderHistory(OrderHistory)" />
                                                         </div>
                                                     </div>
                                                 </div>

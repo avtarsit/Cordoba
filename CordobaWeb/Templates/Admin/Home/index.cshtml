@@ -232,6 +232,28 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <td class="text-right">Order ID</td>
+                                    <td>Customer</td>
+                                    <td>Status</td>
+                                    <td>Date Added</td>
+                                    <td class="text-right">Total</td>
+                                    <td class="text-right">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="order in Orders">
+                                    <td class="text-right">{{order.order_id}}</td>
+                                    <td>{{order.customer}}</td>
+                                    <td>{{order.OrderStatusName}}</td>
+                                    <td>{{order.date_added}}</td>
+                                    <td class="text-right">{{order.total + 'points'}}</td>
+                                    <td class="text-right"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @*<table class="table">
+                            <thead>
+                                <tr>
                                     <td class="text-center">Order ID</td>
                                     <td>Customer</td>
                                     <td>Status</td>
@@ -282,7 +304,7 @@
                                     <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table>*@
                     </div>
                 </div>
             </div>
