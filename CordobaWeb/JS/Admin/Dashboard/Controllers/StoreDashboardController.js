@@ -418,7 +418,10 @@
 
 
     LoadCharts();
-    $scope.storeId = 0;
+
+    //need to set login pesron's store ID
+
+    $scope.storeId = 20;
     $scope.GetLatestOrderDetailsDashboard = function () {
         $http.get(configurationService.basePath + "api/DashboardApi/GetLatestOrderDetailsDashboard?storeId=" + $scope.storeId)
          .then(function (response) {
