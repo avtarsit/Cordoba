@@ -26,14 +26,14 @@
                                             <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
                                             <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
                                         </div>
-                                    </div>                                 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-      
+
         </div>
         <div class="col-md-3 col-xs-12 mb-30" ng-controller="Dashboard_HotDealsController">
             <div class="col-sm-12 block-bg deals">
@@ -42,8 +42,8 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    
-                    <div class="hot-deals">                                                      
+
+                    <div class="hot-deals">
                         <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList">
                             <div class="media-left">
                                 <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
@@ -56,7 +56,7 @@
                             <div class="add-cart">
                                 <button class="btn btn-empty">Add to Cart</button>
                             </div>
-                        </div>                     
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                             </div>
                             <p>{{PopularCategory.category_name}}</p>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#">{{category.category_name}}</a></li>                             
+                                <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                                     <div class="add-cart">
                                         <button class="btn btn-empty">Add to Cart</button>
                                     </div>
-                                </div>                          
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                                         <button class="btn btn-default">Add to Cart</button>
                                     </div>
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
             maxSlides: 1,
             mode: 'vertical'
         });
-       
+
         $('.main-banner').bxSlider({
             pager: false,
             nextText: '',
