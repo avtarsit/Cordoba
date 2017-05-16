@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\ITestServices.cs" />
     <Compile Include="Interfaces\IUserServices.cs" />
     <Compile Include="Interfaces\ILanguageService.cs" />
+    <Compile Include="Interfaces_Layout\ILayoutDashboardAPIController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Services\SupplierServices.cs" />
     <Compile Include="Services\TestServices.cs" />
     <Compile Include="Services\UserServices.cs" />
+    <Compile Include="Services_Layout\LayoutDashboardServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">

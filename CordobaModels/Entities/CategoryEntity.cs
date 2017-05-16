@@ -9,7 +9,7 @@ namespace CordobaModels.Entities
     public class CategoryEntity
     {
         public int? CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public string name { get; set; }
         public int?  SortOrder {get;set;}
         public int? CreatedBy { get; set; }
         public Nullable<DateTime> ModifiedBy { get; set; }
