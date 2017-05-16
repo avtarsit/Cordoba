@@ -1112,49 +1112,28 @@ app.directive('onFinishRender', function ($timeout) {
     }
 });
 
-app.directive('bxSlider', function () {
-    var BX_SLIDER_OPTIONS = {
-        minSlides: 2,
-        maxSlides: 7,
-        slideWidth: 120
-    };
-
+app.directive('bxSlider', [function () {
     return {
         restrict: 'A',
-        require: 'bxSlider',
-        priority: 0,
-        controller: function() {},
-        link: function (scope, element, attrs, ctrl) {
-            var slider;
-            ctrl.update = function() {
-                slider && slider.destroySlider();
-                slider = element.bxSlider(BX_SLIDER_OPTIONS);
-            };
+        link: function (scope, element, attrs) {
+            scope.$on('repeatFinished', function () {              
+                element.bxSlider(scope.$eval('{' + attrs.bxSlider + '}'));
+            });
         }
     }
-})
-app.directive('bxSliderItem', function ($timeout) {
-     return {
-         require: '^bxSlider',
-         link: function(scope, elm, attr, bxSliderCtrl) {
-             if (scope.$last) {
-                 bxSliderCtrl.update();
-             }
-         }
-     }
- })
-app.directive('docListWrapper', ['$timeout', function ($timeout) {
-     return {
-         restrict: 'C',
-         priority: 500,
-         replace: false,
-         templateUrl: 'tmpl-doc-list-wrapper',
-         scope: { docs: '=docs'},
-         link: function (scope, element, attrs) {
-         }
-     };
- }])
-
+}])
+app.directive('notifyWhenRepeatFinished', ['$timeout', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('repeatFinished');
+                });
+            }
+        }
+    }
+}]);
 
 
 

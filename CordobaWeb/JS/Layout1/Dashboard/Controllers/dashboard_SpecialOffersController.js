@@ -17,18 +17,5 @@
 
 
 
-    //$scope.$on('SpecialOfferBindindComplete', function (ngRepeatFinishedEvent) {
-
-    //    alert(1);
-    //    $('#specialOffer').bxSlider({
-    //        pager: false,
-    //        nextText: '',
-    //        prevText: '',
-    //        minSlides: 2,
-    //        maxSlides: 1,
-    //        mode: 'vertical'
-    //    });
-    //});
-
 
 });
