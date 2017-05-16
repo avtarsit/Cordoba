@@ -264,9 +264,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, $filter, $state, localStorageService) {
-
-
+             .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
 
                  //var now1 = new Date();

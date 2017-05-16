@@ -1,4 +1,5 @@
-﻿<div ng-controller="DashboardController">
+﻿
+<div >
     <div class="container-fluid">
         <div class="col-md-9 col-xs-12 mb-30">
             <div class="row">
@@ -10,6 +11,7 @@
                         <li><img src="~/Content/layout1/images/sliderBanner2.jpg" alt="Slider banner" /></li>
                     </ul>
                 </div>
+                @* Dashboard_BestSellerController *@
                 <div class="col-sm-12" ng-controller="Dashboard_BestSellerController">
                     <div class="col-sm-12 white-bg">
                         <div class="block-heading">
@@ -26,15 +28,16 @@
                                             <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
                                             <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
                                         </div>
-                                    </div>
+                                    </div>                                 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+      
         </div>
+        @* Dashboard_HotDealsController *@
         <div class="col-md-3 col-xs-12 mb-30" ng-controller="Dashboard_HotDealsController">
             <div class="col-sm-12 block-bg deals">
                 <div class="block-heading">
@@ -42,9 +45,9 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-
-                    <div class="hot-deals">
-                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList">
+                    
+                    <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
                             <div class="media-left">
                                 <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
                             </div>
@@ -78,6 +81,7 @@
                 </div>
             </div>
         </div>
+        @* Dashboard_PopularCategoryController *@
         <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category">
                 <div class="block-heading">
@@ -91,7 +95,7 @@
                             </div>
                             <p>{{PopularCategory.category_name}}</p>
                         </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
         </div>
@@ -113,7 +117,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>
+                                <li ng-repeat="category in CategoryList"><a href="#">{{category.category_name}}</a></li>                             
                             </ul>
                         </div>
                     </div>
@@ -126,8 +130,8 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="row">
-                            <div id="special-offer">
-                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" on-finish-render="SpecialOfferBindindComplete">
+                            <div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                     <div class="media-left">
                                         <img class="media-object" ng-src="{{SpecialOffer.ImgSrc}}" alt="special Offer" />
                                     </div>
@@ -146,6 +150,7 @@
                 </div>
             </div>
         </div>
+        @* Dashboard_LatestProductController *@
         <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
             <div class="row">
                 <div class="col-sm-12 latest-product mb-30">
@@ -154,8 +159,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div id="latest-product">
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList">
+                        <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
                                         <img ng-src="{{LatestProduct.ImgSrc}}" alt="latest product" />
@@ -190,15 +195,15 @@
 
     $(document).ready(function () {
 
-        $('.hot-deals, #special-offer').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            minSlides: 2,
-            maxSlides: 1,
-            mode: 'vertical'
-        });
-
+        //$('.hot-deals, #special-offer').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    minSlides: 2,
+        //    maxSlides: 1,
+        //    mode: 'vertical'
+        //});
+       
         $('.main-banner').bxSlider({
             pager: false,
             nextText: '',
@@ -213,14 +218,14 @@
 
         $('.category-list').mCustomScrollbar();
 
-        $('#latest-product').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            minSlides: 1,
-            maxSlides: 4,
-            slideWidth: 290
-        });
+        //$('#latest-product').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    minSlides: 1,
+        //    maxSlides: 4,
+        //    slideWidth: 290
+        //});
         $('#readMore').click(function () {
             $('.more-content').slideToggle();
         });
