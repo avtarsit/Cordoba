@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TIA.HR.Api.Services.SearchHelpers;
 
 namespace CordobaAPI.API
 {
@@ -51,7 +52,42 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
 
+        [HttpPost]
+        public TableParameter<OrderEntity> GetOrderList(int PageIndex, TableParameter<OrderEntity> tableParameter)
+        {
+            try
+            {
+                tableParameter.PageIndex = PageIndex;
+                string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+                var result = _orderService.GetOrderList(sortColumn, tableParameter, "").ToList();
+
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
+                {
+                    totalRecords = result.FirstOrDefault().TotalRecords;
+                }
+                //var totalRecordes = result.Count();
+
+                //var filteredRecords = result.Skip(tableParameter.iDisplayStart)
+                //    .Take(tableParameter.iDisplayLength).ToList();
+
+                //return Request.CreateResponse(HttpStatusCode.OK, result);
+
+                return new TableParameter<OrderEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
+
+                //return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

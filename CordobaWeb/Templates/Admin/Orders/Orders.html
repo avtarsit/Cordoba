@@ -217,12 +217,12 @@
                                                 <td class="text-right">{{product.total | number : 0}}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" class="text-right">Sub-Total:</td>
-                                                <td class="text-right">{{MainTotal}}</td>
+                                                <td colspan="4" class="text-right">{{subtotal_title}}</td>
+                                                <td class="text-right">{{subtotal_value}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right" colspan="4">Total:</td>
-                                                <td class="text-right">{{MainTotal}}</td>
+                                                <td class="text-right" colspan="4">{{total_title}}</td>
+                                                <td class="text-right">{{total_value}}</td>
                                             </tr>
                                             <!--<tr ng-repeat="product in Products">
                                                 <td ng-if="product.Product!=''"><a href="#">{{product.name}}</a></td>

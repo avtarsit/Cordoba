@@ -571,6 +571,8 @@
     <Content Include="JS\Admin\Language\Controllers\ShowLanguageController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
+    <Content Include="JS\Admin\Orders\OrdersController.js" />
+    <Content Include="JS\Admin\Orders\ShowOrdersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
@@ -3613,6 +3615,8 @@
     <Content Include="Templates\Admin\Language\ManageLanguage.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
+    <Content Include="Templates\Admin\Orders\Index.html" />
+    <Content Include="Templates\Admin\Orders\Orders.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
