@@ -571,7 +571,6 @@
     <Content Include="JS\Admin\Language\Controllers\ShowLanguageController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
-    <Content Include="JS\Admin\Orders\OrdersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
@@ -583,8 +582,8 @@
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
-    <Content Include="JS\Admin\Catalogue\Controllers\ManageCatalogueController.js" />
-    <Content Include="JS\Admin\Catalogue\Controllers\ShowCatalogue.js" />
+    <Content Include="JS\Admin\ProductCatalogue\Controllers\ManageProductCatalogueController.js" />
+    <Content Include="JS\Admin\ProductCatalogue\Controllers\ShowProductCatalogue.js" />
     <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
     <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
     <Content Include="JS\appConfiguration.js" />
@@ -623,7 +622,11 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BestSellerController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_CategoryController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_HotDealsController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_LatestProductController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
     <Content Include="JS\Layout2\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
@@ -3610,7 +3613,6 @@
     <Content Include="Templates\Admin\Language\ManageLanguage.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
-    <Content Include="Templates\Admin\Orders\Orders.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
@@ -3632,9 +3634,7 @@
     <Content Include="Templates\Admin\Users\Index.html" />
     <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
