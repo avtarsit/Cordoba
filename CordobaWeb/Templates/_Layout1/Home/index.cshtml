@@ -3,12 +3,11 @@
     <div class="container-fluid">
         <div class="col-md-9 col-xs-12 mb-30">
             <div class="row">
-                <div class="col-sm-12 banner-slider">
-                    <ul class="main-banner">
-                        <li><img src="~/Content/layout1/images/sliderBanner1.jpg" alt="Slider banner" /></li>
-                        <li><img src="~/Content/layout1/images/sliderBanner2.jpg" alt="Slider banner" /></li>
-                        <li><img src="~/Content/layout1/images/sliderBanner1.jpg" alt="Slider banner" /></li>
-                        <li><img src="~/Content/layout1/images/sliderBanner2.jpg" alt="Slider banner" /></li>
+                <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
+                    <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
+                        <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
+                            <img ng-src="{{Banner.ImgSrc}}" alt="Slider banner" />
+                        </li>
                     </ul>
                 </div>
                 @* Dashboard_BestSellerController *@
@@ -204,12 +203,12 @@
         //    mode: 'vertical'
         //});
        
-        $('.main-banner').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            mode: 'fade'
-        });
+        //$('.main-banner').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    mode: 'fade'
+        //});
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.best-seller').mCustomScrollbar({
             axis: "x",
