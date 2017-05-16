@@ -41,6 +41,8 @@ namespace CordobaModels.Entities
         public string fax { get; set; }
         public string comment { get; set; }
 
+        public int TotalRecords { get; set; }
+
         public List<OrderProductEntity> orderProductEntity { get; set; }
 
         public List<OrderHistoryEntity> orderHistoryEntity { get; set; }

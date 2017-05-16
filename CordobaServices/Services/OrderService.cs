@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TIA.HR.Api.Services.SearchHelpers;
 
 namespace CordobaServices.Services
 {
@@ -46,6 +47,33 @@ namespace CordobaServices.Services
             var paramorderStatusId = new SqlParameter { ParameterName = "order_status_id", DbType = DbType.Int32, Value = objHistoryEntity.order_status_id };
             int result = objGenericRepository.ExecuteSQL<int>("InsertOrderHistory", paramOrderId, paramnotify, paramcomment, paramorderStatusId).FirstOrDefault();
             return result;
+        }
+
+        public IEnumerable<OrderEntity> GetOrderList(string sortColumn, TableParameter<OrderEntity> filter, string PageFrom = "")
+        {
+            try
+            {
+                var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
+                var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
+                var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
+                var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderList", paramOrderBy, paramPageSize, paramPageIndex, paramPageFrom).AsQueryable();
+                //if (filter.SortColumn != null)
+                //{
+                //    query = query.DynamicOrderBy(filter.SortColumn.Column, filter.SortColumn.Desc);
+                //}
+                //else
+                //{
+                //    query = query.OrderBy(j => j.order_id);
+                //}
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+            //return result;
         }
     }
 }
