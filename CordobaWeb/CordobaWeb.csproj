@@ -621,6 +621,8 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.woff" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BestSellerController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_HotDealsController.js" />
     <Content Include="JS\Layout2\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />

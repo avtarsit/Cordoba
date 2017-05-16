@@ -10,7 +10,7 @@
                         <li><img src="~/Content/layout1/images/sliderBanner2.jpg" alt="Slider banner" /></li>
                     </ul>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12" ng-controller="Dashboard_BestSellerController">
                     <div class="col-sm-12 white-bg">
                         <div class="block-heading">
                             <h4>Best Sellers</h4>
@@ -18,205 +18,45 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="best-seller content inner ">
-                                    <div class="seller-block">
+                                    <div class="seller-block" ng-repeat="BestSeller in BestSellerList">
                                         <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
+                                            <img class="full-width" ng-src="{{BestSeller.BestSellerImgSrc}}" alt="seller" />
                                         </div>
                                         <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
+                                            <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
+                                            <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
                                         </div>
-                                    </div>
-                                    <div class="seller-block">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="seller-block">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="seller-block">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="seller-block">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="seller-block">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" src="~/Content/layout1/images/bestSeller.jpg" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc">Amazon e-voucher</p>
-                                            <p class="seller-desc"><span>40 Points</span></p>
-                                        </div>
-                                    </div>
+                                    </div>                                 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+      
         </div>
-        <div class="col-md-3 col-xs-12 mb-30">
+        <div class="col-md-3 col-xs-12 mb-30" ng-controller="Dashboard_HotDealsController">
             <div class="col-sm-12 block-bg deals">
                 <div class="block-heading">
                     <h4>Hot Deals</h4>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="hot-deals">
-                        <div class="media col-sm-12">
+                    
+                    <div class="hot-deals">                                                      
+                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList">
                             <div class="media-left">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
+                                <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
+                                <h4 class="media-heading" ng-bind="HotDeals.HotDealsName"></h4>
+                                <p ng-bind="HotDeals.HotDealsCode"></p>
+                                <span ng-bind="HotDeals.Points"></span>
                             </div>
                             <div class="add-cart">
                                 <button class="btn btn-empty">Add to Cart</button>
                             </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="media-right">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-left">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="media-right">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-left">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="media-right">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-left">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="media-right">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-left">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div class="media col-sm-12">
-                            <div class="media-body">
-                                <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                <p>FPB0024</p>
-                                <span>29 Points</span>
-                            </div>
-                            <div class="media-right">
-                                <img class="media-object" src="~/Content/layout1/images/deals.jpg" alt="deals" />
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty">Add to Cart</button>
-                            </div>
-                        </div>
+                        </div>                     
                     </div>
                 </div>
             </div>
@@ -238,44 +78,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-xs-12 mt-15 mb-30">
+        <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category">
                 <div class="block-heading">
                     <h4>Popular Categories</h4>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 text-center pb-20">
+                    <div class="col-sm-3 text-center pb-20" ng-repeat="PopularCategory in PopularCategoryList">
                         <div class="row">
                             <div class="col-sm-12">
-                                <img src="~/Content/layout1/images/electronics.png" alt="Electronics" />
+                                <img ng-src="{{PopularCategory.ImgSrc}}" alt="{{PopularCategory.AltTitle}}" />
                             </div>
-                            <p>Electronics</p>
+                            <p>{{PopularCategory.category_name}}</p>
                         </div>
-                    </div>
-                    <div class="col-sm-3 text-center pb-20">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img src="~/Content/layout1/images/fashion.png" alt="Fashion" />
-                            </div>
-                            <p>Fashion</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 text-center pb-20">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img src="~/Content/layout1/images/personalCare.png" alt="Personal Care" />
-                            </div>
-                            <p>Personal Care</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 text-center pb-20">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img src="~/Content/layout1/images/homeApp.png" alt="Home Appliances" />
-                            </div>
-                            <p>Home Appliances</p>
-                        </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
         </div>
@@ -287,7 +103,8 @@
         <div class="clearfix"></div>
         <div class="col-lg-3 col-md-4 col-xs-12">
             <div class="row">
-                <div class="col-md-12 col-sm-6 col-xs-12 mb-20">
+                @* Dashboard_CategoryController *@
+                <div class="col-md-12 col-sm-6 col-xs-12 mb-20" ng-controller="Dashboard_CategoryController">
                     <div class="block-bg pb-15">
                         <div class="col-sm-12">
                             <div class="block-heading">
@@ -296,37 +113,13 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li><a href="#">Apple Products</a></li>
-                                <li><a href="#">Baby</a></li>
-                                <li><a href="#">Beauty &amp; Fragrance</a></li>
-                                <li><a href="#">Books</a></li>
-                                <li><a href="#">Computing</a></li>
-                                <li><a href="#">Cooking &amp; Dining</a></li>
-                                <li><a href="#">Experiences &amp; Vouchers</a></li>
-                                <li><a href="#">Gifts Food &amp; Alcohol</a></li>
-                                <li><a href="#">Home &amp; Garden</a></li>
-                                <li><a href="#">Home Appliances</a></li>
-                                <li><a href="#">Pets</a></li>
-                                <li><a href="#">Seasonal Events</a></li>
-                                <li><a href="#">Smart Tech &amp; Phones</a></li>
-                                <li><a href="#">Apple Products</a></li>
-                                <li><a href="#">Baby</a></li>
-                                <li><a href="#">Beauty &amp; Fragrance</a></li>
-                                <li><a href="#">Books</a></li>
-                                <li><a href="#">Computing</a></li>
-                                <li><a href="#">Cooking &amp; Dining</a></li>
-                                <li><a href="#">Experiences &amp; Vouchers</a></li>
-                                <li><a href="#">Gifts Food &amp; Alcohol</a></li>
-                                <li><a href="#">Home &amp; Garden</a></li>
-                                <li><a href="#">Home Appliances</a></li>
-                                <li><a href="#">Pets</a></li>
-                                <li><a href="#">Seasonal Events</a></li>
-                                <li><a href="#">Smart Tech &amp; Phones</a></li>
+                                <li ng-repeat="category in CategoryList"><a href="#">{{category.category_name}}</a></li>                             
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-sm-6 col-xs-12">
+                @* Dashboard_SpecialOffersController *@
+                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController">
                     <div class="col-sm-12 block-bg deals special-offer mb-30">
                         <div class="block-heading">
                             <h4>Special Offers</h4>
@@ -334,143 +127,26 @@
                         <div class="clearfix"></div>
                         <div class="row">
                             <div id="special-offer">
-                                <div class="media col-sm-12">
+                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" on-finish-render="SpecialOfferBindindComplete">
                                     <div class="media-left">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="special Offer" />
+                                        <img class="media-object" ng-src="{{SpecialOffer.ImgSrc}}" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
+                                        <h4 class="media-heading">{{SpecialOffer.Title}}</h4>
+                                        <p>{{SpecialOffer.Code}}</p>
+                                        <span>{{SpecialOffer.Points}}</span>
                                     </div>
                                     <div class="add-cart">
                                         <button class="btn btn-empty">Add to Cart</button>
                                     </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-left">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-left">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-left">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-left">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="media col-sm-12">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Longchamp 2.0 Crossbody Bag Black</h4>
-                                        <p>FPB0024</p>
-                                        <span>29 Points</span>
-                                    </div>
-                                    <div class="media-right">
-                                        <img class="media-object" src="~/Content/layout1/images/specialOffer.jpg" alt="Special Offer" />
-                                    </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
-                                    </div>
-                                </div>
+                                </div>                          
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-md-8 col-xs-12">
+        <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
             <div class="row">
                 <div class="col-sm-12 latest-product mb-30">
                     <div class="block-heading">
@@ -479,123 +155,19 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         <div id="latest-product">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList">
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
+                                        <img ng-src="{{LatestProduct.ImgSrc}}" alt="latest product" />
                                     </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
+                                    <a href="#">{{LatestProduct.product_name}}</a>
+                                    <p>{{LatestProduct.product_code}}</p>
+                                    <p><span>{{LatestProduct.Points}}</span></p>
                                     <div class="row">
                                         <button class="btn btn-default">Add to Cart</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>540 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>540 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img src="~/Content/layout1/images/product1.jpg" alt="latest product" />
-                                    </div>
-                                    <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
-                                    <p>LONG - 00024</p>
-                                    <p><span>539 points</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                          
                         </div>
                     </div>
                 </div>
@@ -614,8 +186,19 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
+
     $(document).ready(function () {
+
+        $('.hot-deals, #special-offer').bxSlider({
+            pager: false,
+            nextText: '',
+            prevText: '',
+            minSlides: 2,
+            maxSlides: 1,
+            mode: 'vertical'
+        });
+       
         $('.main-banner').bxSlider({
             pager: false,
             nextText: '',
@@ -627,14 +210,22 @@
             axis: "x",
             advanced: { autoExpandHorizontalScroll: true }
         });
-        $('.hot-deals, #special-offer').bxSlider({
+
+        $('.category-list').mCustomScrollbar();
+
+        $('#latest-product').bxSlider({
             pager: false,
             nextText: '',
             prevText: '',
-            minSlides: 2,
-            maxSlides: 1,
-            mode: 'vertical'
-        });       
-        $('.category-list').mCustomScrollbar();
+            minSlides: 1,
+            maxSlides: 4,
+            slideWidth: 290
+        });
+        $('#readMore').click(function () {
+            $('.more-content').slideToggle();
+        });
+
+
     });
 </script>
+

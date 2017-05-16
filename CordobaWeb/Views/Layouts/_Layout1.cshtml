@@ -91,13 +91,11 @@
         <div class="copyright">
             <p>Copyright © 2017 Cordoba</p>
         </div>
-    </footer>
-   
+    </footer>  
     @Scripts.Render("~/bundles/Layout1Js")
     @Scripts.Render("~/bundles/angular")    
     @Scripts.Render("~/bundles/appConfig") 
     @Scripts.Render("~/bundles/Layout1Controllers")
-
     <script type="text/javascript">
     $(document).ready(function () {
         $('.main-banner').bxSlider({
@@ -111,25 +109,8 @@
             axis: "x",
             advanced: { autoExpandHorizontalScroll: true }
         });
-        $('.hot-deals, #special-offer').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            minSlides: 2,
-            maxSlides: 1,
-            mode: 'vertical'
-        });
-        $('#latest-product').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            minSlides: 1,
-            maxSlides: 4,
-            slideWidth: 290
-        });
-        $('#readMore').click(function () {
-            $('.more-content').slideToggle();
-        });
+       
+     
         $('.category-list').mCustomScrollbar();
     });
     </script>
