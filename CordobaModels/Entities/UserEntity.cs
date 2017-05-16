@@ -8,16 +8,17 @@ namespace CordobaModels.Entities
 {
    public class UserEntity
     {
-       public int? UserID { get; set; }
-       public string UserName { get; set; }
-       public int? UserGroupID { get; set; }
-       public string FirstName { get; set; }
-       public string LastName { get; set; }
-       public string Email { get; set; }
-       public byte[] Image { get; set; }
-       public string Password { get; set; }
-       public string StatusCd { get; set; }
+       public int? user_id { get; set; }
+       public string username { get; set; }
+       public int? user_group_id { get; set; }
+       public string firstname { get; set; }
+       public string lastname { get; set; }
+       public string email { get; set; }   
+       public string password { get; set; }
+       public int status { get; set; }
        public string StatusName { get; set; }
-       public Nullable<DateTime> CreatedDate { get; set; }
+       public string ip { get; set; }
+       public string image { get; set; }
+       public Nullable<DateTime> date_added { get; set; }
     }
 }

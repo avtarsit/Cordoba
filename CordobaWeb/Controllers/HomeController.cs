@@ -8,10 +8,30 @@ namespace CordobaWeb.Controllers
 {
     public class HomeController : Controller
     {
+        public static string LayoutNames = null;
         public ActionResult Index()
         {
             var masterView = View();
-            masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
+            int PortNumber = Request.Url.Port;
+        
+
+            switch (PortNumber)
+            {
+                case  8084:
+                            LayoutNames = "Admin";
+                            masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
+                            break;
+                case 8085 :
+                            LayoutNames = "_Layout1";
+                            masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml","_Layout1");
+                            break;
+                case  8086:
+                            LayoutNames = "_Layout2";
+                            masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml","_Layout2");
+                            break;
+
+            }
+           
             return masterView;
             //return View();
         }
@@ -33,8 +53,23 @@ namespace CordobaWeb.Controllers
         
         public string GetLayoutName(string HostName)
         {
-           
-            return "Admin";
+            string LayoutName=null;
+            int PortNumber = Request.Url.Port;
+            switch (PortNumber)
+            {
+                case 8084:
+                     LayoutName= "Admin";                   
+                           break;
+                case 8085:
+                     LayoutName = "_Layout1";           
+                    break;
+                case 8086:
+                    LayoutName = "_Layout2";
+                    break;
+
+            }
+            return LayoutName;
+
         }
     }
 }

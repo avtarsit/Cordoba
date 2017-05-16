@@ -1066,6 +1066,95 @@ app.directive('validateEmail', function () {
     };
 });
 
+app.directive("passwordVerify", function () {
+    return {
+        require: "ngModel",
+        scope: {
+            passwordVerify: '='
+        },
+        link: function (scope, element, attrs, ctrl) {
+            scope.$watch(function () {
+                var combined;
+
+                if (scope.passwordVerify || ctrl.$viewValue) {
+                    combined = scope.passwordVerify + '_' + ctrl.$viewValue;
+                }
+                return combined;
+            }, function (value) {
+                if (value) {
+                    ctrl.$parsers.unshift(function (viewValue) {
+                        var origin = scope.passwordVerify;
+                        if (origin !== viewValue) {
+                            ctrl.$setValidity("passwordVerify", false);
+                            return undefined;
+                        } else {
+                            ctrl.$setValidity("passwordVerify", true);
+                            return viewValue;
+                        }
+                    });
+                }
+            });
+        }
+    };
+});
+
+
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+});
+
+app.directive('bxSlider', function () {
+    var BX_SLIDER_OPTIONS = {
+        minSlides: 2,
+        maxSlides: 7,
+        slideWidth: 120
+    };
+
+    return {
+        restrict: 'A',
+        require: 'bxSlider',
+        priority: 0,
+        controller: function() {},
+        link: function (scope, element, attrs, ctrl) {
+            var slider;
+            ctrl.update = function() {
+                slider && slider.destroySlider();
+                slider = element.bxSlider(BX_SLIDER_OPTIONS);
+            };
+        }
+    }
+})
+app.directive('bxSliderItem', function ($timeout) {
+     return {
+         require: '^bxSlider',
+         link: function(scope, elm, attr, bxSliderCtrl) {
+             if (scope.$last) {
+                 bxSliderCtrl.update();
+             }
+         }
+     }
+ })
+app.directive('docListWrapper', ['$timeout', function ($timeout) {
+     return {
+         restrict: 'C',
+         priority: 500,
+         replace: false,
+         templateUrl: 'tmpl-doc-list-wrapper',
+         scope: { docs: '=docs'},
+         link: function (scope, element, attrs) {
+         }
+     };
+ }])
+
 
 
 

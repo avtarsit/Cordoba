@@ -4,13 +4,13 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
-    $scope.UserID = 0;
+    $scope.LoggedInUserId = -1;
+    $scope.user_id = 0;
     $scope.IsEditMode = false;
     if ($stateParams.UserID != undefined && $stateParams.UserID != null) {
         $scope.PageTitle = "Update User";
         $scope.IsEditMode = true;
-        $scope.UserID = $stateParams.UserID;
+        $scope.user_id = $stateParams.UserID;
     }
     else {
         $scope.PageTitle = "Add User";
@@ -21,23 +21,27 @@
     //Get Status List -- START
     $scope.UserGroupList = [
         { 'UserGroupId': 1, 'UserGroupName': 'Administrator' }
-      , { 'UserGroupId': 2, 'UserGroupName': 'ClientAdmin' }
-      , { 'UserGroupId': 3, 'UserGroupName': 'Demonstration' }
+      , { 'UserGroupId': 11, 'UserGroupName': 'ClientAdmin' }
+      , { 'UserGroupId': 10, 'UserGroupName': 'Demonstration' }
     ];
     //END
 
     //Get Status List -- START
     $scope.UserStatus = [
-        { 'StatusCd': 'A', 'StatusName': 'Active' }
-      , { 'StatusCd': 'IN', 'StatusName': 'Inactive' }
+        { 'StatusId': 1, 'StatusName': 'Enabled' }
+      , { 'StatusId': 0, 'StatusName': 'Disabled' }
     ];
     //END
     $scope.GetUserDetail = function () {
-        $http.get(configurationService.basePath + "api/UserApi/GetUserDetail?UserID=" + $scope.UserID)
+        $http.get(configurationService.basePath + "api/UserApi/GetUserDetail?UserID=" + $scope.user_id)
           .then(function (response) {
               $scope.UserObj = response.data;
-              $scope.UserObj.StatusCd = 'A';  // Temporary
-              $scope.UserObj.UserGroupId = 1;  // Temporary
+              if (!($scope.user_id>0)) //New User
+              {
+                  $scope.UserObj.status = 1;  // Temporary
+                  $scope.UserObj.user_group_id = 1;  // Temporary
+              }
+            
           })
       .catch(function (response) {
 
@@ -47,9 +51,24 @@
       });
     }
 
-
     $scope.SaveUser = function (form) {
-        if (form.$valid) {
+        if (form.$valid) {      
+            $scope.UserObj.user_id = $scope.user_id;
+            $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + $scope.LoggedInUserId, $scope.UserObj)
+         .then(function (response) {          
+             if (response.data>0)
+             {
+                 toastr.success('Successfully Added.');
+                 $state.go('Users');
+             }
+            
+         })
+      .catch(function (response) {
+
+      })
+     .finally(function () {
+
+     });
 
         }
     }
@@ -66,6 +85,20 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
+                                $http.get(configurationService.basePath + "api/UserApi/DeleteUserDetail?LoggedInUserId=" + $scope.LoggedInUserId + "&UserID=" + $scope.user_id)
+                                        .then(function (response) {                                            
+                                            if (response.data > 0) {
+                                                toastr.success('Successfully Deleted.');
+                                                $state.go('Users');
+                                            }
+                                        })
+                                    .catch(function (response) {
+
+                                    })
+                                    .finally(function () {
+
+                                    });
+
 
                             }
                         }
