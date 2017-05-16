@@ -12,5 +12,8 @@ namespace CordobaServices.Interfaces
        List<UserEntity> GetUserList();
 
        UserEntity GetUserDetail(int UserID = 0);
+
+       int CreateOrUpdateUser(int LoggedInUserId, UserEntity user);
+       int DeleteUserDetail(int LoggedInUserId,int UserId);
     }
 }

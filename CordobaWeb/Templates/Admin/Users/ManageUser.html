@@ -49,6 +49,10 @@
                                                 <li ng-show="form.UserName.$error.required">User name is required.</li>
                                                 <li ng-show="form.FirstName.$error.required">First name is required.</li>
                                                 <li ng-show="form.LastName.$error.required">Last name is required.</li>
+                                                <li ng-show="form.Password.$error.required">Password is required.</li>
+                                                <li ng-show="form.confirm_password.$error.required">Confirm Password is required.</li>
+                                                <li ng-show="form.Email.$error.email">Email address is not valid.</li>
+                                                <li ng-show="form.confirm_password.$error.passwordVerify">Password and Confirm Password must be same.</li>                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -61,31 +65,31 @@
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">User Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="UserName" maxlength="50" placeholder="Enter User Name" ng-model="UserObj.UserName" required="required">
+                                            <input type="text" class="form-control" name="UserName" maxlength="50" placeholder="Enter User Name" ng-model="UserObj.username" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">User Group</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control cursor-pointer" name="UserGroupId" ng-model="UserObj.UserGroupId" ng-options="option.UserGroupId as option.UserGroupName for option in UserGroupList"></select>
+                                            <select class="form-control cursor-pointer" name="UserGroupId" ng-model="UserObj.user_group_id" ng-options="option.UserGroupId as option.UserGroupName for option in UserGroupList"></select>
                                         </div>
                                     </div> 
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">First Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="FirstName" maxlength="2000" placeholder="Enter First Name" ng-model="UserObj.FirstName" required="required">
+                                            <input type="text" class="form-control" name="FirstName" maxlength="2000" placeholder="Enter First Name" ng-model="UserObj.firstname" required="required">
                                         </div>
                                     </div>  
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">Last Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="LastName" maxlength="2000" placeholder="Enter Last Name" ng-model="UserObj.LastName"  required="required">
+                                            <input type="text" class="form-control" name="LastName" maxlength="2000" placeholder="Enter Last Name" ng-model="UserObj.lastname" required="required">
                                         </div>
                                     </div> 
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Email</label>
                                         <div class="col-lg-8">
-                                            <input type="email" class="form-control" name="Email" maxlength="100" placeholder="Enter Email" ng-model="UserObj.Email">
+                                            <input type="email" class="form-control" name="Email" maxlength="80" placeholder="Enter Email" ng-model="UserObj.email">
                                         </div>
                                     </div>  
                                     <!--<div class="form-group">
@@ -102,15 +106,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Password</label>
+                                        <label class="col-lg-3 control-label mandatoryField">Password</label>
                                         <div class="col-lg-8">
-                                            <input type="password" class="form-control" name="Password" maxlength="100" placeholder="Enter Password" ng-model="UserObj.Password">
+                                            <input type="password" class="form-control" name="Password" maxlength="100" placeholder="Enter Password" ng-model="UserObj.password" required="required">
                                         </div>
                                     </div> 
                                     <div class="form-group">
+                                        <label class="col-lg-3 control-label mandatoryField">Confirm Password</label>
+                                        <div class="col-lg-8">
+                                            <input ng-model="UserObj.password_verify" class="form-control" type="password" name='confirm_password' placeholder='Confirm Password' data-password-verify="UserObj.password" required="required">
+                                        </div>
+                                    </div> 
+                                   
+                                    <div class="form-group">
                                         <label class="col-lg-3 control-label">Status</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control cursor-pointer" name="StatusCd" ng-model="UserObj.StatusCd" ng-options="option.StatusCd as option.StatusName for option in UserStatus"></select>
+                                            <select class="form-control cursor-pointer" name="StatusId" ng-model="UserObj.status" ng-options="option.StatusId as option.StatusName for option in UserStatus"></select>
                                         </div>
                                     </div> 
                                    
