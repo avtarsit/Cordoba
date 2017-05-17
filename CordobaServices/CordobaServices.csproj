@@ -11,6 +11,7 @@
     <AssemblyName>CordobaServices</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,8 @@
     <Compile Include="Interfaces\IBannerServices.cs" />
     <Compile Include="Interfaces\ICategoryServices.cs" />
     <Compile Include="Interfaces\ICountryServices.cs" />
+    <Compile Include="Interfaces\ICurrencyService.cs" />
+    <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IManufacturerServices.cs" />
     <Compile Include="Interfaces\IProductCatalogueServices.cs" />
     <Compile Include="Interfaces\IProductServices.cs" />
@@ -55,6 +58,8 @@
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CountryServices.cs" />
+    <Compile Include="Services\CurrencyService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\ManufacturerServices.cs" />
     <Compile Include="Services\ProductCatalogueService.cs" />
     <Compile Include="Services\ProductService.cs" />

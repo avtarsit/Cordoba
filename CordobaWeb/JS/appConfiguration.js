@@ -202,6 +202,23 @@ function GetLayoutName()
                      url: '/StoreDashboard',
                      templateUrl: 'Templates/' + LayoutName + '/Home/StoreDashboard.html'
                  }
+                , Currency = {
+                    name: 'Currency',
+                    url: '/System/Currency',
+                    templateUrl: 'Templates/' + LayoutName + '/Currency/Index.html'
+                }
+                 , ManageCurrency = {
+                     name: 'ManageCurrency',
+                     url: '/System/ManageCurrency?CurrencyId:currencyId',
+                     templateUrl: 'Templates/' + LayoutName + '/Currency/ManageCurrency.html'
+                 }
+                , Customer = {
+                    name: 'Customer',
+                    url: '/System/Customer',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/Index.html'
+
+                }
+
                
                 ;
                 
@@ -249,6 +266,9 @@ function GetLayoutName()
                 $stateProvider.state(ManageLanguage);
 
                 $stateProvider.state(Login);
+
+                $stateProvider.state(Currency);
+                $stateProvider.state(ManageCurrency);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
