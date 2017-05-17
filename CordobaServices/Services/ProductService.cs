@@ -1,7 +1,10 @@
-﻿using CordobaModels.Entities;
+﻿using CordobaModels;
+using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +13,14 @@ namespace CordobaServices.Services
 {
     public class ProductService : IProductServices
     {
+        private GenericRepository<LanguageEntity> objGenericRepository = new GenericRepository<LanguageEntity>();
+
         public List<ProductEntity> GetProductList()
         {
             List<ProductEntity> Product = new List<ProductEntity>();
 
-            Product.Add(new ProductEntity() { product_id = 1, name = "GIORGIO ARMANI AR6011 300371 SUNGLASSES MATTE GUNMETAL SIZE 66", StatusId = 1, StatusName = "Enabled", Model = "LAR-002", Quantity = 1, Price = 2323,ImagePath=@"../../../Content/admin/images/Product/BU-026-300-40x40.jpg" } );
-            Product.Add(new ProductEntity() { product_id = 2, name = "KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK", StatusId = 1, StatusName = "Enabled", Model = "ZW-1344", Quantity = 2, Price = 2323, ImagePath =@"../../../Content/admin/images/Product/DP-059-300-40x40.jpg" });
+            Product.Add(new ProductEntity() { product_id = 1, name = "GIORGIO ARMANI AR6011 300371 SUNGLASSES MATTE GUNMETAL SIZE 66", StatusId = 1, StatusName = "Enabled", Model = "LAR-002", Quantity = 1, Price = 2323, ImagePath = @"../../../Content/admin/images/Product/BU-026-300-40x40.jpg" });
+            Product.Add(new ProductEntity() { product_id = 2, name = "KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK", StatusId = 1, StatusName = "Enabled", Model = "ZW-1344", Quantity = 2, Price = 2323, ImagePath = @"../../../Content/admin/images/Product/DP-059-300-40x40.jpg" });
             Product.Add(new ProductEntity() { product_id = 3, name = "ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK", StatusId = 1, StatusName = "Enabled", Model = "RR-026", Quantity = 3, Price = 2323, ImagePath = @"../../../Content/admin/images/Product/DP-059-300-40x40.jpg" });
             Product.Add(new ProductEntity() { product_id = 4, name = "DRAPER 10347 STAINLESS STEEL FORK & SPADE WITH TROWEL & WEEDER SET", StatusId = 1, StatusName = "Enabled", Model = "DP-059", Quantity = 3, Price = 2323, ImagePath = @"../../../Content/admin/images/Product/DT-050-300-40x40.jpg" });
             Product.Add(new ProductEntity() { product_id = 5, name = "BUSHNELL 242410 10X42 EXCURSION HD BINOCULARS", StatusId = 1, StatusName = "Enabled", Model = "BU-026", Quantity = 4, Price = 232453, ImagePath = @"../../../Content/admin/images/Product/LAR-002-300-40x40.jpg" });
@@ -40,8 +45,8 @@ namespace CordobaServices.Services
             if (product_id > 0)
             {
                 ProductEntity = (from t in GetProductList()
-                                where t.product_id == product_id
-                                select t).FirstOrDefault();
+                                 where t.product_id == product_id
+                                 select t).FirstOrDefault();
                 ProductEntity.ProductDescriptionList = productDescriptionList;
             }
             else
@@ -51,6 +56,31 @@ namespace CordobaServices.Services
                 ProductEntity.StatusId = 1;
             }
             return ProductEntity;
+        }
+
+        public int AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("store_id", store_id)
+                                                 , new SqlParameter("customer_id", customer_id)
+                                                 , new SqlParameter("product_id", product_id)
+                                                 , new SqlParameter("qty", qty)
+                                                 , new SqlParameter("cartgroup_id", cartgroup_id)}; 
+            
+            int result = objGenericRepository.ExecuteSQL<int>("AddProductToCart", sqlParameter).FirstOrDefault();
+            return result;
+
+        }
+
+        public int DeleteProductFromCart(int cart_id)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("cart_id", cart_id)
+                                               };
+
+            int result = objGenericRepository.ExecuteSQL<int>("DeleteProductFromCart", sqlParameter).FirstOrDefault();
+            return result;
+
         }
 
 
