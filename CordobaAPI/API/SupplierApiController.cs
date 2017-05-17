@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,13 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpPost]
+        public HttpResponseMessage InsertOrUpdateSupplier(SupplierEntity objSupplier)
+        {
+            int result = _SupplierServices.InsertOrUpdateSupplier(objSupplier);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
         [HttpGet]
         public HttpResponseMessage GetSupplierDetail(int? SupplierID)
         {
@@ -51,6 +59,22 @@ namespace CordobaAPI.API
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpGet]
+        public HttpResponseMessage DeleteSupplier(int SupplierID)
+        {
+            try
+            {
+                var result = _SupplierServices.DeleteSupplier(SupplierID);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {

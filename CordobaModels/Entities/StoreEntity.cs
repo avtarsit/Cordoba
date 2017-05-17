@@ -8,9 +8,9 @@ namespace CordobaModels.Entities
 {
    public class StoreEntity
     {
-       public int? StoreID { get; set; }
-       public string StoreName { get; set; }
+       public int store_id { get; set; }
+       public string name { get; set; }
        public bool IsSelected { get; set; }
-       public string StoreURL { get; set; }
+       public string url { get; set; }
     }
 }

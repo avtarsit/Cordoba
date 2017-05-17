@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.ProductCatalogueList = [];
+    $scope.CatalogueList = [];
     //#endregion  
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()

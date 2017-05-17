@@ -28,13 +28,8 @@ namespace CordobaWeb
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js",
-                      "~/Scripts/bootstrap-modalmanager.js",
-                       "~/Scripts/bootstrap-modal.js",
-                       "~/Scripts/bootstrap-datepicker.js",
-                       "~/Scripts/jquery.bootstrap-duallistbox.js",
-                       "~/Scripts/bootbox.js",
-                          "~/Scripts/ckeditor/ckeditor.js"
+                     "~/Scripts/bootbox.js",                                              
+                     "~/Scripts/ckeditor/ckeditor.js"
                      ));
                    
             bundles.Add(new StyleBundle("~/bundles/css").Include(
@@ -84,8 +79,9 @@ namespace CordobaWeb
 
 
 
-            //////////////////////////////////////////////////////////////////
-            // this for Admin Theme
+            ////////////////////Admin//////////////////////
+
+            //---------------------CSS--------------------//
             bundles.Add(new StyleBundle("~/bundles/AdminCSS").Include(
                         "~/Content/admin/css/bootstrap.css",
                       "~/Content/admin/css/font-awesome.min.css",
@@ -93,8 +89,13 @@ namespace CordobaWeb
                      "~/Content/admin/css/core.css",
                      "~/Content/admin/css/components.css",
                        "~/Content/admin/css/components.css",
-                     "~/Content/admin/css/colors.css"));
+                     "~/Content/admin/css/colors.css",
+                     "~/Content/css/toastr.css"
+                     ));
+                
+            //---------------------CSS--------------------//
 
+            //--------------------js---------------------------//
             bundles.Add(new ScriptBundle("~/bundles/AdminJs").Include(
                       "~/Scripts/admin/js/plugins/loaders/pace.min.js",                      
                       "~/Scripts/admin/js/core/libraries/bootstrap.min.js",                      
@@ -114,14 +115,87 @@ namespace CordobaWeb
             AdminControllerBundle.IncludeDirectory("~/JS/Home", "*.js", false);
             AdminControllerBundle.IncludeDirectory("~/JS/Test", "*.js", false);
             AdminControllerBundle.IncludeDirectory("~/JS/Admin", "*.js", true);
-            bundles.Add(AdminControllerBundle);  
-      
-           /////////////////////////
-        
+            bundles.Add(AdminControllerBundle);
+            //--------------------js---------------------------//
+            ////////////////////Admin //////////////////////
+
+
+            //--This is Temporary--//
             var controllerBundle = new Bundle("~/bundles/Controllers");
             controllerBundle.IncludeDirectory("~/JS/Home", "*.js", false);
             controllerBundle.IncludeDirectory("~/JS/Test", "*.js", false);
             bundles.Add(controllerBundle);
+            //--This is Temporary--//
+
+            ///////////////////// Layout1//////////////////
+            //------------------------CSS-------------------------//
+            bundles.Add(new StyleBundle("~/bundles/Layout1CSS").Include(
+                     "~/Content/layout1/css/bootstrap.min.css",
+                     "~/Content/layout1/css/font-awesome.min.css",
+                     "~/Content/layout1/css/jquery.bxslider.min.css",
+                     "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
+                     "~/Content/layout1/css/style.css",
+                     "~/Content/layout1/css/responsive.css"
+                  ));
+            //------------------------CSS-------------------------//
+
+            //------------------------js-------------------------//
+            //js/jquery.min.js
+            bundles.Add(new ScriptBundle("~/bundles/Layout1Js").Include(
+                     "~/Scripts/layout1/js/jquery.min.js",
+                     "~/Scripts/layout1/js/bootstrap.min.js",
+                     "~/Scripts/layout1/js/jquery.bxslider.min.js",
+                     "~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js" ,                                    
+                     "~/Scripts/bootstrap-modalmanager.js",
+                    "~/Scripts/bootstrap-modal.js",
+                    "~/Scripts/bootstrap-datepicker.js",
+                    "~/Scripts/jquery.bootstrap-duallistbox.js",
+                     "~/Scripts/bootbox.js",
+                     "~/Scripts/ckeditor/ckeditor.js"                  
+                     ));
+            
+            var Layout1ControllerBundle = new Bundle("~/bundles/Layout1Controllers");
+            Layout1ControllerBundle.IncludeDirectory("~/JS/Layout1", "*.js", true);
+            bundles.Add(Layout1ControllerBundle);
+            //------------------------js-------------------------//
+
+            ///////////////////// Layout1//////////////////
+
+            ///////////////////// Layout2//////////////////
+            //------------------------CSS-------------------------//
+            bundles.Add(new StyleBundle("~/bundles/Layout2CSS").Include(
+                     "~/Content/layout2/css/bootstrap.min.css",
+                     "~/Content/layout2/css/custom.min.css",
+                     "~/Content/layout2/css/flexslider.css",
+                     "~/Content/layout2/css/responsive.css",
+                     "~/Content/layout2/css/style.css",
+                     "~/Content/layout2/css/jquery.mCustomScrollbar.css"
+                  ));
+            //------------------------CSS-------------------------//
+
+            //------------------------js-------------------------//
+            //js/jquery.min.js
+            bundles.Add(new ScriptBundle("~/bundles/Layout2Js").Include(
+                     "~/Scripts/layout2/js/jquery.min.js",
+                     "~/Scripts/layout2/js/bootstrap.min.js",
+                     "~/Scripts/layout2/js/jquery.flexslider.js",
+                     "~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js",
+                     "~/Scripts/bootstrap-modalmanager.js",
+                    "~/Scripts/bootstrap-modal.js",
+                    "~/Scripts/bootstrap-datepicker.js",
+                    "~/Scripts/jquery.bootstrap-duallistbox.js",
+                     "~/Scripts/bootbox.js",
+                     "~/Scripts/ckeditor/ckeditor.js"
+                     ));
+
+            var Layout2ControllerBundle = new Bundle("~/bundles/Layout2Controllers");
+            Layout2ControllerBundle.IncludeDirectory("~/JS/Layout2", "*.js", true);
+            bundles.Add(Layout2ControllerBundle);
+            //------------------------js-------------------------//
+
+
+            ///////////////////// Layout2//////////////////
+            
 
             
 

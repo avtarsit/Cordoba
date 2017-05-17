@@ -10,6 +10,6 @@ namespace CordobaServices.Interfaces
     public interface IProductServices
     {
         List<ProductEntity> GetProductList();
-        ProductEntity GetProductById(int ProductId);
+        ProductEntity GetProductById(int product_id);
     }
 }

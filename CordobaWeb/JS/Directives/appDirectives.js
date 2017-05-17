@@ -1099,6 +1099,42 @@ app.directive("passwordVerify", function () {
 });
 
 
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+});
+
+app.directive('bxSlider', [function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            scope.$on('repeatFinished', function () {              
+                element.bxSlider(scope.$eval('{' + attrs.bxSlider + '}'));
+            });
+        }
+    }
+}])
+app.directive('notifyWhenRepeatFinished', ['$timeout', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('repeatFinished');
+                });
+            }
+        }
+    }
+}]);
+
 
 
 

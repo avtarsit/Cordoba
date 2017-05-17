@@ -11,5 +11,7 @@ namespace CordobaServices.Interfaces
     {
         List<SupplierEntity> GetSupplierList(int? SupplierID);
         SupplierEntity GetSupplierDetail(int? SupplierID);
+        int InsertOrUpdateSupplier(SupplierEntity objSupplier);
+        int DeleteSupplier(int supplierId);
     }
 }

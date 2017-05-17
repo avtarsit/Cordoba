@@ -29,8 +29,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="Item in SupplierList">
-                    <td ng-bind="Item.SupplierName"></td>
-                    <td class="cursor-pointer text-center" ui-sref="ManageSupplier({SupplierID:Item.SupplierID})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
+                    <td ng-bind="Item.name"></td>
+                    <td class="cursor-pointer text-center" ui-sref="ManageSupplier({SupplierID:Item.supplier_id})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>
         </table>

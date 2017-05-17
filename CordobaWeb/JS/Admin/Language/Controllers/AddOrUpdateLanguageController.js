@@ -1,13 +1,28 @@
 ﻿app.controller('AddOrUpdateLanguageController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-
+    $scope.StatusForActive = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.LanguageId = 0;
+    $scope.LanguageObj = {};
     $scope.IsEditMode = false;
-    if ($stateParams.LanguageCd != undefined && $stateParams.LanguageCd != null) {
+    if ($stateParams.LanguageId != undefined && $stateParams.LanguageId != null) {
         $scope.PageTitle = "Update Language";
         $scope.IsEditMode = true;
+        $scope.languageId = $stateParams.LanguageId;
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId)
+         .then(function (response) {
+             debugger;
+             $scope.LanguageObj = response.data[0];
+         })
+        .catch(function (response) {
+
+        })
+        .finally(function () {
+
+        });
     }
     else {
         $scope.PageTitle = "Add Language";
@@ -18,7 +33,26 @@
 
     $scope.SaveLanguage = function (form) {
         if (form.$valid) {
+            //$scope.LanguageObj.image = $scope.LanguageObj.code + '.png';
+            debugger;
+            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage", $scope.LanguageObj)
+           .then(function (response) {
+               debugger;
+               if (response.data == 0) {
+                   //alert('already exists');
+                   notificationFactory.customError("Language Code is already Exists!!");
+               }
+               if (response.data > 0) {
+                   notificationFactory.customSuccess("Language Saved Successfully.");
+                   $state.go('Language');
+               }
+           })
+            .catch(function (response) {
 
+            })
+            .finally(function () {
+
+            });
         }
     }
 
@@ -34,7 +68,14 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId)
+                                   .then(function (response) {
+                                       $state.go('Language');
+                                   })
+                               .catch(function (response) {
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },

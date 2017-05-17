@@ -24,7 +24,7 @@
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
                     <li>
-                        <button type="submit" ng-click="SaveManufacturer(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="submit" ng-click="InsertUpdateManufacture(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Manufacturer" ng-click="DeleteManufacturer(ManufacturerObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
@@ -57,36 +57,52 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-8 col-md-offset-1">
+                                <div class="col-md-10 col-md-offset-1">
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label mandatoryField">Manufacturer Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="ManufacturerName" maxlength="50" placeholder="Enter Manufacturer Name" ng-model="ManufacturerObj.ManufacturerName" required="required">
+                                            <input type="text"  class="form-control" name="ManufacturerName" maxlength="60" placeholder="Enter Manufacturer Name" ng-model="ManufacturerObj.name" required="required">
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">Manufacturer Description</label>
+                                        <label class="col-sm-3 control-label">Stores</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="ManufacturerDescription" maxlength="2000" placeholder="Enter Manufacturer  Description" ng-model="ManufacturerObj.ManufacturerDescription">
+                                            <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                <div class="col-sm-6 checkbox" ng-repeat="Item in ManufacturerObj.ManufacturerStoreList.ManufacturerStore">
+                                                    <label>
+                                                        <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.name}}</label>
+                                                        {{Item.StoreName}}
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+
+                                    <!--<div class="form-group">
                                         <label class="col-lg-3 control-label">Stores</label>
                                         <div class="col-lg-8">
                                             <div class="checkBoxList">
                                                 <ul class="list-unstyled">
                                                     <li ng-repeat="Item in ManufacturerObj.ManufacturerStoreList.ManufacturerStore">
-                                                        <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.StoreName}}</label>
+                                                        <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.name}}</label>
                                                     </li>
 
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Image</label>
                                         <div class="col-lg-5">
                                             <img src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Sort order</label>
+                                        <div class="col-lg-5">
+                                            <input type="number" min="0" class="form-control" name="sortorder" maxlength="10" placeholder="sortorder" ng-model="ManufacturerObj.sort_order" required="required">
                                         </div>
                                     </div>
                                  

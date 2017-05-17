@@ -1,4 +1,4 @@
-﻿<div ng-controller="ShowProductCatalogue">
+﻿<div ng-controller="ShowCatalogue">
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -28,9 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="Item in ProductCatalogueList">
-                    <td ng-bind="Item.ProductCatalogueName"></td>
-                    <td class="cursor-pointer text-center" ui-sref="ManageProductCatalogue({ProductCatalogueId:Item.ProductCatalogueId})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit curso"></i></td>
+                <tr ng-repeat="Item in CatalogueList">
+                    <td ng-bind="Item.Name"></td>
+                    <td class="cursor-pointer text-center" ui-sref="ManageProductCatalogue({CatalogueId:Item.catalogue_Id})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit curso"></i></td>
                 </tr>
             </tbody>
         </table>

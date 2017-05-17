@@ -3,14 +3,14 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.ProductCatalogueList = [];
+    $scope.CatalogueList = [];
     //#endregion  
     //InitChart();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
 
- 
+
     $scope.CurrentYearOrderData = [
                                     { value: 300, name: 'January' },
                                     { value: 200, name: 'February' },
@@ -25,8 +25,8 @@
                                     { value: 430, name: 'November' },
                                     { value: 200, name: 'December' }
     ];
-    
-  
+
+
 
     function LoadCharts() {
 
@@ -58,7 +58,7 @@
 
 
                 // Initialize charts
-               
+
                 var OrderSummary = ec.init(document.getElementById('OrderSummary'), limitless);
                 var SalesAnalytics = ec.init(document.getElementById('SalesAnalytics'), limitless);
                 var Top5Sales_Chart = ec.init(document.getElementById('Top5Sales_Chart'), limitless);
@@ -190,12 +190,12 @@
                     tooltip: {
                         trigger: 'axis',
                         formatter: "{a} <br/>{b}: {c} points"
-                        ,axisPointer: {
+                        , axisPointer: {
                             type: 'shadow'
                         }
                     },
 
-                 
+
 
                     // Add legend
                     //legend: {
@@ -334,7 +334,7 @@
                     //},
                     tooltip: {
                         trigger: 'axis'
-                       
+
                     },
                     //legend: {
                     //    data: ['sdfds']
@@ -364,7 +364,7 @@
                             type: 'category',
                             data: ['Paul', 'Clubb ', 'AJ', 'Adil', 'Adrian']
                             , rotated: true
-                            ,boundaryGap: ['25%', '24%']
+                            , boundaryGap: ['25%', '24%']
                         }
                     ],
                     yAxis: [
@@ -392,20 +392,20 @@
                 SalesAnalytics.setOption(SalesAnalytics_options);
                 Top5Sales_Chart.setOption(Top5Sales_Chart_option);
                 Top5Customer_Chart.setOption(Top5Customer_Chart_option);
-               
-                
+
+
 
                 // Resize charts
                 // ------------------------------
 
                 window.onresize = function () {
                     setTimeout(function () {
-                     
+
                         OrderSummary.resize();
                         SalesAnalytics.resize();
                         Top5Sales_Chart.resize();
                         Top5Customer_Chart.resize();
-                       
+
                     }, 200);
                 }
             }
@@ -414,5 +414,23 @@
 
 
     LoadCharts();
-        
+
+
+    $scope.GetLatestOrderDetailsDashboard = function () {
+        $http.get(configurationService.basePath + "api/DashboardApi/GetLatestOrderDetailsDashboard?storeId=0")
+         .then(function (response) {
+             debugger;
+             if (response.data.length > 0) {
+                 $scope.Orders = response.data;
+             }
+         })
+         .catch(function (response) {
+         })
+         .finally(function () {
+         });
+    }
+
+    $scope.GetLatestOrderDetailsDashboard();
+
+
 });

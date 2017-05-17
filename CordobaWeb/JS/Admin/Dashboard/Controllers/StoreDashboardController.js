@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.ProductCatalogueList = [];
+    $scope.CatalogueList = [];
     //#endregion  
     //InitChart();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -271,7 +271,7 @@
                     ]
                 };
 
-                
+
 
 
                 // Top 5 Customer   =  Top5Customer_Chart
@@ -367,7 +367,7 @@
                     xAxis: [
                         {
                             type: 'category',
-                            data: ['Marks','Apple', 'Azz', 'as', 'Capital']
+                            data: ['Marks', 'Apple', 'Azz', 'as', 'Capital']
                         }
                     ],
                     yAxis: [
@@ -395,7 +395,7 @@
 
                 OrderSummary.setOption(OrderSummary_options);
                 SalesAnalytics.setOption(SalesAnalytics_options);
-              
+
                 Top5Customer_Chart.setOption(Top5Customer_Chart_option);
                 Top5Product_Chart.setOption(Top5Product_Chart_option);
 
@@ -418,5 +418,25 @@
 
 
     LoadCharts();
+
+    //need to set login pesron's store ID
+
+    $scope.storeId = 20;
+    $scope.GetLatestOrderDetailsDashboard = function () {
+        $http.get(configurationService.basePath + "api/DashboardApi/GetLatestOrderDetailsDashboard?storeId=" + $scope.storeId)
+         .then(function (response) {
+             debugger;
+             if (response.data.length > 0) {
+                 $scope.Orders = response.data;
+             }
+         })
+         .catch(function (response) {
+         })
+         .finally(function () {
+         });
+    }
+
+    $scope.GetLatestOrderDetailsDashboard();
+
 
 });

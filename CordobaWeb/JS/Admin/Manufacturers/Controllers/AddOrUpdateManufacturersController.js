@@ -5,12 +5,13 @@
     BindToolTip();
     Tab();
 
-    $scope.ManufacturerID = 0; 
-    $scope.IsEditMode = false;    
-    if ($stateParams.ManufacturerID != undefined && $stateParams.ManufacturerID != null) {
+    $scope.manufacturer_id = 0;
+    $scope.ManufacturerObj = new Object();
+    $scope.IsEditMode = false;
+    if ($stateParams.ManufacturerID != undefined && $stateParams.ManufacturerID != null && $stateParams.ManufacturerID>0)  {
         $scope.PageTitle = "Update Manufacturer";
         $scope.IsEditMode = true;
-        $scope.ManufacturerID = $stateParams.ManufacturerID;
+        $scope.manufacturer_id = $stateParams.ManufacturerID;
     }
     else {
         $scope.PageTitle = "Add Manufacturer";
@@ -20,7 +21,7 @@
 
 
     $scope.GetManufaturerDetail = function () {
-        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?ManufacturersID=" + $scope.ManufacturerID)
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id)
           .then(function (response) {
               $scope.ManufacturerObj = response.data;
           })
@@ -32,10 +33,35 @@
       });
     }
 
+    function GetSelectedStoreListCSV(StoreListObj)
+    {
+        var StoreIdCSV = "";
+        var SelectedStoreList = $filter('filter')(StoreListObj, { IsSelected: true }, true);
+        StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");
+        return StoreIdCSV;
 
-    $scope.SaveManufacturer = function (form) {
+    }
+    $scope.InsertUpdateManufacture = function (form) {
         if (form.$valid) {
-            
+
+            $scope.ManufacturerObj.StoreIdCSV = GetSelectedStoreListCSV($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore);
+            var manufacturersEntity = JSON.stringify($scope.ManufacturerObj);
+            $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture", manufacturersEntity)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Manufacturer Saved Successfully.");
+                      $state.go('ShowManufacturer');
+                  }
+                  else if (response.data == -1) {
+                      notificationFactory.customError("Manufacturer name is already Exists!");
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.error("Error occur during save record.");
+          })
+          .finally(function () {
+
+          });
         }
     }
 
@@ -51,6 +77,18 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
+
+                                $http.get(configurationService.basePath + "api/ManufacturersApi/DeleteManufacturer?manufacturer_id=" + $scope.manufacturer_id)
+                                  .then(function (response) {
+                                      if (response.data > 0)
+                                          notificationFactory.successDelete();
+                                      $state.go('ShowManufacturer');
+                                  })
+                              .catch(function (response) {
+                                  notificationFactory.errorEdit();
+                              })
+                              .finally(function () {
+                              });
 
                             }
                         }

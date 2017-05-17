@@ -18,7 +18,7 @@
  
     $scope.GetCountryList=function()
     {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?CountryCd=''")
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
           .then(function (response) {
           if (response.data.length > 0)
                   {                     

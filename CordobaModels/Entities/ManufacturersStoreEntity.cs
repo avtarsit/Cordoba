@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
    public class ManufacturersStoreEntity
     {
-       public int? ManufacturerID { get; set; }
+       public int? manufacturer_id { get; set; }
        public List<StoreEntity> ManufacturerStore { get; set; }
 
     }

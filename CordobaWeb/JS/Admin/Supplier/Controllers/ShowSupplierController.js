@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.CountryList = [];
+    $scope.SupplierList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
@@ -14,6 +14,7 @@
     $scope.GetSupplierList = function () {
         $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0")
           .then(function (response) {
+              debugger;
               if (response.data.length > 0) {                  
                   $scope.SupplierList = response.data;
               }

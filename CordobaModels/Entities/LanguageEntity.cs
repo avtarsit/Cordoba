@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-   public class LanguageEntity
+    public class LanguageEntity
     {
-       public int? LanguageId { get; set; }
-       public string LanguageName { get; set; }
-       public string LanguageCode { get; set; }
-       public string Local { get; set; }
-       public string ImageName { get; set; }
-       public string Directory { get; set; }
-       public string StatusCd { get; set; }       
+        public int? language_id { get; set; }
+        public string name { get; set; }
+        public string code { get; set; }
+        public string locale { get; set; }
+        public string image { get; set; }
+        public string directory { get; set; }
+        public string filename { get; set; }
+        public int sort_order { get; set; }
+        public int status { get; set; }
     }
 }

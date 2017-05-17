@@ -13,9 +13,9 @@ namespace CordobaModels.Edmx
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CordobaEntities : DbContext
+    public partial class CordobaEntities3 : DbContext
     {
-        public CordobaEntities()
+        public CordobaEntities3()
             : base("name=CordobaEntities")
         {
         }

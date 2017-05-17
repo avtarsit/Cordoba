@@ -1,0 +1,235 @@
+﻿
+<div >
+    <div class="container-fluid">
+        <div class="col-md-9 col-xs-12 mb-30">
+            <div class="row">
+                <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
+                    <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
+                        <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
+                            <img ng-src="{{Banner.ImgSrc}}" alt="Slider banner" />
+                        </li>
+                    </ul>
+                </div>
+                @* Dashboard_BestSellerController *@
+                <div class="col-sm-12" ng-controller="Dashboard_BestSellerController">
+                    <div class="col-sm-12 white-bg">
+                        <div class="block-heading">
+                            <h4>Best Sellers</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="best-seller content inner ">
+                                    <div class="seller-block" ng-repeat="BestSeller in BestSellerList">
+                                        <div class="col-xs-4">
+                                            <img class="full-width" ng-src="{{BestSeller.BestSellerImgSrc}}" alt="seller" />
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
+                                            <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
+                                        </div>
+                                    </div>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+        @* Dashboard_HotDealsController *@
+        <div class="col-md-3 col-xs-12 mb-30" ng-controller="Dashboard_HotDealsController">
+            <div class="col-sm-12 block-bg deals">
+                <div class="block-heading">
+                    <h4>Hot Deals</h4>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    
+                    <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                            <div class="media-left">
+                                <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" ng-bind="HotDeals.HotDealsName"></h4>
+                                <p ng-bind="HotDeals.HotDealsCode"></p>
+                                <span ng-bind="HotDeals.Points"></span>
+                            </div>
+                            <div class="add-cart">
+                                <button class="btn btn-empty">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 mb-30">
+            <h1 class="main-heding">Bienvenue sur la boutique Make a Difference</h1>
+            <div class="row">
+                <div class="col-sm-12 welcome-block">
+                    <div class="welcome-img">
+                        <img src="~/Content/layout1/images/welcomeImg.png" alt="welcome" />
+                    </div>
+                    <p>Le site Pitney Bowes “Thank You” est l’outil officiel   0de récopense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant.</p>
+                    <p>De nombreux projets d’équipe sont récompensés par le biais du catalogue cadeau, qui inclut le programme de récompense des employés “Make a Difference” suivant: <a id="readMore" href="javascript:;">Read More</a></p>
+                    <div class="more-content">
+                        <p>Mettre les clients en avant est une valeur chez une société que les lauréats de la récompense Make a Difference ont su concrétiser. Nous avons tous la faculté de nous engager sur cette valeur. Que vous assistiez des clients internes ou externes, la recherche de l’excellence dans tous les domaines aura une influence sur nos clients et soutiendra notre croissance commerciale.</p>
+                        <p>Les lauréats de cette récompense obtiennent des points qu’ils peuvent cumuler et échanger contre une grande variété de cadeaux.</p>
+                        <p>Alors, si vous avez reçu des points, GMS Europe vous remercie une fois de plus pour tous vos efforts et vous souhaite une bonne visite dans la boutique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* Dashboard_PopularCategoryController *@
+        <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
+            <div class="col-sm-12 block-bg popular-category">
+                <div class="block-heading">
+                    <h4>Popular Categories</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 text-center pb-20" ng-repeat="PopularCategory in PopularCategoryList">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img ng-src="{{PopularCategory.ImgSrc}}" alt="{{PopularCategory.AltTitle}}" />
+                            </div>
+                            <p>{{PopularCategory.category_name}}</p>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-12 mt-15 mb-30">
+            <div class="offer-block new-product">
+                <img src="~/Content/layout1/images/offer1.jpg" alt="Offer" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-3 col-md-4 col-xs-12">
+            <div class="row">
+                @* Dashboard_CategoryController *@
+                <div class="col-md-12 col-sm-6 col-xs-12 mb-20" ng-controller="Dashboard_CategoryController">
+                    <div class="block-bg pb-15">
+                        <div class="col-sm-12">
+                            <div class="block-heading">
+                                <h4>Categories</h4>
+                            </div>
+                        </div>
+                        <div class="category-list">
+                            <ul class="col-sm-12">
+                                <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>                             
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @* Dashboard_SpecialOffersController *@
+                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController">
+                    <div class="col-sm-12 block-bg deals special-offer mb-30">
+                        <div class="block-heading">
+                            <h4>Special Offers</h4>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
+                                    <div class="media-left">
+                                        <img class="media-object" ng-src="{{SpecialOffer.ImgSrc}}" alt="special Offer" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{SpecialOffer.Title}}</h4>
+                                        <p>{{SpecialOffer.Code}}</p>
+                                        <span>{{SpecialOffer.Points}}</span>
+                                    </div>
+                                    <div class="add-cart">
+                                        <button class="btn btn-empty">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* Dashboard_LatestProductController *@
+        <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
+            <div class="row">
+                <div class="col-sm-12 latest-product mb-30">
+                    <div class="block-heading">
+                        <h4>Latest Products</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
+                                <div class="product-block">
+                                    <div class="product-img">
+                                        <img ng-src="{{LatestProduct.ImgSrc}}" alt="latest product" />
+                                    </div>
+                                    <a href="#">{{LatestProduct.product_name}}</a>
+                                    <p>{{LatestProduct.product_code}}</p>
+                                    <p><span>{{LatestProduct.Points}}</span></p>
+                                    <div class="row">
+                                        <button class="btn btn-default">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-30">
+                    <div class="offer-block">
+                        <img src="~/Content/layout1/images/offer2.jpg" alt="offer" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-30">
+                    <div class="offer-block">
+                        <img src="~/Content/layout1/images/offer3.jpg" alt="offer" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //$('.hot-deals, #special-offer').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    minSlides: 2,
+        //    maxSlides: 1,
+        //    mode: 'vertical'
+        //});
+       
+        //$('.main-banner').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    mode: 'fade'
+        //});
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        $('.best-seller').mCustomScrollbar({
+            axis: "x",
+            advanced: { autoExpandHorizontalScroll: true }
+        });
+
+        $('.category-list').mCustomScrollbar();
+
+        //$('#latest-product').bxSlider({
+        //    pager: false,
+        //    nextText: '',
+        //    prevText: '',
+        //    minSlides: 1,
+        //    maxSlides: 4,
+        //    slideWidth: 290
+        //});
+        $('#readMore').click(function () {
+            $('.more-content').slideToggle();
+        });
+
+
+    });
+</script>
+

@@ -1,5 +1,6 @@
 ﻿using CordobaServices.Interfaces;
 using CordobaServices.Services;
+using CordobaModels.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufacturersList(int? ManufacturersID)
+        public HttpResponseMessage GetManufacturersList()
         {
             try
             {
-                var result = _ManufacturerServices.GetManufacturersList(ManufacturersID);
+                var result = _ManufacturerServices.GetManufacturersList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -39,11 +40,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufaturerDetail(int? ManufacturersID)
+        public HttpResponseMessage GetManufaturerDetail(int manufacturer_id)
         {
             try
             {
-                var result = _ManufacturerServices.GetManufaturerDetail(ManufacturersID);
+                var result = _ManufacturerServices.GetManufaturerDetail(manufacturer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -58,30 +59,42 @@ namespace CordobaAPI.API
 
         }
 
-        public IEnumerable<string> Get()
+         [HttpPost]
+        public HttpResponseMessage InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)  
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var result = _ManufacturerServices.InsertUpdateManufacture(manufacturersEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
-        // GET: api/ManufacturersApi/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST: api/ManufacturersApi
-        public void Post([FromBody]string value)
-        {
-        }
+         [HttpGet]
+         public HttpResponseMessage DeleteManufacturer(int manufacturer_id)
+         {
+             try
+             {
+                 var result = _ManufacturerServices.DeleteManufacturer(manufacturer_id);
+                 return Request.CreateResponse(HttpStatusCode.OK, result);
+             }
+             catch (Exception)
+             {
 
-        // PUT: api/ManufacturersApi/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                 throw;
+             }
+         }
+        
 
-        // DELETE: api/ManufacturersApi/5
-        public void Delete(int id)
-        {
-        }
     }
 }
