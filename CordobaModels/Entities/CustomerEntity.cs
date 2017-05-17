@@ -30,5 +30,6 @@ namespace CordobaModels.Entities
 
         public string customerName { get; set; }
         public string StatusName { get; set; }
+        public string CreatedDate { get; set; }
     }
 }

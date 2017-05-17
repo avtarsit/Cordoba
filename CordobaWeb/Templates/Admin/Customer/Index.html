@@ -28,7 +28,7 @@
                     <th>Customer Group Name</th>
                     <th>Status</th>
                     <th>IP</th>
-                    <th>Date When Added</th>
+                    <th>Created Date</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                     <td ng-bind="Item.customer_group_name"></td>
                     <td ng-bind="Item.StatusName"></td>
                     <td ng-bind="Item.ip"></td>
-                    <td ng-bind="Item.date_added"></td>
+                    <td ng-bind="Item.CreatedDate"></td>
                     <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageCustomer({CustomerId:Item.customer_id})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                 </tr>
             </tbody>
