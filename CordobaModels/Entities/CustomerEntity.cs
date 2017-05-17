@@ -29,5 +29,6 @@ namespace CordobaModels.Entities
         public int is_admin { get; set; }
 
         public string customerName { get; set; }
+        public string StatusName { get; set; }
     }
 }

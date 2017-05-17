@@ -277,6 +277,7 @@ function GetLayoutName() {
 
                 $stateProvider.state(Currency);
                 $stateProvider.state(ManageCurrency);
+                $stateProvider.state(Customer);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
