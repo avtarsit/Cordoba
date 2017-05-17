@@ -11,5 +11,7 @@ namespace CordobaServices.Interfaces
     {
         List<ProductEntity> GetProductList();
         ProductEntity GetProductById(int product_id);
+        int AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id);
+        int DeleteProductFromCart(int cart_id);
     }
 }
