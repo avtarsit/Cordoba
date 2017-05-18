@@ -187,7 +187,7 @@ function GetLayoutName() {
                  }
                   , ManageLanguage = {
                       name: 'ManageLanguage',
-                      url: '/System/ManageLanguage?LanguageId:languageId',
+                      url: '/System/ManageLanguage?LanguageCd:languageCd',
                       templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
                   }
 
@@ -202,7 +202,34 @@ function GetLayoutName() {
                      url: '/StoreDashboard',
                      templateUrl: 'Templates/' + LayoutName + '/Home/StoreDashboard.html'
                  }
+                , Currency = {
+                    name: 'Currency',
+                    url: '/System/Currency',
+                    templateUrl: 'Templates/' + LayoutName + '/Currency/Index.html'
+                }
+                 , ManageCurrency = {
+                     name: 'ManageCurrency',
+                     url: '/System/ManageCurrency?CurrencyId:currencyId',
+                     templateUrl: 'Templates/' + LayoutName + '/Currency/ManageCurrency.html'
+                 }
+                , Customer = {
+                    name: 'Customer',
+                    url: '/System/Customer',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/Index.html'
 
+                }
+
+               , CustomerGroup = {
+                   name: 'CustomerGroup',
+                   url: '/System/CustomerGroup',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/Index.html'
+               }
+
+               , ManageCustomerGroup = {
+                   name: 'ManageCustomerGroup',
+                   url: '/System/ManageCustomerGroup?CustomerGroupId:customerGroupId',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/ManageCustomerGroup.html'
+               }
                 , Orders = {
                     name: 'Orders',
                     url: '/Orders?OrderId:order_id',
@@ -257,6 +284,12 @@ function GetLayoutName() {
                 $stateProvider.state(Orders);
 
                 $stateProvider.state(Login);
+
+                $stateProvider.state(Currency);
+                $stateProvider.state(ManageCurrency);
+                $stateProvider.state(Customer);
+                $stateProvider.state(CustomerGroup);
+                $stateProvider.state(ManageCustomerGroup);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

@@ -139,8 +139,8 @@
                                         <p>{{SpecialOffer.Code}}</p>
                                         <span>{{SpecialOffer.Points}}</span>
                                     </div>
-                                    <div class="add-cart">
-                                        <button class="btn btn-empty">Add to Cart</button>
+                                    <div class="add-cart" ng-controller="AddProductToCartController">
+                                        <button class="btn btn-empty" ng-click="AddProductToCart()">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>

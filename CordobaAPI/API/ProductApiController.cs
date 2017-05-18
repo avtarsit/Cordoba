@@ -56,6 +56,44 @@ namespace CordobaAPI.API
             }
 
         }
+        [HttpGet]
+        public HttpResponseMessage AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
+        {
+            try
+            {
+                var result = _ProductServices.AddProductToCart(  store_id,  customer_id,  product_id,  qty,  cartgroup_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+
+        }
+
+        [HttpGet]
+        public HttpResponseMessage DeleteProductFromCart(int cart_id)
+        {
+            try
+            {
+                var result = _ProductServices.DeleteProductFromCart(cart_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }
