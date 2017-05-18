@@ -54,8 +54,14 @@
             $http.post(configurationService.basePath + "api/CustomerGroupApi/CreateOrUpdateCustomerGroup", $scope.CustomerGroupObj)
          .then(function (response) {
              if (response.data > 0) {
+                 if ($scope.customer_group_id == 0)
+                     {
                  toastr.success('Successfully Added.');
-                 $state.go('Customer Group');
+                 }
+                 else {
+                     toastr.success('Successfully Updated.');
+                 }
+                 $state.go('CustomerGroup');
              }
 
          })
@@ -119,13 +125,13 @@
         if (hasAnyUnsavedData) {
             bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
                 if (result) {
-                    $state.go('Customer Group');
+                    $state.go('CustomerGroup');
                 }
 
             });
         }
         else {
-            $state.go('Customer Group');
+            $state.go('CustomerGroup');
         }
 
     }
