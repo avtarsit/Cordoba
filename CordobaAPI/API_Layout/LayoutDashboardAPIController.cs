@@ -6,12 +6,13 @@ using System.Net.Http;
 using System.Web.Http;
 using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
+using System.Web.Http.Hosting;
 
 namespace CordobaAPI.API_Layout
 {
     public class LayoutDashboardAPIController : ApiController
     {
-        public ILayoutDashboardServices _LayoutDashboardServices;
+        public ILayoutDashboardServices _LayoutDashboardServices;     
 
         public LayoutDashboardAPIController()
         {
@@ -37,5 +38,27 @@ namespace CordobaAPI.API_Layout
             }
 
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetStoreDetailByUrl(String URL)
+        {        
+            try
+            {
+                var result = _LayoutDashboardServices.GetStoreDetailByUrl(URL);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        
+
     }
 }

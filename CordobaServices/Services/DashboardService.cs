@@ -22,5 +22,7 @@ namespace CordobaServices.Services
             orders = objGenericRepository.ExecuteSQL<OrderEntity>("GetLatestOrderDetailsDashboard", paramOrderId).ToList();
             return orders;
         }
+       
+        
     }
 }

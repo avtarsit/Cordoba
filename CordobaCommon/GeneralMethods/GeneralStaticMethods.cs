@@ -1,14 +1,18 @@
 ﻿using CordobaModels.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
-namespace CordobaServices.Interfaces
+namespace CordobaCommon.GeneralMethods
 {
-    public interface IDashboardService
+   public static  class GeneralStaticMethods
     {
-        List<OrderEntity> GetLatestOrderDetailsDashboard(int storeId);    
+
+      
     }
 }
