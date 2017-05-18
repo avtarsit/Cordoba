@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\ICategoryServices.cs" />
     <Compile Include="Interfaces\ICountryServices.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
+    <Compile Include="Interfaces\ICustomerGroupService.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDashboardService.cs" />
     <Compile Include="Interfaces\IManufacturerServices.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CountryServices.cs" />
     <Compile Include="Services\CurrencyService.cs" />
+    <Compile Include="Services\CustomerGroupService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\LanguageService.cs" />

@@ -218,8 +218,17 @@ function GetLayoutName() {
 
                 }
 
-               
+               , CustomerGroup = {
+                   name: 'CustomerGroup',
+                   url: '/System/CustomerGroup',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/Index.html'
+               }
 
+               , ManageCustomerGroup = {
+                   name: 'ManageCustomerGroup',
+                   url: '/System/ManageCustomerGroup?CustomerGroupId:customerGroupId',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/ManageCustomerGroup.html'
+               }
                 , Orders = {
                     name: 'Orders',
                     url: '/Orders?OrderId:order_id',
@@ -278,6 +287,8 @@ function GetLayoutName() {
                 $stateProvider.state(Currency);
                 $stateProvider.state(ManageCurrency);
                 $stateProvider.state(Customer);
+                $stateProvider.state(CustomerGroup);
+                $stateProvider.state(ManageCustomerGroup);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
