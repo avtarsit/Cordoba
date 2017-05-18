@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="Item in CategoryList">
-                    <td ng-bind="Item.CategoryName"></td>
+                    <td ng-bind="Item.name"></td>
                     <td ng-bind="Item.SortOrder"></td>
                     <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageCategory({CategoryId:Item.CategoryId})"><i class="glyphicon glyphicon-edit curso"></i></td>
                 </tr>
