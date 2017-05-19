@@ -5,7 +5,9 @@
     Tab();   
     //#endregion  
     debugger;
-    var abc = StoreSessionDetail;
+    $scope.StoreDetailInSession = StoreSessionDetail;
+
+    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     //$scope.GetStoreDetailForDashboard = function () {
       
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")

@@ -67,15 +67,10 @@
             <h1 class="main-heding">Bienvenue sur la boutique Make a Difference</h1>
             <div class="row">
                 <div class="col-sm-12 welcome-block">
-                    <div class="welcome-img">
-                        <img src="~/Content/layout1/images/welcomeImg.png" alt="welcome" />
-                    </div>
-                    <p>Le site Pitney Bowes “Thank You” est l’outil officiel   0de récopense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant.</p>
-                    <p>De nombreux projets d’équipe sont récompensés par le biais du catalogue cadeau, qui inclut le programme de récompense des employés “Make a Difference” suivant: <a id="readMore" href="javascript:;">Read More</a></p>
-                    <div class="more-content">
-                        <p>Mettre les clients en avant est une valeur chez une société que les lauréats de la récompense Make a Difference ont su concrétiser. Nous avons tous la faculté de nous engager sur cette valeur. Que vous assistiez des clients internes ou externes, la recherche de l’excellence dans tous les domaines aura une influence sur nos clients et soutiendra notre croissance commerciale.</p>
-                        <p>Les lauréats de cette récompense obtiennent des points qu’ils peuvent cumuler et échanger contre une grande variété de cadeaux.</p>
-                        <p>Alors, si vous avez reçu des points, GMS Europe vous remercie une fois de plus pour tous vos efforts et vous souhaite une bonne visite dans la boutique.</p>
+                    <div ng-bind-html="WelcomeMsg[0]"></div>  
+                                  
+                    <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+                     <div class="more-content" ng-bind-html="WelcomeMsg[1]">
                     </div>
                 </div>
             </div>
