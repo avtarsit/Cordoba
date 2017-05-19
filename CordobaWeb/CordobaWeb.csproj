@@ -632,6 +632,7 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.ttf" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
+    <Content Include="JS\Layout\AddProductToCart\Controllers\AddProductToCartController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BannerController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BestSellerController.js" />
@@ -640,16 +641,6 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
-    <Content Include="JS\Layout1\AddProductToCart\Controllers\AddProductToCartController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboardController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BannerController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BestSellerController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_CategoryController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_HotDealsController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_LatestProductController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
-    <Content Include="JS\Layout2\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_axis.js" />

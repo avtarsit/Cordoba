@@ -20,17 +20,14 @@ namespace CordobaModels.Entities
         public int newsletter { get; set; }
         public int address_id { get; set; }
         public int status { get; set; }
-        public int approved { get; set; }
-        public Int16 activated { get; set; }
+        public int approved { get; set; }   
         public int activated { get; set; }
         public int customer_group_id { get; set; }
         public int customer_department_id { get; set; }
         public string ip { get; set; }
         public DateTime date_added { get; set; }
-        public Int16 is_admin { get; set; }
+
         public string WholeName { get; set; }
-    }
-}
         public int is_admin { get; set; }
 
         public string customerName { get; set; }
@@ -38,3 +35,5 @@ namespace CordobaModels.Entities
         public string CreatedDate { get; set; }
     }
 }
+        
+
