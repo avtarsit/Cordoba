@@ -40,6 +40,11 @@ function GetLayoutName() {
                     url: '/Catalog/ManageCategory?CategoryId:categoryId',
                     templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
                 }
+                , PopularCategory = {
+                    name: 'PopularCategory',
+                    url: '/Category/PopularCategory',
+                    templateUrl: 'Templates/' + LayoutName + '/Category/PopularCategory.html'
+                }
                  , ShowManufacturer = {
                      name: 'ShowManufacturer',
                      url: '/Catalog/ShowManufacturer',
@@ -243,6 +248,7 @@ function GetLayoutName() {
                 $stateProvider.state(ManageCountry);
                 $stateProvider.state(ShowCategory);
                 $stateProvider.state(ManageCategory);
+                $stateProvider.state(PopularCategory);
                 $stateProvider.state(ShowManufacturer);
                 $stateProvider.state(ManageManufacturer);
                 $stateProvider.state(ShowSupplier);

@@ -57,5 +57,45 @@ namespace CordobaAPI.API
         }
 
 
+
+        //Popular Category
+        [HttpGet]
+        public HttpResponseMessage GetCategoryListByStoreIdPopular(int storeID = 0)
+        {
+            try
+            {
+                var result = _categoryServices.GetCategoryListByStoreIdPopular(storeID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetStoreNameList()
+        {
+            try
+            {
+                var result = _categoryServices.GetStoreNameList();
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

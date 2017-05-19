@@ -560,7 +560,10 @@
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
     <Content Include="JS\Admin\Banner\Controllers\ShowBannerController.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ManageCatalogueController.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ShowCatalogue.js" />
     <Content Include="JS\Admin\Category\Controllers\ManageCategoryController.js" />
+    <Content Include="JS\Admin\Category\Controllers\PopularCategoryController.js" />
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
@@ -589,8 +592,6 @@
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
-    <Content Include="JS\Admin\ProductCatalogue\Controllers\ManageProductCatalogueController.js" />
-    <Content Include="JS\Admin\ProductCatalogue\Controllers\ShowProductCatalogue.js" />
     <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
     <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
     <Content Include="JS\appConfiguration.js" />
@@ -3612,6 +3613,7 @@
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
     <Content Include="Templates\Admin\Category\Index.html" />
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
+    <Content Include="Templates\Admin\Category\PopularCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
     <Content Include="Templates\Admin\Currency\Index.html" />
@@ -3692,6 +3694,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="JS\Admin\ProductCatalogue\Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
