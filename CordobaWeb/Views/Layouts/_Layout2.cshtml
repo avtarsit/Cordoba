@@ -8,13 +8,17 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
-
+    <link href="~/Content/layout2/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <style>
+     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
+    </style>
 </head>
 <body>
 
     <div class="fix-header navbar-fixed-top">
         <div class="top-header">
             <div class="container">
+          
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="login">
@@ -103,81 +107,7 @@
     @Scripts.Render("~/bundles/Layout2Js")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/appConfig")
-    @Scripts.Render("~/bundles/Layout2Controllers")
+    @Scripts.Render("~/bundles/LayoutControllers")
 
-    <script type="text/javascript">
-        $(window).load(function () {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                animationLoop: false,
-                itemSlide: 1,
-                itemWidth: 260,
-                itemMargin: 25
-            });
-        });
-
-        $('.special-offers .flexslider').flexslider({
-            animation: "slide",
-            animationLoop: false,
-            itemSlide: 1,
-            itemWidth: 142,
-            itemMargin: 20
-        });
-
-        $('.hot-deals .flexslider').flexslider({
-            animation: "slide",
-            animationLoop: false,
-            itemSlide: 1,
-            itemWidth: 240
-
-        });
-
-        (function ($) {
-            $(window).on("load", function () {
-
-                $("#content-1").mCustomScrollbar({
-                    theme: "minimal"
-                });
-
-            });
-        })(jQuery);
-
-        $(document).ready(function () {
-            // Configure/customize these variables.
-            var showChar = 145;  // How many characters are shown by default
-            var ellipsestext = "...";
-            var moretext = "Read more";
-            var lesstext = "Show less";
-
-
-            $('.more').each(function () {
-                var content = $(this).html();
-
-                if (content.length > showChar) {
-
-                    var c = content.substr(0, showChar);
-                    var h = content.substr(showChar, content.length - showChar);
-
-                    var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
-                    $(this).html(html);
-                }
-
-            });
-
-            $(".morelink").click(function () {
-                if ($(this).hasClass("less")) {
-                    $(this).removeClass("less");
-                    $(this).html(moretext);
-                } else {
-                    $(this).addClass("less");
-                    $(this).html(lesstext);
-                }
-                $(this).parent().prev().toggle();
-                $(this).prev().toggle();
-                return false;
-            });
-        });
-    </script>
 </body>
 </html>

@@ -7,7 +7,11 @@
     <title>Cordoba</title>
 
     @Styles.Render("~/bundles/Layout1CSS")
-    
+
+    <style>
+     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());        
+    </style>
+   
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -15,87 +19,90 @@
     <![endif]-->
 </head>
 <body>
-
-    <div class="header navbar-fixed-top">
-        <header class="w-hidden-small w-hidden-tiny top-nav">
-            <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">My Account</a></li>
-                    <li><a href="#">My Wishlist</a></li>
-                    <li><a href="#">Sign In</a></li>
-                </ul>
-            </div>
-        </header>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                   
-                    <a class="navbar-brand" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+    <div ng-controller="DashboardController">
+        <div class="header navbar-fixed-top">
+            <header class="w-hidden-small w-hidden-tiny top-nav">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">My Account</a></li>
+                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="#">Sign In</a></li>
+                    </ul>
                 </div>
-                <div class="main-menu">
-                    <div class="search-panel">
-                        <a class="cart-block">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span class="badge">2</span>
-                        </a>
-                        <div class="search-block">
-                            <input type="text" value="" placeholder="What are you looking for?" />
+            </header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                    </div>
+                    <div class="main-menu">
+                        <div class="search-panel">
+                            <a class="cart-block">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="badge">2</span>
+                            </a>
+                            <div class="search-block">
+                                <input type="text" value="" placeholder="What are you looking for?" />
+                            </div>
                         </div>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="#">Our Products</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-     @RenderBody();
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
-                    <a class="footer-logo" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
-                </div>
-                <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
-                    <div class="row">
-                        <div class="col-sm-12 col-xs-12">
-                            <ul class="footer-links">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="#">Our Products</a></li>
+                                <li><a href="#">About Us</a></li>
                                 <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Site Map</a></li>
                             </ul>
                         </div>
-                        <div class="col-sm-12 col-xs-12 connect-to">
-                            <p>Connect To :</p>
-                            <a class="facebook" href="#"><i class="fa fa-facebook-official"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        @RenderBody();
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
+                        <a class="footer-logo" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                    </div>
+                    <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <ul class="footer-links">
+                                    <li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Site Map</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 connect-to">
+                                <p>Connect To :</p>
+                                <a class="facebook" href="#"><i class="fa fa-facebook-official"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p>Copyright © 2017 Cordoba</p>
-        </div>
-    </footer>  
+            <div class="copyright">
+                <p>Copyright © 2017 Cordoba</p>
+            </div>
+        </footer>  
+    </div>
+
     @Scripts.Render("~/bundles/Layout1Js")
     @Scripts.Render("~/bundles/angular")    
     @Scripts.Render("~/bundles/appConfig") 
-    @Scripts.Render("~/bundles/Layout1Controllers")
+    @Scripts.Render("~/bundles/LayoutControllers")
+
     <script type="text/javascript">
     $(document).ready(function () {
         $('.main-banner').bxSlider({

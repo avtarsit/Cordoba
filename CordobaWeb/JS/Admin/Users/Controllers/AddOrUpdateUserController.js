@@ -52,6 +52,7 @@
     }
 
     $scope.SaveUser = function (form) {
+
         if (form.$valid) {      
             $scope.UserObj.user_id = $scope.user_id;
             $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + $scope.LoggedInUserId, $scope.UserObj)

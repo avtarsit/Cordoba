@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -558,10 +560,17 @@
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
     <Content Include="JS\Admin\Banner\Controllers\ShowBannerController.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ManageCatalogueController.js" />
+    <Content Include="JS\Admin\Catalogue\Controllers\ShowCatalogue.js" />
     <Content Include="JS\Admin\Category\Controllers\ManageCategoryController.js" />
     <Content Include="JS\Admin\Category\Controllers\ShowCategoryController.js" />
     <Content Include="JS\Admin\Country\Controllers\AddOrUpdateCountryController.js" />
     <Content Include="JS\Admin\Country\Controllers\ShowCountryController.js" />
+    <Content Include="JS\Admin\Currency\Controllers\AddOrUpdateCurrencyController.js" />
+    <Content Include="JS\Admin\Currency\Controllers\ShowCurrencyController.js" />
+    <Content Include="JS\Admin\CustomerGroup\Controllers\AddOrUpdateCustomerGroupController.js" />
+    <Content Include="JS\Admin\CustomerGroup\Controllers\ShowCustomerGroupController.js" />
+    <Content Include="JS\Admin\Customer\Controllers\ShowCustomerController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\StoreDashboardController.js" />
@@ -623,7 +632,17 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.ttf" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BannerController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BestSellerController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_CategoryController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_HotDealsController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
+    <Content Include="JS\Layout1\AddProductToCart\Controllers\AddProductToCartController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BannerController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BestSellerController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_CategoryController.js" />
     <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_HotDealsController.js" />
@@ -3608,6 +3627,11 @@
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Country\AddOrUpdateCountry.html" />
     <Content Include="Templates\Admin\Country\Index.html" />
+    <Content Include="Templates\Admin\Currency\Index.html" />
+    <Content Include="Templates\Admin\Currency\ManageCurrency.html" />
+    <Content Include="Templates\Admin\CustomerGroup\Index.html" />
+    <Content Include="Templates\Admin\CustomerGroup\ManageCustomerGroup.html" />
+    <Content Include="Templates\Admin\Customer\Index.html" />
     <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />
     <Content Include="Templates\Admin\Home\StoreDashboard.html" />
@@ -3728,9 +3752,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CordobaAPI\CordobaAPI.csproj">
+      <Project>{18a57a28-18e3-4670-aa2d-261f490a8c99}</Project>
+      <Name>CordobaAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CordobaCommon\CordobaCommon.csproj">
       <Project>{15f9d105-6f02-4892-92aa-f8d4bb4ffb71}</Project>
       <Name>CordobaCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">
+      <Project>{ee2e67ac-8175-424f-bd98-4afb554b8c84}</Project>
+      <Name>CordobaModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -3752,8 +3784,6 @@
           <DevelopmentServerPort>51989</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:8084</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:8084</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

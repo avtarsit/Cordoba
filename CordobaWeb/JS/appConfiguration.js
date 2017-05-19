@@ -5,10 +5,11 @@ var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "data
 GetLayoutName();
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetLayoutName?HostName=" + window.location.hostname,
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {
-            var LayoutName = data;
+        success: function (data) {           
+            app.value('StoreSessionDetail', data);
+            var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var HomeIndex = {
                     name: 'Home',
@@ -186,7 +187,7 @@ function GetLayoutName() {
                  }
                   , ManageLanguage = {
                       name: 'ManageLanguage',
-                      url: '/System/ManageLanguage?LanguageId:languageId',
+                      url: '/System/ManageLanguage?LanguageCd:languageCd',
                       templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
                   }
 
@@ -201,7 +202,34 @@ function GetLayoutName() {
                      url: '/StoreDashboard',
                      templateUrl: 'Templates/' + LayoutName + '/Home/StoreDashboard.html'
                  }
+                , Currency = {
+                    name: 'Currency',
+                    url: '/System/Currency',
+                    templateUrl: 'Templates/' + LayoutName + '/Currency/Index.html'
+                }
+                 , ManageCurrency = {
+                     name: 'ManageCurrency',
+                     url: '/System/ManageCurrency?CurrencyId:currencyId',
+                     templateUrl: 'Templates/' + LayoutName + '/Currency/ManageCurrency.html'
+                 }
+                , Customer = {
+                    name: 'Customer',
+                    url: '/System/Customer',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/Index.html'
 
+                }
+
+               , CustomerGroup = {
+                   name: 'CustomerGroup',
+                   url: '/System/CustomerGroup',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/Index.html'
+               }
+
+               , ManageCustomerGroup = {
+                   name: 'ManageCustomerGroup',
+                   url: '/System/ManageCustomerGroup?CustomerGroupId:customerGroupId',
+                   templateUrl: 'Templates/' + LayoutName + '/CustomerGroup/ManageCustomerGroup.html'
+               }
                 , Orders = {
                     name: 'Orders',
                     url: '/Orders?OrderId:order_id',
@@ -268,6 +296,12 @@ function GetLayoutName() {
                 $stateProvider.state(ManageOrder);
 
                 $stateProvider.state(Login);
+
+                $stateProvider.state(Currency);
+                $stateProvider.state(ManageCurrency);
+                $stateProvider.state(Customer);
+                $stateProvider.state(CustomerGroup);
+                $stateProvider.state(ManageCustomerGroup);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -276,9 +310,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, $filter, $state, localStorageService) {
-
-
+             .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
 
                  //var now1 = new Date();

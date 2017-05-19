@@ -9,6 +9,6 @@ namespace CordobaServices.Interfaces
 {
     public interface IDashboardService
     {
-        List<OrderEntity> GetLatestOrderDetailsDashboard(int storeId);
+        List<OrderEntity> GetLatestOrderDetailsDashboard(int storeId);    
     }
 }
