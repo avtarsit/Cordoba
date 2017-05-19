@@ -14,12 +14,71 @@
             <ul class="breadcrumb">
                 <li>  This page allows you to lookup orders.</li>
             </ul>
-            <ul class="breadcrumb-elements">
-                <li><button type="button" class="btn btn-primary btn-md" data-placement="top" data-toggle="tooltip" title="Add Order"><i class="glyphicon glyphicon-plus-sign position-left"></i> Create</button></li>
-            </ul>
+            <!--<ul class="breadcrumb-elements">
+                <li><button type="button" class="btn btn-primary btn-md" data-placement="top" data-toggle="tooltip" title="Add Order" ui-sref="ManageOrder({orderId:''})"><i class="glyphicon glyphicon-plus-sign position-left"></i> Create</button></li>
+            </ul>-->
         </div>
     </div>
     <div class="page-header-content">
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <div class="well">
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"> OrderId</label>
+                                <input type="text" class="form-control" ng-model="filter.orderID" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"> Order Status</label>
+                                <select ng-options="orderstatus.id as orderstatus.name for orderstatus in OrderStatus" ng-model="filter.selectedOrderStatus" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="input-date-start">Date Added</label>
+                                <div class="input-group myDatePicker date">
+                                    <input type="text" class="form-control" ng-model="filter.dateAdded"/>
+                                    <span class="input-group-addon cursor-pointer">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"> Customer</label>
+                                <input type="text" class="form-control" ng-model="filter.Customer" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"> Total</label>
+                                <input type="text" class="form-control" ng-model="filter.Total" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="input-date-start">Date Modified</label>
+                                <div class="input-group myDatePicker date">
+                                    <input type="text" class="form-control" ng-model="filter.dateModified" />
+                                    <span class="input-group-addon cursor-pointer">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button type="button" id="button-filter" class="btn btn-primary pull-right" ng-click="GetOrderList()"><i class="fa fa-search"></i> Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--<table class="table table-bordered table-striped datatable-responsive" datatable="ng" id="tblOrders" dt-options="dtOptions" width="100%">
             <thead>
                 <tr>
@@ -61,9 +120,7 @@
                     <th class="text-right">Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr></tr>
-            </tbody>
+
         </table>
     </div>
 </div>

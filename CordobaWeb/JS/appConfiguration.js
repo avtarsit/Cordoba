@@ -212,6 +212,11 @@ function GetLayoutName() {
                     url: '/ShowOrders',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
                 }
+                , ManageOrder = {
+                    name: 'ManageOrder',
+                    url: '/ManageOrders?orderId:order_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
+                }
 
                 ;
 
@@ -260,6 +265,7 @@ function GetLayoutName() {
 
                 $stateProvider.state(Orders);
                 $stateProvider.state(ShowOrders);
+                $stateProvider.state(ManageOrder);
 
                 $stateProvider.state(Login);
                 //any url that doesn't exist in routes redirect to '/'

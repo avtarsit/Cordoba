@@ -15,9 +15,9 @@ namespace CordobaModels.Entities
         public decimal price { get; set; }
         public decimal total { get; set; }
         public string total_title { get; set; }
-        public decimal total_value { get; set; }
+        public decimal? total_value { get; set; }
         public string subtotal_title { get; set; }
-        public decimal subtotal_value { get; set; }
+        public decimal? subtotal_value { get; set; }
         //public decimal MainTotal { get; set; }
     }
 }

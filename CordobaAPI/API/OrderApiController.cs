@@ -14,9 +14,11 @@ namespace CordobaAPI.API
     public class OrderApiController : ApiController
     {
         public IOrderService _orderService;
+        public ICountryServices _countryServices;
         public OrderApiController()
         {
             _orderService = new OrderService();
+            _countryServices = new CountryServices();
         }
 
         [HttpGet]
@@ -70,12 +72,6 @@ namespace CordobaAPI.API
                 {
                     totalRecords = result.FirstOrDefault().TotalRecords;
                 }
-                //var totalRecordes = result.Count();
-
-                //var filteredRecords = result.Skip(tableParameter.iDisplayStart)
-                //    .Take(tableParameter.iDisplayLength).ToList();
-
-                //return Request.CreateResponse(HttpStatusCode.OK, result);
 
                 return new TableParameter<OrderEntity>
                 {
@@ -83,8 +79,6 @@ namespace CordobaAPI.API
                     iTotalRecords = totalRecords,
                     iTotalDisplayRecords = totalRecords
                 };
-
-                //return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
             catch (Exception)
             {
@@ -92,5 +86,152 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetCustomerGroupList()
+        {
+            var customerGroup = _orderService.GetCustomerGroupList();
+            if (customerGroup != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, customerGroup);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetCurrencyList()
+        {
+            var currency = _orderService.GetCurrencyList();
+            if (currency != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, currency);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetCountryList(int countryId)
+        {
+            try
+            {
+                var result = _countryServices.GetCountryList(countryId).OrderBy(m => m.name).ToList();
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetZoneListByCountry(int countryId)
+        {
+            try
+            {
+                var result = _orderService.GetZoneListByCountry(countryId).ToList();
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public HttpResponseMessage GetCustomerAddress(int orderId)
+        {
+            try
+            {
+                var result = _orderService.GetCustomerAddress(orderId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UpdateOrder_CutomerDetails(OrderEntity objOrderEntity)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrder_CutomerDetails(objOrderEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UpdateOrder_PaymentDetails(OrderEntity objOrderEntity)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrder_PaymentDetails(objOrderEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UpdateOrder_ShippingDetails(OrderEntity objOrderEntity)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrder_ShippingDetails(objOrderEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetCustomersByStore(int storeId)
+        {
+            try
+            {
+                var result = _orderService.GetCustomersByStore(storeId);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage UpdateOrder_TotalDetails(int order_id, int order_status_id, string comment)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrder_TotalDetails(order_id, order_status_id, comment);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }

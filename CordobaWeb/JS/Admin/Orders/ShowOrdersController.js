@@ -2,9 +2,27 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    createDatePicker();
+
     $scope.PageTitle = "Order List";
 
+    $scope.OrderStatus = [
+       { id: 1, name: 'Processing' },
+       { id: 2, name: 'shipped' },
+       { id: 3, name: 'PartiallyShipped' },
+       { id: 4, name: 'Returned' },
+       { id: 5, name: 'Cancelled' }
+    ];
 
+
+    $scope.filter = {
+        orderID: '',
+        selectedOrderStatus: 1,
+        dateAdded: '',
+        Customer: '',
+        Total: '',
+        dateModified: ''
+    };
 
     //$scope.GetOrderList = function () {
     //    $http.get(configurationService.basePath + "api/OrderApi/GetOrderList")
@@ -32,7 +50,7 @@
 
 
     function BindSorting(aoData, oSettings) {
-
+        debugger;
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;
@@ -56,7 +74,7 @@
                 "sProcessing": "",
                 "sZeroRecords": "<span class='pull-left'>No records found</span>",
             },
-            "searching": false,
+            "searching": true,
             "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
@@ -64,7 +82,7 @@
             "iDisplayLength": configurationService.pageSize,
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
-            "aaSorting": [[0, 'asc']],
+            "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/OrderApi/GetOrderList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
@@ -87,24 +105,24 @@
 
             "aoColumns": [
                 {
-                    "mData": "order_id", "bSortable": true,
+                    "mData": "order_id", "bSortable": true, "sClass": " text-right"
                     //"render": function (data, type, row) {
                     //    return '<a data-Id=' + row.JobId + ' class="cursor-pointer" ng-click="EditJobCode($event)">' + data + '</a>'
                     //}
                 },
                 { "mData": "customer", "bSortable": true },
                  { "mData": "OrderStatusName", "bSortable": true },
-                 { "mData": "total", "bSortable": true },
+                 { "mData": "total", "bSortable": true, "sClass": "text-right" },
 
-                { "mData": "date_added", "bSortable": true, },
-                { "mData": "date_modified", "bSortable": true }
-                //{
-                //    "mData": null, "bSortable": false,
-                //    "sClass": "action",
-                //    "render": function (data, type, row) {
-                //        return '<a><i class="glyphicon glyphicon-trash cursor-pointer"  data-Id=' + row.JobId + ' data-jobCode=' + row.JobCode + '  ng-click="DeleteJobCode($event)" data-original-title="Delete" data-toggle="tooltip"></i></a>'
-                //    }
-                //},
+                { "mData": "date_added", "bSortable": true, "type": "date", "format": 'DD-MM-YYYY', },
+                { "mData": "date_modified", "bSortable": true },
+                {
+                    "mData": null, "bSortable": false,
+                    "sClass": "action text-right",
+                    "render": function (data, type, row) {
+                        return '<a ui-sref="Orders({OrderId:' + row.order_id + '})"><i class="glyphicon glyphicon-eye-close cursor-pointer" title="view"></i></a> &nbsp;  <a ui-sref="ManageOrder({orderId:' + row.order_id + '})"><i class="glyphicon glyphicon-edit cursor-pointer" title="edit"></i></a>  &nbsp;  <i class="glyphicon glyphicon-erase cursor-pointer" title="delete"></i>'
+                    }
+                },
             ],
             "fnCreatedRow": function (nRow, aData, iDataIndex) {
                 $compile(angular.element(nRow).contents())($scope);
@@ -114,8 +132,6 @@
             }
         });
     }
-
-
 
     $scope.GetOrderList();
 });
