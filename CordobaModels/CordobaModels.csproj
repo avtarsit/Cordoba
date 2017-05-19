@@ -97,6 +97,7 @@
     <Compile Include="Entities\OrderProductEntity.cs" />
     <Compile Include="Entities\ProductDescriptionList.cs" />
     <Compile Include="Entities\ProductEntity.cs" />
+    <Compile Include="Entities\StoreDescriptionEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />

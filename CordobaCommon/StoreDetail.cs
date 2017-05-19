@@ -36,6 +36,8 @@ namespace CordobaCommon
             public string icon { get; set; }
             public int? catalog_limit { get; set; }
             public string css_overrides { get; set; }
+            public int? language_id { get; set; }
+            public string description { get; set; }
         
     }
 }
