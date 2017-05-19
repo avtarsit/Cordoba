@@ -79,6 +79,7 @@
     <Compile Include="Edmx\tblCompanyLayout.cs">
       <DependentUpon>Cordoba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AddressEntity.cs" />
     <Compile Include="Entities\BannerAttributeEntity.cs" />
     <Compile Include="Entities\BannerEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
@@ -97,10 +98,12 @@
     <Compile Include="Entities\OrderProductEntity.cs" />
     <Compile Include="Entities\ProductDescriptionList.cs" />
     <Compile Include="Entities\ProductEntity.cs" />
+    <Compile Include="Entities\StoreDescriptionEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\ZoneEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GenericRepository.cs" />
     <Compile Include="Utility\SQLParamBuilder.cs" />

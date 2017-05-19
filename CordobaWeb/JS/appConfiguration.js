@@ -5,10 +5,11 @@ var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "data
 GetLayoutName();
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetLayoutName?HostName=" + window.location.hostname,
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {
-            var LayoutName = data;
+        success: function (data) {           
+            app.value('StoreSessionDetail', data);
+            var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var HomeIndex = {
                     name: 'Home',
@@ -239,6 +240,16 @@ function GetLayoutName() {
                     url: '/Orders?OrderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Orders.html'
                 }
+                , ShowOrders = {
+                    name: 'ShowOrders',
+                    url: '/ShowOrders',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
+                }
+                , ManageOrder = {
+                    name: 'ManageOrder',
+                    url: '/ManageOrders?orderId:order_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
+                }
 
                 ;
 
@@ -287,6 +298,8 @@ function GetLayoutName() {
                 $stateProvider.state(ManageLanguage);
 
                 $stateProvider.state(Orders);
+                $stateProvider.state(ShowOrders);
+                $stateProvider.state(ManageOrder);
 
                 $stateProvider.state(Login);
 

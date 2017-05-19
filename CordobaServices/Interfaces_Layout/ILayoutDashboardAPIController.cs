@@ -10,5 +10,6 @@ namespace CordobaServices.Interfaces_Layout
     public interface ILayoutDashboardServices
     {
         List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory);
+        StoreEntity GetStoreDetailByUrl(String URL);
     }
 }

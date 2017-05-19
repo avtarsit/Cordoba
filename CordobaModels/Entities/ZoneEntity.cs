@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-    public  class CustomerGroupEntity
+    public class ZoneEntity
     {
-        public int customer_group_id { get; set; }
+        public int zone_id { get; set; }
+        public int country_id { get; set; }
         public string name { get; set; }
+        public string code { get; set; }
+        public Int16 status { get; set; }
     }
 }

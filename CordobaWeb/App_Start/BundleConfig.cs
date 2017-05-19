@@ -153,10 +153,7 @@ namespace CordobaWeb
                      "~/Scripts/bootbox.js",
                      "~/Scripts/ckeditor/ckeditor.js"                  
                      ));
-            
-            var Layout1ControllerBundle = new Bundle("~/bundles/Layout1Controllers");
-            Layout1ControllerBundle.IncludeDirectory("~/JS/Layout1", "*.js", true);
-            bundles.Add(Layout1ControllerBundle);
+                   
             //------------------------js-------------------------//
 
             ///////////////////// Layout1//////////////////
@@ -188,16 +185,17 @@ namespace CordobaWeb
                      "~/Scripts/ckeditor/ckeditor.js"
                      ));
 
-            var Layout2ControllerBundle = new Bundle("~/bundles/Layout2Controllers");
-            Layout2ControllerBundle.IncludeDirectory("~/JS/Layout2", "*.js", true);
-            bundles.Add(Layout2ControllerBundle);
             //------------------------js-------------------------//
 
 
             ///////////////////// Layout2//////////////////
             
 
-            
+            ///////Layout Controllers//////
+            var LayoutControllerBundle = new Bundle("~/bundles/LayoutControllers");
+            LayoutControllerBundle.IncludeDirectory("~/JS/Layout", "*.js", true);
+            bundles.Add(LayoutControllerBundle);
+            ///////////////////////////////
 
         }
     }

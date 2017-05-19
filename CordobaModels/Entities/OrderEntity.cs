@@ -8,6 +8,7 @@ namespace CordobaModels.Entities
 {
     public class OrderEntity
     {
+        public int store_id { get; set; }
         public int order_id { get; set; }
         public string store_name { get; set; }
         public string store_url { get; set; }
@@ -25,9 +26,12 @@ namespace CordobaModels.Entities
         public string payment_firstname { get; set; }
         public string payment_lastname { get; set; }
         public string payment_address_1 { get; set; }
+        public string payment_address_2 { get; set; }
         public string payment_city { get; set; }
         public string payment_country { get; set; }
+        public int payment_country_id { get; set; }
         public string payment_method { get; set; }
+        public string payment_company { get; set; }
         public string shipping_address_1 { get; set; }
         public string shipping_address_2 { get; set; }
         public string shipping_city { get; set; }
@@ -35,11 +39,23 @@ namespace CordobaModels.Entities
         public string shipping_lastname { get; set; }
         public string shipping_company { get; set; }
         public string shipping_country { get; set; }
+        public int shipping_country_id { get; set; }
         public string shipping_method { get; set; }
         public string shipping_postcode { get; set; }
         public string payment_postcode { get; set; }
         public string fax { get; set; }
         public string comment { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public int order_status_id { get; set; }
+        public int currency_id { get; set; }
+        public string currencyTitle { get; set; }
+        public int payment_zone_id { get; set; }
+        public int customer_id { get; set; }
+        public int address_id { get; set; }
+        public string payment_zone { get; set; }
+
+        public int TotalRecords { get; set; }
 
         public List<OrderProductEntity> orderProductEntity { get; set; }
 

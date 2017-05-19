@@ -24,5 +24,13 @@ namespace CordobaServices.Services_Layout
             return CategoryList;
         }
 
+        public StoreEntity GetStoreDetailByUrl(String URL)
+        {
+            StoreEntity storeEntity = new StoreEntity();
+            SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("URL", URL) };
+            storeEntity = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreDetailByUrl", sqlParameter).FirstOrDefault();
+            return storeEntity;
+        }
+
     }
 }

@@ -581,6 +581,9 @@
     <Content Include="JS\Admin\Language\Controllers\ShowLanguageController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\AddOrUpdateManufacturersController.js" />
     <Content Include="JS\Admin\Manufacturers\Controllers\ShowManufaturersController.js" />
+    <Content Include="JS\Admin\Orders\ManageOrderController.js" />
+    <Content Include="JS\Admin\Orders\OrdersController.js" />
+    <Content Include="JS\Admin\Orders\ShowOrdersController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductViewedReportController.js" />
@@ -628,16 +631,15 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.ttf" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
-    <Content Include="JS\Layout1\AddProductToCart\Controllers\AddProductToCartController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboardController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BannerController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_BestSellerController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_CategoryController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_HotDealsController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_LatestProductController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
-    <Content Include="JS\Layout1\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
-    <Content Include="JS\Layout2\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Layout\AddProductToCart\Controllers\AddProductToCartController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboardController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BannerController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BestSellerController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_CategoryController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_HotDealsController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_axis.js" />
@@ -3629,6 +3631,9 @@
     <Content Include="Templates\Admin\Language\ManageLanguage.html" />
     <Content Include="Templates\Admin\Manufacturers\Index.html" />
     <Content Include="Templates\Admin\Manufacturers\ManageManufacturer.html" />
+    <Content Include="Templates\Admin\Orders\Index.html" />
+    <Content Include="Templates\Admin\Orders\ManageOrder.html" />
+    <Content Include="Templates\Admin\Orders\Orders.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
@@ -3746,6 +3751,10 @@
     <ProjectReference Include="..\CordobaCommon\CordobaCommon.csproj">
       <Project>{15f9d105-6f02-4892-92aa-f8d4bb4ffb71}</Project>
       <Name>CordobaCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">
+      <Project>{ee2e67ac-8175-424f-bd98-4afb554b8c84}</Project>
+      <Name>CordobaModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
