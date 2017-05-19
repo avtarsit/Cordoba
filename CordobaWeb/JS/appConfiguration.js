@@ -235,6 +235,16 @@ function GetLayoutName() {
                     url: '/Orders?OrderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Orders.html'
                 }
+                , ShowOrders = {
+                    name: 'ShowOrders',
+                    url: '/ShowOrders',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
+                }
+                , ManageOrder = {
+                    name: 'ManageOrder',
+                    url: '/ManageOrders?orderId:order_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
+                }
 
                 ;
 
@@ -282,6 +292,8 @@ function GetLayoutName() {
                 $stateProvider.state(ManageLanguage);
 
                 $stateProvider.state(Orders);
+                $stateProvider.state(ShowOrders);
+                $stateProvider.state(ManageOrder);
 
                 $stateProvider.state(Login);
 

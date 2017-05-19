@@ -33,7 +33,7 @@
 
 
     $scope.SaveCountry = function (form) {
-    {
+
         if (form.$valid) {
             $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
             .then(function (response) {
@@ -56,6 +56,7 @@
 
         }
     }
+
     $scope.DeleteCountry = function () {
         bootbox.dialog({
             message: "Do you want remove country?",

@@ -17,6 +17,5 @@ namespace CordobaModels.Entities
         public double value { get; set; }
         public int status { get; set; }
         public DateTime date_modified { get; set; }
-
     }
 }
