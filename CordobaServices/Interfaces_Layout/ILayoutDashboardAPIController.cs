@@ -11,5 +11,6 @@ namespace CordobaServices.Interfaces_Layout
     {
         List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory);
         StoreEntity GetStoreDetailByUrl(String URL);
+        List<ProductEntity> GetLatestProductByStoreId(int StoreID);
     }
 }

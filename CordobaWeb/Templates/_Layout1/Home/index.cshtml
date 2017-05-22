@@ -154,13 +154,13 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>                      
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src="{{LatestProduct.ImgSrc}}" alt="latest product" />
+                                        <img ng-src="{{LatestProduct.image}}" alt="latest product" />
                                     </div>
-                                    <a href="#">{{LatestProduct.product_name}}</a>
-                                    <p>{{LatestProduct.product_code}}</p>
+                                    <a href="#">{{LatestProduct.name}}</a>
+                                    <p>{{LatestProduct.model}}</p>
                                     <p><span>{{LatestProduct.Points}}</span></p>
                                     <div class="row">
                                         <button class="btn btn-default">Add to Cart</button>
