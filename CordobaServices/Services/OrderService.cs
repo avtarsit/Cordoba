@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TIA.HR.Api.Services.SearchHelpers;
+using CordobaServices.SearchHelpers;
 
 namespace CordobaServices.Services
 {

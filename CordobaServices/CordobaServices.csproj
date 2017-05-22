@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IBannerServices.cs" />
     <Compile Include="Interfaces\ICategoryServices.cs" />
+    <Compile Include="Interfaces\ICommonServices.cs" />
     <Compile Include="Interfaces\ICountryServices.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
     <Compile Include="Interfaces\ICustomerGroupService.cs" />
