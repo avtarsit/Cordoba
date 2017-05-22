@@ -33,79 +33,79 @@
 
 
     $scope.SaveCountry = function (form) {
-    {
-        if (form.$valid) {
-            $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
-            .then(function (response) {
-                debugger;
-                if (response.data == 0) {
-                    //alert('already exists');
-                    notificationFactory.customError("Country Code is already Exists!!");
-                }
-                if (response.data > 0) {
-                    notificationFactory.customSuccess("Country Saved Successfully.");
-                    $state.go('ShowCountry');
-                }
-            })
-             .catch(function (response) {
+        {
+            if (form.$valid) {
+                $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
+                .then(function (response) {
+                    debugger;
+                    if (response.data == 0) {
+                        //alert('already exists');
+                        notificationFactory.customError("Country Code is already Exists!!");
+                    }
+                    if (response.data > 0) {
+                        notificationFactory.customSuccess("Country Saved Successfully.");
+                        $state.go('ShowCountry');
+                    }
+                })
+                 .catch(function (response) {
 
-             })
-      .finally(function () {
+                 })
+          .finally(function () {
 
-      });
+          });
 
+            }
         }
-    }
-    $scope.DeleteCountry = function () {
-        bootbox.dialog({
-            message: "Do you want remove country?",
-            title: "Confirmation",
-            className: "model",
-            buttons: {
-                success:
-                    {
-                        label: "Yes",
-                        className: "btn btn-primary theme-btn",
-                        callback: function (result) {
-                            if (result) {
-                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId)
-                                   .then(function (response) {
-                                       $state.go('ShowCountry');
+        $scope.DeleteCountry = function () {
+            bootbox.dialog({
+                message: "Do you want remove country?",
+                title: "Confirmation",
+                className: "model",
+                buttons: {
+                    success:
+                        {
+                            label: "Yes",
+                            className: "btn btn-primary theme-btn",
+                            callback: function (result) {
+                                if (result) {
+                                    $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId)
+                                       .then(function (response) {
+                                           $state.go('ShowCountry');
+                                       })
+                                   .catch(function (response) {
                                    })
-                               .catch(function (response) {
-                               })
-                               .finally(function () {
-                               });
+                                   .finally(function () {
+                                   });
+                                }
+                            }
+                        },
+                    danger:
+                        {
+                            label: "No",
+                            className: "btn btn-default",
+                            callback: function () {
+                                return true;
                             }
                         }
-                    },
-                danger:
-                    {
-                        label: "No",
-                        className: "btn btn-default",
-                        callback: function () {
-                            return true;
-                        }
-                    }
-            }
-        });
-    };
-
-    $scope.Cancel = function () {
-        var hasAnyUnsavedData = false;
-        hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
-        if (hasAnyUnsavedData) {
-            bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
-                if (result) {
-                    $state.go('ShowCountry');
                 }
-
             });
-        }
-        else {
-            $state.go('ShowCountry');
-        }
+        };
 
+        $scope.Cancel = function () {
+            var hasAnyUnsavedData = false;
+            hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
+            if (hasAnyUnsavedData) {
+                bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
+                    if (result) {
+                        $state.go('ShowCountry');
+                    }
+
+                });
+            }
+            else {
+                $state.go('ShowCountry');
+            }
+
+        }
     }
-
 });
