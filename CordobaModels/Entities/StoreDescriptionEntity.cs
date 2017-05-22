@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CordobaModels.Entities
 {
-   public class StoreDescriptionEntity : LanguageEntity
+   public class StoreDescriptionEntity 
     {
        public int? store_id { get; set; }
        public int? language_id { get; set; }
