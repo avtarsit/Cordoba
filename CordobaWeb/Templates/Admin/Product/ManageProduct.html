@@ -1,4 +1,9 @@
-﻿<div ng-controller="ManageProductController">
+﻿<style>
+    .radio label, .checkbox label {
+   padding-left: 0px; 
+}
+</style>
+<div ng-controller="ManageProductController">
     <form name="form" id="form" class="form-horizontal" novalidate>
         <div class="page-header">
             <div class="page-header-content">
@@ -80,14 +85,14 @@
                                                         <div class="form-group required">
                                                             <label class="col-lg-2 control-label mandatoryField" for="input-name1">Product Name</label>
                                                             <div class="col-sm-10">
-                                                                <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
-                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].ProductName" placeholder="Product Name" class="form-control" required="required">
+                                                                <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
+                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].name" placeholder="Product Name" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id].description" rows="4" cols="4"></textarea>
+                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].description" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -95,7 +100,7 @@
                                                                 <span data-toggle="tooltip" title="comma separated">Product Tags</span>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="ProductTags{{LangObj.language_id}}" value="" placeholder="Product Tags" id="ProductTags{{LangObj.language_id}}" class="form-control">
+                                                                <input type="text" name="ProductTags{{LangObj.language_id}}" placeholder="Product Tags" id="ProductTags{{LangObj.language_id}}" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].tag" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -217,26 +222,21 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>
                                             <div class="col-sm-10">
-                                                <select name="Category" ng-model="ProductObj.manufacturer_id" class="form-control">
-                                                    <option value="0" selected="selected"> --- None --- </option>
-                                                    <option value="1">Apple</option>
-                                                    <option value="2">Canon</option>
-                                                    <option value="3">CVD</option>
-                                                    <option value="4">	HTC</option>
-                                                </select>
+                                                <select ng-options="Obj.manufacturer_id as Obj.name  for Obj in ManufacturersList" class="form-control" ng-model="Obj.manufacturer_id" name="ManufacturerName"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
                                                 <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
-                                                <select name="Category" ng-model="ProductObj.category_id" class="form-control">
+                                                <select ng-options="Obj.category_id as Obj.name  for Obj in CategoryList" class="form-control" ng-model="Obj.category_id" name="CategoryName"></select>
+                                                <!--<select name="Category" ng-model="ProductObj.category_id" class="form-control">
                                                     <option value="0" selected="selected"> --- None --- </option>
                                                     <option value="1">Apple Products</option>
                                                     <option value="2">BBQs</option>
                                                     <option value="3">Baby</option>
                                                     <option value="4">	Computers</option>
-                                                </select>
+                                                </select>-->
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -250,26 +250,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-category">Catalogue Name</label>
-                                            <div class="col-sm-10">
-                                                <div class="scrollbox well well-sm clearfix">
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="18">
-                                                        CVD Edenred Vouchers
-                                                    </div>
-                                                    <div class="odd">
-                                                        <input type="checkbox" name="product_catalogue[]" value="20">
-                                                        Edenred
-                                                    </div>
-                                                    <div class="even">
-                                                        <input type="checkbox" name="product_catalogue[]" value="23">
-                                                        Miscellaneous Suppliers
+                                            <label class="col-sm-2 control-label">Catalogue Name</label>
+                                            <div class="col-lg-10">
+                                                <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                    <div class="col-sm-6 checkbox" ng-repeat="Item in ProductObj.CatalogueList">
+                                                        <label>
+                                                            <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;{{Item.Name}}</label>
+                                                            {{Item.StoreName}}
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
-                                    <div class="tab-pane" id="tab-image">
+                                    <!--<div class="tab-pane" id="tab-image">
                                         <div class="table-responsive">
                                             <table id="images" class="table table-striped table-bordered table-hover">
                                                 <thead>
@@ -301,7 +296,7 @@
                                                 </tfoot>
                                             </table>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -314,18 +309,20 @@
     </form>
 </div>
 <script>
-    setTimeout(function () {
-        CKEDITOR.replace('ProductDescriptionLang[1]');
-        CKEDITOR.replace('ProductDescriptionLang[2]');
-        CKEDITOR.replace('ProductDescriptionLang[3]');
-        CKEDITOR.replace('ProductDescriptionLang[4]');
-        CKEDITOR.replace('ProductDescriptionLang[5]');
-        CKEDITOR.replace('ProductDescriptionLang[6]');
-        CKEDITOR.replace('ProductDescriptionLang[7]');
+    //$(document).ready(function () {
+    //    setTimeout(function () {
+    //        debugger;
+    //        $scope.ProductObj.ProductDescriptionList;
+    //        CKEDITOR.replace('ProductDescriptionLang[1]');
+    //        CKEDITOR.replace('ProductDescriptionLang[2]');
+    //        CKEDITOR.replace('ProductDescriptionLang[3]');
+    //        CKEDITOR.replace('ProductDescriptionLang[4]');
+    //        CKEDITOR.replace('ProductDescriptionLang[5]');
+    //        CKEDITOR.replace('ProductDescriptionLang[6]');
+    //        CKEDITOR.replace('ProductDescriptionLang[7]');
+    //    },50);
 
-    }, 0);
-
-
+    //});
 </script>
 
 

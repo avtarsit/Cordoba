@@ -10,7 +10,6 @@ namespace CordobaModels.Entities
     {
         public int catalogue_Id { get; set; }
         public string Name { get; set; }
-
         public bool? IsSelected { get; set; }
     }
 }
