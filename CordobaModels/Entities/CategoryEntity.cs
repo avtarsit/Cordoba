@@ -20,6 +20,6 @@ namespace CordobaModels.Entities
         public Nullable<int> ParentId { get; set; }
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
-
+        public int? storeId { get; set; }
     }
 }

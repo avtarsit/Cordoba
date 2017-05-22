@@ -1,7 +1,9 @@
-﻿using CordobaModels.Entities;
+﻿using CordobaModels;
+using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ namespace CordobaServices.Services
 {
     public class CategoryService : ICategoryServices
     {
+        private GenericRepository<CategoryEntity> CategoryEntityGenericRepository = new GenericRepository<CategoryEntity>();
 
         public List<CategoryEntity> GetCategoryList(int CategoryId = 0)
         {
@@ -68,8 +71,42 @@ namespace CordobaServices.Services
 
 
 
+        //Popular Category
+
+        public List<CategoryEntity> GetCategoryListByStoreIdPopular(int storeID = 0)
+        {
+            List<CategoryEntity> PopularCategoryList = new List<CategoryEntity>();
+            if(storeID >= 0)
+            {
+                try
+                {
+                    SqlParameter[] param = new SqlParameter[1];
+                    param[0] = new SqlParameter("StoreId", storeID);
+                    PopularCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetCategoryListByStoreIdPopular", param).ToList<CategoryEntity>().ToList();
+                    
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+           }
+            return PopularCategoryList;
+        }
 
 
+        public List<CategoryEntity> GetStoreNameList()
+        {
+            try
+            {
+                var StoreList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetStoreNameList").ToList<CategoryEntity>().ToList();
+                return StoreList;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

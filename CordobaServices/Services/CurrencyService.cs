@@ -1,5 +1,4 @@
-﻿
-using CordobaModels;
+﻿using CordobaModels;
 using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
