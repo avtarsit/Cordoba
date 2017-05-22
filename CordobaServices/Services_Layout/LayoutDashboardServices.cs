@@ -32,5 +32,19 @@ namespace CordobaServices.Services_Layout
             return storeEntity;
         }
 
+        public List<ProductEntity> GetLatestProductByStoreId(int StoreID)
+        {           
+            SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+            var LatestProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetLatestProductByStoreId", sqlParameter).ToList();
+            return LatestProductList;
+        }
+
+        public List<ProductEntity> GetPopularCategoryListByStoreId(int StoreID)
+        {           
+            SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+            var LatestProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetLatestProductByStoreId", sqlParameter).ToList();
+            return LatestProductList;
+        }
+
     }
 }
