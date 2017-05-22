@@ -222,21 +222,22 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>
                                             <div class="col-sm-10">
-                                                <select ng-options="Obj.manufacturer_id as Obj.name  for Obj in ManufacturersList" class="form-control" ng-model="Obj.manufacturer_id" name="ManufacturerName"></select>
+                                                <select ng-options="Obj.manufacturer_id as Obj.name  for Obj in ManufacturersList" class="form-control" ng-model="ProductObj.manufacturer_id" name="ManufacturerName"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
                                                 <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
-                                                <select ng-options="Obj.category_id as Obj.name  for Obj in CategoryList" class="form-control" ng-model="Obj.category_id" name="CategoryName"></select>
-                                                <!--<select name="Category" ng-model="ProductObj.category_id" class="form-control">
-                                                    <option value="0" selected="selected"> --- None --- </option>
-                                                    <option value="1">Apple Products</option>
-                                                    <option value="2">BBQs</option>
-                                                    <option value="3">Baby</option>
-                                                    <option value="4">	Computers</option>
-                                                </select>-->
+                                                <select ng-options="Obj.category_id as Obj.name    for Obj in CategoryList" class="form-control" ng-model="ProductObj.category_id" name="CategoryName"></select>
+
+
+                                                <select class="form-control" ng-disabled="selectedReportModule== 0" ng-model="category_id" ng-change="getReportColumns(selectedReportSubModule_temp)">
+                                                    <option value="">Select Entity</option>
+                                                    <option ng-repeat="option in reportSubModules" value="{{option.RefTableName}}|{{option.TableName}}">
+                                                        <column>{{option.RefDisplayTableName}}</column> <column>( {{option.RefDisplayColumnName}} ON {{option.TableDisplayName}} {{ option.TableDisplayColumnName.length>0 ? '-':'' }}  {{option.TableDisplayColumnName}}) </column>
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
