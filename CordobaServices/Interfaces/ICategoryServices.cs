@@ -15,12 +15,11 @@ namespace CordobaServices.Interfaces
 
 
         //Popular Category
-        List<CategoryEntity> GetCategoryListByStoreIdPopular(int storeID = 0);
+        List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int storeID = 0);
 
-        List<CategoryEntity> GetStoreNameList();
+        List<StoreEntity> GetStoreNameList();
 
-        //int CreateOrUpdatePopularCategory(CategoryEntity popularCategory);
+        int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular);
 
-        //int DeletePopularCategory(int CategoryId);
     }
 }

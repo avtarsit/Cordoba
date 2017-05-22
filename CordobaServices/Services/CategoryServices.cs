@@ -13,6 +13,7 @@ namespace CordobaServices.Services
     public class CategoryService : ICategoryServices
     {
         private GenericRepository<CategoryEntity> CategoryEntityGenericRepository = new GenericRepository<CategoryEntity>();
+        private GenericRepository<CategoryPopularEntity> CategoryPopularEntityGenericRepository = new GenericRepository<CategoryPopularEntity>();
 
         public List<CategoryEntity> GetCategoryList(int CategoryId = 0)
         {
@@ -73,16 +74,16 @@ namespace CordobaServices.Services
 
         //Popular Category
 
-        public List<CategoryEntity> GetCategoryListByStoreIdPopular(int storeID = 0)
+        public List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int storeID = 0)
         {
-            List<CategoryEntity> PopularCategoryList = new List<CategoryEntity>();
+            List<CategoryPopularEntity> PopularCategoryList = new List<CategoryPopularEntity>();
             if(storeID >= 0)
             {
                 try
                 {
                     SqlParameter[] param = new SqlParameter[1];
                     param[0] = new SqlParameter("StoreId", storeID);
-                    PopularCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetCategoryListByStoreIdPopular", param).ToList<CategoryEntity>().ToList();
+                    PopularCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryPopularEntity>("EXEC GetCategoryListByStoreIdPopular", param).ToList<CategoryPopularEntity>().ToList();
                     
                 }
                 catch(Exception ex)
@@ -94,14 +95,39 @@ namespace CordobaServices.Services
         }
 
 
-        public List<CategoryEntity> GetStoreNameList()
+        public List<StoreEntity> GetStoreNameList()
         {
             try
             {
-                var StoreList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetStoreNameList").ToList<CategoryEntity>().ToList();
+                var StoreList = CategoryEntityGenericRepository.ExecuteSQL<StoreEntity>("EXEC GetStoreNameList").ToList<StoreEntity>().ToList();
                 return StoreList;
             }
             catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular)
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                    new SqlParameter("category_popularId", categoryPopular.category_popularId!=null ?categoryPopular.category_popularId:(object)DBNull.Value)
+                    ,new SqlParameter("category_Id", categoryPopular.category_Id)
+                    ,new SqlParameter("store_Id", categoryPopular.store_Id)
+                    ,new SqlParameter("createdby", categoryPopular.createdby)
+                };
+            
+
+                var result = CategoryPopularEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCategoryAsPopular", param).ToList<int>().FirstOrDefault();
+
+
+
+                return result;
+            }
+            catch (Exception)
             {
 
                 throw;
