@@ -15,6 +15,6 @@ namespace CordobaModels.Entities
         public int? createdby { get; set; }
         public string name { get; set; }
         public bool? IsPopular { get; set; }
-
+        public string image { get; set; }
     }
 }

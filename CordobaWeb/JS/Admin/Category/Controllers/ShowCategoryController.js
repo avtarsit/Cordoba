@@ -28,8 +28,6 @@
       .finally(function () {
 
       });
-
-
     }
     $scope.GetCategoryList();
 

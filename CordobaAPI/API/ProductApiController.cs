@@ -51,7 +51,6 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -61,12 +60,9 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _ProductServices.AddProductToCart(  store_id,  customer_id,  product_id,  qty,  cartgroup_id);
-                if (result != null)
-                {
+                var result = _ProductServices.AddProductToCart(  store_id,  customer_id,  product_id,  qty,  cartgroup_id);             
                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+               
             }
             catch (Exception)
             {

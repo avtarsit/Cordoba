@@ -5,8 +5,6 @@
     Tab();
     //#endregion  
 
-
-
     //$scope.PopularCategoryList = [
     //    { category_id: 1, ImgSrc: '/Content/layout1/images/electronics.png', category_name: 'Electronics', AltTitle: 'Electronics' }
     //   , { category_id: 2, ImgSrc: '/Content/layout1/images/fashion.png', category_name: 'Fashion', AltTitle: 'Fashion' }

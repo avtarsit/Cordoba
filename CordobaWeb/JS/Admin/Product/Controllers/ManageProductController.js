@@ -24,7 +24,7 @@
 
         $scope.IsEditMode = false;
         $scope.product_id = 0;
-
+        $scope.ProductObj = new Object();
         if ($stateParams.ProductId != undefined && $stateParams.ProductId != null) {
             $scope.PageTitle = "Update Product";
             $scope.product_id = $stateParams.ProductId;
@@ -34,8 +34,10 @@
             $scope.PageTitle = "Add Product";
         }
 
-        
+
         GetLanguageList();
+        GetManufacturersList();
+        GetCategoryList();
 
         $scope.GetProductById();
     }
@@ -66,8 +68,6 @@
         debugger;
         $scope.ProductObj;
         if (form.$valid) {
-
-           
         }
     }
 
@@ -100,11 +100,13 @@
     };
 
     $scope.GetProductById = function () {
-        $http.get(configurationService.basePath + "api/ProductApi//GetProductById?product_id=" + $scope.product_id)
+        $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id)
           .then(function (response) {
               $scope.ProductObj = response.data;
+              debugger;
           })
       .catch(function (response) {
+          debugger;
       })
       .finally(function () {
 
@@ -127,7 +129,6 @@
     }
 
     function GetLanguageList() {
-
         $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
         .then(function (response) {
             if (response.data.length > 0) {
@@ -142,5 +143,39 @@
     });
 
     }
+
+    function GetManufacturersList() {
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.ManufacturersList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    function GetCategoryList() {
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
+          .then(function (response) {
+
+              if (response.data.length > 0) {
+                  $scope.CategoryList = response.data;
+
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
     Init();
 });

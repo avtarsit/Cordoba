@@ -1,13 +1,14 @@
-﻿app.controller('AddProductToCartController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+﻿app.controller('AddProductToCartController', function (StoreSessionDetail,$timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
+    $scope.StoreDetailInSession = StoreSessionDetail;
     //#endregion  
-    $scope.AddProductToCart = function () {
+    $scope.AddProductToCart = function (ProductObj) {
         debugger;
-        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=0&customer_id=1&product_id=1&qty=1&cartgroup_id=0")
+        var CustomerId = 1;
+        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + CustomerId + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=0")
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
