@@ -85,9 +85,9 @@
                     <div class="col-sm-3 text-center pb-20" ng-repeat="PopularCategory in PopularCategoryList">
                         <div class="row">
                             <div class="col-sm-12">
-                                <img ng-src="{{PopularCategory.ImgSrc}}" alt="{{PopularCategory.AltTitle}}" />
+                                <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
                             </div>
-                            <p>{{PopularCategory.category_name}}</p>
+                            <p>{{PopularCategory.name}}</p>
                         </div>
                     </div>                   
                 </div>
@@ -162,8 +162,8 @@
                                     <a href="#">{{LatestProduct.name}}</a>
                                     <p>{{LatestProduct.model}}</p>
                                     <p><span>{{LatestProduct.Points}}</span></p>
-                                    <div class="row">
-                                        <button class="btn btn-default">Add to Cart</button>
+                                    <div class="row" ng-controller="AddProductToCartController">
+                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
