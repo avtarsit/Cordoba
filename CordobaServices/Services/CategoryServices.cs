@@ -3,6 +3,7 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,19 @@ namespace CordobaServices.Services
             Categories.Add(new CategoryEntity() { CategoryId = 13,name = "Nursery", SortOrder = 13 });
             Categories.Add(new CategoryEntity() { CategoryId = 14,name = "Personal Care", SortOrder = 14 });
             Categories.Add(new CategoryEntity() { CategoryId = 15,name = "Personal Items", SortOrder = 15 });
+        private GenericRepository<CategoryEntity> objGenericRepository = new GenericRepository<CategoryEntity>();
+        public List<CategoryEntity> GetCategoryList(int CategoryId = 0)
+        {
+            List<CategoryEntity> Categories = new List<CategoryEntity>();
+            var ParameterCategoryId = new SqlParameter
+            {
+                ParameterName = "CategoryId",
+                DbType = DbType.Int32,
+                Value = CategoryId
+            };
+            var catalogueResult = objGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterCategoryId).ToList<CategoryEntity>();
+            if (catalogueResult != null)
+                Categories = catalogueResult.ToList();
             return Categories;
         }
 
@@ -41,9 +55,7 @@ namespace CordobaServices.Services
             CategoryEntity categoryEntity = new CategoryEntity();
             if (CategoryId > 0)
             {
-                categoryEntity = (from t in GetCategoryList(CategoryId)
-                                  where t.CategoryId == CategoryId
-                                select t).FirstOrDefault();
+                categoryEntity = GetCategoryList(CategoryId).FirstOrDefault();
             }
             else
             {
@@ -51,18 +63,6 @@ namespace CordobaServices.Services
             }
             CategoryStoreEntity CategoryStoreList = new CategoryStoreEntity();
             List<StoreEntity> StoreList = new List<StoreEntity>();
-            //StoreList.Add(new StoreEntity() { StoreID = 0, StoreName = "Default", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 1, StoreName = "Make a Difference Thank You AE", IsSelected = true });
-            //StoreList.Add(new StoreEntity() { StoreID = 2, StoreName = "Arkle Finance rewards 2015", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 3, StoreName = "Make a Difference Thank You AU", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 4, StoreName = "Make a Difference Thank You CA", IsSelected = true });
-            //StoreList.Add(new StoreEntity() { StoreID = 5, StoreName = "Make a Difference Thank You FR", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 6, StoreName = "Make a Difference Thank You JP", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 7, StoreName = "Make a Difference Thank You IN", IsSelected = true });
-            //StoreList.Add(new StoreEntity() { StoreID = 8, StoreName = "Make a Difference Thank You NZ", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 9, StoreName = "Make a Difference Thank You US", IsSelected = false });
-            //StoreList.Add(new StoreEntity() { StoreID = 10, StoreName = "Annodata rewards", IsSelected = false });
-
             CategoryStoreList.CategoryId = CategoryId;
             CategoryStoreList.CategoryStore = StoreList;
             categoryEntity.CategoryStoreList = CategoryStoreList;

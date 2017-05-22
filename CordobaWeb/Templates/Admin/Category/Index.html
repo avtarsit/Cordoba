@@ -30,9 +30,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="Item in CategoryList">
-                    <td ng-bind="Item.name"></td>
-                    <td ng-bind="Item.SortOrder"></td>
-                    <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageCategory({CategoryId:Item.CategoryId})"><i class="glyphicon glyphicon-edit curso"></i></td>
+                    <td><div ng-if="Item.parent_Id==0">{{Item.name}}</div>  <div ng-if="Item.parent_Id>=0">{{Item.ParentCategoryName}} > {{Item.name}}</div>  </td>
+                    <td ng-bind="Item.sort_order"></td>
+                    <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageCategory({CategoryId:Item.Category_Id})"><i class="glyphicon glyphicon-edit curso"></i></td>
                 </tr>
             </tbody>
         </table>

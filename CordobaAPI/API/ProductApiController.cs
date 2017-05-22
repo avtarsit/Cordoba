@@ -51,7 +51,6 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
-
                 throw;
             }
 

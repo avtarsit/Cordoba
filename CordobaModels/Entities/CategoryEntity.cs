@@ -10,6 +10,7 @@ namespace CordobaModels.Entities
     {
         public int? CategoryId { get; set; }
         public string name { get; set; }
+        public string CategoryName { get; set; }
         public int?  SortOrder {get;set;}
         public int? CreatedBy { get; set; }
         public Nullable<DateTime> ModifiedBy { get; set; }
@@ -21,5 +22,14 @@ namespace CordobaModels.Entities
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
+
+        // need to remove 
+        public int? Category_Id { get; set; }
+        public Nullable<int> parent_Id { get; set; }
+        public Nullable<int> parentGroupId { get; set; }
+        
+        
+        
+
     }
 }
