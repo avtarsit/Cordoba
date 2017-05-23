@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
     public class CategoryEntity
     {
-        public int? CategoryId { get; set; }
+        public int? Category_Id { get; set; }
         public string name { get; set; }
         public int?  SortOrder {get;set;}
         public int? CreatedBy { get; set; }
@@ -21,5 +21,6 @@ namespace CordobaModels.Entities
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
+        public string image { get; set; }
     }
 }

@@ -1116,7 +1116,7 @@ app.directive('bxSlider', [function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-            scope.$on('repeatFinished', function () {              
+            scope.$on('repeatFinished', function () {                
                 element.bxSlider(scope.$eval('{' + attrs.bxSlider + '}'));
             });
         }
