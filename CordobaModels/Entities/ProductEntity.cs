@@ -47,7 +47,8 @@ namespace CordobaModels.Entities
 
         public DateTime? date_added { get; set; }
         public DateTime? date_modified { get; set; }
-        
+        public int TotalRecords { get; set; }
+        public string CatalogueIdCSV { get; set; }
         public List<ProductDescriptionList> ProductDescriptionList { get; set; }
         public List<CatalogueEntity> CatalogueList { get; set; }
      

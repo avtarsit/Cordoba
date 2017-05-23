@@ -24,7 +24,7 @@
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
                     <li>
-                        <button type="submit" ng-click="SaveProduct(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="submit" ng-click="InsertUpdateProduct(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteProduct(ProductId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
@@ -92,7 +92,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].description" rows="4" cols="4"></textarea>
+                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].description" rows="5" cols="8"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -120,19 +120,19 @@
                                         <div class="form-group required">
                                             <label class="col-sm-2 control-label" for="input-model">Model</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="model" ng-model="ProductObj.model"  placeholder="Model" id="input-model" class="form-control">
+                                                <input type="text" name="model" ng-model="ProductObj.Model" placeholder="Model" id="input-model" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-price">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="price" ng-model="ProductObj.price" placeholder="Price" id="input-price" class="form-control">
+                                                <input type="text" name="price" ng-model="ProductObj.Price" placeholder="Price" id="input-price" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-quantity">Quantity</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="quantity" ng-model="ProductObj.quantity" placeholder="Quantity" id="input-quantity" class="form-control">
+                                                <input type="text" name="quantity" ng-model="ProductObj.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -144,21 +144,15 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-subtract">Subtract Stock</label>
                                             <div class="col-sm-10">
-                                                <select name="subtract" id="input-subtract" ng-model="ProductObj.subtract" class="form-control">
-                                                    <option value="1">Yes</option>
-                                                    <option value="0" selected="selected">No</option>
-                                                </select>
+                                                <select ng-options="Subtract.ID as Subtract.Name  for Subtract in ProductObjSubtract"
+                                                        class="form-control" ng-model="ProductObj.subtract" name="CountryStatus"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-stock-status"><span data-toggle="tooltip" title="" data-original-title="Status shown when a product is out of stock">Out Of Stock Status</span></label>
                                             <div class="col-sm-10">
-                                                <select name="stock_status_id" id="input-stock-status" ng-model="ProductObj.stock_status_id" class="form-control">
-                                                    <option value="6">2-3 Days</option>
-                                                    <option value="7">In Stock</option>
-                                                    <option value="5" selected="selected">Out Of Stock</option>
-                                                    <option value="8">Pre-Order</option>
-                                                </select>
+                                                <select ng-options="Stock_Status.ID as Stock_Status.Name  for Stock_Status in ProductObjStock_Status"
+                                                        class="form-control" ng-model="ProductObj.stock_status_id" name="CountryStatus"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -189,10 +183,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-status">Status</label>
                                             <div class="col-sm-10">
-                                                <select name="status" id="input-status" ng-model="ProductObj.status" class="form-control">
-                                                    <option value="1">Enabled</option>
-                                                    <option value="0" selected="selected">Disabled</option>
-                                                </select>
+                                                <select ng-options="Status.ID as Status.Name  for Status in ProductStatus"
+                                                        class="form-control" ng-model="ProductObj.status" name="CountryStatus"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -228,14 +220,10 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
-                                                <!--<input type="text" name="category" value="" placeholder="Categories" id="input-category" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>-->
-                                                <select ng-options="Obj.category_id as Obj.name    for Obj in CategoryList" class="form-control" ng-model="ProductObj.category_id" name="CategoryName"></select>
-
-
-                                                <select class="form-control" ng-disabled="selectedReportModule== 0" ng-model="category_id" ng-change="getReportColumns(selectedReportSubModule_temp)">
-                                                    <option value="">Select Entity</option>
-                                                    <option ng-repeat="option in reportSubModules" value="{{option.RefTableName}}|{{option.TableName}}">
-                                                        <column>{{option.RefDisplayTableName}}</column> <column>( {{option.RefDisplayColumnName}} ON {{option.TableDisplayName}} {{ option.TableDisplayColumnName.length>0 ? '-':'' }}  {{option.TableDisplayColumnName}}) </column>
+                                                <select class="form-control" ng-model="ProductObj.category_id">
+                                                    <!--<option value=null>Select Category</option>-->
+                                                    <option ng-selected="{{option.category_id == ProductObj.category_id}}" ng-repeat="option in CategoryList" value={{option.category_id}}>
+                                                        <column>{{ option.name }} {{ option.parent_Id==0 ? '' : '>' }}  {{option.parent_Id > 0 ? option.ParentCategoryName :'' }}   </column>
                                                     </option>
                                                 </select>
                                             </div>
@@ -243,11 +231,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-category">Supplier</label>
                                             <div class="col-sm-10">
-                                                <select name="supplier_id" ng-model="ProductObj.supplier_id" class="form-control">
-                                                    <option value="0" selected="selected"> --- None --- </option>
-                                                    <option value="1">Procurement International Limited</option>
-                                                    <option value="2">Apple</option>
-                                                </select>
+                                                <select ng-options="Obj.supplier_id as Obj.name  for Obj in SupplierList" class="form-control" ng-model="ProductObj.supplier_id" name="supplieeName"></select>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -310,20 +294,18 @@
     </form>
 </div>
 <script>
-    //$(document).ready(function () {
-    //    setTimeout(function () {
-    //        debugger;
-    //        $scope.ProductObj.ProductDescriptionList;
-    //        CKEDITOR.replace('ProductDescriptionLang[1]');
-    //        CKEDITOR.replace('ProductDescriptionLang[2]');
-    //        CKEDITOR.replace('ProductDescriptionLang[3]');
-    //        CKEDITOR.replace('ProductDescriptionLang[4]');
-    //        CKEDITOR.replace('ProductDescriptionLang[5]');
-    //        CKEDITOR.replace('ProductDescriptionLang[6]');
-    //        CKEDITOR.replace('ProductDescriptionLang[7]');
-    //    },50);
+    $(document).ready(function () {
+        setTimeout(function () {
+            CKEDITOR.replace('ProductDescriptionLang[1]');
+            CKEDITOR.replace('ProductDescriptionLang[2]');
+            CKEDITOR.replace('ProductDescriptionLang[3]');
+            CKEDITOR.replace('ProductDescriptionLang[4]');
+            CKEDITOR.replace('ProductDescriptionLang[5]');
+            CKEDITOR.replace('ProductDescriptionLang[6]');
+            CKEDITOR.replace('ProductDescriptionLang[7]');
+        },50);
 
-    //});
+    });
 </script>
 
 

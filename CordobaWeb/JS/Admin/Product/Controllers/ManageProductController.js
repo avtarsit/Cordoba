@@ -6,11 +6,15 @@
     //#endregion
 
     function Init() {
+        $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
+        $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
+        $scope.ProductObjStock_Status = [{ ID: 6, Name: '2-3 Days' }, { ID: 7, Name: 'In Stock' }, { ID: 5, Name: 'Out Of Stock' }, { ID: 8, Name: 'Pre-Order' }];
+
+        $scope.IsEditMode = false;
+        $scope.product_id = 0;
+        $scope.ProductObj = new Object();
+
         createDatePicker();
-        $scope.EnumStatus = [
-             { 'StatusId': 1, 'StatusName': 'Enabled' }
-           , { 'StatusId': 2, 'StatusName': 'Disabled' }
-        ];
         $scope.EnumLanguageList = [
             { 'LangId': 1, 'LangName': 'English' }
           , { 'LangId': 2, 'LangName': 'Deutsch' }
@@ -21,10 +25,6 @@
                , { 'LangId': 7, 'LangName': 'Nederlands' }
         ];
 
-
-        $scope.IsEditMode = false;
-        $scope.product_id = 0;
-        $scope.ProductObj = new Object();
         if ($stateParams.ProductId != undefined && $stateParams.ProductId != null) {
             $scope.PageTitle = "Update Product";
             $scope.product_id = $stateParams.ProductId;
@@ -33,15 +33,12 @@
         else {
             $scope.PageTitle = "Add Product";
         }
-
-
         GetLanguageList();
         GetManufacturersList();
         GetCategoryList();
-
+        GetSupplierList();
         $scope.GetProductById();
     }
-
 
     //#region Image Tab
     $scope.AddImage = function () {
@@ -64,12 +61,7 @@
     }
     //#endregion
 
-    $scope.SaveProduct = function (form) {
-        debugger;
-        $scope.ProductObj;
-        if (form.$valid) {
-        }
-    }
+   
 
     $scope.DeleteProduct = function () {
         bootbox.dialog({
@@ -162,8 +154,10 @@
     function GetCategoryList() {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
           .then(function (response) {
-
+              debugger;
               if (response.data.length > 0) {
+
+                  debugger;
                   $scope.CategoryList = response.data;
 
               }
@@ -176,6 +170,59 @@
       });
     }
 
+    function GetSupplierList() {
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.SupplierList = response.data;
+              }
+          })
+      .catch(function (response) {
 
+      })
+      .finally(function () {
+
+      });
+    }
+
+    function GetSelectedCatalogueListCSV(CatalogueObj) {
+        var CatalogueIdCSV = "";
+        var SelectedCatalogueList = $filter('filter')(CatalogueObj, { IsSelected: true }, true);
+        CatalogueIdCSV = GetCSVFromJsonArray(SelectedCatalogueList, "catalogue_Id");
+        return CatalogueIdCSV;
+    }
+
+    $scope.InsertUpdateProduct = function (form) {
+        debugger;
+        
+        if (form.$valid) {
+            $scope.ProductObj.CatalogueIdCSV = "";
+            $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
+            var productEntity = JSON.stringify($scope.ProductObj);
+            $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct", productEntity)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Product Saved Successfully.");
+                      $state.go('Product');
+                  }
+                  else if (response.data == -1) {
+                      notificationFactory.customError("Product name is already Exists!");
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.error("Error occur during save record.");
+          })
+          .finally(function () {
+
+          });
+
+        }
+    }
+
+
+    //#region init
     Init();
+    //#endregion Image Tab
+
+
 });
