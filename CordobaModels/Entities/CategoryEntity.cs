@@ -19,15 +19,13 @@ namespace CordobaModels.Entities
         public bool? IsActive { get; set; }
         public CategoryStoreEntity CategoryStoreList { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public Nullable<int> parentGroupId { get; set; }
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
         public string image { get; set; }
-
-        // need to remove 
-        public int? Category_Id { get; set; }
-        public Nullable<int> parent_Id { get; set; }
-        public Nullable<int> parentGroupId { get; set; }
+  
+      
         
         
         
