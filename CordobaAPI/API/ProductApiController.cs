@@ -1,4 +1,5 @@
 ﻿using CordobaServices.Interfaces;
+using CordobaServices.Helpers;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CordobaModels.Entities;
+
 
 
 namespace CordobaAPI.API
@@ -17,17 +20,26 @@ namespace CordobaAPI.API
         {
             _ProductServices = new ProductService();
         }
-        [HttpGet]
-        public HttpResponseMessage GetProductList()
+        [HttpPost]
+        public TableParameter<ProductEntity> GetProductList(int PageIndex, TableParameter<ProductEntity> tableParameter)
         {
             try
             {
-                var result = _ProductServices.GetProductList();
-                if (result != null)
+
+                tableParameter.PageIndex = PageIndex;
+                string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+                var result = _ProductServices.GetProductList(sortColumn, tableParameter, "").ToList();
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                    totalRecords = result.FirstOrDefault().TotalRecords;
                 }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return new TableParameter<ProductEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
             }
             catch (Exception)
             {
@@ -51,7 +63,6 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -92,5 +103,24 @@ namespace CordobaAPI.API
             }
 
         }
+
+        [HttpPost]
+        public HttpResponseMessage InsertUpdateProduct(ProductEntity productEntity)
+        {
+            try
+            {
+                var result = _ProductServices.InsertUpdateProduct(productEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

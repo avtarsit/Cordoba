@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TIA.HR.Api.Services.SearchHelpers;
+using CordobaServices.Helpers;
 
 namespace CordobaServices.Interfaces
 {
