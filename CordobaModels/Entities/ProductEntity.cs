@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
     public class ProductEntity
     {
-        public int? product_id { get; set; }
+        public int product_id { get; set; }
         public string name { get; set; }
 
         #region Data Tab
@@ -21,7 +21,7 @@ namespace CordobaModels.Entities
         public int? subtract { get; set; }
         public int? stock_status_id { get; set; }
         public int? shipping { get; set; }
-        public DateTime? date_available { get; set; }
+        public System.DateTime? date_available { get; set; }
         public int? status { get; set; }
         public string StatusName { get; set; }
         public int? sort_order { get; set; }
@@ -31,7 +31,7 @@ namespace CordobaModels.Entities
         #region Shipping Details
 
         public int? country_id { get; set; }
-        public decimal? shipping_cost { get; set; }
+        public decimal shipping_cost { get; set; }
         public decimal? cost { get; set; }
         public string countryName { get; set; }
 
