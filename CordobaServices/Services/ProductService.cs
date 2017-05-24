@@ -17,15 +17,22 @@ namespace CordobaServices.Services
         //private GenericRepository<LanguageEntity> objGenericRepository = new GenericRepository<LanguageEntity>();
 
         private GenericRepository<ProductEntity> objGenericRepository = new GenericRepository<ProductEntity>();
-        public  IEnumerable<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string PageFrom = "")
+        public List<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity)
         {
             try
             {
                 var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
                 var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
-                var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
-                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", paramOrderBy, paramPageSize, paramPageIndex, paramPageFrom).AsQueryable();
+                //var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
+
+                var paramName = new SqlParameter { ParameterName = "name", DbType = DbType.String, Value = name ?? DBNull.Value.ToString()};
+                var paramPrice = new SqlParameter { ParameterName = "price", DbType = DbType.Decimal, Value = Price ?? (object) DBNull.Value };
+                var paramStatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = status?? (object) DBNull.Value };
+                var paramModel = new SqlParameter { ParameterName = "Model", DbType = DbType.String, Value = Model ?? DBNull.Value.ToString() };
+                var paramQuantity = new SqlParameter { ParameterName = "Quantity", DbType = DbType.Int32, Value = Quantity ??(object) DBNull.Value };
+
+                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", paramOrderBy, paramPageSize, paramPageIndex, paramName, paramPrice, paramStatus, paramModel, paramQuantity).ToList<ProductEntity>();
                 return query;
             }
             catch (Exception)

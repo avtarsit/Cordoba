@@ -103,6 +103,7 @@
                  
                   $scope.ProductObj.manufacturer_id = 0;
                   $scope.ProductObj.supplier_id = 0;
+                  $scope.ProductObj.country_id = 222   // country_id  -United Kingdom
               }
           })
       .catch(function (response) {

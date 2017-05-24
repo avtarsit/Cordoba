@@ -13,6 +13,12 @@
 
     $scope.PageTitle = "Products";
 
+    $scope.ProductFilter = new Object();
+    $scope.ProductFilter.name = "";
+    $scope.ProductFilter.Model = "";
+    $scope.ProductFilter.Price = "";
+    $scope.ProductFilter.Quantity = "";
+    $scope.ProductFilter.status = "";
 
     //$scope.GetProductList = function () {
     //    $http.get(configurationService.basePath + "api/ProductApi/GetProductList")
@@ -41,7 +47,6 @@
     }
 
     function BindSorting(aoData, oSettings) {
-        debugger;
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;
@@ -53,7 +58,13 @@
     }
 
     $scope.GetProductList = function () {
-
+        var filter = $.param({
+            name: $scope.ProductFilter.name,
+            Price: $scope.ProductFilter.Price,
+            status: $scope.ProductFilter.status,
+            Model: $scope.ProductFilter.Model,
+            Quantity: $scope.ProductFilter.Quantity,
+        });
         if ($.fn.DataTable.isDataTable("#tblProduct")) {
             $('#tblProduct').DataTable().destroy();
         }
@@ -63,7 +74,7 @@
                 "sProcessing": "",
                 "sZeroRecords": "<span class='pull-left'>No records found</span>",
             },
-            "searching": true,
+            "searching": false,
             "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
@@ -74,14 +85,14 @@
             "aaSorting": [[1, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ProductApi/GetProductList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                aoData = BindSearchCriteria(aoData);
+                //aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblProduct').DataTable().page.info().page) + 1;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex,
+                    "url": sSource + "?PageIndex=" + PageIndex + "&name=" + $scope.ProductFilter.name + "&Price=" + $scope.ProductFilter.Price + "&status=" + $scope.ProductFilter.status + "&Model=" + $scope.ProductFilter.Model + "&Quantity=" + $scope.ProductFilter.Quantity,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -116,6 +127,9 @@
                     }
                 },
             ],
+            "initComplete": function () {
+                $compile(angular.element("#tblProduct").contents())($scope);
+            },
             "fnCreatedRow": function (nRow, aData, iDataIndex) {
                 $compile(angular.element(nRow).contents())($scope);
             },
