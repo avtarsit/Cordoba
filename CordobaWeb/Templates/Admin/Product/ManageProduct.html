@@ -43,14 +43,14 @@
                                 <div class="col-md-10 col-md-offset-1">
 
                                     <div role="tabpanel" class="form-horizontal" id="messages">
-                                        <!--<div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
+                                        <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
                                             <ul ng-show="validationErrors">
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.Category_Name_English.$error.required">Product Name is required.</li>
+                                                <li ng-show="form.product_shipping_costs.$error.required">Shipping cost is required.</li>
                                             </ul>
-                                        </div>-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -85,14 +85,14 @@
                                                         <div class="form-group required">
                                                             <label class="col-lg-2 control-label mandatoryField" for="input-name1">Product Name</label>
                                                             <div class="col-sm-10">
-                                                                <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
-                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].name" placeholder="Product Name" class="form-control" />
+                                                                <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[$index].language_id=LangObj.language_id">
+                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].name" placeholder="Product Name" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].description" rows="5" cols="8"></textarea>
+                                                                <textarea ckeditor="" name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].description" rows="5" cols="8"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -100,7 +100,7 @@
                                                                 <span data-toggle="tooltip" title="comma separated">Product Tags</span>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" name="ProductTags{{LangObj.language_id}}" placeholder="Product Tags" id="ProductTags{{LangObj.language_id}}" ng-model="ProductObj.ProductDescriptionList[LangObj.language_id-1].tag" class="form-control">
+                                                                <input type="text" name="ProductTags{{LangObj.language_id}}" placeholder="Product Tags" id="ProductTags{{LangObj.language_id}}" ng-model="ProductObj.ProductDescriptionList[$index].tag" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -126,19 +126,19 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-price">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="price" ng-model="ProductObj.Price" placeholder="Price" id="input-price" class="form-control">
+                                                <input type="number" maxlength="15" name="price" ng-model="ProductObj.Price" placeholder="Price" id="input-price" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-quantity">Quantity</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="quantity" ng-model="ProductObj.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
+                                                <input type="number" maxlength="5" name="quantity" ng-model="ProductObj.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-minimum"><span data-toggle="tooltip" title="" data-original-title="Force a minimum ordered amount">Minimum Quantity</span></label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="minimum" ng-model="ProductObj.minimum" placeholder="Minimum Quantity" id="input-minimum" class="form-control">
+                                                <input type="number" maxlength="5" name="minimum" ng-model="ProductObj.minimum" placeholder="Minimum Quantity" id="input-minimum" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Requires Shipping</label>
                                             <div class="col-sm-10">
-                                                <input type="checkbox" ng-false-value="0" ng-true-value="1" name="shipping" ng-model="ProductObj.shipping">
+                                                <input type="checkbox" ng-false-value="0" ng-true-value="1" name="shipping" ng-model="ProductObj.shipping" >
                                                 <!--<label class="radio-inline">
                                                     <input type="radio" name="shipping" value="1" checked="checked">
                                                     Yes
@@ -173,7 +173,7 @@
                                             <label class="col-sm-2 control-label" for="input-date-available">Date Available</label>
                                             <div class="col-sm-3">
                                                 <div class="input-group myDatePicker date">
-                                                    <input type="text" class="form-control" ng-model="ProductObj.date_added" placeholder="Date Available(mm/dd/yyyy)" />
+                                                    <input type="text" class="form-control" ng-model="ProductObj.date_available" placeholder="Date Available(mm/dd/yyyy)" />
                                                     <span class="input-group-addon cursor-pointer">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -190,7 +190,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-sort-order">Sort Order</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="sort_order" ng-model="ProductObj.sort_order" placeholder="Sort Order" id="input-sort-order" class="form-control">
+                                                <input type="number" maxlength="5" name="sort_order" ng-model="ProductObj.sort_order" placeholder="Sort Order" id="input-sort-order" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +206,7 @@
                                             <div class="col-sm-2">
                                                 <input type="hidden" class="form-control" ng-bind="ProductObj.country_id" name="product_shipping_costs[0][country_id]">
                                                 <input type="hidden" class="form-control" ng-bind="ProductObj.country_name" name="product_shipping_costs[0][country_name]" value="United Kingdom">
-                                                <input type="text" class="form-control"  ng-model="ProductObj.cost" name="product_shipping_costs[0][shipping_cost]" >
+                                                <input type="number" maxlength="10" class="form-control" ng-model="ProductObj.shipping_cost" name="product_shipping_costs" required="required">
                                             </div>
                                         </div>
                                     </div>
@@ -214,17 +214,18 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>
                                             <div class="col-sm-10">
-                                                <select ng-options="Obj.manufacturer_id as Obj.name  for Obj in ManufacturersList" class="form-control" ng-model="ProductObj.manufacturer_id" name="ManufacturerName"></select>
+                                                <select ng-options="Obj.manufacturer_id as Obj.name  for Obj in ManufacturersList" class="form-control" ng-model="ProductObj.manufacturer_id" name="ManufacturerName">
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" ng-model="ProductObj.category_id">
+                                                <select class="form-control" ng-options="option.Category_Id as option.name for  option in CategoryList | unique:'name'" ng-model="ProductObj.category_id">
                                                     <!--<option value=null>Select Category</option>-->
-                                                    <option ng-selected="{{option.category_id == ProductObj.category_id}}" ng-repeat="option in CategoryList" value={{option.category_id}}>
-                                                        <column>{{ option.name }} {{ option.parent_Id==0 ? '' : '>' }}  {{option.parent_Id > 0 ? option.ParentCategoryName :'' }}   </column>
-                                                    </option>
+                                                    <!--<option value="{{option.Category_Id}}">
+                                                    <column>{{ option.name }} {{ option.parent_Id==0 ? '' : '>' }}  {{option.parent_Id > 0 ? option.ParentCategoryName :'' }}   </column>
+                                                </option>-->
                                                 </select>
                                             </div>
                                         </div>
@@ -296,13 +297,13 @@
 <script>
     $(document).ready(function () {
         setTimeout(function () {
-            CKEDITOR.replace('ProductDescriptionLang[1]');
-            CKEDITOR.replace('ProductDescriptionLang[2]');
-            CKEDITOR.replace('ProductDescriptionLang[3]');
-            CKEDITOR.replace('ProductDescriptionLang[4]');
-            CKEDITOR.replace('ProductDescriptionLang[5]');
-            CKEDITOR.replace('ProductDescriptionLang[6]');
-            CKEDITOR.replace('ProductDescriptionLang[7]');
+            //CKEDITOR.replace('ProductDescriptionLang[1]');
+            //CKEDITOR.replace('ProductDescriptionLang[2]');
+            //CKEDITOR.replace('ProductDescriptionLang[3]');
+            //CKEDITOR.replace('ProductDescriptionLang[4]');
+            //CKEDITOR.replace('ProductDescriptionLang[5]');
+            //CKEDITOR.replace('ProductDescriptionLang[6]');
+            //CKEDITOR.replace('ProductDescriptionLang[7]');
         },50);
 
     });

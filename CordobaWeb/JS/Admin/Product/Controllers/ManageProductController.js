@@ -32,6 +32,7 @@
         }
         else {
             $scope.PageTitle = "Add Product";
+
         }
         GetLanguageList();
         GetManufacturersList();
@@ -94,15 +95,45 @@
     $scope.GetProductById = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id)
           .then(function (response) {
-              $scope.ProductObj = response.data;
               debugger;
+              $scope.ProductObj = response.data;
+              CreateDescriptionObject();
+              if($scope.ProductObj.product_id==0)
+              {
+                 
+                  $scope.ProductObj.manufacturer_id = 0;
+                  $scope.ProductObj.supplier_id = 0;
+              }
           })
       .catch(function (response) {
-          debugger;
+          
       })
       .finally(function () {
 
       });
+    }
+
+    function CreateDescriptionObject() {
+        var TempDescObject = [];
+        angular.copy($scope.ProductObj.ProductDescriptionList, TempDescObject);
+        $scope.ProductObj.ProductDescriptionList = [];
+        debugger;
+        angular.forEach($scope.LanguageList, function (col, i) {
+            var ProductDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
+            if (ProductDescObj == undefined || ProductDescObj == null || ProductDescObj.length==0)
+            {
+                var DescObj = new Object();
+                DescObj.language_id = col.language_id;
+                DescObj.name = "";
+                DescObj.description = "";
+                DescObj.tag = "";
+                $scope.ProductObj.ProductDescriptionList.push(DescObj);
+            }
+            else {
+                $scope.ProductObj.ProductDescriptionList.push(ProductDescObj[0]);
+            }
+        });
+        debugger;
     }
 
     $scope.Cancel = function () {
@@ -140,11 +171,15 @@
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0")
           .then(function (response) {
               if (response.data.length > 0) {
+                  debugger;
                   $scope.ManufacturersList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.manufacturer_id=0;
+                  DefaultOption.name = " --- None --- ";
+                  $scope.ManufacturersList.push(DefaultOption);
               }
           })
       .catch(function (response) {
-
       })
       .finally(function () {
 
@@ -154,12 +189,8 @@
     function GetCategoryList() {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
           .then(function (response) {
-              debugger;
               if (response.data.length > 0) {
-
-                  debugger;
-                  $scope.CategoryList = response.data;
-
+                  $scope.CategoryList = response.data;              
               }
           })
       .catch(function (response) {
@@ -175,6 +206,10 @@
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.SupplierList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.supplier_id = 0;
+                  DefaultOption.name = " --- None --- ";
+                  $scope.SupplierList.push(DefaultOption);
               }
           })
       .catch(function (response) {
@@ -194,7 +229,6 @@
 
     $scope.InsertUpdateProduct = function (form) {
         debugger;
-        
         if (form.$valid) {
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
