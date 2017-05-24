@@ -15,11 +15,13 @@ namespace CordobaServices.Services
     {
         private GenericRepository<CategoryEntity> CategoryEntityGenericRepository = new GenericRepository<CategoryEntity>();
         private GenericRepository<CategoryPopularEntity> CategoryPopularEntityGenericRepository = new GenericRepository<CategoryPopularEntity>();
+        private GenericRepository<LanguageEntity> LanguageEntityGenericRepository = new GenericRepository<LanguageEntity>();
 
       
-        public List<CategoryEntity> GetCategoryList(int CategoryId = 0)
+        public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
         {
             List<CategoryEntity> Categories = new List<CategoryEntity>();
+        
             //Categories.Add(new CategoryEntity() { CategoryId = 1, name = "Home & Garden", SortOrder = 1 });
             //Categories.Add(new CategoryEntity() { CategoryId = 2, name= "Home Appliances", SortOrder = 2 });
             //Categories.Add(new CategoryEntity() { CategoryId = 3, name= "Health & Safety", SortOrder = 3 });
@@ -37,9 +39,9 @@ namespace CordobaServices.Services
             //Categories.Add(new CategoryEntity() { CategoryId = 15,name = "Personal Items", SortOrder = 15 });
             var ParameterCategoryId = new SqlParameter
             {
-                ParameterName = "CategoryId",
+                ParameterName = "Category_Id",
                 DbType = DbType.Int32,
-                Value = CategoryId
+                Value = Category_Id
             };
             var catalogueResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterCategoryId).ToList<CategoryEntity>();
             if (catalogueResult != null)
@@ -47,26 +49,45 @@ namespace CordobaServices.Services
             return Categories;
         }
 
-        public CategoryEntity GetCategoryById(int CategoryId = 0)
+        public CategoryEntity GetCategoryById(int Category_Id = 0, int language_id = 0)
         {
             CategoryEntity categoryEntity = new CategoryEntity();
-            if (CategoryId > 0)
+            if (Category_Id > 0)
             {
-                //categoryEntity = (from t in GetCategoryList(CategoryId)
-                //                  where t.CategoryId == CategoryId
-                //                select t).FirstOrDefault();
-                categoryEntity = GetCategoryList(CategoryId).FirstOrDefault();
+                try
+                {
+                    SqlParameter[] param = new SqlParameter[2];
+                    param[0] = new SqlParameter("Category_Id", Category_Id);
+                    param[1] = new SqlParameter("language_id", language_id);
+                    categoryEntity = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetCategoryById ", param).ToList<CategoryEntity>().FirstOrDefault();
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
             }
-            else
-            {
-                categoryEntity = new CategoryEntity();
-            }
-            CategoryStoreEntity CategoryStoreList = new CategoryStoreEntity();
-            List<StoreEntity> StoreList = new List<StoreEntity>();
-            CategoryStoreList.CategoryId = CategoryId;
-            CategoryStoreList.CategoryStore = StoreList;
-            categoryEntity.CategoryStoreList = CategoryStoreList;
+           
+            //else
+            //{
+            //    categoryEntity = new CategoryEntity();
+            //}
             return categoryEntity;
+            //if (Category_Id > 0)
+            //{
+            //    categoryEntity = GetCategoryList(Category_Id).FirstOrDefault();
+            //}
+            //else
+            //{
+            //    categoryEntity = new CategoryEntity();
+            //}
+            //CategoryStoreEntity CategoryStoreList = new CategoryStoreEntity();
+            //List<StoreEntity> StoreList = new List<StoreEntity>();
+            //CategoryStoreList.Category_Id = Category_Id;
+            //CategoryStoreList.CategoryStore = StoreList;
+            //categoryEntity.CategoryStoreList = CategoryStoreList;
+            //return categoryEntity;
 
         }
 
@@ -133,6 +154,39 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+
+
+
+        // Language get
+
+        public LanguageEntity GetLanguageList(int language_id = 0)
+        {
+            LanguageEntity languageEntity = new LanguageEntity();
+            if (language_id > 0)
+            {
+                try
+                {
+                    SqlParameter[] param = new SqlParameter[1];
+                    param[0] = new SqlParameter("language_id", language_id);
+                    //param[1] = new SqlParameter("name", name);
+                    //param[2] = new SqlParameter("language_id", image);
+                    languageEntity = LanguageEntityGenericRepository.ExecuteSQL<LanguageEntity>("EXEC GetLanguageList ", param).ToList<LanguageEntity>().FirstOrDefault();
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+
+            }
+            return languageEntity;
+
+        }
+
+
+
 
     }
 }

@@ -18,11 +18,17 @@ namespace CordobaModels.Entities
         public Nullable<DateTime> ModifiedDate { get; set; }
         public bool? IsActive { get; set; }
         public CategoryStoreEntity CategoryStoreList { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        
         public Nullable<int> parentGroupId { get; set; }
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
+        public int? language_id { get; set; }
+        public string description { get; set; }
+
+        // need to remove 
+     
+        public Nullable<int> parent_Id { get; set; }
         public string image { get; set; }
   
       

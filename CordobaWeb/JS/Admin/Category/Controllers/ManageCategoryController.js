@@ -5,10 +5,11 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
-    $scope.CategoryId = 0;
-    if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
+    $scope.Category_Id = 0;
+    if ($stateParams.Category_Id != undefined && $stateParams.language_id != undefined && $stateParams.Category_Id != null && $stateParams.language_id != null) {
         $scope.PageTitle = "Update Category";
-        $scope.CategoryId = $stateParams.CategoryId;
+        $scope.Category_Id = $stateParams.Category_Id;
+        $scope.language_id = $stateParams.language_id;
         $scope.IsEditMode = true;
     }
     else {
@@ -53,7 +54,7 @@
 
 
     $scope.GetCategoryById = function () {
-        $http.get(configurationService.basePath + "api/CategoryApi//GetCategoryById?CategoryId=" + $scope.CategoryId)
+        $http.get(configurationService.basePath + "api/CategoryApi//GetCategoryById?Category_Id=" + $scope.Category_Id + "language_id=" + $scope.language_id)
           .then(function (response) {
           
               $scope.CategoryObj = response.data;
@@ -82,6 +83,30 @@
     }
 
     $scope.GetCategoryById();
+
+
+
+    //Get language list
+
+    function GetLanguageList() {
+
+        $http({
+            method: 'GET',
+            url: '/GetLanguageList?OrderId=' + $scope.language_id,
+            headers: { 'Content-Type': 'application/json' }
+        })
+         .success(function (data) {
+
+
+             $scope.orderProductDetail = data.Data;
+
+         }).error(function (err) {
+             showNotification(false, err);
+         });
+
+    }
+
+
 
 });
 
