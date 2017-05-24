@@ -9,9 +9,9 @@ namespace CordobaServices.Interfaces
 {
     public interface ICategoryServices
     {
-        List<CategoryEntity> GetCategoryList(int CategoryId = 0);
+        List<CategoryEntity> GetCategoryList(int Category_Id = 0);
 
-        CategoryEntity GetCategoryById(int CategoryId);
+        CategoryEntity GetCategoryById(int Category_Id, int language_id);
 
 
         //Popular Category
@@ -20,6 +20,11 @@ namespace CordobaServices.Interfaces
         List<StoreEntity> GetStoreNameList();
 
         int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular);
+
+
+        //Get Language
+
+        LanguageEntity GetLanguageList(int language_id);
 
     }
 }

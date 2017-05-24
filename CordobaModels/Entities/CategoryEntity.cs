@@ -22,6 +22,8 @@ namespace CordobaModels.Entities
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
+        public int? language_id { get; set; }
+        public string description { get; set; }
 
         // need to remove 
         public int? Category_Id { get; set; }
