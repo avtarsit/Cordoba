@@ -10,10 +10,10 @@
                     </div>
                     <div class="category-list">
                         <ul class="col-sm-12">
-                            <li ng-class="SelectedCategoryId==category.Category_Id? 'active' : '' " ng-if="category.ParentId==0" ng-repeat="category in CategoryList">
+                            <li ng-class="SelectedCategoryId==category.Category_Id ? 'active' : '' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
                                 <a href="#" ng-bind-html="category.name" ui-sref="LayoutCategory({CategoryId:category.Category_Id})"></a>
                                 <ul>
-                                    <li ng-if="SubCategory.ParentId>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ ParentId: category.Category_Id }">
+                                    <li ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
                                         <a href="#" ui-sref="LayoutProducts({CategoryId:SubCategory.Category_Id})">{{SubCategory.name}}</a>
                                     </li>
                                 </ul>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="col-sm-3" ng-if="category.ParentId==SelectedCategoryId" ng-repeat="category in CategoryList | filter:{ ParentId: category.Category_Id } ">
+                    <div class="col-sm-3" ng-if="category.parent_Id==SelectedCategoryId" ng-repeat="category in CategoryList | filter:{ parent_Id: category.Category_Id } ">
                         <div class="product-block">
                             <div class="product-img">
                                 <img ng-src="{{category.image}}" alt="latest product" />

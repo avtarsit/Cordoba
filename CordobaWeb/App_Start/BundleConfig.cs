@@ -53,7 +53,8 @@ namespace CordobaWeb
                      "~/Scripts/angular-local-storage.js",
                      "~/Scripts/angular-sanitize.js",
                      "~/Scripts/angular-datatables.min.js",
-                     "~/Scripts/angular-ui-switch.min.js"                     
+                     "~/Scripts/angular-ui-switch.min.js" ,
+                     "~/Scripts/ng-ckeditor.js"      
                      ));
 
    

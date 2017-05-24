@@ -7,13 +7,12 @@
     //#endregion   
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.SelectedCategoryId = parseInt($stateParams.CategoryId);
-    }
-    debugger;
+    }    
     $scope.GetCategoryListForDashboard = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID="+$scope.StoreDetailInSession.store_id+"&NeedToGetAllSubcategory=true")
           .then(function (response) {
               if (response.data.length > 0) {
-                  debugger;
+                  
                   $scope.CategoryList = response.data;
                  $scope.ParentCategoryId = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId })[0].ParentId;
               }

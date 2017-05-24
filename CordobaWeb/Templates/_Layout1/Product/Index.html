@@ -10,10 +10,10 @@
                     </div>
                     <div class="category-list">
                         <ul class="col-sm-12">
-                            <li ng-class="ParentCategoryId==category.Category_Id? 'active' : '' " ng-if="category.ParentId==0" ng-repeat="category in CategoryList">
+                            <li ng-class="ParentCategoryId==category.Category_Id? 'active' : '' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
                                 <a href="#" ng-bind-html="category.name" ui-sref="LayoutCategory({CategoryId:category.Category_Id})"></a>
                                 <ul>
-                                    <li ng-class="SelectedCategoryId==SubCategory.Category_Id? 'active' : '' " ng-if="(category.Category_Id==SubCategory.ParentId)" ng-repeat="SubCategory in CategoryList | filter:{ ParentId: ParentCategoryId }">
+                                    <li ng-class="SelectedCategoryId==SubCategory.Category_Id? 'active' : '' " ng-if="(category.Category_Id==SubCategory.parent_Id)" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: ParentCategoryId }">
                                         <a href="#" ui-sref="LayoutProducts({CategoryId:SubCategory.Category_Id})">{{SubCategory.name}}</a>
                                     </li>
                                 </ul>
@@ -32,18 +32,19 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="product-block">
+                    <div class="product-block" ng-repeat="product in ProductList">
                         <div class="product-img">
-                            <img src="images/MD098ZM_A_1-120x120.jpg" alt="product" />
+                            <img ng-src="{{product.image}}" alt="product" />
                             <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
                         </div>
-                        <a href="productDetail.html">Apple 30-pin Digital AV Adapter</a>
-                        <p><span>82 points</span></p>
+                        <a href="#">{{product.name}}</a>
+                        <p><span ng-bind="product.Price"></span></p>
                         <p>MD098ZM/A</p>
 
                     </div>
-                    <div class="product-block">
+                    <!--<div class="product-block">
                         <div class="product-img">
+                            <img src="../../../Content/layout1/images/personalCare.png" />
                             <img src="images/MGRL2B_A_1-120x120.jpg" alt="product" />
                             <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
                         </div>
@@ -201,7 +202,7 @@
                         <p><span>539 points</span></p>
                         <p>LONG - 00024</p>
 
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
