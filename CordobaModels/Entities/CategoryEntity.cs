@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
     public class CategoryEntity
     {
-        public int? CategoryId { get; set; }
+        public int? Category_Id { get; set; }
         public string name { get; set; }
         public string CategoryName { get; set; }
         public int? sort_order { get; set; }
@@ -19,6 +19,7 @@ namespace CordobaModels.Entities
         public bool? IsActive { get; set; }
         public CategoryStoreEntity CategoryStoreList { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public Nullable<int> parentGroupId { get; set; }
         public string ParentCategoryName { get; set; }
         public int? StatusId { get; set; }
         public int? storeId { get; set; }
@@ -29,6 +30,9 @@ namespace CordobaModels.Entities
         public int? Category_Id { get; set; }
         public Nullable<int> parent_Id { get; set; }
         public Nullable<int> parentGroupId { get; set; }
+        public string image { get; set; }
+  
+      
         
         
         

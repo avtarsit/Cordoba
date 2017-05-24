@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CordobaServices;
-using CordobaServices.SearchHelpers;
+using CordobaServices.Helpers;
 
 namespace CordobaAPI.API
 {

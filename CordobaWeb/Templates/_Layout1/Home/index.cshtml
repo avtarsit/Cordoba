@@ -111,7 +111,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>                             
+                                <li ng-repeat="category in CategoryList"><a href="#" ui-sref="LayoutCategory({CategoryId:category.Category_Id})">{{category.name}}</a></li>                             
                             </ul>
                         </div>
                     </div>
@@ -187,23 +187,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-
-        //$('.hot-deals, #special-offer').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    minSlides: 2,
-        //    maxSlides: 1,
-        //    mode: 'vertical'
-        //});
-       
-        //$('.main-banner').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    mode: 'fade'
-        //});
+    $(document).ready(function () {            
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.best-seller').mCustomScrollbar({
             axis: "x",
@@ -211,19 +195,6 @@
         });
 
         $('.category-list').mCustomScrollbar();
-
-        //$('#latest-product').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    minSlides: 1,
-        //    maxSlides: 4,
-        //    slideWidth: 290
-        //});
-        $('#readMore').click(function () {
-            $('.more-content').slideToggle();
-        });
-
 
     });
 </script>
