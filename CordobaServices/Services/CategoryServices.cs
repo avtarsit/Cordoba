@@ -21,7 +21,7 @@ namespace CordobaServices.Services
         public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
         {
             List<CategoryEntity> Categories = new List<CategoryEntity>();
-            var ParameterCategory_Id = new SqlParameter
+        
             //Categories.Add(new CategoryEntity() { CategoryId = 1, name = "Home & Garden", SortOrder = 1 });
             //Categories.Add(new CategoryEntity() { CategoryId = 2, name= "Home Appliances", SortOrder = 2 });
             //Categories.Add(new CategoryEntity() { CategoryId = 3, name= "Health & Safety", SortOrder = 3 });
@@ -43,7 +43,7 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = Category_Id
             };
-            var catalogueResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterCategory_Id).ToList<CategoryEntity>();
+            var catalogueResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterCategoryId).ToList<CategoryEntity>();
             if (catalogueResult != null)
                 Categories = catalogueResult.ToList();
             return Categories;
@@ -53,7 +53,7 @@ namespace CordobaServices.Services
         {
             CategoryEntity categoryEntity = new CategoryEntity();
             if (Category_Id > 0)
-            { 
+            {
                 try
                 {
                     SqlParameter[] param = new SqlParameter[2];
@@ -67,18 +67,12 @@ namespace CordobaServices.Services
 
                     throw;
                 }
-            
-            if (CategoryId > 0)
-            {
-                //categoryEntity = (from t in GetCategoryList(CategoryId)
-                //                  where t.CategoryId == CategoryId
-                //                select t).FirstOrDefault();
-                categoryEntity = GetCategoryList(CategoryId).FirstOrDefault();
             }
-            else
-            {
-                categoryEntity = new CategoryEntity();
-            }
+           
+            //else
+            //{
+            //    categoryEntity = new CategoryEntity();
+            //}
             return categoryEntity;
             //if (Category_Id > 0)
             //{
