@@ -127,5 +127,18 @@ namespace CordobaServices.Services
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateProduct", sqlParameter).FirstOrDefault();
             return result;
         }
-    }
+
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("StoreID", StoreID)
+                                                   , new SqlParameter("CategoryId",CategoryId)
+                                               };
+
+            var ProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductListByCategoryAndStoreId", sqlParameter).ToList();
+           return ProductList;
+
+        }
+
+    }      
 }

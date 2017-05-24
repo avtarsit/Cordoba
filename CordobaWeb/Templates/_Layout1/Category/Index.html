@@ -14,7 +14,7 @@
                                 <a href="#" ng-bind-html="category.name" ui-sref="LayoutCategory({CategoryId:category.Category_Id})"></a>
                                 <ul>
                                     <li ng-if="SubCategory.ParentId>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ ParentId: category.Category_Id }">
-                                        <a href="#">{{SubCategory.name}}</a>
+                                        <a href="#" ui-sref="LayoutProducts({CategoryId:SubCategory.Category_Id})">{{SubCategory.name}}</a>
                                     </li>
                                 </ul>
                             </li>                         
@@ -37,97 +37,15 @@
                             <div class="product-img">
                                 <img ng-src="{{category.image}}" alt="latest product" />
                             </div>
-                            <a href="#">{{category.name}}</a>
+                            <a href="#" ui-sref="LayoutProducts({CategoryId:category.Category_Id})">{{category.name}}</a>
                         </div>
-                    </div>
-                    <!--<div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MM2L2ZM_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple iPad Accessories</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MNF82B_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple Mac Accessories</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MLNC2EG_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple TV</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MM4T2ZM_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple TV Accessories</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MF219ZM_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple TV AppleCare</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MLLA2ZM_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Apple Watch Accessories</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MNET2ZM_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">Beats</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-block">
-                            <div class="product-img">
-                                <img src="images/MK482B_A_1-80x80.jpg" alt="latest product" />
-                            </div>
-                            <a href="#">iMac</a>
-                        </div>
-                    </div>-->
+                    </div>             
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="lk-wrapper">
-    <div class="lk-content">
-        <div class="lk-nav">
-            <div class="content mCustomScrollbar">
-                <h1>Bienvenue sur la boutique Make a Difference « thank you</h1>
-                <div class="read-img">
-                    <img src="images/welcomeImg.png" alt="slider-image">
-                </div>
-                <div class="more">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p>Le site Pitney Bowes “Thank You” est l’outil officiel de récompense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant. Le site Pitney Bowes “Thank You” est l’outil officiel de récompense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant.<p>
-                </div>
-            </div>
-        </div>
-        <a href="javascript:;" class="lk-toggle-nav"></a>
-    </div>
-</div>
 <script type="text/javascript">
 
     $(document).ready(function () {
