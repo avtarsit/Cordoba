@@ -115,7 +115,7 @@
                     "mData": "Quantity", "bSortable": true
                     ,"sClass": "action text-center"
                       , "render": function (data, type, row) {
-                          return ' <span class="label label-success" ng-bind="Item.Quantity">' + row.Quantity + '</span>'
+                          return ' <span class="label label-success">' + row.Quantity + '</span>'
                       }
                 },
                 { "mData": "StatusName", "bSortable": true },
