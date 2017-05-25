@@ -17,5 +17,7 @@ namespace CordobaServices.Interfaces
 
         int InsertUpdateProduct(ProductEntity productEntity);
         List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId);
+
+        int DeleteProduct(int product_id);
     }
 }

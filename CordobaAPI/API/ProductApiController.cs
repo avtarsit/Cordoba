@@ -140,5 +140,24 @@ namespace CordobaAPI.API
             }
         }
 
+
+
+        [HttpPost]
+        public HttpResponseMessage DeleteProduct(int product_id)
+        {
+            try
+            {
+                var result = _ProductServices.DeleteProduct(product_id);
+                if (result>0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex )
+            {
+                throw ex;
+            }
+        }
     }
 }
