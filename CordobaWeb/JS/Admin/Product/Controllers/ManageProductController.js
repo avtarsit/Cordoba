@@ -100,9 +100,20 @@
               CreateDescriptionObject();
               if ($scope.ProductObj.product_id == 0) {
 
+                  // Default Values
                   $scope.ProductObj.manufacturer_id = 0;
                   $scope.ProductObj.supplier_id = 0;
                   $scope.ProductObj.country_id = 222   // country_id  -United Kingdom
+                  $scope.ProductObj.Quantity = 1;
+                  $scope.ProductObj.minimum = 1;
+                  $scope.ProductObj.minimum = 1;
+                  $scope.ProductObj.subtract = 1;
+                  $scope.ProductObj.stock_status_id = 6;
+                  $scope.ProductObj.shipping = 1;
+                  $scope.ProductObj.date_available = $filter('date')('05/25/2017', $rootScope.GlobalDateFormat);
+                  $scope.ProductObj.shipping = 1;
+
+                  
               }
           })
       .catch(function (response) {
