@@ -21,14 +21,14 @@ namespace CordobaAPI.API
             _ProductServices = new ProductService();
         }
         [HttpPost]
-        public TableParameter<ProductEntity> GetProductList(int PageIndex, TableParameter<ProductEntity> tableParameter)
+        public TableParameter<ProductEntity> GetProductList(int PageIndex, string name, decimal? Price, int? status, string Model, int? Quantity, TableParameter<ProductEntity> tableParameter)
         {
             try
             {
 
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _ProductServices.GetProductList(sortColumn, tableParameter, "").ToList();
+                var result = _ProductServices.GetProductList(sortColumn, tableParameter, name,  Price,  status, Model,  Quantity).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -110,6 +110,24 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.InsertUpdateProduct(productEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int CategoryId)
+        {
+            try
+            {
+                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID,CategoryId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

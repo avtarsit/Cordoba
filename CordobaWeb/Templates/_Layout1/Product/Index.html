@@ -1,0 +1,218 @@
+﻿<div class="container-fluid product-list" ng-controller="ProductListLayoutController">
+    <div class="col-sm-4 col-md-3">
+        <div class="row">
+            <div class="col-sm-12 mb-20">
+                <div class="block pb-15">
+                    <div class="col-sm-12">
+                        <div class="block-heading">
+                            <h4>Categories</h4>
+                        </div>
+                    </div>
+                    <div class="category-list">
+                        <ul class="col-sm-12">
+                            <li ng-class="ParentCategoryId==category.Category_Id? 'active' : '' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
+                                <a href="#" ng-bind-html="category.name" ui-sref="LayoutCategory({CategoryId:category.Category_Id})"></a>
+                                <ul>
+                                    <li ng-class="SelectedCategoryId==SubCategory.Category_Id? 'active' : '' " ng-if="(category.Category_Id==SubCategory.parent_Id)" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: ParentCategoryId }">
+                                        <a href="#" ui-sref="LayoutProducts({CategoryId:SubCategory.Category_Id})">{{SubCategory.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 col-md-9">
+        <div class="row">
+            <div class="col-sm-12 latest-product mb-30">
+                <div class="block-heading">
+                    <h4>Apple Products</h4>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="product-block" ng-repeat="product in ProductList">
+                        <div class="product-img">
+                            <img ng-src="{{product.image}}" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">{{product.name}}</a>
+                        <p><span ng-bind="product.Price"></span></p>
+                        <p>MD098ZM/A</p>
+
+                    </div>
+                    <!--<div class="product-block">
+                        <div class="product-img">
+                            <img src="../../../Content/layout1/images/personalCare.png" />
+                            <img src="images/MGRL2B_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple 5W USB Power Adapter </a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MC748ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple Composite AV Cable</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MC552ZM_B_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple Dock Connector to VGA</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/personalCare.png" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MK0C2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple Pencil for iPad Pro</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MF640ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple Thunderbolt Cable (0.5 m) - Black</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MD837ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">Apple World Travel Adapter Kit</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MGTW2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad Air 2 Smart Case - Red</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MGTV2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad Air 2 Smart Case - Black</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MF056ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad Air Smart Cover - Green</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MF057ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad Air Smart Cover - Yellow</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MKLN2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad mini 4 Silicone Case - Red</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MLD32ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad mini 4 Silicone Case - Blue</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MKLK2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad mini 4 Silicone Case - Charcoal Gray</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MLD62ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad mini 4 Silicone Case - Lavender</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img src="images/MKLM2ZM_A_1-120x120.jpg" alt="product" />
+                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+                        </div>
+                        <a href="#">iPad mini 4 Silicone Case - Midnight Blue</a>
+                        <p><span>539 points</span></p>
+                        <p>LONG - 00024</p>
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        $('.category-list').mCustomScrollbar();
+
+    });
+</script>

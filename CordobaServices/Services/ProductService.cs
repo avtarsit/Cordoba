@@ -17,15 +17,22 @@ namespace CordobaServices.Services
         //private GenericRepository<LanguageEntity> objGenericRepository = new GenericRepository<LanguageEntity>();
 
         private GenericRepository<ProductEntity> objGenericRepository = new GenericRepository<ProductEntity>();
-        public  IEnumerable<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string PageFrom = "")
+        public List<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity)
         {
             try
             {
                 var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
                 var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
-                var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
-                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", paramOrderBy, paramPageSize, paramPageIndex, paramPageFrom).AsQueryable();
+                //var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
+
+                var paramName = new SqlParameter { ParameterName = "name", DbType = DbType.String, Value = name ?? DBNull.Value.ToString()};
+                var paramPrice = new SqlParameter { ParameterName = "price", DbType = DbType.Decimal, Value = Price ?? (object) DBNull.Value };
+                var paramStatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = status?? (object) DBNull.Value };
+                var paramModel = new SqlParameter { ParameterName = "Model", DbType = DbType.String, Value = Model ?? DBNull.Value.ToString() };
+                var paramQuantity = new SqlParameter { ParameterName = "Quantity", DbType = DbType.Int32, Value = Quantity ??(object) DBNull.Value };
+
+                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", paramOrderBy, paramPageSize, paramPageIndex, paramName, paramPrice, paramStatus, paramModel, paramQuantity).ToList<ProductEntity>();
                 return query;
             }
             catch (Exception)
@@ -110,22 +117,35 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("Price", productEntity.Price)
                                                  , new SqlParameter("Quantity", productEntity.Quantity ??  (object)DBNull.Value )
                                                  , new SqlParameter("minimum", productEntity.minimum ??  (object)DBNull.Value)
-                                                 , new SqlParameter("subtract", productEntity.subtract)
-                                                 , new SqlParameter("stock_status_id", productEntity.stock_status_id)
-                                                 , new SqlParameter("shipping", productEntity.shipping)
-                                                 , new SqlParameter("date_added", productEntity.date_added)
-                                                 , new SqlParameter("status", productEntity.status)
-                                                 , new SqlParameter("sort_order", productEntity.sort_order)
-                                                 , new SqlParameter("cost", productEntity.cost)
-                                                 , new SqlParameter("country_id", productEntity.country_id)
-                                                 , new SqlParameter("manufacturer_id", productEntity.manufacturer_id)
-                                                 , new SqlParameter("category_id", productEntity.category_id)
-                                                 , new SqlParameter("supplier_id", productEntity.supplier_id)
-                                                 , new SqlParameter("CatalogueIdCSV", productEntity.CatalogueIdCSV)
-                                                 , new SqlParameter("ProductDescriptionXml", ProductDescriptionXml)
+                                                 , new SqlParameter("subtract", productEntity.subtract ??  (object)DBNull.Value)
+                                                 , new SqlParameter("stock_status_id", productEntity.stock_status_id ??  (object)DBNull.Value)
+                                                 , new SqlParameter("shipping", productEntity.shipping ??  (object)DBNull.Value)
+                                                 , new SqlParameter("date_available", productEntity.date_available  ??  (object)DBNull.Value)
+                                                 , new SqlParameter("status", productEntity.status ??  (object)DBNull.Value)
+                                                 , new SqlParameter("sort_order", productEntity.sort_order ??  (object)DBNull.Value)
+                                                 , new SqlParameter("shipping_cost", productEntity.shipping_cost )
+                                                 , new SqlParameter("country_id", productEntity.country_id ??  (object)DBNull.Value)
+                                                 , new SqlParameter("manufacturer_id", productEntity.manufacturer_id ??  (object)DBNull.Value)
+                                                 , new SqlParameter("category_id", productEntity.category_id ??  (object)DBNull.Value)
+                                                 , new SqlParameter("supplier_id", productEntity.supplier_id ??  (object)DBNull.Value)
+                                                 , new SqlParameter("CatalogueIdCSV", productEntity.CatalogueIdCSV ??  (object)DBNull.Value)
+                                                 , new SqlParameter("ProductDescriptionXml", ProductDescriptionXml ??  (object)DBNull.Value)
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateProduct", sqlParameter).FirstOrDefault();
             return result;
         }
-    }
+
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("StoreID", StoreID)
+                                                   , new SqlParameter("CategoryId",CategoryId)
+                                               };
+
+            var ProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductListByCategoryAndStoreId", sqlParameter).ToList();
+           return ProductList;
+
+        }
+
+    }      
 }
