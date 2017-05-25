@@ -4,11 +4,13 @@
     BindToolTip();
     Tab();   
     //#endregion      
-    $scope.StoreDetailInSession = StoreSessionDetail;
-
+    $scope.StoreDetailInSession = StoreSessionDetail;  
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     
-
+    $scope.OpenLoginPopUp=function()
+    {
+        angular.element("#DivLoginModel").modal('show');     
+    }
 
    
     //$scope.GetStoreDetailForDashboard = function () {

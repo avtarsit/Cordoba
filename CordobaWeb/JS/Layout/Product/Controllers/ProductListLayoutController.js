@@ -14,7 +14,12 @@
               if (response.data.length > 0) {
                   
                   $scope.CategoryList = response.data;
-                 $scope.ParentCategoryId = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId })[0].ParentId;
+                  var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
+                  if(CategoryObj!=undefined && CategoryObj!=null )
+                  {
+                      $scope.SelectedCategory = CategoryObj[0];
+                  }
+                 
               }
           })
       .catch(function (response) {

@@ -63,18 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-xs-12 mb-30">
-            <h1 class="main-heding">Bienvenue sur la boutique Make a Difference</h1>
-            <div class="row">
-                <div class="col-sm-12 welcome-block">
-                    <div ng-bind-html="WelcomeMsg[0]"></div>  
-                                  
-                    <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
-                     <div class="more-content" ng-bind-html="WelcomeMsg[1]">
-                    </div>
-                </div>
-            </div>
-        </div>
+     
         @* Dashboard_PopularCategoryController *@
         <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category">
@@ -111,7 +100,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#" ui-sref="LayoutCategory({CategoryId:category.Category_Id})">{{category.name}}</a></li>                             
+                                <li ng-repeat="category in CategoryList"><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>                             
                             </ul>
                         </div>
                     </div>
