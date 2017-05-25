@@ -49,10 +49,10 @@ namespace CordobaServices.Services
             return Categories;
         }
 
-        public CategoryEntity GetCategoryById(int Category_Id = 0, int language_id = 0)
+        public CategoryEntity GetCategoryById(int Category_Id , int language_id)
         {
             CategoryEntity categoryEntity = new CategoryEntity();
-            if (Category_Id > 0)
+            if (Category_Id >= 0)
             {
                 try
                 {
@@ -156,36 +156,22 @@ namespace CordobaServices.Services
         }
 
 
-
-
         // Language get
 
-        public LanguageEntity GetLanguageList(int language_id = 0)
+
+        public List<LanguageEntity> GetLanguageList()
         {
-            LanguageEntity languageEntity = new LanguageEntity();
-            if (language_id > 0)
+            try
             {
-                try
-                {
-                    SqlParameter[] param = new SqlParameter[1];
-                    param[0] = new SqlParameter("language_id", language_id);
-                    //param[1] = new SqlParameter("name", name);
-                    //param[2] = new SqlParameter("language_id", image);
-                    languageEntity = LanguageEntityGenericRepository.ExecuteSQL<LanguageEntity>("EXEC GetLanguageList ", param).ToList<LanguageEntity>().FirstOrDefault();
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw;
-                }
-
+                var languageEntity = LanguageEntityGenericRepository.ExecuteSQL<LanguageEntity>("EXEC GetLanguageList").ToList<LanguageEntity>().ToList();
+                return languageEntity;
             }
-            return languageEntity;
+            catch (Exception ex)
+            {
 
+                throw;
+            }
         }
-
-
 
 
     }

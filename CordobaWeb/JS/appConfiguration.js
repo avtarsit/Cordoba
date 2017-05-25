@@ -119,7 +119,7 @@ function GetLayoutName() {
 
                  , Product = {
                      name: 'Product',
-                     url: '/Catalog/Product',
+                     url: '/Catalog/Product?Quantity:quantity',
                      templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
                  }
                   , ManageProduct = {

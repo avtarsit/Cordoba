@@ -24,7 +24,7 @@ namespace CordobaServices.Interfaces
 
         //Get Language
 
-        LanguageEntity GetLanguageList(int language_id);
+        List<LanguageEntity> GetLanguageList();
 
     }
 }

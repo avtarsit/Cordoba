@@ -117,11 +117,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetLanguageList(int language_id)
+        public HttpResponseMessage GetLanguageList()
         {
             try
-            {
-                var result = _categoryServices.GetLanguageList(language_id);
+            {                
+                var result = _categoryServices.GetLanguageList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

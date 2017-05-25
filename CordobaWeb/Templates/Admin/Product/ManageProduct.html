@@ -27,7 +27,7 @@
                         <button type="submit" ng-click="InsertUpdateProduct(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
-                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteProduct(ProductId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteProduct()"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
                     </li>
                 </ul>
             </div>
@@ -48,7 +48,12 @@
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
+                                                <li ng-show="form.ProductNameLang_en.$error.required">Product Name is required.[English]</li>
                                                 <li ng-show="form.product_shipping_costs.$error.required">Shipping cost is required.</li>
+                                                <li ng-show="form.model.$error.required">Model is required.</li>
+                                                <li ng-show="form.price.$error.required">Price is required.</li>
+                                                <li ng-show="form.quantity.$error.required">Quantity is required.</li>
+                                                <li ng-show="form.minimum.$error.required">Minimum Quantity is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -70,23 +75,17 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active in" id="tab-general">
                                                 <ul class="nav nav-tabs" id="language">
-                                                    <li class="active">
-                                                        <a data-target="#1" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/gb.png" title="English"> English</a>
+                                                    <li ng-class="$index==0 ? 'active':''"  data-ng-repeat="LangObj in LanguageList">
+                                                        <a data-target="#{{LangObj.language_id}}" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/{{LangObj.image}}" title="{{LangObj.name}}"> {{LangObj.name}}</a>
                                                     </li>
-                                                    <li><a data-target="#2" data-toggle="tab"><img src="../../../Content/admin/images/flags/de.png" title="Deutsch"> Deutsch</a></li>
-                                                    <li><a data-target="#3" data-toggle="tab"><img src="../../../Content/admin/images/flags/fr.png" title="Français"> Français</a></li>
-                                                    <li><a data-target="#4" data-toggle="tab"><img src="../../../Content/admin/images/flags/it.png" title="Italiano"> Italiano</a></li>
-                                                    <li><a data-target="#5" data-toggle="tab"><img src="../../../Content/admin/images/flags/es.png" title="Español"> Español</a></li>
-                                                    <li><a data-target="#6" data-toggle="tab"><img src="../../../Content/admin/images/flags/pt.png" title="Português"> Português</a></li>
-                                                    <li><a data-target="#7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>
                                                 </ul>
                                                 <div class="tab-content">
-                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="LangObj.name=='English' ? 'active':''" data-ng-repeat="LangObj in LanguageList">
+                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
-                                                            <label class="col-lg-2 control-label mandatoryField" for="input-name1">Product Name</label>
+                                                            <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Product Name</label>
                                                             <div class="col-sm-10">
                                                                 <input type="hidden" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductObj.ProductDescriptionList[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[$index].language_id=LangObj.language_id">
-                                                                <input type="text" name="ProductNameLang[{{LangObj.language_id}}]" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].name" placeholder="Product Name" class="form-control" />
+                                                                <input type="text" name="ProductNameLang_{{LangObj.code}}" id="ProductNameLang[{{LangObj.language_id}}]" ng-model="ProductObj.ProductDescriptionList[$index].name" placeholder="Product Name" class="form-control" ng-required="LangObj.code=='en'" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -114,31 +113,31 @@
                                             <label class="col-sm-2 control-label" for="input-image">Image</label>
                                             <div class="col-sm-10">
                                                 <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png"></a>
-                                                <input type="hidden" name="image" value="" id="input-image">
+                                                <input type="hidden" name="image" ng-model="ProductObj.Image" value="" id="input-image">
                                             </div>
                                         </div>
                                         <div class="form-group required">
-                                            <label class="col-sm-2 control-label" for="input-model">Model</label>
+                                            <label class="col-sm-2 control-label mandatoryField" for="input-model">Model</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="model" ng-model="ProductObj.Model" placeholder="Model" id="input-model" class="form-control">
+                                                <input type="text" name="model" ng-model="ProductObj.Model" placeholder="Model" id="input-model" class="form-control" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-price">Price</label>
+                                            <label class="col-sm-2 control-label mandatoryField" for="input-price">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="number" maxlength="15" name="price" ng-model="ProductObj.Price" placeholder="Price" id="input-price" class="form-control">
+                                                <input type="number" maxlength="15" name="price" ng-model="ProductObj.Price" placeholder="Price" id="input-price" class="form-control" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-quantity">Quantity</label>
+                                            <label class="col-sm-2 control-label mandatoryField" for="input-quantity">Quantity</label>
                                             <div class="col-sm-10">
-                                                <input type="number" maxlength="5" name="quantity" ng-model="ProductObj.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
+                                                <input type="number" maxlength="5" name="quantity" ng-model="ProductObj.Quantity" placeholder="Quantity" id="input-quantity" class="form-control" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="input-minimum"><span data-toggle="tooltip" title="" data-original-title="Force a minimum ordered amount">Minimum Quantity</span></label>
+                                            <label class="col-sm-2 control-label mandatoryField" for="input-minimum"><span data-toggle="tooltip" title="" data-original-title="Force a minimum ordered amount">Minimum Quantity</span></label>
                                             <div class="col-sm-10">
-                                                <input type="number" maxlength="5" name="minimum" ng-model="ProductObj.minimum" placeholder="Minimum Quantity" id="input-minimum" class="form-control">
+                                                <input type="number" maxlength="5" name="minimum" ng-model="ProductObj.minimum" placeholder="Minimum Quantity" id="input-minimum" class="form-control" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -159,14 +158,6 @@
                                             <label class="col-sm-2 control-label">Requires Shipping</label>
                                             <div class="col-sm-10">
                                                 <input type="checkbox" ng-false-value="0" ng-true-value="1" name="shipping" ng-model="ProductObj.shipping" >
-                                                <!--<label class="radio-inline">
-                                                    <input type="radio" name="shipping" value="1" checked="checked">
-                                                    Yes
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="shipping" value="0">
-                                                    No
-                                                </label>-->
                                             </div>
                                         </div>
                                         <div class="form-group">
