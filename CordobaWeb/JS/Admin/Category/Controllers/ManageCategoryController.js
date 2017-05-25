@@ -1,22 +1,23 @@
 ﻿app.controller('ManageCategoryController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
+    
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
-    $scope.Category_Id = 0;
-    if ($stateParams.Category_Id != undefined && $stateParams.language_id != undefined && $stateParams.Category_Id != null && $stateParams.language_id != null) {
+    //$scope.Category_Id = 0;
+
+    if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.PageTitle = "Update Category";
-        $scope.Category_Id = $stateParams.Category_Id;
-        $scope.language_id = $stateParams.language_id;
+        $scope.Category_Id = $stateParams.CategoryId;
         $scope.IsEditMode = true;
     }
     else {
         $scope.PageTitle = "Add Category";
     }
     //#endregion
-
+    GetLanguageList();
 
     $scope.SaveCategory = function (form) {
         if (form.$valid) {
@@ -52,12 +53,42 @@
         });
     };
 
+    //Get language list
+
+    function GetLanguageList() {
+
+        $http({
+            method: 'GET',
+            url: configurationService.basePath + 'api/CategoryApi/GetLanguageList',
+            headers: { 'Content-Type': 'application/json' }
+        })
+         .success(function (data) {
+
+             $scope.languageList = data;
+             $scope.language_id = $scope.languageList[0].language_id
+             $scope.GetCategoryById($scope.language_id);
+         }).error(function (err) {
+             alert("false");
+         });
+
+    }
 
     $scope.GetCategoryById = function () {
-        $http.get(configurationService.basePath + "api/CategoryApi//GetCategoryById?Category_Id=" + $scope.Category_Id + "language_id=" + $scope.language_id)
-          .then(function (response) {
-          
-              $scope.CategoryObj = response.data;
+        debugger;
+        $http({
+            method: 'GET',
+            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id + '&language_id=' + $scope.language_id,
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .success(function (response) {
+            debugger;
+            $scope.CategoryObj = {};
+            $scope.CategoryObj.Category_Id = response.Category_Id;
+            $scope.CategoryObj.CategoryName = response.CategoryName;
+            $scope.CategoryObj.Description = response.description;
+            //$scope.CategoryObj.Category_Id = response.parent;
+            //$scope.CategoryObj.Category_Id = response.Category_Id;
+            //$scope.CategoryObj.Category_Id = response.Category_Id;
           })
       .catch(function (response) {
       })
@@ -82,29 +113,7 @@
         }
     }
 
-    $scope.GetCategoryById();
-
-
-
-    //Get language list
-
-    function GetLanguageList() {
-
-        $http({
-            method: 'GET',
-            url: '/GetLanguageList?OrderId=' + $scope.language_id,
-            headers: { 'Content-Type': 'application/json' }
-        })
-         .success(function (data) {
-
-
-             $scope.orderProductDetail = data.Data;
-
-         }).error(function (err) {
-             showNotification(false, err);
-         });
-
-    }
+    //$scope.GetCategoryById();
 
 
 

@@ -63,76 +63,51 @@
                                         <!--General Tab-->
                                         <div class="tab-content">
                                             <div class="tab-pane active in" id="tab-general">
-                                                <ul class="nav nav-tabs" id="language">
-                                                    <li class="active"><a data-target="#language1" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/gb.png" title="English"> English</a></li>
-                                                    <li><a data-target="#language2" data-toggle="tab"><img src="../../../Content/admin/images/flags/de.png" title="Deutsch"> Deutsch</a></li>
-                                                    <li><a data-target="#language3" data-toggle="tab"><img src="../../../Content/admin/images/flags/fr.png" title="Français"> Français</a></li>
-                                                    <li><a data-target="#language4" data-toggle="tab"><img src="../../../Content/admin/images/flags/it.png" title="Italiano"> Italiano</a></li>
-                                                    <li><a data-target="#language5" data-toggle="tab"><img src="../../../Content/admin/images/flags/es.png" title="Español"> Español</a></li>
-                                                    <li><a data-target="#language6" data-toggle="tab"><img src="../../../Content/admin/images/flags/pt.png" title="Português"> Português</a></li>
-                                                    <li><a data-target="#language7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>
+
+                                                <!--language tab-->
+                                                <ul class="nav nav-tabs" id="languages" >
+                                                    
+                                                    <li id="{{language.language_id}}"  ng-class="language.language_id==1? 'active' : '' " ng-repeat="language in languageList">
+                                                        <a data-target="#{{language.language_id}}" data-toggle="tab" aria-expanded="true">
+                                                            <img ng-src="../../../Content/admin/images/flags/{{language.image}}" title="{{language.name}}"> {{language.name}}
+                                                        </a>
+                                                    </li>
                                                 </ul>
-                                                <div class="tab-content">
+                                                <!--End Language Tab-->
 
 
-
-
-
-                                                    <div class="form-group required">
-                                                        <label class="col-lg-2 control-label mandatoryField" for="input-name1">Category Name</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="Category_Name_English" ng-model="CategoryObj.CategoryName" placeholder="Category Name" id="input-name1" class="form-control" required="required">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="LangObj.name=='English' ? 'active':''" data-ng-repeat="LangObj in LanguageList">
+                                                <div class="tab-content" id="CategoryDetail">
+                                                    <!--<div class="tab-pane {{$index}}" id="{{language.language_id}}" ng-class="language.name=='English' ? 'active':''" data-ng-repeat="language in languageList">-->
                                                         <div class="form-group required">
                                                             <label class="col-lg-2 control-label mandatoryField" for="input-name1">Category Name</label>
                                                             <div class="col-sm-10">
-                                                                <input type="hidden" name="CategoryNameLang[{{LangObj.language_id}}]" id="CategoryObj.CategoryDescriptionList[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[LangObj.language_id-1].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="CategoryObj.CategoryDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
-                                                                <input type="text" name="CategoryNameLang[{{LangObj.language_id}}]" id="CategoryNameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[LangObj.language_id-1].name" placeholder="Category Name" class="form-control" />
+                                                                <input type="text" name="CategoryName" ng-model="CategoryObj.CategoryName" placeholder="Category Name" id="input-name1" class="form-control" required="required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-2 control-label" for="input-description1">Description</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea ckeditor="" name="Description" ng-model="CategoryObj.Description" placeholder="Description" id="input-name1" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    <!--</div>-->
+                                                    <!--<div class="tab-pane {{$scope}} " id="{{language.language_id}}" ng-class="language.name[1] ? 'active':''" data-ng-repeat="language in LanguageList">
+                                                        <div class="form-group required">
+                                                            <label class="col-lg-2 control-label mandatoryField" for="input-name1">Category Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="hidden" name="CategoryNameLang[{{language.language_id}}]" id="CategoryObj.CategoryDescriptionList[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[LangObj.language_id-1].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="CategoryObj.CategoryDescriptionList[LangObj.language_id].language_id=LangObj.language_id">
+                                                                <input type="text"  placeholder="Category Name" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
+                                                                <textarea ckeditor="" name="Message" id="Message" cols="8" class="form-control" rows="5" ng-model="modelMessage"></textarea>
+
                                                                 <textarea ckeditor="" name="CategoryDescriptionLang[{{LangObj.language_id}}]" id="CategoryDescriptionLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[LangObj.language_id-1].description" rows="4" cols="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <!--<div class="form-group">
-                                                            <label class="col-sm-2 control-label" for="CategoryTags{{LangObj.language_id}}">
-                                                                <span data-toggle="tooltip" title="comma separated">Category Tags</span>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" name="CategoryTags{{LangObj.language_id}}" placeholder="Category Tags" id="CategoryTags{{LangObj.language_id}}" ng-model="CategoryObj.CategoryDescriptionList[LangObj.language_id-1].tag" class="form-control">
-                                                            </div>
-                                                        </div>-->
-                                                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                    <textarea ckeditor="" name="Message" id="Message" cols="8" class="form-control" rows="5" ng-model="modelMessage"></textarea>
-
-
-
-
-
-
-
-
-
-
-
+                                                    </div>-->
 
 
                                                     <!--<div class="tab-pane active" id="language1">
@@ -457,16 +432,6 @@
         </div>
     </form>
 </div>
-<!--<script>
-    CKEDITOR.replace('category_description[1][description]');
-    CKEDITOR.replace('category_description[2][description]');
-    CKEDITOR.replace('category_description[3][description]');
-    CKEDITOR.replace('category_description[4][description]');
-    CKEDITOR.replace('category_description[5][description]');
-    CKEDITOR.replace('category_description[6][description]');
-    CKEDITOR.replace('category_description[7][description]');
-</script>-->
-
 
 
 
