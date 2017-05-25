@@ -19,7 +19,13 @@
     $scope.ProductFilter.Price = "";
     $scope.ProductFilter.Quantity = "";
     $scope.ProductFilter.status = "";
+    debugger;
 
+    if ($stateParams.Quantity != undefined && $stateParams.Quantity != null) {
+        $scope.ProductFilter.Quantity = parseInt($stateParams.Quantity);
+    }
+
+    
     //$scope.GetProductList = function () {
     //    $http.get(configurationService.basePath + "api/ProductApi/GetProductList")
     //      .then(function (response) {
