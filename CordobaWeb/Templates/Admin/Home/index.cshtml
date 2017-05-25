@@ -37,7 +37,10 @@
                         <div class="heading-elements">
                             @*<span class="heading-text badge bg-teal-800">+53,6%</span>*@
                         </div>
-                        <h3 class="no-margin"> 10.4K </h3>
+                        @*<h3 class="no-margin"> 10.4K </h3>*@
+                        <h3 class="no-margin">
+                            {{DashboardSummary.DashboardHeaderSummary.TotalOrders}}
+                        </h3>
                         Total Orders
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -53,7 +56,8 @@
                     <div class="panel-body">
                         <div class="heading-elements">
                         </div>
-                        <h3 class="no-margin">10.1k</h3>
+                        @*<h3 class="no-margin">10.1k</h3>*@
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.TotalCustomers}}</h3>
                         Total Customers
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -70,7 +74,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">1k</h3>
+                        @*<h3 class="no-margin">1k</h3>*@
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.TotalSuppliers}}</h3>
                         Total Supplier
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -87,7 +92,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">$18,390</h3>
+                        @*<h3 class="no-margin">$18,390</h3>*@
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.TotalSales}}</h3>
                         Total Sales
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -128,7 +134,13 @@
                 <!-- Basic bar chart -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Sales Analytics</h5>
+                        <h5 class="panel-title">
+                            Sales Analytics
+                            <div style="float: right;margin-right: 35px;font-size: small;">
+                                <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts()" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
+                            </div>
+                        </h5>
+                        
                         <div class="heading-elements">
                             <ul class="icons-list">
                                 @*<li><a data-action="collapse"></a></li>
@@ -148,8 +160,8 @@
         </div>
         <div class="row">
             <!-- - Top 5 stores Selling -->
-            <div class="col-lg-6" >
-               
+            <div class="col-lg-6">
+
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Top 5 Selling Stores</h5>
@@ -167,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-             
+
             </div>
             <!-- - Top 5 stores Selling -->
             <div class="col-lg-6">
@@ -252,59 +264,59 @@
                             </tbody>
                         </table>
                         @*<table class="table">
-                            <thead>
-                                <tr>
-                                    <td class="text-center">Order ID</td>
-                                    <td>Customer</td>
-                                    <td>Status</td>
-                                    <td>Date Added</td>
-                                    <td class="text-right">Total</td>
-                                    <td class="text-right">Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">41232</td>
-                                    <td>Daryl Prance</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">446points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41231</td>
-                                    <td>Arjen Cloake</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">1,470points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41229</td>
-                                    <td>Paul Rushton</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">296points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41228</td>
-                                    <td>Neil Johnston</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">1,263points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41227</td>
-                                    <td>Rob Martin</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">790points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>*@
+                                <thead>
+                                    <tr>
+                                        <td class="text-center">Order ID</td>
+                                        <td>Customer</td>
+                                        <td>Status</td>
+                                        <td>Date Added</td>
+                                        <td class="text-right">Total</td>
+                                        <td class="text-right">Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">41232</td>
+                                        <td>Daryl Prance</td>
+                                        <td>Processing</td>
+                                        <td>02/05/2017</td>
+                                        <td class="text-right">446points</td>
+                                        <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">41231</td>
+                                        <td>Arjen Cloake</td>
+                                        <td>Processing</td>
+                                        <td>02/05/2017</td>
+                                        <td class="text-right">1,470points</td>
+                                        <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">41229</td>
+                                        <td>Paul Rushton</td>
+                                        <td>Processing</td>
+                                        <td>02/05/2017</td>
+                                        <td class="text-right">296points</td>
+                                        <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">41228</td>
+                                        <td>Neil Johnston</td>
+                                        <td>Processing</td>
+                                        <td>02/05/2017</td>
+                                        <td class="text-right">1,263points</td>
+                                        <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">41227</td>
+                                        <td>Rob Martin</td>
+                                        <td>Processing</td>
+                                        <td>02/05/2017</td>
+                                        <td class="text-right">790points</td>
+                                        <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View" ui-sref="Orders"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
                     </div>
                 </div>
             </div>

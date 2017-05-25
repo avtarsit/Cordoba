@@ -4,6 +4,20 @@
     BindToolTip();
     Tab();
     $scope.CatalogueList = [];
+
+    $scope.DashboardSummary = [];
+
+
+    $scope.ChartFilterTypeEnum =
+        [
+            { id: 1, name: 'Today' },
+            { id: 2, name: 'Week' },
+            { id: 3, name: 'Month' },
+            { id: 4, name: 'Year' }
+        ];
+
+    $scope.ChartFiltertype = 2;
+
     //#endregion  
     //InitChart();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -89,7 +103,7 @@
                         x: 'left',
                         y: 'top',
                         orient: 'vertical',
-                        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                        data: $scope.DashboardSummary.DashboardOrderSummaryMonthName
                     },
 
                     // Display toolbox
@@ -168,7 +182,7 @@
                                     }
                                 }
                             },
-                            data: $scope.CurrentYearOrderData
+                            data: $scope.DashboardSummary.DashboardOrderSummary
                         }
                     ]
                 };
@@ -198,10 +212,11 @@
                         }
                     },
 
-                    // Add legend
-                    //legend: {
-                    //    data: ['Year 2013']
-                    //},
+                    //Add legend
+                    legend: {
+                        data: ['Orders', 'Customers']
+                    },
+
                     // Display toolbox
                     toolbox: {
                         show: true,
@@ -241,7 +256,7 @@
                         }
                     },
                     // Enable drag recalculate
-                    calculable: false,
+                    calculable: true,
 
                     // Horizontal axis
                     xAxis: [{
@@ -253,20 +268,30 @@
                     yAxis: [{
                         type: 'category',
                         data:
-                        ['December', 'November', 'October', 'September', 'August', 'July', 'June', 'May', 'April', 'March', 'February', 'January']
+                         $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue
                     }],
 
                     // Add series
                     series: [
                         {
-                            //name: 'Year 2013',
+                            name: 'Orders',
                             type: 'bar',
                             itemStyle: {
                                 normal: {
                                     color: '#EF5350'
                                 }
                             },
-                            data: [318, 713, 112, 201, 331, 318, 713, 112, 201, 331, 120, 110]
+                            data: $scope.DashboardSummary.DashboardSalesAnalyticsOrderCount
+                        },
+                        {
+                            name: 'Customers',
+                            type: 'bar',
+                            itemStyle: {
+                                normal: {
+                                    color: '#66BB6A'
+                                }
+                            },
+                            data: $scope.DashboardSummary.DashboardSalesAnalyticsCustomerCount
                         }
                     ]
                 };
@@ -309,7 +334,7 @@
                     xAxis: [
                         {
                             type: 'category',
-                            data: ['Paul', 'Clubb ', 'AJ', 'Adil', 'Adrian']
+                            data: $scope.DashboardSummary.DashboardTopCustomerName
                             , rotated: true
                             , boundaryGap: ['25%', '24%']
                         }
@@ -323,7 +348,7 @@
                         {
                             name: 'purchase',
                             type: 'bar',
-                            data: [2.0, 2.6, 20.0, 6.4, 3.3],
+                            data: $scope.DashboardSummary.DashboardTopCustomerValue,
                         }
                     ]
                 };
@@ -367,7 +392,7 @@
                     xAxis: [
                         {
                             type: 'category',
-                            data: ['Marks', 'Apple', 'Azz', 'as', 'Capital']
+                            data: $scope.DashboardSummary.DashboardTopPurchaseProductName
                         }
                     ],
                     yAxis: [
@@ -379,7 +404,7 @@
                         {
                             name: 'Product',
                             type: 'bar',
-                            data: [20, 55, 20, 64, 33],
+                            data: $scope.DashboardSummary.DashboardTopPurchaseProductValue,
                         }
                     ]
                 };
@@ -417,7 +442,6 @@
     }
 
 
-    LoadCharts();
 
     //need to set login pesron's store ID
 
@@ -437,6 +461,97 @@
     }
 
     $scope.GetLatestOrderDetailsDashboard();
+
+    $scope.GetDashboardTopHeaderFields = function () {
+        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardTopHeaderFields?storeId=0")
+        .then(function (response) {
+            debugger;
+            if (response.data != null) {
+                $scope.DashboardSummary.DashboardHeaderSummary = response.data;
+            }
+        })
+         .catch(function (response) {
+         })
+         .finally(function () {
+         });
+    }
+
+    $scope.GetDashboardTopHeaderFields();
+
+
+    $scope.GetDashboardSummaryCharts = function () {
+        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardSummaryCharts?storeId=0&ChartFiltertype=" + $scope.ChartFiltertype)
+        .then(function (response) {
+            if (response.data != null) {
+                //$scope.DashboardOrderSummary = response.data;
+                debugger;
+                $scope.DashboardSummary.DashboardOrderSummary = [];
+                $scope.DashboardSummary.DashboardOrderSummaryMonthName = [];
+
+                //$scope.DashboardSummary.DashboardSalesAnalytics = [];
+
+                $scope.DashboardSummary.DashboardSalesAnalyticsOrderCount = [];
+                $scope.DashboardSummary.DashboardSalesAnalyticsCustomerCount = [];
+                $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue = [];
+
+                $scope.DashboardSummary.DashboardTopPurchaseProductName = [];
+                $scope.DashboardSummary.DashboardTopPurchaseProductValue = [];
+
+                $scope.DashboardSummary.DashboardTopCustomerName = [];
+                $scope.DashboardSummary.DashboardTopCustomerValue = [];
+
+                for (var i = 0; i < response.data.dashboardTopCustomer.length; i++) {
+                    $scope.DashboardSummary.DashboardTopCustomerValue.push(response.data.dashboardTopCustomer[i].value);
+                    $scope.DashboardSummary.DashboardTopCustomerName.push(response.data.dashboardTopCustomer[i].customer);
+                }
+                for (var i = 0; i < response.data.dashboardTopPurchaseProduct.length; i++) {
+                    $scope.DashboardSummary.DashboardTopPurchaseProductValue.push(response.data.dashboardTopPurchaseProduct[i].value);
+                    $scope.DashboardSummary.DashboardTopPurchaseProductName.push(response.data.dashboardTopPurchaseProduct[i].product);
+                }
+                for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
+                    $scope.DashboardSummary.DashboardSalesAnalyticsOrderCount.push(response.data.dashboardSalesAnalytics[i].OrderCount);
+                    $scope.DashboardSummary.DashboardSalesAnalyticsCustomerCount.push(response.data.dashboardSalesAnalytics[i].CustomerCount);
+
+                }
+
+                if ($scope.ChartFiltertype == 1) {
+                    //$scope.DashboardSummary.DashboardSalesAnalyticsFilterValue
+                    for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
+                        $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].HourOfDay)
+                    }
+                }
+                else if ($scope.ChartFiltertype == 2) {
+                    for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
+                        $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].WeekDayName)
+                    }
+                }
+                else if ($scope.ChartFiltertype == 3) {
+                    debugger;
+                    for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
+                        $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].DayNumberOfMonth)
+                    }
+                }
+                else if ($scope.ChartFiltertype == 4) {
+                    for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
+                        $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].MonthName)
+                    }
+                }
+
+                for (var i = 0; i < response.data.dashboardOrderSummary.length; i++) {
+                    $scope.DashboardSummary.DashboardOrderSummary.push({ value: response.data.dashboardOrderSummary[i].orderCount, name: response.data.dashboardOrderSummary[i].Month })
+                    $scope.DashboardSummary.DashboardOrderSummaryMonthName.push(response.data.dashboardOrderSummary[i].Month);
+                }
+            }
+            LoadCharts();
+
+        })
+        .catch(function (response) {
+        })
+         .finally(function () {
+         });
+    }
+
+    $scope.GetDashboardSummaryCharts();
 
 
 });
