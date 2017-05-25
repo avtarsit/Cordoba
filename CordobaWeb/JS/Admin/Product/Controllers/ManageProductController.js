@@ -62,7 +62,7 @@
     }
     //#endregion
 
-   
+
 
     $scope.DeleteProduct = function () {
         bootbox.dialog({
@@ -98,16 +98,15 @@
               debugger;
               $scope.ProductObj = response.data;
               CreateDescriptionObject();
-              if($scope.ProductObj.product_id==0)
-              {
-                 
+              if ($scope.ProductObj.product_id == 0) {
+
                   $scope.ProductObj.manufacturer_id = 0;
                   $scope.ProductObj.supplier_id = 0;
                   $scope.ProductObj.country_id = 222   // country_id  -United Kingdom
               }
           })
       .catch(function (response) {
-          
+
       })
       .finally(function () {
 
@@ -121,8 +120,7 @@
         debugger;
         angular.forEach($scope.LanguageList, function (col, i) {
             var ProductDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
-            if (ProductDescObj == undefined || ProductDescObj == null || ProductDescObj.length==0)
-            {
+            if (ProductDescObj == undefined || ProductDescObj == null || ProductDescObj.length == 0) {
                 var DescObj = new Object();
                 DescObj.language_id = col.language_id;
                 DescObj.name = "";
@@ -175,7 +173,7 @@
                   debugger;
                   $scope.ManufacturersList = response.data;
                   var DefaultOption = new Object()
-                  DefaultOption.manufacturer_id=0;
+                  DefaultOption.manufacturer_id = 0;
                   DefaultOption.name = " --- None --- ";
                   $scope.ManufacturersList.push(DefaultOption);
               }
@@ -191,7 +189,7 @@
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.CategoryList = response.data;              
+                  $scope.CategoryList = response.data;
               }
           })
       .catch(function (response) {

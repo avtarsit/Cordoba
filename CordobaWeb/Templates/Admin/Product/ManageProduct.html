@@ -70,18 +70,18 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active in" id="tab-general">
                                                 <ul class="nav nav-tabs" id="language">
-                                                    <li class="active">
-                                                        <a data-target="#1" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/gb.png" title="English"> English</a>
+                                                    <li ng-class="$index==0 ? 'active':''"  data-ng-repeat="LangObj in LanguageList">
+                                                        <a data-target="#{{LangObj.language_id}}" data-toggle="tab" aria-expanded="true"><img src="../../../Content/admin/images/flags/{{LangObj.image}}" title="{{LangObj.name}}"> {{LangObj.name}}</a>
                                                     </li>
-                                                    <li><a data-target="#2" data-toggle="tab"><img src="../../../Content/admin/images/flags/de.png" title="Deutsch"> Deutsch</a></li>
+                                                    <!--<li><a data-target="#2" data-toggle="tab"><img src="../../../Content/admin/images/flags/de.png" title="Deutsch"> Deutsch</a></li>
                                                     <li><a data-target="#3" data-toggle="tab"><img src="../../../Content/admin/images/flags/fr.png" title="Français"> Français</a></li>
                                                     <li><a data-target="#4" data-toggle="tab"><img src="../../../Content/admin/images/flags/it.png" title="Italiano"> Italiano</a></li>
                                                     <li><a data-target="#5" data-toggle="tab"><img src="../../../Content/admin/images/flags/es.png" title="Español"> Español</a></li>
                                                     <li><a data-target="#6" data-toggle="tab"><img src="../../../Content/admin/images/flags/pt.png" title="Português"> Português</a></li>
-                                                    <li><a data-target="#7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>
+                                                    <li><a data-target="#7" data-toggle="tab"><img src="../../../Content/admin/images/flags/nl.png" title="Nederlands"> Nederlands</a></li>-->
                                                 </ul>
                                                 <div class="tab-content">
-                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="LangObj.name=='English' ? 'active':''" data-ng-repeat="LangObj in LanguageList">
+                                                    <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
                                                             <label class="col-lg-2 control-label mandatoryField" for="input-name1">Product Name</label>
                                                             <div class="col-sm-10">
