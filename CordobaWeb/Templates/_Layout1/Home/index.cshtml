@@ -63,18 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-xs-12 mb-30">
-            <h1 class="main-heding">Bienvenue sur la boutique Make a Difference</h1>
-            <div class="row">
-                <div class="col-sm-12 welcome-block">
-                    <div ng-bind-html="WelcomeMsg[0]"></div>  
-                                  
-                    <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
-                     <div class="more-content" ng-bind-html="WelcomeMsg[1]">
-                    </div>
-                </div>
-            </div>
-        </div>
+     
         @* Dashboard_PopularCategoryController *@
         <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category">
@@ -111,7 +100,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>                             
+                                <li ng-repeat="category in CategoryList"><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>                             
                             </ul>
                         </div>
                     </div>
@@ -146,22 +135,22 @@
         </div>
         @* Dashboard_LatestProductController *@
         <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
-            <div class="row">
-                <div class="col-sm-12 latest-product mb-30">
+            <div class="row" >
+                <div class="col-sm-12 latest-product mb-30" ng-if="LatestProductList.length>0">
                     <div class="block-heading">
                         <h4>Latest Products</h4>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
                         <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>                      
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src="{{LatestProduct.image}}" alt="latest product" />
+                                        <img ng-src="{{LatestProduct.Image}}" alt="latest product" />
                                     </div>
                                     <a href="#">{{LatestProduct.name}}</a>
-                                    <p>{{LatestProduct.model}}</p>
-                                    <p><span>{{LatestProduct.Points}}</span></p>
+                                    <p>{{LatestProduct.Model}}</p>
+                                    <p><span>{{LatestProduct.Price}}</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
                                         <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct)">Add to Cart</button>
                                     </div>
@@ -187,23 +176,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-
-        //$('.hot-deals, #special-offer').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    minSlides: 2,
-        //    maxSlides: 1,
-        //    mode: 'vertical'
-        //});
-       
-        //$('.main-banner').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    mode: 'fade'
-        //});
+    $(document).ready(function () {            
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.best-seller').mCustomScrollbar({
             axis: "x",
@@ -211,19 +184,6 @@
         });
 
         $('.category-list').mCustomScrollbar();
-
-        //$('#latest-product').bxSlider({
-        //    pager: false,
-        //    nextText: '',
-        //    prevText: '',
-        //    minSlides: 1,
-        //    maxSlides: 4,
-        //    slideWidth: 290
-        //});
-        $('#readMore').click(function () {
-            $('.more-content').slideToggle();
-        });
-
 
     });
 </script>

@@ -6,7 +6,7 @@
     //#endregion     
     $scope.GetCategoryListForDashboard = function () { 
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID=0&NeedToGetAllSubcategory=false")
-          .then(function (response) {
+          .then(function (response) {        
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
               }

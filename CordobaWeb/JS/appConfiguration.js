@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch"]);
+var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor"]);
 
 GetLayoutName();
 function GetLayoutName() {
@@ -119,7 +119,7 @@ function GetLayoutName() {
 
                  , Product = {
                      name: 'Product',
-                     url: '/Catalog/Product',
+                     url: '/Catalog/Product?Quantity:quantity',
                      templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
                  }
                   , ManageProduct = {
@@ -250,6 +250,16 @@ function GetLayoutName() {
                     url: '/ManageOrders?orderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
                 }
+                , LayoutCategoryORProductList = {
+                    name: 'LayoutCategoryORProductList',
+                    url: '/Category?CategoryId:categoryId',
+                    templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
+                }
+                , LayoutProducts = {
+                    name: 'LayoutProducts',
+                    url: '/Products?CategoryId:categoryId',
+                    templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
+                }
                 ;
 
                 $stateProvider.state(StoreDashboard);
@@ -307,6 +317,9 @@ function GetLayoutName() {
                 $stateProvider.state(Customer);
                 $stateProvider.state(CustomerGroup);
                 $stateProvider.state(ManageCustomerGroup);
+                $stateProvider.state(LayoutCategoryORProductList);
+                $stateProvider.state(LayoutProducts);
+                
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

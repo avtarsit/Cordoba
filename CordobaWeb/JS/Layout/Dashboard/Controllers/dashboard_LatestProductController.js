@@ -11,7 +11,8 @@
     $scope.GetLatestProductByStoreId = function () {
 
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetLatestProductByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {            
+          .then(function (response) {
+              debugger;
               if (response.data.length > 0) {
                   $scope.LatestProductList = response.data;
               }

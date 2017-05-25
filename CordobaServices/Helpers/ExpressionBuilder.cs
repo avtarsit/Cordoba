@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 //using TIA.HR.Api.Common.Enums;
 
-namespace CordobaServices.SearchHelpers
+namespace CordobaServices.Helpers
 {
     /// <summary>
     /// Expression Builder

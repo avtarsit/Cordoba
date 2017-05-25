@@ -9,10 +9,10 @@
     @Styles.Render("~/bundles/AdminCSS")
     <link href="~/Content/admin/css/components.css" rel="stylesheet" type="text/css">
     <link href="~/Content/css/angular-ui-switch.min.css" rel="stylesheet" />
-
+    
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-  
+   
 </head>
 <body>
     <!-- Main navbar -->
@@ -130,9 +130,8 @@
                         <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Products</li>
-                        <li><a><span class="label label-danger pull-right">31</span>Out of stock</a></li>
-                        <li><a><span class="label label-danger pull-right">1</span>Reviews</a></li>
-                        <li class="divider"></li>
+                        <li ui-sref="Product({Quantity:'0'})"><a><span class="label label-danger pull-right">31</span>Out of stock</a></li>
+                        @*<li class="divider"></li>*@
                     </ul>
                 </li>
 
@@ -316,7 +315,7 @@
     @Scripts.Render("~/bundles/AdminControllers")
 
     @*@Scripts.Render("~/bundles/Chart")*@
-
+    <script src="~/Scripts/ng-ckeditor.js"></script>
     <script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
     <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>
     <script src="~/Scripts/angular-ui-switch.min.js"></script>

@@ -52,7 +52,9 @@ namespace CordobaWeb
                      "~/Scripts/angular-ui-router.min.js",
                      "~/Scripts/angular-local-storage.js",
                      "~/Scripts/angular-sanitize.js",
-                     "~/Scripts/angular-datatables.min.js"
+                     "~/Scripts/angular-datatables.min.js",
+                     "~/Scripts/angular-ui-switch.min.js" ,
+                     "~/Scripts/ng-ckeditor.js"      
                      ));
 
    
@@ -143,7 +145,7 @@ namespace CordobaWeb
             //js/jquery.min.js
             bundles.Add(new ScriptBundle("~/bundles/Layout1Js").Include(
                      "~/Scripts/layout1/js/jquery.min.js",
-                     "~/Scripts/layout1/js/bootstrap.min.js",
+                     "~/Scripts/layout1/js/bootstrap.min.js",               
                      "~/Scripts/layout1/js/jquery.bxslider.min.js",
                      "~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js" ,                                    
                      "~/Scripts/bootstrap-modalmanager.js",

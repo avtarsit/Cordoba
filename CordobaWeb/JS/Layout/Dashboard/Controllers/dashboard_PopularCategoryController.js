@@ -17,7 +17,6 @@
     //#endregion  
     $scope.StoreDetailInSession = StoreSessionDetail;
 
-
     $scope.GetPopularCategoryListByStoreId = function () {
 
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetPopularCategoryListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)

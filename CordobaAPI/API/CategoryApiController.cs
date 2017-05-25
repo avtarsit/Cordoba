@@ -18,11 +18,11 @@ namespace CordobaAPI.API
             _categoryServices = new CategoryService();
         }
         [HttpGet]
-        public HttpResponseMessage GetCategoryList(int CategoryId = 0)
+        public HttpResponseMessage GetCategoryList(int Category_Id = 0)
         {
             try
             {
-                var result = _categoryServices.GetCategoryList(CategoryId);
+                var result = _categoryServices.GetCategoryList(Category_Id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -38,11 +38,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCategoryById(int CategoryId)
+        public HttpResponseMessage GetCategoryById(int Category_Id, int language_id)
         {
             try
             {
-                var result = _categoryServices.GetCategoryById(CategoryId);
+                var result = _categoryServices.GetCategoryById(Category_Id, language_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -113,6 +113,29 @@ namespace CordobaAPI.API
             }
 
         }
+
+
+
+        [HttpGet]
+        public HttpResponseMessage GetLanguageList()
+        {
+            try
+            {                
+                var result = _categoryServices.GetLanguageList();
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
     }
 }

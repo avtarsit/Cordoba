@@ -6,11 +6,15 @@
     //#endregion
 
     function Init() {
+        $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
+        $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
+        $scope.ProductObjStock_Status = [{ ID: 6, Name: '2-3 Days' }, { ID: 7, Name: 'In Stock' }, { ID: 5, Name: 'Out Of Stock' }, { ID: 8, Name: 'Pre-Order' }];
+
+        $scope.IsEditMode = false;
+        $scope.product_id = 0;
+        $scope.ProductObj = new Object();
+
         createDatePicker();
-        $scope.EnumStatus = [
-             { 'StatusId': 1, 'StatusName': 'Enabled' }
-           , { 'StatusId': 2, 'StatusName': 'Disabled' }
-        ];
         $scope.EnumLanguageList = [
             { 'LangId': 1, 'LangName': 'English' }
           , { 'LangId': 2, 'LangName': 'Deutsch' }
@@ -21,10 +25,6 @@
                , { 'LangId': 7, 'LangName': 'Nederlands' }
         ];
 
-
-        $scope.IsEditMode = false;
-        $scope.product_id = 0;
-        $scope.ProductObj = new Object();
         if ($stateParams.ProductId != undefined && $stateParams.ProductId != null) {
             $scope.PageTitle = "Update Product";
             $scope.product_id = $stateParams.ProductId;
@@ -32,16 +32,14 @@
         }
         else {
             $scope.PageTitle = "Add Product";
+
         }
-
-
         GetLanguageList();
         GetManufacturersList();
         GetCategoryList();
-
+        GetSupplierList();
         $scope.GetProductById();
     }
-
 
     //#region Image Tab
     $scope.AddImage = function () {
@@ -64,14 +62,10 @@
     }
     //#endregion
 
-    $scope.SaveProduct = function (form) {
-        debugger;
-        $scope.ProductObj;
-        if (form.$valid) {
-        }
-    }
+
 
     $scope.DeleteProduct = function () {
+        debugger;
         bootbox.dialog({
             message: "Do you want remove Product?",
             title: "Confirmation",
@@ -83,13 +77,26 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $http.post(configurationService.basePath + "api/ProductApi/DeleteProduct?product_id=" + $scope.product_id)
+                               .then(function (response) {
+                                   if (response.data > 0)
+                                       notificationFactory.successDelete();
+                                   else {
+                                       notificationFactory.FKReferenceDelete();
+                                   }
+                                   $state.go('Product');
+                               })
+                               .catch(function (response) {
+                                   notificationFactory.errorDelete(response.data.ExceptionMessage);
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },
                 danger:
                     {
-                        label: "NO",
+                        label: "No",
                         className: "btn btn-default",
                         callback: function () {
                             return true;
@@ -102,15 +109,54 @@
     $scope.GetProductById = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id)
           .then(function (response) {
-              $scope.ProductObj = response.data;
               debugger;
+              $scope.ProductObj = response.data;
+              CreateDescriptionObject();
+              if ($scope.ProductObj.product_id == 0) {
+
+                  // Default Values
+                  $scope.ProductObj.manufacturer_id = 0;
+                  $scope.ProductObj.supplier_id = 0;
+                  $scope.ProductObj.country_id = 222   // country_id  -United Kingdom
+                  $scope.ProductObj.Quantity = 1;
+                  $scope.ProductObj.minimum = 1;
+                  $scope.ProductObj.minimum = 1;
+                  $scope.ProductObj.subtract = 1;
+                  $scope.ProductObj.stock_status_id = 6;
+                  $scope.ProductObj.shipping = 1;
+                  $scope.ProductObj.date_available = $filter('date')('05/25/2017', $rootScope.GlobalDateFormat);
+                  $scope.ProductObj.shipping = 1;
+
+
+              }
           })
       .catch(function (response) {
-          debugger;
+
       })
       .finally(function () {
 
       });
+    }
+
+    function CreateDescriptionObject() {
+        var TempDescObject = [];
+        angular.copy($scope.ProductObj.ProductDescriptionList, TempDescObject);
+        $scope.ProductObj.ProductDescriptionList = [];
+        angular.forEach($scope.LanguageList, function (col, i) {
+            var ProductDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
+            if (ProductDescObj == undefined || ProductDescObj == null || ProductDescObj.length == 0) {
+                var DescObj = new Object();
+                DescObj.language_id = col.language_id;
+                DescObj.name = "";
+                DescObj.description = "";
+                DescObj.tag = "";
+                $scope.ProductObj.ProductDescriptionList.push(DescObj);
+            }
+            else {
+                $scope.ProductObj.ProductDescriptionList.push(ProductDescObj[0]);
+            }
+        });
+        debugger;
     }
 
     $scope.Cancel = function () {
@@ -135,13 +181,12 @@
                 $scope.LanguageList = response.data;
             }
         })
-    .catch(function (response) {
+        .catch(function (response) {
 
-    })
-    .finally(function () {
+        })
+        .finally(function () {
 
-    });
-
+        });
     }
 
     function GetManufacturersList() {
@@ -149,10 +194,13 @@
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.ManufacturersList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.manufacturer_id = 0;
+                  DefaultOption.name = " --- None --- ";
+                  $scope.ManufacturersList.push(DefaultOption);
               }
           })
       .catch(function (response) {
-
       })
       .finally(function () {
 
@@ -162,10 +210,8 @@
     function GetCategoryList() {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
           .then(function (response) {
-
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
-
               }
           })
       .catch(function (response) {
@@ -176,6 +222,62 @@
       });
     }
 
+    function GetSupplierList() {
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.SupplierList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.supplier_id = 0;
+                  DefaultOption.name = " --- None --- ";
+                  $scope.SupplierList.push(DefaultOption);
+              }
+          })
+      .catch(function (response) {
 
+      })
+      .finally(function () {
+
+      });
+    }
+
+    function GetSelectedCatalogueListCSV(CatalogueObj) {
+        var CatalogueIdCSV = "";
+        var SelectedCatalogueList = $filter('filter')(CatalogueObj, { IsSelected: true }, true);
+        CatalogueIdCSV = GetCSVFromJsonArray(SelectedCatalogueList, "catalogue_Id");
+        return CatalogueIdCSV;
+    }
+
+    $scope.InsertUpdateProduct = function (form) {
+        debugger;
+        if (form.$valid) {
+            $scope.ProductObj.CatalogueIdCSV = "";
+            $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
+            var productEntity = JSON.stringify($scope.ProductObj);
+            $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct", productEntity)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Product Saved Successfully.");
+                      $state.go('Product');
+                  }
+                  else if (response.data == -1) {
+                      notificationFactory.customError("Product name is already Exists!");
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.error("Error occur during save record.");
+          })
+          .finally(function () {
+
+          });
+
+        }
+    }
+
+
+    //#region init
     Init();
+    //#endregion Image Tab
+
+
 });

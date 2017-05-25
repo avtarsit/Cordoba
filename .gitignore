@@ -33,3 +33,13 @@ CordobaWeb/Properties/PublishProfiles/Publish.pubxml
 CordobaAPI/Properties/PublishProfiles/API.pubxml
 CordobaWeb/Properties/PublishProfiles/WEB.pubxml
 Documents/~$estimation.xlsx
+packages/NuGetPowerTools.0.29/tools/NuGetPowerTools.psm1
+packages/NuGetPowerTools.0.29/tools/VS.psm1
+packages/NuGetPowerTools.0.29/tools/init.ps1
+packages/NuGetPowerTools.0.29/NuGetPowerTools.0.29.nupkg
+packages/NuGetPowerTools.0.29/tools/MSBuild.psm1
+packages/NuGetPowerTools.0.29/tools/NuGetMSBuild.psm1
+packages/NuGetPowerTools.0.29/tools/NuGetPowerTools.psd1
+packages/NuGet.Build.2.12.0/NuGet.Build.2.12.0.nupkg
+packages/NuGet.Build.2.12.0/tools/NuGet.targets
+packages/NuGet.CommandLine.1.0.11220.26/NuGet.CommandLine.1.0.11220.26.nupkg

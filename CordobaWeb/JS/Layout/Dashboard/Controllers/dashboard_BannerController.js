@@ -3,8 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    //#endregion  
-    debugger;
+    //#endregion    
     $scope.BannerList = [
           { ImgSrc: "/Content/layout1/images/sliderBanner1.jpg" }
         , { ImgSrc: "/Content/layout1/images/sliderBanner2.jpg" }

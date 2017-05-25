@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cordoba</title>
-
-    @Styles.Render("~/bundles/Layout1CSS")
+    
+    @Styles.Render("~/bundles/Layout1CSS")    
 
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());        
@@ -26,7 +26,9 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">My Account</a></li>
                         <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Sign In</a></li>
+                        <li>
+                            <a ng-click="OpenLoginPopUp()">Login</a>
+                        </li>
                     </ul>
                 </div>
             </header>
@@ -39,8 +41,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-
-                        <a class="navbar-brand" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                     
+                        <a class="navbar-brand" href="index.html"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
                     </div>
                     <div class="main-menu">
                         <div class="search-panel">
@@ -55,8 +57,7 @@
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="#">Our Products</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="products.html">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
@@ -71,7 +72,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
-                        <a class="footer-logo" href="#"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                        <a class="footer-logo" href="index.html"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics"></a>
                     </div>
                     <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
                         <div class="row">
@@ -86,7 +87,7 @@
                             </div>
                             <div class="col-sm-12 col-xs-12 connect-to">
                                 <p>Connect To :</p>
-                                <a class="facebook" href="#"><i class="fa fa-facebook-official"></i></a>
+                                <a class="facebook" href="javascript:;"><i class="fa fa-facebook-official"></i></a>
                             </div>
                         </div>
                     </div>
@@ -95,31 +96,146 @@
             <div class="copyright">
                 <p>Copyright © 2017 Cordoba</p>
             </div>
-        </footer>  
-    </div>
+        </footer>
+        <!-- login modal popup -->
+        <!-- login modal popup -->
+        <div class="modal" id="DivLoginModel" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-content">
+                        <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
+                        <div class="modal-body">
+                            <div class="login_text">
+                                <div class="icon-text">
+                                    <img src="images/checkin.png" alt="image" />
+                                    <h4>MANAGE YOUR ORDERS</h4>
+                                    <p>Track orders, manage cancellations & returns.</p>
+                                </div>
+                                <div class="icon-text">
+                                    <img src="images/wishlist.png" alt="image" />
+                                    <h4>SHORTLIST ITEMS YOU LOVE</h4>
+                                    <p>Keep items you love on a watchlist.</p>
+                                </div>
+                                <div class="icon-text">
+                                    <img src="images/notification.png" alt="image" />
+                                    <h4>AWESOME OFFERS UPDATES FOR YOU</h4>
+                                    <p>Be first to know about great offers and save.</p>
+                                </div>
+                            </div>
+                            <div class="login_page">
+                                <h2>Login</h2>
+                                <div class="form-group pt-20">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                    <a href="javascript:;" class="forgot-password">Forgot Password?</a>
+                                </div>
+                                <div class="chekbox-main checkbox secondary">
+                                    <input type="checkbox" id="checkbox" />
+                                    <label for="checkbox">Remember Me</label>
+                                </div>
+                                <button type="submit" class="btn btn-empty mt-5 text-center">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    @Scripts.Render("~/bundles/Layout1Js")
+        <div class="about-overlay"></div>
+        <div class="about-us">
+            <div id="aboutScroll" class="welcome-block">
+                <a href="javascript:;" class="showDesc">About Us</a>        
+                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+                </div>               
+            </div>
+       
+        <div class="container-fluid">
+            <a href="#" id="back-to-top" title="Back to top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </div>   
+
+    @Scripts.Render("~/bundles/Layout1Js")    
     @Scripts.Render("~/bundles/angular")    
     @Scripts.Render("~/bundles/appConfig") 
     @Scripts.Render("~/bundles/LayoutControllers")
-
+   
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('.main-banner').bxSlider({
-            pager: false,
-            nextText: '',
-            prevText: '',
-            mode: 'fade'
+        $(document).ready(function () {
+          
+            $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        
+            $(".category-list, #aboutScroll").mCustomScrollbar();
+            $(".showDesc").click(function () {
+                var hidden = $(".about-us");
+                if (hidden.hasClass("visible")) {
+                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                    $(".showDesc").text("About Us");                 
+                    $(".about-overlay").fadeOut("slow");
+
+                } else {
+                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").text("Close");
+                    $(".about-overlay").fadeIn("slow");
+                }
+            });
+
+            $('#readMore').click(function () {
+
+                $('.more-content').slideToggle();
+
+                var LinkText = $("#readMore").text();
+                LinkText = LinkText.replace(/\s/g, '');
+                if (LinkText == "ReadMore") {
+                    $("#readMore").text("Read Less");
+                }
+                else {
+                    $("#readMore").text("Read More");
+                }
+            });
+
+            $('.category-list').mCustomScrollbar();
         });
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';
-        $('.best-seller').mCustomScrollbar({
-            axis: "x",
-            advanced: { autoExpandHorizontalScroll: true }
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 1) {
+                $('.top-nav').addClass("hidden");
+            }
+            else {
+                $('.top-nav').removeClass("hidden");
+            }
         });
-       
-     
-        $('.category-list').mCustomScrollbar();
-    });
+
+        if ($('#back-to-top').length) {
+            var scrollTrigger = 100, // px
+		        backToTop = function () {
+		            var scrollTop = $(window).scrollTop();
+		            if (scrollTop > scrollTrigger) {
+		                $('#back-to-top').addClass('show');
+		            } else {
+		                $('#back-to-top').removeClass('show');
+		            }
+		        };
+            backToTop();
+            $(window).on('scroll', function () {
+                backToTop();
+            });
+            $('#back-to-top').on('click', function (e) {
+                e.preventDefault();
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 700);
+            });
+        }
     </script>
 
 </body>
