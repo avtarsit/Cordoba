@@ -38,11 +38,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCategoryById(int Category_Id, int language_id)
+        public HttpResponseMessage GetCategoryById(int Category_Id)
         {
             try
             {
-                var result = _categoryServices.GetCategoryById(Category_Id, language_id);
+                var result = _categoryServices.GetCategoryById(Category_Id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
