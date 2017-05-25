@@ -146,15 +146,15 @@
         </div>
         @* Dashboard_LatestProductController *@
         <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
-            <div class="row">
-                <div class="col-sm-12 latest-product mb-30">
+            <div class="row" >
+                <div class="col-sm-12 latest-product mb-30" ng-if="LatestProductList.length>0">
                     <div class="block-heading">
                         <h4>Latest Products</h4>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
                         <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>                      
+                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
                                         <img ng-src="{{LatestProduct.Image}}" alt="latest product" />
