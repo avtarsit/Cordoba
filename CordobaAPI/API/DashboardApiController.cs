@@ -29,7 +29,43 @@ namespace CordobaAPI.API
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetDashboardTopHeaderFields(int storeId = 0)
+        {
+            try
+            {
+                var result = _dashboardService.GetDashboardTopHeaderFields(storeId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetDashboardSummaryCharts(int ChartFiltertype,int storeId = 0)
+        {
+            try
+            {
+                var result = _dashboardService.GetDashboardSummaryCharts(storeId, ChartFiltertype);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex)
             {
                 throw;
             }

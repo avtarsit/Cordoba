@@ -34,7 +34,10 @@
                         <div class="heading-elements">
                             <!--@*<span class="heading-text badge bg-teal-800">+53,6%</span>*@-->
                         </div>
-                        <h3 class="no-margin"> 1K </h3>
+                        <!--<h3 class="no-margin"> 1K </h3>-->
+                        <h3 class="no-margin">
+                            {{DashboardSummary.DashboardHeaderSummary.TotalOrders}}
+                        </h3>
                         Total Orders
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -50,7 +53,8 @@
                     <div class="panel-body">
                         <div class="heading-elements">
                         </div>
-                        <h3 class="no-margin">143k</h3>
+                        <!--<h3 class="no-margin">143k</h3>-->
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.TotalCustomers}}</h3>
                         Total Customers
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -67,7 +71,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">999</h3>
+                        <!--<h3 class="no-margin">999</h3>-->
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.CreditBalance}}</h3>
                         Credit balance
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -84,7 +89,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">9939</h3>
+                        <!--<h3 class="no-margin">9939</h3>-->
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.AssignedBalance}}</h3>
                         Assigned balance
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -101,7 +107,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">$18,90</h3>
+                        <!--<h3 class="no-margin">$18,90</h3>-->
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.TotalSales}}</h3>
                         Total Sales
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -118,7 +125,8 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <h3 class="no-margin">232</h3>
+                        <!--<h3 class="no-margin">232</h3>-->
+                        <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.OutOfStockProduct}}</h3>
                         Out of stock Product
                         <div class="text-muted text-size-small"></div>
                     </div>
@@ -159,7 +167,12 @@
                 <!-- Basic bar chart -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Sales Analytics</h5>
+                        <h5 class="panel-title">
+                            Sales Analytics
+                            <div style="float: right;margin-right: 35px;font-size: small;">
+                                <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts()" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
+                            </div>
+                        </h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
                                 <!--@*
