@@ -57,7 +57,7 @@
                             <img ng-src="{{product.Image}}" alt="product" />
                             <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
                         </div>
-                        <a href="#">{{product.name}}</a>
+                        <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})">{{product.name}}</a>
                         <p><span ng-bind="product.Price"></span></p>
                         <p ng-bind="product.Model"></p>
 
