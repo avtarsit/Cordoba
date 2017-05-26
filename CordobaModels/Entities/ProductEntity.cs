@@ -54,7 +54,7 @@ namespace CordobaModels.Entities
 
         #region Extra Details
 
-
+        public string description { get; set; }
         public int? CartQuantity { get; set; }
         public string SupplierName { get; set; }
         public string ManufactureName { get; set; }
