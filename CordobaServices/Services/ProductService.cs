@@ -162,5 +162,42 @@ namespace CordobaServices.Services
                 throw ex;
             }
         }
+
+        public ProductEntity GetProductDetailForLayout(int StoreId ,int ProductId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("StoreId", StoreId) 
+                                                           ,new SqlParameter("ProductId", ProductId) 
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductDetailForLayout", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("StoreId", StoreId) 
+                                                           ,new SqlParameter("SelectedProductId", SelectedProductId) 
+                                                           ,new SqlParameter("RelatedProductId", RelatedProductId) 
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetRelatedProductListForLayout", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }      
 }

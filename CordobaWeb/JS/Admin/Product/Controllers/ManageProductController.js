@@ -9,10 +9,10 @@
         $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
         $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
         $scope.ProductObjStock_Status = [{ ID: 6, Name: '2-3 Days' }, { ID: 7, Name: 'In Stock' }, { ID: 5, Name: 'Out Of Stock' }, { ID: 8, Name: 'Pre-Order' }];
-
         $scope.IsEditMode = false;
         $scope.product_id = 0;
         $scope.ProductObj = new Object();
+        $scope.CurrentDate = new Date();
 
         createDatePicker();
         $scope.EnumLanguageList = [
@@ -109,11 +109,9 @@
     $scope.GetProductById = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id)
           .then(function (response) {
-              debugger;
               $scope.ProductObj = response.data;
               CreateDescriptionObject();
               if ($scope.ProductObj.product_id == 0) {
-
                   // Default Values
                   $scope.ProductObj.manufacturer_id = 0;
                   $scope.ProductObj.supplier_id = 0;
@@ -124,10 +122,9 @@
                   $scope.ProductObj.subtract = 1;
                   $scope.ProductObj.stock_status_id = 6;
                   $scope.ProductObj.shipping = 1;
-                  $scope.ProductObj.date_available = $filter('date')('05/25/2017', $rootScope.GlobalDateFormat);
+                  $scope.ProductObj.date_available = $filter('date')($scope.CurrentDate, $rootScope.GlobalDateFormat);
+                  //$('#startdate').bootstrapDP('update', $scope.RewardObj.start_date);
                   $scope.ProductObj.shipping = 1;
-
-
               }
           })
       .catch(function (response) {

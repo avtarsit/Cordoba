@@ -223,6 +223,11 @@ function GetLayoutName() {
                     templateUrl: 'Templates/' + LayoutName + '/Customer/Index.html'
 
                 }
+                 , ManageCustomer = {
+                     name: 'ManageCustomer',
+                     url: '/System/ManageCustomer?CustomerId=customerId',
+                     templateUrl: 'Templates/' + LayoutName + '/Customer/ManageCustomer.html'
+                 }
 
                , CustomerGroup = {
                    name: 'CustomerGroup',
@@ -269,6 +274,10 @@ function GetLayoutName() {
                     name: 'ManageReward',
                     url: '/Reward/ManageReward?rewardId:reward_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
+                , LayoutProductDetail = {
+                    name: 'LayoutProductDetail',
+                    url: '/ProductDetails?ProductId:productId',
+                    templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
                 }
                 ;
 
@@ -325,10 +334,12 @@ function GetLayoutName() {
                 $stateProvider.state(Currency);
                 $stateProvider.state(ManageCurrency);
                 $stateProvider.state(Customer);
+                $stateProvider.state(ManageCustomer);
                 $stateProvider.state(CustomerGroup);
                 $stateProvider.state(ManageCustomerGroup);
                 $stateProvider.state(LayoutCategoryORProductList);
                 $stateProvider.state(LayoutProducts);
+                $stateProvider.state(LayoutProductDetail);
                 
                 $stateProvider.state(ShowReward);
                 $stateProvider.state(ManageReward);

@@ -148,7 +148,7 @@
                                     <div class="product-img">
                                         <img ng-src="{{LatestProduct.Image}}" alt="latest product" />
                                     </div>
-                                    <a href="#">{{LatestProduct.name}}</a>
+                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})">{{LatestProduct.name}}</a>
                                     <p>{{LatestProduct.Model}}</p>
                                     <p><span>{{LatestProduct.Price}}</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">

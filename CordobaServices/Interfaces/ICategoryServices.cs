@@ -11,7 +11,7 @@ namespace CordobaServices.Interfaces
     {
         List<CategoryEntity> GetCategoryList(int Category_Id = 0);
 
-        CategoryEntity GetCategoryById(int Category_Id, int language_id);
+        CategoryEntity GetCategoryById(int Category_Id);
 
 
         //Popular Category

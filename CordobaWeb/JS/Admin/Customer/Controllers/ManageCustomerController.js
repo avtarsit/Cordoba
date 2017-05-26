@@ -76,13 +76,13 @@
         if (hasAnyUnsavedData) {
             bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
                 if (result) {
-                    $state.go('CustomerOrderReport');
+                    $state.go('Customer');
                 }
 
             });
         }
         else {
-            $state.go('CustomerOrderReport');
+            $state.go('Customer');
         }
 
     }
