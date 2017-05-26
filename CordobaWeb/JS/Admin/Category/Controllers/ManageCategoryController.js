@@ -64,8 +64,8 @@
         })
          .success(function (data) {
 
-             $scope.languageList = data;
-             $scope.language_id = $scope.languageList[0].language_id
+             $scope.LanguageList = data;
+             $scope.language_id = $scope.LanguageList[0].language_id
              $scope.GetCategoryById($scope.language_id);
          }).error(function (err) {
              alert("false");
@@ -81,6 +81,7 @@
         })
         .success(function (response) {
             $scope.CategoryObj = response;
+            debugger;
             CreateDescriptionObject();
           })
       .catch(function (response) {
@@ -101,13 +102,16 @@
                 var DescObj = new Object();
                 DescObj.language_id = col.language_id;
                 DescObj.name = "";
-                DescObj.description = "";
+                DescObj.CategoryDescription = "dfgfdgdfg";
                 $scope.CategoryObj.CategoryDescriptionList.push(DescObj);
             }
             else {
                 $scope.CategoryObj.CategoryDescriptionList.push(CategoryDescObj[0]);
             }
         });
+        debugger;
+
+        
     }
 
 
