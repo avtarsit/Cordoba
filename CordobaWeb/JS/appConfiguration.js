@@ -274,12 +274,12 @@ function GetLayoutName() {
                     name: 'ManageReward',
                     url: '/Reward/ManageReward?rewardId:reward_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
+                }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
-                }
-                ;
+                };
 
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(HomeIndex);
