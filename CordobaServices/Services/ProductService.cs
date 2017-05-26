@@ -147,5 +147,20 @@ namespace CordobaServices.Services
 
         }
 
+
+
+        public int DeleteProduct(int product_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {  new SqlParameter("product_id", product_id)  };
+                int result = objGenericRepository.ExecuteSQL<int>("DeleteProduct", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }      
 }

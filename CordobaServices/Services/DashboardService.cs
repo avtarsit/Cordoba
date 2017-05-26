@@ -18,11 +18,38 @@ namespace CordobaServices.Services
         public List<OrderEntity> GetLatestOrderDetailsDashboard(int storeId)
         {
             List<OrderEntity> orders = new List<OrderEntity>();
-            var paramOrderId = new SqlParameter { ParameterName = "order_id", DbType = DbType.Int32, Value = storeId };
-            orders = objGenericRepository.ExecuteSQL<OrderEntity>("GetLatestOrderDetailsDashboard", paramOrderId).ToList();
+            var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = storeId };
+            orders = objGenericRepository.ExecuteSQL<OrderEntity>("GetLatestOrderDetailsDashboard", paramStoreId).ToList();
             return orders;
         }
-       
-        
+
+        public DashboardSummaryEntity GetDashboardTopHeaderFields(int storeId)
+        {
+            var paramStoreId = new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId };
+            var dashboardHeaderFields = objGenericRepository.ExecuteSQL<DashboardSummaryEntity>("GetDashboardTopHeaderFields", paramStoreId).SingleOrDefault();
+            return dashboardHeaderFields;
+        }
+
+        public DashboardSummaryEntity GetDashboardSummaryCharts(int storeId, int ChartFiltertype)
+        {
+            DashboardSummaryEntity objDashboardSummaryEntity = new DashboardSummaryEntity();
+            var paramStoreId = new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId };
+            var objDashboardOrderSummary = objGenericRepository.ExecuteSQL<DashboardOrderSummary>("GetDashboardOrderSummary_Chart", paramStoreId).ToList();
+
+            var objDashboardSalesAnalytics = objGenericRepository.ExecuteSQL<DashboardSalesAnalytics>("GetDashboardSalesAnalytics_Chart", new SqlParameter { ParameterName = "ChartFiltertype", DbType = DbType.Int32, Value = ChartFiltertype }).ToList();
+
+            var objDashboardTopSellStore = objGenericRepository.ExecuteSQL<DashboardTopSellStore>("GetDashboardTop5_SellStore_Chart", new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId }).ToList();
+
+            var objDashboardTopPurchaseProduct = objGenericRepository.ExecuteSQL<DashboardTopPurchaseProduct>("GetDashboardTop5_PurchaseProduct_Chart", new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId }).ToList();
+
+            var objDashboardTopCustomer = objGenericRepository.ExecuteSQL<DashboardTopCustomer>("GetDashboardTop5_Customers_Chart", new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId }).ToList();
+
+            objDashboardSummaryEntity.dashboardOrderSummary = objDashboardOrderSummary;
+            objDashboardSummaryEntity.dashboardSalesAnalytics = objDashboardSalesAnalytics;
+            objDashboardSummaryEntity.dashboardTopSellStore = objDashboardTopSellStore;
+            objDashboardSummaryEntity.dashboardTopPurchaseProduct = objDashboardTopPurchaseProduct;
+            objDashboardSummaryEntity.dashboardTopCustomer = objDashboardTopCustomer;
+            return objDashboardSummaryEntity;
+        }
     }
 }

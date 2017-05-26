@@ -16,10 +16,8 @@
     $scope.GetCatalogueList = function () {
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList")
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {              
                   $scope.CatalogueList = response.data;
-
               }
           })
       .catch(function (response) {

@@ -27,7 +27,7 @@
                         <li class="active"><a href="#">My Account</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li>
-                            <a href="" data-toggle="modal" data-target="#myModal">Login</a>
+                            <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +56,7 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="active"><a href="#" ui-sref="Home">Home</a></li>
                                 <li><a href="products.html">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
                             </ul>
@@ -98,7 +98,8 @@
             </div>
         </footer>
         <!-- login modal popup -->
-        <div class="modal" id="myModal" role="dialog">
+        <!-- login modal popup -->
+        <div class="modal" id="DivLoginModel" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-content">
@@ -143,26 +144,17 @@
                 </div>
             </div>
         </div>
+
         <div class="about-overlay"></div>
         <div class="about-us">
-            <div id="aboutScroll">
-                <a href="javascript:;" class="showDesc">About Us</a>
-                <h2>Bienvenue sur la boutique Make a Difference</h2>
-                <div class="col-sm-12 welcome-block">
-                    <div class="welcome-img">
-                        <img src="~/Content/layout1/images/welcomeImg.png" alt="welcome" />                        
-                    </div>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<a id="readMore" href="javascript:;">Read More</a></p>
-                    <div class="more-content">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                </div>
+            <div id="aboutScroll" class="welcome-block">
+                <a href="javascript:;" class="showDesc">About Us</a>        
+                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+                </div>               
             </div>
-        </div>
-
+       
         <div class="container-fluid">
             <a href="#" id="back-to-top" title="Back to top">
                 <i class="fa fa-angle-up"></i>
@@ -179,44 +171,38 @@
         $(document).ready(function () {
           
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
-            //$('.best-seller').mCustomScrollbar({
-            //    axis: "x",
-            //    advanced: { autoExpandHorizontalScroll: true }
-            //});
-            //$('.hot-deals, #special-offer').bxSlider({
-            //    pager: false,
-            //    nextText: '',
-            //    prevText: '',
-            //    minSlides: 2,
-            //    maxSlides: 1,
-            //    mode: 'vertical'
-            //});
-            //$('#latest-product').bxSlider({
-            //    pager: false,
-            //    nextText: '',
-            //    prevText: '',
-            //    minSlides: 1,
-            //    maxSlides: 4,
-            //    slideWidth: 290
-            //});
+        
             $(".category-list, #aboutScroll").mCustomScrollbar();
             $(".showDesc").click(function () {
                 var hidden = $(".about-us");
                 if (hidden.hasClass("visible")) {
                     hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
                     $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
-                    $(".showDesc").text("About Us");
-                    $(".about-overlay").hide();
+                    $(".showDesc").text("About Us");                 
+                    $(".about-overlay").fadeOut("slow");
+
                 } else {
                     hidden.animate({ "right": "0px" }, "slow").addClass("visible");
                     $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
                     $(".showDesc").text("Close");
-                    $(".about-overlay").show();
+                    $(".about-overlay").fadeIn("slow");
                 }
             });
+
             $('#readMore').click(function () {
+
                 $('.more-content').slideToggle();
+
+                var LinkText = $("#readMore").text();
+                LinkText = LinkText.replace(/\s/g, '');
+                if (LinkText == "ReadMore") {
+                    $("#readMore").text("Read Less");
+                }
+                else {
+                    $("#readMore").text("Read More");
+                }
             });
+
             $('.category-list').mCustomScrollbar();
         });
 
