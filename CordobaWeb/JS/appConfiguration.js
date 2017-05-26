@@ -260,6 +260,16 @@ function GetLayoutName() {
                     url: '/Products?CategoryId:categoryId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
                 }
+                 , ShowReward = {
+                     name: 'ShowReward',
+                     url: '/Reward/ShowReward',
+                     templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'
+                 }
+                , ManageReward = {
+                    name: 'ManageReward',
+                    url: '/Reward/ManageReward?rewardId:reward_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
+                }
                 ;
 
                 $stateProvider.state(StoreDashboard);
@@ -320,6 +330,9 @@ function GetLayoutName() {
                 $stateProvider.state(LayoutCategoryORProductList);
                 $stateProvider.state(LayoutProducts);
                 
+                $stateProvider.state(ShowReward);
+                $stateProvider.state(ManageReward);
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
