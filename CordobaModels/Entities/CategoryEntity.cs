@@ -21,15 +21,21 @@ namespace CordobaModels.Entities
         
         public Nullable<int> parentGroupId { get; set; }
         public string ParentCategoryName { get; set; }
-        public int? StatusId { get; set; }
+        public int? status { get; set; }
         public int? storeId { get; set; }
         public int? language_id { get; set; }
         public string description { get; set; }
 
+        public string StoreIdCSV { get; set; }
+        public List<CategoryDescriptionList> CategoryDescriptionList { get; set; }
+        public List<StoreEntity> StoreList { get; set; }
         // need to remove 
      
         public Nullable<int> parent_Id { get; set; }
         public string image { get; set; }
+
+
+        
   
       
         

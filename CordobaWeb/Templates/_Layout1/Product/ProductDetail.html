@@ -1,0 +1,193 @@
+﻿<div ng-controller="ProductDetailLayoutController">
+    <div class="product-detail">
+        <div class="container">
+            <div class="col-sm-6">
+                <div class="image-zooming">
+                    <div class="product-image">
+                        <div class="simpleLens-gallery-container" id="demo-1">
+                            <div class="simpleLens-container">
+                                <div class="simpleLens-big-image-container">
+                                    <a class="simpleLens-lens-image" data-lens-image="{{ProductObj.Image}}">
+                                        <img ng-src="{{ProductObj.Image}}" class="simpleLens-big-image">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="simpleLens-thumbnails-container">
+                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                   data-lens-image="{{ProductObj.Image}}"
+                                   data-big-image="{{ProductObj.Image}}">
+                                    <img ng-src="{{ProductObj.Image}}">
+                                </a>
+
+                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                   data-lens-image="{{ProductObj.Image}}"
+                                   data-big-image="{{ProductObj.Image}}">
+                                    <img ng-src="{{ProductObj.Image}}">
+                                </a>
+
+                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                   data-lens-image="{{ProductObj.Image}}"
+                                   data-big-image="{{ProductObj.Image}}">
+                                    <img ng-src="{{ProductObj.Image}}">
+                                </a>
+
+
+                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                   data-lens-image="{{ProductObj.Image}}"
+                                   data-big-image="{{productobj.Image}}">
+                                    <img ng-src="{{ProductObj.Image}}">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="add-cart mt-20 mb-20">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <h3 class="heading" ng-bind="ProductObj.name"></h3>
+
+                <div class="review mt-10">
+                    <div class="ratings">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p> 0 Review </p>
+                </div>
+                <div class="price mt-10">
+                    <p>Modal No:</p><span ng-bind="ProductObj.Model"></span>
+                </div>
+                <div class="price mt-10">
+                    <span class="points" ng-bind="ProductObj.Price+'Points'"></span>
+                </div>
+                <div class="price mt-10">
+                    <p>Color:</p><span> White</span>
+                </div>
+                <div class="price mt-10">
+                    <p>Type:</p><span> MNPF2B/A</span>
+                </div>
+                <div class="price mt-10">
+                    <p>Quantity:</p>
+                    <div id="qty1"></div>
+                </div>
+                <div class="price mt-10">
+                    <p class="mt-5">Manufacture By:</p><span> MNPF2B/A </span> <img src="../../../Content/Images/manufacture.jpg" alt="manufactureImage"/>
+                </div>
+                <div class="price mt-10">
+                    <p>Supplier:</p><span> MNPF2B/A</span>
+                </div>
+
+            </div>
+            <div class="col-sm-12 mb-30">
+                <div class="description mt-10">
+                    <div class="block-heading">
+                        <h4>Description</h4>
+                    </div>
+                    <p class="mt-10">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                    <p class="mt-10">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recently-viewed mb-30">
+        <div class="container-fluid">
+            <div class="col-sm-12 mt-20 ">
+                <div class="col-sm-12">
+                    <div class="block-heading">
+                        <h4>People Also Buy</h4>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img ng-src="{{ProductObj.Image}}" alt="latest product" />
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p>LONG - 00024</p>
+                        <p><span>539 points</span></p>
+                        <div class="row">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img ng-src="{{ProductObj.Image}}" alt="latest product" />
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p>LONG - 00024</p>
+                        <p><span>539 points</span></p>
+                        <div class="row">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img ng-src="{{ProductObj.Image}}" alt="latest product" />
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p>LONG - 00024</p>
+                        <p><span>539 points</span></p>
+                        <div class="row">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img ng-src="{{ProductObj.Image}}" alt="latest product" />
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p>LONG - 00024</p>
+                        <p><span>539 points</span></p>
+                        <div class="row">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="product-block">
+                        <div class="product-img">
+                            <img ng-src="{{ProductObj.Image}}" alt="latest product" />
+                        </div>
+                        <a href="#">Longchamp 2.0 Crossbody Bag Black</a>
+                        <p>LONG - 00024</p>
+                        <p><span>539 points</span></p>
+                        <div class="row">
+                            <button class="btn btn-default">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //ProductImage zooming
+    $('#demo-1 .simpleLens-thumbnails-container img').simpleGallery({
+        loading_image: '/Content/layout1/images/loading.gif'
+    });
+
+    $('#demo-1 .simpleLens-big-image').simpleLens({
+        loading_image: '/Content/layout1/images/loading.gif'
+    });
+
+    //quantity add-minus
+    dpUI.numberPicker("#qty1, #qty2, #qty3", {
+        start: 1,
+        min: 1
+    });
+
+</script>

@@ -180,6 +180,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="404.cshtml" />
     <Content Include="Content\admin\css\bootstrap.css" />
     <Content Include="Content\admin\css\bootstrap.min.css" />
     <Content Include="Content\admin\css\colors.css" />
@@ -498,11 +499,13 @@
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\manufacture.jpg" />
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
+    <Content Include="Content\layout1\css\dpNumberPicker.min.css" />
     <Content Include="Content\layout1\css\font-awesome.min.css" />
     <Content Include="Content\layout1\css\jquery.bxslider.min.css" />
     <Content Include="Content\layout1\css\jquery.mCustomScrollbar.min.css" />
@@ -697,6 +700,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
+    <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
@@ -3655,10 +3659,12 @@
     <Content Include="Scripts\jspdf.debug.js" />
     <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\layout1\js\bootstrap.min.js" />
+    <Content Include="Scripts\layout1\js\dpNumberPicker.min.js" />
     <Content Include="Scripts\layout1\js\index.js" />
     <Content Include="Scripts\layout1\js\jquery.bxslider.min.js" />
     <Content Include="Scripts\layout1\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\layout1\js\jquery.min.js" />
+    <Content Include="Scripts\layout1\js\jquery.simpleLens.js" />
     <Content Include="Scripts\layout2\js\bootstrap.min.js" />
     <Content Include="Scripts\layout2\js\jquery.flexslider.js" />
     <Content Include="Scripts\layout2\js\jquery.mCustomScrollbar.concat.min.js" />
@@ -3728,6 +3734,7 @@
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
+    <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3769,6 +3776,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Templates\_Layout1\Home\index.cshtml" />
     <Content Include="Templates\_Layout2\Home\index.cshtml" />
+    <Content Include="Views\Home\accessdenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

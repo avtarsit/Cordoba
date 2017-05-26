@@ -105,7 +105,10 @@ namespace CordobaWeb.Controllers
             return Result;
         }
 
-     
+      public ActionResult accessdenied()
+        {
+            return View();
+        }
       
 
         
