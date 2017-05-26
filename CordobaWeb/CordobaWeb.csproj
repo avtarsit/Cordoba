@@ -650,6 +650,8 @@
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -3723,6 +3725,8 @@
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
+    <Content Include="Templates\Admin\Reward\AddOrUpdateReward.html" />
+    <Content Include="Templates\Admin\Reward\Index.html" />
     <Content Include="Templates\Admin\Store\Index.html" />
     <Content Include="Templates\Admin\Store\ManageStore.html" />
     <Content Include="Templates\Admin\Supplier\Index.html" />
