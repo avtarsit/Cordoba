@@ -12,6 +12,8 @@
         angular.element("#DivLoginModel").modal('show');     
     }
 
+
+    $rootScope.ShoppingCart.TotalQuantity = 5;
    
     //$scope.GetStoreDetailForDashboard = function () {
       

@@ -342,7 +342,7 @@ function GetLayoutName() {
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
-
+                 $rootScope.ShoppingCart=new Object();
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());

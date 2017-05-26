@@ -6,13 +6,19 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     //#endregion  
     $scope.AddProductToCart = function (ProductObj) {
-        debugger;
+
         var CustomerId = 1;
-        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + CustomerId + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=0")
-          .then(function (response) {
-              if (response.data.length > 0) {
-                  $scope.CategoryList = response.data;
-              }
+        if ($rootScope.ShoppingCart.cartgroup_id == undefined || $rootScope.ShoppingCart.cartgroup_id == null)
+        {
+             cartgroup_id = 0;
+        }
+        else
+        {
+            cartgroup_id = $rootScope.ShoppingCart.cartgroup_id;
+        }
+        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + CustomerId + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=" + cartgroup_id)
+          .then(function (response) {      
+              $rootScope.ShoppingCart = response.data;       
           })
       .catch(function (response) {
 

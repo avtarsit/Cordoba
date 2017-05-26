@@ -80,7 +80,7 @@ namespace CordobaServices.Services
             return ProductEntity;
         }
 
-        public int AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
+        public CartEntity AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("store_id", store_id)
@@ -89,7 +89,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("qty", qty)
                                                  , new SqlParameter("cartgroup_id", cartgroup_id)};
 
-            int result = objGenericRepository.ExecuteSQL<int>("AddProductToCart", sqlParameter).FirstOrDefault();
+           var result = objGenericRepository.ExecuteSQL<CartEntity>("AddProductToCart", sqlParameter).FirstOrDefault();
             return result;
 
         }
