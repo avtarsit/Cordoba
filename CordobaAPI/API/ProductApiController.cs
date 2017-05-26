@@ -159,5 +159,20 @@ namespace CordobaAPI.API
                 throw ex;
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetProductDetailForLayout(int StoreID, int ProductId)
+        {
+            try
+            {
+                var result = _ProductServices.GetProductDetailForLayout(StoreID, ProductId);
+             
+                    return Request.CreateResponse(HttpStatusCode.OK, result);              
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
