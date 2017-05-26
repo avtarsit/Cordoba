@@ -6,7 +6,7 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
-    //$scope.Category_Id = 0;
+    $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
 
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.PageTitle = "Update Category";
@@ -64,8 +64,8 @@
         })
          .success(function (data) {
 
-             $scope.languageList = data;
-             $scope.language_id = $scope.languageList[0].language_id
+             $scope.LanguageList = data;
+             $scope.language_id = $scope.LanguageList[0].language_id
              $scope.GetCategoryById($scope.language_id);
          }).error(function (err) {
              alert("false");
@@ -74,27 +74,44 @@
     }
 
     $scope.GetCategoryById = function () {
-        debugger;
         $http({
             method: 'GET',
-            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id + '&language_id=' + $scope.language_id,
+            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id,
             headers: { 'Content-Type': 'application/json' }
         })
         .success(function (response) {
+            $scope.CategoryObj = response;
             debugger;
-            $scope.CategoryObj = {};
-            $scope.CategoryObj.Category_Id = response.Category_Id;
-            $scope.CategoryObj.CategoryName = response.CategoryName;
-            $scope.CategoryObj.Description = response.description;
-            //$scope.CategoryObj.Category_Id = response.parent;
-            //$scope.CategoryObj.Category_Id = response.Category_Id;
-            //$scope.CategoryObj.Category_Id = response.Category_Id;
+            CreateDescriptionObject();
           })
       .catch(function (response) {
       })
       .finally(function () {
 
       });
+    }
+
+    function CreateDescriptionObject() {
+        debugger;
+        var TempDescObject = [];
+        angular.copy($scope.CategoryObj.CategoryDescriptionList, TempDescObject);
+        $scope.CategoryObj.CategoryDescriptionList = [];
+        angular.forEach($scope.LanguageList, function (col, i) {
+            var CategoryDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
+            if (CategoryDescObj == undefined || CategoryDescObj == null || CategoryDescObj.length == 0) {
+                var DescObj = new Object();
+                DescObj.language_id = col.language_id;
+                DescObj.name = "";
+                DescObj.CategoryDescription = "dfgfdgdfg";
+                $scope.CategoryObj.CategoryDescriptionList.push(DescObj);
+            }
+            else {
+                $scope.CategoryObj.CategoryDescriptionList.push(CategoryDescObj[0]);
+            }
+        });
+        debugger;
+
+        
     }
 
 
