@@ -93,84 +93,50 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label">Customer Group</label>
                                                                 <div class="col-lg-9">
-                                                                    <select  name="customer_group_id" id="input-customer-group" class="form-control">
-                                                                        <option value="20">Annodata Rewards</option>
-                                                                        <option value="24">Arkle Finance Loyalty</option>
-                                                                        <option value="17">Asset Advantage</option>
-                                                                        <option value="11">Blizzard Rewards</option>
-                                                                        <option value="19">BTLB Rewards</option>
-                                                                        <option value="10">clear asset finance</option>
-                                                                        <option value="23">Conker this Autumn</option>
-                                                                        <option value="18">CVD Rewards</option>
-                                                                        <option value="3">D and D Leasing Rewards</option>
-                                                                        <option value="1">Default</option>
-                                                                        <option value="4">Econocom Rewards</option>
-                                                                        <option value="16">Example</option>
-                                                                        <option value="38">fr.pbmakeadifferencethankyou</option>
-                                                                        <option value="25">GO SKIPPY</option>
-                                                                        <option value="35" selected="selected">Grenke Rewards</option>
-                                                                        <option value="26">Grenke Rewards IR</option>
-                                                                        <option value="9">Henry Howard</option>
-                                                                        <option value="12">Kennet</option>
-                                                                        <option value="29">Make a Difference Thank You AE</option>
-                                                                        <option value="34">Make a Difference Thank You AU</option>
-                                                                        <option value="32">Make a Difference Thank You CA</option>
-                                                                        <option value="28">Make a Difference Thank You IN</option>
-                                                                        <option value="27">Make a Difference Thank You JP</option>
-                                                                        <option value="30">Make a Difference Thank You NZ</option>
-                                                                        <option value="31">Make a Difference Thank You uk</option>
-                                                                        <option value="33">Make a Difference Thank You US</option>
-                                                                        <option value="15">Maxxia Rewards</option>
-                                                                        <option value="5">mobile store</option>
-                                                                        <option value="8">More Choice</option>
-                                                                        <option value="36">PITNEY BOWES THANK YOU STORE</option>
-                                                                        <option value="21">SCC Rewards</option>
-                                                                        <option value="6">Shoretel</option>
-                                                                        <option value="37">ShoreTel Rewards EU</option>
-                                                                        <option value="7">ShoretelFS</option>
-                                                                        <option value="13">UR Rewards</option>
-                                                                        <option value="14">Vitrx</option>
-                                                                        <option value="22">XPO Rewards</option>
+                                                                    <select ng-options="CustomerGroup.customer_group_id as CustomerGroup.name  for CustomerGroup in CustomerGroupList"
+                                                                            class="form-control" ng-model="CustomerObj.customer_group_id" name="customer_group">
+                                                                        <option value=""></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">First Name</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="FirstName" maxlength="200" placeholder="Enter First Name" ng-model="CustomerObj.FirstName" required="required">
+                                                                    <input type="text" class="form-control" name="FirstName" maxlength="200" placeholder="Enter First Name" ng-model="CustomerObj.firstname" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Last Name</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="LastName" maxlength="200" placeholder="Enter Last Name" ng-model="CustomerObj.LastName" required="required">
+                                                                    <input type="text" class="form-control" name="LastName" maxlength="200" placeholder="Enter Last Name" ng-model="CustomerObj.lastname" required="required">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">E-mail</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="email" class="form-control" name="Email" maxlength="50" placeholder="Enter  Email" ng-model="CustomerObj.Email" required="required">
+                                                                    <input type="email" class="form-control" name="Email" maxlength="50" placeholder="Enter  Email" ng-model="CustomerObj.email" required="required">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Telephone</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="CustomerObj.Telephone" required="required">
+                                                                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="CustomerObj.telephone" required="required">
                                                                 </div>
                                                             </div>
 
-                                                            <div class="form-group">
+                                                            <!--<div class="form-group">
                                                                 <label class="col-lg-2 control-label">Client Reference Number</label>
                                                                 <div class="col-lg-9">
                                                                     <input type="text" class="form-control" name="ClientReferenceNumber" maxlength="50" placeholder="Enter Client Reference Number" ng-model="CustomerObj.ClientReferenceNumber">
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
+
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Password</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="Password" maxlength="50" placeholder="Enter Password" ng-model="CustomerObj.Password" required="required">
+                                                                    <input type="text" class="form-control" name="Password" maxlength="50" placeholder="Enter Password" ng-model="CustomerObj.password" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">

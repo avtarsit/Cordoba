@@ -8,8 +8,9 @@
     $scope.StoreObj = new Object();
     $scope.IsEditMode = false;
     $scope.PageTitle = "Manage Customer";
+    $scope.customer_id = 0;
     if ($stateParams.CustomerId != undefined && $stateParams.CustomerId != null) {
-       
+        $scope.customer_id = $stateParams.CustomerId;
         $scope.IsEditMode = true;
     }  
     //#endregion  
@@ -87,4 +88,45 @@
 
     }
 
+    function GetCustomerGroupList() {
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.CustomerGroupList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+
+    $scope.GetCustomerById = function () {
+        $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id)
+          .then(function (response) {
+              $scope.CustomerObj = response.data;
+              debugger;
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+
+    function Init() {
+        GetCustomerGroupList();
+        $scope.GetCustomerById();
+    }
+
+
+    Init();
+  
 });
