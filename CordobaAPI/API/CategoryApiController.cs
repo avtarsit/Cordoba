@@ -136,6 +136,44 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetParentCategoryList()
+        {
+            try
+            {
+                var result = _categoryServices.GetParentCategoryList();
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertOrUpdateCategory(CategoryEntity categoryEntity)
+        {
+            try
+            {
+                var result = _categoryServices.InsertOrUpdateCategory(categoryEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
     }
 }
