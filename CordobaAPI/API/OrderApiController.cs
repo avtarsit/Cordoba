@@ -22,6 +22,26 @@ namespace CordobaAPI.API
             _countryServices = new CountryServices();
         }
 
+
+        [HttpGet]
+        public HttpResponseMessage GetOrderHistory(int customer_id)
+        {
+            try
+            {
+                var result = _orderService.GetOrderHistory(customer_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpGet]
         public HttpResponseMessage GetOrderDetails(int orderId)
         {

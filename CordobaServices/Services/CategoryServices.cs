@@ -73,7 +73,7 @@ namespace CordobaServices.Services
             else
             {
                 CategoryEntity = new CategoryEntity();
-                CategoryEntity.CategoryDescriptionList = CategoryDescriptionList;
+                CategoryDescriptionList = new List<CategoryDescriptionList>();
                 CategoryEntity.status = 1;
             }
 
@@ -91,50 +91,6 @@ namespace CordobaServices.Services
             CategoryEntity.StoreList = StoreList;
             return CategoryEntity;
         }
-
-
-        //public CategoryEntity GetCategoryById(int Category_Id , int language_id)
-        //{
-        //    CategoryEntity categoryEntity = new CategoryEntity();
-        //    if (Category_Id >= 0)
-        //    {
-        //        try
-        //        {
-        //            SqlParameter[] param = new SqlParameter[2];
-        //            param[0] = new SqlParameter("Category_Id", Category_Id);
-        //            param[1] = new SqlParameter("language_id", language_id);
-        //            categoryEntity = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetCategoryById ", param).ToList<CategoryEntity>().FirstOrDefault();
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //            throw;
-        //        }
-        //    }
-           
-        //    //else
-        //    //{
-        //    //    categoryEntity = new CategoryEntity();
-        //    //}
-        //    return categoryEntity;
-        //    //if (Category_Id > 0)
-        //    //{
-        //    //    categoryEntity = GetCategoryList(Category_Id).FirstOrDefault();
-        //    //}
-        //    //else
-        //    //{
-        //    //    categoryEntity = new CategoryEntity();
-        //    //}
-        //    //CategoryStoreEntity CategoryStoreList = new CategoryStoreEntity();
-        //    //List<StoreEntity> StoreList = new List<StoreEntity>();
-        //    //CategoryStoreList.Category_Id = Category_Id;
-        //    //CategoryStoreList.CategoryStore = StoreList;
-        //    //categoryEntity.CategoryStoreList = CategoryStoreList;
-        //    //return categoryEntity;
-
-        //}
-
 
 
         //Popular Category
