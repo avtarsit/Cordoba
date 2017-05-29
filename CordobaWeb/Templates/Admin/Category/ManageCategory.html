@@ -71,7 +71,7 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
-                                                            <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Category Name{{CategoryObj.CategoryDescriptionList[$index].name}}</label>
+                                                            <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Category Name</label>
                                                             <div class="col-sm-10">
                                                                 <!--<input type="hidden" name="CategoryNameLang[{{LangObj.language_id}}]" id="CategoryObj.CategoryDescriptionList[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[$index].language_id=LangObj.language_id">-->
                                                                 <input type="text" name="NameLang_{{LangObj.code}}" id="NameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].name" placeholder="Category Name" class="form-control" />
