@@ -34,6 +34,7 @@ namespace CordobaModels.Entities
 
        public decimal? AllItemSubtotal { get; set; }
        public decimal? AllItemTotal { get; set; }
+       public decimal? CustomerAvailablePoints { get; set; }
        
     }
 }

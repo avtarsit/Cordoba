@@ -21,7 +21,7 @@
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotal = $scope.CartItemList[0].AllItemSubtotal;
                   $scope.AllItemTotal = $scope.CartItemList[0].AllItemTotal;
-                  
+                  $scope.CustomerAvailablePoints = $scope.CartItemList[0].CustomerAvailablePoints;
                   $rootScope.ShoppingCart.cartgroup_id = response.data[0].cartgroup_id;
                   $rootScope.ShoppingCart.TotalItemAdded = response.data[0].TotalItemAdded;
               }
@@ -72,17 +72,40 @@
             $scope.GetCartDetailsByCartGroupId();
             notificationFactory.customSuccess("Product successfully removed from cart.");
         })
-    .catch(function (response) {
+          .catch(function (response) {
 
-    })
-    .finally(function () {
+             })
+         .finally(function () {
 
-    });
+         });
 
+    }
+
+    $scope.PlaceOrder=function()
+    {
+
+        $http.get(configurationService.basePath + "API/CartApi/PlaceOrder?CartId=" + Product.cart_id)
+        .then(function (response) {
+            $scope.GetCartDetailsByCartGroupId();
+            notificationFactory.customSuccess("Product successfully removed from cart.");
+        })
+          .catch(function (response) {
+
+          })
+         .finally(function () {
+
+         });
+    }
+
+    $scope.GetIpAddress=function()
+    {
+        $.getJSON("http://jsonip.com/?callback=?", function (data) {
+            $scope.IpAddress = data.ip;            
+        });
     }
 
     $scope.GetCartDetailsByCartGroupId();
 
-
+    $scope.GetIpAddress();
 
 });
