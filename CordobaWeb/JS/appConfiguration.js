@@ -279,6 +279,11 @@ function GetLayoutName() {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
+                }
+                , CartDetail = {
+                    name: 'CartDetail',
+                    url: '/CartDetail?cartgroup_id:CartGroupId',
+                    templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
@@ -343,7 +348,8 @@ function GetLayoutName() {
                 
                 $stateProvider.state(ShowReward);
                 $stateProvider.state(ManageReward);
-
+                $stateProvider.state(CartDetail);
+                
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
