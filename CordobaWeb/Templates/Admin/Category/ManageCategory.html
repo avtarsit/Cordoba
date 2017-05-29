@@ -74,13 +74,13 @@
                                                             <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Category Name</label>
                                                             <div class="col-sm-10">
                                                                 <!--<input type="hidden" name="CategoryNameLang[{{LangObj.language_id}}]" id="CategoryObj.CategoryDescriptionList[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[$index].language_id=LangObj.language_id">-->
-                                                                <input type="text" name="NameLang_{{LangObj.code}}" id="NameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].name" placeholder="Category Name" class="form-control" />
+                                                                <input type="text" name="NameLang_1{{LangObj.code}}" id="NameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].name" placeholder="Category Name" class="form-control" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea ckeditor="" name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].CategoryDescription" rows="5" cols="8"></textarea>
+                                                                <textarea ckeditor="" name="ProductDescriptionLang1[{{LangObj.language_id}}]" id="ProductDescriptionLang1[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].description" rows="5" cols="8"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>

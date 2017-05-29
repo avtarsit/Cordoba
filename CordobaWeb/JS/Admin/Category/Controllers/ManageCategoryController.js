@@ -6,6 +6,7 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
+    $scope.Category_Id = 0;
     $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
 
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
@@ -17,8 +18,7 @@
         $scope.PageTitle = "Add Category";
     }
     //#endregion
-    GetLanguageList();
-
+   
     //$scope.SaveCategory = function (form) {
     //    if (form.$valid) {
           
@@ -66,7 +66,8 @@
 
              $scope.LanguageList = data;
              $scope.language_id = $scope.LanguageList[0].language_id
-             $scope.GetCategoryById($scope.language_id);
+            
+           
          }).error(function (err) {
              alert("false");
          });
@@ -83,7 +84,6 @@
         .success(function (response) {
             $scope.CategoryObj = response;
             debugger;
-            GetParentCategoryList();
             CreateDescriptionObject();
           })
       .catch(function (response) {
@@ -94,7 +94,7 @@
     }
 
     function CreateDescriptionObject() {
-        debugger;
+       
         var TempDescObject = [];
         angular.copy($scope.CategoryObj.CategoryDescriptionList, TempDescObject);
         $scope.CategoryObj.CategoryDescriptionList = [];
@@ -102,7 +102,9 @@
             var CategoryDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
             if (CategoryDescObj == undefined || CategoryDescObj == null || CategoryDescObj.length == 0) {
                 var DescObj = new Object();
+                DescObj.category_id = $scope.Category_Id;
                 DescObj.language_id = col.language_id;
+                DescObj.description = "";
                 DescObj.name = "";
                 DescObj.CategoryDescription = "";
                 $scope.CategoryObj.CategoryDescriptionList.push(DescObj);
@@ -112,8 +114,6 @@
             }
         });
         debugger;
-
-        
     }
 
 
@@ -132,10 +132,10 @@
         }
     }
 
-    //$scope.GetCategoryById();
+ 
 
     function GetParentCategoryList() {
-        debugger;
+      
         $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
           .then(function (response) {
               if (response.data.length > 0) {
@@ -153,11 +153,11 @@
 
     //Insert Update Category
     $scope.InsertOrUpdateCategory = function (form) {
-        debugger;
+    
         if (form.$valid) {
             $scope.CategoryObj.StoreIdCSV = "";
             $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
-            var categoryEntity = JSON.stringify($scope.CategoryObj);
+           // var categoryEntity = JSON.stringify($scope.CategoryObj);
             debugger;
             return;
             $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory", categoryEntity)
@@ -186,6 +186,11 @@
         StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");
         return StoreIdCSV;
     }
+
+
+    GetLanguageList();
+    GetParentCategoryList();
+    $scope.GetCategoryById(0);
 
 
 });
