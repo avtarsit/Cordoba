@@ -8,6 +8,9 @@
     $scope.IsEditMode = false;
     $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
 
+    $scope.CategoryObj = new Object();
+    $scope.CategoryObj.CategoryDescriptionList = [];
+
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.PageTitle = "Update Category";
         $scope.Category_Id = $stateParams.CategoryId;
@@ -81,8 +84,8 @@
             headers: { 'Content-Type': 'application/json' }
         })
         .success(function (response) {
-            $scope.CategoryObj = response;
             debugger;
+            $scope.CategoryObj= response;            
             GetParentCategoryList();
             CreateDescriptionObject();
           })
