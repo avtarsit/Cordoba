@@ -31,6 +31,9 @@ namespace CordobaModels.Entities
        public decimal? Subtotal { get; set; }
        public decimal? OrderTotal { get; set; }
        public string ProductImage { get; set; }
+
+       public decimal? AllItemSubtotal { get; set; }
+       public decimal? AllItemTotal { get; set; }
        
     }
 }
