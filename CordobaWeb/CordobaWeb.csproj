@@ -3741,6 +3741,7 @@
     <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Templates\_Layout1\Cart\CartDetail.html" />
+    <Content Include="Templates\_Layout1\Cart\Checkout.html" />
     <Content Include="Templates\_Layout1\Cart\CheckOut.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
     <Content Include="Templates\_Layout1\MyAccount\AddressBook.html" />

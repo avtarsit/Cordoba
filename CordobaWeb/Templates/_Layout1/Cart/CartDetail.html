@@ -5,7 +5,8 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc">3 item in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="TotalItems>0"> You have {{TotalItems}} item's in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="!(TotalItems>0)">Your Shopping Bag is Empty.</p>
                 </li>
             </ul>
         </div>
@@ -13,121 +14,74 @@
     <section class="container cart-desc">
         <div class="col-sm-8">
             <div class="account-block">
-                <div class="cart-detail out-of-stock">
+                <div ng-class="Item.IsOutOfStock=='true'? 'cart-detail out-of-stock' : 'cart-detail' " class="cart-detail out-of-stock" ng-repeat="Item in CartItemList">
                     <div class="row">
                         <div class="col-sm-7">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <img class="media-object" ng-src="{{Item.ProductImage}}" alt="Image">
                                     <div class="stock-img"></div>
                                 </div>
                                 <div class="media-body">
-                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
-                                    <p class="model-no"><span>Modal Number:</span> 104</p>
-                                    <div class="product-qty">
-                                        <label>Quantity:</label>
-                                        <div id="qty1"></div>
+                                    <a href="#" class="media-heading" ng-bind="Item.name"></a>
+                                    <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
+                                    <div class="price mt-10">
+                                        <p>Quantity:</p>
+                                        <div class="input-group col-sm-2">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-danger btn-number" ng-click="DecreaseQuantity(Item)">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <label class="form-control" ng-bind="Item.quantity"></label>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-success btn-number" ng-click="IncreaseQuantity(Item)">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <p class="stock-desc">Out of Stock</p>
-                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+
+                                    <p ng-if="Item.IsOutOfStock=='false'" class="stock-desc">Out of Stock</p>
+                                    <label ng-if="Item.IsOutOfStock=='false'" class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            <p class="product-price"><span>Points:</span> 40</p>
-                            <p class="product-price">Subtotal: 40</p>
+                            <p class="product-price">
+                            <span>Points: {{Item.price}}</span>
+                                <br />
+                                <span ng-if="Item.quantity>1">Subtotal: {{Item.total}}</span>
+                            </p>                            
                         </div>
                         <div class="col-sm-12">
                             <div class="remove-product">
-                                <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
+                                <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
                                 <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="cart-detail">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
-                                    <div class="stock-img"></div>
-                                </div>
-                                <div class="media-body">
-                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
-                                    <p class="model-no"><span>Modal Number:</span> 104</p>
-                                    <div class="product-qty">
-                                        <label>Quantity:</label>
-                                        <div id="qty2"></div>
-                                    </div>
-                                    <p class="stock-desc">Out of Stock</p>
-                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <p class="product-price"><span>Points:</span> 40</p>
-                            <p class="product-price">Subtotal: 40</p>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="remove-product">
-                                <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
-                                <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-detail out-of-stock">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="images/electronics.png" alt="Image">
-                                    <div class="stock-img"></div>
-                                </div>
-                                <div class="media-body">
-                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
-                                    <p class="model-no"><span>Modal Number:</span> 104</p>
-                                    <div class="product-qty">
-                                        <label>Quantity:</label>
-                                        <div id="qty3"></div>
-                                    </div>
-                                    <p class="stock-desc">Out of Stock</p>
-                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <p class="product-price"><span>Points:</span> 40</p>
-                            <p class="product-price">Subtotal: 40</p>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="remove-product">
-                                <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
-                                <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="payment-summary">
                     <button class="remove-item pull-right"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" ng-if="TotalItems>0">
             <div class="account-block">
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <p>Subtotal:</p>
-                    <p>120 points</p>
+                    <p>{{AllItemSubtotal}} points</p>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>100 points</span>
+                    <span>{{AllItemTotal}} points</span>
                 </div>
                 <div class="checkout-block">
                     <!-- <button class="btn btn-empty">Checkout</button> -->
-                    <a href="checkout.html" class="btn btn-empty">Checkout</a>
+                    <a ui-sref="Checkout({cartgroup_id:ShoppingCart.cartgroup_id})" class="btn btn-empty">Checkout</a>
                 </div>
             </div>
         </div>

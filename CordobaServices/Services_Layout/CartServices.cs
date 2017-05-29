@@ -25,5 +25,16 @@ namespace CordobaServices.Services_Layout
             return result;
 
         }
+
+        public int? RemoveProductFromCart(int? CartId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("cart_id", CartId)                                             
+                                               };
+
+            var result = objGenericRepository.ExecuteSQL<int>("DeleteProductFromCart", sqlParameter).FirstOrDefault();
+            return result;
+
+        }
     }
 }

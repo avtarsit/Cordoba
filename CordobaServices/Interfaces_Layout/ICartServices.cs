@@ -13,7 +13,7 @@ namespace CordobaServices.Interfaces_Layout
     {
 
       List<CartEntity> GetCartDetailsByCartGroupId(int? StoreID, int cartgroup_id);
-
+      int? RemoveProductFromCart(int? CartId);
 
     }
 }

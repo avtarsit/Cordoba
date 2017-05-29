@@ -285,11 +285,11 @@ function GetLayoutName() {
                     url: '/CartDetail?cartgroup_id:CartGroupId',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
                 }
-                , CheckOut = {
-                    name: 'CheckOut',
-                    url: '/CheckOut?cartgroup_id:CartGroupId',
-                    templateUrl: 'Templates/' + LayoutName + '/Cart/CheckOut.html'
-                }
+                ,Checkout = {
+                    name: 'Checkout',
+                    url: '/Checkout?cartgroup_id:CartGroupId',
+                      templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
+                  }               
                  , EditProfile = {
                      name: 'EditProfile',
                      url: '/EditProfile',
@@ -379,9 +379,7 @@ function GetLayoutName() {
                 $stateProvider.state(ShowReward);
                 $stateProvider.state(ManageReward);
                 $stateProvider.state(CartDetail);
-                $stateProvider.state(CheckOut);
-
-
+                $stateProvider.state(Checkout);                
                 $stateProvider.state(EditProfile);
                 $stateProvider.state(ChangePassword);
                 $stateProvider.state(AddressBook);
