@@ -1,4 +1,4 @@
-﻿<div ng-controller="OrderHistoryController">
+﻿<div ng-controller="AuditPointsController">
     <section class="my-account">
         <div class="container">
             <ul>
@@ -11,10 +11,10 @@
                 <li>
                     <a href="#" ui-sref="AddressBook"><span data-hover="Address&nbsp;Book">Address Book</span></a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#" ui-sref="OrderHistory"><span data-hover="Order&nbsp;History">Order History</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#" ui-sref="PointsAudit"><span data-hover="Audit&nbsp;Points">Audit Points</span></a>
                 </li>
             </ul>
@@ -23,26 +23,21 @@
     <section class="container">
         <div class="account-block reward-points">
             <div class="col-sm-12 table-responsive">
-                <table class="table table-hover" id="tblOrderHistory" datatable="ng" dt-options="dtOptions">
+                <table class="table table-hover" id="tblPointsAudit" datatable="ng" dt-options="dtOptions">
                     <tr>
-                        <th>Order ID</th>
-                        <th>Order Status</th>
                         <th>Date</th>
-                        <th>No of Products</th>
-                        <th>Total</th>
-                        <th></th>
+                        <th>Description</th>
+                        <th>Withdrawal</th>
+                        <th>Deposit</th>
+                    </tr>
+                    <tr ng-repeat="Item in AuditPointsList">
+                        <td ng-bind="Item.timestamp | date:'dd/MM/yyyy'"></td>
+                        <td ng-bind="Item.comment"></td>
+                        <td ng-bind="Item.Withdrawal"></td>
+                        <td ng-bind="Item.Deposit"></td>
                     </tr>
 
-                    <tr ng-repeat="Item in OrderHisotry">
-                        <td ng-bind="'#'+Item.order_id"></td>
-                        <td ng-bind="Item.OrderStatusName"></td>
-                        <td ng-bind="Item.date_added | date:'dd/MM/yyyy'"></td>
-                        <td ng-bind="Item.TotalQtyInOrder"></td>
-                        <td ng-bind="Item.OrderTotalText"></td>
-                        <td><a class="view-detail" href="orderDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-
-
+                   
                 </table>
             </div>
         </div>

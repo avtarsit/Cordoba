@@ -703,6 +703,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
+    <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
@@ -3746,7 +3747,7 @@
     <Content Include="Templates\_Layout1\MyAccount\ChangePassword.html" />
     <Content Include="Templates\_Layout1\MyAccount\EditProfile.html" />
     <Content Include="Templates\_Layout1\MyAccount\OrderHistory.html" />
-    <Content Include="Templates\_Layout1\MyAccount\RewardPoints.html" />
+    <Content Include="Templates\_Layout1\MyAccount\PointsAudit.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
     <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
     <Content Include="Web.config" />

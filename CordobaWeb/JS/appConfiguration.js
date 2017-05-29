@@ -310,10 +310,10 @@ function GetLayoutName() {
                         url: '/OrderHistory',
                         templateUrl: 'Templates/' + LayoutName + '/MyAccount/OrderHistory.html'
                     }
-                , RewardPoints = {
-                    name: 'RewardPoints',
-                    url: '/RewardPoints',
-                    templateUrl: 'Templates/' + LayoutName + '/MyAccount/RewardPoints.html'
+                , PointsAudit = {
+                    name: 'PointsAudit',
+                    url: '/PointsAudit',
+                    templateUrl: 'Templates/' + LayoutName + '/MyAccount/PointsAudit.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
@@ -384,7 +384,7 @@ function GetLayoutName() {
                 $stateProvider.state(ChangePassword);
                 $stateProvider.state(AddressBook);
                 $stateProvider.state(OrderHistory);
-                $stateProvider.state(RewardPoints);
+                $stateProvider.state(PointsAudit);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
