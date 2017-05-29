@@ -21,7 +21,9 @@ namespace CordobaServices.Interfaces
 
         int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular);
 
+        int InsertOrUpdateCategory(CategoryEntity categoryEntity);
 
+        List<CategoryEntity> GetParentCategoryList();
         //Get Language
 
         List<LanguageEntity> GetLanguageList();
