@@ -80,7 +80,7 @@ namespace CordobaServices.Services
             return ProductEntity;
         }
 
-        public int AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
+        public CartEntity AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("store_id", store_id)
@@ -89,7 +89,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("qty", qty)
                                                  , new SqlParameter("cartgroup_id", cartgroup_id)};
 
-            int result = objGenericRepository.ExecuteSQL<int>("AddProductToCart", sqlParameter).FirstOrDefault();
+           var result = objGenericRepository.ExecuteSQL<CartEntity>("AddProductToCart", sqlParameter).FirstOrDefault();
             return result;
 
         }
@@ -162,5 +162,42 @@ namespace CordobaServices.Services
                 throw ex;
             }
         }
+
+        public ProductEntity GetProductDetailForLayout(int StoreId ,int ProductId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("StoreId", StoreId) 
+                                                           ,new SqlParameter("ProductId", ProductId) 
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductDetailForLayout", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("StoreId", StoreId) 
+                                                           ,new SqlParameter("SelectedProductId", SelectedProductId) 
+                                                           ,new SqlParameter("RelatedProductId", RelatedProductId) 
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetRelatedProductListForLayout", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }      
 }

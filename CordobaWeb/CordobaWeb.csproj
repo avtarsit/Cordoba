@@ -499,11 +499,13 @@
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="Content\Images\Loading.gif" />
+    <Content Include="Content\Images\manufacture.jpg" />
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
+    <Content Include="Content\layout1\css\dpNumberPicker.min.css" />
     <Content Include="Content\layout1\css\font-awesome.min.css" />
     <Content Include="Content\layout1\css\jquery.bxslider.min.css" />
     <Content Include="Content\layout1\css\jquery.mCustomScrollbar.min.css" />
@@ -648,6 +650,8 @@
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -698,6 +702,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
+    <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
@@ -3656,10 +3661,12 @@
     <Content Include="Scripts\jspdf.debug.js" />
     <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\layout1\js\bootstrap.min.js" />
+    <Content Include="Scripts\layout1\js\dpNumberPicker.min.js" />
     <Content Include="Scripts\layout1\js\index.js" />
     <Content Include="Scripts\layout1\js\jquery.bxslider.min.js" />
     <Content Include="Scripts\layout1\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\layout1\js\jquery.min.js" />
+    <Content Include="Scripts\layout1\js\jquery.simpleLens.js" />
     <Content Include="Scripts\layout2\js\bootstrap.min.js" />
     <Content Include="Scripts\layout2\js\jquery.flexslider.js" />
     <Content Include="Scripts\layout2\js\jquery.mCustomScrollbar.concat.min.js" />
@@ -3718,6 +3725,8 @@
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
+    <Content Include="Templates\Admin\Reward\AddOrUpdateReward.html" />
+    <Content Include="Templates\Admin\Reward\Index.html" />
     <Content Include="Templates\Admin\Store\Index.html" />
     <Content Include="Templates\Admin\Store\ManageStore.html" />
     <Content Include="Templates\Admin\Supplier\Index.html" />

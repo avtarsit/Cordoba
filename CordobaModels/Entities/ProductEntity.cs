@@ -51,8 +51,15 @@ namespace CordobaModels.Entities
         public string CatalogueIdCSV { get; set; }
         public List<ProductDescriptionList> ProductDescriptionList { get; set; }
         public List<CatalogueEntity> CatalogueList { get; set; }
-     
 
+        #region Extra Details
+
+        public string description { get; set; }
+        public int? CartQuantity { get; set; }
+        public string SupplierName { get; set; }
+        public string ManufactureName { get; set; }
+        public string ManufactureImage { get; set; }
+        #endregion Extra Details
 
     }
 }

@@ -1,12 +1,13 @@
-﻿app.controller('Dashboard_CategoryController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('Dashboard_CategoryController', function (StoreSessionDetail,$timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    //#endregion     
+    //#endregion    
+    $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.GetCategoryListForDashboard = function () { 
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID=0&NeedToGetAllSubcategory=false")
-          .then(function (response) {        
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id + "&NeedToGetAllSubcategory=false")
+          .then(function (response) {           
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
               }

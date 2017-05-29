@@ -23,9 +23,10 @@ namespace CordobaModels.Entities
         public int approved { get; set; }   
         public int activated { get; set; }
         public int customer_group_id { get; set; }
+        public string customer_group_name { get; set; }
         public int customer_department_id { get; set; }
         public string ip { get; set; }
-        public DateTime date_added { get; set; }
+        public DateTime? date_added { get; set; }
 
         public string WholeName { get; set; }
         public int is_admin { get; set; }
@@ -33,6 +34,8 @@ namespace CordobaModels.Entities
         public string customerName { get; set; }
         public string StatusName { get; set; }
         public string CreatedDate { get; set; }
+
+        public int TotalRecords { get;set; }
     }
 }
         

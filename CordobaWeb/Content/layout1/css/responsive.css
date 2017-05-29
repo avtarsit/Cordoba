@@ -20,14 +20,18 @@
 
 }
 @media (max-width:991px) {
+	body { padding-bottom:240px; }
 	.navbar-default .navbar-nav > li > a { margin:0; font-size:17px; padding:20px 10px 10px; }
 	.main-heding { padding-top:25px; }
 	.footer-logo, .connect-to { text-align:center; }
 	.footer-links { width:100%; }
 	.search-block { width:68%; }
 	.product-list .product-block { width:33.33%; }
+	.recently-viewed .col-md-3 { width: 33%; float: left; }
 }
 @media (max-width:767px) {
+	body { padding-bottom:0; }
+	footer { position:static; }
 	.navbar-nav { margin-top:0; margin-bottom:0; }
 	header .navbar-nav { text-align:center; }
 	header .nav > li { display:inline-block; }
@@ -42,10 +46,20 @@
 	.welcome-block p:last-child { padding-bottom:0; }
 	.search-block { width:calc(100% - 50px); }
 	.product-list .product-block { width:100%; }
+	.profile-block p { text-align:left; margin-bottom:0; }
+	.radio-btn { padding-top:0; }
+	.footer-links li { width:100%; padding:0 0 5px 0; }
+	.footer-links li:before { display:none; }
+	.footer-links li a { font-size:18px; line-height:23px; }
+	.footer-logo, .connect-to { text-align:left; }
 }
-@media (max-width:640px) { 
-	.login_text .icon-text { display: none; }
+@media (max-width:640px) {
+	body { padding-top:200px; }
+	.login_text { display: none; }
 	.login_page { width: 100% }
+}
+@media (max-width:480px) { 
+	.recently-viewed .col-md-3 { width: 100%; float: left; }
 }
 @media (max-width:360px) {
 	header .navbar-nav li a { padding:10px; }
