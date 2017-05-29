@@ -187,6 +187,7 @@
     <Compile Include="API\SupplierApiController.cs" />
     <Compile Include="API\TestApiController.cs" />
     <Compile Include="API\UserApiController.cs" />
+    <Compile Include="API_Layout\CartApiController.cs" />
     <Compile Include="API_Layout\LayoutDashboardAPIController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

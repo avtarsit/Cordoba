@@ -6,6 +6,7 @@
     BindToolTip();
     Tab();
     $scope.IsEditMode = false;
+    $scope.Category_Id = 0;
     $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
 
     $scope.CategoryObj = new Object();
@@ -19,14 +20,7 @@
     else {
         $scope.PageTitle = "Add Category";
     }
-    //#endregion
-    GetLanguageList();
-
-    //$scope.SaveCategory = function (form) {
-    //    if (form.$valid) {
-          
-    //    }
-    //}
+  
 
     $scope.DeleteCategory = function () {
         bootbox.dialog({
@@ -69,14 +63,17 @@
 
              $scope.LanguageList = data;
              $scope.language_id = $scope.LanguageList[0].language_id
-             $scope.GetCategoryById($scope.language_id);
+            
+           
          }).error(function (err) {
              alert("false");
          });
 
     }
 
+
     $scope.GetCategoryById = function () {
+<<<<<<< HEAD
         $scope.Category_Id = ($scope.Category_Id > 0 ? $scope.Category_Id : 0);
         $http({
             method: 'GET',
@@ -88,6 +85,12 @@
             $scope.CategoryObj= response;            
             GetParentCategoryList();
             CreateDescriptionObject();
+=======
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
+          .then(function (response) {
+              $scope.CategoryObj = response.data;
+              CreateDescriptionObject();
+>>>>>>> 17fc1c84d11c1187b1615c81a8d22cde6c76a742
           })
       .catch(function (response) {
       })
@@ -97,7 +100,6 @@
     }
 
     function CreateDescriptionObject() {
-        debugger;
         var TempDescObject = [];
         angular.copy($scope.CategoryObj.CategoryDescriptionList, TempDescObject);
         $scope.CategoryObj.CategoryDescriptionList = [];
@@ -106,6 +108,7 @@
             if (CategoryDescObj == undefined || CategoryDescObj == null || CategoryDescObj.length == 0) {
                 var DescObj = new Object();
                 DescObj.language_id = col.language_id;
+                DescObj.description = "";
                 DescObj.name = "";
                 DescObj.CategoryDescription = "";
                 $scope.CategoryObj.CategoryDescriptionList.push(DescObj);
@@ -115,8 +118,6 @@
             }
         });
         debugger;
-
-        
     }
 
 
@@ -135,10 +136,10 @@
         }
     }
 
-    //$scope.GetCategoryById();
+ 
 
     function GetParentCategoryList() {
-        debugger;
+      
         $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
           .then(function (response) {
               if (response.data.length > 0) {
@@ -154,13 +155,13 @@
     }
 
 
-    //Insert Update Category
+  
     $scope.InsertOrUpdateCategory = function (form) {
-        debugger;
+    
         if (form.$valid) {
             $scope.CategoryObj.StoreIdCSV = "";
             $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
-            var categoryEntity = JSON.stringify($scope.CategoryObj);
+           // var categoryEntity = JSON.stringify($scope.CategoryObj);
             debugger;
             return;
             $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory", categoryEntity)
@@ -190,6 +191,13 @@
         return StoreIdCSV;
     }
 
+
+    GetLanguageList();
+    GetParentCategoryList();
+    $scope.GetCategoryById();
+    function Init() {
+
+    }
 
 });
 

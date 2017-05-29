@@ -50,5 +50,28 @@ namespace CordobaAPI.API
             }
 
         }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetCustomerById(int customer_id)
+        {
+            try
+            {
+                var result = _CustomerService.GetCustomerById(customer_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        
+
     }
 }

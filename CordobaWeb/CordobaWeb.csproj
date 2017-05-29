@@ -693,6 +693,7 @@
     <Content Include="Content\fonts\opensans-semibold-webfont.woff" />
     <Content Include="Content\fonts\opensans-semibold-webfont.woff2" />
     <Content Include="JS\Layout\AddProductToCart\Controllers\AddProductToCartController.js" />
+    <Content Include="JS\Layout\Cart\Controllers\CartDetailController.js" />
     <Content Include="JS\Layout\Category\Controllers\CategoryListController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BannerController.js" />
@@ -3692,6 +3693,7 @@
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Templates\Admin\Banner\Index.html" />
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
+    <Content Include="Templates\Admin\Category\Category.html" />
     <Content Include="Templates\Admin\Category\Index.html" />
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Category\PopularCategory.html" />
@@ -3736,6 +3738,7 @@
     <Content Include="Templates\Admin\Users\Index.html" />
     <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
+    <Content Include="Templates\_Layout1\Cart\CartDetail.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
     <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
