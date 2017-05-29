@@ -19,7 +19,7 @@
                         <button type="button" ui-sref="ShowCategory" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
                     <li>
-                        <button type="submit" ng-click="SaveCategory(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="submit" ng-click="InsertOrUpdateCategory(form)" class="btn btn-success cursor-pointer">Save <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteCategory(CategoryId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
@@ -92,20 +92,12 @@
                                     <div role="tabpanel" class="tab-pane" id="DataTab">
                                         <div class="tab-pane fade active in" id="tab-data">
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label" for="input-parent">Parent</label>
+                                                <label class="col-sm-2 control-label" for="input-Categories">Category</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" ng-model="CategoryObj.Parent" name="path" value="" placeholder="Parent" id="input-parent" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="top: 35px; left: 15px; display: none;"><li data-value="0"><a href="#"> --- None --- </a></li><li data-value="50"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Accessories</a></li><li data-value="116"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Ballpoint</a></li><li data-value="39"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fine Liner</a></li><li data-value="20"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Fountain Pen</a></li><li data-value="45"><a href="#">Writing Instruments&nbsp;&nbsp;&gt;&nbsp;&nbsp;Rollerball</a></li></ul>
-                                                    <input type="hidden" name="parent_id" value="0">
+                                                    <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.Category_Id"></select>
                                                 </div>
                                             </div>
-                                            <!--<div class="form-group">
-                                                <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="" data-original-title="(Autocomplete)">Filters</span></label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="filter" value="" placeholder="Filters" id="input-filter" class="form-control" autocomplete="off"><ul class="dropdown-menu" style="display: none;"></ul>
-                                                    <div id="category-filter" class="well well-sm" style="height: 150px; overflow: auto;">
-                                                    </div>
-                                                </div>
-                                            </div>-->
+                                            
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Stores</label>
                                                 <div class="col-sm-10">
@@ -116,7 +108,7 @@
 
                                                         <div class="col-sm-6 checkbox" ng-repeat="Item in CategoryObj.StoreList">
                                                             <label>
-                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected" name="category_store[]">
+                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
                                                                 {{Item.name}}
                                                             </label>
                                                         </div>

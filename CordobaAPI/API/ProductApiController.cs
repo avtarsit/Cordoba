@@ -174,5 +174,20 @@ namespace CordobaAPI.API
                 throw ex;
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetRelatedProductList(int StoreID, int SelectedProductId, int RelatedProductId)
+        {
+            try
+            {
+                var result = _ProductServices.GetRelatedProductList(StoreID, SelectedProductId, RelatedProductId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -182,6 +182,7 @@
     <Compile Include="API\OrderApiController.cs" />
     <Compile Include="API\ProductApiController.cs" />
     <Compile Include="API\CatalogueApiController.cs" />
+    <Compile Include="API\RewardApiController.cs" />
     <Compile Include="API\StoreApiController.cs" />
     <Compile Include="API\SupplierApiController.cs" />
     <Compile Include="API\TestApiController.cs" />

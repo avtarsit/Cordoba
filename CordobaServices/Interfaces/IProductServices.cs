@@ -12,7 +12,7 @@ namespace CordobaServices.Interfaces
     {
         List<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter,  string name, decimal? Price, int? status, string Model, int? Quantity);
         ProductEntity GetProductById(int product_id);
-        int AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id);
+        CartEntity AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id);
         int DeleteProductFromCart(int cart_id);
 
         int InsertUpdateProduct(ProductEntity productEntity);
@@ -20,5 +20,6 @@ namespace CordobaServices.Interfaces
 
         int DeleteProduct(int product_id);
         ProductEntity GetProductDetailForLayout(int StoreId, int ProductId);
+        List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId);
     }
 }

@@ -265,12 +265,21 @@ function GetLayoutName() {
                     url: '/Products?CategoryId:categoryId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
                 }
+                 , ShowReward = {
+                     name: 'ShowReward',
+                     url: '/Reward/ShowReward',
+                     templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'
+                 }
+                , ManageReward = {
+                    name: 'ManageReward',
+                    url: '/Reward/ManageReward?rewardId:reward_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
+                }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
-                }
-                ;
+                };
 
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(HomeIndex);
@@ -332,6 +341,9 @@ function GetLayoutName() {
                 $stateProvider.state(LayoutProducts);
                 $stateProvider.state(LayoutProductDetail);
                 
+                $stateProvider.state(ShowReward);
+                $stateProvider.state(ManageReward);
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -342,7 +354,7 @@ function GetLayoutName() {
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
-
+                 $rootScope.ShoppingCart=new Object();
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());
