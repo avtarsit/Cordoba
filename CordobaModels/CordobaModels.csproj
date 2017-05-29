@@ -82,6 +82,7 @@
     <Compile Include="Entities\AddressEntity.cs" />
     <Compile Include="Entities\BannerAttributeEntity.cs" />
     <Compile Include="Entities\BannerEntity.cs" />
+    <Compile Include="Entities\CartEntity.cs" />
     <Compile Include="Entities\CategoryDescriptionList.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
     <Compile Include="Entities\CategoryPopularEntity.cs" />
