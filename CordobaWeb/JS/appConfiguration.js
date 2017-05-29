@@ -289,12 +289,7 @@ function GetLayoutName() {
                     name: 'Checkout',
                     url: '/Checkout?cartgroup_id:CartGroupId',
                       templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
-                  };
-                , CheckOut = {
-                    name: 'CheckOut',
-                    url: '/CheckOut?cartgroup_id:CartGroupId',
-                    templateUrl: 'Templates/' + LayoutName + '/Cart/CheckOut.html'
-                }
+                  }               
                  , EditProfile = {
                      name: 'EditProfile',
                      url: '/EditProfile',

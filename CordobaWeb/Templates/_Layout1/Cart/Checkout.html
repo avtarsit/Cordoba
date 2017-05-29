@@ -1,0 +1,195 @@
+﻿<div ng-controller="CartDetailController">
+    <section class="my-account">
+        <div class="container">
+            <ul>
+                <li>
+                    <p class="bag-desc">Payment of 130 points has been received.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="container cart-desc">
+        <div class="col-sm-8">
+            <div class="account-block">
+                <div class="cart-detail" ng-repeat="Item in CartItemList">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{Item.ProductImage}}" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="cart-detail">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/MGRL2B_A_1-120x120.jpg" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Apple 30-pin Digital AV Adapter</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="stock-desc">Out of Stock</p>
+                                    <label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 40</p>
+                            <p class="product-price">Subtotal: 40</p>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="col-sm-4 order-desc">
+            <div class="account-block delivery-detail">
+                <h4 class="payment-heading">Delivery Address</h4>
+                <div class="delivery-address">
+                    <a href="#">Add New</a>
+                </div>
+                <div class="payment-summary">
+                    <span>Nitin Patel</span>
+                    <p>100, College Road, Harrow, London Ha1 1BQ </p>
+                </div>
+            </div>
+            <div class="chckout-add">
+                <a href="javascript:;"><i class="fa fa-angle-left"></i></a>
+                <p>100, College Road, Harrow, London Ha1 1BQ</p>
+                <a href="javascript:;"><i class="fa fa-angle-right"></i></a>
+            </div>
+            <div class="account-block comment">
+                <h4 class="payment-heading">Comment</h4>
+                <div class="payment-summary">
+                    <textarea class="form-control" placeholder="Write your comment here..."></textarea>
+                </div>
+            </div>
+            <div class="account-block">
+                <h4 class="payment-heading">Payment Summary</h4>
+                <div class="payment-summary">
+                    <p>- Apple 30-pin Digital AV Adapter</p>
+                    <p>80 points</p>
+                    <p>- Apple 5W USB Power Adapter</p>
+                    <p>50 points</p>
+                </div>
+                <div class="payment-summary last">
+                    <span>Order Total:</span>
+                    <span>130 points</span>
+                </div>
+                <div class="checkout-block">
+                    <!-- <button class="btn btn-empty">Checkout</button> -->
+                    <a href="orderSuccessful.html" class="btn btn-empty">Place Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
