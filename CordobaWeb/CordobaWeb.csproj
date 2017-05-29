@@ -705,6 +705,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
+    <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_axis.js" />
@@ -3738,7 +3739,13 @@
     <Content Include="Templates\Admin\Users\ManageUser.html" />
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Templates\_Layout1\Cart\CartDetail.html" />
+    <Content Include="Templates\_Layout1\Cart\CheckOut.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
+    <Content Include="Templates\_Layout1\MyAccount\AddressBook.html" />
+    <Content Include="Templates\_Layout1\MyAccount\ChangePassword.html" />
+    <Content Include="Templates\_Layout1\MyAccount\EditProfile.html" />
+    <Content Include="Templates\_Layout1\MyAccount\OrderHistory.html" />
+    <Content Include="Templates\_Layout1\MyAccount\RewardPoints.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
     <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
     <Content Include="Web.config" />

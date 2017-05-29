@@ -289,7 +289,32 @@ function GetLayoutName() {
                     name: 'CheckOut',
                     url: '/CheckOut?cartgroup_id:CartGroupId',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/CheckOut.html'
-                };;
+                }
+                 , EditProfile = {
+                     name: 'EditProfile',
+                     url: '/EditProfile',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/EditProfile.html'
+                 }
+                 , ChangePassword = {
+                     name: 'ChangePassword',
+                     url: '/ChangePassword',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/ChangePassword.html'
+                 }
+                   , AddressBook = {
+                       name: 'AddressBook',
+                       url: '/AddressBook',
+                       templateUrl: 'Templates/' + LayoutName + '/MyAccount/AddressBook.html'
+                   }
+                    , OrderHistory = {
+                        name: 'OrderHistory',
+                        url: '/OrderHistory',
+                        templateUrl: 'Templates/' + LayoutName + '/MyAccount/OrderHistory.html'
+                    }
+                , RewardPoints = {
+                    name: 'RewardPoints',
+                    url: '/RewardPoints',
+                    templateUrl: 'Templates/' + LayoutName + '/MyAccount/RewardPoints.html'
+                };
 
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(HomeIndex);
@@ -355,6 +380,13 @@ function GetLayoutName() {
                 $stateProvider.state(ManageReward);
                 $stateProvider.state(CartDetail);
                 $stateProvider.state(CheckOut);
+
+
+                $stateProvider.state(EditProfile);
+                $stateProvider.state(ChangePassword);
+                $stateProvider.state(AddressBook);
+                $stateProvider.state(OrderHistory);
+                $stateProvider.state(RewardPoints);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

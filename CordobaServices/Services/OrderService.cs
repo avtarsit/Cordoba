@@ -68,6 +68,24 @@ namespace CordobaServices.Services
             //return result;
         }
 
+        public List<OrderEntity> GetOrderHistory(int CustomerId)
+        {
+            try
+            {
+               
+                var paramCustomerId= new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = CustomerId };
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", paramCustomerId).ToList();
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
+
         public List<CustomerGroupEntity> GetCustomerGroupList()
         {
             try
