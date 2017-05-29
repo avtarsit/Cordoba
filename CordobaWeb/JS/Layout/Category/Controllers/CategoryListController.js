@@ -59,6 +59,7 @@
 
 
     $scope.GetProductListByCategoryAndStoreId = function () {
+        
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 
@@ -66,6 +67,7 @@
                             "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
                             )
           .then(function (response) {
+              
               if (response.data.length > 0) {
                   $scope.ProductList = response.data;
               }
@@ -98,7 +100,6 @@
         $scope.GetOurProductListByByStoreId();
     }
     else if ($scope.SelectedCategoryId == -3) {
-        debugger;
         $scope.SelectedSubCategory = -3;
         $scope.TitleHeader = 'Search Result';
         $scope.WhatAreYouLookingFor = $("#txtSearchFor").val();
