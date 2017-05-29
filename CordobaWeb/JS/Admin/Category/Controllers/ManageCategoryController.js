@@ -17,13 +17,7 @@
     else {
         $scope.PageTitle = "Add Category";
     }
-    //#endregion
-   
-    //$scope.SaveCategory = function (form) {
-    //    if (form.$valid) {
-          
-    //    }
-    //}
+  
 
     $scope.DeleteCategory = function () {
         bootbox.dialog({
@@ -74,17 +68,12 @@
 
     }
 
+
     $scope.GetCategoryById = function () {
-        $scope.Category_Id = ($scope.Category_Id > 0 ? $scope.Category_Id : 0);
-        $http({
-            method: 'GET',
-            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id ,
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .success(function (response) {
-            $scope.CategoryObj = response;
-            debugger;
-            CreateDescriptionObject();
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
+          .then(function (response) {
+              $scope.CategoryObj = response.data;
+              CreateDescriptionObject();
           })
       .catch(function (response) {
       })
@@ -94,7 +83,6 @@
     }
 
     function CreateDescriptionObject() {
-       
         var TempDescObject = [];
         angular.copy($scope.CategoryObj.CategoryDescriptionList, TempDescObject);
         $scope.CategoryObj.CategoryDescriptionList = [];
@@ -102,7 +90,6 @@
             var CategoryDescObj = $filter('filter')(TempDescObject, { language_id: col.language_id }, true);
             if (CategoryDescObj == undefined || CategoryDescObj == null || CategoryDescObj.length == 0) {
                 var DescObj = new Object();
-                DescObj.category_id = $scope.Category_Id;
                 DescObj.language_id = col.language_id;
                 DescObj.description = "";
                 DescObj.name = "";
@@ -151,7 +138,7 @@
     }
 
 
-    //Insert Update Category
+  
     $scope.InsertOrUpdateCategory = function (form) {
     
         if (form.$valid) {
@@ -190,8 +177,10 @@
 
     GetLanguageList();
     GetParentCategoryList();
-    $scope.GetCategoryById(0);
+    $scope.GetCategoryById();
+    function Init() {
 
+    }
 
 });
 

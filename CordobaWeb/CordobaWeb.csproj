@@ -3693,6 +3693,7 @@
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Templates\Admin\Banner\Index.html" />
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
+    <Content Include="Templates\Admin\Category\Category.html" />
     <Content Include="Templates\Admin\Category\Index.html" />
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Category\PopularCategory.html" />
