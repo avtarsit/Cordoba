@@ -51,8 +51,7 @@
             $rootScope.ShoppingCart = response.data;
             productObj.quantity = productObj.quantity + Quantity;
             $scope.GetCartDetailsByCartGroupId();
-
-            notificationFactory.customSuccess("Shopping bag updated successfully.");
+            toastr.success("Shopping bag updated successfully.");
         })
     .catch(function (response) {
 
@@ -79,7 +78,7 @@
         $http.get(configurationService.basePath + "API/CartApi/RemoveProductFromCart?CartId=" + Product.cart_id)
         .then(function (response) {    
             $scope.GetCartDetailsByCartGroupId();
-            notificationFactory.customSuccess("Product successfully removed from cart.");
+            toastr.success("Product successfully removed from cart.");            
         })
           .catch(function (response) {
 
@@ -91,13 +90,13 @@
     }
 
     $scope.Checkout=function()
-    {
+    {              
         if ($scope.CustomerAvailablePoints >= 0)
         {
             $state.go('Checkout', { 'cartgroup_id': $scope.ShoppingCart.cartgroup_id });
         }
         else {
-            alert('You have insufficient points to purchase items.');
+            toastr.warning('You have insufficient points to purchase items.');            
         }
             
     }
