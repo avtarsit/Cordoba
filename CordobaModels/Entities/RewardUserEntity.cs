@@ -14,5 +14,9 @@ namespace CordobaModels.Entities
         public bool IsWinner { get; set; }
         public string Rewards { get; set; }
         public string Customer { get; set; }
+        public string RewardedCustomer { get; set; }
+        public string RewardedByCustomer { get; set; }
+        public string Medal { get; set; }
+        public int? id { get; set; }
     }
 }

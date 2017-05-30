@@ -1,4 +1,4 @@
-﻿<div ng-controller="ManageCategoryController">
+﻿<!--<div ng-controller="ManageCategoryController">
     <form name="form" id="form" class="form-horizontal" novalidate>
         <div class="page-header">
             <div class="page-header-content">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="page-header-content">
-            <!-- Centered forms -->
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -57,10 +57,10 @@
                                     <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
                                 </ul>
 
-                                <!-- Tab panes -->
+
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="GenaralTab">
-                                        <!--General Tab-->
+
                                         <div class="tab-content">
                                             <div class="tab-pane active in" id="tab-general">
                                                 <ul class="nav nav-tabs" id="language">
@@ -71,23 +71,29 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
-                                                            <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Category Name{{CategoryObj.CategoryDescriptionList[$index].name}}</label>
+                                                            <label class="col-lg-2 control-label " ng-class="LangObj.code=='en' ? 'mandatoryField':'' " for="input-name1">Category Name</label>
                                                             <div class="col-sm-10">
+<<<<<<< HEAD
                                                                 <!--<input type="hidden" name="CategoryNameLang[{{LangObj.language_id}}]" id="CategoryObj.CategoryDescriptionList[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].language_id" ng-value="{{LangObj.language_id}}" class="form-control" ng-init="ProductObj.ProductDescriptionList[$index].language_id=LangObj.language_id">-->
                                                                 <input type="text" name="NameLang_{{LangObj.code}}" id="NameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].name" placeholder="Category Name" class="form-control" />
+                                                                
+=======
+
+                                                                <input type="text" name="NameLang_1{{LangObj.code}}" id="NameLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].name" placeholder="Category Name" class="form-control" />
+>>>>>>> 17fc1c84d11c1187b1615c81a8d22cde6c76a742
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="input-description1">Description</label>
                                                             <div class="col-sm-10">
-                                                                <textarea ckeditor="" name="ProductDescriptionLang[{{LangObj.language_id}}]" id="ProductDescriptionLang[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].CategoryDescription" rows="5" cols="8"></textarea>
+                                                                <textarea ckeditor="" name="ProductDescriptionLang1[{{LangObj.language_id}}]" id="ProductDescriptionLang1[{{LangObj.language_id}}]" ng-model="CategoryObj.CategoryDescriptionList[$index].description" rows="5" cols="8"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--End General Tab-->
+
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="DataTab">
                                         <div class="tab-pane fade active in" id="tab-data">
@@ -97,14 +103,12 @@
                                                     <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.Category_Id"></select>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Stores</label>
                                                 <div class="col-sm-10">
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
-                                                        <!--<a ng-repeat="Item in CategoryObj.CategoryStoreList.CategoryStore">
-                                                            <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.StoreName}}</label>
-                                                        </a>-->
+
 
                                                         <div class="col-sm-6 checkbox" ng-repeat="Item in CategoryObj.StoreList">
                                                             <label>
@@ -137,10 +141,10 @@
 
                 </div>
             </div>
-            <!-- /form centered -->
+
         </div>
     </form>
-</div>
+</div>-->
 
 
 

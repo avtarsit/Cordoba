@@ -1,0 +1,33 @@
+﻿<div ng-controller="CustomerRewardDetailsController">
+    <section class="my-account">
+        <div class="container">
+            <ul>
+                <li>
+                    <p class="bag-desc">{{PageTitle}}-{{RewardName}}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="container">
+        <div class="account-block reward-points">
+            <div class="col-sm-12 table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>RewardedCustomer</th>
+                            <th>RewardedByCustomer</th>
+                            <th>Medal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Item in RewardDetails">
+                            <td ng-bind="Item.RewardedCustomer"></td>
+                            <td ng-bind="Item.RewardedByCustomer"></td>
+                            <td ng-bind="Item.Medal"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

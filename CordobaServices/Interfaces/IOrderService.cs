@@ -14,6 +14,8 @@ namespace CordobaServices.Interfaces
 
         List<OrderEntity> GetOrderDetails(int orderId);
 
+        List<OrderEntity> GetOrderHistory(int customer_Id);
+
         int InsertOrderHistory(OrderHistoryEntity objHistoryEntity);
 
         List<CustomerGroupEntity> GetCustomerGroupList();

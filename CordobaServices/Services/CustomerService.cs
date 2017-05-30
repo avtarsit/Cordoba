@@ -42,5 +42,48 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+        public CustomerEntity GetCustomerById(int customer_id)
+        {
+            try
+            {
+                CustomerEntity customerEntity = new CustomerEntity();
+                List<AddressEntity> addressEntity = new List<AddressEntity>();
+                if(customer_id > 0)
+                {
+                    var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
+                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById", paramCustomer_id).FirstOrDefault();
+                    if(result != null)
+                    {
+                        customerEntity = result;
+                    }
+
+
+                    #region customer Address
+                    var AddressResult = CustomerEntityGenericRepository.ExecuteSQL<AddressEntity>("EXEC GetCustomerAddressList", new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id }).ToList<AddressEntity>().ToList();
+                    if (AddressResult != null)
+                    {
+                        addressEntity = AddressResult;
+                    }
+                    customerEntity.AddressList = addressEntity;
+                    #endregion 
+                }
+                else
+                {
+                    customerEntity = new CustomerEntity();
+                    customerEntity.AddressList = addressEntity = new List<AddressEntity>();
+                }
+
+               
+
+
+                return customerEntity;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -84,5 +84,18 @@ namespace CordobaServices.Services
             var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", paramId).ToList();
             return myRewardlist;
         }
+
+        public List<RewardEntity> GetAllRunningRewards()
+        {
+            var runningAwards = objGenericRepository.ExecuteSQL<RewardEntity>("GetAllRunningRewards").ToList();
+            return runningAwards;
+        }
+
+        public List<RewardUserEntity> RewardCustomerDetails(int reward_id)
+        {
+            var paramReawrdId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
+            var rewardcustomers = objGenericRepository.ExecuteSQL<RewardUserEntity>("RewardCustomerDetails", paramReawrdId).ToList();
+            return rewardcustomers;
+        }
     }
 }

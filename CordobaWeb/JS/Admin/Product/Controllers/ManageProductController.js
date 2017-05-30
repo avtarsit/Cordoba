@@ -275,6 +275,4 @@
     //#region init
     Init();
     //#endregion Image Tab
-
-
 });

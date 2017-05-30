@@ -1,0 +1,89 @@
+﻿<div ng-controller="CartDetailController">
+
+
+    <section class="my-account">
+        <div class="container">
+            <ul>
+                <li>
+                    <p class="bag-desc" ng-if="TotalItems>0"> You have {{TotalItems}} item's in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="!(TotalItems>0)">Your Shopping Bag is Empty.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="container cart-desc">
+        <div class="col-sm-8">
+            <div class="account-block">
+                <div ng-class="Item.IsOutOfStock=='true'? 'cart-detail out-of-stock' : 'cart-detail' " class="cart-detail out-of-stock" ng-repeat="Item in CartItemList">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{Item.ProductImage}}" alt="Image">
+                                    <div class="stock-img"></div>
+                                </div>
+                                <div class="media-body">
+                                    <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
+                                    <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
+                                    <div class="price mt-10">
+                                        <p>Quantity:</p>
+                                        <div class="input-group col-sm-2">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-danger btn-number" ng-click="DecreaseQuantity(Item)">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <label class="form-control" ng-bind="Item.quantity"></label>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-success btn-number" ng-click="IncreaseQuantity(Item)">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <p ng-if="Item.IsOutOfStock=='false'" class="stock-desc">Out of Stock</p>
+                                    <label ng-if="Item.IsOutOfStock=='false'" class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <p class="product-price">
+                            <span>Points: {{Item.price}}</span>
+                                <br />
+                                <span ng-if="Item.quantity>1">Subtotal: {{Item.total}}</span>
+                            </p>                            
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="remove-product">
+                                <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
+                                <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="payment-summary">
+                    <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" ng-if="TotalItems>0">
+            <div class="account-block">
+                <h4 class="payment-heading">Payment Summary</h4>
+                <div class="payment-summary">
+                    <p>Subtotal:</p>
+                    <p>{{AllItemSubtotal}} points</p>
+                </div>
+                <div class="payment-summary last">
+                    <span>Order Total:</span>
+                    <span>{{AllItemTotal}} points</span>
+                </div>
+                <div class="checkout-block">
+                    <!-- <button class="btn btn-empty">Checkout</button> -->
+                    <a  ng-click="Checkout()" class="btn btn-empty">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

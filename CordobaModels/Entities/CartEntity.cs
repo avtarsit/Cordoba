@@ -25,6 +25,16 @@ namespace CordobaModels.Entities
        public int? updatedby { get; set; }
 
        public int? TotalItemAdded { get; set; }
+
+       public int? ProductAvailableQuantity { get; set; }
+       public bool? IsOutOfStock { get; set; }
+       public decimal? Subtotal { get; set; }
+       public decimal? OrderTotal { get; set; }
+       public string ProductImage { get; set; }
+
+       public decimal? AllItemSubtotal { get; set; }
+       public decimal? AllItemTotal { get; set; }
+       public decimal? CustomerAvailablePoints { get; set; }
        
     }
 }

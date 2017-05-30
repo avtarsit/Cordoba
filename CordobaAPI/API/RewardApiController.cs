@@ -139,5 +139,33 @@ namespace CordobaAPI.API
                 throw;
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetAllRunningRewards()
+        {
+            try
+            {
+                var allrunningRewards = _rewardService.GetAllRunningRewards();
+                return Request.CreateResponse(HttpStatusCode.OK, allrunningRewards);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage RewardCustomerDetails(int reward_id)
+        {
+            try
+            {
+                var customerRewards = _rewardService.RewardCustomerDetails(reward_id);
+                return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }
