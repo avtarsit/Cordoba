@@ -1,4 +1,4 @@
-﻿app.controller('CategoryListController', function (StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+﻿app.controller('CategoryListController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -63,7 +63,7 @@
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 
-                            "&Customer_Id=" + 0+
+                            "&Customer_Id=" + UserDetail.address_id +
                             "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
                             )
           .then(function (response) {

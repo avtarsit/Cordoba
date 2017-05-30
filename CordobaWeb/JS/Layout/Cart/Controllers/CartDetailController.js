@@ -1,4 +1,4 @@
-﻿app.controller('CartDetailController', function (StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+﻿app.controller('CartDetailController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -90,14 +90,22 @@
     }
 
     $scope.Checkout=function()
-    {              
-        if ($scope.CustomerAvailablePoints >= 0)
+    {
+        if (UserDetail.customer_id>0)
         {
-            $state.go('Checkout', { 'cartgroup_id': $scope.ShoppingCart.cartgroup_id });
+            if ($scope.CustomerAvailablePoints >= 0) {
+                $state.go('Checkout', { 'cartgroup_id': $scope.ShoppingCart.cartgroup_id });
+            }
+            else {
+                toastr.warning('You have insufficient points to purchase items.');
+            }
         }
         else {
-            toastr.warning('You have insufficient points to purchase items.');            
+            alert("Login");
         }
+     
+
+        
             
     }
 

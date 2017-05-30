@@ -9,6 +9,11 @@ function GetLayoutName() {
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
+            var User = new Object();
+            User.customer_id = 0;
+            User.address_id = 0;
+            app.value('UserDetail', User);
+
             var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
@@ -433,9 +438,27 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
+             .run(function ($http, $rootScope, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {
 
                  $rootScope.ShoppingCart = new Object();
+                 debugger;
+                 var user = localStorageService.get("loggedInUser");
+                 if( user==null || user==undefined)
+                 {
+                     user = new Object();
+                     user.customer_id = 0;
+                 }
+                 if ( user.customer_id > 0)
+                 {
+                     UserDetail = user;
+                 }
+                 else {
+                     localStorageService.set("loggedInUser", UserDetail);
+                 }
+               
+
+
+              
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());
