@@ -711,6 +711,8 @@
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
+    <Content Include="JS\Layout\Reward\CustomerRewardDetailsControlller.js" />
+    <Content Include="JS\Layout\Reward\RewardsController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_axis.js" />
@@ -3734,7 +3736,9 @@
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
     <Content Include="Templates\Admin\Reward\AddOrUpdateReward.html" />
+    <Content Include="Templates\Admin\Reward\CustomerRewardDetails.html" />
     <Content Include="Templates\Admin\Reward\Index.html" />
+    <Content Include="Templates\Admin\Reward\ViewCustomerRewards.html" />
     <Content Include="Templates\Admin\Store\Index.html" />
     <Content Include="Templates\Admin\Store\ManageStore.html" />
     <Content Include="Templates\Admin\Supplier\Index.html" />

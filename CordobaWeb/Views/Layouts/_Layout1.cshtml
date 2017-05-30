@@ -9,7 +9,8 @@
     @Styles.Render("~/bundles/Layout1CSS")    
 
     <style>
-     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());        
+     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());     
+      
     </style>
    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -99,8 +100,26 @@
                 <p>Copyright © 2017 Cordoba</p>
             </div>
         </footer>
+    
+
+        <div class="about-overlay"></div>
+        <div class="about-us">
+            <div id="aboutScroll" class="welcome-block">
+                <a href="javascript:;" class="showDesc">About Us</a>        
+                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+                </div>               
+            </div>
+       
+        <div class="container-fluid">
+            <a href="#" id="back-to-top" title="Back to top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </div>  
         <!-- login modal popup -->
-        <!-- login modal popup -->
+        <!-- login modal popup -->      
         <div class="modal" id="DivLoginModel" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -145,24 +164,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="about-overlay"></div>
-        <div class="about-us">
-            <div id="aboutScroll" class="welcome-block">
-                <a href="javascript:;" class="showDesc">About Us</a>        
-                <div ng-bind-html="WelcomeMsg[0]"></div>
-                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
-                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
-                </div>               
-            </div>
-       
-        <div class="container-fluid">
-            <a href="#" id="back-to-top" title="Back to top">
-                <i class="fa fa-angle-up"></i>
-            </a>
-        </div>
-    </div>   
+        </div> 
 </div>
     @Scripts.Render("~/bundles/Layout1Js")    
     @Scripts.Render("~/bundles/angular")    
