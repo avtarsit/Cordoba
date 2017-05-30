@@ -652,6 +652,8 @@
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
     <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
     <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewCustomerRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewRewardCustomerDetailsContoller.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -3726,7 +3728,9 @@
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
     <Content Include="Templates\Admin\Reward\AddOrUpdateReward.html" />
+    <Content Include="Templates\Admin\Reward\CustomerRewardDetails.html" />
     <Content Include="Templates\Admin\Reward\Index.html" />
+    <Content Include="Templates\Admin\Reward\ViewCustomerRewards.html" />
     <Content Include="Templates\Admin\Store\Index.html" />
     <Content Include="Templates\Admin\Store\ManageStore.html" />
     <Content Include="Templates\Admin\Supplier\Index.html" />

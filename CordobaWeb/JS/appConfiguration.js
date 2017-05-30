@@ -7,7 +7,7 @@ function GetLayoutName() {
     $.ajax({
         url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {           
+        success: function (data) {
             app.value('StoreSessionDetail', data);
             var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -275,6 +275,21 @@ function GetLayoutName() {
                     url: '/Reward/ManageReward?rewardId:reward_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
                 }
+                , ViewReward = {
+                    name: 'ViewReward',
+                    url: '/Reward/ViewReward?rewardId:reward_id&name:rewardname',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/ViewCustomerRewards.html'
+                }
+                , ViewRewardCustomerDetails = {
+                    name: 'ViewRewardCustomerDetails',
+                    url: '/Reward/ViewReward/CustomerReward?rewarduserid:reward_user_id&name:customername',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/CustomerRewardDetails.html'
+                }
+                , MyReward = {
+                    name: 'MyReward',
+                    url: '/MyReward',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'
+                }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
@@ -340,9 +355,11 @@ function GetLayoutName() {
                 $stateProvider.state(LayoutCategoryORProductList);
                 $stateProvider.state(LayoutProducts);
                 $stateProvider.state(LayoutProductDetail);
-                
+
                 $stateProvider.state(ShowReward);
                 $stateProvider.state(ManageReward);
+                $stateProvider.state(ViewReward);
+                $stateProvider.state(ViewRewardCustomerDetails);
 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
@@ -354,7 +371,7 @@ function GetLayoutName() {
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
-                 $rootScope.ShoppingCart=new Object();
+                 $rootScope.ShoppingCart = new Object();
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());

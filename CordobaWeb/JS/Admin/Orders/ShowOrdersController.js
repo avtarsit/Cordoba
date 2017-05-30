@@ -98,7 +98,7 @@
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
-                        exceptionService.ShowException(data.responseJSON, data.status);
+                        //exceptionService.ShowException(data.responseJSON, data.status);
                     }
                 });
             },
