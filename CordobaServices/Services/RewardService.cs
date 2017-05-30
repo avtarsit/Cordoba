@@ -55,5 +55,47 @@ namespace CordobaServices.Services
             int result = objGenericRepository.ExecuteSQL<int>("DeleteReward", paramRewardId).SingleOrDefault();
             return result;
         }
+
+        public List<RewardUserEntity> ViewCustomerRewards(int reward_id)
+        {
+            var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
+            var rewardCustomerlist = objGenericRepository.ExecuteSQL<RewardUserEntity>("ViewCustomer_Reward", paramRewardId).ToList();
+            return rewardCustomerlist;
+        }
+
+        public List<RewardUserDetailsEntity> GetRewardCustomerDetails(int reward_user_id)
+        {
+            var paramrewardUserId = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
+            var rewardCustomerDetails = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetReward_CustomerDetails", paramrewardUserId).ToList();
+            return rewardCustomerDetails;
+        }
+
+        public int DeleteRewardUser(int id, int reward_user_id)
+        {
+            var paramId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = id };
+            var paramRewardUserId = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
+            var deletedRecord = objGenericRepository.ExecuteSQL<int>("Delete_RewardUser", paramId, paramRewardUserId).SingleOrDefault();
+            return deletedRecord;
+        }
+
+        public List<RewardUserDetailsEntity> MyRewards(int id)
+        {
+            var paramId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = id };
+            var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", paramId).ToList();
+            return myRewardlist;
+        }
+
+        public List<RewardEntity> GetAllRunningRewards()
+        {
+            var runningAwards = objGenericRepository.ExecuteSQL<RewardEntity>("GetAllRunningRewards").ToList();
+            return runningAwards;
+        }
+
+        public List<RewardUserEntity> RewardCustomerDetails(int reward_id)
+        {
+            var paramReawrdId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
+            var rewardcustomers = objGenericRepository.ExecuteSQL<RewardUserEntity>("RewardCustomerDetails", paramReawrdId).ToList();
+            return rewardcustomers;
+        }
     }
 }

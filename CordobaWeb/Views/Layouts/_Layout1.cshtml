@@ -9,7 +9,8 @@
     @Styles.Render("~/bundles/Layout1CSS")    
 
     <style>
-     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());        
+     @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());     
+      
     </style>
    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -24,8 +25,8 @@
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
+                        <li class="active"><a href="#" ui-sref="EditProfile">My Account</a></li>
+                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-2})">My Wishlist</a></li>
                         <li>
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
@@ -42,7 +43,7 @@
                             <span class="icon-bar"></span>
                         </button>
                      
-                        <a class="navbar-brand" href="index.html"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                        <a class="navbar-brand" href="#" ui-sref="Home"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
                     </div>
                     <div class="main-menu">
                         <div class="search-panel">
@@ -50,22 +51,23 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="badge" ng-bind="ShoppingCart.TotalItemAdded"></span>
                             </a>
-                            <div class="search-block">
-                                <input type="text" value="" placeholder="What are you looking for?" />
+                            <div class="search-block" >
+                                <a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> <input type="text" id="txtSearchFor" value="" placeholder="What are you looking for?" /></a>
                             </div>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                <li><a href="products.html">Our Products</a></li>
+                                <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
+                                <li><a ui-sref="MyReward">Rewards</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
-        </div>
-
+        </div>        
+        <div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>
         @RenderBody();
 
         <footer>
@@ -97,8 +99,26 @@
                 <p>Copyright © 2017 Cordoba</p>
             </div>
         </footer>
+    
+
+        <div class="about-overlay"></div>
+        <div class="about-us">
+            <div id="aboutScroll" class="welcome-block">
+                <a href="javascript:;" class="showDesc">About Us</a>        
+                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+                </div>               
+            </div>
+       
+        <div class="container-fluid">
+            <a href="#" id="back-to-top" title="Back to top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </div>  
         <!-- login modal popup -->
-        <!-- login modal popup -->
+        <!-- login modal popup -->      
         <div class="modal" id="DivLoginModel" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -143,30 +163,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="about-overlay"></div>
-        <div class="about-us">
-            <div id="aboutScroll" class="welcome-block">
-                <a href="javascript:;" class="showDesc">About Us</a>        
-                <div ng-bind-html="WelcomeMsg[0]"></div>
-                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
-                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
-                </div>               
-            </div>
-       
-        <div class="container-fluid">
-            <a href="#" id="back-to-top" title="Back to top">
-                <i class="fa fa-angle-up"></i>
-            </a>
-        </div>
-    </div>   
-
+        </div> 
+</div>
     @Scripts.Render("~/bundles/Layout1Js")    
     @Scripts.Render("~/bundles/angular")    
     @Scripts.Render("~/bundles/appConfig") 
     @Scripts.Render("~/bundles/LayoutControllers")
-   
+  
     <script type="text/javascript">
         $(document).ready(function () {
           

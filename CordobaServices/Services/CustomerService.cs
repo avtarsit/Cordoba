@@ -56,6 +56,7 @@ namespace CordobaServices.Services
                     if(result != null)
                     {
                         customerEntity = result;
+                        customerEntity.password = Security.Decrypt(result.password);
                     }
 
 
@@ -84,6 +85,31 @@ namespace CordobaServices.Services
 
                 throw;
             }
+        }
+
+
+
+        public int InsertUpdateCustomer(CustomerEntity customerEntity)
+        {
+            string AddressXml = Helpers.ConvertToXml<AddressEntity>.GetXMLString(customerEntity.AddressList);
+
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("customer_id", customerEntity.customer_id)
+                                                 , new SqlParameter("store_id", customerEntity.store_id ?? (object) DBNull.Value)
+                                                 , new SqlParameter("firstname", customerEntity.firstname ??  DBNull.Value.ToString())
+                                                 , new SqlParameter("lastname", customerEntity.lastname ??  DBNull.Value.ToString())
+                                                 , new SqlParameter("email", customerEntity.email ??  DBNull.Value.ToString())
+                                                 , new SqlParameter("telephone", customerEntity.telephone ??   DBNull.Value.ToString())
+                                                 , new SqlParameter("password", Security.Encrypt(customerEntity.password) ??  DBNull.Value.ToString())
+                                                 , new SqlParameter("status", customerEntity.status)
+                                                 , new SqlParameter("approved", customerEntity.approved)
+                                                 , new SqlParameter("activated", customerEntity.activated)
+                                                 , new SqlParameter("is_admin", customerEntity.is_admin)
+                                                 , new SqlParameter("customer_group_id", customerEntity.customer_group_id)
+                                                 , new SqlParameter("AddressXml", AddressXml ??  (object)DBNull.Value)
+                                                };
+            int result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertUpdateCustomer", sqlParameter).FirstOrDefault();
+            return result;
         }
     }
 }
