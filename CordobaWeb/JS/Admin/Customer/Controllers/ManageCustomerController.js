@@ -139,7 +139,19 @@
 
        });
     }
-
+    function ValidateAddress() {
+        debugger;
+        var IsValidAddress = true;
+        angular.forEach($scope.CustomerObj.AddressList, function (col, i) {
+            debugger;
+            if (col.firstname == undefined || col.firstname == '' || col.lastname == undefined || col.lastname == '' || col.address_1 == undefined || col.address_1 == ''
+                || col.city == undefined || col.city == '' || col.country_id == undefined || col.country_id == '')
+            {
+                IsValidAddress = false;
+            }
+        });
+        return IsValidAddress && $scope.CustomerObj.AddressList.length>0;
+    }
     function CalculateTotalRewardBalance() {
         $scope.TotalBalance = 0;
         var TotalWithdrawal = 0, TotalDeposit = 0;
@@ -183,6 +195,9 @@
         }
     }
 
+
+        
+
     $scope.GetCustomerById = function () {
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id)
           .then(function (response) {
@@ -219,8 +234,14 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
-
+        debugger;
         if (form.$valid) {
+
+            if (!ValidateAddress())
+            {
+                notificationFactory.customError("Not a valid address/add at least 1 address.");
+                return;
+            }
             var CustomerEntity = JSON.stringify($scope.CustomerObj);
             $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer", CustomerEntity)
               .then(function (response) {

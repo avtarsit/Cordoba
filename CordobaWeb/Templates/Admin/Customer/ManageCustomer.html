@@ -47,9 +47,8 @@
                                             <ul ng-show="form.$submitted && (!form.$valid)">
                                                 <li ng-show="form.FirstName.$error.required">First name is required.</li>    
                                                 <li ng-show="form.LastName.$error.required">Last name is required.</li>  
-                                                <li ng-show="form.Email.$error.required">Email is required.</li>  
+                                                <li ng-show="form.EmailAddress.$error.required || form.EmailAddress.$error.email">Email address is Required! OR Email address is not valid.</li>
                                                 <li ng-show="form.Telephone.$error.required">Telephone is required.</li>  
-                                                <li ng-show="form.LastName.$error.required">Last name is required.</li>      
                                                 <li ng-show="form.Password.$error.required">Password is required.</li>      
                                             </ul>
                                         </div>
@@ -114,7 +113,8 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">E-mail</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="email" class="form-control" name="Email" maxlength="90" placeholder="Enter  Email" ng-model="CustomerObj.email" required="required">
+                                                                    <!--<input type="email" class="form-control" validate-email name="Email" maxlength="90" placeholder="Enter  Email" ng-model="CustomerObj.email" required="required">-->
+                                                                    <input class="form-control" type="email" validate-email maxlength="90" name="EmailAddress" placeholder="Enter Email" ng-model="CustomerObj.email" required="required" />
                                                                 </div>
                                                             </div>
 
@@ -143,7 +143,7 @@
                                                                 <div class="col-lg-9">
                                                                     <select ng-options="store.store_id as store.name  for store in StoreList"
                                                                             class="form-control" ng-model="CustomerObj.store_id" name="store_List">
-                                                                        <option value=""></option>
+                                                                        <option value="number:0"> --- Please Select --- </option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -188,44 +188,44 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">First Name</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="FirstName" maxlength="30" placeholder="Enter First Name" ng-model="CustomerObj.Address.firstname" required="required">
+                                                                    <input type="text" class="form-control" name="AddressFirstName" maxlength="30" placeholder="Enter First Name" ng-model="CustomerObj.Address.firstname" >
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Last Name</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="LastName" maxlength="30" placeholder="Enter Last Name" ng-model="CustomerObj.Address.lastname" required="required">
+                                                                    <input type="text" class="form-control" name="AddressLastName" maxlength="30" placeholder="Enter Last Name" ng-model="CustomerObj.Address.lastname">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label">Company</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="CompanyName" maxlength="30" placeholder="Enter Company Name" ng-model="CustomerObj.Address.company">
+                                                                    <input type="text" class="form-control" name="AddressCompanyName" maxlength="30" placeholder="Enter Company Name" ng-model="CustomerObj.Address.company">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Address 1</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="Address1" maxlength="120" placeholder="Enter Primary Address" ng-model="CustomerObj.Address.address_1" required="required">
+                                                                    <input type="text" class="form-control" name="AddressAddress1" maxlength="120" placeholder="Enter Primary Address" ng-model="CustomerObj.Address.address_1" >
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label">Address 2</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="Address2" maxlength="120" placeholder="Enter Secondary Address" ng-model="CustomerObj.Address.address_2">
+                                                                    <input type="text" class="form-control" name="AddressAddress2" maxlength="120" placeholder="Enter Secondary Address" ng-model="CustomerObj.Address.address_2">
                                                                 </div>
                                                             </div>
                                                          
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">City</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="City" maxlength="120" placeholder="Enter City Name" ng-model="CustomerObj.Address.city" required="required">
+                                                                    <input type="text" class="form-control" name="AddressCity" maxlength="120" placeholder="Enter City Name" ng-model="CustomerObj.Address.city">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label ">Postcode</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="postcode" maxlength="10" placeholder="Enter postcode Name" ng-model="CustomerObj.Address.postcode">
+                                                                    <input type="text" class="form-control" name="Addresspostcode" maxlength="10" placeholder="Enter postcode Name" ng-model="CustomerObj.Address.postcode">
                                                                 </div>
                                                             </div>
 
@@ -233,7 +233,7 @@
                                                                 <label class="col-lg-2 control-label mandatoryField">Country</label>
                                                                 <div class="col-lg-9">
                                                                     <select ng-change="GetZoneListByCountry(CustomerObj.Address.country_id)" ng-options="Country.country_id as Country.name  for Country in CountryList"
-                                                                            class="form-control" ng-model="CustomerObj.Address.country_id" name="store_List">
+                                                                            class="form-control" ng-model="CustomerObj.Address.country_id" name="Addressstore_List">
                                                                         <option value=""> --- Please Select --- </option>
                                                                     </select>
                                                                 </div>
@@ -242,7 +242,7 @@
                                                                 <label class="col-lg-2 control-label">Region/State</label>
                                                                 <div class="col-lg-9">
                                                                     <select ng-options="Region.name as Region.name  for Region in RegionStateList"
-                                                                            class="form-control" ng-model="CustomerObj.Address.county" name="Region_LIst">
+                                                                            class="form-control" ng-model="CustomerObj.Address.county" name="AddressRegion_LIst">
                                                                         <option value=""> --- Please Select --- </option>
                                                                     </select>
                                                                 </div>
