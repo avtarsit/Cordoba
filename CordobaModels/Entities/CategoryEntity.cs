@@ -8,7 +8,7 @@ namespace CordobaModels.Entities
 {
     public class CategoryEntity
     {
-        public int? Category_Id { get; set; }
+        public int Category_Id { get; set; }
         public string name { get; set; }
         public string CategoryName { get; set; }
         public int? sort_order { get; set; }
@@ -17,7 +17,7 @@ namespace CordobaModels.Entities
         public Nullable<DateTime> CreatedDate { get; set; }
         public Nullable<DateTime> ModifiedDate { get; set; }
         public bool? IsActive { get; set; }
-        public CategoryStoreEntity CategoryStoreList { get; set; }
+        //public CategoryStoreEntity CategoryStoreList { get; set; }
         
         public Nullable<int> parentGroupId { get; set; }
         public string ParentCategoryName { get; set; }
@@ -31,7 +31,7 @@ namespace CordobaModels.Entities
         public List<StoreEntity> StoreList { get; set; }
         // need to remove 
      
-        public Nullable<int> parent_Id { get; set; }
+        public int parent_Id { get; set; }
         public string image { get; set; }
 
 

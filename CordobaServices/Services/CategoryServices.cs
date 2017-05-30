@@ -188,23 +188,39 @@ namespace CordobaServices.Services
             }
         }
 
-
+        //Insert Or Update Category
         public int InsertOrUpdateCategory(CategoryEntity categoryEntity)
         {
             string CategoryDescriptionXml = Helpers.ConvertToXml<CategoryDescriptionList>.GetXMLString(categoryEntity.CategoryDescriptionList);
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("Category_Id", categoryEntity.Category_Id)
-                                                 , new SqlParameter("image", categoryEntity.image ??  (object)DBNull.Value)
-                                                 , new SqlParameter("sort_order", categoryEntity.sort_order ??  (object)DBNull.Value)
-                                                 , new SqlParameter("status", categoryEntity.status ??  (object)DBNull.Value)
-                                                 , new SqlParameter("StoreIdCSV", categoryEntity.StoreIdCSV ??  (object)DBNull.Value)
-                                                 , new SqlParameter("CategoryDescriptionXml", CategoryDescriptionXml ??  (object)DBNull.Value)
+                                                 , new SqlParameter("parent_id", categoryEntity.parent_Id)
+                                                 , new SqlParameter("image", categoryEntity.image !=null?categoryEntity.image:"")
+                                                 , new SqlParameter("sort_order", categoryEntity.sort_order!=null?categoryEntity.sort_order:0)
+                                                 , new SqlParameter("status", categoryEntity.status !=null?categoryEntity.status :1)
+                                                 , new SqlParameter("StoreIdCSV", categoryEntity.StoreIdCSV !=null?categoryEntity.StoreIdCSV:"")
+                                                 , new SqlParameter("CategoryDescriptionXml", CategoryDescriptionXml !=null?CategoryDescriptionXml:"")
                                                 };
 
             int result = CategoryEntityGenericRepository.ExecuteSQL<int>("InsertOrUpdateCategory", sqlParameter).FirstOrDefault();
             return result;
         }
 
+
+        //Delete Category
+        public int DeleteCategory(int Category_Id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("Category_Id", Category_Id) };
+                int result = CategoryEntityGenericRepository.ExecuteSQL<int>("DeleteCategory", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

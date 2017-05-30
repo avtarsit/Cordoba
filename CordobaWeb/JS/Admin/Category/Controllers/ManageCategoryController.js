@@ -22,6 +22,7 @@
     }
   
 
+    //Delete Category
     $scope.DeleteCategory = function () {
         bootbox.dialog({
             message: "Do you want remove category?",
@@ -33,8 +34,22 @@
                         label: "Yes",
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
+                            debugger;
                             if (result) {
-
+                                $http.post(configurationService.basePath + "api/CategoryApi/DeleteCategory?Category_Id=" + $scope.Category_Id)
+                               .then(function (response) {
+                                   if (response.data > 0)
+                                       notificationFactory.successDelete();
+                                   else {
+                                       notificationFactory.FKReferenceDelete();
+                                   }
+                                   $state.go('ShowCategory');
+                               })
+                               .catch(function (response) {
+                                   notificationFactory.errorDelete(response.data.ExceptionMessage);
+                               })
+                               .finally(function () {
+                               });
                             }
                         }
                     },
@@ -73,31 +88,19 @@
 
 
     $scope.GetCategoryById = function () {
-<<<<<<< HEAD
-        $scope.Category_Id = ($scope.Category_Id > 0 ? $scope.Category_Id : 0);
-        $http({
-            method: 'GET',
-            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id ,
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .success(function (response) {
-            debugger;
-            $scope.CategoryObj= response;            
-            GetParentCategoryList();
-            CreateDescriptionObject();
-=======
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
-          .then(function (response) {
-              $scope.CategoryObj = response.data;
-              CreateDescriptionObject();
->>>>>>> 17fc1c84d11c1187b1615c81a8d22cde6c76a742
-          })
-      .catch(function (response) {
-      })
-      .finally(function () {
+                $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
+                  .then(function (response) {
+                      $scope.CategoryObj = response.data;
+                      CreateDescriptionObject();
 
-      });
-    }
+                  })
+                  .catch(function (response) {
+                  })
+                  .finally(function () {
+
+                     });
+           
+        }
 
     function CreateDescriptionObject() {
         var TempDescObject = [];
@@ -110,7 +113,7 @@
                 DescObj.language_id = col.language_id;
                 DescObj.description = "";
                 DescObj.name = "";
-                DescObj.CategoryDescription = "";
+                //DescObj.CategoryDescription = "";
                 $scope.CategoryObj.CategoryDescriptionList.push(DescObj);
             }
             else {
@@ -161,14 +164,16 @@
         if (form.$valid) {
             $scope.CategoryObj.StoreIdCSV = "";
             $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
-           // var categoryEntity = JSON.stringify($scope.CategoryObj);
+            var categoryEntity = JSON.stringify($scope.CategoryObj);
             debugger;
-            return;
+
             $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory", categoryEntity)
               .then(function (response) {
+                  debugger;
                   if (response.data > 0) {
+
                       notificationFactory.customSuccess("Category Saved Successfully.");
-                      $state.go('Category');
+                      $state.go('ShowCategory');
                   }
                   else if (response.data == -1) {
                       notificationFactory.customError("Category name is already Exists!");
@@ -195,9 +200,6 @@
     GetLanguageList();
     GetParentCategoryList();
     $scope.GetCategoryById();
-    function Init() {
-
-    }
-
+    
 });
 

@@ -8,8 +8,8 @@ namespace CordobaModels.Entities
 {
     public class CategoryDescriptionList
     {
-        public int category_id { get; set; }
-        public int language_id { get; set; }
+        public int? category_id { get; set; }
+        public int? language_id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public string CategoryDescription { get; set; }

@@ -156,17 +156,15 @@ namespace CordobaAPI.API
 
         }
 
+
+        //Insert Or Update Category
         [HttpPost]
         public HttpResponseMessage InsertOrUpdateCategory(CategoryEntity categoryEntity)
         {
             try
             {
                 var result = _categoryServices.InsertOrUpdateCategory(categoryEntity);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -174,6 +172,25 @@ namespace CordobaAPI.API
             }
         }
 
+
+        //Delete Category
+        [HttpPost]
+        public HttpResponseMessage DeleteCategory(int Category_Id)
+        {
+            try
+            {
+                var result = _categoryServices.DeleteCategory(Category_Id);
+                if (result > 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
