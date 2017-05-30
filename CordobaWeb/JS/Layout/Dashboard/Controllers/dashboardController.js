@@ -11,10 +11,10 @@
     {
         angular.element("#DivLoginModel").modal('show');     
     }
-
-
-    $rootScope.ShoppingCart.TotalQuantity = 5;
    
+
+
+
     //$scope.GetStoreDetailForDashboard = function () {
       
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
