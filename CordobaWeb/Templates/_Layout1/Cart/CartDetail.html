@@ -23,7 +23,7 @@
                                     <div class="stock-img"></div>
                                 </div>
                                 <div class="media-body">
-                                    <a href="#" class="media-heading" ng-bind="Item.name"></a>
+                                    <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
                                     <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
                                     <div class="price mt-10">
                                         <p>Quantity:</p>
@@ -64,7 +64,7 @@
                 </div>
                
                 <div class="payment-summary">
-                    <button class="remove-item pull-right"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
+                    <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="checkout-block">
                     <!-- <button class="btn btn-empty">Checkout</button> -->
-                    <a ui-sref="Checkout({cartgroup_id:ShoppingCart.cartgroup_id})" class="btn btn-empty">Checkout</a>
+                    <a  ng-click="Checkout()" class="btn btn-empty">Checkout</a>
                 </div>
             </div>
         </div>

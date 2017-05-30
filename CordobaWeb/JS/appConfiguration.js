@@ -11,7 +11,7 @@ function GetLayoutName() {
             app.value('StoreSessionDetail', data);
             var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                var HomeIndex = {
+                var Home = {
                     name: 'Home',
                     url: '/Home',
                     templateUrl: 'Templates/' + LayoutName + '/Home/index.cshtml'
@@ -314,10 +314,15 @@ function GetLayoutName() {
                     name: 'PointsAudit',
                     url: '/PointsAudit',
                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/PointsAudit.html'
+                }
+                , OrderSuccessful = {
+                    name: 'OrderSuccessful',
+                    url: '/OrderSuccessful?OrderId:orderid',
+                    templateUrl: 'Templates/' + LayoutName + '/Cart/OrderSuccessful.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
-                $stateProvider.state(HomeIndex);
+                $stateProvider.state(Home);
                 $stateProvider.state(ShowCountry);
                 $stateProvider.state(ManageCountry);
                 $stateProvider.state(ShowCategory);
@@ -385,6 +390,7 @@ function GetLayoutName() {
                 $stateProvider.state(AddressBook);
                 $stateProvider.state(OrderHistory);
                 $stateProvider.state(PointsAudit);
+                $stateProvider.state(OrderSuccessful);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

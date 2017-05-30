@@ -516,6 +516,7 @@
     <Content Include="Content\layout1\images\electronics.png" />
     <Content Include="Content\layout1\images\fashion.png" />
     <Content Include="Content\layout1\images\homeApp.png" />
+    <Content Include="Content\layout1\images\loader.gif" />
     <Content Include="Content\layout1\images\logo.png" />
     <Content Include="Content\layout1\images\ME918B_A_1-80x80.jpg" />
     <Content Include="Content\layout1\images\offer1.jpg" />

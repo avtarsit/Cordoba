@@ -9,14 +9,14 @@
     {
         $scope.cartgroup_id = $stateParams.cartgroup_id;
     }
-
+    
+    $scope.PlaceOrderObj = new Object();
     //#endregion      
     $scope.GetCartDetailsByCartGroupId = function () {
         
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
           .then(function (response) {
-              if (response.data.length>0)
-              {                  
+              if (response.data.length > 0) {
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotal = $scope.CartItemList[0].AllItemSubtotal;
@@ -24,6 +24,15 @@
                   $scope.CustomerAvailablePoints = $scope.CartItemList[0].CustomerAvailablePoints;
                   $rootScope.ShoppingCart.cartgroup_id = response.data[0].cartgroup_id;
                   $rootScope.ShoppingCart.TotalItemAdded = response.data[0].TotalItemAdded;
+              }
+              else {
+                  $scope.CartItemList = response.data;
+                  $scope.TotalItems = $scope.CartItemList.length;
+                  $scope.AllItemSubtotal = 0;
+                  $scope.AllItemTotal = 0;
+                  $scope.CustomerAvailablePoints = 0;// this will come from LoggedIn Customer Session
+                  $rootScope.ShoppingCart.cartgroup_id = 0;
+                  $rootScope.ShoppingCart.TotalItemAdded = 0;
               }
               
           })
@@ -81,13 +90,41 @@
 
     }
 
+    $scope.Checkout=function()
+    {
+        if ($scope.CustomerAvailablePoints >= 0)
+        {
+            $state.go('Checkout', { 'cartgroup_id': $scope.ShoppingCart.cartgroup_id });
+        }
+        else {
+            alert('You have insufficient points to purchase items.');
+        }
+            
+    }
+
     $scope.PlaceOrder=function()
     {
+     
+        $scope.PlaceOrderObj.store_id=$scope.StoreDetailInSession.store_id;
+        $scope.PlaceOrderObj.customer_id=1;   // this is Temporary
+        $scope.PlaceOrderObj.shipping_addressId=1;
+        $scope.PlaceOrderObj.IpAddress=$scope.IpAddress;
+        $scope.PlaceOrderObj.CartGroupId = $rootScope.ShoppingCart.cartgroup_id;
 
-        $http.get(configurationService.basePath + "API/CartApi/PlaceOrder?CartId=" + Product.cart_id)
+
+        $http.post(configurationService.basePath + "API/CartApi/PlaceOrder", $scope.PlaceOrderObj)
         .then(function (response) {
-            $scope.GetCartDetailsByCartGroupId();
-            notificationFactory.customSuccess("Product successfully removed from cart.");
+         
+            if (response.data > 0)
+            {
+                $scope.PlaceOrderObj = new Object();
+                notificationFactory.customSuccess("Order successfully placed.");
+                $scope.GetCartDetailsByCartGroupId();
+             
+                $state.go('OrderSuccessful', { 'OrderId': response.data });
+                
+            }
+            
         })
           .catch(function (response) {
 

@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces_Layout;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,26 @@ namespace CordobaAPI.API_Layout
         public CartApiController()
         {
             _CartServices = new CartServices();
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetCartDetailsByCustomerAndStoreId(int? StoreID, int CustomerId)
+        {
+            try
+            {
+                var result = _CartServices.GetCartDetailsByCustomerAndStoreId(StoreID, CustomerId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
         
          [HttpGet]
@@ -44,6 +65,26 @@ namespace CordobaAPI.API_Layout
              try
              {
                  var result = _CartServices.RemoveProductFromCart(CartId);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
+
+         [HttpPost]
+         public HttpResponseMessage PlaceOrder(PlaceOrderEntity PlaceOrderObj)
+         {
+             try
+             {
+                 var result = _CartServices.PlaceOrder(PlaceOrderObj);
                  if (result != null)
                  {
                      return Request.CreateResponse(HttpStatusCode.OK, result);

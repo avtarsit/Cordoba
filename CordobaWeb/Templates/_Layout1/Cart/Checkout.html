@@ -24,7 +24,7 @@
                                     <div class="stock-img"></div>
                                 </div>
                                 <div class="media-body">
-                                    <a href="#" class="media-heading" ng-bind="Item.name"></a>
+                                    <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
                                     <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
                                     <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>
                                     <!--<p class="stock-desc">Out of Stock</p>-->
@@ -59,7 +59,7 @@
             <div class="account-block comment">
                 <h4 class="payment-heading">Comment</h4>
                 <div class="payment-summary">
-                    <textarea class="form-control" placeholder="Write your comment here..."></textarea>
+                    <textarea class="form-control" ng-model="PlaceOrderObj.Comment" placeholder="Write your comment here..."></textarea>
                 </div>
             </div>
             <div class="account-block">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>130 points</span>
+                    <span>{{AllItemTotal}} points</span>
                 </div>
                 <div class="checkout-block">
                     <!-- <button class="btn btn-empty">Checkout</button> -->

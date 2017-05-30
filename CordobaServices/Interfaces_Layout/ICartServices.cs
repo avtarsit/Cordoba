@@ -11,9 +11,11 @@ namespace CordobaServices.Interfaces_Layout
 {
   public interface ICartServices
     {
-
+      List<CartEntity> GetCartDetailsByCustomerAndStoreId(int? StoreID, int CustomerId);
       List<CartEntity> GetCartDetailsByCartGroupId(int? StoreID, int cartgroup_id);
       int? RemoveProductFromCart(int? CartId);
+
+      int? PlaceOrder(PlaceOrderEntity placeOrderObj);
 
     }
 }
