@@ -140,6 +140,51 @@
        });
     }
 
+    function CalculateTotalRewardBalance() {
+        $scope.TotalBalance = 0;
+        var TotalWithdrawal = 0, TotalDeposit = 0;
+        if ($scope.CustomerObj != undefined && $scope.CustomerObj != null && $scope.CustomerObj.PointsAuditList != undefined && $scope.CustomerObj.PointsAuditList.length > 0) {
+            for (var i = 0; i < $scope.CustomerObj.PointsAuditList.length; i++) {
+                if ($scope.CustomerObj.PointsAuditList[i].Withdrawal != '-') {
+                    TotalWithdrawal = TotalWithdrawal + parseInt($scope.CustomerObj.PointsAuditList[i].Withdrawal);
+                }
+                else if ($scope.CustomerObj.PointsAuditList[i].Deposit != '-') {
+                    TotalDeposit = TotalDeposit + parseInt($scope.CustomerObj.PointsAuditList[i].Deposit);
+                }
+            }
+            $scope.TotalBalance = TotalWithdrawal + TotalDeposit;
+        }
+    }
+
+
+    $scope.AddRewardPointObj = function (item) {
+        debugger;
+        var RewardPoint = new Object();
+        RewardPoint.points_audit_id = 0;
+        RewardPoint.customer_id = $scope.customer_id;
+        var CurrentDate = new Date();
+
+        if (item != undefined && item.Point != '' && item.Description != '') {
+            RewardPoint.adjustment = item.Point;
+            if (item.Point > 0) {
+                RewardPoint.Deposit = item.Point;
+                RewardPoint.Withdrawal = '-';
+            }
+            else {
+                RewardPoint.Withdrawal = item.Point;
+                RewardPoint.Deposit = '-';
+            }
+            RewardPoint.comment = item.Description;
+            RewardPoint.timestamp = $filter('date')(CurrentDate, $rootScope.GlobalDateFormat);
+            $scope.CustomerObj.PointsAuditList.push(RewardPoint);
+            $scope.RewardPointObj = new Object();
+            CalculateTotalRewardBalance();
+        }
+        else {
+            notificationFactory.customError("Description and Point are required.");
+        }
+    }
+
     $scope.GetCustomerById = function () {
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id)
           .then(function (response) {
@@ -149,6 +194,7 @@
                   var AddressObj = new Object();
                   $scope.CustomerObj.AddressList.push(AddressObj);
               }
+              CalculateTotalRewardBalance();
           })
       .catch(function (response) {
 
@@ -176,7 +222,7 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
-     
+
         if (form.$valid) {
             var CustomerEntity = JSON.stringify($scope.CustomerObj);
             $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer", CustomerEntity)
@@ -187,7 +233,7 @@
                   }
               })
           .catch(function (response) {
-              notificationFactory.error("Error occur during save record.");
+              notificationFactory.customError("Error occur during save record.");
           })
           .finally(function () {
 

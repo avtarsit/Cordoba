@@ -38,7 +38,8 @@ namespace CordobaModels.Entities
         public int TotalRecords { get;set; }
 
 
-        public List<AddressEntity> AddressList { get; set; } 
+        public List<AddressEntity> AddressList { get; set; }
+        public List<PointsAuditEntity> PointsAuditList { get; set; }
     }
 }
         

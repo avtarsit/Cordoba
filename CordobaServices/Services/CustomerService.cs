@@ -49,6 +49,8 @@ namespace CordobaServices.Services
             {
                 CustomerEntity customerEntity = new CustomerEntity();
                 List<AddressEntity> addressEntity = new List<AddressEntity>();
+                List<PointsAuditEntity> PointsAuditList = new List<PointsAuditEntity>();
+
                 if(customer_id > 0)
                 {
                     var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
@@ -66,13 +68,25 @@ namespace CordobaServices.Services
                     {
                         addressEntity = AddressResult;
                     }
+
+                    #endregion
+
+                    #region  PointsAuditEntity
+
+                    var PointsAuditResult = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC GetPointsAuditDetail", new SqlParameter { ParameterName = "Customer_Id", DbType = DbType.Int32, Value = customer_id }).ToList<PointsAuditEntity>().ToList();
+                    if (AddressResult != null)
+                    {
+                        PointsAuditList = PointsAuditResult;
+                    }
+                    #endregion
                     customerEntity.AddressList = addressEntity;
-                    #endregion 
+                    customerEntity.PointsAuditList = PointsAuditList;
                 }
                 else
                 {
                     customerEntity = new CustomerEntity();
                     customerEntity.AddressList = addressEntity = new List<AddressEntity>();
+                    customerEntity.PointsAuditList = new List<PointsAuditEntity>();
                 }
 
                
