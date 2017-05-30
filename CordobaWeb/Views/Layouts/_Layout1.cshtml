@@ -25,7 +25,7 @@
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" ui-sref="EditProfile">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-2})">My Wishlist</a></li>
                         <li>
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
@@ -50,15 +50,16 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="badge" ng-bind="ShoppingCart.TotalItemAdded"></span>
                             </a>
-                            <div class="search-block">
-                                <input type="text" value="" placeholder="What are you looking for?" />
+                            <div class="search-block" >
+                                <a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> <input type="text" id="txtSearchFor" value="" placeholder="What are you looking for?" /></a>
                             </div>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                <li><a href="#" ui-sref="Category">Our Products</a></li>
+                                <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
+                                <li><a ui-sref="MyReward">Rewards</a></li>
                             </ul>
                         </div>
                     </div>

@@ -653,6 +653,8 @@
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
     <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
     <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewCustomerRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewRewardCustomerDetailsContoller.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -707,6 +709,8 @@
     <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
+    <Content Include="JS\Layout\Reward\CustomerRewardDetailsControlller.js" />
+    <Content Include="JS\Layout\Reward\RewardsController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
     <Content Include="JS\Test\TestController.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
@@ -3731,7 +3735,9 @@
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
     <Content Include="Templates\Admin\Reward\AddOrUpdateReward.html" />
+    <Content Include="Templates\Admin\Reward\CustomerRewardDetails.html" />
     <Content Include="Templates\Admin\Reward\Index.html" />
+    <Content Include="Templates\Admin\Reward\ViewCustomerRewards.html" />
     <Content Include="Templates\Admin\Store\Index.html" />
     <Content Include="Templates\Admin\Store\ManageStore.html" />
     <Content Include="Templates\Admin\Supplier\Index.html" />
@@ -3751,6 +3757,8 @@
     <Content Include="Templates\_Layout1\MyAccount\PointsAudit.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
     <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
+    <Content Include="Templates\_Layout1\Reward\ViewCustomerRewardDetails.html" />
+    <Content Include="Templates\_Layout1\Reward\MyRewards.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

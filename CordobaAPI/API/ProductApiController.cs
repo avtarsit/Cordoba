@@ -123,11 +123,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int CategoryId)
+        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int Customer_Id = 0, string WhatAreYouLookingFor = "")
         {
             try
             {
-                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID,CategoryId);
+                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID, CategoryId, Customer_Id, WhatAreYouLookingFor);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
