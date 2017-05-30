@@ -83,5 +83,89 @@ namespace CordobaAPI.API
                 throw;
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage ViewCustomerRewards(int reward_id)
+        {
+            try
+            {
+                var customerRewards = _rewardService.ViewCustomerRewards(reward_id);
+                return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetRewardCustomerDetails(int reward_user_id)
+        {
+            try
+            {
+                var customer_rewarddetails = _rewardService.GetRewardCustomerDetails(reward_user_id);
+                return Request.CreateResponse(HttpStatusCode.OK, customer_rewarddetails);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage DeleteRewardUser(int id, int reward_user_id)
+        {
+            try
+            {
+                var result = _rewardService.DeleteRewardUser(id, reward_user_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage MyRewards(int id)
+        {
+            try
+            {
+                var myRewardslist = _rewardService.MyRewards(id);
+                return Request.CreateResponse(HttpStatusCode.OK, myRewardslist);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetAllRunningRewards()
+        {
+            try
+            {
+                var allrunningRewards = _rewardService.GetAllRunningRewards();
+                return Request.CreateResponse(HttpStatusCode.OK, allrunningRewards);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage RewardCustomerDetails(int reward_id)
+        {
+            try
+            {
+                var customerRewards = _rewardService.RewardCustomerDetails(reward_id);
+                return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -20,5 +20,6 @@ namespace CordobaModels.Entities
         public string RewardTypeName { get; set; }
         public int created_by { get; set; }
         public int? modified_by { get; set; }
+        public int? Participate { get; set; }
     }
 }

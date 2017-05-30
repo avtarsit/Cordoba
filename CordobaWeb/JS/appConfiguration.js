@@ -7,11 +7,11 @@ function GetLayoutName() {
     $.ajax({
         url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {           
+        success: function (data) {
             app.value('StoreSessionDetail', data);
             var LayoutName = data.template;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                var HomeIndex = {
+                var Home = {
                     name: 'Home',
                     url: '/Home',
                     templateUrl: 'Templates/' + LayoutName + '/Home/index.cshtml'
@@ -275,6 +275,27 @@ function GetLayoutName() {
                     url: '/Reward/ManageReward?rewardId:reward_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/AddOrUpdateReward.html'
                 }
+                , ViewReward = {
+                    name: 'ViewReward',
+                    url: '/Reward/ViewReward?rewardId:reward_id&name:rewardname',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/ViewCustomerRewards.html'
+                }
+                , ViewRewardCustomerDetails = {
+                    name: 'ViewRewardCustomerDetails',
+                    url: '/Reward/ViewReward/CustomerReward?rewarduserid:reward_user_id&name:customername',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/CustomerRewardDetails.html'
+                }
+                , MyReward = {
+                    name: 'MyReward',
+                    url: '/MyReward',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/MyRewards.html'
+                }
+                , CustomerRewardDetail = {
+                    name: 'CustomerRewardDetail',
+                    url: '/CustomerRewards?rewardId:reward_id',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/ViewCustomerRewardDetails.html'
+                }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
@@ -284,10 +305,45 @@ function GetLayoutName() {
                     name: 'CartDetail',
                     url: '/CartDetail?cartgroup_id:CartGroupId',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
+                }
+                ,Checkout = {
+                    name: 'Checkout',
+                    url: '/Checkout?cartgroup_id:CartGroupId',
+                      templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
+                  }               
+                 , EditProfile = {
+                     name: 'EditProfile',
+                     url: '/EditProfile',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/EditProfile.html'
+                 }
+                 , ChangePassword = {
+                     name: 'ChangePassword',
+                     url: '/ChangePassword',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/ChangePassword.html'
+                 }
+                   , AddressBook = {
+                       name: 'AddressBook',
+                       url: '/AddressBook',
+                       templateUrl: 'Templates/' + LayoutName + '/MyAccount/AddressBook.html'
+                   }
+                    , OrderHistory = {
+                        name: 'OrderHistory',
+                        url: '/OrderHistory',
+                        templateUrl: 'Templates/' + LayoutName + '/MyAccount/OrderHistory.html'
+                    }
+                , PointsAudit = {
+                    name: 'PointsAudit',
+                    url: '/PointsAudit',
+                    templateUrl: 'Templates/' + LayoutName + '/MyAccount/PointsAudit.html'
+                }
+                , OrderSuccessful = {
+                    name: 'OrderSuccessful',
+                    url: '/OrderSuccessful?OrderId:orderid',
+                    templateUrl: 'Templates/' + LayoutName + '/Cart/OrderSuccessful.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
-                $stateProvider.state(HomeIndex);
+                $stateProvider.state(Home);
                 $stateProvider.state(ShowCountry);
                 $stateProvider.state(ManageCountry);
                 $stateProvider.state(ShowCategory);
@@ -345,11 +401,25 @@ function GetLayoutName() {
                 $stateProvider.state(LayoutCategoryORProductList);
                 $stateProvider.state(LayoutProducts);
                 $stateProvider.state(LayoutProductDetail);
-                
+
                 $stateProvider.state(ShowReward);
                 $stateProvider.state(ManageReward);
+                $stateProvider.state(ViewReward);
+                $stateProvider.state(ViewRewardCustomerDetails);
+
+
+                //Customer Rewards
+                $stateProvider.state(MyReward);
+                $stateProvider.state(CustomerRewardDetail);
+
                 $stateProvider.state(CartDetail);
-                
+                $stateProvider.state(Checkout);                
+                $stateProvider.state(EditProfile);
+                $stateProvider.state(ChangePassword);
+                $stateProvider.state(AddressBook);
+                $stateProvider.state(OrderHistory);
+                $stateProvider.state(PointsAudit);
+                $stateProvider.state(OrderSuccessful);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -360,7 +430,7 @@ function GetLayoutName() {
             })
              .run(function ($http, $rootScope, $location, $filter, $state, localStorageService, $templateCache) {
 
-                 $rootScope.ShoppingCart=new Object();
+                 $rootScope.ShoppingCart = new Object();
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());

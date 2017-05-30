@@ -9,6 +9,9 @@
     $scope.Category_Id = 0;
     $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
 
+    $scope.CategoryObj = new Object();
+    $scope.CategoryObj.CategoryDescriptionList = [];
+
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId != null) {
         $scope.PageTitle = "Update Category";
         $scope.Category_Id = $stateParams.CategoryId;
@@ -70,10 +73,24 @@
 
 
     $scope.GetCategoryById = function () {
+<<<<<<< HEAD
+        $scope.Category_Id = ($scope.Category_Id > 0 ? $scope.Category_Id : 0);
+        $http({
+            method: 'GET',
+            url: configurationService.basePath + 'api/CategoryApi/GetCategoryById?Category_Id=' + $scope.Category_Id ,
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .success(function (response) {
+            debugger;
+            $scope.CategoryObj= response;            
+            GetParentCategoryList();
+            CreateDescriptionObject();
+=======
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
           .then(function (response) {
               $scope.CategoryObj = response.data;
               CreateDescriptionObject();
+>>>>>>> 17fc1c84d11c1187b1615c81a8d22cde6c76a742
           })
       .catch(function (response) {
       })

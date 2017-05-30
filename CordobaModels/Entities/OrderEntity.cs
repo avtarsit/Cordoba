@@ -21,8 +21,8 @@ namespace CordobaModels.Entities
         public string OrderStatusName { get; set; }
         public string ip { get; set; }
         public string LanguageName { get; set; }
-        public DateTime date_added { get; set; }
-        public DateTime date_modified { get; set; }
+        public DateTime? date_added { get; set; }
+        public DateTime? date_modified { get; set; }
         public string payment_firstname { get; set; }
         public string payment_lastname { get; set; }
         public string payment_address_1 { get; set; }
@@ -57,6 +57,10 @@ namespace CordobaModels.Entities
 
         public int TotalRecords { get; set; }
 
+        
+        public int TotalQtyInOrder { get; set; }
+        public string OrderTotalText { get; set; }
+        
         public List<OrderProductEntity> orderProductEntity { get; set; }
 
         public List<OrderHistoryEntity> orderHistoryEntity { get; set; }

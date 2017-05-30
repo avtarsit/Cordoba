@@ -24,8 +24,8 @@
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
+                        <li class="active"><a href="#" ui-sref="EditProfile">My Account</a></li>
+                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-2})">My Wishlist</a></li>
                         <li>
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
@@ -42,7 +42,7 @@
                             <span class="icon-bar"></span>
                         </button>
                      
-                        <a class="navbar-brand" href="index.html"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
+                        <a class="navbar-brand" href="#" ui-sref="Home"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics" /></a>
                     </div>
                     <div class="main-menu">
                         <div class="search-panel">
@@ -50,22 +50,24 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="badge" ng-bind="ShoppingCart.TotalItemAdded"></span>
                             </a>
-                            <div class="search-block">
-                                <input type="text" value="" placeholder="What are you looking for?" />
+                            <div class="search-block" >
+                                <a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> <input type="text" id="txtSearchFor" value="" placeholder="What are you looking for?" /></a>
                             </div>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                <li><a href="products.html">Our Products</a></li>
+                                <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Rewards</a></li>
+                                <li><a ui-sref="MyReward">Rewards</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
-        </div>
-
+        </div>        
+        <div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>
         @RenderBody();
 
         <footer>
@@ -161,7 +163,7 @@
             </a>
         </div>
     </div>   
-
+</div>
     @Scripts.Render("~/bundles/Layout1Js")    
     @Scripts.Render("~/bundles/angular")    
     @Scripts.Render("~/bundles/appConfig") 
