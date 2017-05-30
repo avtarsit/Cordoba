@@ -158,12 +158,10 @@
 
 
     $scope.AddRewardPointObj = function (item) {
-        debugger;
         var RewardPoint = new Object();
         RewardPoint.points_audit_id = 0;
         RewardPoint.customer_id = $scope.customer_id;
         var CurrentDate = new Date();
-
         if (item != undefined && item.Point != '' && item.Description != '') {
             RewardPoint.adjustment = item.Point;
             if (item.Point > 0) {
@@ -189,7 +187,6 @@
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id)
           .then(function (response) {
               $scope.CustomerObj = response.data;
-              debugger;
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {
                   var AddressObj = new Object();
                   $scope.CustomerObj.AddressList.push(AddressObj);

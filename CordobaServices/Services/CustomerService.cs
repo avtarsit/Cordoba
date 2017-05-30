@@ -107,6 +107,8 @@ namespace CordobaServices.Services
         {
             string AddressXml = Helpers.ConvertToXml<AddressEntity>.GetXMLString(customerEntity.AddressList);
 
+            string PointsAuditXml = Helpers.ConvertToXml<PointsAuditEntity>.GetXMLString(customerEntity.PointsAuditList);
+
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("customer_id", customerEntity.customer_id)
                                                  , new SqlParameter("store_id", customerEntity.store_id ?? (object) DBNull.Value)
@@ -121,6 +123,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("is_admin", customerEntity.is_admin)
                                                  , new SqlParameter("customer_group_id", customerEntity.customer_group_id)
                                                  , new SqlParameter("AddressXml", AddressXml ??  (object)DBNull.Value)
+                                                 , new SqlParameter("PointsAuditXml", PointsAuditXml ??  (object)DBNull.Value)
                                                 };
             int result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertUpdateCustomer", sqlParameter).FirstOrDefault();
             return result;
