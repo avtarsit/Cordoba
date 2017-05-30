@@ -4,6 +4,8 @@
     BindToolTip();
     $scope.PageTitle = "Rewards";
 
+    $scope.RewardName = $stateParams.rewardname;
+
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);

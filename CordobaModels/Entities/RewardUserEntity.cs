@@ -18,5 +18,6 @@ namespace CordobaModels.Entities
         public string RewardedByCustomer { get; set; }
         public string Medal { get; set; }
         public int? id { get; set; }
+        public string Customer_img { get; set; }
     }
 }

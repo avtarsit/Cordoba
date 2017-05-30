@@ -288,13 +288,17 @@ function GetLayoutName() {
                 , MyReward = {
                     name: 'MyReward',
                     url: '/MyReward',
-                    templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'
                     templateUrl: 'Templates/' + LayoutName + '/Reward/MyRewards.html'
                 }
                 , CustomerRewardDetail = {
                     name: 'CustomerRewardDetail',
-                    url: '/CustomerRewards?rewardId:reward_id',
+                    url: '/CustomerRewards?rewardId:reward_id&rewardname:reward_name',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/ViewCustomerRewardDetails.html'
+                }
+                , AddReward = {
+                    name: 'AddReward',
+                    url: '/AddReward?rewardId:reward_id&rewardname:reward_name',
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/AddReward.html'
                 }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
@@ -411,6 +415,7 @@ function GetLayoutName() {
                 //Customer Rewards
                 $stateProvider.state(MyReward);
                 $stateProvider.state(CustomerRewardDetail);
+                $stateProvider.state(AddReward);
 
                 $stateProvider.state(CartDetail);
                 $stateProvider.state(Checkout);                
