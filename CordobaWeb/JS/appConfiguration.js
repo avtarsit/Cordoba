@@ -39,7 +39,7 @@ function GetLayoutName() {
                 , ManageCategory = {
                     name: 'ManageCategory',
                     url: '/Catalog/ManageCategory?CategoryId:categoryId',
-                    templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
+                    templateUrl: 'Templates/' + LayoutName + '/Category/Category.html'
                 }
                 , PopularCategory = {
                     name: 'PopularCategory',
@@ -299,6 +299,41 @@ function GetLayoutName() {
                     name: 'LayoutProductDetail',
                     url: '/ProductDetails?ProductId:productId',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
+                }
+                , CartDetail = {
+                    name: 'CartDetail',
+                    url: '/CartDetail?cartgroup_id:CartGroupId',
+                    templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
+                }
+                ,Checkout = {
+                    name: 'Checkout',
+                    url: '/Checkout?cartgroup_id:CartGroupId',
+                      templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
+                  }               
+                 , EditProfile = {
+                     name: 'EditProfile',
+                     url: '/EditProfile',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/EditProfile.html'
+                 }
+                 , ChangePassword = {
+                     name: 'ChangePassword',
+                     url: '/ChangePassword',
+                     templateUrl: 'Templates/' + LayoutName + '/MyAccount/ChangePassword.html'
+                 }
+                   , AddressBook = {
+                       name: 'AddressBook',
+                       url: '/AddressBook',
+                       templateUrl: 'Templates/' + LayoutName + '/MyAccount/AddressBook.html'
+                   }
+                    , OrderHistory = {
+                        name: 'OrderHistory',
+                        url: '/OrderHistory',
+                        templateUrl: 'Templates/' + LayoutName + '/MyAccount/OrderHistory.html'
+                    }
+                , PointsAudit = {
+                    name: 'PointsAudit',
+                    url: '/PointsAudit',
+                    templateUrl: 'Templates/' + LayoutName + '/MyAccount/PointsAudit.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
@@ -371,6 +406,13 @@ function GetLayoutName() {
                 $stateProvider.state(MyReward);
                 $stateProvider.state(CustomerRewardDetail);
 
+                $stateProvider.state(CartDetail);
+                $stateProvider.state(Checkout);                
+                $stateProvider.state(EditProfile);
+                $stateProvider.state(ChangePassword);
+                $stateProvider.state(AddressBook);
+                $stateProvider.state(OrderHistory);
+                $stateProvider.state(PointsAudit);
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({

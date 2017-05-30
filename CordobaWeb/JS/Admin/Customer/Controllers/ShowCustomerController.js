@@ -154,8 +154,6 @@
 
     function Init() {
       
-
-
         GetCustomerGroupList();
 
         $scope.GetCustomerList();

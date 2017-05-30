@@ -57,6 +57,10 @@ namespace CordobaModels.Entities
 
         public int TotalRecords { get; set; }
 
+        
+        public int TotalQtyInOrder { get; set; }
+        public string OrderTotalText { get; set; }
+        
         public List<OrderProductEntity> orderProductEntity { get; set; }
 
         public List<OrderHistoryEntity> orderHistoryEntity { get; set; }

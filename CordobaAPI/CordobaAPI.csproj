@@ -168,6 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\PointsAuditApiController.cs" />
     <Compile Include="API\BannerApiController.cs" />
     <Compile Include="API\CategoryApiController.cs" />
     <Compile Include="API\CommonApiController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="API\SupplierApiController.cs" />
     <Compile Include="API\TestApiController.cs" />
     <Compile Include="API\UserApiController.cs" />
+    <Compile Include="API_Layout\CartApiController.cs" />
     <Compile Include="API_Layout\LayoutDashboardAPIController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
