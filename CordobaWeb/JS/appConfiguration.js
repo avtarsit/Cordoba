@@ -39,7 +39,7 @@ function GetLayoutName() {
                 , ManageCategory = {
                     name: 'ManageCategory',
                     url: '/Catalog/ManageCategory?CategoryId:categoryId',
-                    templateUrl: 'Templates/' + LayoutName + '/Category/Category.html'
+                    templateUrl: 'Templates/' + LayoutName + '/Category/ManageCategory.html'
                 }
                 , PopularCategory = {
                     name: 'PopularCategory',

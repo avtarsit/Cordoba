@@ -26,6 +26,9 @@ namespace CordobaServices.Interfaces
         List<CategoryEntity> GetParentCategoryList();
         //Get Language
 
+        //Delete Category
+        int DeleteCategory(int Category_Id);
+
         List<LanguageEntity> GetLanguageList();
 
     }
