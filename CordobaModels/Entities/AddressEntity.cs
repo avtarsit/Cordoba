@@ -20,5 +20,8 @@ namespace CordobaModels.Entities
         public string county { get; set; }
         public int country_id { get; set; }
         public string address { get; set; }
+        public int? zone_id { get; set; }
+        public bool? IsDefaultAddress { get; set; }
+
     }
 }

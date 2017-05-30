@@ -71,7 +71,24 @@ namespace CordobaAPI.API
 
         }
 
-        
+
+        [HttpPost]
+        public HttpResponseMessage InsertUpdateCustomer(CustomerEntity customerEntity)
+        {
+            try
+            {
+                var result = _CustomerService.InsertUpdateCustomer(customerEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
     }
 }
