@@ -54,5 +54,21 @@ namespace CordobaServices.Services
                 throw ex ;
             }
         }
+
+        public List<OrderProductEntity> GetProductViewedList(string sortColumn,  TableParameter<OrderProductEntity> filter)
+        {
+            try
+            {
+                var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
+                var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
+                var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
+                var query = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetProductViewedList", paramOrderBy, paramPageSize, paramPageIndex).ToList<OrderProductEntity>();
+                return query;
+            }
+            catch (Exception ex )
+            {
+                throw ex ;
+            }
+        }
     }
 }
