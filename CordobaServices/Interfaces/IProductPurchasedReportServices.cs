@@ -1,4 +1,5 @@
 ﻿using CordobaModels.Entities;
+using CordobaServices.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace CordobaServices.Interfaces
     {
        List<OrderStatusEntity> GetOrderStatus(int language_id);
 
-       List<OrderProductEntity> GetProductPurchasedList(string sortColumn, int order_status_id, int store_id, Helpers.TableParameter<OrderProductEntity> tableParameter, DateTime? DateStart, DateTime? DateEnd);
+       List<OrderProductEntity> GetProductPurchasedList(string sortColumn, int order_status_id, int store_id,TableParameter<OrderProductEntity> tableParameter, DateTime? DateStart, DateTime? DateEnd);
+
+       List<OrderProductEntity> GetProductViewedList(string sortColumn, TableParameter<OrderProductEntity> tableParameter);
     }
 }
