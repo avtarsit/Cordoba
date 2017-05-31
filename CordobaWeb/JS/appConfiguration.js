@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor"]);
+var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
 
 GetLayoutName();
 function GetLayoutName() {
@@ -304,7 +304,7 @@ function GetLayoutName() {
                 }
                 , AddReward = {
                     name: 'AddReward',
-                    url: '/AddReward?rewardId:reward_id&rewardname:reward_name',
+                    url: '/AddReward?rewardId:reward_id&type:reward_type_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/AddReward.html'
                 }
                 , LayoutProductDetail = {
