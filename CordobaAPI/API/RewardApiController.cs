@@ -148,7 +148,7 @@ namespace CordobaAPI.API
                 var allrunningRewards = _rewardService.GetAllRunningRewards();
                 return Request.CreateResponse(HttpStatusCode.OK, allrunningRewards);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -162,7 +162,35 @@ namespace CordobaAPI.API
                 var customerRewards = _rewardService.RewardCustomerDetails(reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
             }
-            catch(Exception)
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetRewardGroupCustomers(int loginUserId)
+        {
+            try
+            {
+                var rewardGroupCustomers = _rewardService.GetRewardGroupCustomers(loginUserId);
+                return Request.CreateResponse(HttpStatusCode.OK, rewardGroupCustomers);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage AddCustomer_Reward(AddRewardEntity objAddrewardEntity)
+        {
+            try
+            {
+                var insertedId = _rewardService.AddCustomer_Reward(objAddrewardEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, insertedId);
+            }
+            catch (Exception)
             {
                 throw;
             }
