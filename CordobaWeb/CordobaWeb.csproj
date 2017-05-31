@@ -512,13 +512,17 @@
     <Content Include="Content\layout1\css\responsive.css" />
     <Content Include="Content\layout1\css\style.css" />
     <Content Include="Content\layout1\images\bestSeller.jpg" />
+    <Content Include="Content\layout1\images\checkin.png" />
     <Content Include="Content\layout1\images\deals.jpg" />
     <Content Include="Content\layout1\images\electronics.png" />
     <Content Include="Content\layout1\images\fashion.png" />
+    <Content Include="Content\layout1\images\grey.jpg" />
     <Content Include="Content\layout1\images\homeApp.png" />
     <Content Include="Content\layout1\images\loader.gif" />
+    <Content Include="Content\layout1\images\loader1.gif" />
     <Content Include="Content\layout1\images\logo.png" />
     <Content Include="Content\layout1\images\ME918B_A_1-80x80.jpg" />
+    <Content Include="Content\layout1\images\notification-flat.png" />
     <Content Include="Content\layout1\images\notification.png" />
     <Content Include="Content\layout1\images\offer1.jpg" />
     <Content Include="Content\layout1\images\offer2.jpg" />
@@ -3647,6 +3651,7 @@
     <Content Include="Content\layout1\images\zoom\elevatezoom-master.zip" />
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\elevatezoom.jquery.json" />
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\README.md" />
+    <Content Include="Content\layout1\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\sd.pubxml" />
     <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -3701,6 +3706,7 @@
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Templates\Admin\Banner\Index.html" />
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
+    <Content Include="Templates\Admin\Category\Category.html" />
     <Content Include="Templates\Admin\Category\Index.html" />
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Category\PopularCategory.html" />

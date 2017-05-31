@@ -100,7 +100,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>
+                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})">{{LatestProduct.name}}</a>
                                     <p>{{LatestProduct.Model}}</p>
-                                    <p><span>{{LatestProduct.Price}}</span></p>
+                                    <p><span>{{LatestProduct.Price}} Points</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
                                         <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct)">Add to Cart</button>
                                     </div>

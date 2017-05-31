@@ -7,6 +7,7 @@ using System.Web.Http;
 using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
 using System.Web.Http.Hosting;
+using CordobaModels.Entities;
 
 namespace CordobaAPI.API_Layout
 {
@@ -97,6 +98,27 @@ namespace CordobaAPI.API_Layout
              }
 
          }
+
+         [HttpPost]
+         public HttpResponseMessage CustomerLogin(CustomerEntity CustomerObj)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.CustomerLogin(CustomerObj);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
+        
 
         
 

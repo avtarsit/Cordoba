@@ -12,6 +12,8 @@ function GetLayoutName() {
             var User = new Object();
             User.customer_id = 0;
             User.address_id = 0;
+            User.cartgroup_id=0;
+            User.TotalItemAdded=0;
             app.value('UserDetail', User);
 
             var LayoutName = data.template;
@@ -438,10 +440,8 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {
-
-                 $rootScope.ShoppingCart = new Object();
-                 debugger;
+             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
+                         
                  var user = localStorageService.get("loggedInUser");
                  if( user==null || user==undefined)
                  {
@@ -450,7 +450,14 @@ function GetLayoutName() {
                  }
                  if ( user.customer_id > 0)
                  {
-                     UserDetail = user;
+                     UserDetail.customer_id = user.customer_id;
+                     UserDetail.firstname = user.firstname;
+                     UserDetail.lastname = user.lastname;
+                     UserDetail.points = user.points;
+                     UserDetail.address_id = user.address_id;
+                     UserDetail.cartgroup_id = user.cartgroup_id;
+                     UserDetail.TotalItemAdded = user.TotalItemAdded;
+                     $rootScope.CustomerDetail = UserDetail;
                  }
                  else {
                      localStorageService.set("loggedInUser", UserDetail);
