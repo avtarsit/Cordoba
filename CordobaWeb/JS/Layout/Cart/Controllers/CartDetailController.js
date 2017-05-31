@@ -209,6 +209,37 @@
        
     }
 
+    $scope.AddtoWishList = function (productObj) {
+        if (UserDetail.customer_id > 0) {
+            var WishObj = new Object();
+            WishObj.customer_id = UserDetail.customer_id;
+            WishObj.product_id = productObj.product_id;
+            WishObj.store_id = $scope.StoreDetailInSession.store_id;
+
+
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddtoWishList", WishObj)
+                  .then(function (response) {
+                      if (response.data == -1) {
+                          toastr.warning('Item already present in wish list.');
+                      }
+                      else if (response.data > 0) {
+                          $scope.GetCartDetailsByCartGroupId();
+                          toastr.success('Item successfully added in wish list.');
+                         
+                      }
+                  })
+              .catch(function (response) {
+
+              })
+              .finally(function () {
+
+              });
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
+
+    }
         
 
     $scope.GetCartDetailsByCartGroupId();

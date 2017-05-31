@@ -118,6 +118,27 @@ namespace CordobaAPI.API_Layout
              }
 
          }
+
+
+         [HttpPost]
+         public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.AddtoWishList(WishObj);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
         
 
         
