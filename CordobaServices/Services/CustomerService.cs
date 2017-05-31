@@ -49,6 +49,8 @@ namespace CordobaServices.Services
             {
                 CustomerEntity customerEntity = new CustomerEntity();
                 List<AddressEntity> addressEntity = new List<AddressEntity>();
+                List<PointsAuditEntity> PointsAuditList = new List<PointsAuditEntity>();
+
                 if(customer_id > 0)
                 {
                     var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
@@ -66,13 +68,25 @@ namespace CordobaServices.Services
                     {
                         addressEntity = AddressResult;
                     }
+
+                    #endregion
+
+                    #region  PointsAuditEntity
+
+                    var PointsAuditResult = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC GetPointsAuditDetail", new SqlParameter { ParameterName = "Customer_Id", DbType = DbType.Int32, Value = customer_id }).ToList<PointsAuditEntity>().ToList();
+                    if (AddressResult != null)
+                    {
+                        PointsAuditList = PointsAuditResult;
+                    }
+                    #endregion
                     customerEntity.AddressList = addressEntity;
-                    #endregion 
+                    customerEntity.PointsAuditList = PointsAuditList;
                 }
                 else
                 {
                     customerEntity = new CustomerEntity();
                     customerEntity.AddressList = addressEntity = new List<AddressEntity>();
+                    customerEntity.PointsAuditList = new List<PointsAuditEntity>();
                 }
 
                
@@ -93,6 +107,8 @@ namespace CordobaServices.Services
         {
             string AddressXml = Helpers.ConvertToXml<AddressEntity>.GetXMLString(customerEntity.AddressList);
 
+            string PointsAuditXml = Helpers.ConvertToXml<PointsAuditEntity>.GetXMLString(customerEntity.PointsAuditList);
+
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("customer_id", customerEntity.customer_id)
                                                  , new SqlParameter("store_id", customerEntity.store_id ?? (object) DBNull.Value)
@@ -107,6 +123,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("is_admin", customerEntity.is_admin)
                                                  , new SqlParameter("customer_group_id", customerEntity.customer_group_id)
                                                  , new SqlParameter("AddressXml", AddressXml ??  (object)DBNull.Value)
+                                                 , new SqlParameter("PointsAuditXml", PointsAuditXml ??  (object)DBNull.Value)
                                                 };
             int result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertUpdateCustomer", sqlParameter).FirstOrDefault();
             return result;

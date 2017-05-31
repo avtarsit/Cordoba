@@ -1,4 +1,4 @@
-﻿app.controller('AddProductToCartController', function (StoreSessionDetail,$timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+﻿app.controller('AddProductToCartController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q, localStorageService) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -6,19 +6,14 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     //#endregion  
     $scope.AddProductToCart = function (ProductObj) {
-
-        var CustomerId = 1;
-        if ($rootScope.ShoppingCart.cartgroup_id == undefined || $rootScope.ShoppingCart.cartgroup_id == null)
-        {
-             cartgroup_id = 0;
-        }
-        else
-        {
-            cartgroup_id = $rootScope.ShoppingCart.cartgroup_id;
-        }
-        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + CustomerId + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=" + cartgroup_id)
-          .then(function (response) {      
-              $rootScope.ShoppingCart = response.data;       
+        
+        $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=" + UserDetail.cartgroup_id)
+          .then(function (response) {            
+              toastr.success("Item successfully added in cart.");
+              UserDetail.cartgroup_id = response.data.cartgroup_id;
+              UserDetail.TotalItemAdded = response.data.TotalItemAdded;
+              $rootScope.CustomerDetail = UserDetail;
+              localStorageService.set("loggedInUser", UserDetail);
           })
       .catch(function (response) {
 

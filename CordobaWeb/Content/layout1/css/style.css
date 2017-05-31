@@ -248,7 +248,7 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .icon-text h4 { font-size: 13px; color: #cc0001; padding-top: 5px; }
 .icon-text p { font-size: 12px; color: #333; }
 .login_page .form-control { margin-top: 3px; }
-.modal-backdrop { z-index: 99999; }
+/*.modal-backdrop { z-index: 9999; }*/
 .login_page .btn { padding: 8px 10px; max-width: 100px; font-size: 16px; line-height: 18px; }
 .forgot-password { float: left; width: auto; font-size: 13px; line-height: 20px; color: #9c9c9c; position: absolute; bottom: -20px; right: 0; }
 .chckbox-remember { border: 1px solid #000; }

@@ -65,5 +65,16 @@ namespace CordobaServices.Services_Layout
             return result;
 
         }
+        public List<AddressEntity> GetCustmoreAddressList(int? store_id, int customer_id)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("store_id", store_id)                                             
+                                                 , new SqlParameter("customer_id", customer_id)                                             
+                                               };
+
+            var result = objGenericRepository.ExecuteSQL<AddressEntity>("GetCustmoreAddressList", sqlParameter).ToList();
+            return result;
+        }
+
     }
 }

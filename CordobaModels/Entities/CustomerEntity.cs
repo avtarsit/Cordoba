@@ -37,8 +37,13 @@ namespace CordobaModels.Entities
 
         public int TotalRecords { get;set; }
 
+        public int? cartgroup_id { get; set; }
+        public int? TotalItemAdded { get; set; }
 
-        public List<AddressEntity> AddressList { get; set; } 
+        public List<AddressEntity> AddressList { get; set; }
+
+        public int? ErrorTypeId { get; set; }
+        public List<PointsAuditEntity> PointsAuditList { get; set; }
     }
 }
         

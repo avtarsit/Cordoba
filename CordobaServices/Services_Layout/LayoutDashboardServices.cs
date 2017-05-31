@@ -46,5 +46,17 @@ namespace CordobaServices.Services_Layout
             return LatestProductList;
         }
 
+        public CustomerEntity CustomerLogin(CustomerEntity CustomerObj)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("email", CustomerObj.email)
+               ,new SqlParameter("password", CustomerObj.password)
+               ,new SqlParameter("cartgroup_id", CustomerObj.cartgroup_id)
+               ,new SqlParameter("store_id", CustomerObj.store_id)
+            };
+            var LatestProductList = objGenericRepository.ExecuteSQL<CustomerEntity>("CustomerLogin", sqlParameter).FirstOrDefault();
+            return LatestProductList;
+        }
+
     }
 }
