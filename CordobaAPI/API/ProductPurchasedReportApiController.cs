@@ -72,5 +72,33 @@ namespace CordobaAPI.API
             }
         }
 
+
+        [HttpPost]
+        public TableParameter<OrderProductEntity> GetProductViewedList(int PageIndex, TableParameter<OrderProductEntity> tableParameter)
+        {
+            try
+            {
+                tableParameter.PageIndex = PageIndex;
+                string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+                var result = _productPurchasedReportService.GetProductViewedList(sortColumn, tableParameter).ToList();
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
+                {
+                    totalRecords = result.FirstOrDefault().TotalRecords;
+                }
+                return new TableParameter<OrderProductEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

@@ -60,7 +60,7 @@
                                 <select ng-options="Store.store_id as Store.name  for Store in StoreList | orderBy:'store_id'"
                                         class="form-control" ng-model="ProductFilter.store_id" name="Store"></select>
                             </div>
-                            <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                            <button ng-click="GetProductPurchasedList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                         </div>
                     </div>
                 </div>

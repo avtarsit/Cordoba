@@ -54,7 +54,8 @@ namespace CordobaWeb
                      "~/Scripts/angular-sanitize.js",
                      "~/Scripts/angular-datatables.min.js",
                      "~/Scripts/angular-ui-switch.min.js" ,
-                     "~/Scripts/ng-ckeditor.js"      
+                     "~/Scripts/ng-ckeditor.js" ,
+                      "~/Scripts/angular-star-rating/main.js"
                      ));
 
    
@@ -139,7 +140,9 @@ namespace CordobaWeb
                      "~/Content/layout1/css/style.css",
                       "~/Content/layout1/css/dpNumberPicker.min.css",
                      "~/Content/layout1/css/responsive.css",
-                     "~/Content/css/toastr.min.css"
+                     "~/Content/css/toastr.min.css",
+                     "~/Scripts/angular-star-rating/main.css"
+                     //"~/Scripts/jquery-bar-ratting/themes/fontawesome-stars.css"
                   ));
             //------------------------CSS-------------------------//
 
@@ -158,7 +161,9 @@ namespace CordobaWeb
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
                      "~/Scripts/bootbox.js",
 
-                     "~/Scripts/ckeditor/ckeditor.js"                  
+                     "~/Scripts/ckeditor/ckeditor.js"
+                    
+                   //"~/Scripts/jquery-bar-ratting/jquery.barrating.min.js"
                      ));
                    
             //------------------------js-------------------------//

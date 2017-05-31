@@ -24,6 +24,8 @@ namespace CordobaModels.Entities
         public string storename { get; set; }
         public DateTime? purchaseddate { get; set; }
         public int TotalRecords { get; set; }
+        public decimal? percent { get; set; }
+        public int? viewed { get; set; }
         //public decimal MainTotal { get; set; }
     }
 }

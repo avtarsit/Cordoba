@@ -125,7 +125,16 @@
                       return $filter('date')(data, $rootScope.GlobalDateFormat);
                   }
                  },
-                  { "mData": "total", "bSortable": true },
+                  {
+                      "mData": "total", "bSortable": true
+                        , "render": function (data, type, row) {
+                            if (data != null)
+                            {
+                                return data + row.total_title;
+                            }
+                            
+                        }
+                  },
             ],
             "initComplete": function () {
                 $compile(angular.element("#tblProductPurchased").contents())($scope);
