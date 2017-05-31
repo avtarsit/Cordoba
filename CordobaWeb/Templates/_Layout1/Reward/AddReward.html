@@ -1,6 +1,6 @@
 ﻿
 <div ng-controller="AddRewardController">
-  
+
     <div class="container">
         <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==2" ng-repeat="Item in Customers">
             <div class="block-bg pt-15 pb-15">
@@ -33,9 +33,10 @@
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>
-                    <div class="start-rating">
+                    <div class="start-rating" ng-if="!Item.IsRewarded">
                         <angular-star-rating max="maxValue" value='ratingValue' id="ratingValue{{$index}}" hover='changeOnHover'
                                              is-readonly='isReadonly'></angular-star-rating><br />
+
                         <!--<select id="example{{$index}}"  ng-init="InitStars($index)">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -49,18 +50,21 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>-->
                     </div>
-                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)"><i class="fa fa-comments"></i></a>
+                    <div class="start-rating" ng-if="Item.IsRewarded">
+                        <p>Your Rating: <b>{{Item.reward_value}}</b></p>
+                    </div>
+                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!Item.IsRewarded"><i class="fa fa-comments"></i></a>
                 </div>
                 <div class="write-cmt" id="write-cmt{{$index}}">
                     <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..."></textarea>
                     <button class="btn btn-empty" ng-click="AddReward(ratingValue,Item,$index)">Save</button>
-                    <a id="close-comment"  ng-click="MakeWriteCmtFadeOut($index)">✖</a>
+                    <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
                 </div>
             </div>
         </div>
     </div>
 
-   
+
 </div>
 
 <select id="example" class="exampleCss">
