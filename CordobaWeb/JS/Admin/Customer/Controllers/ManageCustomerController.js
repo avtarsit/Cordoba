@@ -1,9 +1,13 @@
-﻿app.controller('ManageCustomerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+﻿app.controller('ManageCustomerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, DTOptionsBuilder, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+                   .withOption('bDestroy', true)
+                   .withOption("deferRender", true)
+  .withOption('bFilter', false);
     $scope.CustomerObj = new Object();
     $scope.StoreObj = new Object();
     $scope.IsEditMode = false;

@@ -100,6 +100,7 @@
     <Compile Include="Entities\OrderEntity.cs" />
     <Compile Include="Entities\OrderHistoryEntity.cs" />
     <Compile Include="Entities\OrderProductEntity.cs" />
+    <Compile Include="Entities\OrderStatusEntity.cs" />
     <Compile Include="Entities\PlaceOrderEntity.cs" />
     <Compile Include="Entities\PointsAuditEntity.cs" />
     <Compile Include="Entities\ProductDescriptionList.cs" />

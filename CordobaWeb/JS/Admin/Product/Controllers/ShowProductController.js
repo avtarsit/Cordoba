@@ -121,7 +121,10 @@
                     "mData": "Quantity", "bSortable": true
                     ,"sClass": "action text-center"
                       , "render": function (data, type, row) {
-                          return ' <span class="label label-success">' + row.Quantity + '</span>'
+                          if (row.Quantity>0)
+                              return ' <span class="label label-success">' + row.Quantity + '</span>'
+                          else
+                              return ' <span class="label label-warning">' + row.Quantity + '</span>'
                       }
                 },
                 { "mData": "StatusName", "bSortable": true },
