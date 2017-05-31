@@ -16,6 +16,7 @@ namespace CordobaServices.Interfaces_Layout
       int? RemoveProductFromCart(int? CartId);
 
       int? PlaceOrder(PlaceOrderEntity placeOrderObj);
+      List<AddressEntity> GetCustmoreAddressList(int? store_id, int customer_id);
 
     }
 }

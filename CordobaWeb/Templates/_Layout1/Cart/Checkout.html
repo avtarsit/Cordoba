@@ -7,7 +7,7 @@
 
                
                 </li>
-                <p class="bag-desc pull-right">Available Points={{CustomerAvailablePoints}}</p>
+                <p class="bag-desc pull-right">Available Points : {{CustomerDetail.points}} Points</p>
             </ul>
 
         </div>
@@ -44,17 +44,17 @@
             <div class="account-block delivery-detail">
                 <h4 class="payment-heading">Delivery Address</h4>
                 <div class="delivery-address">
-                    <a href="#">Add New</a>
+                    <a href="" ui-sref="AddressBook">Add New</a>
                 </div>
                 <div class="payment-summary">
-                    <span>Nitin Patel</span>
-                    <p>100, College Road, Harrow, London Ha1 1BQ </p>
+                    <span>{{CustomerDetail.firstname}} {{CustomerDetail.lastname}}</span>
+                    <p> {{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}},{{SelectedCustomerAddress.county}}</p>
                 </div>
             </div>
             <div class="chckout-add">
-                <a href="javascript:;"><i class="fa fa-angle-left"></i></a>
-                <p>100, College Road, Harrow, London Ha1 1BQ</p>
-                <a href="javascript:;"><i class="fa fa-angle-right"></i></a>
+                <a href="" class="cursor-pointer" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)"><i class="fa fa-angle-left"></i></a>
+                <p>{{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}}</p>
+                <a href="" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)" ><i class="fa fa-angle-right"></i></a>
             </div>
             <div class="account-block comment">
                 <h4 class="payment-heading">Comment</h4>

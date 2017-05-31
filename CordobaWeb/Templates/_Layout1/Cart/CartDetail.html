@@ -5,8 +5,8 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc" ng-if="TotalItems>0"> You have {{TotalItems}} item's in your Shopping Bag</p>
-                    <p class="bag-desc" ng-if="!(TotalItems>0)">Your Shopping Bag is Empty.</p>
+                    <p class="bag-desc" ng-if="CustomerDetail.TotalItemAdded>0"> You have {{CustomerDetail.TotalItemAdded}} item's in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="!(CustomerDetail.TotalItemAdded>0)">Your Shopping Bag is Empty.</p>
                 </li>
             </ul>
         </div>
