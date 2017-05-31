@@ -18,6 +18,12 @@ namespace CordobaModels.Entities
         public decimal? total_value { get; set; }
         public string subtotal_title { get; set; }
         public decimal? subtotal_value { get; set; }
+
+
+        public string categoryname { get; set; }
+        public string storename { get; set; }
+        public DateTime? purchaseddate { get; set; }
+        public int TotalRecords { get; set; }
         //public decimal MainTotal { get; set; }
     }
 }

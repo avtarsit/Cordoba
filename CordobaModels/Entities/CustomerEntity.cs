@@ -43,6 +43,7 @@ namespace CordobaModels.Entities
         public List<AddressEntity> AddressList { get; set; }
 
         public int? ErrorTypeId { get; set; }
+        public List<PointsAuditEntity> PointsAuditList { get; set; }
     }
 }
         

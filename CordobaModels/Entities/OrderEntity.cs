@@ -17,7 +17,7 @@ namespace CordobaModels.Entities
         public string CustomerGroupName { get; set; }
         public string email { get; set; }
         public string telephone { get; set; }
-        public decimal total { get; set; }
+        public decimal? total { get; set; }
         public string OrderStatusName { get; set; }
         public string ip { get; set; }
         public string LanguageName { get; set; }

@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\ICatalogueServices.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IPointsAudit.cs" />
+    <Compile Include="Interfaces\IProductPurchasedReportServices.cs" />
     <Compile Include="Interfaces\IProductServices.cs" />
     <Compile Include="Interfaces\IRewardService.cs" />
     <Compile Include="Interfaces\IStoreServices.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Services\CatalogueService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PointsAuditService.cs" />
+    <Compile Include="Services\ProductPurchasedReportService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\RewardService.cs" />
     <Compile Include="Services\StoreServices.cs" />
