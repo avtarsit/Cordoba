@@ -63,7 +63,7 @@
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 
-                            "&Customer_Id=" + UserDetail.address_id +
+                            "&Customer_Id=" + UserDetail.customer_id+
                             "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
                             )
           .then(function (response) {
@@ -85,9 +85,27 @@
         $scope.GetProductListByCategoryAndStoreId();
     }
 
+    $scope.RemoveFromWishList=function(productObj)
+    {
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/RemoveFromWishList?StoreID=" + $scope.StoreDetailInSession.store_id + "&product_id=" + productObj.product_id + "&Customer_Id=" + UserDetail.customer_id)
+         .then(function (response) {
+             if(response.data>0)
+             {
+                 toastr.success('Item removed from wishlist.');
+             }
+             else {
+                 toastr.error('Something wrong! Please try again later.');
+             }
+             $scope.GetOurProductListByByStoreId();
 
-    $scope.GetCategoryListForDashboard();
+         })
+     .catch(function (response) {
 
+     })
+     .finally(function () {
+
+     });
+    }
 
     if ($scope.SelectedCategoryId == -1) {
         $scope.SelectedSubCategory = -1;
@@ -105,5 +123,7 @@
         $scope.WhatAreYouLookingFor = $("#txtSearchFor").val();
         $scope.GetOurProductListByByStoreId();
     }
+
+    $scope.GetCategoryListForDashboard();
 
 });

@@ -498,14 +498,11 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
-    <Content Include="Content\Images\bronze.png" />
-    <Content Include="Content\Images\gold.png" />
     <Content Include="Content\Images\Loading.gif" />
     <Content Include="Content\Images\manufacture.jpg" />
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
-    <Content Include="Content\Images\silver.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
     <Content Include="Content\layout1\css\dpNumberPicker.min.css" />
@@ -515,14 +512,10 @@
     <Content Include="Content\layout1\css\responsive.css" />
     <Content Include="Content\layout1\css\style.css" />
     <Content Include="Content\layout1\images\bestSeller.jpg" />
-    <Content Include="Content\layout1\images\bronze.png" />
-    <Content Include="Content\layout1\images\deals.jpg" />
-    <Content Include="Content\layout1\images\electronics.png" />
-    <Content Include="Content\layout1\images\fashion.png" />
-    <Content Include="Content\layout1\images\gold.png" />
     <Content Include="Content\layout1\images\checkin.png" />
     <Content Include="Content\layout1\images\deals.jpg" />
     <Content Include="Content\layout1\images\electronics.png" />
+    <Content Include="Content\layout1\images\EmptyShoppingCart.png" />
     <Content Include="Content\layout1\images\fashion.png" />
     <Content Include="Content\layout1\images\grey.jpg" />
     <Content Include="Content\layout1\images\homeApp.png" />
@@ -537,11 +530,12 @@
     <Content Include="Content\layout1\images\offer3.jpg" />
     <Content Include="Content\layout1\images\personalCare.png" />
     <Content Include="Content\layout1\images\product1.jpg" />
-    <Content Include="Content\layout1\images\silver.png" />
     <Content Include="Content\layout1\images\sliderBanner1.jpg" />
     <Content Include="Content\layout1\images\sliderBanner2.jpg" />
     <Content Include="Content\layout1\images\specialOffer.jpg" />
     <Content Include="Content\layout1\images\welcomeImg.png" />
+    <Content Include="Content\layout1\images\wishlist.png" />
+    <Content Include="Content\layout1\images\yioaGzjpT.png" />
     <Content Include="Content\layout1\images\zoom\EasyZoom-master\EasyZoom-master\css\easyzoom.css" />
     <Content Include="Content\layout1\images\zoom\EasyZoom-master\EasyZoom-master\css\example.css" />
     <Content Include="Content\layout1\images\zoom\EasyZoom-master\EasyZoom-master\css\pygments.css" />
@@ -667,8 +661,6 @@
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
     <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
     <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
-    <Content Include="JS\Admin\Reward\Controllers\ViewCustomerRewardController.js" />
-    <Content Include="JS\Admin\Reward\Controllers\ViewRewardCustomerDetailsContoller.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -723,9 +715,6 @@
     <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
-    <Content Include="JS\Layout\Reward\AddRewardController.js" />
-    <Content Include="JS\Layout\Reward\CustomerRewardDetailsControlller.js" />
-    <Content Include="JS\Layout\Reward\RewardsController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
     <Content Include="JS\Layout\Reward\AddRewardController.js" />
     <Content Include="JS\Layout\Reward\CustomerRewardDetailsControlller.js" />
@@ -3676,17 +3665,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
-    <Content Include="Scripts\jquery-bar-ratting\jquery.barrating.min.js" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-1to10.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-horizontal.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-movie.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-pill.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-reversed.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bars-square.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\bootstrap-stars.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\css-stars.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\fontawesome-stars-o.css" />
-    <Content Include="Scripts\jquery-bar-ratting\themes\fontawesome-stars.css" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.bootstrap-duallistbox.js" />
@@ -3695,7 +3673,6 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.dataTables.rowReordering.js" />
     <Content Include="Scripts\jquery.responsiveTabs.js" />
-    <Content Include="Scripts\jquery-bar-ratting\jquery.barrating.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -3784,6 +3761,7 @@
     <Content Include="Templates\TestPage\Index.html" />
     <Content Include="Templates\_Layout1\Cart\CartDetail.html" />
     <Content Include="Templates\_Layout1\Cart\Checkout.html" />
+    <Content Include="Templates\_Layout1\Cart\OrderSuccessful.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
     <Content Include="Templates\_Layout1\MyAccount\AddressBook.html" />
     <Content Include="Templates\_Layout1\MyAccount\ChangePassword.html" />
@@ -3796,11 +3774,6 @@
     <Content Include="Templates\_Layout1\Reward\MyRewards.html" />
     <Content Include="Templates\_Layout1\Reward\ViewCustomerRewardDetails.html" />
     <Content Include="Web.config" />
-    <Content Include="Templates\_Layout1\Reward\ViewCustomerRewardDetails.html" />
-    <Content Include="Templates\_Layout1\Reward\MyRewards.html" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
