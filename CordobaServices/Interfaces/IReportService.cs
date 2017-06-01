@@ -10,6 +10,6 @@ namespace CordobaServices.Interfaces
 {
     public interface IReportService
     {
-        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime DateStart, DateTime DateEnd, int GroupById, int StatusId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "");
     }
 }

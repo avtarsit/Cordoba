@@ -464,7 +464,7 @@ function GetLayoutName() {
                  }
                
 
-
+                 $rootScope.GlobalDateFormat = 'dd/MM/yyyy';
               
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
