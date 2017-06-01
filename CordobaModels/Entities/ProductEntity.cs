@@ -59,6 +59,7 @@ namespace CordobaModels.Entities
         public string SupplierName { get; set; }
         public string ManufactureName { get; set; }
         public string ManufactureImage { get; set; }
+        public bool? IsProductInWishlist { get; set; }
         #endregion Extra Details
 
     }
