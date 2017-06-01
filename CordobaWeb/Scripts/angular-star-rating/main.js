@@ -4,7 +4,6 @@
 
 (function () {
   'use strict';
-  debugger;
   angular
     .module('angular-star-rating', [])
     .directive('angularStarRating', angularStarRating);

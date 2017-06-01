@@ -39,11 +39,9 @@
         }
     }
     $scope.GotoAddress = function (item) {
-        debugger;
         var index = $scope.CustomerObj.AddressList.indexOf(item);
         $scope.CustomerObj.Address = $scope.CustomerObj.AddressList[index];
         if ($scope.CustomerObj.Address.country_id > 0) {
-            debugger;
             $scope.GetZoneListByCountry($scope.CustomerObj.Address.country_id);
         }
     }
@@ -144,10 +142,8 @@
        });
     }
     function ValidateAddress() {
-        debugger;
         var IsValidAddress = true;
         angular.forEach($scope.CustomerObj.AddressList, function (col, i) {
-            debugger;
             if (col.firstname == undefined || col.firstname == '' || col.lastname == undefined || col.lastname == '' || col.address_1 == undefined || col.address_1 == ''
                 || col.city == undefined || col.city == '' || col.country_id == undefined || col.country_id == '')
             {
@@ -235,10 +231,47 @@
 
       });
     }
+      
+    $scope.DeleteCustomer = function () {
+        bootbox.dialog({
+            message: "Do you want to remove Customer?",
+            title: "Confirmation",
+            className: "model",
+            buttons: {
+                success:
+                    {
+                        label: "Yes",
+                        className: "btn btn-primary theme-btn",
+                        callback: function (result) {
+                            if (result) {
+                                $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomer?customer_id=" + $scope.customer_id)
+                                   .then(function (response) {
+                                       if (response.data > 0)
+                                           notificationFactory.successDelete();
+                                            $state.go('Customer');
+                                   })
+                               .catch(function (response) {
+                                   notificationFactory.errorDelete();
+                               })
+                               .finally(function () {
+                               });
+                            }
+                        }
+                    },
+                danger:
+                    {
+                        label: "No",
+                        className: "btn btn-default",
+                        callback: function () {
+                            return true;
+                        }
+                    }
+            }
+        });
+    };
 
 
     $scope.InsertUpdateCustomer = function (form) {
-        debugger;
         if (form.$valid) {
 
             if (!ValidateAddress())

@@ -39,6 +39,26 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetStoreById(int store_id)
+        {
+            try
+            {
+                var result = _StoreServices.GetStoreById(store_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
         // GET: api/StoreApi
         public IEnumerable<string> Get()

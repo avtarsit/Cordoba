@@ -90,5 +90,21 @@ namespace CordobaAPI.API
             }
         }
 
+
+        [HttpGet]
+        public HttpResponseMessage DeleteCustomer(int customer_id)
+        {
+            try
+            {
+                var result = _CustomerService.DeleteCustomer(customer_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

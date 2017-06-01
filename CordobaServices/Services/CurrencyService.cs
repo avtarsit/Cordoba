@@ -35,7 +35,7 @@ namespace CordobaServices.Services
                 {
                     SqlParameter[] param = new SqlParameter[1];
                     param[0] = new SqlParameter("currency_id", currencyID);
-                    CurrencyDetail = CurrencyEntityGenericRepository.ExecuteSQL<CurrencyEntity>("EXEC GetCurrencyDetails @currency_id", param).ToList<CurrencyEntity>().FirstOrDefault();
+                    CurrencyDetail = CurrencyEntityGenericRepository.ExecuteSQL<CurrencyEntity>("EXEC GetCurrencyDetails", param).ToList<CurrencyEntity>().FirstOrDefault();
 
                 }
                 catch (Exception)
@@ -64,7 +64,7 @@ namespace CordobaServices.Services
                 param[6] = new SqlParameter("value", currency.value);
                 param[7] = new SqlParameter("status", currency.status);
                
-                var result = CurrencyEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCurrency @currency_id,@title,@code,@symbol_left,@symbol_right,@decimal_place,@value,@status", param).ToList<int>().FirstOrDefault();
+                var result = CurrencyEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCurrency", param).ToList<int>().FirstOrDefault();
 
                 return result;
             }

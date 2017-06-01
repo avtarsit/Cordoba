@@ -37,7 +37,7 @@ namespace CordobaServices.Services
                 {
                     SqlParameter[] param = new SqlParameter[1];
                     param[0] = new SqlParameter("user_id", userID);
-                    UserDetail = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetUserDetail @user_id", param).ToList<UserEntity>().FirstOrDefault();
+                    UserDetail = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetUserDetail", param).ToList<UserEntity>().FirstOrDefault();
 
                 }
                 catch (Exception)
@@ -69,7 +69,7 @@ namespace CordobaServices.Services
                 param[8] = new SqlParameter("ip", user.ip != null ? user.ip : (object)DBNull.Value);
                 param[9] = new SqlParameter("image", user.image != null ? user.image : (object)DBNull.Value);
 
-                var result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateUser @user_id,@user_group_id,@username,@password,@firstname,@lastname,@email,@status,@ip,@image", param).ToList<int>().FirstOrDefault();
+                var result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateUser", param).ToList<int>().FirstOrDefault();
 
                 return result;
             }

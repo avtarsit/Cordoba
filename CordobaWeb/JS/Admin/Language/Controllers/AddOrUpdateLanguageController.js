@@ -12,6 +12,7 @@
         $scope.PageTitle = "Update Language";
         $scope.IsEditMode = true;
         $scope.languageId = $stateParams.LanguageId;
+        debugger;
         $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId)
          .then(function (response) {
              debugger;

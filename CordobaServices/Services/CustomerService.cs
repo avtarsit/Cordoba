@@ -128,5 +128,23 @@ namespace CordobaServices.Services
             int result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertUpdateCustomer", sqlParameter).FirstOrDefault();
             return result;
         }
+
+
+      
+
+        public int DeleteCustomer(int customer_id)
+        {
+            try
+            {
+                var paramId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
+                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomer", paramId).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

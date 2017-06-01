@@ -12,6 +12,7 @@ namespace CordobaModels.Entities
        public int? StatusId { get; set; }
        public Nullable<DateTime> DateStart { get; set; }
        public Nullable<DateTime> DateEnd { get; set; }
+       public int? No_Of_Orders { get; set; }
        public int TotalRecords { get; set; }
     }
 }
