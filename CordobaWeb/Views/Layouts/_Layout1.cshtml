@@ -19,14 +19,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="ng-cloak">
-    <div ng-controller="DashboardController">
+<body>
+    <div ng-controller="DashboardController" ng-cloak>
         <div class="header navbar-fixed-top">
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#" ui-sref="EditProfile">My Account</a></li>
-                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-2})">My Wishlist</a></li>
+                        <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile">My Account</a></li>
+                        <li><a href="" ng-click="GotoMyWishlist()" >My Wishlist</a></li>
                         <li ng-if="!(CustomerDetail.customer_id>0)">
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
@@ -34,7 +34,7 @@
                             <p class="hi-text">Hi</p>
                             <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{CustomerDetail.firstname}} {{CustomerDetail.lastname}}<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><p>you have: <span>{{CustomerDetail.points}} Points</span></p></li>
+                                <li><p>you have: <span>{{CustomerDetail.points | number : 2}} Points</span></p></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="" class="cursor-pointer" ng-click="Logout()">Logout</a></li>
                             </ul>

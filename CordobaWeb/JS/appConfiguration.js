@@ -295,7 +295,7 @@ function GetLayoutName() {
                 , MyReward = {
                     name: 'MyReward',
                     url: '/MyReward',
-                    templateUrl: 'Templates/' + LayoutName + '/Reward/Index.html'                                   
+                    templateUrl: 'Templates/' + LayoutName + '/Reward/MyRewards.html'
                 }
                 , CustomerRewardDetail = {
                     name: 'CustomerRewardDetail',

@@ -14,5 +14,6 @@ namespace CordobaServices.Interfaces_Layout
         List<ProductEntity> GetLatestProductByStoreId(int StoreID);
         List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID);
         CustomerEntity CustomerLogin(CustomerEntity CustomerObj);
+        int? AddtoWishList(wishlistEntity WishlistObj);
     }
 }

@@ -79,6 +79,17 @@
         $state.go('Home');
     }
 
+    $scope.GotoMyWishlist=function()
+    {
+        if(UserDetail.customer_id>0)
+        {
+            $state.go('LayoutCategoryORProductList', { 'CategoryId': -2});
+        }       
+    }
+
+  
+
+
     //$scope.GetStoreDetailForDashboard = function () {
       
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
