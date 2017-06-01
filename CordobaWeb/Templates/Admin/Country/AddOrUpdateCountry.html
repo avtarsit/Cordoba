@@ -17,10 +17,10 @@
 
                 <ul class="breadcrumb-elements" >
                     <li>
-                        <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                        <button type="submit" ng-click="SaveCountry(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li>
-                        <button type="submit" ng-click="SaveCountry(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Country" ng-click="DeleteCountry(CountryObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
