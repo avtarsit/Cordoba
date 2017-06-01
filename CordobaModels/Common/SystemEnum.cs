@@ -16,8 +16,8 @@ namespace CordobaModels
         public enum UserType
         {
             Admin = 1,
-            Supplier=2,
-            Buyer=3
+            Supplier = 2,
+            Buyer = 3
             //Management = 2,
             //Broker = 3,
             //Client = 4,
@@ -30,6 +30,28 @@ namespace CordobaModels
             Proceed = 1,
             Discard = 2,
             OverWrite = 3
+        }
+
+        public enum RewardType
+        {
+            Star = 1,
+            Medal = 2
+        }
+
+        public enum RewardTypeStarValue
+        {
+            Star1 = 1,
+            Star2 = 2,
+            Star3 = 3,
+            Star4 = 4,
+            Star5 = 5
+        }
+
+        public enum RewardTypeMedalValue
+        {
+            Gold = 1,
+            Silver = 2,
+            Bronze = 3
         }
 
         #endregion

@@ -184,6 +184,7 @@
     <Compile Include="API\ProductApiController.cs" />
     <Compile Include="API\CatalogueApiController.cs" />
     <Compile Include="API\ReportApiController.cs" />
+    <Compile Include="API\ProductPurchasedReportApiController.cs" />
     <Compile Include="API\RewardApiController.cs" />
     <Compile Include="API\StoreApiController.cs" />
     <Compile Include="API\SupplierApiController.cs" />

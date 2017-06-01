@@ -36,6 +36,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -59,6 +60,7 @@
     <Compile Include="Interfaces\ICatalogueServices.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IPointsAudit.cs" />
+    <Compile Include="Interfaces\IProductPurchasedReportServices.cs" />
     <Compile Include="Interfaces\IProductServices.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\IRewardService.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Services\CatalogueService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PointsAuditService.cs" />
+    <Compile Include="Services\ProductPurchasedReportService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\RewardService.cs" />

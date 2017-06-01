@@ -97,5 +97,24 @@ namespace CordobaServices.Services
             var rewardcustomers = objGenericRepository.ExecuteSQL<RewardUserEntity>("RewardCustomerDetails", paramReawrdId).ToList();
             return rewardcustomers;
         }
+
+        public List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId)
+        {
+            var paramLoginUserId = new SqlParameter { ParameterName = "loginUserid", DbType = DbType.Int32, Value = loginUserId };
+            var rewardGroupCustomers = objGenericRepository.ExecuteSQL<AddRewardEntity>("GetReward_GroupCustomers", paramLoginUserId).ToList();
+            return rewardGroupCustomers;
+        }
+
+        public int AddCustomer_Reward(AddRewardEntity objAddRewardEntity)
+        {
+            var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = objAddRewardEntity.reward_id };
+            var paramISWinner = new SqlParameter { ParameterName = "IsWinner", DbType = DbType.Boolean, Value = objAddRewardEntity.IsWinner };
+            var paramCustomerId = new SqlParameter { ParameterName = "reward_giventouser_id", DbType = DbType.Int32, Value = objAddRewardEntity.customer_id };
+            var paramLoginUserId = new SqlParameter { ParameterName = "reward_givenby_userid", DbType = DbType.Int32, Value = objAddRewardEntity.loginUserid };
+            var paramRewardValue = new SqlParameter { ParameterName = "reward_value", DbType = DbType.Int32, Value = objAddRewardEntity.reward_value_id };
+            var paramComment = new SqlParameter { ParameterName = "comment", DbType = DbType.String, Value = objAddRewardEntity.Comment };
+            int reward_inserted_id = objGenericRepository.ExecuteSQL<int>("AddCustomer_Reward", paramRewardId, paramISWinner, paramCustomerId, paramLoginUserId, paramRewardValue, paramComment).SingleOrDefault();
+            return reward_inserted_id;
+        }
     }
 }

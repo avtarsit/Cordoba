@@ -117,7 +117,7 @@
                             <td ng-bind="Item.Participate"></td>
                             <td>
                                 <a ui-sref="CustomerRewardDetail({reward_id:Item.id,rewardname:Item.Title})" data-placement="top" data-toggle="tooltip" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                <a ui-sref="AddReward({reward_id:Item.id,rewardname:Item.Title})" data-placement="top" data-toggle="tooltip" title="Give Award"><i class="glyphicon glyphicon-gift"></i></a>
+                                <a ui-sref="AddReward({reward_id:Item.id,type:Item.reward_type_id})" data-placement="top" data-toggle="tooltip" title="Give Award"><i class="glyphicon glyphicon-gift"></i></a>
                             </td>
                         </tr>
                     </tbody>

@@ -35,15 +35,39 @@ namespace CordobaServices.Services_Layout
         public List<ProductEntity> GetLatestProductByStoreId(int StoreID)
         {           
             SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
-            var LatestProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetLatestProductByStoreId", sqlParameter).ToList();
-            return LatestProductList;
+            var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetLatestProductByStoreId", sqlParameter).ToList();
+            return result;
         }
 
         public List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID)
         {           
             SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
-            var LatestProductList = objGenericRepository.ExecuteSQL<CategoryPopularEntity>("GetPopularCategoryListByStoreId_Dashboard", sqlParameter).ToList();
-            return LatestProductList;
+            var result = objGenericRepository.ExecuteSQL<CategoryPopularEntity>("GetPopularCategoryListByStoreId_Dashboard", sqlParameter).ToList();
+            return result;
+        }
+
+        public CustomerEntity CustomerLogin(CustomerEntity CustomerObj)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("email", CustomerObj.email)
+               ,new SqlParameter("password", CustomerObj.password)
+               ,new SqlParameter("cartgroup_id", CustomerObj.cartgroup_id)
+               ,new SqlParameter("store_id", CustomerObj.store_id)
+            };
+            var result = objGenericRepository.ExecuteSQL<CustomerEntity>("CustomerLogin", sqlParameter).FirstOrDefault();
+            return result;
+        }
+
+
+        public int? AddtoWishList(wishlistEntity WishlistObj)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("customer_id", WishlistObj.customer_id)
+               ,new SqlParameter("store_id", WishlistObj.store_id)
+               ,new SqlParameter("product_id", WishlistObj.product_id)               
+            };
+            var result = objGenericRepository.ExecuteSQL<int>("AddtoWishList", sqlParameter).FirstOrDefault();
+            return result;
         }
 
     }

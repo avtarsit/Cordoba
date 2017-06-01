@@ -99,6 +99,26 @@ namespace CordobaAPI.API_Layout
 
          }
 
+        [HttpGet]
+         public HttpResponseMessage GetCustmoreAddressList(int? store_id, int customer_id)
+         {
+             try
+             {
+                 var result = _CartServices.GetCustmoreAddressList(store_id, customer_id);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+         }
+
+
         // GET: api/CartApi
         public IEnumerable<string> Get()
         {
