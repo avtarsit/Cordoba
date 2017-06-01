@@ -5,29 +5,26 @@
     BindToolTip();
     Tab();
     $scope.StoreObj = new Object();
-    debugger;
+
     $scope.IsEditMode = false;
+    $scope.store_id = 0;
     if ($stateParams.StoreID != undefined && $stateParams.StoreID != null) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
+        $scope.store_id = $stateParams.StoreID;
     }
     else {
         $scope.PageTitle = "Add Store";
     }
     //#endregion    
-    /// Get Template List-- START---
+    
 
     $scope.TemplateList = [
                         { 'TemplateId': 1, 'TemplateName':'Default Theme' }
                       , { 'TemplateId': 2, 'TemplateName':'Default'}
                       , { 'TemplateId': 3, 'TemplateName':'Default-2'}
                     ];
-
-    /////-----END
-    $scope.StoreObj.TemplateId = 1; // Temporary for Selected Default Theme
-
-
-    //--- Get Layout List -- START
+  
     $scope.LayoutList = [
                     { 'LayoutId': 1, 'LayoutName': 'Account' }
                   , { 'LayoutId': 2, 'LayoutName': 'Affiliate' }
@@ -41,16 +38,8 @@
                   , { 'LayoutId': 10, 'LayoutName': 'Information' }
                   
     ];
-
-    /////-----END
-    $scope.StoreObj.LayoutId = 1; // Temporary for Selected Default Theme
-
-
-    //-----END
-
-
-    ///Get Country List --- START
-    $scope.GetCountryList = function () {
+   
+    function GetCountryList() {
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
           .then(function (response) {
               if (response.data.length > 0) {
@@ -64,82 +53,47 @@
 
       });
     }
-
-    $scope.GetCountryList();
-    $scope.StoreObj.CountryCd = ' IN';
-    ///END
- 
-    ///Get Country List --- START
-    //$scope.GetStateList = function () {
-    //    $http.get(configurationService.basePath + "api/StateApi/GetStateList?CountryCd=''")
-    //      .then(function (response) {
-    //          if (response.data.length > 0) {
-    //              $scope.StateList = response.data;
-    //          }
-    //      })
-    //  .catch(function (response) {
-
-    //  })
-    //  .finally(function () {
-
-    //  });
-    //}
-
-    $scope.StateList = [
-                { 'StateId': 1, 'StateName': 'Andaman and Nicobar Islands' }
-              , { 'StateId': 2, 'StateName': 'Andhra Pradesh' }
-              , { 'StateId': 3, 'StateName': 'Arunachal Pradesh' }
-              , { 'StateId': 4, 'StateName': 'Assam' }
-              , { 'StateId': 5, 'StateName': 'Bihar' }
-              , { 'StateId': 6, 'StateName': 'Chandigarh' }
-              , { 'StateId': 7, 'StateName': 'Dadra and Nagar Haveli' }
-              , { 'StateId': 8, 'StateName': 'Daman and Diu' }
-              , { 'StateId': 9, 'StateName': 'Delhi' }
-              , { 'StateId': 10, 'StateName': 'Goa' }
-
-    ];    
-    ///END
-
-
-    ///-- Get Language List ----START
-
-
-    $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
-         .then(function (response) {
-             debugger;
-             $scope.LanguageList = response.data;
-         })
-        .catch(function (response) {
-
+    function GetLanguageList() {
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
+        .then(function (response) {
+            $scope.LanguageList = response.data;
         })
-        .finally(function () {
+       .catch(function (response) {
 
-        });
+       })
+       .finally(function () {
 
-    ////$scope.LanguageList = [
-    ////    { 'LanguageCd': 'en', 'LanguageName': 'English' }
-    ////  , { 'LanguageCd': 'de', 'LanguageName': 'Deutsch' }
-    ////  , { 'LanguageCd': 'fr', 'LanguageName': 'Français' }
-    ////  , { 'LanguageCd': 'it', 'LanguageName': 'Italiano' }
-    ////  , { 'LanguageCd': 'es', 'LanguageName': 'Español' }
-    ////  , { 'LanguageCd': 'pt', 'LanguageName': 'Português' }
-    ////  , { 'LanguageCd': 'nl', 'LanguageName': 'Nederlands' }
-    ////];
+       });
+    }
+    function GetCurrencyList() {
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.CurrencyList = response.data;
+              }
+          })
+      .catch(function (response) {
 
-    //$scope.StoreObj.LanguageCd='en';
-    ///END
+      })
+      .finally(function () {
 
+      });
+    }
+   
+    $scope.GetStoreById = function () {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id)
+          .then(function (response) {
+              $scope.StoreObj = response.data;
+              debugger;
+          })
+      .catch(function (response) {
 
-    ///-- Get Currency List ----START
+      })
+      .finally(function () {
 
-    $scope.CurrencyList = [
-        { 'CurrencyCd': 'P41', 'CurrencyName': 'Points (1=41p)' }
-      , { 'CurrencyCd': 'P50', 'CurrencyName': 'Points (1=50p)' }
-      , { 'CurrencyCd': 'GBP', 'CurrencyName': 'Pound Sterling' }
-    ];
+      });
+    }
 
-    $scope.StoreObj.CurrencyCd = 'P50';
-    ///END
 
     $scope.DeleteStore = function () {
         bootbox.dialog({
@@ -168,7 +122,6 @@
             }
         });
     };
-
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -186,4 +139,15 @@
 
     }
 
+    function Init() {
+        GetCountryList();
+        GetLanguageList();
+        GetCurrencyList();
+
+        $scope.GetStoreById();
+    }
+
+
+
+    Init();
 });
