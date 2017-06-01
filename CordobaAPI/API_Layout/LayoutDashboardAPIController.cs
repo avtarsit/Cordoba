@@ -139,6 +139,26 @@ namespace CordobaAPI.API_Layout
              }
 
          }
+
+        [HttpGet]
+         public HttpResponseMessage RemoveFromWishList(int StoreID, int product_id, int Customer_Id)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.RemoveFromWishList(StoreID, product_id, Customer_Id);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
         
 
         
