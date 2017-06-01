@@ -14,5 +14,7 @@ namespace CordobaServices.Interfaces
         CustomerEntity GetCustomerById(int customer_id);
 
         int InsertUpdateCustomer(CustomerEntity customerEntity);
+
+        int DeleteCustomer(int customer_id);
     }
 }
