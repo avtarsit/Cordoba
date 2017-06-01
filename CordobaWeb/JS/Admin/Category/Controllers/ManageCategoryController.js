@@ -34,7 +34,7 @@
                         label: "Yes",
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
-                            debugger;
+
                             if (result) {
                                 $http.post(configurationService.basePath + "api/CategoryApi/DeleteCategory?Category_Id=" + $scope.Category_Id)
                                .then(function (response) {
@@ -120,7 +120,7 @@
                 $scope.CategoryObj.CategoryDescriptionList.push(CategoryDescObj[0]);
             }
         });
-        debugger;
+        
     }
 
 
@@ -165,11 +165,11 @@
             $scope.CategoryObj.StoreIdCSV = "";
             $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
             var categoryEntity = JSON.stringify($scope.CategoryObj);
-            debugger;
+            
 
             $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory", categoryEntity)
               .then(function (response) {
-                  debugger;
+                  
                   if (response.data > 0) {
 
                       notificationFactory.customSuccess("Category Saved Successfully.");

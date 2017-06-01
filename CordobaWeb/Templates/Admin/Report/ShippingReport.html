@@ -30,13 +30,31 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-start">Date Start</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="filter.dateStart" />
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                             </div>
+                            <!--<div class="form-group">
+                                <label class="control-label" for="input-date-start">Date Start</label>
+                                <div class="input-group myDatePicker date">
+                                    <input type="text" class="form-control" />
+                                    <span class="input-group-addon cursor-pointer">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>-->
                             <div class="form-group">
+                                <label class="control-label" for="input-date-End">Date End</label>
+                                <div class="input-group myDatePicker date">
+                                    <input type="text" class="form-control" ng-model="filter.dateEnd" />
+                                    <span class="input-group-addon cursor-pointer">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
                                 <label class="control-label" for="input-date-end">Date End</label>
 
                                 <div class="input-group myDatePicker date">
@@ -45,28 +63,38 @@
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" for="input-group">Group By</label>
-                                <select name="filter_group" id="input-group" class="form-control">
+                                <select ng-options="Group.id as Group.name  for Group in GroupBy"
+                                        class="form-control" ng-model="ShippingReportObj.GroupBy" name="filter_group"></select>
+                                
+                                <!--<select name="filter_group" id="input-group" class="form-control">
                                     <option value="year">Years</option>
                                     <option value="month">Months</option>
                                     <option value="week" selected="selected">Weeks</option>
                                     <option value="day">Days</option>
-                                </select>
+                                </select>-->
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Order Status</label>
-                                <select name="filter_order_status_id" id="input-status" class="form-control">
+
+                                <select ng-options="Status.id as Status.name  for Status in OrderStatus"
+                                        class="form-control"
+                                        ng-model="ShippingReportObj.Status"
+                                        selected="ShippingReportObj.Status[0]"
+                                        id="input-status"
+                                        name="filter_order_status_id"></select>
+                                <!--<select name="filter_order_status_id" id="input-status" class="form-control">
                                     <option value="0">All Statuses</option>
                                     <option value="5">Cancelled</option>
                                     <option value="3">Partially Shipped</option>
                                     <option value="1">Processing</option>
                                     <option value="4">Returned</option>
                                     <option value="2">Shipped</option>
-                                </select>
+                                </select>-->
                             </div>
                             <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                         </div>
