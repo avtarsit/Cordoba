@@ -120,26 +120,31 @@
             "aoColumns": [
 
                 {
-                    "mData": "date_start",
-                    "bSortable": true,
-                    "type": "date",
-                    "format": 'DD-MM-YYYY',
+                    "mData": "DateStart", "bSortable": true,
+                    "render": function (data, type, row) {
+                        if (data != null) {                            
+                            return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+
+                    }
+                    else {
+                        return "";
+                    }
+                }
                 },
+                   {
+                       "mData": "DateEnd", "bSortable": true,
+                       "render": function (data, type, row) {
+                           if (data != null) {
+                               return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+
+                           }
+                           else {
+                               return "";
+                           }
+                       }
+                   },               
                 {
-                    "mData": "date_end",
-                    "bSortable": true
-                },
-                //{
-                //    "mData": "order_id",
-                //    "bSortable": true,
-                //    "sClass": " text-right"
-                //    //"render": function (data, type, row) {
-                //    //    return '<a data-Id=' + row.JobId + ' class="cursor-pointer" ng-click="EditJobCode($event)">' + data + '</a>'
-                //    //}
-                //},
-           
-                {
-                    "mData": "noOfReturns",
+                    "mData": "No_Of_Orders",
                     "bSortable": true
                 },
 

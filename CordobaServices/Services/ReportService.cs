@@ -16,28 +16,24 @@ namespace CordobaServices.Services
     {
         private GenericRepository<ReportEntity> ReportEntityGenericRepository = new GenericRepository<ReportEntity>();
 
-        public IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime DateStart, DateTime DateEnd, int GroupById, int StatusId, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
                 SqlParameter[] param = new SqlParameter[] {
-                    new SqlParameter("DateTime", DateStart!=null ? DateStart:(object)DBNull.Value)
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
                     ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
                 };
 
 
-                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("EXEC GetReturnList", param).AsQueryable();
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetSalesReturnReportList", param).AsQueryable();
 
                 return query;
-
-                //var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
-                //var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
-                //var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
-                //var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
-                //var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetReturnList", paramOrderBy, paramPageSize, paramPageIndex, paramPageFrom).AsQueryable();
-                //return query;
             }
             catch (Exception)
             {
@@ -46,5 +42,32 @@ namespace CordobaServices.Services
 
             //return result;
         }
+
+        //public IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "")
+        //{
+        //    try
+        //    {
+        //        SqlParameter[] param = new SqlParameter[] {
+        //             new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+        //            ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+        //            ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+        //            ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
+        //            ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
+        //            ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
+        //            ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
+        //        };
+
+
+        //        var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetSalesReturnReportList", param).AsQueryable();
+
+        //        return query;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+
+        //    //return result;
+        //}
     }
 }

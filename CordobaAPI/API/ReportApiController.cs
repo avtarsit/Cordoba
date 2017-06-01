@@ -21,7 +21,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public TableParameter<ReportEntity> GetReturnList(int PageIndex, DateTime DateStart, DateTime DateEnd, int GroupById, int StatusId , TableParameter<ReportEntity> tableParameter)
+        public TableParameter<ReportEntity> GetReturnList(int PageIndex, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId , TableParameter<ReportEntity> tableParameter)
         {
             try
             {
