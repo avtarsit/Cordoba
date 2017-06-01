@@ -13,6 +13,9 @@ using System.Web;
 using System.Web.Http;
 using CordobaModels.Entities;
 using CordobaServices.Helpers;
+using System.Net.Http.Headers;
+using CordobaCommon;
+using Newtonsoft.Json;
 
 namespace CordobaAPI.API
 { 
@@ -99,6 +102,91 @@ namespace CordobaAPI.API
                 throw;
             }
         }
+
+
+
+        [HttpPost]
+        public HttpResponseMessage ExportToExcelProductPurchasedList(int PageIndex, int order_status_id, int store_id, DateTime? DateStart, DateTime? DateEnd, object tableParameter)
+        {
+
+            SortColumn sr;
+            string sortColumn;
+            if (tableParameter != null)
+            {
+                sr = (SortColumn)JsonConvert.DeserializeObject(tableParameter.ToString(), typeof(SortColumn));
+                sortColumn = sr.Desc ? sr.Column + " desc" : sr.Column + " asc";
+              
+            }
+            else
+            {
+                sortColumn = "name desc";
+            }
+
+           
+           // string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+
+
+            HttpResponseMessage httpResponseMessage;
+            DateTime date = DateTime.Now.Date;
+            string str = string.Concat("ProductPurchased", date.ToString("ddMMyyyy"), ".xls");
+
+            DataSet ds = this._productPurchasedReportService.ExportToExcelProductPurchasedList(sortColumn, order_status_id, store_id, DateStart, DateEnd);
+            if (ds.Tables.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables.Count; i++)
+                {
+                    if (!(ds.Tables[i].Rows.Count > 0))
+                    {
+                        ds.Tables.RemoveAt(i);
+                    }
+                }
+            }
+            if (ds != null && ds.Tables.Count > 0)
+            {
+            
+                    List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
+                    selectedColumn.Add(new ColumnConfiguration("name", "Product Name"));
+                    selectedColumn.Add(new ColumnConfiguration("model", "Model"));
+                    selectedColumn.Add(new ColumnConfiguration("Categoryname", "Category"));
+                    selectedColumn.Add(new ColumnConfiguration("storename", "Store"));
+                    selectedColumn.Add(new ColumnConfiguration("quantity", "Quantity"));
+                    selectedColumn.Add(new ColumnConfiguration("purchaseddatestr", "Purchased Date"));
+                    selectedColumn.Add(new ColumnConfiguration("totalpoints", "total points"));
+
+                    if (!string.IsNullOrEmpty(sortColumn))
+                    {
+                        ds.Tables[0].DefaultView.Sort = sortColumn;
+                    }
+                    DataTable dt = ds.Tables[0].DefaultView.ToTable(false, selectedColumn.Select(s => s.OriginalColumnName).ToArray());
+
+                    ds.Tables.RemoveAt(0); // Delete Existing Table 
+                    ds.Tables.Add(dt); // Add Modified Table
+                    ds = CordobaCommon.GeneralMethods.ChangeDataSetColumnTitleAndReorder(ds, selectedColumn); // Rename Selected Columns
+                
+            }
+            try
+            {
+                if (ds == null)
+                {
+                    return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
+                }
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Candidate");
+
+                HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+                Stream @null = Stream.Null;
+                streamContent.Content = new StreamContent(new MemoryStream(asByteArray));
+                streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                streamContent.Content.Headers.Add("content-disposition", string.Concat("attachment;  filename=\"", str, "\""));
+                httpResponseMessage = streamContent;
+
+            }
+            catch (Exception)
+            {
+                httpResponseMessage = base.Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+            }
+            return httpResponseMessage;
+        }
+
 
     }
 }
