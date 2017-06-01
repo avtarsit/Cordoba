@@ -9,6 +9,7 @@
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
     $scope.PageTitle = "Products Purchased List";
+    $scope.GridParams = new Object();
 
     $scope.ProductFilter = new Object();
     $scope.ProductFilter.order_status_id = 0;
@@ -98,6 +99,7 @@
                 //aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblProductPurchased').DataTable().page.info().page) + 1;
+                $scope.GridParams = aoData;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
@@ -147,6 +149,53 @@
             }
         });
     }
+
+    //export Employee List to Excel
+    $scope.ExportProductPurchasedList = function () {
+        var column = "";
+        if ($scope.GridParams.length != undefined) {
+            column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);
+        }
+        debugger;
+        $http({
+            url: configurationService.basePath + 'api/ProductPurchasedReportApi/ExportToExcelProductPurchasedList?PageIndex=' + 1 + '&order_status_id=' + $scope.ProductFilter.order_status_id + '&store_id=' + $scope.ProductFilter.store_id + '&DateStart=' + $scope.ProductFilter.DateStart + '&DateEnd=' + $scope.ProductFilter.DateEnd,
+            method: "POST",
+            'dataSrc': 'aaData',
+            "dataType": 'json',
+            data: column != "" ? column[0].value : "",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            responseType: 'arraybuffer'
+        }).success(function (data, status, headers, config) {
+
+            var type = headers('Content-Type');
+            var disposition = headers('Content-Disposition');
+            if (disposition) {
+                var match = disposition.match(/.*filename=\"?([^;\"]+)\"?.*/);
+                if (match[1])
+                    defaultFileName = match[1];
+            }
+            defaultFileName = defaultFileName.replace(/[<>:"\/\\|?*]+/g, '_');
+            var blob = new Blob([data], { type: type });
+            if (navigator.appVersion.toString().indexOf('.NET') > 0) // For IE 
+                window.navigator.msSaveBlob(blob, defaultFileName);
+            else {
+                var objectUrl = URL.createObjectURL(blob);
+                var downloadLink = document.createElement("a");
+                downloadLink.href = objectUrl;
+                downloadLink.download = defaultFileName;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                //window.open(objectUrl);
+            }
+        }).error(function (data, status, headers, config) {
+        });
+    }
+
+    //#endregion
+
 
     function init() {
         GetOrderStatus();

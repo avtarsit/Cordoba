@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace CordobaServices.Services
 {
@@ -68,6 +69,44 @@ namespace CordobaServices.Services
             catch (Exception ex )
             {
                 throw ex ;
+            }
+        }
+
+
+        public DataSet ExportToExcelProductPurchasedList(string sortColumn, int order_status_id, int store_id,  DateTime? DateStart, DateTime? DateEnd)
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                DataSet ds = new DataSet();
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                cmd = new SqlCommand("GetProductPurchasedList", con);
+                cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
+                cmd.Parameters.Add(new SqlParameter("@PageSize", 1000000));
+                cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
+                cmd.Parameters.Add(new SqlParameter("@order_status_id", order_status_id));
+                cmd.Parameters.Add(new SqlParameter("@store_id", store_id));
+                cmd.Parameters.Add(new SqlParameter("@DateStart", DateStart ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@DateEnd", DateEnd ?? (object)DBNull.Value));
+                cmd.CommandType = CommandType.StoredProcedure;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds, "data");
+                return ds;
+           }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    cmd.Dispose();
+                }
             }
         }
     }
