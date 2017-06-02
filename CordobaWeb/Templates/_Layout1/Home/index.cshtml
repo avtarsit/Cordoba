@@ -76,7 +76,7 @@
                             <div class="col-sm-12">
                                 <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
                             </div>
-                            <p>{{PopularCategory.name}}</p>
+                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})">{{PopularCategory.name}}</a>
                         </div>
                     </div>                   
                 </div>
@@ -152,7 +152,7 @@
                                     <p>{{LatestProduct.Model}}</p>
                                     <p><span>{{LatestProduct.Price}} Points</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct)">Add to Cart</button>
+                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>

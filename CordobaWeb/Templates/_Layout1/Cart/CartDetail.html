@@ -1,4 +1,5 @@
-﻿<div ng-controller="CartDetailController">
+﻿
+<div ng-controller="CartDetailController">
 
 
     <section class="my-account">
@@ -49,9 +50,9 @@
                         </div>
                         <div class="col-sm-5">
                             <p class="product-price">
-                            <span>Points: {{Item.price}}</span>
+                            <span>Points: {{Item.price | number : 2}}</span>
                                 <br />
-                                <span ng-if="Item.quantity>1">Subtotal: {{Item.total}}</span>
+                                <span ng-if="Item.quantity>1">Subtotal: {{Item.total | number : 2}}</span>
                             </p>                            
                         </div>
                         <div class="col-sm-12">
@@ -80,11 +81,11 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <p>Subtotal:</p>
-                    <p>{{AllItemSubtotal}} points</p>
+                    <p>{{AllItemSubtotal | number : 2}} points</p>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>{{AllItemTotal}} points</span>
+                    <span>{{AllItemTotal | number : 2}} points</span>
                 </div>
                 <div class="checkout-block">
                     <!-- <button class="btn btn-empty">Checkout</button> -->

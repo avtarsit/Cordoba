@@ -511,6 +511,62 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 }
 /*Loader end*/
 
+
+/*Add to cart Button*/
+.btnaddtocart,
+.btnaddtocart:after,
+.btnaddtocart:before {
+	padding:.6875rem 2rem;
+	-webkit-transition:-webkit-transform 0.75s,background-color .125s;
+	-moz-transition:-moz-transform 0.75s,background-color .125s;
+	-ms-transition:-ms-transform 0.75s,background-color .125s;
+	transition:transform 0.75s,background-color .125s;
+	-webkit-transform-style:preserve-3d;
+	-moz-transform-style:preserve-3d;
+	-ms-transform-style:preserve-3d;
+	transform-style:preserve-3d;
+}
+
+.btnaddtocart:after,
+.btnaddtocart:before {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	border-radius:.25rem;
+	-webkit-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	backface-visibility:hidden;
+
+}
+
+.btnaddtocart:after {
+    padding-left:20px;
+	z-index:1;
+	background-color:green;
+	background-repeat:no-repeat;
+	background-position:left center;
+	/*background-image:url(data:image/gif;base64,R0lGODlhEAAQAPIAAJmZmf///7CwsOPj4////9fX18rKysPDwyH+GkNyZWF0ZWQgd2l0aCBhamF4bG9hZC5pbmZvACH5BAAKAAAAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQACgABACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkEAAoAAgAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkEAAoAAwAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkEAAoABAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQACgAFACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQACgAGACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAAKAAcALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==);*/
+	-webkit-transform:rotateX(180deg);
+	-moz-transform:rotateX(180deg);
+	-ms-transform:rotateX(180deg);
+	transform:rotateX(180deg);
+	content:'Adding...';
+}
+
+.btnaddtocart:active:before {
+	background-color:#3571c8;
+}
+.btnaddtocart.loading {
+	-webkit-transform:rotateX(180deg);
+	-moz-transform:rotateX(180deg);
+	-ms-transform:rotateX(180deg);
+	transform:rotateX(180deg);
+}
+/*Add to cart button*/
+
 /* keyframes start */
 @keyframes bar {
   0% { height: 0px; }

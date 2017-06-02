@@ -20,26 +20,30 @@
         </div>
     </div>
     <div class="page-header-content">
-        <table class="table table-bordered  table-striped datatable-responsive" datatable="ng" id="tblUser" dt-options="dtOptions" width="100%">
-            <thead>
-                <tr>
-                    <th>User Name</th>
-                    <th>Status</th>
-                    <th>Date Added</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="Item in UserList">
-                    <td ng-bind="Item.username"></td>
-                    <td ng-bind="Item.StatusName"></td>
-                    <td ng-bind="Item.date_added"></td>
-                    <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageUser({UserID:Item.user_id})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <table class="table table-bordered  table-striped datatable-responsive" datatable="ng" id="tblUser" dt-options="dtOptions" width="100%">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Status</th>
+                            <th>Date Added</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Item in UserList">
+                            <td ng-bind="Item.username"></td>
+                            <td ng-bind="Item.StatusName"></td>
+                            <td ng-bind="Item.date_added"></td>
+                            <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageUser({UserID:Item.user_id})"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
 
 
 
