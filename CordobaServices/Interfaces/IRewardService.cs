@@ -19,7 +19,7 @@ namespace CordobaServices.Interfaces
         List<RewardUserDetailsEntity> MyRewards(int id);
         List<RewardEntity> GetAllRunningRewards();
         List<RewardUserEntity> RewardCustomerDetails(int reward_id);
-        List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId);
+        List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId,int reward_id);
         int AddCustomer_Reward(AddRewardEntity objAddRewardEntity);
     }
 }

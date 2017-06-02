@@ -13,11 +13,11 @@
 }
 
 .isReadonly > .fa-star-o {
-  color: #000000;
+  color: #FF7700;
 }
 
 .isReadonly > .fa-star {
-  color: #DCDCDC;
+  color: #FFDD00;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #000000;
+  -webkit-text-stroke-color: #FF7700;
 }

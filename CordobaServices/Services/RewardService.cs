@@ -98,22 +98,29 @@ namespace CordobaServices.Services
             return rewardcustomers;
         }
 
-        public List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId)
+        public List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId,int reward_id)
         {
+            var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
             var paramLoginUserId = new SqlParameter { ParameterName = "loginUserid", DbType = DbType.Int32, Value = loginUserId };
-            var rewardGroupCustomers = objGenericRepository.ExecuteSQL<AddRewardEntity>("GetReward_GroupCustomers", paramLoginUserId).ToList();
+            var rewardGroupCustomers = objGenericRepository.ExecuteSQL<AddRewardEntity>("GetReward_GroupCustomers", paramRewardId, paramLoginUserId).ToList();
             return rewardGroupCustomers;
         }
 
         public int AddCustomer_Reward(AddRewardEntity objAddRewardEntity)
         {
+            if (objAddRewardEntity.reward_type_id == Convert.ToInt32(SystemEnum.RewardType.Star))
+            {
+                objAddRewardEntity.reward_name = "Star " + Convert.ToString(objAddRewardEntity.NoOfStars);
+            }
             var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = objAddRewardEntity.reward_id };
-            var paramISWinner = new SqlParameter { ParameterName = "IsWinner", DbType = DbType.Boolean, Value = objAddRewardEntity.IsWinner };
+            var paramISWinner = new SqlParameter { ParameterName = "IsWinner", DbType = DbType.Boolean, Value = false };
             var paramCustomerId = new SqlParameter { ParameterName = "reward_giventouser_id", DbType = DbType.Int32, Value = objAddRewardEntity.customer_id };
             var paramLoginUserId = new SqlParameter { ParameterName = "reward_givenby_userid", DbType = DbType.Int32, Value = objAddRewardEntity.loginUserid };
-            var paramRewardValue = new SqlParameter { ParameterName = "reward_value", DbType = DbType.Int32, Value = objAddRewardEntity.reward_value_id };
-            var paramComment = new SqlParameter { ParameterName = "comment", DbType = DbType.String, Value = objAddRewardEntity.Comment };
-            int reward_inserted_id = objGenericRepository.ExecuteSQL<int>("AddCustomer_Reward", paramRewardId, paramISWinner, paramCustomerId, paramLoginUserId, paramRewardValue, paramComment).SingleOrDefault();
+            var paramRewardName = new SqlParameter { ParameterName = "reward_name", DbType = DbType.String, Value = objAddRewardEntity.reward_name };
+            var paramRewardTypeId = new SqlParameter { ParameterName = "reward_type_id", DbType = DbType.Int32, Value = objAddRewardEntity.reward_type_id };
+            var paramComment = new SqlParameter { ParameterName = "comment", DbType = DbType.String, Value = objAddRewardEntity.Comment ?? (object)DBNull.Value };
+            int reward_inserted_id = objGenericRepository.ExecuteSQL<int>("AddCustomer_Reward", paramRewardId, paramISWinner, paramCustomerId, paramLoginUserId,
+                paramRewardName, paramRewardTypeId, paramComment).SingleOrDefault();
             return reward_inserted_id;
         }
     }

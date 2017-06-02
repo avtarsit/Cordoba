@@ -39,6 +39,7 @@
                     <td ng-bind="Item.reward_given_date | date:'dd/MM/yyyy'"></td>
                     <td class="cursor-pointer text-center">
                         <a data-placement="top" data-toggle="tooltip" ng-click="DeleteRewardUser(Item.id)"> <i class="glyphicon glyphicon-erase cursor-pointer"></i></a>
+                        
                     </td>
                     <!--<td class="cursor-pointer text-center">
                         <a ui-sref="ManageReward({rewardId:Item.id})" data-placement="top" data-toggle="tooltip" title="Edit"> <i class="glyphicon glyphicon-edit cursor-pointer"></i></a>
@@ -47,5 +48,8 @@
                 </tr>
             </tbody>
         </table>
+
+
+
     </div>
 </div>

@@ -19,5 +19,6 @@ namespace CordobaModels.Entities
         public string Medal { get; set; }
         public int? id { get; set; }
         public string Customer_img { get; set; }
+        public string comment { get; set; }
     }
 }
