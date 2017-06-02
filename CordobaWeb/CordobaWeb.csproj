@@ -476,6 +476,7 @@
     <Content Include="Content\admin\images\ui\datepicker_trigger.png" />
     <Content Include="Content\admin\images\ui\map_marker.png" />
     <Content Include="Content\css\angular-datepicker.css" />
+    <Content Include="Content\css\angular-ui-switch.min.css" />
     <Content Include="Content\css\angular.treeview.css" />
     <Content Include="Content\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\css\bootstrap-duallistbox.css" />
@@ -498,11 +499,15 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
+    <Content Include="Content\Images\bronze.png" />
+    <Content Include="Content\Images\error-img.png" />
+    <Content Include="Content\Images\gold.png" />
     <Content Include="Content\Images\Loading.gif" />
     <Content Include="Content\Images\manufacture.jpg" />
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
+    <Content Include="Content\Images\silver.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
     <Content Include="Content\layout1\css\classes.css" />
@@ -514,11 +519,13 @@
     <Content Include="Content\layout1\css\style.css" />
     <Content Include="Content\layout1\css\zoom.css" />
     <Content Include="Content\layout1\images\bestSeller.jpg" />
+    <Content Include="Content\layout1\images\bronze.png" />
     <Content Include="Content\layout1\images\checkin.png" />
     <Content Include="Content\layout1\images\deals.jpg" />
     <Content Include="Content\layout1\images\electronics.png" />
     <Content Include="Content\layout1\images\EmptyShoppingCart.png" />
     <Content Include="Content\layout1\images\fashion.png" />
+    <Content Include="Content\layout1\images\gold.png" />
     <Content Include="Content\layout1\images\grey.jpg" />
     <Content Include="Content\layout1\images\homeApp.png" />
     <Content Include="Content\layout1\images\loader.gif" />
@@ -532,6 +539,7 @@
     <Content Include="Content\layout1\images\offer3.jpg" />
     <Content Include="Content\layout1\images\personalCare.png" />
     <Content Include="Content\layout1\images\product1.jpg" />
+    <Content Include="Content\layout1\images\silver.png" />
     <Content Include="Content\layout1\images\sliderBanner1.jpg" />
     <Content Include="Content\layout1\images\sliderBanner2.jpg" />
     <Content Include="Content\layout1\images\specialOffer.jpg" />
@@ -663,6 +671,8 @@
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
     <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
     <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewCustomerRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewRewardCustomerDetailsContoller.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -3716,7 +3726,6 @@
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Templates\Admin\Banner\Index.html" />
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
-    <Content Include="Templates\Admin\Category\Category.html" />
     <Content Include="Templates\Admin\Category\Index.html" />
     <Content Include="Templates\Admin\Category\ManageCategory.html" />
     <Content Include="Templates\Admin\Category\PopularCategory.html" />
@@ -3898,7 +3907,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51989</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8084</IISUrl>
+          <IISUrl>http://localhost:1012</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
