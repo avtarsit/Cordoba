@@ -48,5 +48,33 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpPost]
+        public TableParameter<ReportEntity> GetOrderReportList(int PageIndex, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> tableParameter)
+        {
+            try
+            {
+                tableParameter.PageIndex = PageIndex;
+                string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+                var result = _reportServices.GetOrderReportList(sortColumn, DateStart, DateEnd, GroupById, StatusId, tableParameter, "").ToList();
+
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
+                {
+                    totalRecords = result.FirstOrDefault().TotalRecords;
+                }
+
+                return new TableParameter<ReportEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
