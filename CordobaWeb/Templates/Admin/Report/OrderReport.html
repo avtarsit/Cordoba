@@ -12,7 +12,7 @@
         </div>
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
-                <li>  This page allows you to lookup Sales order report.</li>
+                <li>  This page allows you to lookup Order report.</li>
             </ul>
 
         </div>
@@ -21,7 +21,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Sales- Order List</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Orders List</h3>
             </div>
             <div class="panel-body">
                 <div class="well">
@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-start">Date Start</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="OrderReportObj.DateStart" />
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -38,9 +38,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-date-end">Date End</label>
-
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="OrderReportObj.DateEnd" />
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -50,57 +49,67 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" for="input-group">Group By</label>
+                                <select ng-options="Group.id as Group.name  for Group in GroupBy"
+                                        class="form-control"
+                                        ng-model="OrderReportObj.GroupById"
+                                        name="filter_group"></select>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="control-label" for="input-group">Group By</label>
                                 <select name="filter_group" id="input-group" class="form-control">
                                     <option value="year">Years</option>
                                     <option value="month">Months</option>
                                     <option value="week" selected="selected">Weeks</option>
                                     <option value="day">Days</option>
                                 </select>
-                            </div>
+                            </div>-->
+
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Order Status</label>
-                                <select name="filter_order_status_id" id="input-status" class="form-control">
-                                    <option value="0">All Statuses</option>
-                                    <option value="5">Cancelled</option>
-                                    <option value="3">Partially Shipped</option>
-                                    <option value="1">Processing</option>
-                                    <option value="4">Returned</option>
-                                    <option value="2">Shipped</option>
-                                </select>
+
+                                <select ng-options="Status.id as Status.name  for Status in OrderStatus"
+                                        class="form-control"
+                                        ng-model="OrderReportObj.StatusId"
+                                        id="input-status"
+                                        name="filter_order_status_id"></select>
                             </div>
-                            <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                            <!--<div class="form-group">
+                                <label class="control-label" for="input-status">Order Status</label>
+                                <select name="filter_Order_status_id" id="input-status" class="form-control">
+                                    <option value="0">All Statuses</option>
+                                    <option value="2">Awaiting Products</option>
+                                    <option value="3">Complete</option>
+                                    <option value="1">Pending</option>
+                                </select>
+                            </div>-->
+                            <button type="button" id="button-filter" ng-click="GetOrderReportList()" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                         </div>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <br />
-                    <table class="table table-bordered table-striped datatable-responsive" datatable="ng" id="tblOrders" dt-options="dtOptions" width="100%">
+                    <table class="table table-bordered table-striped datatable-responsive" id="tblOrderReport" width="100%">
                         <thead>
                             <tr>
                                 <th>Date Start</th>
                                 <th>Date End</th>
-                                <th>No. Orders</th>
-                                <th>No. Products</th>
+                                <th>No Of Orders</th>
+                                <th>No Of Products</th>
                                 <th>Total</th>
                                 <th>Tax</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="Item in OrderList">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <tr></tr>
                         </tbody>
                     </table>
-                </div>               
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
 
 
 
