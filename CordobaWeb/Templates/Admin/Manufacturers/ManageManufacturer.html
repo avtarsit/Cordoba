@@ -21,16 +21,15 @@
                 </ul>
                 <div class="text-right">
                   
-                  
-
                 </div>
-                <ul class="breadcrumb-elements" >
-                    <li>
-                        <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
-                    </li>
+                <ul class="breadcrumb-elements">
                     <li>
                         <button type="submit" ng-click="InsertUpdateManufacture(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
+                    <li>
+                        <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                    </li>
+                   
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Manufacturer" ng-click="DeleteManufacturer(ManufacturerObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
                     </li>

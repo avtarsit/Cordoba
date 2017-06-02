@@ -84,7 +84,10 @@
         if(UserDetail.customer_id>0)
         {
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -2});
-        }       
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
     }
 
   

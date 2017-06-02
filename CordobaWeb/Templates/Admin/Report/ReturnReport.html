@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-start">Date Start</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ReturnReportObj.DateStart" />
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-end">Date End</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ReturnReportObj.DateEnd" />
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -47,43 +47,60 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label" for="input-group">Group By</label>
-                                <select name="filter_group" id="input-group" class="form-control">
-                                    <option value="year">Years</option>
-                                    <option value="month">Months</option>
-                                    <option value="week" selected="selected">Weeks</option>
-                                    <option value="day">Days</option>
-                                </select>
+                                <div class="form-group">
+                                    <label class="control-label" for="input-group">Group By</label>
+                                    <select ng-options="Group.id as Group.name  for Group in GroupBy"
+                                            class="form-control" 
+                                            ng-model="ReturnReportObj.GroupById" 
+                                            name="filter_group">
+
+                                    </select>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="control-label" for="input-group">Group By</label>
+                                    <select name="filter_group" id="input-group" class="form-control">
+                                        <option value="year">Years</option>
+                                        <option value="month">Months</option>
+                                        <option value="week" selected="selected">Weeks</option>
+                                        <option value="day">Days</option>
+                                    </select>
+                                </div>-->
+                                
+                                <div class="form-group">
+                                    <label class="control-label" for="input-status">Order Status</label>
+
+                                    <select ng-options="Status.id as Status.name  for Status in ReturnStatus"
+                                            class="form-control"
+                                            ng-model="ReturnReportObj.StatusId"
+                                            id="input-status"
+                                            name="filter_order_status_id"></select>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="control-label" for="input-status">Return Status</label>
+                                    <select name="filter_return_status_id" id="input-status" class="form-control">
+                                        <option value="0">All Statuses</option>
+                                        <option value="2">Awaiting Products</option>
+                                        <option value="3">Complete</option>
+                                        <option value="1">Pending</option>
+                                    </select>
+                                </div>-->
+                            <button type="button" id="button-filter" ng-click="GetReturnList()" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label" for="input-status">Return Status</label>
-                                <select name="filter_return_status_id" id="input-status" class="form-control">
-                                    <option value="0">All Statuses</option>
-                                    <option value="2">Awaiting Products</option>
-                                    <option value="3">Complete</option>
-                                    <option value="1">Pending</option>
-                                </select>
-                            </div>
-                            <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
-                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <br />
-                    <table class="table table-bordered table-striped datatable-responsive" datatable="ng" id="tblShipping" dt-options="dtOptions" width="100%">
+                    <table class="table table-bordered table-striped datatable-responsive"  id="tblReturnReport" width="100%">
                         <thead>
                             <tr>
                                 <th>Date Start</th>
                                 <th>Date End</th>
-                                <th>No. Returns</th>                          
+                                <th>No. Returns</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="Item in ReturnList">
-                                <td></td>
-                                <td></td>
-                                <td></td>                               
+                            <tr>
+                               
                             </tr>
                         </tbody>
                     </table>

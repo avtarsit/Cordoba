@@ -35,5 +35,8 @@ namespace CordobaModels.Entities
        public string icon { get; set; }
        public int? catalog_limit { get; set; }
        public string css_overrides { get; set; }
+
+       public string terms { get; set; }
+       public string description { get; set; }
     }
 }

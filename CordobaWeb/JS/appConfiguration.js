@@ -199,7 +199,7 @@ function GetLayoutName() {
                  }
                   , ManageLanguage = {
                       name: 'ManageLanguage',
-                      url: '/System/ManageLanguage?LanguageCd:languageCd',
+                      url: '/System/ManageLanguage?LanguageId:languageId',
                       templateUrl: 'Templates/' + LayoutName + '/Language/ManageLanguage.html'
                   }
 
@@ -464,7 +464,7 @@ function GetLayoutName() {
                  }
                
 
-
+                 $rootScope.GlobalDateFormat = 'dd/MM/yyyy';
               
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");

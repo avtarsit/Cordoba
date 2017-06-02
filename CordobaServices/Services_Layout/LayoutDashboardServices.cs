@@ -70,5 +70,17 @@ namespace CordobaServices.Services_Layout
             return result;
         }
 
+        public int? RemoveFromWishList(int storeid, int product_id, int customer_Id)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("customer_id",customer_Id)
+               ,new SqlParameter("store_id",storeid)
+               ,new SqlParameter("product_id",product_id)               
+            };
+            var result = objGenericRepository.ExecuteSQL<int>("RemoveFromWishList", sqlParameter).FirstOrDefault();
+            return result;
+
+        }
+
     }
 }

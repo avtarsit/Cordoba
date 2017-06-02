@@ -10,5 +10,7 @@ namespace CordobaServices.Interfaces
    public interface IStoreServices
     {
        List<StoreEntity> GetStoreList(int? StoreID);
+
+       StoreEntity GetStoreById(int store_id);
     }
 }

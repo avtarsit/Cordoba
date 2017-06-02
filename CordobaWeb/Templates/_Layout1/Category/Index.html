@@ -1,4 +1,5 @@
-﻿<div class="container-fluid products" ng-controller="CategoryListController">
+﻿
+<div class="container-fluid products" ng-controller="CategoryListController">
     <div class="col-lg-3 col-md-4 col-xs-12">
         <div class="row">
             <div class="col-md-12 col-sm-6 col-xs-12 mb-20">
@@ -55,12 +56,13 @@
                 <div class="row">
                     <div class="product-block" ng-repeat="product in ProductList">
                         <div class="product-img" ng-controller="AddProductToCartController">
-                            <img ng-src="{{product.Image}}" alt="product" />
+                            <img ng-src="{{product.Image}}" alt="product" data-action="zoom" />
                             <button class="btn add-cart-btn" ng-click="AddProductToCart(product)"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
                         <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})">{{product.name}}</a>
-                        <p><span>{{product.Price}} points</span></p>
-                        <p ng-bind="product.Model"></p>
+                        <p><span class="pull-left">{{product.Price}} points</span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
+                       
+                        <p ng-bind="product.Model"></p>                                                                  
                     </div>
 
                 </div>

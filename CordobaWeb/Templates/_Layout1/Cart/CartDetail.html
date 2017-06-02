@@ -57,12 +57,12 @@
                         <div class="col-sm-12">
                             <div class="remove-product">
                                 <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
-                                <button class="remove-item"  ng-click="AddtoWishList(Item)"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
+                                <button class="remove-item"  ng-click="AddtoWishList(Item)"><i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="cart-detail" ng-if="!(CartItemList.length>0)">
+                <div class="cart-detail" ng-if="IsEmptyShoppingCart==1">
                     <img class="cursor-pointer" src="../../../Content/layout1/images/EmptyShoppingCart.png" ui-sref="Home" alt="Empty Cart" />
                 </div>
                 <div class="payment-summary">
