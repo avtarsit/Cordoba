@@ -1,9 +1,7 @@
 ﻿
 <style>
   /*Some CSS*/
-
 .magnify {width: 450px; margin: 50px auto; position: relative; cursor: none}
-
 /*Lets create the magnifying glass*/
 .large {
 	width: 175px; height: 175px;
@@ -22,8 +20,6 @@
      display: block; 
      height:400px; 
 }
-
-
 </style>
 <div ng-controller="ProductDetailLayoutController">
     <div class="product-detail">
@@ -57,7 +53,10 @@
            
                 <div class="price mt-10" ng-controller="AddProductToCartController">
                     <br />
-                    <button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>
+
+                    <button class="btn-primary btn-flat btn-lg btnaddtocart" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
+
+                    <!--<button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>-->
                 </div>
             </div>
             <div class="col-sm-12 mb-30">
