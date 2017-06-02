@@ -169,11 +169,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRewardGroupCustomers(int loginUserId)
+        public HttpResponseMessage GetRewardGroupCustomers(int loginUserId,int reward_id)
         {
             try
             {
-                var rewardGroupCustomers = _rewardService.GetRewardGroupCustomers(loginUserId);
+                var rewardGroupCustomers = _rewardService.GetRewardGroupCustomers(loginUserId,reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, rewardGroupCustomers);
             }
             catch (Exception)

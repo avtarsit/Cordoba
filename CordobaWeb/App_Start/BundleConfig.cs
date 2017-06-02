@@ -140,6 +140,8 @@ namespace CordobaWeb
                      "~/Content/layout1/css/style.css",
                       "~/Content/layout1/css/dpNumberPicker.min.css",
                      "~/Content/layout1/css/responsive.css",
+                     "~/Content/layout1/css/classes.css",
+                     "~/Content/layout1/css/zoom.css",
                      "~/Content/css/toastr.min.css",
                      "~/Scripts/angular-star-rating/main.css"
                      //"~/Scripts/jquery-bar-ratting/themes/fontawesome-stars.css"
@@ -154,15 +156,14 @@ namespace CordobaWeb
                      "~/Scripts/layout1/js/jquery.bxslider.min.js",
                      "~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js" ,
                      "~/Scripts/layout1/js/dpNumberPicker.min.js",
-                     "~/Scripts/layout1/js/jquery.simpleLens.js",  
+                     "~/Scripts/layout1/js/enhance.js",
+                     "~/Scripts/layout1/js/velocity.min.js",   
                      "~/Scripts/bootstrap-modalmanager.js",
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
                      "~/Scripts/bootbox.js",
-
-                     "~/Scripts/ckeditor/ckeditor.js"
-                    
+                     "~/Scripts/ckeditor/ckeditor.js"                    
                    //"~/Scripts/jquery-bar-ratting/jquery.barrating.min.js"
                      ));
                    

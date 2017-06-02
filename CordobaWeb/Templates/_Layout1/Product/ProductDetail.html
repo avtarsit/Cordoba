@@ -1,10 +1,29 @@
 ﻿
 <style>
-    .center{
-width: 150px;
-  margin: 40px auto;
-  
+  /*Some CSS*/
+
+.magnify {width: 450px; margin: 50px auto; position: relative; cursor: none}
+
+/*Lets create the magnifying glass*/
+.large {
+	width: 175px; height: 175px;
+	position: absolute;
+	border-radius: 100%;	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	
+	/*hide the glass by default*/
+	display: none;
 }
+/*To solve overlap bug at the edges during magnification*/
+.small {
+     display: block; 
+     height:400px; 
+}
+
+
 </style>
 <div ng-controller="ProductDetailLayoutController">
     <div class="product-detail">
@@ -12,87 +31,32 @@ width: 150px;
             <div class="col-sm-6">
                 <div class="image-zooming">
                     <div class="product-image">
-                        <div class="simpleLens-gallery-container" id="demo-1">
-                            <div class="simpleLens-container">
-                                <div class="simpleLens-big-image-container">
-                                    <a class="simpleLens-lens-image" data-lens-image="{{ProductObj.Image}}">
-                                        <img ng-src="{{ProductObj.Image}}" class="simpleLens-big-image">
-                                    </a>
-                                </div>
-                            </div>
 
-                            <div class="simpleLens-thumbnails-container">
-                                <a href="#" class="simpleLens-thumbnail-wrapper"
-                                   data-lens-image="{{ProductObj.Image}}"
-                                   data-big-image="{{ProductObj.Image}}">
-                                    <img ng-src="{{ProductObj.Image}}">
-                                </a>
-
-                                <a href="#" class="simpleLens-thumbnail-wrapper"
-                                   data-lens-image="{{ProductObj.Image}}"
-                                   data-big-image="{{ProductObj.Image}}">
-                                    <img ng-src="{{ProductObj.Image}}">
-                                </a>
-
-                                <a href="#" class="simpleLens-thumbnail-wrapper"
-                                   data-lens-image="{{ProductObj.Image}}"
-                                   data-big-image="{{ProductObj.Image}}">
-                                    <img ng-src="{{ProductObj.Image}}">
-                                </a>
-
-
-                                <a href="#" class="simpleLens-thumbnail-wrapper"
-                                   data-lens-image="{{ProductObj.Image}}"
-                                   data-big-image="{{productobj.Image}}">
-                                    <img ng-src="{{ProductObj.Image}}">
-                                </a>
-                            </div>
-                        </div>
-
-                       
+                        <div class="magnify">
+                            <div class="large"></div>                          
+                            <img class="small" src="{{ProductObj.Image}}" width="500" />
+                        </div>                     
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-6">
                 <h3 class="heading" ng-bind="ProductObj.name"></h3>
-
-
                 <div class="price mt-10">
                     <p>Modal No:</p><span ng-bind="ProductObj.Model"></span>
                 </div>
                 <div class="price mt-10">
                     <span class="points" ng-bind="ProductObj.Price+' Points'"></span>
                 </div>
-                <!--<div class="price mt-10">
-                    <p>Color:</p><span> White</span>
-                </div>
-                <div class="price mt-10">
-                    <p>Type:</p><span> MNPF2B/A</span>
-                </div>-->
-                <!--<div class="price mt-10">
-                    <p>Quantity:</p>
-                        <div class="input-group col-sm-3">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-danger btn-number" ng-click="DecreaseQuantity(ProductObj)">
-                                    <span class="glyphicon glyphicon-minus"></span>
-                                </button>
-                            </span>
-                            <input type="text" class="form-control input-group  input-number" disabled ng-model="ProductObj.CartQuantity">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-success btn-number" ng-click="IncreaseQuantity(ProductObj)">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </span>
-                        </div>                 
-            </div>-->
+              
                 <div class="price mt-10">
                     <p class="mt-5">Manufacture By:</p><span ng-bind="ProductObj.ManufactureName"> </span> <img ng-src="{{ProductObj.ManufactureImage}}" alt="manufactureImage" />
                 </div>
                 <div class="price mt-10">
                     <p>Supplier:</p><span ng-bind="ProductObj.SupplierName"></span>
                 </div>
-                <div class="add-cart mt-20 mb-20" ng-controller="AddProductToCartController">
+           
+                <div class="price mt-10" ng-controller="AddProductToCartController">
+                    <br />
                     <button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>
                 </div>
             </div>
@@ -118,7 +82,7 @@ width: 150px;
                 <div class="col-md-3" ng-repeat="SimilarProduct in RelatedProductList">
                     <div class="product-block">
                         <div class="product-img">
-                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" />
+                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" data-action="zoom" />
                         </div>
                         <a ui-sref="LayoutProductDetail({ProductId:SimilarProduct.product_id})">{{SimilarProduct.name}}</a>
                         <p ng-bind="SimilarProduct.Model"></p>
@@ -127,23 +91,52 @@ width: 150px;
                             <button class="btn btn-default" ng-click="AddProductToCart(SimilarProduct)">Add to Cart</button>
                         </div>
                     </div>
+
+                   
+
                 </div>             
             </div>
         </div>
     </div>
 </div>
 <script>
-    //ProductImage zooming
-    $('#demo-1 .simpleLens-thumbnails-container img').simpleGallery({
-        loading_image: '/Content/layout1/images/loading.gif'
+
+    $(document).ready(function(){
+   	var native_width = 0;
+	var native_height = 0;
+  $(".large").css("background","url('" + $(".small").attr("src") + "') no-repeat");
+	$(".magnify").mousemove(function(e){
+		if(!native_width && !native_height)
+		{
+			var image_object = new Image();
+			image_object.src = $(".small").attr("src");
+			native_width = image_object.width;
+			native_height = image_object.height;
+		}
+		else
+		{
+			var magnify_offset = $(this).offset();
+			var mx = e.pageX - magnify_offset.left;
+			var my = e.pageY - magnify_offset.top;
+			if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
+			{
+				$(".large").fadeIn(100);
+			}
+			else
+			{
+				$(".large").fadeOut(100);
+			}
+			if($(".large").is(":visible"))
+			{
+				var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
+				var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
+				var bgp = rx + "px " + ry + "px";
+				var px = mx - $(".large").width()/2;
+				var py = my - $(".large").height()/2;
+				$(".large").css({left: px, top: py, backgroundPosition: bgp});
+			}
+		}
+	})
     });
-
-    $('#demo-1 .simpleLens-big-image').simpleLens({
-        loading_image: '/Content/layout1/images/loading.gif'
-    });
-
-
-    //quantity add-minus
- 
 
 </script>

@@ -3,7 +3,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
+    $scope.IsEmptyShoppingCart = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.cartgroup_id = 0;
     if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null)
@@ -35,6 +35,7 @@
                   UserDetail.TotalItemAdded = 0;
                   $rootScope.CustomerDetail = UserDetail;
                   localStorageService.set("loggedInUser", UserDetail);
+                  $scope.IsEmptyShoppingCart = 1;
               }
 
               if (UserDetail.customer_id>0)

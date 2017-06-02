@@ -36,10 +36,11 @@
                                                 Customer Photo
                                             </th>
                                             <th>Medal</th>
+                                            <th>comment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="childItem in RewardDetails | filter:{'reward_giventouser_id':Item.reward_giventouser_id}">
+                                        <tr ng-repeat="childItem in RewardDetails | filter:{'reward_giventouser_id':Item.reward_giventouser_id}:true">
                                             <td>{{childItem.RewardedByCustomer}}</td>
                                             <td>
                                                 <div>
@@ -47,6 +48,7 @@
                                                 </div>
                                             </td>
                                             <td>{{childItem.Medal}}</td>
+                                            <td>{{childItem.comment}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

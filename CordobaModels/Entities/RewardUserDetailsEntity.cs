@@ -11,11 +11,12 @@ namespace CordobaModels.Entities
         public int id { get; set; }
         public int reward_user_id { get; set; }
         public int reward_givenby_userid { get; set; }
-        public int reward_value_id { get; set; }
+        public int reward_value { get; set; }
         public DateTime reward_given_date { get; set; }
         public string comment { get; set; }
         public string Medal { get; set;}
         public string Customer { get; set; }
+        public int reward_type_id { get; set; }
     }
 
     public class AddRewardEntity
@@ -23,13 +24,14 @@ namespace CordobaModels.Entities
         public int customer_id { get; set; }
         public string customer { get; set; }
         public bool IsRewarded { get; set; }
-        public string reward_value { get; set; }
+        public string reward_name { get; set; }
         public string CustomerImage { get; set; }
         public int? reward_id { get; set; }
         public bool? IsWinner { get; set; }
         public int? loginUserid { get; set; }
         public string Comment { get; set; }
         public int? reward_type_id { get; set; }
-        public int? reward_value_id { get; set; }
+        public int? NoOfStars { get; set; }
+        public int? reward_value { get; set; }
     }
 }

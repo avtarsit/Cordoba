@@ -84,12 +84,12 @@
         if(UserDetail.customer_id>0)
         {
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -2});
-        }       
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
     }
-
-  
-
-
+ 
     //$scope.GetStoreDetailForDashboard = function () {
       
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
