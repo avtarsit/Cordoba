@@ -79,12 +79,39 @@
 
       });
     }
+
+    $scope.GetZoneListByCountry = function (countryId) {
+        countryId = countryId == null ? 0 : countryId;
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
+        .then(function (response) {
+            $scope.RegionStateList = [];
+            if (response.data.length > 0) {
+                $scope.RegionStateList = response.data;
+            }
+            else {
+                $scope.RegionStateList = [];
+            }
+        })
+       .catch(function (response) {
+           $scope.RegionStateList = [];
+       })
+       .finally(function () {
+
+       });
+    }
    
     $scope.GetStoreById = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id)
           .then(function (response) {
               $scope.StoreObj = response.data;
-              debugger;
+              if ($scope.StoreObj.store_id == 0)
+              {
+                  $scope.StoreObj.country_id = 222;
+                  $scope.StoreObj.language = 'en';
+                  $scope.StoreObj.currency = 'P82';
+              }
+              $scope.GetZoneListByCountry($scope.StoreObj.country_id);
+            
           })
       .catch(function (response) {
 
@@ -139,13 +166,32 @@
 
     }
 
+    $scope.InsertUpdateStore = function (form) {
+        if (form.$valid) {
+            var StoreEntity = JSON.stringify($scope.StoreObj);
+            $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore", StoreEntity)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Store Saved Successfully.");
+                     $state.go('ShowStore');
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.customError("Error occur during save record.");
+          })
+          .finally(function () {
+          });
+        }
+    }
+
+
     function Init() {
         GetCountryList();
         GetLanguageList();
         GetCurrencyList();
-
         $scope.GetStoreById();
     }
+
 
 
 

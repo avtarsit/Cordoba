@@ -12,5 +12,7 @@ namespace CordobaServices.Interfaces
        List<StoreEntity> GetStoreList(int? StoreID);
 
        StoreEntity GetStoreById(int store_id);
+
+       int InsertUpdateStore(StoreEntity storeEntity);
     }
 }

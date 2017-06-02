@@ -20,10 +20,10 @@
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                        <button type="submit" ng-click="InsertUpdateStore(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
                     <li ng-if="IsEditMode==true">
-                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Store" ng-click="DeleteStore(CountryObj)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
+                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Store" ng-click="DeleteStore()"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
                     </li>
                 </ul>
             </div>
@@ -40,17 +40,19 @@
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1">
 
-                                    <div role="tabpanel" class="form-horizontal" id="messages">
+                                    <div role="tabpanel" class="form-horizontal" id="messages" style="margin-top:5px">
                                         <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && !form.$valid">
                                             <ul ng-show="validationErrors">
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.StoreURL.$error.required">Store Url is required.</li>
-                                                <li ng-show="form.StoreName.$error.required">Store Name is required.</li>
-                                                <li ng-show="form.StoreOwner.$error.required">Store Owner is required.</li>
-                                                <li ng-show="form.StoreAddress.$error.required">Store Address is required.</li>
-                                                <li ng-show="form.Email.$error.required">Email is required.</li>
+                                                <li ng-show="form.StoreURL.$error.required">Store url is required.</li>
+                                                <li ng-show="form.StoreName.$error.required">Store name is required.</li>
+                                                <li ng-show="form.StoreOwner.$error.required">Store owner is required.</li>
+                                                <li ng-show="form.CkWelcomeMessage.$error.required">Welcome message is required.</li>
+                                                <li ng-show="form.StoreAddress.$error.required">Address is required.</li>
+                                                <li ng-show="form.Email.$error.required || form.Email.$error.email">Email address is Required! OR Email address is not valid.</li>
+                                                <li ng-show="form.Telephone.$error.required">Telephone is required.</li>
                                                 <li ng-show="form.MetaTitle.$error.required">Meta Title is required.</li>
                                             </ul>
                                         </div>
@@ -65,7 +67,6 @@
                                     <li role="presentation"><a data-target="#StoreTab" role="tab" data-toggle="tab">Store</a></li>
                                     <li role="presentation"><a data-target="#LocalTab" role="tab" data-toggle="tab">Local</a></li>
                                 </ul>
-
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="GenaralTab">
@@ -89,49 +90,43 @@
                                                     <input type="text" class="form-control" name="StoreOwner" maxlength="200" placeholder="Enter Store Owner" ng-model="StoreObj.title" required="required">
                                                 </div>
                                             </div>
-
-                                            <div class="form-group mandatoryField">
+                                            <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">Welcome Message</label>
                                                 <div class="col-lg-9">
-                                                    <textarea ckeditor="" name="CkWelcomeMessage" id="CkWelcomeMessage" rows="4" cols="4" ng-model="StoreObj.description"></textarea>
+                                                    <textarea ckeditor="" name="CkWelcomeMessage" id="CkWelcomeMessage" rows="4" cols="4" ng-model="StoreObj.description" required="required"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="form-group mandatoryField">
-                                                <label class="col-lg-2 control-label mandatoryField">Store Terms and Conditions</label>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Store Terms and Conditions</label>
                                                 <div class="col-lg-9">
                                                     <textarea ckeditor="" name="CkStoreTermCondition" id="CkStoreTermCondition" rows="4" cols="4" ng-model="StoreObj.terms"></textarea>
                                                 </div>
                                             </div>
-
-
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField"> Address</label>
                                                 <div class="col-lg-9">
-                                                    <textarea type="text" class="form-control" name="StoreAddress" maxlength="2000" placeholder="Enter Store Address" ng-model="StoreObj.StoreAddress"></textarea>
+                                                    <textarea type="text" class="form-control" name="StoreAddress" maxlength="2000" placeholder="Enter Store Address" ng-model="StoreObj.address" required="required"></textarea>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">E-mail</label>
                                                 <div class="col-lg-9">
-                                                    <input type="email" class="form-control" name="Email" maxlength="50" placeholder="Enter Store Email" ng-model="StoreObj.Email" required="required">
+                                                    <input type="email" class="form-control" validate-email name="Email" maxlength="50" placeholder="Enter Store Email" ng-model="StoreObj.email" required="required" />
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">Telephone</label>
                                                 <div class="col-lg-9">
-                                                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="StoreObj.Telephone" required="required">
+                                                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="StoreObj.telephone" required="required" />
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Image</label>
                                                 <div class="col-lg-5">
-                                                    <img src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                                    <img  src="../../../Content/Images/Manufacturer/no_image-100x100.png" />
+                                                    <input type="hidden" name="image" ng-model="StoreObj.logo"  id="input-image">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <!--End General Tab-->
                                     </div>
@@ -143,7 +138,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label mandatoryField">Meta Title</label>
                                                     <div class="col-lg-9">
-                                                        <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.MetaTitle" required="required">
+                                                        <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.meta_title" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -159,22 +154,22 @@
                                                         <textarea type="text" class="form-control" rows="20" name="Cssoverrides" ng-model="StoreObj.css_overrides"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <label class="col-lg-2 control-label">Meta Tag Keywords</label>
                                                     <div class="col-lg-9">
                                                         <textarea type="text" class="form-control" name="MetaTagKeywords" maxlength="2000" placeholder="Meta Tag Keywords" ng-model="StoreObj.MetaTagDescription"></textarea>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Template</label>
                                                     <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="TemplateId" ng-model="StoreObj.TemplateId" ng-options="option.TemplateId as option.TemplateName for option in TemplateList"></select>
+                                                        <select class="form-control cursor-pointer" name="TemplateId" ng-model="StoreObj.template" ng-options="option.TemplateName as option.TemplateName for option in TemplateList"></select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Default Layout</label>
                                                     <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="LayoutId" ng-model="StoreObj.LayoutId" ng-options="option.LayoutId as option.LayoutName for option in LayoutList"></select>
+                                                        <select class="form-control cursor-pointer" name="LayoutId" ng-model="StoreObj.layout" ng-options="option.LayoutName as option.LayoutName for option in LayoutList"></select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,13 +182,18 @@
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Country</label>
                                                 <div class="col-lg-9">
-                                                    <select class="form-control cursor-pointer" name="Country" ng-model="StoreObj.country_id" ng-options="option.country_id as option.name for option in CountryList"></select>
+                                                    <select class="form-control cursor-pointer" ng-change="GetZoneListByCountry(StoreObj.country_id)" name="Country" ng-model="StoreObj.country_id" ng-options="option.country_id as option.name for option in CountryList">
+                                                        <option value=""> --- Please Select --- </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">Region/State</label>
                                                 <div class="col-lg-9">
-                                                    <select class="form-control cursor-pointer" name="State" ng-model="StoreObj.StateId" ng-options="option.StateId as option.StateName for option in StateList"></select>
+                                                    <select ng-options="Region.name as Region.name  for Region in RegionStateList"
+                                                            class="form-control" ng-model="StoreObj.county" name="AddressRegion_LIst">
+                                                        <option value=""> --- Please Select --- </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">

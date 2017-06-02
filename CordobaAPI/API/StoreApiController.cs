@@ -1,4 +1,5 @@
-﻿using CordobaServices.Interfaces;
+﻿using CordobaModels.Entities;
+using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,23 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpPost]
+        public HttpResponseMessage InsertUpdateStore(StoreEntity storeEntity)
+        {
+            try
+            {
+                var result = _StoreServices.InsertUpdateStore(storeEntity);
+                if(result!=null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         // GET: api/StoreApi
         public IEnumerable<string> Get()
