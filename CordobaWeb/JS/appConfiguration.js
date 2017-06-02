@@ -284,7 +284,7 @@ function GetLayoutName() {
                 }
                 , ViewReward = {
                     name: 'ViewReward',
-                    url: '/Reward/ViewReward?rewardId:reward_id&name:rewardname',
+                    url: '/Reward/ViewReward?rewardId:reward_id',
                     templateUrl: 'Templates/' + LayoutName + '/Reward/ViewCustomerRewards.html'
                 }
                 , ViewRewardCustomerDetails = {

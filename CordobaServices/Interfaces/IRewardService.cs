@@ -21,5 +21,8 @@ namespace CordobaServices.Interfaces
         List<RewardUserEntity> RewardCustomerDetails(int reward_id);
         List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId,int reward_id);
         int AddCustomer_Reward(AddRewardEntity objAddRewardEntity);
+        int Declare_RewardWinner(int reward_id, int reward_user_id, string admin_comment);
+        int Delete_RewardWinner(int reward_user_id);
+        List<RewardUserEntity> Dashboard_RewardWinner();
     }
 }

@@ -98,7 +98,7 @@ namespace CordobaServices.Services
             return rewardcustomers;
         }
 
-        public List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId,int reward_id)
+        public List<AddRewardEntity> GetRewardGroupCustomers(int loginUserId, int reward_id)
         {
             var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
             var paramLoginUserId = new SqlParameter { ParameterName = "loginUserid", DbType = DbType.Int32, Value = loginUserId };
@@ -122,6 +122,28 @@ namespace CordobaServices.Services
             int reward_inserted_id = objGenericRepository.ExecuteSQL<int>("AddCustomer_Reward", paramRewardId, paramISWinner, paramCustomerId, paramLoginUserId,
                 paramRewardName, paramRewardTypeId, paramComment).SingleOrDefault();
             return reward_inserted_id;
+        }
+
+        public int Declare_RewardWinner(int reward_id, int reward_user_id, string admin_comment)
+        {
+            var paramReward_id = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
+            var paramReward_user_id = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
+            var paramAdminComment = new SqlParameter { ParameterName = "admin_comment", DbType = DbType.String, Value = admin_comment ?? (object)DBNull.Value };
+            int result = objGenericRepository.ExecuteSQL<int>("Declare_RewardWinner", paramReward_id, paramReward_user_id, paramAdminComment).SingleOrDefault();
+            return result;
+        }
+
+        public int Delete_RewardWinner(int reward_user_id)
+        {
+            var paramReward_user_id = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
+            int result = objGenericRepository.ExecuteSQL<int>("Delete_RewardWinner", paramReward_user_id).SingleOrDefault();
+            return result;
+        }
+
+        public List<RewardUserEntity> Dashboard_RewardWinner()
+        {
+            var winners = objGenericRepository.ExecuteSQL<RewardUserEntity>("Dashboard_RewardWinner").ToList();
+            return winners;
         }
     }
 }

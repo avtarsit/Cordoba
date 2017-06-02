@@ -1,5 +1,5 @@
 ﻿
-<div >
+<div>
     <div class="container-fluid">
         <div class="col-md-9 col-xs-12 mb-30">
             <div class="row">
@@ -27,43 +27,80 @@
                                             <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
                                             <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
                                         </div>
-                                    </div>                                 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-      
+
         </div>
+
+
+
+
         @* Dashboard_HotDealsController *@
-        <div class="col-md-3 col-xs-12 mb-30" ng-controller="Dashboard_HotDealsController">
-            <div class="col-sm-12 block-bg deals">
-                <div class="block-heading">
-                    <h4>Hot Deals</h4>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    
-                    <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
-                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                            <div class="media-left">
-                                <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading" ng-bind="HotDeals.HotDealsName"></h4>
-                                <p ng-bind="HotDeals.HotDealsCode"></p>
-                                <span ng-bind="HotDeals.Points"></span>
-                            </div>
-                            <div class="add-cart">
-                                <button class="btn btn-empty" >Add to Cart</button>
+        <div ng-controller="Dashboard_HotDealsController">
+            <div class="col-md-3 col-xs-12 mb-30" ng-if="!Make_rewardWinnerVisible">
+                <div class="col-sm-12 block-bg deals">
+                    <div class="block-heading">
+                        <h4>Hot Deals</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+
+                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" ng-bind="HotDeals.HotDealsName"></h4>
+                                    <p ng-bind="HotDeals.HotDealsCode"></p>
+                                    <span ng-bind="HotDeals.Points"></span>
+                                </div>
+                                <div class="add-cart">
+                                    <button class="btn btn-empty">Add to Cart</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     
+
+        <div ng-controller="Dashboard_RewardWinnerController">
+            <div class="col-md-3 col-xs-12 mb-30" ng-if="Make_rewardWinnerVisible">
+                <div class="col-sm-12 block-bg deals">
+                    <div class="block-heading">
+                        <h4>Reward Winners</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+
+                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                            <div class="media col-sm-12" ng-repeat="rewardWinner in RewardWinners" data-notify-when-repeat-finished>
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" alt="deals" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" ng-bind="rewardWinner.Title"></h4>
+                                    <p ng-bind="rewardWinner.WinnerName"></p>
+                                    <span ng-bind="rewardWinner.Rewards"></span>
+                                    <span ng-bind="rewardWinner.winner_declared_date | date:'MM-dd-yyyy'"></span>
+                                </div>
+                                @*<div class="add-cart">
+                    <button class="btn btn-empty">Add to Cart</button>
+                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         @* Dashboard_PopularCategoryController *@
         <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category">
@@ -78,7 +115,7 @@
                             </div>
                             <p>{{PopularCategory.name}}</p>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +172,7 @@
         </div>
         @* Dashboard_LatestProductController *@
         <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
-            <div class="row" >
+            <div class="row">
                 <div class="col-sm-12 latest-product mb-30" ng-if="LatestProductList.length>0">
                     <div class="block-heading">
                         <h4>Latest Products</h4>
@@ -176,7 +213,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {            
+    $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.best-seller').mCustomScrollbar({
             axis: "x",

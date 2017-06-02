@@ -93,7 +93,8 @@ namespace CordobaWeb
                      "~/Content/admin/css/components.css",
                        "~/Content/admin/css/components.css",
                      "~/Content/admin/css/colors.css",
-                     "~/Content/css/toastr.css"
+                     "~/Content/css/toastr.css",
+                      "~/Scripts/angular-star-rating/main.css"
                      ));
                 
             //---------------------CSS--------------------//

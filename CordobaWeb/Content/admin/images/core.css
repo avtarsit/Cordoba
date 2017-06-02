@@ -6305,7 +6305,7 @@ h6.panel-title,
 .bronze { background-image: url("../images/bronze.png"); }
 .medal-rating input:active +.medal { opacity: .9; }
 .medal-rating input:checked +.medal { -webkit-filter: none; -moz-filter: none; filter: none; }
-.medal-rating input:disabled + .medal:hover + .medal:checked{ cursor:default; -webkit-filter: brightness(1.8) grayscale(1) opacity(.7); -moz-filter: brightness(1.8) grayscale(1) opacity(.7); filter: brightness(1.8) grayscale(1) opacity(.7); }
+.medal-rating input:disabled + .medal:hover + .medal:checked { cursor:default; -webkit-filter: brightness(1.8) grayscale(1) opacity(.7); -moz-filter: brightness(1.8) grayscale(1) opacity(.7); filter: brightness(1.8) grayscale(1) opacity(.7); }
 .medal { cursor: pointer; background-size: 35px 70px; background-repeat: no-repeat; display: inline-block; width: 45px; height: 70px; background-position: left center; margin-right:20px; padding-top: 80px; -webkit-transition: all 100ms ease-in; -moz-transition: all 100ms ease-in; transition: all 100ms ease-in; -webkit-filter: brightness(1.8) grayscale(1) opacity(.7); -moz-filter: brightness(1.8) grayscale(1) opacity(.7); filter: brightness(1.8) grayscale(1) opacity(.7); }
 .medal:hover { -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9); -moz-filter: brightness(1.2) grayscale(.5) opacity(.9); filter: brightness(1.2) grayscale(.5) opacity(.9); }
 .emp-name { float:left; width:100%; color:#333; font-size:20px; line-height:30px; margin-bottom:15px; }

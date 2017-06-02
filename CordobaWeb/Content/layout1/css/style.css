@@ -487,8 +487,11 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .bronze { background-image: url("../images/bronze.png"); }
 .medal-rating input:active +.medal { opacity: .9; }
 .medal-rating input:checked +.medal { -webkit-filter: none; -moz-filter: none; filter: none; }
+
 .medal { cursor: pointer; background-size: 35px 70px; background-repeat: no-repeat; display: inline-block; width: 45px; height: 70px; background-position: left center; margin-right:20px; padding-top: 80px; -webkit-transition: all 100ms ease-in; -moz-transition: all 100ms ease-in; transition: all 100ms ease-in; -webkit-filter: brightness(1.8) grayscale(1) opacity(.7); -moz-filter: brightness(1.8) grayscale(1) opacity(.7); filter: brightness(1.8) grayscale(1) opacity(.7); }
 .medal:hover { -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9); -moz-filter: brightness(1.2) grayscale(.5) opacity(.9); filter: brightness(1.2) grayscale(.5) opacity(.9); }
+
+.medal-rating input:disabled + .medal:hover + .medal:checked + .medal{ cursor:default !important; -webkit-filter: brightness(1.8) grayscale(1) opacity(.7); -moz-filter: brightness(1.8) grayscale(1) opacity(.7); filter: brightness(1.8) grayscale(1) opacity(.7); }
 .emp-name { float:left; width:100%; color:#333; font-size:20px; line-height:30px; margin-bottom:15px; }
 .icon-cmt { float:right; color:#cc0001; font-size:23px; line-height:30px; position:absolute; bottom:-5px; right:15px; }
 .write-cmt { display:none; float:left; width:auto; height:100%; background:#fff; position:absolute; top:0; left:15px; right:15px; z-index:9; padding:15px; }

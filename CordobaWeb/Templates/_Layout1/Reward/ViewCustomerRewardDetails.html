@@ -15,13 +15,11 @@
                     <thead>
                         <tr>
                             <th>Rewarded Customer</th>
-
                         </tr>
-                    </thead> 
-                    <tbody>
+                    </thead>
+                    <tbody ng-if="RewardDetails.length>0">
                         <tr ng-repeat="Item in RewardDetails  | unique:'reward_giventouser_id'">
-                            <td ng-bind="Item.RewardedCustomer">
-                            </td>
+                            <td ng-bind="Item.RewardedCustomer"></td>
                             <td>
                                 <div>
                                     <img ng-src="{{Item.Customer_img}}" width="100" height="100" />
@@ -57,6 +55,11 @@
                             <td ng-bind="Item.Medal"></td>-->
 
 
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="RewardDetails.length==0">
+                        <tr>
+                            <td>No Records Found</td>
                         </tr>
                     </tbody>
                 </table>

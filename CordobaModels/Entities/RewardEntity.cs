@@ -22,4 +22,5 @@ namespace CordobaModels.Entities
         public int? modified_by { get; set; }
         public int? Participate { get; set; }
     }
+
 }

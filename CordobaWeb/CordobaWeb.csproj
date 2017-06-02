@@ -195,6 +195,8 @@
     <Content Include="Content\admin\css\icons\icomoon\styles.css" />
     <Content Include="Content\admin\images\backgrounds\boxed_bg.png" />
     <Content Include="Content\admin\images\backgrounds\boxed_bg_retina.png" />
+    <Content Include="Content\admin\images\bronze.png" />
+    <Content Include="Content\admin\images\core.css" />
     <Content Include="Content\admin\images\cover.jpg" />
     <Content Include="Content\admin\images\flags\ad.png" />
     <Content Include="Content\admin\images\flags\ae.png" />
@@ -443,6 +445,7 @@
     <Content Include="Content\admin\images\flags\za.png" />
     <Content Include="Content\admin\images\flags\zm.png" />
     <Content Include="Content\admin\images\flags\zw.png" />
+    <Content Include="Content\admin\images\gold.png" />
     <Content Include="Content\admin\images\login_cover.jpg" />
     <Content Include="Content\admin\images\logo\logo.png" />
     <Content Include="Content\admin\images\logo_dark.png" />
@@ -473,6 +476,7 @@
     <Content Include="Content\admin\images\Product\ZW-1344-300-40x40.jpg" />
     <Content Include="Content\admin\images\Product\ZW-146-300-40x40.jpg" />
     <Content Include="Content\admin\images\signature.png" />
+    <Content Include="Content\admin\images\silver.png" />
     <Content Include="Content\admin\images\ui\datepicker_trigger.png" />
     <Content Include="Content\admin\images\ui\map_marker.png" />
     <Content Include="Content\css\angular-datepicker.css" />
@@ -514,11 +518,13 @@
     <Content Include="Content\layout1\css\style.css" />
     <Content Include="Content\layout1\css\zoom.css" />
     <Content Include="Content\layout1\images\bestSeller.jpg" />
+    <Content Include="Content\layout1\images\bronze.png" />
     <Content Include="Content\layout1\images\checkin.png" />
     <Content Include="Content\layout1\images\deals.jpg" />
     <Content Include="Content\layout1\images\electronics.png" />
     <Content Include="Content\layout1\images\EmptyShoppingCart.png" />
     <Content Include="Content\layout1\images\fashion.png" />
+    <Content Include="Content\layout1\images\gold.png" />
     <Content Include="Content\layout1\images\grey.jpg" />
     <Content Include="Content\layout1\images\homeApp.png" />
     <Content Include="Content\layout1\images\loader.gif" />
@@ -532,6 +538,7 @@
     <Content Include="Content\layout1\images\offer3.jpg" />
     <Content Include="Content\layout1\images\personalCare.png" />
     <Content Include="Content\layout1\images\product1.jpg" />
+    <Content Include="Content\layout1\images\silver.png" />
     <Content Include="Content\layout1\images\sliderBanner1.jpg" />
     <Content Include="Content\layout1\images\sliderBanner2.jpg" />
     <Content Include="Content\layout1\images\specialOffer.jpg" />
@@ -663,6 +670,8 @@
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
     <Content Include="JS\Admin\Reward\Controllers\AddOrUpdateRewardController.js" />
     <Content Include="JS\Admin\Reward\Controllers\ShowRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewCustomerRewardController.js" />
+    <Content Include="JS\Admin\Reward\Controllers\ViewRewardCustomerDetailsContoller.js" />
     <Content Include="JS\Admin\Store\Controllers\AddOrUpdateStoreController.js" />
     <Content Include="JS\Admin\Store\Controllers\ShowStoreController.js" />
     <Content Include="JS\Admin\Supplier\Controllers\AppOrUpdateSupplierController.js" />
@@ -713,6 +722,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_HotDealsController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_RewardWinnerController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />

@@ -20,5 +20,9 @@ namespace CordobaModels.Entities
         public int? id { get; set; }
         public string Customer_img { get; set; }
         public string comment { get; set; }
+        public string Title { get; set; }
+        public string RewardType { get; set; }
+        public DateTime? winner_declared_date { get; set; }
+        public string WinnerName { get; set; }
     }
 }
