@@ -22,6 +22,8 @@
      display: block; 
      height:400px; 
 }
+
+
 </style>
 <div ng-controller="ProductDetailLayoutController">
     <div class="product-detail">
@@ -80,7 +82,7 @@
                 <div class="col-md-3" ng-repeat="SimilarProduct in RelatedProductList">
                     <div class="product-block">
                         <div class="product-img">
-                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" />
+                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" data-action="zoom" />
                         </div>
                         <a ui-sref="LayoutProductDetail({ProductId:SimilarProduct.product_id})">{{SimilarProduct.name}}</a>
                         <p ng-bind="SimilarProduct.Model"></p>
@@ -89,6 +91,9 @@
                             <button class="btn btn-default" ng-click="AddProductToCart(SimilarProduct)">Add to Cart</button>
                         </div>
                     </div>
+
+                   
+
                 </div>             
             </div>
         </div>

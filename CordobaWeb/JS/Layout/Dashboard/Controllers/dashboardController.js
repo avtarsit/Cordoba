@@ -89,10 +89,7 @@
             $scope.OpenLoginPopUp();
         }
     }
-
-  
-
-
+ 
     //$scope.GetStoreDetailForDashboard = function () {
       
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")

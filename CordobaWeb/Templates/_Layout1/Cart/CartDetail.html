@@ -57,7 +57,12 @@
                         <div class="col-sm-12">
                             <div class="remove-product">
                                 <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
-                                <button class="remove-item"  ng-click="AddtoWishList(Item)"><i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist</button>
+                                <button class="remove-item" ng-if="Item.IsProductInWishlist!=true" ng-click="AddtoWishList(Item)">
+                                    <i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist
+                                </button>
+                                <button class="remove-item" ng-if="Item.IsProductInWishlist==true" ng-click="AddtoWishList(Item)" disabled="disabled">
+                                    <i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i>Added to Wishlist
+                                </button>
                             </div>
                         </div>
                     </div>
