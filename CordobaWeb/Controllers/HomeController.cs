@@ -34,15 +34,15 @@ namespace CordobaWeb.Controllers
 
                 switch (PortNumber)
                 {
-                    case 8084:
+                    case 1012:
                         LayoutNames = "Admin";
                         masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
                         break;
-                    case 8085:
+                    case 1021:
                         LayoutNames = "_Layout1";
                         masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout1");
                         break;
-                    case 8086:
+                    case 1022:
                         LayoutNames = "_Layout2";
                         masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout2");
                         break;
