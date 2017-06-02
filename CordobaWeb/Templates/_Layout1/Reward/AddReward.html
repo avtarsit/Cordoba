@@ -1,27 +1,53 @@
-﻿
+﻿<style type="text/css">
+    input[type="radio"] {
+         display: none;
+  &:not(:disabled)~label {
+    cursor: pointer;
+  }
+  &:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+    }
+</style>
 <div ng-controller="AddRewardController">
 
     <div class="container">
-        <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==2" ng-repeat="Item in Customers">
+        <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==2" ng-repeat="Item in Customers" ng-init="">
             <div class="block-bg pt-15 pb-15">
                 <div class="col-sm-4">
                     <img ng-src="{{Item.CustomerImage}}" class="img-thumbnail" alt="Image" />
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>
-                    <div class="medal-rating">
-                        <input id="gold{{$index}}" type="radio" name="medal1" value="gold" checked />
+                    <div class="medal-rating" id="medalDiv{{$index}}" ng-if="!Item.IsRewarded">
+                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" value="gold" />
                         <label class="medal gold" for="gold{{$index}}">Gold</label>
-                        <input id="silver{{$index}}" type="radio" name="medal1" value="silver" />
+                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}" value="silver" />
                         <label class="medal silver" for="silver{{$index}}">Silver</label>
-                        <input id="bronze{{$index}}" type="radio" name="medal1" value="bronze" />
+                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" value="bronze" />
                         <label class="medal bronze" for="bronze{{$index}}">Bronze</label>
                     </div>
-                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)"><i class="fa fa-comments"></i></a>
+                    <div ng-if="Item.IsRewarded">
+                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" ng-disabled="Item.IsRewarded" value="gold" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}" />
+                        <label class="medal gold" for="gold{{$index}}" ng-checked="Item.IsRewarded==true" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}">Gold</label>
+                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}" ng-disabled="Item.IsRewarded" value="silver" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}" />
+                        <label class="medal silver" for="silver{{$index}}" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}">Silver</label>
+                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" ng-disabled="Item.IsRewarded" value="bronze" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}" />
+                        <label class="medal bronze" for="bronze{{$index}}" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}">Bronze</label>
+                    </div>
+                    <!--<div class="start-rating" ng-if="Item.IsRewarded">
+                        <p>Your Rating: <b>{{Item.reward_name}}</b></p>
+                        <p>Comment: <b>{{Item.Comment}}</b></p>
+                    </div>-->
+                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!Item.IsRewarded"><i class="fa fa-comments"></i></a>
                 </div>
                 <div class="write-cmt" id="write-cmt{{$index}}">
-                    <textarea class="form-control" placeholder="Write your comment here..."></textarea>
-                    <button class="btn btn-empty">Save</button>
+                    <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..."></textarea>
+                    <button class="btn btn-empty" ng-click="AddReward(Item,$index)">Save</button>
                     <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
                 </div>
             </div>
@@ -33,10 +59,14 @@
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>
-                    <div class="start-rating" ng-if="!Item.IsRewarded">
-                        <angular-star-rating max="maxValue" value='ratingValue' id="ratingValue{{$index}}" hover='changeOnHover'
-                                             is-readonly='isReadonly'></angular-star-rating><br />
-
+                    <div class="start-rating">
+                        <angular-star-rating max="maxValue" value="Item.reward_value" id="ratingValue{{$index}}" hover='changeOnHover'
+                                             is-readonly='Item.IsRewarded==true'></angular-star-rating>
+                        <br />
+                        <br />
+                        <div ng-if="Item.IsRewarded">
+                            <p>Comment: <b>{{Item.Comment}}</b></p>
+                        </div>
                         <!--<select id="example{{$index}}"  ng-init="InitStars($index)">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -50,31 +80,26 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>-->
                     </div>
-                    <div class="start-rating" ng-if="Item.IsRewarded">
-                        <p>Your Rating: <b>{{Item.reward_value}}</b></p>
-                    </div>
+
+                    <!--<div class="start-rating" ng-if="Item.IsRewarded">
+                        <p>Your Rating: <b>{{Item.reward_name}}</b></p>
+                        <p>Comment: <b>{{Item.Comment}}</b></p>
+                        <angular-star-rating max="maxValue" value="Item.reward_value" id="ratingValue{{$index}}" hover='changeOnHover'
+                                             is-readonly='isreadonlyAleardyAssigned'></angular-star-rating><br />
+                    </div>-->
                     <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!Item.IsRewarded"><i class="fa fa-comments"></i></a>
                 </div>
                 <div class="write-cmt" id="write-cmt{{$index}}">
                     <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..."></textarea>
-                    <button class="btn btn-empty" ng-click="AddReward(ratingValue,Item,$index)">Save</button>
+                    <button class="btn btn-empty" ng-click="AddReward(Item,$index)">Save</button>
                     <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
                 </div>
             </div>
         </div>
     </div>
-
+    <!--<button id="hello" ng-click="MarkAlreadyStargiven()">hello</button>-->
 
 </div>
-
-<select id="example" class="exampleCss">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-</select>
-
 <script type="text/javascript">
 
     $(window).scroll(function () {
