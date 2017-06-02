@@ -13,6 +13,7 @@ namespace CordobaModels.Entities
        public bool? IsSelected { get; set; }
        public string url { get; set; }
        public string title { get; set; }
+       public string meta_title { get; set; }
        public string meta_description { get; set; }
        public string template { get; set; }
        public int? country_id { get; set; }
@@ -38,5 +39,10 @@ namespace CordobaModels.Entities
 
        public string terms { get; set; }
        public string description { get; set; }
+       public string address { get; set; }
+       public string email { get; set; }
+       public string telephone { get; set; }
+       public string county { get; set; }
+       public string layout { get; set; }
     }
 }

@@ -113,7 +113,7 @@
                             <div class="col-sm-12">
                                 <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
                             </div>
-                            <p>{{PopularCategory.name}}</p>
+                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})">{{PopularCategory.name}}</a>
                         </div>
                     </div>
                 </div>
@@ -183,13 +183,13 @@
                             <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src="{{LatestProduct.Image}}" alt="latest product" />
+                                        <img ng-src="{{LatestProduct.Image}}" alt="latest product"/>
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})">{{LatestProduct.name}}</a>
                                     <p>{{LatestProduct.Model}}</p>
                                     <p><span>{{LatestProduct.Price}} Points</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct)">Add to Cart</button>
+                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>

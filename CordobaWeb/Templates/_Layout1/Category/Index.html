@@ -53,31 +53,52 @@
                     <h4 ng-bind="TitleHeader"></h4>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">
+                <div class="row">                                  
                     <div class="product-block" ng-repeat="product in ProductList">
                         <div class="product-img" ng-controller="AddProductToCartController">
                             <img ng-src="{{product.Image}}" alt="product" data-action="zoom" />
-                            <button class="btn add-cart-btn" ng-click="AddProductToCart(product)"><i class="fa fa-opencart"></i> Add to Cart</button>
+                            <button class="btn btnaddtocart add-cart-btn" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
                         <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})">{{product.name}}</a>
                         <p><span class="pull-left">{{product.Price}} points</span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
                        
                         <p ng-bind="product.Model"></p>                                                                  
                     </div>
-
+                 
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
 
     $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';       
         $('.category-list').mCustomScrollbar();
 
+       
+
     });
+
+  
+   
+    //var btns = document.querySelectorAll('.btnaddtocart');
+    //for (var i = btns.length - 1; i >= 0; i--) {
+    //    debugger;
+    //    btns[i].addEventListener('click', loading);
+    //}
+
+    //var loading = function (e) {
+    //    debugger;
+    //    e.preventDefault();
+    //    e.stopPropagation();
+    //    e.target.classList.add('loading');
+    //    e.target.setAttribute('disabled', 'disabled');
+    //    setTimeout(function () {
+    //        e.target.classList.remove('loading');
+    //        e.target.removeAttribute('disabled');
+    //    }, 1500);
+    //};
 </script>
 
 

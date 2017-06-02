@@ -190,6 +190,7 @@
                                         <li><a href="#" ui-sref="ShowCountry"><i class="icon-forward"></i> <span> Countries</span></a></li>
                                       
                                         <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>
+                                        <li><a href="#" ui-sref="PopularCategory"><i class="icon-forward"></i> <span> Popular Category</span></a></li> 
                                         <li><a href="#" ui-sref="ShowSupplier"><i class="icon-forward"></i> <span> Supplier</span></a></li>
                                         <li><a href="#" ui-sref="ShowManufacturer"><i class="icon-forward"></i> <span> Manufacturers</span></a></li>
                                         <li><a href="#" ui-sref="Product"><i class="icon-forward"></i> <span> Products</span></a></li>
@@ -230,8 +231,7 @@
                                         <li><a href="#" ui-sref="Language"><i class="icon-forward"></i> <span> Language</span></a></li>
                                         <li><a href="#" ui-sref="Currency"><i class="icon-forward"></i> <span> Currency</span></a></li>
                                         <li><a href="#" ui-sref="Customer"><i class="icon-forward"></i> <span> Customer</span></a></li>
-                                        <li><a href="#" ui-sref="CustomerGroup"><i class="icon-forward"></i> <span> Customer Group</span></a></li>
-                                        <li><a href="#" ui-sref="PopularCategory"><i class="icon-forward"></i> <span> Popular Category</span></a></li>                                                             
+                                        <li><a href="#" ui-sref="CustomerGroup"><i class="icon-forward"></i> <span> Customer Group</span></a></li>                                                            
                                     </ul>
                                 </li>
                                 <li>
@@ -249,7 +249,7 @@
                                             <a href="#"><i class="icon-forward"></i> <span> Sales</span></a>
                                             <ul>
                                                 <li><a href="#" ui-sref="OrderReport"><i class="icon-forward"></i> <span> Orders</span></a></li>
-                                                <li><a href="#" ui-sref="ShippingReport"><i class="icon-forward"></i> <span> Shipping</span></a></li>  
+                                                @*<li><a href="#" ui-sref="ShippingReport"><i class="icon-forward"></i> <span> Shipping</span></a></li>*@  
                                                 <li><a href="#" ui-sref="ReturnReport"><i class="icon-forward"></i> <span> Returns</span></a></li>   
                                                 @*<li><a href="#" ui-sref="CouponsReport"><i class="icon-forward"></i> <span> Coupons</span></a></li>*@                                                  
                                             </ul>
@@ -257,7 +257,7 @@
                                         <li>
                                             <a href="#"><i class="icon-forward"></i> <span> Product</span></a>
                                             <ul>
-                                                <li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>
+                                                @*<li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>*@
                                                 <li><a ui-sref="ProductPurchasedReport"><i class="icon-forward"></i> <span> Purchased</span></a></li>
                                             </ul>
                                         </li>
@@ -308,18 +308,16 @@
  
     @Scripts.Render("~/bundles/jquery")
   
-    @Scripts.Render("~/bundles/CommonJs")    
+    @Scripts.Render("~/bundles/CommonJs")   
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/AdminJs")
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/AdminControllers")
 
     @*@Scripts.Render("~/bundles/Chart")*@
-    <script src="~/Scripts/ng-ckeditor.js"></script>
+    @*<script src="~/Scripts/ng-ckeditor.js"></script>*@
     <script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
-    <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>
-    <script src="~/Scripts/angular-ui-switch.min.js"></script>
-
+    <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>   
     @*<script src="~/Scripts/admin/js/charts/google/bars/bar.js"></script>*@
 
     @*<script src="~/Scripts/admin/js/charts/echarts/bars_tornados.js"></script>*@

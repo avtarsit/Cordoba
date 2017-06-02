@@ -1,9 +1,7 @@
 ﻿
 <style>
   /*Some CSS*/
-
 .magnify {width: 450px; margin: 50px auto; position: relative; cursor: none}
-
 /*Lets create the magnifying glass*/
 .large {
 	width: 175px; height: 175px;
@@ -55,7 +53,10 @@
            
                 <div class="price mt-10" ng-controller="AddProductToCartController">
                     <br />
-                    <button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>
+
+                    <button class="btn-primary btn-flat btn-lg btnaddtocart" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
+
+                    <!--<button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>-->
                 </div>
             </div>
             <div class="col-sm-12 mb-30">
@@ -80,7 +81,7 @@
                 <div class="col-md-3" ng-repeat="SimilarProduct in RelatedProductList">
                     <div class="product-block">
                         <div class="product-img">
-                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" />
+                            <img ng-src="{{SimilarProduct.Image}}" alt="latest product" data-action="zoom" />
                         </div>
                         <a ui-sref="LayoutProductDetail({ProductId:SimilarProduct.product_id})">{{SimilarProduct.name}}</a>
                         <p ng-bind="SimilarProduct.Model"></p>
@@ -89,6 +90,9 @@
                             <button class="btn btn-default" ng-click="AddProductToCart(SimilarProduct)">Add to Cart</button>
                         </div>
                     </div>
+
+                   
+
                 </div>             
             </div>
         </div>

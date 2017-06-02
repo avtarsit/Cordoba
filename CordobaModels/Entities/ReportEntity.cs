@@ -14,5 +14,9 @@ namespace CordobaModels.Entities
        public Nullable<DateTime> DateEnd { get; set; }
        public int? No_Of_Orders { get; set; }
        public int TotalRecords { get; set; }
+
+       public int? No_Of_Products { get; set; }
+       public decimal? Total { get; set; }
+       public int? Tax { get; set; }
     }
 }
