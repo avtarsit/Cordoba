@@ -83,7 +83,7 @@ namespace CordobaServices.Services
                 SqlParameter[] param = new SqlParameter[1];
                 param[0] = new SqlParameter("currency_id", CurrencyId);
                 
-                var Result = CurrencyEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteCurrency @currency_id", param).ToList<int>().FirstOrDefault();
+                var Result = CurrencyEntityGenericRepository.ExecuteSQL<int>("DeleteCurrency", param).ToList<int>().FirstOrDefault();
                 return Result;
             }
             catch (Exception ex)
