@@ -58,8 +58,9 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
                             </a>
-                            <div class="search-block">
-                                <a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> <input type="text" id="txtSearchFor" value="" placeholder="What are you looking for?" /></a>
+                            <div class="search-block">                          
+                                <input type="text" id="txtSearchFor" my-enter="GotoProductList(WhatYouarelookingfor)" ng-model="WhatYouarelookingfor" placeholder="What are you looking for?" />
+                                @*<a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> </a>*@
                             </div>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">

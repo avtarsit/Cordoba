@@ -38,38 +38,7 @@
         </div>
 
 
-
-
-        @* Dashboard_HotDealsController *@
-        <div ng-controller="Dashboard_HotDealsController">
-            <div class="col-md-3 col-xs-12 mb-30" ng-if="!Make_rewardWinnerVisible">
-                <div class="col-sm-12 block-bg deals">
-                    <div class="block-heading">
-                        <h4>Hot Deals</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row">
-
-                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
-                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                                <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.HotDealsImgSrc}}" alt="deals" />
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading" ng-bind="HotDeals.HotDealsName"></h4>
-                                    <p ng-bind="HotDeals.HotDealsCode"></p>
-                                    <span ng-bind="HotDeals.Points"></span>
-                                </div>
-                                <div class="add-cart">
-                                    <button class="btn btn-empty">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @*  Dashboard_RewardWinnerController*@
         <div ng-controller="Dashboard_RewardWinnerController">
             <div class="col-md-3 col-xs-12 mb-30" ng-if="Make_rewardWinnerVisible">
                 <div class="col-sm-12 block-bg deals">
@@ -79,7 +48,7 @@
                     <div class="clearfix"></div>
                     <div class="row">
 
-                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
                             <div class="media col-sm-12" ng-repeat="rewardWinner in RewardWinners" data-notify-when-repeat-finished>
                                 <div class="media-left">
                                     <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" alt="deals" />
@@ -91,19 +60,48 @@
                                     <span ng-bind="rewardWinner.winner_declared_date | date:'MM-dd-yyyy'"></span>
                                 </div>
                                 @*<div class="add-cart">
-                    <button class="btn btn-empty">Add to Cart</button>
-                </div>*@
+                                    <button class="btn btn-empty">Add to Cart</button>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+
+        @* Dashboard_HotDealsController *@
+        <div ng-controller="Dashboard_HotDealsController" >
+            <div class="col-md-3 col-xs-12 mb-30" ng-if="HotDealsList.length>0">
+                <div class="col-sm-12 block-bg deals">
+                    <div class="block-heading">
+                        <h4>Hot Deals</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
+                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" ng-bind="HotDeals.name"></h4>
+                                    <p ng-bind="HotDeals.Model"></p>
+                                    <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
+                                </div>
+                                <div class="add-cart" ng-controller="AddProductToCartController">
+                                    <button class="btn btn-empty" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+      
 
         @* Dashboard_PopularCategoryController *@
-        <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController">
-            <div class="col-sm-12 block-bg popular-category">
+        <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController" >
+            <div class="col-sm-12 block-bg popular-category" ng-if="PopularCategoryList.length>0">
                 <div class="block-heading">
                     <h4>Popular Categories</h4>
                 </div>
@@ -113,7 +111,7 @@
                             <div class="col-sm-12">
                                 <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
                             </div>
-                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})">{{PopularCategory.name}}</a>
+                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                         </div>
                     </div>
                 </div>
@@ -143,8 +141,8 @@
                     </div>
                 </div>
                 @* Dashboard_SpecialOffersController *@
-                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController">
-                    <div class="col-sm-12 block-bg deals special-offer mb-30">
+                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController" >
+                    <div class="col-sm-12 block-bg deals special-offer mb-30" ng-if="SpecialOfferList.length>0">
                         <div class="block-heading">
                             <h4>Special Offers</h4>
                         </div>
@@ -153,15 +151,15 @@
                             <div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
                                 <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                     <div class="media-left">
-                                        <img class="media-object" ng-src="{{SpecialOffer.ImgSrc}}" alt="special Offer" />
+                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">{{SpecialOffer.Title}}</h4>
-                                        <p>{{SpecialOffer.Code}}</p>
-                                        <span>{{SpecialOffer.Points}}</span>
+                                        <h4 class="media-heading" ng-bind="SpecialOffer.name"></h4>
+                                        <p ng-bind="SpecialOffer.Model"></p>
+                                        <span ng-bind="(SpecialOffer.cost | number:2) +'Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-empty" ng-click="AddProductToCart()">Add to Cart</button>
+                                        <button class="btn btn-empty" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>

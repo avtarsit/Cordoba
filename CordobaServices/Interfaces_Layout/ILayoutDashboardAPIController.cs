@@ -13,8 +13,10 @@ namespace CordobaServices.Interfaces_Layout
         StoreEntity GetStoreDetailByUrl(String URL);
         List<ProductEntity> GetLatestProductByStoreId(int StoreID);
         List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID);
+        List<ProductEntity> GetHotDealsListByStoreId(int StoreID);
         CustomerEntity CustomerLogin(CustomerEntity CustomerObj);
         int? AddtoWishList(wishlistEntity WishlistObj);
         int? RemoveFromWishList(int storeid, int product_id, int customer_Id);
+        List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID);
     }
 }

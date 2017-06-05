@@ -99,6 +99,47 @@ namespace CordobaAPI.API_Layout
 
          }
 
+         [HttpGet]
+         public HttpResponseMessage GetHotDealsListByStoreId(int StoreID)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.GetHotDealsListByStoreId(StoreID);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
+
+         [HttpGet]
+         public HttpResponseMessage GetSpecialOfferListByStoreId(int StoreID)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.GetSpecialOfferListByStoreId(StoreID);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
+
+
          [HttpPost]
          public HttpResponseMessage CustomerLogin(CustomerEntity CustomerObj)
          {

@@ -12,9 +12,12 @@
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId!=null)
     {
         $scope.SelectedCategoryId = parseInt($stateParams.CategoryId);
+        if ($stateParams.Search != undefined && $stateParams.Search != null)
+        {
+            $scope.WhatAreYouLookingFor = $stateParams.Search;
+        }
         
-    }
- 
+    }  
     $scope.GetCategoryListForDashboard = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID="+$scope.StoreDetailInSession.store_id+"&NeedToGetAllSubcategory=true")
           .then(function (response) {
@@ -58,8 +61,7 @@
     }
 
 
-    $scope.GetProductListByCategoryAndStoreId = function () {
-        
+    $scope.GetProductListByCategoryAndStoreId = function () {        
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 

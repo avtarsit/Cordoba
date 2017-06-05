@@ -264,7 +264,7 @@ function GetLayoutName() {
                 }
                 , LayoutCategoryORProductList = {
                     name: 'LayoutCategoryORProductList',
-                    url: '/Category?CategoryId:categoryId',
+                    url: '/Category?CategoryId:categoryId&Search:search',
                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                 }
                 , LayoutProducts = {

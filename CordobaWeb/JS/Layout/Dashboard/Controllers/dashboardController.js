@@ -89,6 +89,11 @@
             $scope.OpenLoginPopUp();
         }
     }
+
+    $scope.GotoProductList=function(Whatyouarelookingfor)
+    {      
+        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor});
+    }
  
     //$scope.GetStoreDetailForDashboard = function () {
       

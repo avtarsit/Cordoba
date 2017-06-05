@@ -1,15 +1,32 @@
-﻿app.controller('Dashboard_HotDealsController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('Dashboard_HotDealsController', function ($timeout,StoreSessionDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     //#endregion  
    
-    $scope.HotDealsList = [
-       { HotDealsImgSrc: "/Content/layout1/images/deals.jpg", HotDealsName: "Longchamp 2.0 Crossbody Bag Black", HotDealsCode: "FPB0024", Points: "29 Points" }
-     , { HotDealsImgSrc: "/Content/layout1/images/deals.jpg", HotDealsName: "Longchamp 2.0 Crossbody Bag Black", HotDealsCode: "FPB0024", Points: "29 Points" }
-     , { HotDealsImgSrc: "/Content/layout1/images/deals.jpg", HotDealsName: "Longchamp 2.0 Crossbody Bag Black", HotDealsCode: "FPB0024", Points: "29 Points" }        
-    ];
 
+    $scope.HotDealsList = [];
+    //#endregion  
+    $scope.StoreDetailInSession = StoreSessionDetail;
+
+    $scope.GetHotDealsListByStoreId = function () {
+
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetHotDealsListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)
+          .then(function (response) {              
+              if (response.data.length > 0) {
+                  $scope.HotDealsList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+    $scope.GetHotDealsListByStoreId();
 
 });

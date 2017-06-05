@@ -1,19 +1,34 @@
-﻿app.controller('Dashboard_SpecialOffersController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('Dashboard_SpecialOffersController', function ($timeout,StoreSessionDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     //#endregion     
 
-    $scope.SpecialOfferList = [
-        { ProductId: 1, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      , { ProductId: 2, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      , { ProductId: 3, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      //, { ProductId: 4, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      //, { ProductId: 5, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      //, { ProductId: 6, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-      //, { ProductId: 7, ImgSrc: '/Content/layout1/images/specialOffer.jpg', Title: 'Longchamp 2.0 Crossbody Bag Black', Code: 'FPB0024', Points: '29 Points' }
-    ];
+    $scope.SpecialOfferList = [];
+    //#endregion  
+    $scope.StoreDetailInSession = StoreSessionDetail;
+
+    $scope.GetSpecialOfferListByStoreId = function () {
+
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetSpecialOfferListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)
+          .then(function (response) {          
+              if (response.data.length > 0) {
+                  $scope.SpecialOfferList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+    $scope.GetSpecialOfferListByStoreId();
+
+   
 
 
 

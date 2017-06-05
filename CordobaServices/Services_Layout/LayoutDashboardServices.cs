@@ -46,6 +46,20 @@ namespace CordobaServices.Services_Layout
             return result;
         }
 
+        public List<ProductEntity> GetHotDealsListByStoreId(int StoreID)
+        {           
+            SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+            var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetHotDealsListByStoreId_Dashboard", sqlParameter).ToList();
+            return result;
+        }
+
+        public List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID)
+        {           
+            SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+            var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetSpecialOfferListByStoreId_Dashboard", sqlParameter).ToList();
+            return result;
+        }
+        
         public CustomerEntity CustomerLogin(CustomerEntity CustomerObj)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] { 
