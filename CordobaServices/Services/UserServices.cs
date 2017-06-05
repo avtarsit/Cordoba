@@ -88,7 +88,7 @@ namespace CordobaServices.Services
                 SqlParameter[] param = new SqlParameter[2];
                 param[0] = new SqlParameter("LoggedInUserId", LoggedInUserId);
                 param[1] = new SqlParameter("user_id", UserId);
-                var Result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteUser @LoggedInUserId,@user_id", param).ToList<int>().FirstOrDefault();
+                var Result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteUser", param).FirstOrDefault();
                 return Result;
             }
             catch (Exception)
