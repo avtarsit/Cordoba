@@ -108,7 +108,7 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 .cart-block { float: right; width: 50px; padding-top: 8px; padding-left: 15px; color: #333; font-size: 20px; line-height: 30px; position: relative; text-align: right; letter-spacing: 2px; cursor: pointer; }
 .cart-block .fa { padding-right: 10px; font-size: 30px; line-height: 30px; color: #333; vertical-align: bottom; }
 .cart-block .badge { position: absolute; top: -7px; left: 31px; height: 25px; min-width: 25px; border: solid 1px #ccc; border-radius: 3em; color: #cc0001; font-size: 15px; line-height: 17px; font-weight: bold; background: #e8e8e8; background: -moz-linear-gradient(top, #ffffff 0%, #e8e8e8 100%); background: -webkit-linear-gradient(top, #ffffff 0%, #e8e8e8 100%); background: linear-gradient(to bottom, #ffffff 0%, #e8e8e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e8e8e8', GradientType=0); }
-.navbar-fixed-top { z-index: 99999; }
+.navbar-fixed-top { z-index: 1050 !important; }
 .navbar-nav { float: right; margin: 0; }
 /* header end */
 
@@ -232,7 +232,10 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 
 /* login popup start */
 .login_page .form-group { position: relative; }
-.modal { z-index: 999999; }
+.modal { 
+    z-index: 999999 !important; 
+     background: rgba(0, 0, 0, 0.3);
+}
 .vertical-alignment-helper { display: table; height: 100%; width: 100%; }
 .vertical-align-center { display: table-cell; vertical-align: middle; }
 .modal-content { width: inherit; height: inherit; margin: 0 auto; background-color: #f4f3f3; box-shadow: none; border: none; }
