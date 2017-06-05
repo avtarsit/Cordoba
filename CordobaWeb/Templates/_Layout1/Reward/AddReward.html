@@ -17,12 +17,12 @@
                         <label class="medal bronze" for="bronze{{$index}}">Bronze</label>
                     </div>
                     <div class="medal-rating" ng-if="Item.IsRewarded" >
-                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="gold" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}" checked />
-                        <label class="medal gold" for="gold{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}">Gold</label>
-                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}"  disabled="disabled" value="silver" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}" checked />
-                        <label class="medal silver" for="silver{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}">Silver</label>
-                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="bronze" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}" checked/>
-                        <label class="medal bronze" for="bronze{{$index}}" disabled="disabled"  ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}">Bronze</label>
+                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="gold" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}"  />
+                        <label class="medal-selected-Cls gold" for="gold{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}">Gold</label>
+                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="silver" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}"/>
+                        <label class="medal-selected-Cls silver" for="silver{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}">Silver</label>
+                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="bronze" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}"  />
+                        <label class="medal-selected-Cls bronze" for="bronze{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}">Bronze</label>
                     </div>
                     <!--<div class="start-rating" ng-if="Item.IsRewarded">
                         <p>Your Rating: <b>{{Item.reward_name}}</b></p>
