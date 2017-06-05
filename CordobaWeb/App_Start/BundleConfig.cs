@@ -85,16 +85,16 @@ namespace CordobaWeb
             ////////////////////Admin//////////////////////
 
             //---------------------CSS--------------------//
-            bundles.Add(new StyleBundle("~/bundles/AdminCSS").Include(
+            bundles.Add(new StyleBundle("~/bundles/AdminCss").Include(
                         "~/Content/admin/css/bootstrap.css",
                       "~/Content/admin/css/font-awesome.min.css",
                      "~/Content/admin/css/icons/icomoon/styles.css",                                    
                      "~/Content/admin/css/core.css",
-                     "~/Content/admin/css/components.css",
-                       "~/Content/admin/css/components.css",
+                     "~/Content/admin/css/components.css",             
                      "~/Content/admin/css/colors.css",
                      "~/Content/css/toastr.css",
-                      "~/Scripts/angular-star-rating/main.css"
+                      "~/Scripts/angular-star-rating/main.css",
+                      "~/Content/css/angular-ui-switch.min.css"
                      ));
                 
             //---------------------CSS--------------------//
@@ -112,7 +112,8 @@ namespace CordobaWeb
                        "~/Scripts/admin/js/plugins/ui/moment/moment.min.js",
                        "~/Scripts/admin/js/plugins/pickers/daterangepicker.js",
                        "~/Scripts/admin/js/core/app.js",
-                       "~/Scripts/admin/js/pages/dashboard.js"                       
+                       "~/Scripts/admin/js/pages/dashboard.js"  
+                     
                       ));
 
             var AdminControllerBundle = new Bundle("~/bundles/AdminControllers");
