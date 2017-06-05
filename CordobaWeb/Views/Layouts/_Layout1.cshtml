@@ -58,10 +58,20 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
                             </a>
-                            <div class="search-block">                          
+                            @*<div class="search-block">                          
                                 <input type="text" id="txtSearchFor" my-enter="GotoProductList(WhatYouarelookingfor)" ng-model="WhatYouarelookingfor" placeholder="What are you looking for?" />
-                                @*<a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> </a>*@
-                            </div>
+                                <a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-3})"> </a>
+                            </div>*@
+                            <div class="pull-right">
+                                <form class="navbar-form" role="search">
+                                    <div class="input-group add-on">
+                                        <input class="form-control" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default"  ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                            
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
