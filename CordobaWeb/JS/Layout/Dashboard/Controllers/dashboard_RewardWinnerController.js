@@ -14,8 +14,7 @@
 
     $scope.Dashboard_RewardWinner = function () {
         $http.get(configurationService.basePath + "api/RewardApi/Dashboard_RewardWinner")
-        .then(function (response) {
-          debugger;
+        .then(function (response) {     
           if (response.data.length > 0) {
               $rootScope.Make_rewardWinnerVisible = true;
           }

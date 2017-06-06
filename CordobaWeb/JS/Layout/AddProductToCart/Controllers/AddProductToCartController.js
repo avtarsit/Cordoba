@@ -10,21 +10,26 @@
         //e.preventDefault();
         //e.stopPropagation();
       
-        e.target.setAttribute('disabled', 'disabled');
-        e.target.classList.add('loading');
-      
+        //e.target.setAttribute('disabled', 'disabled');
+        //e.target.classList.add('loading');
+        /////////////////
+        debugger;
+       
+
+      ////////////////
         $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=" + UserDetail.cartgroup_id)
           .then(function (response) {
-             
-              toastr.success("Item successfully added in cart.");
+              CartAnimation($(e.target));
+              //toastr.success("Item successfully added in cart.");
               UserDetail.cartgroup_id = response.data.cartgroup_id;
               UserDetail.TotalItemAdded = response.data.TotalItemAdded;
               $rootScope.CustomerDetail = UserDetail;
               localStorageService.set("loggedInUser", UserDetail);
-              setTimeout(function () {
-                  e.target.classList.remove('loading');
-                  e.target.removeAttribute('disabled');
-              }, 1500);
+              //setTimeout(function () {
+              //    e.target.classList.remove('loading');
+              //    e.target.removeAttribute('disabled');
+              //},0);
+          
           })
       .catch(function (response) {
 
@@ -34,6 +39,7 @@
       });
     }
 
+   
     
 
 

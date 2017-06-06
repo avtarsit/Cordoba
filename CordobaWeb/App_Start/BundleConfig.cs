@@ -151,24 +151,23 @@ namespace CordobaWeb
             //------------------------CSS-------------------------//
 
             //------------------------js-------------------------//
-            //js/jquery.min.js
-            bundles.Add(new ScriptBundle("~/bundles/Layout1Js").Include(
-                     "~/Scripts/layout1/js/jquery.min.js",
-                     "~/Scripts/layout1/js/bootstrap.min.js",               
-                     "~/Scripts/layout1/js/jquery.bxslider.min.js",
-                     "~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js" ,
-                     "~/Scripts/layout1/js/dpNumberPicker.min.js",
-                     "~/Scripts/layout1/js/enhance.js",
-                     "~/Scripts/layout1/js/velocity.min.js",   
-                     "~/Scripts/bootstrap-modalmanager.js",
-                    "~/Scripts/bootstrap-modal.js",
-                    "~/Scripts/bootstrap-datepicker.js",
-                    "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js",
-                     "~/Scripts/ckeditor/ckeditor.js"                    
-                   //"~/Scripts/jquery-bar-ratting/jquery.barrating.min.js"
-                     ));
-                   
+            
+               var Layout1Js = new Bundle("~/bundles/Layout1Js");
+                  Layout1Js.Include("~/Scripts/layout1/js/jquery.min.js");                   
+                  Layout1Js.Include("~/Scripts/layout1/js/bootstrap.min.js");                   
+                  Layout1Js.Include( "~/Scripts/layout1/js/jquery.bxslider.min.js");      
+                  Layout1Js.Include("~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js");      
+                  Layout1Js.Include("~/Scripts/layout1/js/dpNumberPicker.min.js");  
+                  Layout1Js.Include("~/Scripts/layout1/js/enhance.js");  
+                  Layout1Js.Include("~/Scripts/layout1/js/velocity.min.js");  
+                  Layout1Js.Include("~/Scripts/bootstrap-modalmanager.js");  
+                  Layout1Js.Include("~/Scripts/bootstrap-modal.js");  
+                  Layout1Js.Include("~/Scripts/bootstrap-datepicker.js");  
+                  Layout1Js.Include("~/Scripts/jquery.bootstrap-duallistbox.js"); 
+                  Layout1Js.Include("~/Scripts/bootbox.js"); 
+                  Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js" ); 
+                
+                  bundles.Add(Layout1Js);
             //------------------------js-------------------------//
 
             ///////////////////// Layout1//////////////////

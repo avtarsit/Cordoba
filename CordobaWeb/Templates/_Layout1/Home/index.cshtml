@@ -89,7 +89,7 @@
                                     <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
                                 </div>
                                 <div class="add-cart" ng-controller="AddProductToCartController">
-                                    <button class="btn btn-empty" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
+                                    <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                                         <span ng-bind="(SpecialOffer.cost | number:2) +'Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-empty" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
+                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -181,13 +181,13 @@
                             <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src="{{LatestProduct.Image}}" alt="latest product"/>
+                                        <img ng-src='{{LatestProduct.Image}}' alt="latest product"/>
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})">{{LatestProduct.name}}</a>
                                     <p>{{LatestProduct.Model}}</p>
                                     <p><span>{{LatestProduct.Price}} Points</span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
+                                        <button class="btn btn-default add_to_cart_dish"    ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -208,9 +208,9 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery-ui.min.js"></script>
 <script type="text/javascript">
-
+    
     $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.best-seller').mCustomScrollbar({
@@ -221,5 +221,7 @@
         $('.category-list').mCustomScrollbar();
 
     });
+   
+
 </script>
 

@@ -57,7 +57,7 @@
                     <div class="product-block" ng-repeat="product in ProductList">
                         <div class="product-img" ng-controller="AddProductToCartController">
                             <img ng-src="{{product.Image}}" alt="product" data-action="zoom" />
-                            <button class="btn btnaddtocart add-cart-btn" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
+                            <button class="btn btnaddtocart add-cart-btn add_to_cart_dish" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
                         <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})">{{product.name}}</a>
                         <p><span class="pull-left">{{product.Price}} points</span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
