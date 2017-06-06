@@ -11,6 +11,7 @@
     //#endregion   
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId!=null)
     {
+        debugger
         $scope.SelectedCategoryId = parseInt($stateParams.CategoryId);
         if ($stateParams.Search != undefined && $stateParams.Search != null)
         {
@@ -61,7 +62,8 @@
     }
 
 
-    $scope.GetProductListByCategoryAndStoreId = function () {        
+    $scope.GetProductListByCategoryAndStoreId = function () {
+        debugger;
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 
@@ -121,8 +123,7 @@
     }
     else if ($scope.SelectedCategoryId == -3) {
         $scope.SelectedSubCategory = -3;
-        $scope.TitleHeader = 'Search Result';
-        $scope.WhatAreYouLookingFor = $("#txtSearchFor").val();
+        $scope.TitleHeader = 'Search Result'; 
         $scope.GetOurProductListByByStoreId();
     }
 

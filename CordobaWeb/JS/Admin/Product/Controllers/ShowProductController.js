@@ -6,10 +6,10 @@
     $scope.CatalogueList = [];
     //#endregion  
 
-    $scope.dtOptions = DTOptionsBuilder.newOptions()
-                     .withOption('bDestroy', true)
-                     .withOption("deferRender", true)
-    .withOption('bFilter', false);
+    //$scope.dtOptions = DTOptionsBuilder.newOptions()
+    //                 .withOption('bDestroy', true)
+    //                 .withOption("deferRender", true)
+    //.withOption('bFilter', false);
 
     $scope.PageTitle = "Products";
 
@@ -19,7 +19,6 @@
     $scope.ProductFilter.Price = "";
     $scope.ProductFilter.Quantity = "";
     $scope.ProductFilter.status = "";
-    debugger;
 
     if ($stateParams.Quantity != undefined && $stateParams.Quantity != null) {
         $scope.ProductFilter.Quantity = parseInt($stateParams.Quantity);
@@ -111,7 +110,7 @@
                 {
                     "mData": "ImagePath", "bSortable": false
                     , "render": function (data, type, row) {
-                        return '<img src=' + row.ImagePath + ' class="img-thumbnail" />'
+                        return '<img ng-src=' + row.Image+ ' class="img-thumbnail" />'
                     }
                 },
                 { "mData": "name", "bSortable": true },
