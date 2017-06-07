@@ -7,7 +7,7 @@ function GetLayoutName() {
     $.ajax({
         url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {
+        success: function (data) {        
             app.value('StoreSessionDetail', data);
             var User = new Object();
             User.customer_id = 0;

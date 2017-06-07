@@ -8,7 +8,56 @@
 
     @Styles.Render("~/bundles/Layout1CSS")   
     <style>
+
+
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
+
+    </style>
+    <style>
+
+.spinner div {
+     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10080 !important;
+    background-color: #F7F3F3;
+    opacity: 0.6;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: -20px;
+  top: 40px;
+  background-color: #333;
+  border-radius: 50%;
+  animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+}
+.spinner div:nth-child(2) {
+  animation-delay: 150ms;
+}
+.spinner div:nth-child(3) {
+  animation-delay: 300ms;
+}
+.spinner div:nth-child(4) {
+  animation-delay: 450ms;
+}
+#greenDot{
+    background-color:green;
+}
+#yellowDot{
+    background-color:yellow;
+}
+#redDot{
+    background-color:red;
+}
+#blueDot{
+    background-color:blue;
+}
+@@keyframes move {
+  0% {left: 0%;}
+  75% {left:100%;}
+  100% {left:100%;}
+}
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -41,6 +90,12 @@
                 </div>
             </header>
             <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="spinner" data-loading>
+                    <div id="greenDot"></div>
+                    <div id="yellowDot"></div>
+                    <div id="redDot"></div>
+                    <div id="blueDot"></div>
+                </div>
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -55,7 +110,7 @@
                     <div class="main-menu">
                         <div class="search-panel">
                             <a class="cart-block" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})">
-                                <i class="fa fa-shopping-cart"></i>
+                                <i class="fa fa-shopping-cart" id="cart_icon"></i>
                                 <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
                             </a>
                             @*<div class="search-block">                          
@@ -65,7 +120,7 @@
                             <div class="pull-right">
                                 <form class="navbar-form" role="search">
                                     <div class="input-group add-on">
-                                        <input class="form-control" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
+                                        <input class="form-control add-on" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
                                         <div class="input-group-btn">
                                             <button class="btn btn-default"  ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
                                         </div>
@@ -85,7 +140,7 @@
                 </div>
             </nav>
         </div>
-        <div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>
+        @*<div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>*@
         @RenderBody();
 
         <footer>
@@ -188,13 +243,16 @@
             </div>
         </div>      
     </div>
+        
     @Scripts.Render("~/bundles/Layout1Js")
+    <script src="~/Scripts/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
-    <script type="text/javascript">
-        $(document).ready(function () {
 
+
+    <script type="text/javascript">      
+        $(document).ready(function () {
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
 
             $(".category-list, #aboutScroll").mCustomScrollbar();
@@ -260,6 +318,47 @@
                     scrollTop: 0
                 }, 700);
             });
+        }
+ 
+        function CartAnimation(target) {
+            var cart = $('#cart_icon');
+            var imgtodrag = $('<img id="dynamic">');
+            imgtodrag.attr('src', '/Content/layout1/images/step-4-process.png');
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                if (imgclone.length) {
+                    imgclone.offset({
+                        top: target.offset().top,
+                        left: target.offset().left
+                    })
+                  .css({
+                      //'opacity': '0.5',
+                      'position': 'absolute',
+                      'width': '150px',
+                      'z-index': '99999'
+                  });
+
+                    imgclone.appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                    }, 1000, 'easeInOutExpo');
+
+                    setTimeout(function () {
+                        cart.effect("shake", {
+                            times: 2
+                        }, 200);
+                    }, 0);
+
+                    imgclone.animate({
+                        'width': 0,
+                        'height': 0
+                    }, function () {
+                        $(this).detach()
+                    });
+                }
+            }
         }
       
     </script>

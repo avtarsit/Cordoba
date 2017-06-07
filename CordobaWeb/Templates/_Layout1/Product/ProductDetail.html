@@ -54,7 +54,7 @@
                 <div class="price mt-10" ng-controller="AddProductToCartController">
                     <br />
 
-                    <button class="btn-primary btn-flat btn-lg btnaddtocart" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
+                    <button class="btn-primary btn-flat btn-lg btnaddtocart add_to_cart_dish" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
 
                     <!--<button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>-->
                 </div>
@@ -87,7 +87,7 @@
                         <p ng-bind="SimilarProduct.Model"></p>
                         <p><span ng-bind="SimilarProduct.Price+' Points'"></span></p>
                         <div class="row" ng-controller="AddProductToCartController">
-                            <button class="btn btn-default" ng-click="AddProductToCart(SimilarProduct)">Add to Cart</button>
+                            <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(SimilarProduct)">Add to Cart</button>
                         </div>
                     </div>
 

@@ -5,9 +5,10 @@ $(function () {
     //    // subtract the height of the modal header and footer     
     //    return $(window).height() - 165;
     //}
-    var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
+    //var datepicker = $.fn.datepicker.noConflict(); 
+    //$.fn.bootstrapDP = datepicker;
+    var datepicker = $.fn.datepicker; 
     $.fn.bootstrapDP = datepicker;
-
     //var bootstrapDualListbox = $.fn.datepicker.bootstrapDualListbox.noConflict(); // return $.fn.bootstrapDualListbox to previously assigned value
     //$.fn.bootstrapListBox = bootstrapDualListbox;
 
@@ -28,10 +29,10 @@ $(function () {
     });
 
     $(document).ajaxStart(function () {
-        $('.loader').show();
+        $('.spinner').show();
     })
     .ajaxStop(function () {
-        $('.loader').hide();
+        $('.spinner').hide();
         setTimeout(function () { SetAnchorLinks() }, 400);
     });
 
