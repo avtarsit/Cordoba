@@ -11,30 +11,27 @@
                     </ul>
                 </div>
                 @* Dashboard_BestSellerController *@
-                <div class="col-sm-12" ng-controller="Dashboard_BestSellerController">
+                <div class="col-sm-12 best-block" ng-controller="Dashboard_BestSellerController">
                     <div class="col-sm-12 white-bg">
                         <div class="block-heading">
                             <h4>Best Sellers</h4>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="best-seller content inner ">
-                                    <div class="seller-block" ng-repeat="BestSeller in BestSellerList">
-                                        <div class="col-xs-4">
-                                            <img class="full-width" ng-src="{{BestSeller.BestSellerImgSrc}}" alt="seller" />
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <p class="seller-desc" ng-bind="BestSeller.BestSellerName"></p>
-                                            <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
-                                        </div>
+                        <div class="col-sm-12" >
+                            <div class="row best-seller" data-bx-slider="pager:false,nextText:'',prevText:''">
+                                <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
+                                    <div class="col-xs-4">
+                                        <img class="full-width" ng-src="{{BestSeller.BestSellerImgSrc}}" alt="seller" />
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <a href="" class="seller-desc" ng-bind="BestSeller.BestSellerName"></a>
+                                        <p class="seller-desc"><span ng-bind="BestSeller.Points"></span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>            
             </div>
-
         </div>
 
 
@@ -212,16 +209,14 @@
 <script type="text/javascript">
     
     $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';
-        $('.best-seller').mCustomScrollbar({
-            axis: "x",
-            advanced: { autoExpandHorizontalScroll: true }
-        });
-
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';       
         $('.category-list').mCustomScrollbar();
-
     });
-   
 
+    //$('.best-seller').bxSlider({
+    //    pager: false,
+    //    nextText: '',
+    //    prevText: ''
+    //});
 </script>
 

@@ -60,7 +60,7 @@
                             <button class="btn btnaddtocart add-cart-btn add_to_cart_dish" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
                         <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}">{{product.name}}</a>
-                        <p><span class="pull-left">{{product.Price}} points</span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
+                        <p><span class="pull-left" ng-bind="(product.Price | number:2)+' points'"> </span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
                        
                         <p ng-bind="product.Model"></p>                                                                  
                     </div>
