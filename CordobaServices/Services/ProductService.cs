@@ -14,7 +14,7 @@ namespace CordobaServices.Services
 {
     public class ProductService : IProductServices
     {
-        //private GenericRepository<LanguageEntity> objGenericRepository = new GenericRepository<LanguageEntity>();
+        private GenericRepository<HotSpecialProductEntity> hotSpecialProductEntityGenericRepository = new GenericRepository<HotSpecialProductEntity>();
 
         private GenericRepository<ProductEntity> objGenericRepository = new GenericRepository<ProductEntity>();
         public List<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity)
@@ -193,6 +193,60 @@ namespace CordobaServices.Services
                                                            ,new SqlParameter("RelatedProductId", RelatedProductId) 
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetRelatedProductListForLayout", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public int InsertAsHotProduct(HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                  new SqlParameter("hot_productid", hotSpecialProductEntityGenericRepository.hot_productid)
+                                                , new SqlParameter("store_id", hotSpecialProductEntityGenericRepository.store_id)
+                                                , new SqlParameter("product_id", hotSpecialProductEntityGenericRepository.product_id)
+                                                , new SqlParameter("priority", hotSpecialProductEntityGenericRepository.priority)
+                                                , new SqlParameter("startDate", hotSpecialProductEntityGenericRepository.startDate)
+                                                , new SqlParameter("endDate", hotSpecialProductEntityGenericRepository.endDate)
+                                                , new SqlParameter("status", hotSpecialProductEntityGenericRepository.status)
+                                                , new SqlParameter("created_by", hotSpecialProductEntityGenericRepository.created_by)
+                                                
+                                                };
+            int result = objGenericRepository.ExecuteSQL<int>("InsertAsHotProduct", sqlParameter).FirstOrDefault();
+            return result;
+        }
+
+        public int InsertAsSpecialProduct(HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
+        {
+
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                 new SqlParameter("special_productid", hotSpecialProductEntityGenericRepository.special_productid)
+                                                , new SqlParameter("store_id", hotSpecialProductEntityGenericRepository.store_id)
+                                                , new SqlParameter("product_id", hotSpecialProductEntityGenericRepository.product_id)
+                                                , new SqlParameter("priority", hotSpecialProductEntityGenericRepository.priority)
+                                                , new SqlParameter("startDate", hotSpecialProductEntityGenericRepository.startDate)
+                                                , new SqlParameter("endDate", hotSpecialProductEntityGenericRepository.endDate)
+                                                , new SqlParameter("status", hotSpecialProductEntityGenericRepository.status)
+                                                , new SqlParameter("created_by", hotSpecialProductEntityGenericRepository.created_by)
+                                                 
+                                                };
+            int result = objGenericRepository.ExecuteSQL<int>("InsertAsSpecialProduct", sqlParameter).FirstOrDefault();
+            return result;
+        }
+
+        public List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id,int store_id, int product_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("language_id",language_id)
+                                                           ,new SqlParameter("store_id", store_id) 
+                                                           ,new SqlParameter("product_id", product_id)  
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<HotSpecialProductEntity>("GetHotOrSpecialProductById", sqlParameter).ToList();
                 return result;
             }
             catch (Exception ex)
