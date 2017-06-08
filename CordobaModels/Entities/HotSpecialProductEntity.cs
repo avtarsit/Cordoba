@@ -22,6 +22,7 @@ namespace CordobaModels.Entities
         public int	updated_by { get; set; }
         public DateTime updated_date { get; set; }
         public bool? IsHotProduct { get; set; }
+        public int? PrimaryKeyId { get; set; }
 		
     }
 }
