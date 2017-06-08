@@ -97,7 +97,7 @@
       
 
         @* Dashboard_PopularCategoryController *@
-        <div class="col-md-7 col-xs-12 mt-15 mb-30" ng-controller="Dashboard_PopularCategoryController" >
+        <div class="col-md-7 col-xs-12 mb-30" ng-controller="Dashboard_PopularCategoryController" >
             <div class="col-sm-12 block-bg popular-category" ng-if="PopularCategoryList.length>0">
                 <div class="block-heading">
                     <h4>Popular Categories</h4>
@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 col-xs-12 mt-15 mb-30">
+        <div class="col-md-5 col-xs-12  mb-30">
             <div class="offer-block new-product">
                 <img src="~/Content/layout1/images/offer1.jpg" alt="Offer" />
             </div>
@@ -153,7 +153,7 @@
                                     <div class="media-body">
                                         <h4 class="media-heading" ng-bind="SpecialOffer.name"></h4>
                                         <p ng-bind="SpecialOffer.Model"></p>
-                                        <span ng-bind="(SpecialOffer.cost | number:2) +'Points'"></span>
+                                        <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
                                         <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
@@ -213,10 +213,5 @@
         $('.category-list').mCustomScrollbar();
     });
 
-    //$('.best-seller').bxSlider({
-    //    pager: false,
-    //    nextText: '',
-    //    prevText: ''
-    //});
 </script>
 

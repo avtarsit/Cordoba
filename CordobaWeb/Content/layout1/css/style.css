@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; }
 @font-face { font-family: 'latoregular'; src: url('../fonts/lato-regular-webfont.woff2') format('woff2'), url('../fonts/lato-regular-webfont.woff') format('woff'), url('../fonts/lato-regular-webfont.ttf') format('ttf'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'latosemibold'; src: url('../fonts/lato-semibold-webfont.woff2') format('woff2'), url('../fonts/lato-semibold-webfont.woff') format('woff'), url('../fonts/lato-semibold-webfont.ttf') format('ttf'); font-weight: normal; font-style: normal; }
-body { float: left; width: 100%; height: 100%; min-height: 100vh; position: relative; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 500;font-size: 16px; background: #f4f3f3; padding: 150px 0 115px; }
+body { float: left; width: 100%; height: 100%; min-height: 100vh; position: relative; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 500;font-size: 14px; background: #f4f3f3; padding: 150px 0 115px; }
 p, span, label, h1, h2, h3, h4, h5, h6, a { margin: 0; padding: 0; }
 a { color: #333; letter-spacing: 2px; }
 a:hover, a:focus { color: #cc0001; outline: none; text-decoration: none; }
@@ -68,9 +68,9 @@ label { color: #333; letter-spacing: 1px; font-weight: normal; }
 .pr-20 { padding-right: 20px; }
 .pr-25 { padding-right: 25px; }
 .pr-30 { padding-right: 30px; }
-.white-bg { background: #fff; }
+.white-bg { background: #fff;padding-bottom:26px }
 .full-width { float: left; width: 100%; }
-.btn { display: inline-block; width: 100%; max-width: 230px; letter-spacing: 2px; font-size: 16px; line-height: 25px; font-weight: bold; }
+.btn { display: inline-block; width: 100%; max-width: 230px; letter-spacing: 2px; font-size: 16px; line-height: 25px; }
 .btn-empty { border: solid 1px #cc0001; background: none; color: #cc0001; }
 .btn-empty:hover, .btn-empty:focus { color: #fff; background-color: #cc0001; }
 .block-bg { float: left; width: 100%; background: #fff; -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3); }
@@ -124,10 +124,10 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 /* banner slider end */
 
 /* content start */
-.block-heading { float: left; width: 100%; position: relative; border-bottom: solid 1px #ccc; font-size: 23px; padding: 20px 0 0; margin-bottom: 30px; }
-.block-heading h4 { float: left; width: auto; font-size: 21px; line-height: 26px; color: #333; border-bottom: solid 1px #cc0001; padding: 0 5px 5px 0; margin-bottom: -1px; }
-.seller-desc { float: left; width: 100%; color: #333; font-size: 21px; line-height: 25px; }
-.seller-desc span { color: #cc0001; font-weight: bold; }
+.block-heading { float: left; width: 100%; position: relative; border-bottom: solid 1px #ccc; font-size: 17px; padding: 20px 0 0; margin-bottom: 30px; }
+.block-heading h4 { float: left; width: auto; font-size: 17px; line-height: 26px; color: #333; border-bottom: solid 1px #cc0001; padding: 0 5px 5px 0; margin-bottom: -1px; font-family:inherit}
+.seller-desc { float: left; width: 100%; color: #333; font-size: 16px; line-height: 25px; }
+.seller-desc span { color: #cc0001; font-weight: 500; }
 .seller-block { float: left; width: 100%; max-width: 370px; }
 .best-seller { float: left; width: 100%; }
 .best-block .bx-wrapper { margin-bottom:30px; box-shadow:none; border:none; padding-left:15px; }
@@ -154,13 +154,13 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 /* deals start */
 .deals { float:left; width:100%; }
 .deals .media { margin:0; padding-bottom:17px; }
-.deals .media:nth-child(even) { border-top:solid 1px #ccc; padding-top:30px; }
+.deals .media:nth-child(even) { border-top:solid 1px #ccc; padding-top:10px; }
 .deals .media-heading { margin-bottom:10px; font-size:15px; line-height:23px; color:#333; word-break: break-all; }
 .deals .media-left { padding-right:25px; }
 .deals .media-right { padding-left:25px; }
 .deals .media img { max-width:110px; }
-.deals .media-body p { float:left; width:100%; color:#9c9c9c; font-size:17px; line-height:22px; text-transform:uppercase; margin-bottom:10px; }
-.deals .media-body span { float:left; width:100%; color:#333; font-size:17px; line-height:22px; }
+.deals .media-body p { float:left; width:100%; color:#9c9c9c; font-size:16px; line-height:22px; text-transform:uppercase; margin-bottom:10px; }
+.deals .media-body span { float:left; width:100%; color:#333; font-size:16px; line-height:22px; }
 .deals .bx-wrapper { border:none; box-shadow:none; margin-bottom:0; }
 .deals .bx-controls-direction a { width:15px; text-indent:0; top:-50px; font-size:35px; line-height:32px; color:#cc0001; }
 .deals a.bx-prev { left:auto; right:35px; }
@@ -181,7 +181,7 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 .category-list ul li { float: left; width: 100%; position: relative; padding: 0 0 15px 25px; }
 .category-list ul li:before { content: "\f0a4"; position: absolute; top: 0; left: 0px; font-size: 16px; line-height: 23px; color: #333; font-family: FontAwesome; }
 .category-list ul li:last-child { padding-bottom: 0; }
-.category-list ul li a { float: left; width: auto; color: #333; font-size: 16px; line-height: 21px; }
+.category-list ul li a { float: left; width: auto; color: #333; font-size: 14px; line-height: 15px; }
 .category-list ul li a:hover { color: #cc0001; }
 .category-list ul li.active > a { font-weight: bold; }
 .category-list ul li ul li { padding-bottom: 5px; }
@@ -227,7 +227,12 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .copyright { float: left; width: 100%; background: #cc0001; padding: 5px 15px; }
 .copyright p { float: left; width: 100%; color: #fff; text-align: center; font-size: 15px; line-height: 20px; }
 .footer-logo { float: left; width: 100%; }
-
+#fbIcon{   
+    margin: 10px 0 0 20px; 
+    background-image:url("../../Images/fb_ico.png");
+     background-size: 100%;
+    background-repeat:no-repeat
+}
 /* footer end */
 
 /* login popup start */
@@ -332,7 +337,7 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 /* about us start */
 .about-us { float: right; width: 350px; position: fixed; right: -350px; top: 0; bottom: 0; background: #fff; z-index: 99999; padding-top: 30px; }
 #aboutScroll { float: left; width: 100%; height: 100%; overflow: auto; }
-.showDesc { float: left; width: 140px; background: #cc0001; border-radius: 0 0 5px 5px; color: #fff; font-size: 21px; line-height: 23px; position: fixed; right: -54px; top: 50%; margin: 0; padding: 3px 10px 6px 10px; transform: rotate(90deg); -webkit-transform: rotate(90deg); text-align: center; }
+.showDesc { float: left; width: 140px; background: #cc0001; border-radius: 0 0 5px 5px; color: #fff; font-size: 20px; line-height: 23px; position: fixed; right: -54px; top: 50%; margin: 0; padding: 3px 10px 6px 10px; transform: rotate(90deg); -webkit-transform: rotate(90deg); text-align: center; font-family:'"Helvetica Neue",Helvetica,Arial,sans-serif'}
 .showDesc:hover, .showDesc:focus { color: #fff; }
 .about-us h2 { float: left; width: 100%; padding: 5px 0 30px; color: #cc0001; font-size: 22px; line-height: 27px; text-align: center; letter-spacing: 2px; }
 .welcome-img { float: left; width: 170px; margin: 0 30px 30px 0; text-align: center; }
@@ -385,7 +390,7 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .add-address a span { display: inline-block; width: 100%; }
 .address-block:hover .add-address a, .address-block:focus .add-address a { color: #cc0001; border-color: #cc0001; }
 .address-block:hover .add-address, .address-block:hover .add-address a i, .address-block:focus .add-address a i { border-color: #cc0001; }
-.new-address { display: none; margin-top: 30px; }
+.new-address { margin-top: 30px; }
 .new-address .form-control { border: none; border-bottom: 1px solid #ccc; padding: 0; box-shadow: none; border-radius: 0; margin-bottom: 20px; height: 25px; }
 .new-address .form-control:focus { border-color: #1c1e1b; }
 .new-address label { float: left; width: 100%; color: #9c9c9c; font-size: 14px; line-height: 20px; }

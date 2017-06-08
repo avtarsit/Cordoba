@@ -200,8 +200,117 @@ namespace CordobaAPI.API_Layout
              }
 
          }
-        
 
+        [HttpGet]
+        public HttpResponseMessage CustomerDetailLayout(int CustomerId,int StoreId)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.CustomerDetailLayout(CustomerId, StoreId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SaveCustomerBasicDetails_Layout(int StoreId,CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.SaveCustomerBasicDetails_Layout(StoreId, CustomerObj);
+      
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SaveChangedPassword_Layout(int StoreId, CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.SaveChangedPassword_Layout(StoreId, CustomerObj);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetCustomerAddressList_Layout(int StoreId, int customer_id)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.GetCustomerAddressList_Layout(StoreId, customer_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+         [HttpPost]
+        public HttpResponseMessage AddOrUpdateAddressDetail_Layout(int StoreId, AddressEntity AddressObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.AddOrUpdateAddressDetail_Layout(StoreId, AddressObj);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+         [HttpGet]
+        public HttpResponseMessage DeleteCustomerAddress(int StoreId, int customer_id,int address_id)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.DeleteCustomerAddress(StoreId, customer_id, address_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        
         
 
     }

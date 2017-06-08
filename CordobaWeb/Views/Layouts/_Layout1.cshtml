@@ -16,20 +16,19 @@
     <style>
 
 .spinner div {
-     top: 0;
+     /*top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
-    z-index: 10080 !important;
-    background-color: #F7F3F3;
-    opacity: 0.6;
+    left: 0;*/
+    z-index: 999999 !important; 
+    opacity: 0.8;
+    /*background-color:black;*/
   width: 20px;
   height: 20px;
-  position: absolute;
+  position: fixed;
   left: -20px;
-  top: 40px;
-  background-color: #333;
-  border-radius: 50%;
+  top: 40px;  
+  border-radius: 50%;  
   animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
 }
 .spinner div:nth-child(2) {
@@ -72,16 +71,16 @@
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile">My Account</a></li>
+                        <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                         <li><a href="" ng-click="GotoMyWishlist()" >My Wishlist</a></li>
                         <li ng-if="!(CustomerDetail.customer_id>0)">
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
                         <li ng-if="CustomerDetail.customer_id>0">
                             <p class="hi-text">Hi</p>
-                            <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{CustomerDetail.firstname}} {{CustomerDetail.lastname}}<span class="caret"></span></a>
+                            <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-bind="CustomerDetail.firstname +' '+CustomerDetail.lastname"><span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><p>you have: <span>{{CustomerDetail.points | number : 2}} Points</span></p></li>
+                                <li><p>You have: <span ng-bind="(CustomerDetail.points | number : 2)+' Points'"></span></p></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="" class="cursor-pointer" ng-click="Logout()">Logout</a></li>
                             </ul>
@@ -90,12 +89,7 @@
                 </div>
             </header>
             <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="spinner" data-loading>
-                    <div id="greenDot"></div>
-                    <div id="yellowDot"></div>
-                    <div id="redDot"></div>
-                    <div id="blueDot"></div>
-                </div>
+          
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -141,6 +135,12 @@
             </nav>
         </div>
         @*<div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>*@
+        <div class="spinner" data-loading>
+            <div id="greenDot"></div>
+            <div id="yellowDot"></div>
+            <div id="redDot"></div>
+            <div id="blueDot"></div>
+        </div>
         @RenderBody();
 
         <footer>
@@ -151,7 +151,16 @@
                     </div>
                     <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
                         <div class="row">
-                            <div class="col-sm-12 col-xs-12">
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="#" class="cursor-pointer" ui-sref="Home">Home</a></li>
+                                    <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
+                                    <li><a href="" class="cursor-pointer">Terms &amp; Conditions</a></li>
+                                    <li><a href="" class="cursor-pointer">Contact Us</a></li>
+                                    <li class="pull-right"><a href="#" class="cursor-pointer" id="fbIcon"></a></li>                                   
+                                </ul>
+                            </div>
+                            @*<div class="col-sm-12 col-xs-12">
                                 <ul class="footer-links">
                                     <li class="active"><a href="#">Home</a></li>
                                     <li><a href="#">My Account</a></li>
@@ -159,11 +168,11 @@
                                     <li><a href="#">Contact Us</a></li>
                                     <li><a href="#">Site Map</a></li>
                                 </ul>
-                            </div>
-                            <div class="col-sm-12 col-xs-12 connect-to">
+                            </div>*@
+                            @*<div class="col-sm-12 col-xs-12 connect-to">
                                 <p>Connect To :</p>
                                 <a class="facebook" href="javascript:;"><i class="fa fa-facebook-official"></i></a>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>

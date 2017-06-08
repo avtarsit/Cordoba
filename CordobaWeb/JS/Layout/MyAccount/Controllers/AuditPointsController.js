@@ -1,6 +1,6 @@
 ﻿
 
-app.controller('AuditPointsController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder) {
+app.controller('AuditPointsController', function ($timeout,StoreSessionDetail,UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder) {
 
 
     //#region CallGlobalFunctions
@@ -8,6 +8,7 @@ app.controller('AuditPointsController', function ($timeout, $state, $http, $root
     BindToolTip();
     Tab();
     //#endregion
+    $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
@@ -15,11 +16,9 @@ app.controller('AuditPointsController', function ($timeout, $state, $http, $root
 
 
     $scope.AuditPoints = function () {
-
-        var CustomerId = 1;
-        $http.get(configurationService.basePath + "API/PointsAuditApi/GetPointsAuditList?customer_id=" + CustomerId)
-          .then(function (response) {
-              debugger;
+        
+        $http.get(configurationService.basePath + "API/PointsAuditApi/GetPointsAuditList?customer_id=" + UserDetail.customer_id)
+          .then(function (response) {              
               $scope.AuditPointsList = response.data;
           })
       .catch(function (response) {
