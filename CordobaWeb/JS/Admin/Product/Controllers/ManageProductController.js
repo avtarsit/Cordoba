@@ -8,6 +8,7 @@
     function Init() {
         $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
         $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
+        $scope.HotSpecialProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
         $scope.ProductObjStock_Status = [{ ID: 6, Name: '2-3 Days' }, { ID: 7, Name: 'In Stock' }, { ID: 5, Name: 'Out Of Stock' }, { ID: 8, Name: 'Pre-Order' }];
         $scope.IsEditMode = false;
         $scope.product_id = 0;
@@ -39,6 +40,9 @@
         GetCategoryList();
         GetSupplierList();
         $scope.GetProductById();
+        $scope.GetHotOrSpecialProductById();
+        $scope.NeedToShowAddHotBtn = 0;
+        $scope.NeedToShowSpecialAddBtn = 0;
     }
 
     //#region Image Tab
@@ -65,7 +69,7 @@
 
 
     $scope.DeleteProduct = function () {
-        debugger;
+        
         bootbox.dialog({
             message: "Do you want remove Product?",
             title: "Confirmation",
@@ -152,8 +156,7 @@
             else {
                 $scope.ProductObj.ProductDescriptionList.push(ProductDescObj[0]);
             }
-        });
-        debugger;
+        });        
     }
 
     $scope.Cancel = function () {
@@ -245,8 +248,7 @@
         return CatalogueIdCSV;
     }
 
-    $scope.InsertUpdateProduct = function (form) {
-        debugger;
+    $scope.InsertUpdateProduct = function (form) {     
         if (form.$valid) {
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
@@ -272,7 +274,201 @@
     }
 
 
+    $scope.InsertAsHotOrSpecialProduct = function (form) {
+        debugger;
+        if (form.$valid) {
+            $scope.HotOrSpecialProductObj.CatalogueIdCSV = "";
+            $scope.HotOrSpecialProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
+            $scope.HotOrSpecialProductObj.store_id = 0;  // this is temporary
+            $scope.HotOrSpecialProductObj.product_id = $scope.product_id;
+            $scope.HotOrSpecialProductObj.created_by = -1;// this is temporary
+            var hotSpecialProductEntity = JSON.stringify($scope.HotOrSpecialProductObj);
+            if($scope.HotOrSpecialProductObj.IsHotProduct==true)
+            {
+            
+                $http.post(configurationService.basePath + "api/ProductApi/InsertAsHotProduct", hotSpecialProductEntity)
+                  .then(function (response) {
+                      if (response.data > 0) {
+                          notificationFactory.customSuccess("Product Saved Successfully.");
+                          $state.go('Product');
+                      }
+                      else if (response.data == -1) {
+                          notificationFactory.customError("Product name is already Exists!");
+                      }
+                  })
+              .catch(function (response) {
+                  notificationFactory.error("Error occur during save record.");
+              })
+              .finally(function () {
+
+              });
+            }
+            else {
+                $http.post(configurationService.basePath + "api/ProductApi/InsertAsSpecialProduct", hotSpecialProductEntity)
+                            .then(function (response) {
+                                if (response.data > 0) {
+                                    notificationFactory.customSuccess("Product Saved Successfully.");
+                                    $state.go('Product');
+                                }
+                                else if (response.data == -1) {
+                                    notificationFactory.customError("Product name is already Exists!");
+                                }
+                            })
+                        .catch(function (response) {
+                            notificationFactory.error("Error occur during save record.");
+                        })
+                        .finally(function () {
+
+                        });
+            }
+        }
+    }
+
+
+    //$scope.GetHotOrSpecialProductById=function()
+    //{
+    //    debugger;
+
+    //    $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
+    //                        + $scope.StoreDetailInSession.language_id +
+    //                        "&store_id=" + $scope.StoreDetailInSession.store_id +
+    //                        "&product_id=" + $scope.product_id  
+    //                        )
+    //      .then(function (response) {
+
+    //          if (response.data.length > 0) {
+    //              $scope.HotOrSpecialProductList = response.data;
+    //          }
+    //      })
+    //  .catch(function (response) {
+
+    //  })
+    //  .finally(function () {
+
+    //  });
+
+    //}
+
+    $scope.bindHotOrSpecial = function (data) {
+      
+        var dataList = data;
+        if ($.fn.DataTable.isDataTable(".dataTableHotOrSpecial")) {
+            $('.dataTableHotOrSpecial').DataTable().clear();
+            $('.dataTableHotOrSpecial').DataTable().destroy();
+        }
+
+        $('#dataTableHotOrSpecial').DataTable({
+            searching: false,
+            dom: '<"table-responsive"rt><"bottom"lip<"clear">>',
+            bProcessing: true,            
+            retrieve: true,          
+            stateSave: false,
+            paging: false,
+            bInfo : false,
+            data: dataList,
+            "order": [[0, "asc"]],
+            columnDefs: [
+                {
+                    orderable: true,
+                    mData: 'productName',
+                    title: '<B><h5>Product Name</h5></B>',
+                    targets: [0]
+                },
+                {
+                    orderable: true,                    
+                    title: 'Type',
+                    targets: [1],
+                    "render": function (data, type, row) {
+                        if (row.IsHotProduct ==true) {
+                            return '<label>' + 'Hot Product' + '</label>';
+                        }
+                        else {
+                            return '<label>' +'Special Product' + '</label>';;
+                        }
+                    }
+                },
+                {
+                    orderable: true,
+                    mData: 'startDate',
+                    title: '<B><h5>startDate</h5></B>',
+                    targets: [2]
+                },
+                {
+                    orderable: true,
+                    mData: 'endDate',
+                    title: '<B><h5>endDate</h5></B>',
+                    targets: [3]
+                },
+                {
+                    orderable: false,
+                    width: '95px',
+                    render: function (data, type, row) {
+                        return '<a title="Edit" ng-href="#AddUpdateBrand/' + row.BrandId + '"><span class="fa fa-pencil-square-o"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" title="Delete" ng-click=\'DeleteBrand("' + row.BrandId + '")\'><span class="fa fa-remove"></span></a>';
+                    },
+                    title: 'Action',
+                    targets: [4]
+                }
+
+            ],
+
+            "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                $compile(angular.element(nRow).contents())($scope);
+            }
+        });
+    }
+
+
+    $scope.GetHotOrSpecialProductById=function()
+    {
+        $scope.store_id = 0;
+        $scope.language_id = 1;
+        $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
+                           + $scope.language_id +
+                           "&store_id=" + $scope.store_id +
+                           "&product_id=" + $scope.product_id
+                           )
+        .success(function (data) {
+
+            var Hot = $filter('filter')(data, { IsHotProduct: true }, true)[0];
+            var Special = $filter('filter')(data, { IsHotProduct: false }, true)[0];
+            if (Hot != undefined && Hot!=null)
+            {
+                $scope.NeedToShowAddHotBtn = 0;
+            }
+            else {
+                $scope.NeedToShowAddHotBtn = 1;
+            }
+            if (Special != undefined && Special != null) {
+                $scope.NeedToShowSpecialAddBtn = 0;
+            }
+            else {
+                $scope.NeedToShowSpecialAddBtn = 1;
+            }
+
+        
+            $scope.bindHotOrSpecial(data);
+        }).error(function (err) {
+            showNotification(false, "error : " + err);
+        });
+    };
+
+
+    $scope.NeedtoShowHot_SpeacialContainerDiv=function(IsHotProduct)
+    {
+        $scope.HotOrSpecialProductObj = new Object();
+        $scope.HotOrSpecialProductObj.IsHotProduct = IsHotProduct;
+        $scope.NeedtoShowHot_SpeacialContainer = 1;
+        if(IsHotProduct==1)
+        {
+            $scope.NeedtoShowHot_SpeacialContainerTitle = "Add as Hot Product";
+        }
+        else {
+            $scope.NeedtoShowHot_SpeacialContainerTitle = "Add as Special Product";
+        }
+    }
+
     //#region init
     Init();
+   
     //#endregion Image Tab
 });

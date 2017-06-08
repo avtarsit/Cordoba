@@ -272,6 +272,7 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
+        debugger;
         if (form.$valid) {
 
             if (!ValidateAddress())

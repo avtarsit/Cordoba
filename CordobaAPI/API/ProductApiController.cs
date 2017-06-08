@@ -189,5 +189,61 @@ namespace CordobaAPI.API
                 throw ex;
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage InsertAsHotProduct(HotSpecialProductEntity hotSpecialProductEntity)
+        {
+            try
+            {
+                var result = _ProductServices.InsertAsHotProduct(hotSpecialProductEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+        [HttpPost]
+        public HttpResponseMessage InsertAsSpecialProduct(HotSpecialProductEntity hotSpecialProductEntity)
+        {
+            try
+            {
+                var result = _ProductServices.InsertAsSpecialProduct(hotSpecialProductEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetHotOrSpecialProductById(int language_id, int store_id, int product_id)
+        {
+            try
+            {
+                var result = _ProductServices.GetHotOrSpecialProductById(language_id, store_id, product_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
