@@ -19,85 +19,30 @@
         </ul>
     </div>
 </section>
-<section class="container">
+<section class="container" ng-controller="AddressBookController">
     <div class="account-block">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
+                <div class="col-md-3 col-sm-4 col-xs-12 address-block"  ng-repeat="AddressObj in AddressList">
+                    <div class="address-info" data-ng-style="AddressObj.IsDefaultAddress && {'border-color':'green'}">
+                        <label ng-bind="AddressObj.firstname+' '+AddressObj.lastname"></label>
+                        <p>{{AddressObj.address_1}}<br>{{AddressObj.address_2}}<br>{{AddressObj.city}} <br>{{AddressObj.postcode}}<br />{{AddressObj.county}}</p>
                     </div>
                     <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
+                        <a href="" class="cursor-pointer" ng-click="AddORUpdateAddressBinding(AddressObj)"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="cursor-pointer" ng-click="DeleteAddress(AddressObj)"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
-                    </div>
-                    <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
-                    </div>
-                    <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
-                    </div>
-                    <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
-                    </div>
-                    <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="address-info">
-                        <label>Nitin Patel</label>
-                        <p>Shaligram House,<br>Behind Rajpath Club,<br>Ahmedabad Gujarat,<br>380059</p>
-                        <p>+91 1234567891</p>
-                    </div>
-                    <div class="update-address">
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        <a href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </div>
+
                 <div class="col-md-3 col-sm-4 col-xs-12 address-block">
                     <div class="add-address">
-                        <a href="javascript:;">
+                        <a href="" class="cursor-pointer"  ng-click="AddORUpdateAddressBinding(null)">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             <span>Add New Address</span>
                         </a>
                     </div>
                 </div>
-                <form class="new-address">
+                <form class="new-address" ng-if="NeedToShowAddressDetailForm==1">
                     <div class="col-sm-12">
                         <div class="block-heading">
                             <h4 class="heading">Add New Address</h4>
@@ -105,95 +50,47 @@
                     </div>
                     <div class="col-sm-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" value="" placeholder="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.firstname" />
                     </div>
                     <div class="col-sm-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" value="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.lastname"  />
                     </div>
                     <div class="col-sm-4">
                         <label>Company</label>
-                        <input type="text" class="form-control" value="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.company"  />
                     </div>
                     <div class="col-sm-4">
                         <label>Address 1</label>
-                        <input type="text" class="form-control" value="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.address_1" />
                     </div>
                     <div class="col-sm-4">
                         <label>Address 2</label>
-                        <input type="text" class="form-control" value="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.address_2" />
                     </div>
                     <div class="col-sm-4">
                         <label>City</label>
-                        <input type="text" class="form-control" value="" />
+                        <input type="text" class="form-control" ng-model="AddressObj.city" />
                     </div>
                     <div class="col-sm-4">
                         <label>Post Code</label>
-                        <input type="text" class="form-control" value="" />
-                    </div>
+                        <input type="text" class="form-control" ng-model="AddressObj.postcode"  />
+                    </div>                 
                     <div class="col-sm-4">
-                        <label>Country</label>
-                        <div class="dropdown">
-                            <button class="form-control dropdown-toggle" type="button" id="country" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Select country
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="country">
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                                <li><a href="javascript:;">United Kingdom</a></li>
-                            </ul>
-                        </div>
+                        <label>Country</label>                     
+                        <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" ng-model="AddressObj.country_id"></select>
                     </div>
-                    <div class="col-sm-4">
-                        <label>Region / State</label>
-                        <div class="dropdown">
-                            <button class="form-control dropdown-toggle" type="button" id="country" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Select state
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="country">
-                                <li><a href="javascript:;">Aberdeen</a></li>
-                                <li><a href="javascript:;">Aberdeenshire</a></li>
-                                <li><a href="javascript:;">Anglesey</a></li>
-                                <li><a href="javascript:;">Angus</a></li>
-                                <li><a href="javascript:;">Argyll and Bute</a></li>
-                                <li><a href="javascript:;">Bedfordshire</a></li>
-                                <li><a href="javascript:;">Berkshire</a></li>
-                                <li><a href="javascript:;">Blaenau Gwent</a></li>
-                                <li><a href="javascript:;">Bridgend</a></li>
-                                <li><a href="javascript:;">Bristol</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                 
                     <div class="col-sm-12 default-address">
                         <label>Default Address:</label>
-                        <div class="radio-btn">
-                            <input type="radio" id="yes" name="dafeultAddress" checked />
-                            <label for="yes"><span></span>Yes</label>
-                            <input type="radio" id="no" name="dafeultAddress" />
-                            <label for="no"><span></span>No</label>
-                        </div>
+                        <switch  ng-model="AddressObj.IsDefaultAddress" on="Yes" off="No" class="green"></switch>                     
                     </div>
-                    <div class="col-sm-12 col-xs-12 mt-15 pull-right text-right">
-                        <button class="btn btn-empty">Save Address</button>
+                    <div class="col-sm-6 col-xs-12 mt-15 pull-right text-right">
+                        <button class="btn btn-success cursor-pointer" ng-click="AddOrUpdateAddressDetail(AddressObj)">Save</button>
+                        <button class="btn btn-default cursor-pointer" ng-click="CancelAddress()">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
-<script>
-    $(document).ready(function () {
-        $(".add-address a").click(function () {
-            $(".new-address").slideToggle();
-        });
-    });
-</script>

@@ -12,8 +12,7 @@
         $scope.IsEditMode = true;
         $scope.CountryId = $stateParams.CountryId;
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + $stateParams.CountryId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {              
               if (response.data.length > 0) {
                   $scope.CountryObj = response.data[0];
               }
@@ -36,10 +35,8 @@
 
         if (form.$valid) {
             $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
-            .then(function (response) {
-                debugger;
-                if (response.data == 0) {
-                    //alert('already exists');
+            .then(function (response) {                
+                if (response.data == 0) {                    
                     notificationFactory.customError("Country Code is already Exists!!");
                 }
                 if (response.data > 0) {

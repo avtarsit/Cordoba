@@ -145,8 +145,8 @@ namespace CordobaWeb
                      "~/Content/layout1/css/classes.css",
                      "~/Content/layout1/css/zoom.css",
                      "~/Content/css/toastr.min.css",
-                     "~/Scripts/angular-star-rating/main.css"
-                     //"~/Scripts/jquery-bar-ratting/themes/fontawesome-stars.css"
+                     "~/Scripts/angular-star-rating/main.css",
+                      "~/Content/css/angular-ui-switch.min.css"                   
                   ));
             //------------------------CSS-------------------------//
 
