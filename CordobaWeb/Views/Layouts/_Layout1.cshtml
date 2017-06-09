@@ -329,10 +329,16 @@
             });
         }
  
-        function CartAnimation(target) {
+        function CartAnimation(target, Image) {            
             var cart = $('#cart_icon');
-            var imgtodrag = $('<img id="dynamic">');
-            imgtodrag.attr('src', '/Content/layout1/images/step-4-process.png');
+            if (Image != undefined && Image != null) {
+                var imgtodrag = $('<img id="dynamic">');
+                imgtodrag.attr('src', Image);
+            }
+            else {
+                var imgtodrag = $('<img id="dynamic">');
+                 imgtodrag.attr('src', '/Content/layout1/images/step-4-process.png');
+            }              
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                 if (imgclone.length) {
