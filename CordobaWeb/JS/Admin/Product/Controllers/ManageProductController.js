@@ -391,7 +391,7 @@
                 {
                     orderable: true,
                     mData: 'startDate',
-                    title: '<B><h5>startDate</h5></B>',
+                    title: '<B><h5>Start Date</h5></B>',
                     "render": function (data, type, row) {
                         if (data != null) {
                             return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
@@ -406,7 +406,7 @@
                 {
                     orderable: true,
                     mData: 'endDate',
-                    title: '<B><h5>endDate</h5></B>',
+                    title: '<B><h5>End Date</h5></B>',
                     "render": function (data, type, row) {
                         if (data != null) {
                             return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
@@ -467,7 +467,8 @@
     }
 
     $scope.EditHotOrSpecialProduct = function ($event)
-    {        
+    {
+        debugger;
         var table = $('#dataTableHotOrSpecial').DataTable();
         var HorOrSpecialProductObj = table.row($($event.target).parents('tr')).data();
 
@@ -528,7 +529,9 @@
         });
     };
 
-
+    $scope.HotOrSpecialCancel = function () {
+        $scope.NeedtoShowHot_SpeacialContainer = 0;
+    }
 
     //$scope.GetHotOrSpecialProductDetailById = function (isHotProduct, product_id) {
     //    debugger;

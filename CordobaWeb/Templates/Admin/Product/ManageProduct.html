@@ -246,14 +246,17 @@
                                         <div>
                                             <ul class="breadcrumb-elements">
                                                 <li class="m-5" >
-                                                    <a title=" Add As Hot Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(true)" class="btn btn-primary cursor-pointer"><i class="icon-plus-circle2 position-left"> Hot</i></a>&nbsp;
+                                                    <a title=" Add As Hot Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(true)" class="btn-sm  btn-primary text-white cursor-pointer pull-right"><i class="icon-plus-circle2 position-left"> Hot</i></a>&nbsp;
                                                 </li>
                                                 <li class="m-5" >
-                                                    <a title=" Add As Special Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(false)" class="btn btn-primary cursor-pointer"><i class="icon-plus-circle2 position-left"> Special</i></a> &nbsp;
+                                                    <a title=" Add As Special Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(false)" class="btn-sm  btn-primary text-white cursor-pointer pull-right"><i class="icon-plus-circle2 position-left"> Special</i></a> &nbsp;
                                                 </li>
 
                                             </ul>
                                         </div>
+                                        <br />
+                                        <br />
+                                        <br />
                                         <br />
                                         <br />
                                         <br />
@@ -268,6 +271,9 @@
                                             
 
                                         </div>
+                                        <br />
+                                        <br />
+                                        <br />
                                         <div class="page-header-content" ng-show="NeedtoShowHot_SpeacialContainer==1">
                                             <div class="panel panel-default">
                                                 <div class="panel-body">
@@ -280,7 +286,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label">Date Start</label>
                                                             <div class="input-group myDatePicker date">
-                                                                <input type="text" class="form-control" name="HotOrSpecialStart" ng-model="HotOrSpecialProductObj.startDate" required="required" />
+                                                                <input type="text" class="form-control" name="HotOrSpecialStart" ng-model="HotOrSpecialProductObj.startDate" ng-required="NeedtoShowHot_SpeacialContainer==1" />
                                                                 <span class="input-group-addon cursor-pointer">
                                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                                 </span>
@@ -290,7 +296,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label" >Date End</label>
                                                             <div class="input-group myDatePicker date">
-                                                                <input type="text" class="form-control" name="HotOrSpecialEnd" ng-model="HotOrSpecialProductObj.endDate" required="required"/>
+                                                                <input type="text" class="form-control" name="HotOrSpecialEnd" ng-model="HotOrSpecialProductObj.endDate" ng-required="NeedtoShowHot_SpeacialContainer==1" />
                                                                 <span class="input-group-addon cursor-pointer">
                                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                                 </span>
@@ -315,8 +321,16 @@
 
                                                     </div>
 
-                                                    <button type="submit" ng-click="InsertAsHotOrSpecialProduct(form)" class="btn btn-primary cursor-pointer pull-right"> Add <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
-
+                                                    <ul class="breadcrumb-elements">
+                                                        <li>
+                                                            <button type="button" ng-click="HotOrSpecialCancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
+                                                        </li>
+                                                        <li>
+                                                            <button type="submit" ng-click="InsertAsHotOrSpecialProduct(form)" class="btn btn-primary cursor-pointer pull-right"> Add <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+                                                        </li>
+                                                        
+                                                        
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
