@@ -182,6 +182,13 @@ function GetLayoutName() {
                     url: '/Tools/ImportCatalogue',
                     templateUrl: 'Templates/' + LayoutName + '/ImportCatalogue/Index.html'
                 }
+
+                 , PointsImporter = {
+                     name: 'PointsImporter',
+                     url: '/Sales/PointsImporter',
+                     templateUrl: 'Templates/' + LayoutName + '/PointsImporter/PointsImporter.html'
+                 }
+
                  , ErrorLog = {
                      name: 'ErrorLog',
                      url: '/Tools/ErrorLog',
@@ -396,6 +403,8 @@ function GetLayoutName() {
                 $stateProvider.state(ProductPurchasedReport);
                 $stateProvider.state(ImportCatalogue);
                 $stateProvider.state(CustomerImport);
+
+                $stateProvider.state(PointsImporter);
 
                 $stateProvider.state(ErrorLog);
                 $stateProvider.state(RewardPointsReport);

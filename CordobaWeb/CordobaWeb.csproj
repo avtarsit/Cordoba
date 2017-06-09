@@ -661,6 +661,7 @@
     <Content Include="JS\Admin\Orders\ManageOrderController.js" />
     <Content Include="JS\Admin\Orders\OrdersController.js" />
     <Content Include="JS\Admin\Orders\ShowOrdersController.js" />
+    <Content Include="JS\Admin\PointsImporter\Controllers\PointsImporterController.js" />
     <Content Include="JS\Admin\Report\Controllers\CouponReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\CustomerActivityReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\OnlineCustomerReportController.js" />
@@ -3755,6 +3756,7 @@
     <Content Include="Templates\Admin\Orders\Index.html" />
     <Content Include="Templates\Admin\Orders\ManageOrder.html" />
     <Content Include="Templates\Admin\Orders\Orders.html" />
+    <Content Include="Templates\Admin\PointsImporter\PointsImporter.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
