@@ -647,6 +647,7 @@
     <Content Include="JS\Admin\Currency\Controllers\ShowCurrencyController.js" />
     <Content Include="JS\Admin\CustomerGroup\Controllers\AddOrUpdateCustomerGroupController.js" />
     <Content Include="JS\Admin\CustomerGroup\Controllers\ShowCustomerGroupController.js" />
+    <Content Include="JS\Admin\Customer\Controllers\CustomerImportController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ShowCustomerController.js" />
     <Content Include="JS\Admin\Dashboard\Controllers\DashboardController.js" />
     <Content Include="JS\Admin\Customer\Controllers\ManageCustomerController.js" />
@@ -3741,6 +3742,7 @@
     <Content Include="Templates\Admin\Currency\ManageCurrency.html" />
     <Content Include="Templates\Admin\CustomerGroup\Index.html" />
     <Content Include="Templates\Admin\CustomerGroup\ManageCustomerGroup.html" />
+    <Content Include="Templates\Admin\Customer\CustomerImport.html" />
     <Content Include="Templates\Admin\Customer\Index.html" />
     <Content Include="Templates\Admin\Customer\ManageCustomer.html" />
     <Content Include="Templates\Admin\ErrorLog\Index.html" />

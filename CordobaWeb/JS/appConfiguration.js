@@ -317,6 +317,11 @@ function GetLayoutName() {
                     url: '/CartDetail?cartgroup_id:CartGroupId',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
                 }
+                , CustomerImport = {
+                    name: 'CustomerImport',
+                    url: '/Customer/CustomerImport',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/CustomerImport.html'
+                }
                 ,Checkout = {
                     name: 'Checkout',
                     url: '/Checkout?cartgroup_id:CartGroupId',
@@ -390,6 +395,7 @@ function GetLayoutName() {
                 $stateProvider.state(ProductViewedReport);
                 $stateProvider.state(ProductPurchasedReport);
                 $stateProvider.state(ImportCatalogue);
+                $stateProvider.state(CustomerImport);
 
                 $stateProvider.state(ErrorLog);
                 $stateProvider.state(RewardPointsReport);
