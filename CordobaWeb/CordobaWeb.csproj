@@ -261,6 +261,7 @@
     <Content Include="Content\admin\images\flags\ee.png" />
     <Content Include="Content\admin\images\flags\eg.png" />
     <Content Include="Content\admin\images\flags\eh.png" />
+    <Content Include="Content\admin\images\flags\en.png" />
     <Content Include="Content\admin\images\flags\england.png" />
     <Content Include="Content\admin\images\flags\er.png" />
     <Content Include="Content\admin\images\flags\es.png" />
