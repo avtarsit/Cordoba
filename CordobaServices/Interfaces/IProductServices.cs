@@ -26,6 +26,6 @@ namespace CordobaServices.Interfaces
         int InsertAsHotProduct(HotSpecialProductEntity hotSpecialProductEntity);
         int InsertAsSpecialProduct(HotSpecialProductEntity hotSpecialProductEntity);
         List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id, int store_id, int product_id);
-
+        List<HotSpecialProductEntity> GetHotOrSpecialProductDetailById(bool IsHotProduct, int product_id);
     }
 }

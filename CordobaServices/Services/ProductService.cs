@@ -255,5 +255,22 @@ namespace CordobaServices.Services
             }
         }
 
+        public List<HotSpecialProductEntity> GetHotOrSpecialProductDetailById(bool IsHotProduct, int product_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                            new SqlParameter("IsHotProduct",IsHotProduct)
+                                                           ,new SqlParameter("product_id", product_id) 
+                                                                };
+                var result = objGenericRepository.ExecuteSQL<HotSpecialProductEntity>("GetHotOrSpecialProductDetailById", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }      
 }

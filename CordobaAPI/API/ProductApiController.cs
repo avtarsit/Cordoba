@@ -245,5 +245,24 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetHotOrSpecialProductDetailById(bool IsHotProduct, int product_id)
+        {
+            try
+            {
+                var result = _ProductServices.GetHotOrSpecialProductDetailById(IsHotProduct, product_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
     }
 }
