@@ -539,7 +539,7 @@
     //                       + isHotProduct +
     //                       "&product_id=" + product_id
     //                       )
-    //    .success(function (data) {
+    //    .success(function (data) {   
     //        debugger; 
     //        $scope.HotOrSpecialProductObj =
     //            {
