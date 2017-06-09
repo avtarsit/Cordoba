@@ -170,7 +170,7 @@ namespace CordobaAPI.API
                 {
                     return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
                 }
-                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Candidate");
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Products Purchased");
 
                 HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
                 Stream @null = Stream.Null;
