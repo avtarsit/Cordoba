@@ -182,6 +182,13 @@ function GetLayoutName() {
                     url: '/Tools/ImportCatalogue',
                     templateUrl: 'Templates/' + LayoutName + '/ImportCatalogue/Index.html'
                 }
+
+                 , PointsImporter = {
+                     name: 'PointsImporter',
+                     url: '/Sales/PointsImporter',
+                     templateUrl: 'Templates/' + LayoutName + '/PointsImporter/PointsImporter.html'
+                 }
+
                  , ErrorLog = {
                      name: 'ErrorLog',
                      url: '/Tools/ErrorLog',
@@ -317,6 +324,11 @@ function GetLayoutName() {
                     url: '/CartDetail?cartgroup_id:CartGroupId',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/CartDetail.html'
                 }
+                , CustomerImport = {
+                    name: 'CustomerImport',
+                    url: '/Customer/CustomerImport',
+                    templateUrl: 'Templates/' + LayoutName + '/Customer/CustomerImport.html'
+                }
                 ,Checkout = {
                     name: 'Checkout',
                     url: '/Checkout?cartgroup_id:CartGroupId',
@@ -390,6 +402,9 @@ function GetLayoutName() {
                 $stateProvider.state(ProductViewedReport);
                 $stateProvider.state(ProductPurchasedReport);
                 $stateProvider.state(ImportCatalogue);
+                $stateProvider.state(CustomerImport);
+
+                $stateProvider.state(PointsImporter);
 
                 $stateProvider.state(ErrorLog);
                 $stateProvider.state(RewardPointsReport);

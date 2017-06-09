@@ -115,7 +115,10 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-image">Image</label>
                                             <div class="col-sm-10">
-                                                <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png"></a>
+                                                <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
+                                                    <img ng-src='{{ProductObj.Image}}' alt="{{ProductObj.Image}}" style="height: 151px;" class="img-thumbnail" />
+                                                </a>
+
                                                 <input type="hidden" name="image" ng-model="ProductObj.Image" value="" id="input-image">
                                             </div>
                                         </div>

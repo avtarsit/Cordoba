@@ -85,6 +85,7 @@
                 "sProcessing": "",
                 "sZeroRecords": "<span class='pull-left'>No records found</span>",
             },
+            "autoWidth": false,
             "searching": false,
             "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
             "bProcessing": true,

@@ -79,6 +79,7 @@
                 "sProcessing": "",
                 "sZeroRecords": "<span class='pull-left'>No records found</span>",
             },
+            "autoWidth": false,
             "searching": false,
             "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
             "bProcessing": true,
@@ -108,7 +109,7 @@
 
             "aoColumns": [
                 {
-                    "mData": "ImagePath", "bSortable": false
+                    "mData": "ImagePath", "bSortable": false, "width": "20%"
                     , "render": function (data, type, row) {
                         return '<img ng-src=' + row.Image+ ' class="img-thumbnail" />'
                     }
