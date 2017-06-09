@@ -202,7 +202,7 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 .product-block p { float: left; width: 100%; color: #9c9c9c; font-size: 17px; line-height: 22px; padding-bottom: 5px; }
 .product-block p span { color: #cc0001; font-weight: bold; }
 .product-block .btn-default { max-width: 100%; border-radius: 0 0 10px 10px; margin-top: 10px; font-size: 16px; letter-spacing: 1px; }
-.latest-product { float: left; width: 100%; }
+.latest-product { float: left; width: 100%; margin-bottom:10px;}
 .latest-product .bx-wrapper { margin-bottom: 0; background: none; box-shadow: none; border: none; }
 .latest-product .bx-controls-direction a { width: 15px; text-indent: 0; top: -50px; font-size: 35px; line-height: 32px; color: #cc0001; }
 .latest-product a.bx-prev { left: auto; right: 35px; }
@@ -587,17 +587,7 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 	transform:rotateX(180deg);
 }
 /*Add to cart button*/
-
-/* keyframes start */
-@keyframes bar {
-  0% { height: 0px; }
-  100% { height: 38px; }
-}
-@-webkit-keyframes bar {
-  0% { height: 0px; }
-  100% { height: 38px; }
-}
-/* keyframes end */
+/*Top Nav Bar*/
 .add-on{
      width:100%;
     height:38px;
@@ -620,4 +610,22 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
   padding-top: 15px;
 }
 .navbar-nav li:last-child  a{ border-right:none}
+/*Top Nav Bar*/
+/*Cart Item*/
+.ItemQuantity{
+    height:39px;
+}
+/*Cart Item*/
+/* keyframes start */
+@keyframes bar {
+  0% { height: 0px; }
+  100% { height: 38px; }
+}
+@-webkit-keyframes bar {
+  0% { height: 0px; }
+  100% { height: 38px; }
+}
+/* keyframes end */
+
+
 
