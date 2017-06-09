@@ -501,6 +501,7 @@
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="Content\Images\bronze.png" />
     <Content Include="Content\Images\error-img.png" />
+    <Content Include="Content\Images\fb_ico.png" />
     <Content Include="Content\Images\gold.png" />
     <Content Include="Content\Images\Loading.gif" />
     <Content Include="Content\Images\manufacture.jpg" />

@@ -138,35 +138,41 @@
     
     $scope.PlaceOrder=function()
     {
+        debugger;
+        if ($scope.SelectedCustomerAddress.address_id > 0) {
+            $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
+            $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
+            $scope.PlaceOrderObj.shipping_addressId = $scope.SelectedCustomerAddress.address_id;
+            $scope.PlaceOrderObj.IpAddress = $scope.IpAddress;
+            $scope.PlaceOrderObj.CartGroupId = UserDetail.cartgroup_id;
+
+
+            $http.post(configurationService.basePath + "API/CartApi/PlaceOrder", $scope.PlaceOrderObj)
+            .then(function (response) {
+                debugger;
+                if (response.data > 0) {
+                    $scope.PlaceOrderObj = new Object();
+                    toastr.success("Order successfully placed.");             
+                    $scope.GetCartDetailsByCartGroupId();
+                    UserDetail.points = Math.ceil($rootScope.CustomerDetail.points - $scope.AllItemTotal);
+                    localStorageService.set("loggedInUser", UserDetail);
+                    $state.go('OrderSuccessful', { 'OrderId': response.data });
+
+                }
+
+            })
+              .catch(function (response) {
+
+              })
+             .finally(function () {
+
+             });
+        }
+        else {
+            toastr.warning("Address not found. Please add address.");
+        }
      
-        $scope.PlaceOrderObj.store_id=$scope.StoreDetailInSession.store_id;
-        $scope.PlaceOrderObj.customer_id = UserDetail.customer_id; 
-        $scope.PlaceOrderObj.shipping_addressId = $scope.SelectedCustomerAddress.address_id;
-        $scope.PlaceOrderObj.IpAddress=$scope.IpAddress;
-        $scope.PlaceOrderObj.CartGroupId = UserDetail.cartgroup_id;
-
-
-        $http.post(configurationService.basePath + "API/CartApi/PlaceOrder", $scope.PlaceOrderObj)
-        .then(function (response) {
-         
-            if (response.data > 0)
-            {
-                $scope.PlaceOrderObj = new Object();
-                notificationFactory.customSuccess("Order successfully placed.");
-                $scope.GetCartDetailsByCartGroupId();
-                UserDetail.points = ($rootScope.CustomerDetail.points - $scope.AllItemTotal);
-                localStorageService.set("loggedInUser", UserDetail);
-                $state.go('OrderSuccessful', { 'OrderId': response.data });
-                
-            }
-            
-        })
-          .catch(function (response) {
-
-          })
-         .finally(function () {
-
-         });
+    
     }
 
     $scope.GetIpAddress=function()

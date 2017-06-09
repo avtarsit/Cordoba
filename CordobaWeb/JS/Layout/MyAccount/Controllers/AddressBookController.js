@@ -59,9 +59,9 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
         $scope.AddressObj = new Object();
         $scope.NeedToShowAddressDetailForm = 0;
     }
-    $scope.AddOrUpdateAddressDetail=function()
+    $scope.AddOrUpdateAddressDetail = function (AddressObj)
     {
-        $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddOrUpdateAddressDetail_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.AddressObj)
+        $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddOrUpdateAddressDetail_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, AddressObj)
         .then(function (response) {
             $scope.AddressObj = new Object();
             $scope.NeedToShowAddressDetailForm = 0;
