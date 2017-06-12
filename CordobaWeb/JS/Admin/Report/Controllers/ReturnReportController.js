@@ -10,9 +10,8 @@
     $scope.ReturnReportObj.GroupById = null;
     $scope.ReturnReportObj.StatusId = null;
     //#endregion  
-    //$scope.dtOptions = DTOptionsBuilder.newOptions()
-    //                 .withOption('bDestroy', true)
-    debugger;
+
+
     $scope.PageTitle = "Sales Reports -Returns";
 
 
@@ -63,8 +62,7 @@
     }
 
 
-    function BindSorting(aoData, oSettings) {
-        debugger;
+    function BindSorting(aoData, oSettings) {      
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;
@@ -76,7 +74,7 @@
     }
 
     $scope.GetReturnList = function () {
-        debugger;
+      
         if ($.fn.DataTable.isDataTable("#tblReturnReport")) {
             $('#tblReturnReport').DataTable().destroy();
         }

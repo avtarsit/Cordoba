@@ -210,8 +210,7 @@
 
     function getOrderDetails() {
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {            
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
                   //$scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
@@ -277,8 +276,7 @@
             return false;
             $scope.OrderDetails.address_id = $scope.selectedPaymentAddressId;
             $scope.OrderDetails.payment_country_id = $scope.selectedPaymentCountry;
-            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;
-            debugger;
+            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;       
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_PaymentDetails", $scope.OrderDetails)
             .then(function (response) {
                 if (response.data == 1) {

@@ -33,10 +33,10 @@
     }
 
     //$scope.MarkAlreadyStargiven = function () {
-    //    debugger;
+
     //    $scope.isreadonlyAleardyAssigned = false;
     //    for (var i = 0; i < $scope.Customers.length; i++) {
-    //        debugger;
+  
     //        if ($scope.Customers[i].IsRewarded == true) {
                 
     //            $("#ratingValue" + i).find('i').removeClass('fa-star-o').addClass('fa-star')
@@ -58,7 +58,7 @@
 
     $scope.AddReward = function (item, index) {
         if (parseInt($scope.reward_type_id) == 2) {
-            debugger;
+        
             var ratingValue = $("#medalDiv" + index).find('input[type=radio]:checked').val();
             if ($("#medalDiv" + index).find('input[type=radio]:checked').length > 0) {
 
@@ -83,7 +83,7 @@
                                     if (result) {
                                         $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward", $scope.AddRewardObj)
                                           .then(function (response) {
-                                              debugger;
+                                         
                                               if (response.data > 0) {
                                                   notificationFactory.customSuccess("Reward Saved Successfully.");
                                                   $scope.GetRewardGroupCustomers();
@@ -114,7 +114,7 @@
             }
         }
         if (parseInt($scope.reward_type_id) == 1) {
-            debugger;
+      
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;
@@ -137,8 +137,7 @@
                                 callback: function (result) {
                                     if (result) {
                                         $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward", $scope.AddRewardObj)
-                                            .then(function (response) {
-                                                debugger;
+                                            .then(function (response) {                                            
                                                 if (response.data > 0) {
                                                     notificationFactory.customSuccess("Reward Saved Successfully.");
                                                     $scope.GetRewardGroupCustomers();

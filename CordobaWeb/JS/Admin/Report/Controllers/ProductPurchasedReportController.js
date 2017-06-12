@@ -157,7 +157,7 @@
         if ($scope.GridParams.length != undefined) {
             column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);
         }
-        debugger;
+
         $http({
             url: configurationService.basePath + 'api/ProductPurchasedReportApi/ExportToExcelProductPurchasedList?PageIndex=' + 1 + '&order_status_id=' + $scope.ProductFilter.order_status_id + '&store_id=' + $scope.ProductFilter.store_id + '&DateStart=' + $scope.ProductFilter.DateStart + '&DateEnd=' + $scope.ProductFilter.DateEnd,
             method: "POST",

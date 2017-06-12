@@ -629,13 +629,12 @@ function createDatePicker(defautvalue) {
     });
 }
 
-function GetCSVFromJsonArray(objectArray, ColumnName) {
-
+function GetCSVFromJsonArray(objectArray, ColumnName) {    
     try {
         var valueArray = [];
         objectArray.forEach(function (entry) {
             var value = eval("entry." + ColumnName);
-            if (value != null && value != '') {
+            if (value != null && value !=undefined) {
                 valueArray.push(value);
             }
 

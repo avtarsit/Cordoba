@@ -62,8 +62,7 @@
     }
 
 
-    $scope.GetProductListByCategoryAndStoreId = function () {
-        debugger;
+    $scope.GetProductListByCategoryAndStoreId = function () {   
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 

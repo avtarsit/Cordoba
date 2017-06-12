@@ -95,7 +95,7 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-Categories">Parent Category</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.parent_Id">
+                                                    <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.parent_Id">                                                        
                                                     </select>
                                                   
                                                 </div>
@@ -107,8 +107,7 @@
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
                                                         <!--<a ng-repeat="Item in CategoryObj.CategoryStoreList.CategoryStore">
                                                             <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.StoreName}}</label>
-                                                        </a>-->
-
+                                                        </a>-->                                              
                                                         <div class="col-sm-6 checkbox" ng-repeat="Item in CategoryObj.StoreList">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">

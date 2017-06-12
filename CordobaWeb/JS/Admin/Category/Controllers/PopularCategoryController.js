@@ -38,8 +38,7 @@
     {
 
                  $http.get(configurationService.basePath + "api/CategoryApi/GetStoreNameList")
-                 .then(function (response) {
-                     debugger;
+                 .then(function (response) {                
                      if (response.data.length > 0) {
                          $scope.StoreList = response.data;
 
@@ -59,8 +58,7 @@
 
 
     $scope.SwitchClick=function(Item)
-    {
-        debugger;
+    {    
         Item.createdby = -1;
         //    $scope.PopularObj.status = 1;
         //    $scope.PopularObj.category_popularId = $scope.category_popularId;

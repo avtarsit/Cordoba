@@ -135,7 +135,7 @@
             });
         }
         else {
-            $state.go('ShowCategory');
+            $state.go('ShowCategory'); 
         }
     }
 
@@ -159,8 +159,7 @@
 
 
   
-    $scope.InsertOrUpdateCategory = function (form) {
-    
+    $scope.InsertOrUpdateCategory = function (form) {        
         if (form.$valid) {
             $scope.CategoryObj.StoreIdCSV = "";
             $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
@@ -189,7 +188,7 @@
         }
     }
 
-    function GetSelectedStoreListCSV(StoreObj) {
+    function GetSelectedStoreListCSV(StoreObj) {        
         var StoreIdCSV = "";
         var SelectedStoreList = $filter('filter')(StoreObj, { IsSelected: true }, true);
         StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");

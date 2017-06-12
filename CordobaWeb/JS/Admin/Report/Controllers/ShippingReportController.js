@@ -63,7 +63,7 @@
 
 
     function BindSorting(aoData, oSettings) {
-        debugger;
+       
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;

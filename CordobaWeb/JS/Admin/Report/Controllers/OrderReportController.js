@@ -12,7 +12,7 @@
     //#endregion  
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
     //                 .withOption('bDestroy', true)
-    debugger;
+
     $scope.PageTitle = "Sales Reports -Orders";
 
 
@@ -55,7 +55,7 @@
 
 
     function BindSorting(aoData, oSettings) {
-        debugger;
+     
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;
@@ -67,7 +67,7 @@
     }
 
     $scope.GetOrderReportList = function () {
-        debugger;
+ 
         if ($.fn.DataTable.isDataTable("#tblOrderReport")) {
             $('#tblOrderReport').DataTable().destroy();
         }

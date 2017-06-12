@@ -10,7 +10,7 @@
     $scope.GetRewardList = function () {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $scope.rewardId)
           .then(function (response) {
-              debugger;
+       
               if (response.data.length > 0) {
                   $scope.rewardTypeId = response.data[0].reward_type_id;
                   $scope.RewardName = response.data[0].Title;
@@ -31,7 +31,7 @@
         if ($scope.rewardId != undefined && $scope.rewardId != null) {
             $http.get(configurationService.basePath + "api/RewardApi/ViewCustomerRewards?reward_id=" + $scope.rewardId)
             .then(function (response) {
-                debugger;
+         
                 $scope.ViewRewards = response.data;
             })
             .catch(function (response) {
@@ -61,7 +61,7 @@
 
 
     $scope.Declare_RewardWinner = function () {
-        debugger;
+    
 
         bootbox.dialog({
             message: "Do you want declare this user as winner?",
@@ -76,7 +76,7 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/RewardApi/Declare_RewardWinner?reward_id=" + $scope.rewardId + "&reward_user_id=" + $scope.reward_user_id + "&admin_comment=" + $scope.AdminComment)
                                   .then(function (response) {
-                                      debugger;
+                              
                                       if (response.data > 0) {
                                           notificationFactory.customSuccess("Reward Winner Declared Successfully.");
                                           angular.element('#UserWinnerModal').modal('hide');
@@ -119,7 +119,7 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/RewardApi/Delete_RewardWinner?reward_user_id=" + reward_user_id)
                                   .then(function (response) {
-                                      debugger;
+                         
                                       if (response.data > 0) {
                                           notificationFactory.customSuccess("Reward Winner Deleted Successfully.");
                                           $scope.ViewCustomerRewards();

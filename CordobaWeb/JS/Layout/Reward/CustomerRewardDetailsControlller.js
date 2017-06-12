@@ -14,7 +14,6 @@
         if ($stateParams.reward_id != null) {
             $http.get(configurationService.basePath + "api/RewardApi/RewardCustomerDetails?reward_id=" + $stateParams.reward_id)
               .then(function (response) {
-                  debugger;
 
                       $scope.RewardDetails = response.data;
               })

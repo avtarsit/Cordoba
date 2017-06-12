@@ -30,8 +30,7 @@
 
  
     $scope.PointsImporter =function()
-    {
-        debugger;
+    {     
         if ($scope.store_id == '' || $scope.files==undefined)
         {
             toastr.error("Select Store & file");

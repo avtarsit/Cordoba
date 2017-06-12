@@ -443,7 +443,7 @@
                     orderable: false,
                     width: '95px',
                     render: function (data, type, row) {
-                        debugger;
+            
                         //return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="Edit" href="" ng-click="EditHotOrSpecialProduct($event)"><span class="fa fa-pencil-square-o"></span></a>';             
                         if (row.status==1)
                         {                           
@@ -468,7 +468,7 @@
 
     $scope.EditHotOrSpecialProduct = function ($event)
     {
-        debugger;
+     
         var table = $('#dataTableHotOrSpecial').DataTable();
         var HorOrSpecialProductObj = table.row($($event.target).parents('tr')).data();
 
