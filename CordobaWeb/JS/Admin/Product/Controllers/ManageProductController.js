@@ -67,7 +67,6 @@
     //#endregion
 
 
-
     $scope.DeleteProduct = function () {
         
         bootbox.dialog({
@@ -249,7 +248,7 @@
     }
 
     $scope.InsertUpdateProduct = function (form) {     
-        if (form.$valid) {
+        if (form.$valid) {            
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
             var productEntity = JSON.stringify($scope.ProductObj);
@@ -257,7 +256,7 @@
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Product Saved Successfully.");
-                      $state.go('Product');
+                      $state.go('ManageProduct', ({ 'ProductId': response.data }));
                   }
                   else if (response.data == -1) {
                       notificationFactory.customError("Product name is already Exists!");
@@ -277,6 +276,12 @@
     $scope.InsertAsHotOrSpecialProduct = function (form) {
 
         if (form.$valid) {
+
+            if ($scope.HotOrSpecialProductObj.endDate < $scope.HotOrSpecialProductObj.startDate)
+            {
+                toastr.error("End Date should be greater or equal Start date.");
+                return false;
+            }
             $scope.HotOrSpecialProductObj.CatalogueIdCSV = "";
             $scope.HotOrSpecialProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
             $scope.HotOrSpecialProductObj.store_id = 0;  // this is temporary
@@ -284,8 +289,7 @@
             $scope.HotOrSpecialProductObj.created_by = -1;// this is temporary
             var hotSpecialProductEntity = JSON.stringify($scope.HotOrSpecialProductObj);
             if($scope.HotOrSpecialProductObj.IsHotProduct==true)
-            {
-            
+            {            
                 $http.post(configurationService.basePath + "api/ProductApi/InsertAsHotProduct", hotSpecialProductEntity)
                   .then(function (response) {
                       if (response.data > 0) {
