@@ -122,7 +122,7 @@
     }
 
     $scope.GetZoneListByCountry = function (countryId) {
-        debugger;
+  
         countryId = countryId == null ? 0 : countryId;
         $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
         .then(function (response) {
@@ -272,7 +272,7 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
-        debugger;
+
         if (form.$valid) {
 
             if (!ValidateAddress())

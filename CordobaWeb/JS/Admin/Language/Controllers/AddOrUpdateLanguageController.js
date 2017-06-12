@@ -12,10 +12,10 @@
         $scope.PageTitle = "Update Language";
         $scope.IsEditMode = true;
         $scope.languageId = $stateParams.LanguageId;
-        debugger;
+
         $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId)
          .then(function (response) {
-             debugger;
+    
              $scope.LanguageObj = response.data[0];
          })
         .catch(function (response) {
@@ -35,10 +35,10 @@
     $scope.SaveLanguage = function (form) {
         if (form.$valid) {
             //$scope.LanguageObj.image = $scope.LanguageObj.code + '.png';
-            debugger;
+    
             $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage", $scope.LanguageObj)
            .then(function (response) {
-               debugger;
+             
                if (response.data == 0) {
                    //alert('already exists');
                    notificationFactory.customError("Language Code is already Exists!!");

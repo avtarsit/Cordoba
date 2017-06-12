@@ -20,13 +20,13 @@
     }
     //#endregion
 
-    debugger;
+
     $scope.GetCustomerGroupDetail = function () {
 
 
         $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupDetail?CustomerGroupId=" + $scope.customer_group_id)
           .then(function (response) {
-              debugger;
+         
               $scope.CustomerGroupObj = response.data;
               if (!($scope.user_id > 0)) //New User
               {
@@ -48,7 +48,7 @@
 
 
         if (form.$valid) {
-            debugger;
+     
             $scope.CustomerGroupObj.status = 1;
             $scope.CustomerGroupObj.customer_group_id = $scope.customer_group_id;
             $http.post(configurationService.basePath + "api/CustomerGroupApi/CreateOrUpdateCustomerGroup", $scope.CustomerGroupObj)

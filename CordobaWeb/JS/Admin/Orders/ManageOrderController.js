@@ -31,10 +31,10 @@
     $scope.selectedPaymentCountry = 0;
 
     $scope.GetZoneListByCountryPayment = function (countryId) {
-        debugger;
+       
         $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
         .then(function (response) {
-            debugger;
+           
             $scope.RegionStateListPayment = [];
             if (response.data.length > 0) {
                 $scope.RegionStateListPayment = response.data;
@@ -53,10 +53,10 @@
     }
 
     //$scope.GetZoneListByCountryShipping = function (countryId) {
-    //    debugger;
+ 
     //    $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
     //    .then(function (response) {
-    //        debugger;
+
     //        $scope.RegionStateListShipping = [];
     //        if (response.data.length > 0) {
     //            $scope.RegionStateListShipping = response.data;
@@ -167,11 +167,11 @@
     }
 
     $scope.GetCustomersByStore = function (storeId) {
-        debugger;
+  
         $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId)
         .then(function (response) {
             if (response.data.length > 0) {
-                debugger;
+      
                 $scope.CustomerList = response.data;
                 $scope.selectedCustomer = $scope.CustomerList[0].customer_id;
                 if ($scope.OrderDetails.customer_id != 0 || $scope.OrderDetails.customer_id != null) {
