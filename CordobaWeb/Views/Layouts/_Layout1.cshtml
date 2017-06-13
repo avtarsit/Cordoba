@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cordoba</title>
 
-    @Styles.Render("~/bundles/Layout1CSS")   
+    @Styles.Render("~/bundles/Layout1CSS")       
     <style>
-
 
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
 
@@ -20,9 +19,9 @@
     right: 0;
     bottom: 0;
     left: 0;*/
-    z-index: 999999 !important; 
+ z-index: 999999;
     opacity: 0.8;
-    /*background-color:black;*/
+    background-color:black;
   width: 20px;
   height: 20px;
   position: fixed;
@@ -135,12 +134,15 @@
             </nav>
         </div>
         @*<div class="loader" data-loading><img class="Centerloader" src="~/Content/layout1/images/loader.gif" /></div>*@
-        <div class="spinner" data-loading>
-            <div id="greenDot"></div>
-            <div id="yellowDot"></div>
-            <div id="redDot"></div>
-            <div id="blueDot"></div>
+        <div class="loader" data-loading>
+            <div class="spinner">
+                <div id="greenDot"></div>
+                <div id="yellowDot"></div>
+                <div id="redDot"></div>
+                <div id="blueDot"></div>
+            </div>
         </div>
+        
         @RenderBody();
 
         <footer>
@@ -157,7 +159,9 @@
                                     <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                     <li><a href="" class="cursor-pointer">Terms &amp; Conditions</a></li>
                                     <li><a href="" class="cursor-pointer">Contact Us</a></li>
-                                    <li class="pull-right"><a href="#" class="cursor-pointer" id="fbIcon"></a></li>                                   
+                                    <li class="pull-right">
+                                        <a href="#" class="cursor-pointer" id="fbIcon"></a>
+                                    </li>                                   
                                 </ul>
                             </div>
                             @*<div class="col-sm-12 col-xs-12">

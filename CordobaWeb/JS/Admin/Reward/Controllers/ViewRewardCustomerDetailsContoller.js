@@ -9,7 +9,7 @@
     if ($stateParams.rewarduserid != undefined && $stateParams.rewarduserid != null) {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardCustomerDetails?reward_user_id=" + $stateParams.rewarduserid)
         .then(function (response) {
-            debugger;
+           
             $scope.CustomerRewards = response.data;
         })
         .catch(function (response) {
@@ -21,7 +21,7 @@
     }
     $scope.DeleteRewardUser = function (id) {
         if ($stateParams.rewarduserid != null) {
-            debugger;
+       
             bootbox.dialog({
                 message: "Do you want remove Reward given by User?",
                 title: "Confirmation",

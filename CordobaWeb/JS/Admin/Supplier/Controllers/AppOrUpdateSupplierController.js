@@ -30,11 +30,11 @@
 
 
     $scope.SaveSupplier = function (form) {
-        debugger;
+     
         if (form.$valid) {
             $http.post(configurationService.basePath + "api/SupplierApi/InsertOrUpdateSupplier", $scope.SupplierObj)
            .then(function (response) {
-               debugger;
+      
                if (response.data == 0) {
                    //alert('already exists');
                    notificationFactory.customError("Supplier Name is already Exists!!");

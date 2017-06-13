@@ -10,7 +10,7 @@ namespace CordobaServices.Interfaces
 {
     public interface IOrderService
     {
-        IEnumerable<OrderEntity> GetOrderList(string sortColumn, TableParameter<OrderEntity> filter, string PageFrom = "");
+        IEnumerable<OrderEntity> GetOrderList(string sortColumn, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "");
 
         List<OrderEntity> GetOrderDetails(int orderId);
 

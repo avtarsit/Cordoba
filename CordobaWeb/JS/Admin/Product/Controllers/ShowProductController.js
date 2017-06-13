@@ -109,7 +109,7 @@
 
             "aoColumns": [
                 {
-                    "mData": "ImagePath", "bSortable": false, "width": "20%"
+                    "mData": "ImagePath", "bSortable": false, "width": "10%"
                     , "render": function (data, type, row) {
                         return '<img ng-src=' + row.Image+ ' class="img-thumbnail" />'
                     }

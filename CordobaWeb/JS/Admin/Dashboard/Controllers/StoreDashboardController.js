@@ -449,7 +449,7 @@
     $scope.GetLatestOrderDetailsDashboard = function () {
         $http.get(configurationService.basePath + "api/DashboardApi/GetLatestOrderDetailsDashboard?storeId=" + $scope.storeId)
          .then(function (response) {
-             debugger;
+     
              if (response.data.length > 0) {
                  $scope.Orders = response.data;
              }
@@ -484,7 +484,7 @@
         .then(function (response) {
             if (response.data != null) {
                 //$scope.DashboardOrderSummary = response.data;
-                debugger;
+          
                 $scope.DashboardSummary.DashboardOrderSummary = [];
                 $scope.DashboardSummary.DashboardOrderSummaryMonthName = [];
 
@@ -526,7 +526,7 @@
                     }
                 }
                 else if ($scope.ChartFiltertype == 3) {
-                    debugger;
+           
                     for (var i = 0; i < response.data.dashboardSalesAnalytics.length; i++) {
                         $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].DayNumberOfMonth)
                     }

@@ -49,15 +49,24 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public IEnumerable<OrderEntity> GetOrderList(string sortColumn, TableParameter<OrderEntity> filter, string PageFrom = "")
+        public IEnumerable<OrderEntity> GetOrderList(string sortColumn, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "")
         {
             try
             {
-                var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
-                var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
-                var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
-                var paramPageFrom = new SqlParameter { ParameterName = "PageFrom", DbType = DbType.String, Value = PageFrom };
-                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderList", paramOrderBy, paramPageSize, paramPageIndex, paramPageFrom).AsQueryable();
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("OrderBy",sortColumn)
+               ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10 )
+               ,new SqlParameter("PageIndex", filter != null ? filter.PageIndex : 1) 
+               ,new SqlParameter("PageFrom",PageFrom) 
+               ,new SqlParameter("orderId ",orderId!=null?orderId:0) 
+               ,new SqlParameter("order_status_id ",order_status_id!=null?order_status_id:0) 
+               ,new SqlParameter("customer ",CustomerName!=null?CustomerName:(object)DBNull.Value) 
+               ,new SqlParameter("total ",total!=null?total:0)
+               ,new SqlParameter("dateAdded ",DateAdded!=null?DateAdded:(object)DBNull.Value)
+               ,new SqlParameter("dateModifies ",DateModified!=null?DateModified:(object)DBNull.Value)
+                };
+
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderList_Admin", sqlParameter).AsQueryable();
                 return query;
             }
             catch (Exception)

@@ -1,4 +1,4 @@
-﻿app.controller('ShowCurrencyController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ShowCurrencyController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval,DTColumnDefBuilder, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
    
     decodeParams($stateParams);
@@ -7,7 +7,11 @@
     $scope.UserList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-                     .withOption('bDestroy', true)
+                     .withOption('bDestroy', true);
+
+    $scope.dtColumnDefs = [
+      DTColumnDefBuilder.newColumnDef(2).notSortable()
+    ];
 
     $scope.PageTitle = "Show Currency";
 

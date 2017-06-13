@@ -17,7 +17,7 @@
     function GetRewardList() {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardTypeList")
          .then(function (response) {
-             debugger;
+    
              if (response.data.length > 0) {
                  $scope.RewardTypeList = response.data;
              }
@@ -37,7 +37,7 @@
         $scope.RewardId = $stateParams.rewardId;
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $stateParams.rewardId)
           .then(function (response) {
-              debugger;
+        
               if (response.data.length > 0) {
                   $scope.RewardObj = response.data[0];
                   $scope.RewardObj.start_date = $filter('date')($scope.RewardObj.start_date, $rootScope.GlobalDateFormat);
@@ -68,7 +68,7 @@
             var isAddMode = ($scope.IsEditMode == true ? 0 : 1);
             $http.post(configurationService.basePath + "api/RewardApi/InsertOrUpdateReward?isAddMode=" + isAddMode, $scope.RewardObj)
            .then(function (response) {
-               debugger;
+           
                if (response.data > 0) {
                    notificationFactory.customSuccess("Reward Saved Successfully.");
                    $state.go('ShowReward');
@@ -120,7 +120,7 @@
     }
 
     $scope.checkCustomError = function () {
-        debugger;
+       
         if (!angular.isUndefined($scope.RewardObj.end_date) && !angular.isUndefined($scope.RewardObj.start_date)) {
 
             var startDate = new Date($scope.RewardObj.start_date);

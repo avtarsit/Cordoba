@@ -31,10 +31,10 @@
     $scope.selectedPaymentCountry = 0;
 
     $scope.GetZoneListByCountryPayment = function (countryId) {
-        debugger;
+       
         $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
         .then(function (response) {
-            debugger;
+           
             $scope.RegionStateListPayment = [];
             if (response.data.length > 0) {
                 $scope.RegionStateListPayment = response.data;
@@ -53,10 +53,10 @@
     }
 
     //$scope.GetZoneListByCountryShipping = function (countryId) {
-    //    debugger;
+ 
     //    $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
     //    .then(function (response) {
-    //        debugger;
+
     //        $scope.RegionStateListShipping = [];
     //        if (response.data.length > 0) {
     //            $scope.RegionStateListShipping = response.data;
@@ -136,8 +136,7 @@
              if (response.data.length > 0) {
                  $scope.CountryList = response.data;
                  $scope.selectedPaymentCountry = $scope.CountryList[0].country_id;
-                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;
-                 alert($scope.selectedPaymentCountry);
+                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;                 
              }
          })
         .catch(function (response) {
@@ -167,11 +166,11 @@
     }
 
     $scope.GetCustomersByStore = function (storeId) {
-        debugger;
+  
         $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId)
         .then(function (response) {
             if (response.data.length > 0) {
-                debugger;
+      
                 $scope.CustomerList = response.data;
                 $scope.selectedCustomer = $scope.CustomerList[0].customer_id;
                 if ($scope.OrderDetails.customer_id != 0 || $scope.OrderDetails.customer_id != null) {
@@ -210,14 +209,14 @@
 
     function getOrderDetails() {
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {            
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
                   //$scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
                   //$scope.MainTotal = $scope.Products[0].title;
                   if ($scope.Products.length > 0) {
+                      debugger;
                       $scope.total_title = $scope.Products[0].total_title;
                       $scope.total_value = $scope.Products[0].total_value;
                       $scope.subtotal_title = $scope.Products[0].subtotal_title;
@@ -227,9 +226,7 @@
                   $scope.selectedShippingCountry = ($scope.OrderDetails.shipping_country_id == null || $scope.OrderDetails.shipping_country_id == '') ? 0 : $scope.OrderDetails.shipping_country_id;
                   $scope.selectedPaymentAddressId = parseInt($scope.OrderDetails.address_id);
                   $scope.selectedAddressShippingId = parseInt($scope.OrderDetails.address_id);
-                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);
-                  alert($scope.selectedShippingCountry);
-                  alert($scope.selectedPaymentCountry);
+                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);           
                   //$scope.GetZoneListByCountryShipping($scope.selectedShippingCountry);
                   $scope.selectedPaymentZone = $scope.OrderDetails.payment_zone_id == 0 ? '' : $scope.OrderDetails.payment_zone_id;
                   //$scope.selectedShippingZone = 0;
@@ -272,13 +269,10 @@
     }
 
     $scope.UpdateOrder_PaymentDetails = function (form) {
-        if (form.$valid) {
-            alert('UpdateOrder_PaymentDetails');
-            return false;
+        if (form.$valid) {             
             $scope.OrderDetails.address_id = $scope.selectedPaymentAddressId;
             $scope.OrderDetails.payment_country_id = $scope.selectedPaymentCountry;
-            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;
-            debugger;
+            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;       
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_PaymentDetails", $scope.OrderDetails)
             .then(function (response) {
                 if (response.data == 1) {

@@ -20,13 +20,10 @@
     }
     //#endregion
 
-    debugger;
+
     $scope.GetCurrencyDetail = function () {
-
-
         $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyDetail?CurrencyId=" + $scope.currency_id)
           .then(function (response) {
-              debugger;
               $scope.CurrencyObj = response.data;
               if (!($scope.user_id > 0)) //New User
               {

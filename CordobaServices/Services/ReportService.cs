@@ -43,7 +43,7 @@ namespace CordobaServices.Services
             //return result;
         }
 
-        public IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -55,6 +55,8 @@ namespace CordobaServices.Services
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
                     ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
+                    ,new SqlParameter("store_id", StoreId!=null ? StoreId:(object)DBNull.Value)
+                    
                 };
 
 

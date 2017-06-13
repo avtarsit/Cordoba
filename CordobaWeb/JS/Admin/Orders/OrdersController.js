@@ -110,10 +110,10 @@
     //    };
 
     $scope.GetOrderDetails = function () {
-        debugger;
+
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.OrderId)
           .then(function (response) {
-              debugger;
+           
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
                   $scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
@@ -145,11 +145,10 @@
             notify: (OrderHistory.notify == true ? 1 : 0),
             comment: OrderHistory.comment
         }
-        debugger;
         //return false;
         $http.post(configurationService.basePath + "api/OrderApi/InsertOrderHistory", objHistoryEntity)
            .then(function (response) {
-               debugger;
+    
                if (response.data > 0) {
                    //alert('already exists');
                    $scope.GetOrderDetails();

@@ -138,7 +138,7 @@
     
     $scope.PlaceOrder=function()
     {
-        debugger;
+     
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
@@ -149,7 +149,7 @@
 
             $http.post(configurationService.basePath + "API/CartApi/PlaceOrder", $scope.PlaceOrderObj)
             .then(function (response) {
-                debugger;
+             
                 if (response.data > 0) {
                     $scope.PlaceOrderObj = new Object();
                     toastr.success("Order successfully placed.");             

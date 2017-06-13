@@ -92,7 +92,6 @@
 
     $scope.GotoProductList = function (Whatyouarelookingfor)
     {
-        debugger;
         $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor});
     }
  

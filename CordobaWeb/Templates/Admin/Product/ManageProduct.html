@@ -69,7 +69,7 @@
                                     <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
                                     <li> <a data-target="#tab-shipping" data-toggle="tab">Shipping Details</a></li>
                                     <li><a data-target="#tab-links" data-toggle="tab">Links</a></li>
-                                    <li><a data-target="#tab-HotOrSpecial" data-toggle="tab" >Hot/Special Products</a></li>
+                                    <li ng-if="product_id>0"><a data-target="#tab-HotOrSpecial" data-toggle="tab">Hot/Special Products</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <di v class="tab-content">
@@ -116,7 +116,7 @@
                                             <label class="col-sm-2 control-label" for="input-image">Image</label>
                                             <div class="col-sm-10">
                                                 <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
-                                                    <img ng-src='{{ProductObj.Image}}' alt="{{ProductObj.Image}}" style="height: 151px;" class="img-thumbnail" />
+                                                    <img ng-src="{{ProductObj.Image}}" alt="{{ProductObj.Image}}" style="height: 151px;" class="img-thumbnail" />
                                                 </a>
 
                                                 <input type="hidden" name="image" ng-model="ProductObj.Image" value="" id="input-image">
@@ -245,13 +245,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab-HotOrSpecial" ng-init="GetHotOrSpecialProductById()">
+                                    <div class="tab-pane"  id="tab-HotOrSpecial" ng-init="GetHotOrSpecialProductById()">
                                         <div>
                                             <ul class="breadcrumb-elements">
-                                                <li class="m-5" >
+                                                <li class="m-5">
                                                     <a title=" Add As Hot Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(true)" class="btn-sm  btn-primary text-white cursor-pointer pull-right"><i class="icon-plus-circle2 position-left"> Hot</i></a>&nbsp;
                                                 </li>
-                                                <li class="m-5" >
+                                                <li class="m-5">
                                                     <a title=" Add As Special Product" ng-click="NeedtoShowHot_SpeacialContainerDiv(false)" class="btn-sm  btn-primary text-white cursor-pointer pull-right"><i class="icon-plus-circle2 position-left"> Special</i></a> &nbsp;
                                                 </li>
 
@@ -266,12 +266,10 @@
                                         <div>
                                             <div class="table-responsive">
 
-                                                <table id="dataTableHotOrSpecial" class="table table-bordered  data-table">
-                                                    
-                                                </table>
+                                                <table id="dataTableHotOrSpecial" class="table table-bordered  data-table"></table>
 
                                             </div>
-                                            
+
 
                                         </div>
                                         <br />
@@ -297,7 +295,7 @@
                                                             <!--<span style="color:Red" ng-show="form.HotOrSpecialStart.$touched && form.HotOrSpecialStart.$error.required">StartDate is required</span>-->
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" >Date End</label>
+                                                            <label class="control-label">Date End</label>
                                                             <div class="input-group myDatePicker date">
                                                                 <input type="text" class="form-control" name="HotOrSpecialEnd" ng-model="HotOrSpecialProductObj.endDate" ng-required="NeedtoShowHot_SpeacialContainer==1" />
                                                                 <span class="input-group-addon cursor-pointer">
@@ -317,7 +315,7 @@
                                                         <div class="form-group">
                                                             <label class="form-group">Status</label>
                                                             <div>
-                                                                <select ng-options="Status.ID as Status.Name  for Status in HotSpecialProductStatus" 
+                                                                <select ng-options="Status.ID as Status.Name  for Status in HotSpecialProductStatus"
                                                                         class="form-control" ng-model="HotOrSpecialProductObj.status" name="HotSpecialProductStatus"></select>
                                                             </div>
                                                         </div>
@@ -331,8 +329,8 @@
                                                         <li>
                                                             <button type="submit" ng-click="InsertAsHotOrSpecialProduct(form)" class="btn btn-primary cursor-pointer pull-right"> Add <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                                                         </li>
-                                                        
-                                                        
+
+
                                                     </ul>
                                                 </div>
                                             </div>
