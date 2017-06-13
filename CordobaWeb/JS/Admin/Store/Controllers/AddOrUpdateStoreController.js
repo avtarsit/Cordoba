@@ -135,6 +135,20 @@
                         callback: function (result) {
                             if (result) {
 
+                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id)
+                                             .then(function (response) {                                  
+                                                 if(response.data>0)
+                                                 {
+                                                     notificationFactory.customSuccess("Store Deleted Successfully.");
+                                                     $state.go('ShowStore');
+                                                 }
+                                         })
+                                     .catch(function (response) {
+
+                                     })
+                                     .finally(function () {
+
+                                     });
                             }
                         }
                     },

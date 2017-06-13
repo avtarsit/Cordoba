@@ -1,4 +1,4 @@
-﻿app.controller('ShowUserController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ShowUserController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval,DTColumnDefBuilder, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -7,6 +7,10 @@
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
+
+    $scope.dtColumnDefs = [
+      DTColumnDefBuilder.newColumnDef(3).notSortable()
+    ];
 
     $scope.PageTitle = "Show Users";
 

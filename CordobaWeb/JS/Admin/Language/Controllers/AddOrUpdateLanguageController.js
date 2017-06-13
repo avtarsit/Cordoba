@@ -71,6 +71,7 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId)
                                    .then(function (response) {
+                                       notificationFactory.customSuccess("Successfully Deleted!.");
                                        $state.go('Language');
                                    })
                                .catch(function (response) {

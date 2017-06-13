@@ -49,13 +49,13 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public TableParameter<ReportEntity> GetOrderReportList(int PageIndex, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> tableParameter)
+        public TableParameter<ReportEntity> GetOrderReportList(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _reportServices.GetOrderReportList(sortColumn, DateStart, DateEnd, GroupById, StatusId, tableParameter, "").ToList();
+                var result = _reportServices.GetOrderReportList(sortColumn, DateStart, DateEnd, GroupById, StatusId,StoreId, tableParameter, "").ToList();
 
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)

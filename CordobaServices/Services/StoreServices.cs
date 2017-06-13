@@ -68,5 +68,15 @@ namespace CordobaServices.Services
             return result;
 
         }
+
+        public int? DeleteStoreById_Admin(int storeId)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("StoreID", storeId)                                                 
+                                               };
+            var result = objGenericRepository.ExecuteSQL<int>("DeleteStoreById_Admin", sqlParameter).FirstOrDefault();
+            return result;
+        }
+
     }
 }

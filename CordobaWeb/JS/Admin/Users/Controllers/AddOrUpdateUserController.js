@@ -76,7 +76,7 @@
 
     $scope.DeleteUser = function () {
         bootbox.dialog({
-            message: "Do you want remove User?",
+            message: "Do you want to remove User?",
             title: "Confirmation",
             className: "model",
             buttons: {
@@ -89,7 +89,7 @@
                                 $http.get(configurationService.basePath + "api/UserApi/DeleteUserDetail?LoggedInUserId=" + $scope.LoggedInUserId + "&UserID=" + $scope.user_id)
                                         .then(function (response) {                                            
                                             if (response.data > 0) {
-                                                toastr.success('Successfully Deleted.');
+                                                toastr.success('User becomes Inactive.');
                                                 $state.go('Users');
                                             }
                                         })

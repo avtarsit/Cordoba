@@ -14,5 +14,7 @@ namespace CordobaServices.Interfaces
        StoreEntity GetStoreById(int store_id);
 
        int InsertUpdateStore(StoreEntity storeEntity);
+
+       int? DeleteStoreById_Admin(int storeId);
     }
 }

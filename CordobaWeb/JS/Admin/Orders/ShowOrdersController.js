@@ -64,6 +64,7 @@
 
         if ($.fn.DataTable.isDataTable("#tblOrders")) {
             $('#tblOrders').DataTable().destroy();
+            //$('#tblOrders').html('<table class="table grid table-condensed table-hover" id="tblOrders" width="100%"></table>');
         }
 
         //var table;
@@ -73,8 +74,9 @@
                 "sProcessing": "",
                 "sZeroRecords": "<span class='pull-left'>No records found</span>",
             },
+            "autoWidth": false,
             "searching": true,
-            "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
             "iDisplayStart": 0,
@@ -93,7 +95,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex,
+                    "url": sSource + "?PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&total="+$scope.filter.Total+"&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -104,7 +106,7 @@
 
             "aoColumns": [
                 {
-                    "mData": "order_id", "bSortable": true, "sClass": " text-right"
+                    "mData": "order_id", "bSortable": true, "sClass": " text-center"
                     //"render": function (data, type, row) {
                     //    return '<a data-Id=' + row.JobId + ' class="cursor-pointer" ng-click="EditJobCode($event)">' + data + '</a>'
                     //}
@@ -112,14 +114,35 @@
                 { "mData": "customer", "bSortable": true },
                  { "mData": "OrderStatusName", "bSortable": true },
                  { "mData": "total", "bSortable": true, "sClass": "text-right" },
+                   {
+                       "mData": "date_added", "bSortable": true,
+                       "render": function (data, type, row) {
+                           if (data != null) {
+                               return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
 
-                { "mData": "date_added", "bSortable": true, "type": "date", "format": 'DD-MM-YYYY', },
-                { "mData": "date_modified", "bSortable": true },
+                           }
+                           else {
+                               return "";
+                           }
+                       }
+                   },
+                     {
+                         "mData": "date_modified", "bSortable": true,
+                         "render": function (data, type, row) {
+                             if (data != null) {
+                                 return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+
+                             }
+                             else {
+                                 return "";
+                             }
+                         }
+                     },       
                 {
                     "mData": null, "bSortable": false,
-                    "sClass": "action text-right",
+                    "sClass": "action text-center",
                     "render": function (data, type, row) {
-                        return '<a ui-sref="Orders({OrderId:' + row.order_id + '})"><i class="glyphicon glyphicon-eye-close cursor-pointer" title="view"></i></a> &nbsp;  <a ui-sref="ManageOrder({orderId:' + row.order_id + '})"><i class="glyphicon glyphicon-edit cursor-pointer" title="edit"></i></a>  &nbsp;  <i class="glyphicon glyphicon-erase cursor-pointer" title="delete"></i>'
+                        return '<a ui-sref="Orders({OrderId:' + row.order_id + '})"><i class="glyphicon glyphicon-eye-close cursor-pointer" title="view"></i></a> &nbsp;  <a ui-sref="ManageOrder({orderId:' + row.order_id + '})"><i class="glyphicon glyphicon-edit cursor-pointer" title="edit"></i></a>  &nbsp;  <i class="glyphicon glyphicon-trash  cursor-pointer" title="delete"></i>'
                     }
                 },
             ],

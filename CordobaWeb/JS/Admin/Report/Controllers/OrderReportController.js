@@ -4,6 +4,7 @@
     BindToolTip();
     Tab();
     createDatePicker();
+    $scope.StoreId = 0;
     $scope.OrderReportObj = new Object();
     $scope.OrderReportObj.DateStart = null;
     $scope.OrderReportObj.DateEnd = null;
@@ -13,7 +14,7 @@
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
     //                 .withOption('bDestroy', true)
 
-    $scope.PageTitle = "Sales Reports -Orders";
+    $scope.PageTitle = "Reports - Orders Summary";
 
 
     $scope.GroupBy = [
@@ -100,7 +101,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + $scope.OrderReportObj.GroupById + '&StatusId=' + $scope.OrderReportObj.StatusId,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + $scope.OrderReportObj.GroupById + '&StatusId=' + $scope.OrderReportObj.StatusId + '&StoreId=' + $scope.StoreId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

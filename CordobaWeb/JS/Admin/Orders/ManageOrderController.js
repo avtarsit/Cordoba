@@ -136,8 +136,7 @@
              if (response.data.length > 0) {
                  $scope.CountryList = response.data;
                  $scope.selectedPaymentCountry = $scope.CountryList[0].country_id;
-                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;
-                 alert($scope.selectedPaymentCountry);
+                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;                 
              }
          })
         .catch(function (response) {
@@ -217,6 +216,7 @@
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
                   //$scope.MainTotal = $scope.Products[0].title;
                   if ($scope.Products.length > 0) {
+                      debugger;
                       $scope.total_title = $scope.Products[0].total_title;
                       $scope.total_value = $scope.Products[0].total_value;
                       $scope.subtotal_title = $scope.Products[0].subtotal_title;
@@ -226,9 +226,7 @@
                   $scope.selectedShippingCountry = ($scope.OrderDetails.shipping_country_id == null || $scope.OrderDetails.shipping_country_id == '') ? 0 : $scope.OrderDetails.shipping_country_id;
                   $scope.selectedPaymentAddressId = parseInt($scope.OrderDetails.address_id);
                   $scope.selectedAddressShippingId = parseInt($scope.OrderDetails.address_id);
-                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);
-                  alert($scope.selectedShippingCountry);
-                  alert($scope.selectedPaymentCountry);
+                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);           
                   //$scope.GetZoneListByCountryShipping($scope.selectedShippingCountry);
                   $scope.selectedPaymentZone = $scope.OrderDetails.payment_zone_id == 0 ? '' : $scope.OrderDetails.payment_zone_id;
                   //$scope.selectedShippingZone = 0;
@@ -271,9 +269,7 @@
     }
 
     $scope.UpdateOrder_PaymentDetails = function (form) {
-        if (form.$valid) {
-            alert('UpdateOrder_PaymentDetails');
-            return false;
+        if (form.$valid) {             
             $scope.OrderDetails.address_id = $scope.selectedPaymentAddressId;
             $scope.OrderDetails.payment_country_id = $scope.selectedPaymentCountry;
             $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;       
