@@ -11,7 +11,7 @@ namespace CordobaServices.Interfaces
     public interface IReportService
     {
         //Return Report
-        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
         //Sales order Report
         IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
     }

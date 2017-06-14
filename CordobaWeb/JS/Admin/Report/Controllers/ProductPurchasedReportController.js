@@ -4,20 +4,19 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    createDatePicker();
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
     $scope.PageTitle = "Products Purchased List";
+
+    $scope.store_id = 0;
     $scope.GridParams = new Object();
 
     $scope.ProductFilter = new Object();
     $scope.ProductFilter.order_status_id = 0;
-    $scope.ProductFilter.store_id = 0;
+    $scope.ProductFilter.store_id = $scope.store_id;
     $scope.ProductFilter.DateStart = '';
     $scope.ProductFilter.DateEnd = '';
-
-
 
     function BindSearchCriteria(aoData) {
         aoData.push({ 'name': 'searchKey', 'value': '' });
@@ -87,7 +86,7 @@
             },
             "autoWidth": false,
             "searching": false,
-            "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
             "iDisplayStart": 0,
@@ -133,7 +132,7 @@
                         , "render": function (data, type, row) {
                             if (data != null)
                             {
-                                return data + row.total_title;
+                                return data +" "+ row.total_title;
                             }
                             
                         }

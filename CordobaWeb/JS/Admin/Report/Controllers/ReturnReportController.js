@@ -4,6 +4,7 @@
     BindToolTip();
     Tab();
     createDatePicker();
+    $scope.StoreId = 0;
     $scope.ReturnReportObj = new Object();
     $scope.ReturnReportObj.DateStart = null;
     $scope.ReturnReportObj.DateEnd = null;
@@ -12,7 +13,7 @@
     //#endregion  
 
 
-    $scope.PageTitle = "Sales Reports -Returns";
+    $scope.PageTitle = "Reports -Sales Returns";
 
 
     $scope.GroupBy = [
@@ -88,7 +89,7 @@
             },
             "autoWidth": false,
             "searching": true,
-            "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
             "iDisplayStart": 0,
@@ -107,7 +108,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex='+PageIndex+'&DateStart=' + $scope.ReturnReportObj.DateStart + '&DateEnd=' + $scope.ReturnReportObj.DateEnd + '&GroupById=' + $scope.ReturnReportObj.GroupById + '&StatusId=' + $scope.ReturnReportObj.StatusId,
+                    "url": sSource + '?PageIndex='+PageIndex+'&DateStart=' + $scope.ReturnReportObj.DateStart + '&DateEnd=' + $scope.ReturnReportObj.DateEnd + '&GroupById=' + $scope.ReturnReportObj.GroupById + '&StatusId=' + $scope.ReturnReportObj.StatusId+'&StoreId=' + $scope.StoreId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -165,5 +166,5 @@
         });
     }
    
-
+    $scope.GetReturnList();
 });
