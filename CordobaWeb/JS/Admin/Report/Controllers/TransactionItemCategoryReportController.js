@@ -69,7 +69,7 @@
             },
             "autoWidth": false,
             "searching": true,
-            "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
             "iDisplayStart": 0,
