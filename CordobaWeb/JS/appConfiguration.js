@@ -123,7 +123,21 @@ function GetLayoutName() {
                       url: '/Reports/Shipping',
                       templateUrl: 'Templates/' + LayoutName + '/Report/ShippingReport.html'
                   }
-
+                  , TransactionReport = {
+                      name: 'TransactionReport',
+                      url: '/Reports/Sales/Transaction',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/TransactionReport.html'
+                  }
+                  , TransactionItemReport = {
+                      name: 'TransactionItemReport',
+                      url: '/Reports/Sales/Transaction',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemReport.html'
+                  }
+                  , TransactionItemCategoryReport = {
+                      name: 'TransactionItemCategoryReport',
+                      url: '/Reports/Sales/Transaction',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemCategoryReport.html'
+                  }
                  , Product = {
                      name: 'Product',
                      url: '/Catalog/Product?Quantity:quantity',
@@ -389,6 +403,9 @@ function GetLayoutName() {
                 $stateProvider.state(ManageBanner);
 
                 $stateProvider.state(OrderReport);
+                $stateProvider.state(TransactionReport);
+                $stateProvider.state(TransactionItemReport);
+                $stateProvider.state(TransactionItemCategoryReport);
                 $stateProvider.state(ShippingReport);
                 $stateProvider.state(Product);
                 $stateProvider.state(ManageProduct);

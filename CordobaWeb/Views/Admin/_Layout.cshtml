@@ -211,7 +211,7 @@
                                                 <li><a href="#" ui-sref="Customer"><i class="icon-forward"></i> <span> Customer</span></a></li>
                                                 <li><a href="#" ui-sref="CustomerGroup"><i class="icon-forward"></i> <span> Customer Group</span></a></li>                                                
                                                 <li><a href="" ui-sref="CustomerImport" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Import</span></a></li>                                                
-                                                <li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Export</span></a></li>                                                
+                                                @*<li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Export</span></a></li>*@                                                
                                                 <li><a href="" ui-sref="PointsImporter" class="cursor-pointer"><i class="icon-forward"></i> <span> Points Importer</span></a></li>                                                
                                             </ul>
                                         </li>
@@ -245,7 +245,7 @@
                                 <li>
                                     <a href="#"><i class="fa fa-wrench fa-fw"></i>Tools <span></span></a>
                                     <ul>
-                                        <li><a href="#" ui-sref="ErrorLog"><i class="icon-forward"></i> <span> Error Logs</span></a></li>
+                                        
                                         <li><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
                                     </ul>
 
@@ -272,9 +272,9 @@
                                         <li>
                                             <a href="#"><i class="icon-forward"></i> <span> Transaction Reports</span></a>
                                             <ul>                                               
-                                                <li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Reports</span></a></li>
-                                                <li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Reports</span></a></li>
-                                                <li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Category</span></a></li>
+                                                <li><a ui-sref="TransactionReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Reports</span></a></li>
+                                                <li><a ui-sref="TransactionItemReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Reports</span></a></li>
+                                                <li><a ui-sref="TransactionItemCategoryReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Category</span></a></li>
                                             </ul>
                                         </li>
                                         @*<li>

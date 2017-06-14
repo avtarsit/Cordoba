@@ -151,6 +151,28 @@ namespace CordobaServices.Services
         }
 
 
+        public int PointsImporter(int store_id, bool IsSendEmail, DataTable PointsTable)
+        {
+            string PointsXml = GeneralMethods.ConvertDatatableToXML(PointsTable);
+            try
+            {
+                SqlParameter[] param = new SqlParameter[3];
+                param[0] = new SqlParameter("store_id", store_id);
+                param[1] = new SqlParameter("IsSendEmail", IsSendEmail);
+                param[2] = new SqlParameter("PointsXml", PointsXml);
+
+                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportPointsXml", param).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
         public int CustomerImport(int store_id, int customer_group_id,DataTable CustomerTable)
         {           
             string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
