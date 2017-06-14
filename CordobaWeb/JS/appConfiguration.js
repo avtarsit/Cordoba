@@ -377,6 +377,11 @@ function GetLayoutName() {
                     name: 'OrderSuccessful',
                     url: '/OrderSuccessful?OrderId:orderid',
                     templateUrl: 'Templates/' + LayoutName + '/Cart/OrderSuccessful.html'
+                }
+                , OrderDetail = {
+                    name: 'OrderDetail',
+                    url: '/OrderDetail?OrderId:orderid',
+                    templateUrl: 'Templates/' + LayoutName + '/Order/OrderDetail.html'
                 };
 
                 $stateProvider.state(StoreDashboard);
@@ -464,6 +469,8 @@ function GetLayoutName() {
                 $stateProvider.state(OrderHistory);
                 $stateProvider.state(PointsAudit);
                 $stateProvider.state(OrderSuccessful);
+                $stateProvider.state(OrderDetail);
+                
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
