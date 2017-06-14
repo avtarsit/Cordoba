@@ -97,6 +97,10 @@
     <Compile Include="Services_Layout\LayoutDashboardServices.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CordobaCommon\CordobaCommon.csproj">
+      <Project>{15f9d105-6f02-4892-92aa-f8d4bb4ffb71}</Project>
+      <Name>CordobaCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CordobaModels\CordobaModels.csproj">
       <Project>{ee2e67ac-8175-424f-bd98-4afb554b8c84}</Project>
       <Name>CordobaModels</Name>

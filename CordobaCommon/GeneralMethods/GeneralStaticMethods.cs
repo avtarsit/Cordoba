@@ -36,6 +36,17 @@ namespace CordobaCommon
             picture.SetPosition(5, 20);
         }
 
+        public static string ConvertDatatableToXML(DataTable dt)
+        {
+            MemoryStream str = new MemoryStream();
+            dt.WriteXml(str, true);
+            str.Seek(0, SeekOrigin.Begin);
+            StreamReader sr = new StreamReader(str);
+            string xmlstr;
+            xmlstr = sr.ReadToEnd();
+            return (xmlstr);
+        }
+
         public static byte[] ExportToExcel(DataSet ds, string Title)
         {
 

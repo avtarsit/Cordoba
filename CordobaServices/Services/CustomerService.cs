@@ -1,4 +1,5 @@
 ﻿
+using CordobaCommon;
 using CordobaModels;
 using CordobaModels.Entities;
 using CordobaServices.Helpers;
@@ -11,11 +12,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CordobaServices.Services
 {
    
     public class CustomerService : ICustomerService
     {
+     
         private GenericRepository<CustomerEntity> CustomerEntityGenericRepository = new GenericRepository<CustomerEntity>();
 
         public List<CustomerEntity> GetCustomerList(string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added)
@@ -146,5 +149,27 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+
+        public int CustomerImport(int store_id, int customer_group_id,DataTable CustomerTable)
+        {           
+            string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
+            try
+            {
+                SqlParameter[] param = new SqlParameter[3];
+                param[0] = new SqlParameter("store_id", store_id);
+                param[1] = new SqlParameter("customer_group_id", customer_group_id);
+                param[2] = new SqlParameter("CustomerXml", CustomerXml);
+
+                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportCustomerXml", param).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
