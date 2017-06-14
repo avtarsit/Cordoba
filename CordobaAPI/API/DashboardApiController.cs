@@ -54,11 +54,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetDashboardSummaryCharts(int ChartFiltertype,int storeId = 0)
+        public HttpResponseMessage GetDashboardSummaryCharts(int storeId, int ChartFiltertype, int ChartOrFunctionTypeEnum)
         {
             try
             {
-                var result = _dashboardService.GetDashboardSummaryCharts(storeId, ChartFiltertype);
+                var result = _dashboardService.GetDashboardSummaryCharts(storeId, ChartFiltertype,ChartOrFunctionTypeEnum);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

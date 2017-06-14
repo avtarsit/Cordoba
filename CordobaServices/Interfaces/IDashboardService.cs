@@ -13,6 +13,6 @@ namespace CordobaServices.Interfaces
 
         DashboardSummaryEntity GetDashboardTopHeaderFields(int storeId);
 
-        DashboardSummaryEntity GetDashboardSummaryCharts(int storeId, int ChartFiltertype);
+        DashboardSummaryEntity GetDashboardSummaryCharts(int storeId, int ChartFiltertype, int ChartOrFunctionTypeEnum);
     }
 }
