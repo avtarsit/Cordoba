@@ -19,5 +19,7 @@ namespace CordobaServices.Interfaces
         int DeleteCustomer(int customer_id);
 
         int CustomerImport(int store_id, int customer_group_id, DataTable CustomerTable);
+
+        int PointsImporter(int store_id, bool IsSendEmail, DataTable PointsTable);
     }
 }

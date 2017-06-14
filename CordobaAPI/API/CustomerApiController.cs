@@ -114,7 +114,7 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public int PointsImporter(int store_id, bool IsSendEmail)
+        public HttpResponseMessage PointsImporter(int store_id, bool IsSendEmail)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace CordobaAPI.API
 
                 string excelfilepath = filePath;
                 string strConnectionString = "";
-                if (excelfilepath.ToLower().Trim().EndsWith(".xlsx") || excelfilepath.ToLower().Trim().EndsWith(".xls"))
+                if (excelfilepath.ToLower().Trim().EndsWith(".xlsx") || excelfilepath.ToLower().Trim().EndsWith(".xls") || excelfilepath.ToLower().Trim().EndsWith(".csv"))
                 {
                     strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
                 }
@@ -181,20 +181,24 @@ namespace CordobaAPI.API
 
                 if (dtXLS != null && dtXLS.Rows.Count > 0)
                 {
-                    //Dictionary<string, string> selectedColumnName = SetColumnConfiguration();
-                    //selectedColumnName.ToList().ForEach(item =>
-                    //{
-                    //    if (dtXLS.Columns[item.Value] != null)
-                    //    {
-                    //        dtXLS.Columns[item.Value].ColumnName = item.Key;
-                    //    }
-                    //});
+                    try
+                    {
+                        dtXLS.Columns["Customer Email Address"].ColumnName = "email";
+                        dtXLS.Columns["Points Adjustment"].ColumnName = "points";
+                        dtXLS.Columns["Comment"].ColumnName = "comment";
 
+                        var result = _CustomerService.PointsImporter(store_id, IsSendEmail, dtXLS);
+                        return Request.CreateResponse(HttpStatusCode.OK, result);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
 
-                var result = 1;// _meritBudgetGuidanceService.ImportMeritBudgetGuidance(dtXLS, UserId, Year);
-                return 1;
-                //return Request.CreateResponse(HttpStatusCode.OK, result);
+            
+                return Request.CreateResponse(HttpStatusCode.OK, 0);
             }
             catch (Exception)
             {
@@ -295,9 +299,6 @@ namespace CordobaAPI.API
 
                         throw;
                     }
-
-                   
-
                 }
 
             
@@ -309,7 +310,7 @@ namespace CordobaAPI.API
             }
 
         }
-
+        
       
     }
 }
