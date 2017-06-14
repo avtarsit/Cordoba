@@ -496,7 +496,7 @@ function GetLayoutName() {
                  }
                
 
-                 $rootScope.GlobalDateFormat = 'dd/MM/yyyy';
+                 $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
               
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
@@ -543,8 +543,6 @@ function GetLayoutName() {
                  //localStorageService.remove("NotificationMesseges");
                  //localStorageService.remove("userPermissions");
                  $rootScope.$state = $state;
-
-                 $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
 
                  //function InitGlobalVariables() {
 
