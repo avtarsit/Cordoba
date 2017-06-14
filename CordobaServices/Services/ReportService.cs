@@ -70,5 +70,87 @@ namespace CordobaServices.Services
             }
 
         }
+
+
+        public IEnumerable<ReportEntity> GetTransactionReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
+                    ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
+                    ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                };
+
+
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetTransactionReportList", param).AsQueryable();
+
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
+
+        public IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
+                    ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
+                    ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                };
+
+
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetTransactionItemReportList", param).AsQueryable();
+
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
+
+        public IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
+                    ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
+                    ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                };
+
+
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetTransactionItemCategoryReportList", param).AsQueryable();
+
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
     }
 }

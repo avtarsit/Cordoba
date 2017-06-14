@@ -18,5 +18,17 @@ namespace CordobaModels.Entities
        public int? No_Of_Products { get; set; }
        public decimal? Total { get; set; }
        public int? Tax { get; set; }
+
+
+       //Transaction
+       public string firstname { get; set; }
+       public string lasstname { get; set; }
+       public string email { get; set; }
+       public string store { get; set; }
+       public string adjustment { get; set; }
+       public int points { get; set; }
+       public string comments { get; set; } 
+
+
     }
 }
