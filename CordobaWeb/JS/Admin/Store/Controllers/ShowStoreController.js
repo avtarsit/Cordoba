@@ -3,6 +3,9 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.CountryList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()

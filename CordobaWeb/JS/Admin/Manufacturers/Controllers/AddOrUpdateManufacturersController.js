@@ -5,6 +5,9 @@
     BindToolTip();
     Tab();
 
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
+
     $scope.manufacturer_id = 0;
     $scope.ManufacturerObj = new Object();
     $scope.IsEditMode = false;

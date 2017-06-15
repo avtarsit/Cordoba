@@ -2,6 +2,10 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
+
     if ($stateParams.orderId != undefined && $stateParams.orderId != null) {
         $scope.PageTitle = "Update Order";
     }

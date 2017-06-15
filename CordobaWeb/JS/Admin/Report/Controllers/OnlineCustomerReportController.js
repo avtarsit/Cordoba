@@ -6,6 +6,8 @@
     createDatePicker();
 
     //#endregion  
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
 

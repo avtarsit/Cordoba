@@ -4,6 +4,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
 
     $scope.SupplierID = 0;
     $scope.SupplierObj = {};

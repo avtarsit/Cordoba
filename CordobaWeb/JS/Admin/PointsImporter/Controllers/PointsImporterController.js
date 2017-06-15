@@ -4,6 +4,8 @@
     BindToolTip();
     Tab();
     //#endregion  
+    
+    $scope.LoggedInUserId = 0;
     $scope.IsSendEmail = false;
     $scope.store_id="";
     $scope.dtOptions = DTOptionsBuilder.newOptions()

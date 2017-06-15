@@ -4,6 +4,9 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
+
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                    .withOption('bDestroy', true)
                    .withOption("deferRender", true)

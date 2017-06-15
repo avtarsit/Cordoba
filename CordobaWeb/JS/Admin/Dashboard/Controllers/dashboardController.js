@@ -3,6 +3,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.CatalogueList = [];
     //#endregion  
     //InitChart();

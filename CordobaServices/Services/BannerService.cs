@@ -31,7 +31,7 @@ namespace CordobaServices.Services
             return Banner;
         }
 
-        public BannerEntity GetBannerById(int BannerId)
+        public BannerEntity GetBannerById(int BannerId, int StoreId, int LoggedInUserId)
         {
             BannerEntity bannerEntity = new BannerEntity();
             if (BannerId > 0)

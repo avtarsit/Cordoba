@@ -3,7 +3,8 @@
     BindToolTip();
     Tab();
     $scope.PageTitle = "Orders";
-
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     //$scope.OrderDetails =
     //   {
     //       OrderId: '#41309',

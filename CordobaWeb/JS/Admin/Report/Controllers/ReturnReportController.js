@@ -5,6 +5,7 @@
     Tab();
     createDatePicker();
     $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.ReturnReportObj = new Object();
     $scope.ReturnReportObj.DateStart = null;
     $scope.ReturnReportObj.DateEnd = null;

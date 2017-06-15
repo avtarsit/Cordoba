@@ -5,6 +5,7 @@
     Tab();
     createDatePicker();
     $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.TransactionReportObj = new Object();
     $scope.TransactionReportObj.DateStart = null;
     $scope.TransactionReportObj.DateEnd = null;

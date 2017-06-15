@@ -6,6 +6,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    $scope.StoreId = 0;
     $scope.LoggedInUserId = -1;
     $scope.customer_group_id = 0;
     $scope.IsEditMode = false;

@@ -37,11 +37,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetBannerById(int BannerId)
+        public HttpResponseMessage GetBannerById(int BannerId, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _BannerServices.GetBannerById(BannerId);
+                var result = _BannerServices.GetBannerById(BannerId, StoreId, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

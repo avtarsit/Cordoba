@@ -4,6 +4,9 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+    
+    $scope.LoggedInUserId = 0;
+
     $scope.StoreObj = new Object();
 
     $scope.IsEditMode = false;

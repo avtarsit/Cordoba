@@ -9,7 +9,8 @@
                { 'StatusId': 1, 'StatusName': 'Enabled' }
              , { 'StatusId': 2, 'StatusName': 'Disabled' }
     ];
-
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     $scope.IsEditMode = false;
     $scope.BannerId = 0;
 
@@ -89,7 +90,7 @@
 
 
     $scope.GetBannerById = function () {
-        $http.get(configurationService.basePath + "api/BannerApi//GetBannerById?BannerId=" + $scope.BannerId)
+        $http.get(configurationService.basePath + "api/BannerApi//GetBannerById?BannerId=" + $scope.BannerId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
           
               $scope.BannerObj = response.data;

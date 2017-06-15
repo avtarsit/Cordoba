@@ -5,6 +5,10 @@
     BindToolTip();
     Tab();
 
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
+
+
     $scope.LanguageId = 0;
     $scope.LanguageObj = {};
     $scope.IsEditMode = false;

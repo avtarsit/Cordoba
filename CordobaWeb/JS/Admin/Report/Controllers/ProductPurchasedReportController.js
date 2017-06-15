@@ -10,6 +10,7 @@
     $scope.PageTitle = "Products Purchased List";
 
     $scope.store_id = 0;
+    $scope.LoggedInUserId = 0;
     $scope.GridParams = new Object();
 
     $scope.ProductFilter = new Object();

@@ -4,7 +4,8 @@
     BindToolTip();
     Tab();
     createDatePicker();
-
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)

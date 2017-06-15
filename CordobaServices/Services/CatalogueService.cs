@@ -18,12 +18,24 @@ namespace CordobaServices.Services
 
         private GenericRepository<CatalogueEntity> objGenericRepository = new GenericRepository<CatalogueEntity>();
 
-        public List<CatalogueEntity> GetCatalogueList()
+        public List<CatalogueEntity> GetCatalogueList(int StoreId, int LoggedInUserId)
         {
             List<CatalogueEntity> Catalogue = new List<CatalogueEntity>();
             try
             {
-                var Result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueList").ToList<CatalogueEntity>();
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var paramLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserIdId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var Result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueList", paramStoreId, paramLoggedInUserId).ToList<CatalogueEntity>();
 
                 if (Result != null)
                     Catalogue = Result.ToList();
@@ -36,7 +48,7 @@ namespace CordobaServices.Services
             return Catalogue;
         }
 
-        public CatalogueEntity GetCatalogueById(int CatalogueId = 0)
+        public CatalogueEntity GetCatalogueById(int CatalogueId = 0, int StoreId, int LoggedInUserId)
         {
             CatalogueEntity ProductCatalogueEntity = new CatalogueEntity();
             if (CatalogueId > 0)
@@ -47,7 +59,19 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = CatalogueId
                 };
-                var result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueById", paramCatalogueId).FirstOrDefault();
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var paramLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserIdId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueById", paramCatalogueId,paramStoreId,paramLoggedInUserId).FirstOrDefault();
                 ProductCatalogueEntity = result;
             }
             else
@@ -60,21 +84,66 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertUpdateCatalogue(CatalogueEntity catalogueEntity)
+        public int InsertUpdateCatalogue(CatalogueEntity catalogueEntity, int StoreId, int LoggedInUserId)
         {
-            var catalogueIdparam = new SqlParameter { ParameterName = "catalogue_Id", DbType = DbType.Int32, Value = catalogueEntity.catalogue_Id };   
-            var nameparam = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = catalogueEntity.Name };
-            var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam ).FirstOrDefault();
+            var catalogueIdparam = new SqlParameter 
+            { 
+                ParameterName = "catalogue_Id", 
+                DbType = DbType.Int32, 
+                Value = catalogueEntity.catalogue_Id 
+            };   
+            
+            var nameparam = new SqlParameter 
+            { 
+                ParameterName = "Name", 
+                DbType = DbType.String, 
+                Value = catalogueEntity.Name 
+            };
+
+            var paramStoreId = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+
+            var paramLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserIdId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
+            var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam, paramStoreId, paramLoggedInUserId ).FirstOrDefault();
             return result;
         }
 
 
-        public int DeleteCatalogue(int catalogue_id)
+        public int DeleteCatalogue(int catalogue_id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var paramCatalogueId = new SqlParameter { ParameterName = "catalogue_id", DbType = DbType.Int32, Value = catalogue_id };
-                int result = objGenericRepository.ExecuteSQL<int>("DeleteCatalogue", paramCatalogueId).FirstOrDefault();
+                var paramCatalogueId = new SqlParameter 
+                { 
+                    ParameterName = "catalogue_id", 
+                    DbType = DbType.Int32, 
+                    Value = catalogue_id 
+                };
+
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+
+                var paramLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserIdId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+
+                int result = objGenericRepository.ExecuteSQL<int>("DeleteCatalogue", paramCatalogueId, paramStoreId, paramLoggedInUserId).FirstOrDefault();
                 return result;
             }
             catch (Exception)

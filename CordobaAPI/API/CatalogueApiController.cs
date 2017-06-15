@@ -24,11 +24,11 @@ namespace CordobaAPI.API
             _catalogueServices = new CatalogueService();
         }
         [HttpGet]
-        public HttpResponseMessage GetCatalogueList()
+        public HttpResponseMessage GetCatalogueList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _catalogueServices.GetCatalogueList();
+                var result = _catalogueServices.GetCatalogueList(StoreId, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -44,11 +44,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCatalogueById(int catalogue_id)
+        public HttpResponseMessage GetCatalogueById(int catalogue_id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _catalogueServices.GetCatalogueById(catalogue_id);
+                var result = _catalogueServices.GetCatalogueById(StoreId, LoggedInUserId, catalogue_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -64,11 +64,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateCatalogue(CatalogueEntity catalogueEntity)
+        public HttpResponseMessage InsertUpdateCatalogue(int StoreId,int LoggedInUserId,CatalogueEntity catalogueEntity)
         {
             try
             {
-                var result = _catalogueServices.InsertUpdateCatalogue(catalogueEntity);
+                var result = _catalogueServices.InsertUpdateCatalogue(StoreId,LoggedInUserId,catalogueEntity);
                 if (result>=-1)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

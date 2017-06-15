@@ -4,6 +4,10 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    $scope.StoreId = 0;
+    $scope.LoggedInUserId = 0;
+
     createDatePicker();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                  .withOption('bDestroy', true)

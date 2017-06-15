@@ -5,6 +5,9 @@
     BindToolTip();
     Tab();
     
+    
+    $scope.LoggedInUserId = 0;
+
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                        .withOption('bDestroy', true)
                        .withOption("deferRender", true);
