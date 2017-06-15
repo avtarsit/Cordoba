@@ -736,6 +736,7 @@
     <Content Include="JS\Layout\MyAccount\Controllers\AddressBookController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\ProfileController.js" />
+    <Content Include="JS\Layout\Order\Controllers\OrderDetailController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductDetailLayoutController.js" />
     <Content Include="JS\Layout\Product\Controllers\ProductListLayoutController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\OrderHistoryController.js" />
@@ -3797,6 +3798,7 @@
     <Content Include="Templates\_Layout1\MyAccount\EditProfile.html" />
     <Content Include="Templates\_Layout1\MyAccount\OrderHistory.html" />
     <Content Include="Templates\_Layout1\MyAccount\PointsAudit.html" />
+    <Content Include="Templates\_Layout1\Order\OrderDetail.html" />
     <Content Include="Templates\_Layout1\Product\Index.html" />
     <Content Include="Templates\_Layout1\Product\ProductDetail.html" />
     <Content Include="Templates\_Layout1\Reward\AddReward.html" />

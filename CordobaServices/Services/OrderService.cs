@@ -251,5 +251,13 @@ namespace CordobaServices.Services
             var result = objGenericRepository.ExecuteSQL<int>("UpdateOrder_TotalDetails", paramOrderStatusId, paramorderId, paramComment).FirstOrDefault();
             return result;
         }
+
+        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id)
+        {
+            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).FirstOrDefault();
+
+            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).ToList();
+            return OrderEntity;
+        }
     }
 }

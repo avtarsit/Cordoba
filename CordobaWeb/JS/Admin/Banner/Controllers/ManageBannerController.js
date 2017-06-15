@@ -90,7 +90,7 @@
 
 
     $scope.GetBannerById = function () {
-        $http.get(configurationService.basePath + "api/BannerApi//GetBannerById?BannerId=" + $scope.BannerId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/BannerApi/GetBannerById?BannerId=" + $scope.BannerId)
           .then(function (response) {
           
               $scope.BannerObj = response.data;

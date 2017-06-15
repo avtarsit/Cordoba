@@ -23,7 +23,7 @@
     <section class="container">
         <div class="account-block reward-points">
             <div class="col-sm-12 table-responsive">
-                <table class="table table-hover" id="tblOrderHistory" datatable="ng" dt-options="dtOptions">
+                <table class="table table-hover" id="tblOrderHistory">
                     <tr>
                         <th>Order ID</th>
                         <th>Order Status</th>
@@ -39,7 +39,7 @@
                         <td ng-bind="Item.date_added | date:'dd/MM/yyyy'"></td>
                         <td ng-bind="Item.TotalQtyInOrder"></td>
                         <td ng-bind="Item.OrderTotalText"></td>
-                        <td><a class="view-detail cursor-pointer" href="" ui-sref="OrderDetail({OrderId:'+Item.order_id+'})"><i class="fa fa-eye"></i></a></td>
+                        <td><a class="view-detail cursor-pointer" href="" ui-sref="OrderDetail({OrderId:Item.order_id})"><i class="fa fa-eye"></i></a></td>
                     </tr>
 
 

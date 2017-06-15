@@ -1,6 +1,14 @@
 ﻿
 
-app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder) {
+app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+
+    //$scope.dtOptions = DTOptionsBuilder.newOptions()
+    //               .withOption('bDestroy', true)
+    //               .withOption("deferRender", true);
+
+    //$scope.dtColumnDefs = [
+    //DTColumnDefBuilder.newColumnDef(5).notSortable()
+    //];
 
 
     //#region CallGlobalFunctions
@@ -9,9 +17,7 @@ app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail,
     Tab();
     //#endregion
     $scope.StoreDetailInSession = StoreSessionDetail;
-    $scope.dtOptions = DTOptionsBuilder.newOptions()
-                     .withOption('bDestroy', true)
-                     .withOption("deferRender", true);
+
 
 
 
