@@ -39,7 +39,7 @@
                         <td ng-bind="Item.date_added | date:'dd/MM/yyyy'"></td>
                         <td ng-bind="Item.TotalQtyInOrder"></td>
                         <td ng-bind="Item.OrderTotalText"></td>
-                        <td><a class="view-detail" href="orderDetail.html"><i class="fa fa-eye"></i></a></td>
+                        <td><a class="view-detail cursor-pointer" href="" ui-sref="OrderDetail({OrderId:'+Item.order_id+'})"><i class="fa fa-eye"></i></a></td>
                     </tr>
 
 

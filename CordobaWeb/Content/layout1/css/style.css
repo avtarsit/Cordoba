@@ -444,7 +444,7 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .payment-summary p:nth-child(even), .payment-summary span:nth-child(even) { width:40%; text-align:right; padding-left:10px; }
 .payment-summary span { color:#333; font-weight:bold; font-size:14px; }
 .checkout-block { float:left; width:100%; text-align:center; padding:40px 0 10px; }
-.stock-img { display:none; float:left; width:100%; background:rgba(255,255,255,0.7); position:absolute; top:0; left:0; bottom:0; }
+.stock-img { display:none; float:left; width:100%; position:absolute; top:0; left:0; bottom:0; }
 .stock-desc { display:none; float:left; width:100%; padding-top:15px; color:#c9302c; font-size:25px; line-height:35px; }
 .stock-label { display:none; float:left; width:100%; color:#333; font-size:12px; line-height:18px; border:solid 1px #ffaf00; padding:5px; background:rgba(255,175,0,0.1); margin-top:5px; }
 .stock-label i { color:#ffaf00; font-size:14px; padding-right:5px; }

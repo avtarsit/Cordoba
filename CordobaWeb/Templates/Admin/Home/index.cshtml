@@ -136,9 +136,9 @@
                     <div class="panel-heading">
                         <h5 class="panel-title">
                             Sales Analytics
-                            <div style="float: right;margin-right: 35px;font-size: small;">
-                                <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts()" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
-                            </div>
+                            <span style="float: right;margin-right: 35px;font-size: small;">
+                                <select ng-model="ChartFiltertype" class="form-control" ng-change="GetDashboardSummaryCharts(ChartOrFunctionTypeEnum.All)" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
+                            </span>
                         </h5>
                         
                         <div class="heading-elements">
@@ -244,22 +244,22 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td class="text-right">Order ID</td>
+                                    <td class="text-center">Order ID</td>
                                     <td>Customer</td>
                                     <td>Status</td>
                                     <td>Date Added</td>
-                                    <td class="text-right">Total</td>
-                                    <td class="text-right">Action</td>
+                                    <td class="text-center">Total</td>
+                                    <td class="text-center">Action</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="order in Orders">
-                                    <td class="text-right">{{order.order_id}}</td>
-                                    <td>{{order.customer}}</td>
-                                    <td>{{order.OrderStatusName}}</td>
-                                    <td>{{order.date_added}}</td>
-                                    <td class="text-right">{{order.total + 'points'}}</td>
-                                    <td class="text-right"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
+                                    <td class="text-center" ng-bind="order.order_id"></td>
+                                    <td ng-bind="order.customer"></td>
+                                    <td ng-bind="order.OrderStatusName"></td>
+                                    <td ng-bind="order.date_added">{{}}</td>
+                                    <td class="text-center" ng-bind="order.total + ' points'"></td>
+                                    <td class="text-center"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
                                 </tr>
                             </tbody>
                         </table>
