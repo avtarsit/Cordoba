@@ -84,7 +84,7 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertUpdateCatalogue(CatalogueEntity catalogueEntity, int StoreId, int LoggedInUserId)
+        public int InsertUpdateCatalogue(int StoreId, int LoggedInUserId,CatalogueEntity catalogueEntity)
         {
             var catalogueIdparam = new SqlParameter 
             { 

@@ -84,11 +84,11 @@ namespace CordobaAPI.API
         }
 
            [HttpGet]
-        public HttpResponseMessage DeleteCatalogue(int catalogue_id)
+        public HttpResponseMessage DeleteCatalogue(int catalogue_id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _catalogueServices.DeleteCatalogue(catalogue_id);
+                var result = _catalogueServices.DeleteCatalogue(catalogue_id,StoreId,LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
