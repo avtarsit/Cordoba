@@ -10,8 +10,7 @@
     $scope.WhatAreYouLookingFor = '';
     //#endregion   
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId!=null)
-    {
-        debugger
+    {        
         $scope.SelectedCategoryId = parseInt($stateParams.CategoryId);
         if ($stateParams.Search != undefined && $stateParams.Search != null)
         {

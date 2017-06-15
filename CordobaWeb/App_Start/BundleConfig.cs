@@ -28,8 +28,7 @@ namespace CordobaWeb
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js",                                              
-                     "~/Scripts/ckeditor/ckeditor.js"
+                     "~/Scripts/bootbox.js"                                                 
                      ));
                    
             bundles.Add(new StyleBundle("~/bundles/css").Include(
@@ -165,8 +164,7 @@ namespace CordobaWeb
                   Layout1Js.Include("~/Scripts/bootstrap-datepicker.js");  
                   Layout1Js.Include("~/Scripts/jquery.bootstrap-duallistbox.js"); 
                   Layout1Js.Include("~/Scripts/bootbox.js"); 
-                  Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js" ); 
-                
+                  Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js");                                    
                   bundles.Add(Layout1Js);
             //------------------------js-------------------------//
 
