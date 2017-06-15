@@ -48,7 +48,7 @@ namespace CordobaServices.Services
             return Catalogue;
         }
 
-        public CatalogueEntity GetCatalogueById(int CatalogueId = 0, int StoreId, int LoggedInUserId)
+        public CatalogueEntity GetCatalogueById(int StoreId, int LoggedInUserId,int CatalogueId = 0)
         {
             CatalogueEntity ProductCatalogueEntity = new CatalogueEntity();
             if (CatalogueId > 0)
