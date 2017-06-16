@@ -17,13 +17,13 @@ namespace CordobaServices.Services
         private GenericRepository<CategoryPopularEntity> CategoryPopularEntityGenericRepository = new GenericRepository<CategoryPopularEntity>();
         private GenericRepository<LanguageEntity> LanguageEntityGenericRepository = new GenericRepository<LanguageEntity>();
 
-      
-        public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
-        { 
 
-            
+        public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
+        {
+
+
             List<CategoryEntity> Categories = new List<CategoryEntity>();
-        
+
             //Categories.Add(new CategoryEntity() { CategoryId = 1, name = "Home & Garden", SortOrder = 1 });
             //Categories.Add(new CategoryEntity() { CategoryId = 2, name= "Home Appliances", SortOrder = 2 });
             //Categories.Add(new CategoryEntity() { CategoryId = 3, name= "Health & Safety", SortOrder = 3 });
@@ -98,20 +98,20 @@ namespace CordobaServices.Services
         public List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int storeID = 0)
         {
             List<CategoryPopularEntity> PopularCategoryList = new List<CategoryPopularEntity>();
-            if(storeID >= 0)
+            if (storeID >= 0)
             {
                 try
                 {
                     SqlParameter[] param = new SqlParameter[1];
                     param[0] = new SqlParameter("StoreId", storeID);
                     PopularCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryPopularEntity>("EXEC GetCategoryListByStoreIdPopular", param).ToList<CategoryPopularEntity>().ToList();
-                    
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw;
                 }
-           }
+            }
             return PopularCategoryList;
         }
 
@@ -140,7 +140,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("store_Id", categoryPopular.store_Id)
                     ,new SqlParameter("createdby", categoryPopular.createdby)
                 };
-            
+
 
                 var result = CategoryPopularEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCategoryAsPopular", param).ToList<int>().FirstOrDefault();
 
@@ -215,6 +215,30 @@ namespace CordobaServices.Services
                 SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("Category_Id", Category_Id) };
                 int result = CategoryEntityGenericRepository.ExecuteSQL<int>("DeleteCategory", sqlParameter).FirstOrDefault();
                 return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool UpdateCategoryImage(int Category_Id, string fileName)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("Category_Id", Category_Id),
+                    new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(fileName)?(object)fileName:(object)DBNull.Value)
+                };
+                int result = CategoryEntityGenericRepository.ExecuteSQL<int>("UpdateCategoryImage", sqlParameter).FirstOrDefault();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {

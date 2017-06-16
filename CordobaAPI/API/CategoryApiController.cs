@@ -3,9 +3,12 @@ using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace CordobaAPI.API
@@ -120,7 +123,7 @@ namespace CordobaAPI.API
         public HttpResponseMessage GetLanguageList()
         {
             try
-            {                
+            {
                 var result = _categoryServices.GetLanguageList();
                 if (result != null)
                 {
@@ -192,5 +195,57 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage UploadCategoryImage(int Category_Id)
+        {
+            bool res = false;
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = HttpContext.Current.Request.Files[0];
+
+                if (httpPostedFile != null)
+                {
+                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.Category.ToString();
+                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    {
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        string childFolderPath = folderPath + "/" + Category_Id;
+                        if (!Directory.Exists(childFolderPath))
+                        {
+                            Directory.CreateDirectory(childFolderPath);
+                        }
+
+                        string fileName = Category_Id + "/" + httpPostedFile.FileName;
+                        res = _categoryServices.UpdateCategoryImage(Category_Id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.Category.ToString() + "/" + fileName);
+
+                        if (res == true)
+                        {
+                            httpPostedFile.SaveAs(folderPath + "\\" + fileName);
+
+                            var directoryFiles = Directory.GetFiles(childFolderPath);
+                            foreach (var filepath in directoryFiles)
+                            {
+                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                {
+                                    File.Delete(filepath);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (res == true)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = true });
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
+        }
     }
 }
