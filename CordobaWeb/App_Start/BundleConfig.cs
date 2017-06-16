@@ -28,7 +28,8 @@ namespace CordobaWeb
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js"                                                 
+                     "~/Scripts/bootbox.js", 
+                     "~/Scripts/ckeditor/ckeditor.js"                           
                      ));
                    
             bundles.Add(new StyleBundle("~/bundles/css").Include(
@@ -52,8 +53,7 @@ namespace CordobaWeb
                      "~/Scripts/angular-local-storage.js",
                      "~/Scripts/angular-sanitize.js",
                      "~/Scripts/angular-datatables.min.js",
-                     "~/Scripts/angular-ui-switch.min.js" ,
-                     "~/Scripts/ng-ckeditor.js" ,
+                     "~/Scripts/angular-ui-switch.min.js" ,              
                       "~/Scripts/angular-star-rating/main.js"
                      ));
 
@@ -111,8 +111,8 @@ namespace CordobaWeb
                        "~/Scripts/admin/js/plugins/ui/moment/moment.min.js",
                        "~/Scripts/admin/js/plugins/pickers/daterangepicker.js",
                        "~/Scripts/admin/js/core/app.js",
-                       "~/Scripts/admin/js/pages/dashboard.js"  
-                     
+                       "~/Scripts/admin/js/pages/dashboard.js" ,
+                       "~/Scripts/ckeditor/ckeditor.js"                        
                       ));
 
             var AdminControllerBundle = new Bundle("~/bundles/AdminControllers");
