@@ -25,5 +25,6 @@ namespace CordobaServices.Interfaces_Layout
         List<AddressEntity> AddOrUpdateAddressDetail_Layout(int StoreId, AddressEntity AddressObj);
         int? DeleteCustomerAddress(int StoreId, int customer_id, int address_id);
         List<StoreImageEntity> GetStoreImageList(int Store_Id);
+        List<ProductEntity> GetBestSellerListByStoreId(int StoreID);
     }
 }
