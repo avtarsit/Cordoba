@@ -66,6 +66,23 @@ namespace CordobaServices.Services_Layout
         
         }
 
+
+        public List<ProductEntity> GetBestSellerListByStoreId(int StoreID)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStoreId", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        
+        }
+
         public List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID)
         {
             try

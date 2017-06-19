@@ -79,6 +79,27 @@ namespace CordobaAPI.API_Layout
 
         }
 
+
+         [HttpGet]
+         public HttpResponseMessage GetBestSellerListByStoreId(int StoreID)
+         {
+             try
+             {
+                 var result = _LayoutDashboardServices.GetBestSellerListByStoreId(StoreID);
+                 if (result != null)
+                 {
+                     return Request.CreateResponse(HttpStatusCode.OK, result);
+                 }
+                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }
+
+         }
+
          [HttpGet]
          public HttpResponseMessage GetPopularCategoryListByStoreId(int StoreID)
          {
