@@ -733,6 +733,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_RewardWinnerController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
+    <Content Include="JS\Layout\Dashboard\Controllers\dashboard_StoreImageController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\AddressBookController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\AuditPointsController.js" />
     <Content Include="JS\Layout\MyAccount\Controllers\ProfileController.js" />

@@ -22,7 +22,8 @@ namespace CordobaCommon.Enum
 
         public enum FolderName
         {
-            Category = 1
+            Category = 1,
+            Advertisement = 2
         }
     }
 }

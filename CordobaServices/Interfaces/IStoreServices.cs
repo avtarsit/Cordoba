@@ -16,5 +16,7 @@ namespace CordobaServices.Interfaces
        int InsertUpdateStore(StoreEntity storeEntity);
 
        int? DeleteStoreById_Admin(int storeId);
+
+       bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey);
     }
 }

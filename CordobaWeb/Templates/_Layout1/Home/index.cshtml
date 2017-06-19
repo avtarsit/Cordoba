@@ -114,9 +114,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 col-xs-12  mb-30">
+        @* Dashboard_StoreImageController *@
+        <div class="col-md-5 col-xs-12  mb-30" ng-controller="Dashboard_StoreImageController">
             <div class="offer-block new-product">
-                <img src="~/Content/layout1/images/offer1.jpg" alt="Offer" />
+                <img src="{{FirstStoreImage}}" alt="Store Image" />
             </div>
         </div>
         <div class="clearfix"></div>
@@ -191,14 +192,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12 mb-30">
+                @* Dashboard_StoreImageController *@
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
                     <div class="offer-block">
-                        <img src="~/Content/layout1/images/offer2.jpg" alt="offer" />
+                        <img src="{{SecondStoreImage}}" alt="Store Image" />
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12 mb-30">
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
                     <div class="offer-block">
-                        <img src="~/Content/layout1/images/offer3.jpg" alt="offer" />
+                        <img src="{{ThirdStoreImage}}" alt="Store Image" />
                     </div>
                 </div>
             </div>
