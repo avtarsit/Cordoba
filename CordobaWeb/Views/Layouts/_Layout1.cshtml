@@ -256,8 +256,6 @@
             </div>
         </div>   
         
-        
-
         <!-- Terms and Condition popup -->
         <div class="modal" id="DivTermsConditionModel" role="dialog">
             <div class="vertical-alignment-helper">
@@ -266,7 +264,8 @@
                         <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
                         <div class="modal-body">
                             <div class="login_text">
-
+                                <div ng-bind-html="TermsConditionMsg | trusted"></div>
+                               
                             </div>
                         </div>
                     </div>
