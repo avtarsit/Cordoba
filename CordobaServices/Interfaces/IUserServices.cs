@@ -15,5 +15,6 @@ namespace CordobaServices.Interfaces
 
        int CreateOrUpdateUser(int LoggedInUserId, UserEntity user);
        int DeleteUserDetail(int LoggedInUserId,int UserId);
+       bool IsAuthenticUser(UserEntity model);
     }
 }
