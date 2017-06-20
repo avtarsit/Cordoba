@@ -161,26 +161,6 @@ namespace CordobaAPI.API_Layout
         }
 
 
-        [HttpPost]
-        public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
-        {
-            try
-            {
-                var result = _LayoutDashboardServices.AddtoWishList(WishObj);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
          [HttpGet]
          public HttpResponseMessage GetBestSellerListByStoreId(int StoreID)
          {
@@ -200,88 +180,6 @@ namespace CordobaAPI.API_Layout
              }
 
          }
-
-         [HttpGet]
-         public HttpResponseMessage GetPopularCategoryListByStoreId(int StoreID)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.GetPopularCategoryListByStoreId(StoreID);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
-
-                 throw;
-             }
-
-         }
-
-         [HttpGet]
-         public HttpResponseMessage GetHotDealsListByStoreId(int StoreID)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.GetHotDealsListByStoreId(StoreID);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
-
-                 throw;
-             }
-
-         }
-
-         [HttpGet]
-         public HttpResponseMessage GetSpecialOfferListByStoreId(int StoreID)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.GetSpecialOfferListByStoreId(StoreID);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
-
-                 throw;
-             }
-
-         }
-
-
-         [HttpPost]
-         public HttpResponseMessage CustomerLogin(CustomerEntity CustomerObj)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.CustomerLogin(CustomerObj);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
-
-                 throw;
-             }
-
-         }
-
 
          [HttpPost]
          public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
@@ -438,6 +336,24 @@ namespace CordobaAPI.API_Layout
             try
             {
                 var result = _LayoutDashboardServices.GetStoreImageList(Store_Id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetStoreTermsDetail(int Store_Id)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.GetStoreTermsDetail(Store_Id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

@@ -2,28 +2,26 @@
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
-    Tab();   
+    Tab();
     //#endregion      
-    $scope.StoreDetailInSession = StoreSessionDetail;  
+    $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
-    
-    $scope.OpenLoginPopUp=function()
-    {
-        angular.element("#DivLoginModel").modal('show');     
+    $scope.TermsConditionMsg = "";
+
+    $scope.OpenLoginPopUp = function () {
+        angular.element("#DivLoginModel").modal('show');
     }
 
-    $scope.Login=function(form)
-    {
-      
+    $scope.Login = function (form) {
+
         if (form.$valid) {
-       
+
             $scope.CustomerObj.cartgroup_id = UserDetail.cartgroup_id;
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;
-            
+
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
-                  .then(function (response) {                      
-                      switch (response.data.ErrorTypeId)
-                      {
+                  .then(function (response) {
+                      switch (response.data.ErrorTypeId) {
                           case 0:
 
                               UserDetail.customer_id = response.data.customer_id;
@@ -52,20 +50,19 @@
                               toastr.error('Please enter correct email and password!');
                               $scope.CustomerObj = null;
                               break;
-                      }                                         
+                      }
                   })
               .catch(function (response) {
 
               })
               .finally(function () {
 
-              });  
+              });
         }
     }
 
 
-    $scope.Logout=function()
-    {
+    $scope.Logout = function () {
         UserDetail.customer_id = 0;
         UserDetail.firstname = "";
         UserDetail.lastname = "";
@@ -79,24 +76,42 @@
         $state.go('Home');
     }
 
-    $scope.GotoMyWishlist=function()
-    {
-        if(UserDetail.customer_id>0)
-        {
-            $state.go('LayoutCategoryORProductList', { 'CategoryId': -2});
+    $scope.GotoMyWishlist = function () {
+        if (UserDetail.customer_id > 0) {
+            $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
         }
         else {
             $scope.OpenLoginPopUp();
         }
     }
 
-    $scope.GotoProductList = function (Whatyouarelookingfor)
-    {
-        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor});
+    $scope.GotoProductList = function (Whatyouarelookingfor) {
+        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
     }
- 
+
+    $scope.OpenTermsCondition = function () {
+        $scope.GetTermsCondition();
+        angular.element("#DivTermsConditionModel").modal('show');
+    }
+
+    $scope.GetTermsCondition = function () {
+
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?StoreID=0")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.TermsConditionMsg = response.data[0].terms;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     //$scope.GetStoreDetailForDashboard = function () {
-      
+
     //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
     //      .then(function (response) {
     //          if (response.data.length > 0) {
@@ -111,7 +126,7 @@
     //  });
     //}
 
-  
+
     //$scope.GetStoreDetailForDashboard();
-             
+
 });

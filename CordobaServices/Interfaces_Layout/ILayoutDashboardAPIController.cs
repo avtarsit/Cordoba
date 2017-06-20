@@ -26,5 +26,6 @@ namespace CordobaServices.Interfaces_Layout
         int? DeleteCustomerAddress(int StoreId, int customer_id, int address_id);
         List<StoreImageEntity> GetStoreImageList(int Store_Id);
         List<ProductEntity> GetBestSellerListByStoreId(int StoreID);
+        List<StoreTermsEntity> GetStoreTermsDetail(int Store_Id);
     }
 }
