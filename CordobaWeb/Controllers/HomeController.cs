@@ -35,6 +35,10 @@ namespace CordobaWeb.Controllers
                 switch (PortNumber)
                 {
                     case 1012:
+                        if (ProjectSession.AdminLoginSession == null)
+                        {
+                            return RedirectToAction("Login", "Admin");
+                        }
                         LayoutNames = "Admin";
                         masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
                         break;
@@ -53,6 +57,7 @@ namespace CordobaWeb.Controllers
                 Result.template = LayoutNames; // This is Temporary
                 ProjectSession.StoreSession = Result;                
                 Session.Add("CssOverride",Result.css_overrides);
+             
                 return masterView;
           
             }

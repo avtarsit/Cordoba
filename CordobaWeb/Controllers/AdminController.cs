@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CordobaCommon;
+using CordobaModels.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,17 +17,24 @@ namespace CordobaWeb.Controllers
         }
 
         // GET: Admin/Login
+        [HttpGet]
         public ActionResult Login()
         {
-
-            return View();
+            ProjectSession.AdminLoginSession = null;
+            return View(new UserEntity());
         }
-  
 
+        [HttpPost]
         // GET: Admin/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Login(UserEntity model)
         {
-            return View();
+            UserEntity obj = new UserEntity();
+            obj.email = "amit";
+            obj.user_id = 123;
+            ProjectSession.AdminLoginSession = obj;
+            Session.Add("AdminUserId", obj.user_id);
+            return RedirectToAction("Index","Home");
+            
         }
 
         // GET: Admin/Create
