@@ -19,11 +19,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRewardList(int reward_id)
+        public HttpResponseMessage GetRewardList(int StoreId, int LoggedInUserId, int reward_id)
         {
             try
             {
-                var result = _rewardService.GetRewardList(reward_id);
+                var result = _rewardService.GetRewardList( StoreId,  LoggedInUserId, reward_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -38,11 +38,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRewardTypeList()
+        public HttpResponseMessage GetRewardTypeList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _rewardService.GetRewardTypeList();
+                var result = _rewardService.GetRewardTypeList(StoreId,  LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -57,11 +57,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrUpdateReward(int isAddMode, RewardEntity objRewardEntity)
+        public HttpResponseMessage InsertOrUpdateReward(int StoreId, int LoggedInUserId, int isAddMode, RewardEntity objRewardEntity)
         {
             try
             {
-                var result = _rewardService.InsertOrUpdateReward(objRewardEntity, isAddMode);
+                var result = _rewardService.InsertOrUpdateReward(StoreId, LoggedInUserId, objRewardEntity, isAddMode);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -71,11 +71,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteReward(int reward_id)
+        public HttpResponseMessage DeleteReward(int StoreId, int LoggedInUserId, int reward_id)
         {
             try
             {
-                int result = _rewardService.DeleteReward(reward_id);
+                int result = _rewardService.DeleteReward(StoreId, LoggedInUserId, reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -85,11 +85,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage ViewCustomerRewards(int reward_id)
+        public HttpResponseMessage ViewCustomerRewards(int StoreId, int LoggedInUserId, int reward_id)
         {
             try
             {
-                var customerRewards = _rewardService.ViewCustomerRewards(reward_id);
+                var customerRewards = _rewardService.ViewCustomerRewards(StoreId, LoggedInUserId, reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
             }
             catch (Exception)
@@ -99,11 +99,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRewardCustomerDetails(int reward_user_id)
+        public HttpResponseMessage GetRewardCustomerDetails(int StoreId, int LoggedInUserId, int reward_user_id)
         {
             try
             {
-                var customer_rewarddetails = _rewardService.GetRewardCustomerDetails(reward_user_id);
+                var customer_rewarddetails = _rewardService.GetRewardCustomerDetails(StoreId, LoggedInUserId, reward_user_id);
                 return Request.CreateResponse(HttpStatusCode.OK, customer_rewarddetails);
             }
             catch (Exception)
@@ -113,11 +113,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteRewardUser(int id, int reward_user_id)
+        public HttpResponseMessage DeleteRewardUser(int StoreId, int LoggedInUserId, int id, int reward_user_id)
         {
             try
             {
-                var result = _rewardService.DeleteRewardUser(id, reward_user_id);
+                var result = _rewardService.DeleteRewardUser(StoreId, LoggedInUserId, id, reward_user_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -127,11 +127,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage MyRewards(int id)
+        public HttpResponseMessage MyRewards(int StoreId, int LoggedInUserId, int id)
         {
             try
             {
-                var myRewardslist = _rewardService.MyRewards(id);
+                var myRewardslist = _rewardService.MyRewards(StoreId, LoggedInUserId, id);
                 return Request.CreateResponse(HttpStatusCode.OK, myRewardslist);
             }
             catch (Exception)
@@ -141,11 +141,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAllRunningRewards()
+        public HttpResponseMessage GetAllRunningRewards(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var allrunningRewards = _rewardService.GetAllRunningRewards();
+                var allrunningRewards = _rewardService.GetAllRunningRewards(StoreId,  LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, allrunningRewards);
             }
             catch (Exception)
@@ -155,11 +155,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage RewardCustomerDetails(int reward_id)
+        public HttpResponseMessage RewardCustomerDetails(int StoreId, int LoggedInUserId,int reward_id)
         {
             try
             {
-                var customerRewards = _rewardService.RewardCustomerDetails(reward_id);
+                var customerRewards = _rewardService.RewardCustomerDetails(StoreId, LoggedInUserId, reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, customerRewards);
             }
             catch (Exception)
@@ -169,11 +169,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRewardGroupCustomers(int loginUserId, int reward_id)
+        public HttpResponseMessage GetRewardGroupCustomers(int StoreId, int loginUserId, int reward_id)
         {
             try
             {
-                var rewardGroupCustomers = _rewardService.GetRewardGroupCustomers(loginUserId, reward_id);
+                var rewardGroupCustomers = _rewardService.GetRewardGroupCustomers(StoreId, loginUserId, reward_id);
                 return Request.CreateResponse(HttpStatusCode.OK, rewardGroupCustomers);
             }
             catch (Exception)
@@ -183,11 +183,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage AddCustomer_Reward(AddRewardEntity objAddrewardEntity)
+        public HttpResponseMessage AddCustomer_Reward(int StoreId, int LoggedInUserId, AddRewardEntity objAddrewardEntity)
         {
             try
             {
-                var insertedId = _rewardService.AddCustomer_Reward(objAddrewardEntity);
+                var insertedId = _rewardService.AddCustomer_Reward(StoreId, LoggedInUserId, objAddrewardEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, insertedId);
             }
             catch (Exception)
@@ -197,11 +197,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage Declare_RewardWinner(int reward_id, int reward_user_id, string admin_comment)
+        public HttpResponseMessage Declare_RewardWinner(int StoreId, int LoggedInUserId, int reward_id, int reward_user_id, string admin_comment)
         {
             try
             {
-                var result = _rewardService.Declare_RewardWinner(reward_id, reward_user_id, admin_comment);
+                var result = _rewardService.Declare_RewardWinner(StoreId, LoggedInUserId, reward_id, reward_user_id, admin_comment);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -211,11 +211,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage Delete_RewardWinner(int reward_user_id)
+        public HttpResponseMessage Delete_RewardWinner(int StoreId, int LoggedInUserId, int reward_user_id)
         {
             try
             {
-                var result= _rewardService.Delete_RewardWinner(reward_user_id);
+                var result= _rewardService.Delete_RewardWinner(StoreId, LoggedInUserId, reward_user_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -225,11 +225,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage Dashboard_RewardWinner()
+        public HttpResponseMessage Dashboard_RewardWinner(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var listWinners = _rewardService.Dashboard_RewardWinner();
+                var listWinners = _rewardService.Dashboard_RewardWinner(StoreId, LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, listWinners);
             }
             catch(Exception)

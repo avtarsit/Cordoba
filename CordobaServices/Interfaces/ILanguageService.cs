@@ -9,10 +9,10 @@ namespace CordobaServices.Interfaces
 {
     public interface ILanguageService
     {
-        List<LanguageEntity> GetLanguageList(int? languageId);
+        List<LanguageEntity> GetLanguageList(int? languageId, int StoreId, int LoggedInUserId);
 
-        int InsertOrUpdateLanguage(LanguageEntity objEntity);
+        int InsertOrUpdateLanguage(int StoreId, int LoggedInUserId, LanguageEntity objEntity);
 
-        int DeleteLanguage(int languageId);
+        int DeleteLanguage(int StoreId, int LoggedInUserId, int languageId);
     }
 }

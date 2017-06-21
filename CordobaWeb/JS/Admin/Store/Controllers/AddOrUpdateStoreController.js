@@ -43,7 +43,7 @@
     ];
    
     function GetCountryList() {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -57,7 +57,7 @@
       });
     }
     function GetLanguageList() {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.LanguageList = response.data;
         })
@@ -69,7 +69,7 @@
        });
     }
     function GetCurrencyList() {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList")
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CurrencyList = response.data;
@@ -85,7 +85,7 @@
 
     $scope.GetZoneListByCountry = function (countryId) {
         countryId = countryId == null ? 0 : countryId;
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.RegionStateList = [];
             if (response.data.length > 0) {
@@ -104,7 +104,7 @@
     }
    
     $scope.GetStoreById = function () {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
               if ($scope.StoreObj.store_id == 0)
@@ -138,7 +138,7 @@
                         callback: function (result) {
                             if (result) {
 
-                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id)
+                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                              .then(function (response) {                                  
                                                  if(response.data>0)
                                                  {
@@ -186,7 +186,7 @@
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
             var StoreEntity = JSON.stringify($scope.StoreObj);
-            $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore", StoreEntity)
+            $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");

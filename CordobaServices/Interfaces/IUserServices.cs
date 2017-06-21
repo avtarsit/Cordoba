@@ -9,11 +9,11 @@ namespace CordobaServices.Interfaces
 {
    public interface IUserServices
     {
-       List<UserEntity> GetUserList();
+       List<UserEntity> GetUserList(int LoggedInUserId,int storeId);
 
-       UserEntity GetUserDetail(int UserID = 0);
+       UserEntity GetUserDetail(int LoggedInUserId,int storeId, int UserID = 0);
 
-       int CreateOrUpdateUser(int LoggedInUserId, UserEntity user);
-       int DeleteUserDetail(int LoggedInUserId,int UserId);
+       int CreateOrUpdateUser(int LoggedInUserId,int storeId, UserEntity user);
+       int DeleteUserDetail(int LoggedInUserId,int storeId,int UserId);
     }
 }

@@ -6,7 +6,7 @@
 
     $scope.StoreId = 0;
     $scope.LoggedInUserId = 0;
-
+    $scope.languageId = 0;
     $scope.LanguageList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -20,7 +20,7 @@
     $scope.PageTitle = "Show Languages";
 
     $scope.GetLanguageList = function () {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList??languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.LanguageList = response.data;

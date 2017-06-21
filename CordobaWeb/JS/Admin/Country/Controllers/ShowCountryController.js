@@ -21,7 +21,7 @@
     
     $scope.GetCountryList=function()
     {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
           if (response.data.length > 0)
                   {                     

@@ -9,11 +9,12 @@ namespace CordobaServices.Interfaces
 {
    public interface IManufacturerServices
     {
-        List<ManufacturersEntity> GetManufacturersList();
-         ManufacturersEntity GetManufaturerDetail(int ManufacturersID);
+        List<ManufacturersEntity> GetManufacturersList(int StoreId, int LoggedInUserId);
 
-         int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity);
+        ManufacturersEntity GetManufaturerDetail(int StoreId, int LoggedInUserId, int ManufacturersID);
 
-         int DeleteManufacturer(int manufacturer_id);
+         int InsertUpdateManufacture(int StoreId, int LoggedInUserId, ManufacturersEntity manufacturersEntity);
+
+         int DeleteManufacturer(int StoreId, int LoggedInUserId, int manufacturer_id);
     }
 }

@@ -25,7 +25,7 @@
     $scope.PopularCategoryObj.store_id = 0;
 
     $scope.GetCategoryListByStoreIdPopular = function () {
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryListByStoreIdPopular?storeID=" + $scope.PopularCategoryObj.store_id)
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryListByStoreIdPopular?storeID=" + $scope.PopularCategoryObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
 
               if (response.data.length > 0) {
@@ -46,7 +46,7 @@
     $scope.GetStoreList=function()
     {
 
-                 $http.get(configurationService.basePath + "api/CategoryApi/GetStoreNameList")
+        $http.get(configurationService.basePath + "api/CategoryApi/GetStoreNameList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                  .then(function (response) {                
                      if (response.data.length > 0) {
                          $scope.StoreList = response.data;
@@ -71,7 +71,7 @@
         Item.createdby = -1;
         //    $scope.PopularObj.status = 1;
         //    $scope.PopularObj.category_popularId = $scope.category_popularId;
-        $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategoryAsPopular", Item)
+        $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategoryAsPopular?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, Item)
          .then(function (response) {
             
              if (response.data >= 0) {

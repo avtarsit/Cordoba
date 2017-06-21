@@ -12,7 +12,7 @@
     else {
         $scope.PageTitle = "Add Order";
     }
-
+    $scope.countryId = 0;
     $scope.StoreList = [];
     $scope.CustomerGroupList = [];
     $scope.RegionStateListShipping = [];
@@ -36,7 +36,7 @@
 
     $scope.GetZoneListByCountryPayment = function (countryId) {
        
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
            
             $scope.RegionStateListPayment = [];
@@ -80,7 +80,7 @@
     //}
 
     function GetStoreList() {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=0")
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
              if (response.data.length > 0) {
                  //$scope.StoreList.push({ store_id: 0, name: 'Default' });
@@ -100,7 +100,7 @@
     }
 
     function GetCustomerGroupList() {
-        $http.get(configurationService.basePath + "api/OrderApi/GetCustomerGroupList")
+        $http.get(configurationService.basePath + "api/OrderApi/GetCustomerGroupList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
 
              if (response.data.length > 0) {
@@ -118,7 +118,7 @@
     }
 
     function GetCurrencyList() {
-        $http.get(configurationService.basePath + "api/OrderApi/GetCurrencyList")
+        $http.get(configurationService.basePath + "api/OrderApi/GetCurrencyList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
 
               if (response.data.length > 0) {
@@ -135,7 +135,7 @@
     }
 
     function GetCountryList() {
-        $http.get(configurationService.basePath + "api/OrderApi/GetCountryList?countryId=0")
+        $http.get(configurationService.basePath + "api/OrderApi/GetCountryList?countryId=0" + $scope.countryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
              if (response.data.length > 0) {
                  $scope.CountryList = response.data;
@@ -152,7 +152,7 @@
     }
 
     function GetCustomerAddress() {
-        $http.get(configurationService.basePath + "api/OrderApi/GetCustomerAddress?orderId=" + $stateParams.orderId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetCustomerAddress?orderId=" + $stateParams.orderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
              if (response.data.length > 0) {
                  $scope.AddressListPayment = response.data;
@@ -171,7 +171,7 @@
 
     $scope.GetCustomersByStore = function (storeId) {
   
-        $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             if (response.data.length > 0) {
       
@@ -212,7 +212,7 @@
     }
 
     function getOrderDetails() {
-        $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {            
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
@@ -257,7 +257,7 @@
             $scope.OrderDetails.customer_group_id = $scope.selectedCustomerGroup;
             $scope.OrderDetails.store_id = $scope.selectedStore;
 
-            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_CutomerDetails", $scope.OrderDetails)
+            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_CutomerDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
            .then(function (response) {
                if (response.data == 1) {
                    notificationFactory.customSuccess("Customer Section Information Saved Successfully.");
@@ -277,7 +277,7 @@
             $scope.OrderDetails.address_id = $scope.selectedPaymentAddressId;
             $scope.OrderDetails.payment_country_id = $scope.selectedPaymentCountry;
             $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;       
-            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_PaymentDetails", $scope.OrderDetails)
+            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_PaymentDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
             .then(function (response) {
                 if (response.data == 1) {
                     notificationFactory.customSuccess("Payment Section Information Saved Successfully.");
@@ -297,7 +297,7 @@
             $scope.OrderDetails.address_id = $scope.selectedAddressShippingId;
             $scope.OrderDetails.shipping_country_id = $scope.selectedShippingCountry;
 
-            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_ShippingDetails", $scope.OrderDetails)
+            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_ShippingDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
              .then(function (response) {
                  if (response.data == 1) {
                      notificationFactory.customSuccess("Shipping Section Information Saved Successfully.");
@@ -313,7 +313,7 @@
     }
 
     $scope.UpdateOrder_TotalDetails = function () {
-        $http.get(configurationService.basePath + "api/OrderApi/UpdateOrder_TotalDetails?order_id=" + $scope.OrderDetails.order_id + "&order_status_id=" + $scope.selectedOrderStatus + "&comment=" + $scope.OrderDetails.comment)
+        $http.get(configurationService.basePath + "api/OrderApi/UpdateOrder_TotalDetails?order_id=" + $scope.OrderDetails.order_id + "&order_status_id=" + $scope.selectedOrderStatus + "&comment=" + $scope.OrderDetails.comment + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
              if (response.data == 1) {
                  notificationFactory.customSuccess("Information Saved Successfully.");

@@ -17,8 +17,8 @@ namespace CordobaServices.Services
         private GenericRepository<CategoryPopularEntity> CategoryPopularEntityGenericRepository = new GenericRepository<CategoryPopularEntity>();
         private GenericRepository<LanguageEntity> LanguageEntityGenericRepository = new GenericRepository<LanguageEntity>();
 
-      
-        public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
+
+        public List<CategoryEntity> GetCategoryList(int StoreId, int LoggedInUserId, int Category_Id = 0)
         { 
 
             
@@ -45,7 +45,19 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = Category_Id
             };
-            var catalogueResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterCategoryId).ToList<CategoryEntity>();
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
+            var catalogueResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryList", ParameterStoreId, ParameterLoggedInUserId, ParameterCategoryId).ToList<CategoryEntity>();
             if (catalogueResult != null)
                 Categories = catalogueResult.ToList();
             return Categories;
@@ -53,7 +65,7 @@ namespace CordobaServices.Services
 
 
 
-        public CategoryEntity GetCategoryById(int Category_Id)
+        public CategoryEntity GetCategoryById(int Category_Id, int StoreId, int LoggedInUserId)
         {
             CategoryEntity CategoryEntity = new CategoryEntity();
             List<CategoryDescriptionList> CategoryDescriptionList = new List<CategoryDescriptionList>();
@@ -61,11 +73,33 @@ namespace CordobaServices.Services
 
             if (Category_Id > 0)
             {
-                var paramCategoryId = new SqlParameter { ParameterName = "Category_Id", DbType = DbType.Int32, Value = Category_Id };
-                var result = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryById", paramCategoryId).FirstOrDefault();
+                var paramCategoryId = new SqlParameter 
+                { 
+                    ParameterName = "Category_Id", 
+                    DbType = DbType.Int32, 
+                    Value = Category_Id 
+                };
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var result = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryById", paramCategoryId, ParameterStoreId, ParameterLoggedInUserId).FirstOrDefault();
                 CategoryEntity = result;
 
-                var paramCategoryIdForDesc = new SqlParameter { ParameterName = "Category_Id", DbType = DbType.Int32, Value = Category_Id };
+                var paramCategoryIdForDesc = new SqlParameter 
+                { 
+                    ParameterName = "Category_Id", 
+                    DbType = DbType.Int32, 
+                    Value = Category_Id 
+                };
                 var DescResult = CategoryEntityGenericRepository.ExecuteSQL<CategoryDescriptionList>("GetCategoryDescriptionList", paramCategoryIdForDesc).ToList<CategoryDescriptionList>();
                 if (DescResult != null)
                     CategoryDescriptionList = DescResult.ToList();
@@ -95,15 +129,16 @@ namespace CordobaServices.Services
 
         //Popular Category
 
-        public List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int storeID = 0)
+        public List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int LoggedInUserId, int storeID = 0)
         {
             List<CategoryPopularEntity> PopularCategoryList = new List<CategoryPopularEntity>();
             if(storeID >= 0)
             {
                 try
                 {
-                    SqlParameter[] param = new SqlParameter[1];
+                    SqlParameter[] param = new SqlParameter[2];
                     param[0] = new SqlParameter("StoreId", storeID);
+                    param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
                     PopularCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryPopularEntity>("EXEC GetCategoryListByStoreIdPopular", param).ToList<CategoryPopularEntity>().ToList();
                     
                 }
@@ -116,11 +151,23 @@ namespace CordobaServices.Services
         }
 
 
-        public List<StoreEntity> GetStoreNameList()
+        public List<StoreEntity> GetStoreNameList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var StoreList = CategoryEntityGenericRepository.ExecuteSQL<StoreEntity>("EXEC GetStoreNameList").ToList<StoreEntity>().ToList();
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var StoreList = CategoryEntityGenericRepository.ExecuteSQL<StoreEntity>("EXEC GetStoreNameList", ParameterStoreId, ParameterLoggedInUserId).ToList<StoreEntity>().ToList();
                 return StoreList;
             }
             catch (Exception ex)
@@ -130,7 +177,7 @@ namespace CordobaServices.Services
             }
         }
 
-        public int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular)
+        public int InsertOrUpdateCategoryAsPopular(int LoggedInUserId, CategoryPopularEntity categoryPopular)
         {
             try
             {
@@ -138,6 +185,7 @@ namespace CordobaServices.Services
                     new SqlParameter("category_popularId", categoryPopular.category_popularId!=null ?categoryPopular.category_popularId:(object)DBNull.Value)
                     ,new SqlParameter("category_Id", categoryPopular.category_Id)
                     ,new SqlParameter("store_Id", categoryPopular.store_Id)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId)
                     ,new SqlParameter("createdby", categoryPopular.createdby)
                 };
             
@@ -159,11 +207,23 @@ namespace CordobaServices.Services
         // Language get
 
 
-        public List<LanguageEntity> GetLanguageList()
+        public List<LanguageEntity> GetLanguageList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var languageEntity = LanguageEntityGenericRepository.ExecuteSQL<LanguageEntity>("EXEC GetLanguageList").ToList<LanguageEntity>().ToList();
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var languageEntity = LanguageEntityGenericRepository.ExecuteSQL<LanguageEntity>("EXEC GetLanguageList", ParameterStoreId, ParameterLoggedInUserId).ToList<LanguageEntity>().ToList();
                 return languageEntity;
             }
             catch (Exception ex)
@@ -174,11 +234,23 @@ namespace CordobaServices.Services
         }
 
 
-        public List<CategoryEntity> GetParentCategoryList()
+        public List<CategoryEntity> GetParentCategoryList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var ParentCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetParentCategoryList").ToList<CategoryEntity>().ToList();
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var ParentCategoryList = CategoryEntityGenericRepository.ExecuteSQL<CategoryEntity>("EXEC GetParentCategoryList", ParameterStoreId, ParameterLoggedInUserId).ToList<CategoryEntity>().ToList();
                 return ParentCategoryList;
             }
             catch (Exception ex)
@@ -189,11 +261,13 @@ namespace CordobaServices.Services
         }
 
         //Insert Or Update Category
-        public int InsertOrUpdateCategory(CategoryEntity categoryEntity)
+        public int InsertOrUpdateCategory(int StoreId, int LoggedInUserId, CategoryEntity categoryEntity)
         {
             string CategoryDescriptionXml = Helpers.ConvertToXml<CategoryDescriptionList>.GetXMLString(categoryEntity.CategoryDescriptionList);
-            SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("Category_Id", categoryEntity.Category_Id)
+            SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                   new SqlParameter("StoreId", StoreId)
+                                                 , new SqlParameter("LoggedInUserId", LoggedInUserId)
+                                                 , new SqlParameter("Category_Id", categoryEntity.Category_Id)
                                                  , new SqlParameter("parent_id", categoryEntity.parent_Id)
                                                  , new SqlParameter("image", categoryEntity.image !=null?categoryEntity.image:"")
                                                  , new SqlParameter("sort_order", categoryEntity.sort_order!=null?categoryEntity.sort_order:0)
@@ -208,11 +282,15 @@ namespace CordobaServices.Services
 
 
         //Delete Category
-        public int DeleteCategory(int Category_Id)
+        public int DeleteCategory(int Category_Id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("Category_Id", Category_Id) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                   new SqlParameter("Category_Id", Category_Id)
+                                                 , new SqlParameter("StoreId", StoreId)
+                                                 , new SqlParameter("LoggedInUserId", LoggedInUserId) };
+
                 int result = CategoryEntityGenericRepository.ExecuteSQL<int>("DeleteCategory", sqlParameter).FirstOrDefault();
                 return result;
             }

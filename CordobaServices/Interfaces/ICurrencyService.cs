@@ -9,11 +9,11 @@ namespace CordobaServices.Interfaces
 {
     public interface ICurrencyService
     {
-        IList<CurrencyEntity> GetCurrencyList();
-        CurrencyEntity GetCurrencyDetail(int currencyID = 0);
+        IList<CurrencyEntity> GetCurrencyList(int StoreId, int LoggedInUserId);
+        CurrencyEntity GetCurrencyDetail(int StoreId, int LoggedInUserId, int currencyID = 0);
 
-        int CreateOrUpdateCurrency(CurrencyEntity currency);
+        int CreateOrUpdateCurrency(int StoreId, int LoggedInUserId, CurrencyEntity currency);
 
-        int DeleteCurrency(int CurrencyId);
+        int DeleteCurrency(int StoreId, int LoggedInUserId, int CurrencyId);
     }
 }

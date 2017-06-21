@@ -21,11 +21,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetStoreList(int? StoreID)
+        public HttpResponseMessage GetStoreList(int? StoreID, int LoggedInUserId)
         {
             try
             {
-                var result = _StoreServices.GetStoreList(StoreID);
+                var result = _StoreServices.GetStoreList(StoreID,  LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -41,11 +41,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetStoreById(int store_id)
+        public HttpResponseMessage GetStoreById(int store_id, int LoggedInUserId)
         {
             try
             {
-                var result = _StoreServices.GetStoreById(store_id);
+                var result = _StoreServices.GetStoreById(store_id, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -61,11 +61,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateStore(StoreEntity storeEntity)
+        public HttpResponseMessage InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId)
         {
             try
             {
-                var result = _StoreServices.InsertUpdateStore(storeEntity);
+                var result = _StoreServices.InsertUpdateStore(storeEntity, LoggedInUserId);
                 if(result!=null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -79,11 +79,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteStoreById_Admin(int store_id)
+        public HttpResponseMessage DeleteStoreById_Admin(int store_id, int LoggedInUserId)
         {
             try
             {
-                var result = _StoreServices.DeleteStoreById_Admin(store_id);
+                var result = _StoreServices.DeleteStoreById_Admin(store_id, LoggedInUserId);
                 if(result!=null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

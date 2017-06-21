@@ -27,14 +27,14 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public TableParameter<CustomerEntity> GetCustomerList(int PageIndex, string customerName, string email, int? customer_group_id,int? status , int? approved, string ip, DateTime? date_added, TableParameter<CustomerEntity> tableParameter)
+        public TableParameter<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, int PageIndex, string customerName, string email, int? customer_group_id,int? status , int? approved, string ip, DateTime? date_added, TableParameter<CustomerEntity> tableParameter)
         {
             try
             {
 
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _CustomerService.GetCustomerList(sortColumn, tableParameter, customerName, email, customer_group_id,status, approved, ip, date_added).ToList();
+                var result = _CustomerService.GetCustomerList(StoreId, LoggedInUserId, sortColumn, tableParameter, customerName, email, customer_group_id,status, approved, ip, date_added).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -57,11 +57,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerById(int customer_id)
+        public HttpResponseMessage GetCustomerById(int StoreId, int LoggedInUserId, int customer_id)
         {
             try
             {
-                var result = _CustomerService.GetCustomerById(customer_id);
+                var result = _CustomerService.GetCustomerById(StoreId, LoggedInUserId, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -77,11 +77,11 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateCustomer(CustomerEntity customerEntity)
+        public HttpResponseMessage InsertUpdateCustomer(int LoggedInUserId, CustomerEntity customerEntity)
         {
             try
             {
-                var result = _CustomerService.InsertUpdateCustomer(customerEntity);
+                var result = _CustomerService.InsertUpdateCustomer( LoggedInUserId, customerEntity);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -96,11 +96,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage DeleteCustomer(int customer_id)
+        public HttpResponseMessage DeleteCustomer(int StoreId, int LoggedInUserId, int customer_id)
         {
             try
             {
-                var result = _CustomerService.DeleteCustomer(customer_id);
+                var result = _CustomerService.DeleteCustomer(StoreId, LoggedInUserId, customer_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -114,7 +114,7 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public HttpResponseMessage PointsImporter(int store_id, bool IsSendEmail)
+        public HttpResponseMessage PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail)
         {
             try
             {
@@ -187,7 +187,7 @@ namespace CordobaAPI.API
                         dtXLS.Columns["Points Adjustment"].ColumnName = "points";
                         dtXLS.Columns["Comment"].ColumnName = "comment";
 
-                        var result = _CustomerService.PointsImporter(store_id, IsSendEmail, dtXLS);
+                        var result = _CustomerService.PointsImporter(store_id, LoggedInUserId, IsSendEmail, dtXLS);
                         return Request.CreateResponse(HttpStatusCode.OK, result);
                     }
                     catch (Exception)
@@ -211,7 +211,7 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public HttpResponseMessage CustomerImport(int store_id, int customer_group_id)
+        public HttpResponseMessage CustomerImport(int store_id, int LoggedInUserId, int customer_group_id)
         {
             try
             {
@@ -291,7 +291,7 @@ namespace CordobaAPI.API
                         dtXLS.Columns["County"].ColumnName = "county";
                         dtXLS.Columns["Post Code"].ColumnName = "postcode";
 
-                        var result = _CustomerService.CustomerImport(store_id, customer_group_id, dtXLS);
+                        var result = _CustomerService.CustomerImport(store_id, LoggedInUserId, customer_group_id, dtXLS);
                         return Request.CreateResponse(HttpStatusCode.OK, result);
                     }
                     catch (Exception)

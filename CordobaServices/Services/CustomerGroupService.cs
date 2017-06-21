@@ -3,6 +3,7 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,23 @@ namespace CordobaServices.Services
     {
         private GenericRepository<CustomerGroupEntity> CustomerGroupEntityGenericRepository = new GenericRepository<CustomerGroupEntity>();
 
-        public List<CustomerGroupEntity> GetCustomerGroupList()
+        public List<CustomerGroupEntity> GetCustomerGroupList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var CustomerGroupList = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("EXEC GetCustomerGroupList").ToList<CustomerGroupEntity>().ToList();
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var CustomerGroupList = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("EXEC GetCustomerGroupList", ParameterStoreId, ParameterLoggedInUserId).ToList<CustomerGroupEntity>().ToList();
                 return CustomerGroupList;
             }
             catch (Exception ex)
@@ -29,7 +42,7 @@ namespace CordobaServices.Services
             }
         }
 
-        public CustomerGroupEntity GetCustomerGroupDetail(int customerGroupID = 0)
+        public CustomerGroupEntity GetCustomerGroupDetail(int StoreId, int LoggedInUserId, int customerGroupID = 0)
         {
             CustomerGroupEntity CustomerGroupDetail = new CustomerGroupEntity();
             if (customerGroupID > 0)
@@ -37,7 +50,9 @@ namespace CordobaServices.Services
                 try
                 {
                     SqlParameter[] param = new SqlParameter[1];
-                    param[0] = new SqlParameter("customer_group_id", customerGroupID);
+                    param[0] = new SqlParameter("store_id", StoreId);
+                    param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+                    param[2] = new SqlParameter("customer_group_id", customerGroupID);
                     CustomerGroupDetail = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("EXEC GetCustomerGroupDetails ", param ).ToList<CustomerGroupEntity>().FirstOrDefault();
 
                 }
@@ -53,13 +68,15 @@ namespace CordobaServices.Services
 
         }
 
-        public int CreateOrUpdateCustomerGroup(CustomerGroupEntity customerGroup)
+        public int CreateOrUpdateCustomerGroup(int StoreId, int LoggedInUserId, CustomerGroupEntity customerGroup)
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[2];
-                param[0] = new SqlParameter("customer_group_id", customerGroup.customer_group_id);
-                param[1] = new SqlParameter("name", customerGroup.name);
+                SqlParameter[] param = new SqlParameter[4];
+                param[0] = new SqlParameter("store_id", StoreId);
+                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+                param[2] = new SqlParameter("customer_group_id", customerGroup.customer_group_id);
+                param[3] = new SqlParameter("name", customerGroup.name);
 
                 var result = CustomerGroupEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCustomerGroup" , param).ToList<int>().FirstOrDefault();
 
@@ -75,12 +92,14 @@ namespace CordobaServices.Services
         }
 
 
-        public int DeleteCustomerGroup(int CustomerGroupId)
+        public int DeleteCustomerGroup(int StoreId, int LoggedInUserId, int CustomerGroupId)
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[1];
-                param[0] = new SqlParameter("customer_group_id", CustomerGroupId);
+                SqlParameter[] param = new SqlParameter[3];
+                param[0] = new SqlParameter("store_id", StoreId);
+                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+                param[2] = new SqlParameter("customer_group_id", CustomerGroupId);
 
                 var Result = CustomerGroupEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteCustomerGroup ", param).ToList<int>().FirstOrDefault();
                 return Result;

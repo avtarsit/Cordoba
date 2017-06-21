@@ -9,10 +9,10 @@ namespace CordobaServices.Interfaces
 {
    public interface ICountryServices
     {
-       List<CountryEntity> GetCountryList(int countryId);
-       
-       int InsertOrUpdateCountry(CountryEntity objCountry);
+       List<CountryEntity> GetCountryList(int StoreId, int LoggedInUserId, int countryId);
 
-       int DeleteCountry(int countryId);
+       int InsertOrUpdateCountry(int StoreId, int LoggedInUserId, CountryEntity objCountry);
+
+       int DeleteCountry(int StoreId, int LoggedInUserId, int countryId);
     }
 }

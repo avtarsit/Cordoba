@@ -16,7 +16,7 @@ namespace CordobaServices.Services
     {
         private GenericRepository<ReportEntity> ReportEntityGenericRepository = new GenericRepository<ReportEntity>();
 
-        public IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId,int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, int? StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -29,6 +29,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
                     ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
                     ,new SqlParameter("store_id", StoreId!=null ? StoreId:(object)DBNull.Value)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                 };
 
                 var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetSalesReturnReportList", param).AsQueryable();
@@ -43,7 +44,7 @@ namespace CordobaServices.Services
             //return result;
         }
 
-        public IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -56,6 +57,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
                     ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
                     ,new SqlParameter("store_id", StoreId!=null ? StoreId:(object)DBNull.Value)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                     
                 };
 
@@ -72,7 +74,7 @@ namespace CordobaServices.Services
         }
 
 
-        public IEnumerable<ReportEntity> GetTransactionReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetTransactionReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -83,6 +85,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                 };
 
 
@@ -99,7 +102,7 @@ namespace CordobaServices.Services
         }
 
 
-        public IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -110,6 +113,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                 };
 
 
@@ -126,7 +130,7 @@ namespace CordobaServices.Services
         }
 
 
-        public IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        public IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -137,6 +141,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
+                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                 };
 
 

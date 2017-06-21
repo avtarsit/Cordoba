@@ -16,12 +16,24 @@ namespace CordobaServices.Services
 
         private GenericRepository<ManufacturersEntity> objGenericRepository = new GenericRepository<ManufacturersEntity>();
 
-        public List<ManufacturersEntity> GetManufacturersList()
+        public List<ManufacturersEntity> GetManufacturersList(int StoreId, int LoggedInUserId)
         {
             List<ManufacturersEntity> ManufacturersList = new List<ManufacturersEntity>();
             try
             {
-                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufacturersList").ToList<ManufacturersEntity>();
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufacturersList",ParameterStoreId,ParameterLoggedInUserId).ToList<ManufacturersEntity>();
 
                 if (Result != null)
                     ManufacturersList = Result.ToList();
@@ -36,7 +48,7 @@ namespace CordobaServices.Services
 
 
 
-        public ManufacturersEntity GetManufaturerDetail(int manufacturer_id)
+        public ManufacturersEntity GetManufaturerDetail(int StoreId, int LoggedInUserId, int manufacturer_id)
         {
             ManufacturersEntity Manufacturer = new ManufacturersEntity();
             List<StoreEntity> StoreList = new List<StoreEntity>();
@@ -44,13 +56,25 @@ namespace CordobaServices.Services
 
             if (manufacturer_id > 0)
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var parammanufacturer_id = new SqlParameter
                 {
                     ParameterName = "manufacturer_id",
                     DbType = DbType.Int32,
                     Value = manufacturer_id
                 };
-                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufaturerDetail", parammanufacturer_id).FirstOrDefault();
+                var Result = objGenericRepository.ExecuteSQL<ManufacturersEntity>("GetManufaturerDetail", ParameterStoreId, ParameterLoggedInUserId, parammanufacturer_id).FirstOrDefault();
                 if (Result != null)
                     Manufacturer = Result;
             }
@@ -58,13 +82,25 @@ namespace CordobaServices.Services
             {
                 Manufacturer = new ManufacturersEntity();
             }
+            var ParameterStoreIdForStore = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+            var ParameterLoggedInUserIdForStore = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var parammanufacturerIdForStore = new SqlParameter
             {
                 ParameterName = "manufacturer_id",
                 DbType = DbType.Int32,
                 Value = manufacturer_id
             };
-            var storeResult = objGenericRepository.ExecuteSQL<StoreEntity>("GetManufacturerStoreList", parammanufacturerIdForStore).ToList<StoreEntity>();
+            var storeResult = objGenericRepository.ExecuteSQL<StoreEntity>("GetManufacturerStoreList", ParameterStoreIdForStore, ParameterLoggedInUserIdForStore, parammanufacturerIdForStore).ToList<StoreEntity>();
             if (storeResult != null)
                 StoreList = storeResult.ToList();
 
@@ -76,17 +112,29 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)
+        public int InsertUpdateManufacture(int StoreId, int LoggedInUserId, ManufacturersEntity manufacturersEntity)
         {
 
             try
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var manufacturerIdParam = new SqlParameter { ParameterName = "manufacturer_id", DbType = DbType.Int32, Value = manufacturersEntity.manufacturer_id };
                 var nameParam = new SqlParameter { ParameterName = "name", DbType = DbType.String, Value = manufacturersEntity.name };
                 var imageUrlParam = new SqlParameter { ParameterName = "image", DbType = DbType.String, Value = manufacturersEntity.image ?? DBNull.Value.ToString() };
                 var sortorderParam = new SqlParameter { ParameterName = "sort_order", DbType = DbType.Int32, Value = manufacturersEntity.sort_order };
                 var storeIdCSVParam = new SqlParameter { ParameterName = "storeIdCSV", DbType = DbType.String, Value = manufacturersEntity.StoreIdCSV ?? DBNull.Value.ToString() };
-                var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateManufacture", manufacturerIdParam, nameParam, imageUrlParam, sortorderParam, storeIdCSVParam).FirstOrDefault();
+                var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateManufacture", ParameterStoreId, ParameterLoggedInUserId, manufacturerIdParam, nameParam, imageUrlParam, sortorderParam, storeIdCSVParam).FirstOrDefault();
                 return result;
             }
             catch (Exception)
@@ -98,12 +146,24 @@ namespace CordobaServices.Services
 
 
 
-        public int DeleteManufacturer(int manufacturer_id)
+        public int DeleteManufacturer(int StoreId, int LoggedInUserId, int manufacturer_id)
         {
             try
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var paramManufacturerId = new SqlParameter { ParameterName = "manufacturer_id", DbType = DbType.Int32, Value = manufacturer_id };
-                int result = objGenericRepository.ExecuteSQL<int>("DeleteManufacturer", paramManufacturerId).FirstOrDefault();
+                int result = objGenericRepository.ExecuteSQL<int>("DeleteManufacturer", ParameterStoreId, ParameterLoggedInUserId, paramManufacturerId).FirstOrDefault();
                 return result;
             }
             catch (Exception)

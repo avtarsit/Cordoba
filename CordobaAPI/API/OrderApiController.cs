@@ -24,11 +24,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetOrderHistory(int customer_id)
+        public HttpResponseMessage GetOrderHistory(int StoreId, int LoggedInUserId, int customer_id)
         {
             try
             {
-                var result = _orderService.GetOrderHistory(customer_id);
+                var result = _orderService.GetOrderHistory(StoreId, LoggedInUserId, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -43,11 +43,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetOrderDetails(int orderId)
+        public HttpResponseMessage GetOrderDetails(int StoreId, int LoggedInUserId, int orderId)
         {
             try
             {
-                var result = _orderService.GetOrderDetails(orderId);
+                var result = _orderService.GetOrderDetails(StoreId, LoggedInUserId, orderId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -62,11 +62,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrderHistory(OrderHistoryEntity objHistoryEntity)
+        public HttpResponseMessage InsertOrderHistory(int StoreId, int LoggedInUserId, OrderHistoryEntity objHistoryEntity)
         {
             try
             {
-                var result = _orderService.InsertOrderHistory(objHistoryEntity);
+                var result = _orderService.InsertOrderHistory(StoreId, LoggedInUserId, objHistoryEntity);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -80,13 +80,13 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public TableParameter<OrderEntity> GetOrderList(int PageIndex, int? orderId, int? order_status_id,string CustomerName,decimal? total,Nullable<DateTime> DateAdded,Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
+        public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id,string CustomerName,decimal? total,Nullable<DateTime> DateAdded,Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _orderService.GetOrderList(sortColumn,orderId,order_status_id,CustomerName,total,DateAdded,DateModified, tableParameter, "").ToList();
+                var result = _orderService.GetOrderList(StoreId,LoggedInUserId,sortColumn,orderId,order_status_id,CustomerName,total,DateAdded,DateModified, tableParameter, "").ToList();
 
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
@@ -108,9 +108,9 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerGroupList()
+        public HttpResponseMessage GetCustomerGroupList(int StoreId, int LoggedInUserId)
         {
-            var customerGroup = _orderService.GetCustomerGroupList();
+            var customerGroup = _orderService.GetCustomerGroupList(StoreId, LoggedInUserId);
             if (customerGroup != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, customerGroup);
@@ -119,9 +119,9 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCurrencyList()
+        public HttpResponseMessage GetCurrencyList(int StoreId, int LoggedInUserId)
         {
-            var currency = _orderService.GetCurrencyList();
+            var currency = _orderService.GetCurrencyList( StoreId, LoggedInUserId);
             if (currency != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, currency);
@@ -131,11 +131,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetCountryList(int countryId)
+        public HttpResponseMessage GetCountryList(int StoreId, int LoggedInUserId, int countryId)
         {
             try
             {
-                var result = _countryServices.GetCountryList(countryId).OrderBy(m => m.name).ToList();
+                var result = _countryServices.GetCountryList(StoreId, LoggedInUserId, countryId).OrderBy(m => m.name).ToList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -151,11 +151,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetZoneListByCountry(int countryId)
+        public HttpResponseMessage GetZoneListByCountry(int StoreId, int LoggedInUserId, int countryId)
         {
             try
             {
-                var result = _orderService.GetZoneListByCountry(countryId).ToList();
+                var result = _orderService.GetZoneListByCountry(StoreId, LoggedInUserId, countryId).ToList();
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -168,11 +168,11 @@ namespace CordobaAPI.API
             }
         }
 
-        public HttpResponseMessage GetCustomerAddress(int orderId)
+        public HttpResponseMessage GetCustomerAddress(int StoreId, int LoggedInUserId, int orderId)
         {
             try
             {
-                var result = _orderService.GetCustomerAddress(orderId);
+                var result = _orderService.GetCustomerAddress(StoreId, LoggedInUserId, orderId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -186,11 +186,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UpdateOrder_CutomerDetails(OrderEntity objOrderEntity)
+        public HttpResponseMessage UpdateOrder_CutomerDetails(int LoggedInUserId, OrderEntity objOrderEntity)
         {
             try
             {
-                var result = _orderService.UpdateOrder_CutomerDetails(objOrderEntity);
+                var result = _orderService.UpdateOrder_CutomerDetails( LoggedInUserId, objOrderEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -200,11 +200,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UpdateOrder_PaymentDetails(OrderEntity objOrderEntity)
+        public HttpResponseMessage UpdateOrder_PaymentDetails(int StoreId, int LoggedInUserId, OrderEntity objOrderEntity)
         {
             try
             {
-                var result = _orderService.UpdateOrder_PaymentDetails(objOrderEntity);
+                var result = _orderService.UpdateOrder_PaymentDetails(StoreId, LoggedInUserId, objOrderEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -214,11 +214,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UpdateOrder_ShippingDetails(OrderEntity objOrderEntity)
+        public HttpResponseMessage UpdateOrder_ShippingDetails(int StoreId, int LoggedInUserId, OrderEntity objOrderEntity)
         {
             try
             {
-                var result = _orderService.UpdateOrder_ShippingDetails(objOrderEntity);
+                var result = _orderService.UpdateOrder_ShippingDetails(StoreId, LoggedInUserId, objOrderEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -228,11 +228,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCustomersByStore(int storeId)
+        public HttpResponseMessage GetCustomersByStore(int storeId, int LoggedInUserId)
         {
             try
             {
-                var result = _orderService.GetCustomersByStore(storeId);
+                var result = _orderService.GetCustomersByStore(storeId,LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -242,11 +242,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage UpdateOrder_TotalDetails(int order_id, int order_status_id, string comment)
+        public HttpResponseMessage UpdateOrder_TotalDetails(int StoreId, int LoggedInUserId, int order_id, int order_status_id, string comment)
         {
             try
             {
-                var result = _orderService.UpdateOrder_TotalDetails(order_id, order_status_id, comment);
+                var result = _orderService.UpdateOrder_TotalDetails(StoreId, LoggedInUserId, order_id, order_status_id, comment);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch(Exception)
@@ -256,11 +256,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetOrderDetail_Layout(int order_id,int store_id)
+        public HttpResponseMessage GetOrderDetail_Layout(int LoggedInUserId, int order_id,int store_id)
         {
             try
             {
-                var result = _orderService.GetOrderDetail_Layout(order_id, store_id);
+                var result = _orderService.GetOrderDetail_Layout(LoggedInUserId, order_id, store_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch(Exception)

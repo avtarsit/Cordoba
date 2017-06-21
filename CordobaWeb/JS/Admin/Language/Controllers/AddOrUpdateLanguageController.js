@@ -17,7 +17,7 @@
         $scope.IsEditMode = true;
         $scope.languageId = $stateParams.LanguageId;
 
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId)
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
     
              $scope.LanguageObj = response.data[0];
@@ -40,7 +40,7 @@
         if (form.$valid) {
             //$scope.LanguageObj.image = $scope.LanguageObj.code + '.png';
     
-            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage", $scope.LanguageObj)
+            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.LanguageObj)
            .then(function (response) {
              
                if (response.data == 0) {
@@ -73,7 +73,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId)
+                                $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                    .then(function (response) {
                                        notificationFactory.customSuccess("Successfully Deleted!.");
                                        $state.go('Language');

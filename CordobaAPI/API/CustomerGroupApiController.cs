@@ -20,11 +20,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerGroupList()
+        public HttpResponseMessage GetCustomerGroupList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _CustomerGroupService.GetCustomerGroupList();
+                var result = _CustomerGroupService.GetCustomerGroupList( StoreId, LoggedInUserId);
                 if(result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -39,11 +39,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerGroupDetail(int CustomerGroupId = 0)
+        public HttpResponseMessage GetCustomerGroupDetail(int StoreId, int LoggedInUserId, int CustomerGroupId = 0)
         {
             try
             {
-                var result = _CustomerGroupService.GetCustomerGroupDetail(CustomerGroupId);
+                var result = _CustomerGroupService.GetCustomerGroupDetail(StoreId, LoggedInUserId, CustomerGroupId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -58,11 +58,11 @@ namespace CordobaAPI.API
 
         }
         [HttpPost]
-        public HttpResponseMessage CreateOrUpdateCustomerGroup(CustomerGroupEntity CustomerGroupEntity)
+        public HttpResponseMessage CreateOrUpdateCustomerGroup(int StoreId, int LoggedInUserId, CustomerGroupEntity CustomerGroupEntity)
         {
             try
             {
-                var result = _CustomerGroupService.CreateOrUpdateCustomerGroup(CustomerGroupEntity);
+                var result = _CustomerGroupService.CreateOrUpdateCustomerGroup(StoreId, LoggedInUserId, CustomerGroupEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -74,11 +74,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteCustomerGroup(int CustomerGroupId = 0)
+        public HttpResponseMessage DeleteCustomerGroup(int StoreId, int LoggedInUserId, int CustomerGroupId = 0)
         {
             try
             {
-                var result = _CustomerGroupService.DeleteCustomerGroup(CustomerGroupId);
+                var result = _CustomerGroupService.DeleteCustomerGroup(StoreId, LoggedInUserId, CustomerGroupId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
 
             }

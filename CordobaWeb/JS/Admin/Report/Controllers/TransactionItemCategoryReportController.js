@@ -4,7 +4,7 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.StoreId = 0;
+
     $scope.LoggedInUserId = 0;
     $scope.TransactionReportObj = new Object();
     $scope.TransactionReportObj.DateStart = null;
@@ -16,7 +16,7 @@
     $scope.store_id = 0;
 
     $scope.GetStoreList = function () {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -78,7 +78,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemCategoryReportList',
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemCategoryReportList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
                 aoData = BindSearchCriteria(aoData);

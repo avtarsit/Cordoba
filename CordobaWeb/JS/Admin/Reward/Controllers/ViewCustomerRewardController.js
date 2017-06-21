@@ -9,7 +9,7 @@
     $scope.LoggedInUserId = 0;
 
     $scope.GetRewardList = function () {
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $scope.rewardId)
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $scope.rewardId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
        
               if (response.data.length > 0) {
@@ -30,7 +30,7 @@
 
     $scope.ViewCustomerRewards = function () {
         if ($scope.rewardId != undefined && $scope.rewardId != null) {
-            $http.get(configurationService.basePath + "api/RewardApi/ViewCustomerRewards?reward_id=" + $scope.rewardId)
+            $http.get(configurationService.basePath + "api/RewardApi/ViewCustomerRewards?reward_id=" + $scope.rewardId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
             .then(function (response) {
          
                 $scope.ViewRewards = response.data;
@@ -75,7 +75,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/RewardApi/Declare_RewardWinner?reward_id=" + $scope.rewardId + "&reward_user_id=" + $scope.reward_user_id + "&admin_comment=" + $scope.AdminComment)
+                                $http.get(configurationService.basePath + "api/RewardApi/Declare_RewardWinner?reward_id=" + $scope.rewardId + "&reward_user_id=" + $scope.reward_user_id + "&admin_comment=" + $scope.AdminComment + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                   .then(function (response) {
                               
                                       if (response.data > 0) {
@@ -118,7 +118,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/RewardApi/Delete_RewardWinner?reward_user_id=" + reward_user_id)
+                                $http.get(configurationService.basePath + "api/RewardApi/Delete_RewardWinner?reward_user_id=" + reward_user_id + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                   .then(function (response) {
                          
                                       if (response.data > 0) {

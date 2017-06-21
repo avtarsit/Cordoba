@@ -17,7 +17,7 @@
 
     GetRewardList();
     function GetRewardList() {
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardTypeList")
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardTypeList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
     
              if (response.data.length > 0) {
@@ -37,7 +37,7 @@
         $scope.PageTitle = "Update Reward";
         $scope.IsEditMode = true;
         $scope.RewardId = $stateParams.rewardId;
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $stateParams.rewardId)
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $stateParams.rewardId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
         
               if (response.data.length > 0) {
@@ -68,7 +68,7 @@
         var custom = !$scope.checkCustomError();
         if (form.$valid && custom) {
             var isAddMode = ($scope.IsEditMode == true ? 0 : 1);
-            $http.post(configurationService.basePath + "api/RewardApi/InsertOrUpdateReward?isAddMode=" + isAddMode, $scope.RewardObj)
+            $http.post(configurationService.basePath + "api/RewardApi/InsertOrUpdateReward?isAddMode=" + isAddMode + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.RewardObj)
            .then(function (response) {
            
                if (response.data > 0) {
@@ -102,7 +102,7 @@
 
     $scope.DeleteReward = function (id) {
         if (id > 0) {
-            $http.get(configurationService.basePath + "api/RewardApi/DeleteReward?reward_id=" + id)
+            $http.get(configurationService.basePath + "api/RewardApi/DeleteReward?reward_id=" + id + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
             .then(function (response) {
                 if (response.data == 0) {
                     notificationFactory.customError("Unable to Delete Reward.It's already started.");

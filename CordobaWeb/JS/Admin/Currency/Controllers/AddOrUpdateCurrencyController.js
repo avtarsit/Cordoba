@@ -23,7 +23,7 @@
 
 
     $scope.GetCurrencyDetail = function () {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyDetail?CurrencyId=" + $scope.currency_id)
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyDetail?CurrencyId=" + $scope.currency_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.CurrencyObj = response.data;
               if (!($scope.user_id > 0)) //New User
@@ -48,7 +48,7 @@
         if (form.$valid) {
             $scope.CurrencyObj.status = 1;
             $scope.CurrencyObj.currency_id = $scope.currency_id;
-            $http.post(configurationService.basePath + "api/CurrencyApi/CreateOrUpdateCurrency", $scope.CurrencyObj)
+            $http.post(configurationService.basePath + "api/CurrencyApi/CreateOrUpdateCurrency?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.CurrencyObj)
          .then(function (response) {
              if (response.data > 0) {
                  toastr.success('Successfully Added.');
@@ -81,7 +81,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CurrencyApi/DeleteCurrency?CurrencyId=" + $scope.currency_id)
+                                $http.get(configurationService.basePath + "api/CurrencyApi/DeleteCurrency?CurrencyId=" + $scope.currency_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                         .then(function (response) {
                                             if (response.data > 0) {
                                                 toastr.success('Successfully Deleted.');

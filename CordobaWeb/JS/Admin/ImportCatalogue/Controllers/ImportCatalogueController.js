@@ -35,7 +35,7 @@
         xhr.addEventListener("abort", uploadCanceled, false);
 
        
-        xhr.open("POST", configurationService.basePath + "api/ProductCatalogueApi/ImportCatalogue");
+        xhr.open("POST", configurationService.basePath + "api/ProductCatalogueApi/ImportCatalogue?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId);
 
         $scope.progressVisible = true;
 

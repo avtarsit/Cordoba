@@ -17,10 +17,22 @@ namespace CordobaServices.Services
         private GenericRepository<HotSpecialProductEntity> hotSpecialProductEntityGenericRepository = new GenericRepository<HotSpecialProductEntity>();
 
         private GenericRepository<ProductEntity> objGenericRepository = new GenericRepository<ProductEntity>();
-        public List<ProductEntity> GetProductList(string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity)
+        public List<ProductEntity> GetProductList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity)
         {
             try
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
                 var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
@@ -32,7 +44,7 @@ namespace CordobaServices.Services
                 var paramModel = new SqlParameter { ParameterName = "Model", DbType = DbType.String, Value = Model ?? DBNull.Value.ToString() };
                 var paramQuantity = new SqlParameter { ParameterName = "Quantity", DbType = DbType.Int32, Value = Quantity ??(object) DBNull.Value };
 
-                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", paramOrderBy, paramPageSize, paramPageIndex, paramName, paramPrice, paramStatus, paramModel, paramQuantity).ToList<ProductEntity>();
+                var query = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductList", ParameterStoreId, ParameterLoggedInUserId, paramOrderBy, paramPageSize, paramPageIndex, paramName, paramPrice, paramStatus, paramModel, paramQuantity).ToList<ProductEntity>();
                 return query;
             }
             catch (Exception)
@@ -41,16 +53,28 @@ namespace CordobaServices.Services
             }
         }
 
-        public ProductEntity GetProductById(int product_id)
+        public ProductEntity GetProductById(int StoreId, int LoggedInUserId, int product_id)
         {
             ProductEntity ProductEntity = new ProductEntity();
             List<ProductDescriptionList> ProductDescriptionList = new List<ProductDescriptionList>();
             List<CatalogueEntity> CatalogueList = new List<CatalogueEntity>();
-
+            
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             if (product_id > 0)
             {
                 var paramProductId = new SqlParameter { ParameterName = "product_id", DbType = DbType.Int32, Value = product_id };
-                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductById", paramProductId).FirstOrDefault();
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductById", ParameterStoreId, ParameterLoggedInUserId, paramProductId).FirstOrDefault();
                 ProductEntity = result;
 
                 var paramProductIdForDesc = new SqlParameter { ParameterName = "product_id", DbType = DbType.Int32, Value = product_id };
@@ -64,14 +88,25 @@ namespace CordobaServices.Services
                 ProductEntity.ProductDescriptionList = ProductDescriptionList;
                 ProductEntity.status = 1;
             }
-
+            var ParameterStoreIdForProduct = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+            var ParameterLoggedInUserIdForProduct = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramProductIdForProduct = new SqlParameter
             {
                 ParameterName = "product_id",
                 DbType = DbType.Int32,
                 Value = product_id
             };
-            var catalogueResult = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetProductToCatalogueList", paramProductIdForProduct).ToList<CatalogueEntity>();
+            var catalogueResult = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetProductToCatalogueList", ParameterStoreIdForProduct, ParameterLoggedInUserIdForProduct, paramProductIdForProduct).ToList<CatalogueEntity>();
             if (catalogueResult != null)
                 CatalogueList = catalogueResult.ToList();
 
@@ -80,10 +115,11 @@ namespace CordobaServices.Services
             return ProductEntity;
         }
 
-        public CartEntity AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
+        public CartEntity AddProductToCart(int store_id, int LoggedInUserId, int customer_id, int product_id, int qty, int cartgroup_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("store_id", store_id)
+                                                   new SqlParameter("store_id",store_id)                                 
+                                                 , new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                  , new SqlParameter("customer_id", customer_id)
                                                  , new SqlParameter("product_id", product_id)
                                                  , new SqlParameter("qty", qty)
@@ -94,10 +130,12 @@ namespace CordobaServices.Services
 
         }
 
-        public int DeleteProductFromCart(int cart_id)
+        public int DeleteProductFromCart(int store_id, int LoggedInUserId, int cart_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("cart_id", cart_id)
+                                                   new SqlParameter("store_id",store_id)                                 
+                                                 , new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                 , new SqlParameter("cart_id", cart_id)
                                                };
 
             int result = objGenericRepository.ExecuteSQL<int>("DeleteProductFromCart", sqlParameter).FirstOrDefault();
@@ -106,12 +144,14 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertUpdateProduct(ProductEntity productEntity)
+        public int InsertUpdateProduct(int store_id, int LoggedInUserId, ProductEntity productEntity)
         {
             string ProductDescriptionXml = Helpers.ConvertToXml<ProductDescriptionList>.GetXMLString(productEntity.ProductDescriptionList);
             
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("product_id", productEntity.product_id)
+                                                   new SqlParameter("store_id",store_id)                                 
+                                                 , new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                 , new SqlParameter("product_id", productEntity.product_id)
                                                  , new SqlParameter("Image", productEntity.Image ??  (object)DBNull.Value)
                                                  , new SqlParameter("Model", productEntity.Model ??  (object)DBNull.Value)
                                                  , new SqlParameter("Price", productEntity.Price)
@@ -135,10 +175,11 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int Customer_Id=0,string WhatAreYouLookingFor="")
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int LoggedInUserId, int CategoryId, int Customer_Id=0,string WhatAreYouLookingFor="")
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("StoreID", StoreID)
+                                                   ,new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                    , new SqlParameter("CategoryId",CategoryId)
                                                     , new SqlParameter("Customer_Id",Customer_Id)
                                                        , new SqlParameter("WhatAreYouLookingFor",WhatAreYouLookingFor==null?"":WhatAreYouLookingFor)
@@ -151,11 +192,15 @@ namespace CordobaServices.Services
 
 
 
-        public int DeleteProduct(int product_id)
+        public int DeleteProduct(int StoreId, int LoggedInUserId, int product_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] {  new SqlParameter("product_id", product_id)  };
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                                new SqlParameter("StoreId",StoreId)
+                                                                ,new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                                ,new SqlParameter("product_id", product_id)  
+                };
                 int result = objGenericRepository.ExecuteSQL<int>("DeleteProduct", sqlParameter).FirstOrDefault();
                 return result;
             }
@@ -165,12 +210,13 @@ namespace CordobaServices.Services
             }
         }
 
-        public ProductEntity GetProductDetailForLayout(int StoreId ,int ProductId)
+        public ProductEntity GetProductDetailForLayout(int StoreId, int LoggedInUserId, int ProductId)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("StoreId", StoreId) 
+                                                            new SqlParameter("StoreId",StoreId)
+                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                            ,new SqlParameter("ProductId", ProductId) 
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductDetailForLayout", sqlParameter).FirstOrDefault();
@@ -183,12 +229,13 @@ namespace CordobaServices.Services
         }
 
 
-        public List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId)
+        public List<ProductEntity> GetRelatedProductList(int StoreId, int LoggedInUserId, int SelectedProductId, int RelatedProductId)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("StoreId", StoreId) 
+                                                            new SqlParameter("StoreId",StoreId)
+                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId) 
                                                            ,new SqlParameter("SelectedProductId", SelectedProductId) 
                                                            ,new SqlParameter("RelatedProductId", RelatedProductId) 
                                                                 };
@@ -202,11 +249,12 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertAsHotProduct(HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
+        public int InsertAsHotProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                   new SqlParameter("hot_productid", hotSpecialProductEntityGenericRepository.hot_productid)
                                                 , new SqlParameter("store_id", hotSpecialProductEntityGenericRepository.store_id)
+                                                , new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                 , new SqlParameter("product_id", hotSpecialProductEntityGenericRepository.product_id)
                                                 , new SqlParameter("priority", hotSpecialProductEntityGenericRepository.priority)
                                                 , new SqlParameter("startDate", hotSpecialProductEntityGenericRepository.startDate)
@@ -219,12 +267,13 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public int InsertAsSpecialProduct(HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
+        public int InsertAsSpecialProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntityGenericRepository)
         {
 
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                 new SqlParameter("special_productid", hotSpecialProductEntityGenericRepository.special_productid)
+                                                  new SqlParameter("special_productid", hotSpecialProductEntityGenericRepository.special_productid)
                                                 , new SqlParameter("store_id", hotSpecialProductEntityGenericRepository.store_id)
+                                                , new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                 , new SqlParameter("product_id", hotSpecialProductEntityGenericRepository.product_id)
                                                 , new SqlParameter("priority", hotSpecialProductEntityGenericRepository.priority)
                                                 , new SqlParameter("startDate", hotSpecialProductEntityGenericRepository.startDate)
@@ -237,13 +286,14 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id,int store_id, int product_id)
+        public List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id,int store_id, int LoggedInUserId, int product_id)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
                                                             new SqlParameter("language_id",language_id)
-                                                           ,new SqlParameter("store_id", store_id) 
+                                                           ,new SqlParameter("store_id", store_id)
+                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                            ,new SqlParameter("product_id", product_id)  
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<HotSpecialProductEntity>("GetHotOrSpecialProductById", sqlParameter).ToList();
@@ -255,12 +305,14 @@ namespace CordobaServices.Services
             }
         }
 
-        public List<HotSpecialProductEntity> GetHotOrSpecialProductDetailById(bool IsHotProduct, int product_id)
+        public List<HotSpecialProductEntity> GetHotOrSpecialProductDetailById(int store_id, int LoggedInUserId, bool IsHotProduct, int product_id)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("IsHotProduct",IsHotProduct)
+                                                            new SqlParameter("store_id",store_id)
+                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId)                                           
+                                                           ,new SqlParameter("IsHotProduct",IsHotProduct)
                                                            ,new SqlParameter("product_id", product_id) 
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<HotSpecialProductEntity>("GetHotOrSpecialProductDetailById", sqlParameter).ToList();

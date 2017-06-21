@@ -39,7 +39,7 @@
 
 
     function GetStoreList() {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=0")
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -57,7 +57,7 @@
     }
 
     function GetOrderStatus() {
-        $http.get(configurationService.basePath + "api/ProductPurchasedReportApi/GetOrderStatus?language_id=1")
+        $http.get(configurationService.basePath + "api/ProductPurchasedReportApi/GetOrderStatus?language_id=1" +'&StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
        .then(function (response) {
            if (response.data.length > 0) {
                $scope.OrderStatusList = response.data;
@@ -95,7 +95,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[1, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ProductPurchasedReportApi/GetProductPurchasedList',
+            "sAjaxSource": configurationService.basePath + 'api/ProductPurchasedReportApi/GetProductPurchasedList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 //aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
@@ -159,7 +159,7 @@
         }
 
         $http({
-            url: configurationService.basePath + 'api/ProductPurchasedReportApi/ExportToExcelProductPurchasedList?PageIndex=' + 1 + '&order_status_id=' + $scope.ProductFilter.order_status_id + '&store_id=' + $scope.ProductFilter.store_id + '&DateStart=' + $scope.ProductFilter.DateStart + '&DateEnd=' + $scope.ProductFilter.DateEnd,
+            url: configurationService.basePath + 'api/ProductPurchasedReportApi/ExportToExcelProductPurchasedList?PageIndex=' + 1 + '&order_status_id=' + $scope.ProductFilter.order_status_id + '&store_id=' + $scope.ProductFilter.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId +'&DateStart=' + $scope.ProductFilter.DateStart + '&DateEnd=' + $scope.ProductFilter.DateEnd,
             method: "POST",
             'dataSrc': 'aaData',
             "dataType": 'json',

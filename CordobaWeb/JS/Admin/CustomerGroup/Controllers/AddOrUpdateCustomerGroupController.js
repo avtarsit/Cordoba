@@ -25,7 +25,7 @@
     $scope.GetCustomerGroupDetail = function () {
 
 
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupDetail?CustomerGroupId=" + $scope.customer_group_id)
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupDetail?CustomerGroupId=" + $scope.customer_group_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
          
               $scope.CustomerGroupObj = response.data;
@@ -52,7 +52,7 @@
      
             $scope.CustomerGroupObj.status = 1;
             $scope.CustomerGroupObj.customer_group_id = $scope.customer_group_id;
-            $http.post(configurationService.basePath + "api/CustomerGroupApi/CreateOrUpdateCustomerGroup", $scope.CustomerGroupObj)
+            $http.post(configurationService.basePath + "api/CustomerGroupApi/CreateOrUpdateCustomerGroup?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.CustomerGroupObj)
          .then(function (response) {
              if (response.data > 0) {
                  if ($scope.customer_group_id == 0)
@@ -91,7 +91,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CustomerGroupApi/DeleteCustomerGroup?CustomerGroupId=" + $scope.customer_group_id)
+                                $http.get(configurationService.basePath + "api/CustomerGroupApi/DeleteCustomerGroup?CustomerGroupId=" + $scope.customer_group_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                         .then(function (response) {
                                             if (response.data > 0) {
                                                 toastr.success('Successfully Deleted.');

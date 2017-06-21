@@ -22,11 +22,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetSupplierList(int? SupplierID)
+        public HttpResponseMessage GetSupplierList(int storeId, int LoggedInUserId, int? SupplierID)
         {
             try
             {
-                var result = _SupplierServices.GetSupplierList(SupplierID);
+                var result = _SupplierServices.GetSupplierList(storeId, LoggedInUserId, SupplierID);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -42,18 +42,18 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrUpdateSupplier(SupplierEntity objSupplier)
+        public HttpResponseMessage InsertOrUpdateSupplier(int storeId, int LoggedInUserId, SupplierEntity objSupplier)
         {
-            int result = _SupplierServices.InsertOrUpdateSupplier(objSupplier);
+            int result = _SupplierServices.InsertOrUpdateSupplier(storeId, LoggedInUserId, objSupplier);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpGet]
-        public HttpResponseMessage GetSupplierDetail(int? SupplierID)
+        public HttpResponseMessage GetSupplierDetail(int storeId, int LoggedInUserId, int? SupplierID)
         {
             try
             {
-                var result = _SupplierServices.GetSupplierDetail(SupplierID);
+                var result = _SupplierServices.GetSupplierDetail(storeId, LoggedInUserId, SupplierID);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -69,11 +69,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteSupplier(int SupplierID)
+        public HttpResponseMessage DeleteSupplier(int storeId, int LoggedInUserId, int SupplierID)
         {
             try
             {
-                var result = _SupplierServices.DeleteSupplier(SupplierID);
+                var result = _SupplierServices.DeleteSupplier(storeId, LoggedInUserId, SupplierID);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)

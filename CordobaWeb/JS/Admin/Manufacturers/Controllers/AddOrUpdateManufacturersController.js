@@ -24,7 +24,7 @@
 
 
     $scope.GetManufaturerDetail = function () {
-        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id)
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ManufacturerObj = response.data;
           })
@@ -49,7 +49,7 @@
 
             $scope.ManufacturerObj.StoreIdCSV = GetSelectedStoreListCSV($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore);
             var manufacturersEntity = JSON.stringify($scope.ManufacturerObj);
-            $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture", manufacturersEntity)
+            $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, manufacturersEntity)
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Manufacturer Saved Successfully.");
@@ -81,7 +81,7 @@
                         callback: function (result) {
                             if (result) {
 
-                                $http.get(configurationService.basePath + "api/ManufacturersApi/DeleteManufacturer?manufacturer_id=" + $scope.manufacturer_id)
+                                $http.get(configurationService.basePath + "api/ManufacturersApi/DeleteManufacturer?manufacturer_id=" + $scope.manufacturer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                   .then(function (response) {
                                       if (response.data > 0)
                                           notificationFactory.successDelete();

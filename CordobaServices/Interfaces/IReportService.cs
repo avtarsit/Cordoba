@@ -12,18 +12,18 @@ namespace CordobaServices.Interfaces
     {
         //Return Report
         //IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, TableParameter<ReportEntity> filter, string PageFrom = "");
-        
-        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+
+        IEnumerable<ReportEntity> GetReturnList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int? GroupById, int? StatusId, int? StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
         //Sales order Report
-        IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetOrderReportList(string sortColumn, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int? GroupById, int? StatusId, int? StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
         
         //Transaction Report
-        IEnumerable<ReportEntity> GetTransactionReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetTransactionReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
 
         //Transaction Item Report
-        IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
 
         //Transaction Item Category Report
-        IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+        IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
     }
 }

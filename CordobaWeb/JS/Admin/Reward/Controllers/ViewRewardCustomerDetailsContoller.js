@@ -9,7 +9,7 @@
     $scope.CustomerRewards = [];
 
     if ($stateParams.rewarduserid != undefined && $stateParams.rewarduserid != null) {
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardCustomerDetails?reward_user_id=" + $stateParams.rewarduserid)
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardCustomerDetails?reward_user_id=" + $stateParams.rewarduserid + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
            
             $scope.CustomerRewards = response.data;
@@ -35,7 +35,7 @@
                             className: "btn btn-primary theme-btn",
                             callback: function (result) {
                                 if (result) {
-                                    $http.get(configurationService.basePath + "api/RewardApi/DeleteRewardUser?id=" + id + "&reward_user_id=" + $stateParams.rewarduserid)
+                                    $http.get(configurationService.basePath + "api/RewardApi/DeleteRewardUser?id=" + id + "&reward_user_id=" + $stateParams.rewarduserid + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                        .then(function (response) {
                                            $state.go('ShowReward');
                                        })

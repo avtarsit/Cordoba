@@ -15,9 +15,21 @@ namespace CordobaServices.Services
     {
         private GenericRepository<SupplierEntity> objGenericRepository = new GenericRepository<SupplierEntity>();
 
-        public List<SupplierEntity> GetSupplierList(int? SupplierID)
+        public List<SupplierEntity> GetSupplierList(int storeId, int LoggedInUserId, int? SupplierID)
         {
             List<SupplierEntity> SupplierList = new List<SupplierEntity>();
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "storeId",
+                DbType = DbType.Int32,
+                Value = storeId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = SupplierID };
             SupplierList = objGenericRepository.ExecuteSQL<SupplierEntity>("GetSupplierList", paramSupplierId).ToList();
 
@@ -47,8 +59,20 @@ namespace CordobaServices.Services
             return SupplierList;
         }
 
-        public int InsertOrUpdateSupplier(SupplierEntity objSupplier)
+        public int InsertOrUpdateSupplier(int storeId, int LoggedInUserId, SupplierEntity objSupplier)
         {
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "storeId",
+                DbType = DbType.Int32,
+                Value = storeId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = Convert.ToInt32(objSupplier.supplier_id) };
             var paramSupplierName = new SqlParameter { ParameterName = "supplierName", DbType = DbType.String, Value = objSupplier.name.Trim() ?? (object)DBNull.Value };
             var paramSupplierAddress = new SqlParameter { ParameterName = "supplierAddress", DbType = DbType.String, Value = objSupplier.address ?? (object)DBNull.Value };
@@ -57,12 +81,12 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public SupplierEntity GetSupplierDetail(int? SupplierID)
+        public SupplierEntity GetSupplierDetail(int storeId, int LoggedInUserId, int? SupplierID)
         {
             SupplierEntity Supplier = new SupplierEntity();
             if (SupplierID > 0)
             {
-                Supplier = (from t in GetSupplierList(SupplierID)
+                Supplier = (from t in GetSupplierList(storeId, LoggedInUserId, SupplierID)
                             where t.supplier_id == SupplierID
                             select t).FirstOrDefault();
             }
@@ -75,8 +99,20 @@ namespace CordobaServices.Services
 
         }
 
-        public int DeleteSupplier(int supplierId)
+        public int DeleteSupplier(int storeId, int LoggedInUserId, int supplierId)
         {
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "storeId",
+                DbType = DbType.Int32,
+                Value = storeId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = supplierId };
             int result = objGenericRepository.ExecuteSQL<int>("DeleteSupplier", paramSupplierId).FirstOrDefault();
             return result;

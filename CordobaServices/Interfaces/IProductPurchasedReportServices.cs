@@ -11,12 +11,12 @@ namespace CordobaServices.Interfaces
 {
    public interface IProductPurchasedReportServices
     {
-       List<OrderStatusEntity> GetOrderStatus(int language_id);
+       List<OrderStatusEntity> GetOrderStatus(int store_id, int LoggedInUserId, int language_id);
 
-       List<OrderProductEntity> GetProductPurchasedList(string sortColumn, int order_status_id, int store_id,TableParameter<OrderProductEntity> tableParameter, DateTime? DateStart, DateTime? DateEnd);
+       List<OrderProductEntity> GetProductPurchasedList(string sortColumn, int order_status_id, int store_id, int LoggedInUserId, TableParameter<OrderProductEntity> tableParameter, DateTime? DateStart, DateTime? DateEnd);
 
-       List<OrderProductEntity> GetProductViewedList(string sortColumn, TableParameter<OrderProductEntity> tableParameter);
+       List<OrderProductEntity> GetProductViewedList(int store_id, int LoggedInUserId, string sortColumn, TableParameter<OrderProductEntity> tableParameter);
 
-       DataSet ExportToExcelProductPurchasedList(string sortColumn, int order_status_id, int store_id, DateTime? DateStart, DateTime? DateEnd);
+       DataSet ExportToExcelProductPurchasedList(string sortColumn, int order_status_id, int store_id, int LoggedInUserId, DateTime? DateStart, DateTime? DateEnd);
     }
 }

@@ -20,11 +20,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetCountryList(int countryId)
+        public HttpResponseMessage GetCountryList(int StoreId, int LoggedInUserId, int countryId)
         {
             try
             {
-                var result = _countryServices.GetCountryList(countryId);
+                var result = _countryServices.GetCountryList(StoreId, LoggedInUserId, countryId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -40,19 +40,19 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrUpdateCountry(CountryEntity objCountry)
+        public HttpResponseMessage InsertOrUpdateCountry(int StoreId, int LoggedInUserId, CountryEntity objCountry)
         {
-            int result = _countryServices.InsertOrUpdateCountry(objCountry);
+            int result = _countryServices.InsertOrUpdateCountry(StoreId, LoggedInUserId, objCountry);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
 
         [HttpGet]
-        public HttpResponseMessage DeleteCountry(int countryId)
+        public HttpResponseMessage DeleteCountry(int StoreId, int LoggedInUserId, int countryId)
         {
             try
             {
-                var result = _countryServices.DeleteCountry(countryId);
+                var result = _countryServices.DeleteCountry(StoreId, LoggedInUserId, countryId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)

@@ -81,7 +81,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.post(configurationService.basePath + "api/ProductApi/DeleteProduct?product_id=" + $scope.product_id)
+                                $http.post(configurationService.basePath + "api/ProductApi/DeleteProduct?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                .then(function (response) {
                                    if (response.data > 0)
                                        notificationFactory.successDelete();
@@ -111,7 +111,7 @@
     };
 
     $scope.GetProductById = function () {
-        $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id)
+        $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ProductObj = response.data;
               CreateDescriptionObject();
@@ -175,7 +175,7 @@
     }
 
     function GetLanguageList() {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0")
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             if (response.data.length > 0) {
                 $scope.LanguageList = response.data;
@@ -190,7 +190,7 @@
     }
 
     function GetManufacturersList() {
-        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0")
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.ManufacturersList = response.data;
@@ -208,7 +208,7 @@
     }
 
     function GetCategoryList() {
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
@@ -223,7 +223,7 @@
     }
 
     function GetSupplierList() {
-        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0")
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.SupplierList = response.data;
@@ -253,7 +253,7 @@
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
             var productEntity = JSON.stringify($scope.ProductObj);
-            $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct", productEntity)
+            $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, productEntity)
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Product Saved Successfully.");
@@ -291,7 +291,7 @@
             var hotSpecialProductEntity = JSON.stringify($scope.HotOrSpecialProductObj);
             if($scope.HotOrSpecialProductObj.IsHotProduct==true)
             {            
-                $http.post(configurationService.basePath + "api/ProductApi/InsertAsHotProduct", hotSpecialProductEntity)
+                $http.post(configurationService.basePath + "api/ProductApi/InsertAsHotProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, hotSpecialProductEntity)
                   .then(function (response) {
                       if (response.data > 0) {
                           notificationFactory.customSuccess("Product Saved Successfully.");
@@ -309,7 +309,7 @@
               });
             }
             else {
-                $http.post(configurationService.basePath + "api/ProductApi/InsertAsSpecialProduct", hotSpecialProductEntity)
+                $http.post(configurationService.basePath + "api/ProductApi/InsertAsSpecialProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, hotSpecialProductEntity)
                             .then(function (response) {
                                 if (response.data > 0) {
                                     notificationFactory.customSuccess("Product Saved Successfully.");
@@ -509,7 +509,7 @@
         $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
                            + $scope.language_id +
                            "&store_id=" + $scope.store_id +
-                           "&product_id=" + $scope.product_id
+                           "&product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId
                            )
         .success(function (data) {       
             //var Hot = $filter('filter')(data, { IsHotProduct: true ,status:1}, true)[0];

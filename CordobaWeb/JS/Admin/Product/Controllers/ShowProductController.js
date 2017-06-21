@@ -102,7 +102,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex + "&name=" + $scope.ProductFilter.name + "&Price=" + $scope.ProductFilter.Price + "&status=" + $scope.ProductFilter.status + "&Model=" + $scope.ProductFilter.Model + "&Quantity=" + $scope.ProductFilter.Quantity,
+                    "url": sSource + "?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId + "&PageIndex=" + PageIndex + "&name=" + $scope.ProductFilter.name + "&Price=" + $scope.ProductFilter.Price + "&status=" + $scope.ProductFilter.status + "&Model=" + $scope.ProductFilter.Model + "&Quantity=" + $scope.ProductFilter.Quantity,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

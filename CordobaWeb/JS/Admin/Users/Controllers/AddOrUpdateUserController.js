@@ -34,7 +34,7 @@
     ];
     //END
     $scope.GetUserDetail = function () {
-        $http.get(configurationService.basePath + "api/UserApi/GetUserDetail?UserID=" + $scope.user_id)
+        $http.get(configurationService.basePath + "api/UserApi/GetUserDetail?UserID=" + $scope.user_id + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.UserObj = response.data;
               if (!($scope.user_id>0)) //New User
@@ -56,7 +56,7 @@
 
         if (form.$valid) {      
             $scope.UserObj.user_id = $scope.user_id;
-            $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + $scope.LoggedInUserId, $scope.UserObj)
+            $http.post(configurationService.basePath + "api/UserApi/CreateOrUpdateUser?LoggedInUserId=" + $scope.LoggedInUserId + '&StoreID=' + $scope.StoreId, $scope.UserObj)
          .then(function (response) {          
              if (response.data>0)
              {
@@ -87,7 +87,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/UserApi/DeleteUserDetail?LoggedInUserId=" + $scope.LoggedInUserId + "&UserID=" + $scope.user_id)
+                                $http.get(configurationService.basePath + "api/UserApi/DeleteUserDetail?LoggedInUserId=" + $scope.LoggedInUserId +'&StoreID=' + $scope.StoreId + "&UserID=" + $scope.user_id)
                                         .then(function (response) {                                            
                                             if (response.data > 0) {
                                                 toastr.success('User becomes Inactive.');

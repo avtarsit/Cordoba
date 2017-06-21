@@ -9,27 +9,27 @@ namespace CordobaServices.Interfaces
 {
     public interface ICategoryServices
     {
-        List<CategoryEntity> GetCategoryList(int Category_Id = 0);
+        List<CategoryEntity> GetCategoryList(int StoreId, int LoggedInUserId, int Category_Id = 0);
 
-        CategoryEntity GetCategoryById(int Category_Id);
+        CategoryEntity GetCategoryById(int Category_Id, int StoreId, int LoggedInUserId);
 
 
         //Popular Category
-        List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int storeID = 0);
+        List<CategoryPopularEntity> GetCategoryListByStoreIdPopular(int LoggedInUserId, int storeID = 0);
 
-        List<StoreEntity> GetStoreNameList();
+        List<StoreEntity> GetStoreNameList(int StoreId, int LoggedInUserId);
 
-        int InsertOrUpdateCategoryAsPopular(CategoryPopularEntity categoryPopular);
+        int InsertOrUpdateCategoryAsPopular(int LoggedInUserId, CategoryPopularEntity categoryPopular);
 
-        int InsertOrUpdateCategory(CategoryEntity categoryEntity);
+        int InsertOrUpdateCategory(int StoreId, int LoggedInUserId, CategoryEntity categoryEntity);
 
-        List<CategoryEntity> GetParentCategoryList();
+        List<CategoryEntity> GetParentCategoryList(int StoreId, int LoggedInUserId);
         //Get Language
 
         //Delete Category
-        int DeleteCategory(int Category_Id);
+        int DeleteCategory(int Category_Id, int StoreId, int LoggedInUserId);
 
-        List<LanguageEntity> GetLanguageList();
+        List<LanguageEntity> GetLanguageList(int StoreId, int LoggedInUserId);
 
     }
 }

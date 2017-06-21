@@ -98,7 +98,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetReturnList',
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetReturnList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
             
                 aoData = BindSearchCriteria(aoData);

@@ -14,7 +14,7 @@
         $scope.PageTitle = "Update Supplier";
         $scope.IsEditMode = true;
         $scope.SupplierID = $stateParams.SupplierID;
-        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=" + $scope.SupplierID)
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=" + $scope.SupplierID +'&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.SupplierObj = response.data[0];
           })
@@ -34,7 +34,7 @@
     $scope.SaveSupplier = function (form) {
      
         if (form.$valid) {
-            $http.post(configurationService.basePath + "api/SupplierApi/InsertOrUpdateSupplier", $scope.SupplierObj)
+            $http.post(configurationService.basePath + "api/SupplierApi/InsertOrUpdateSupplier?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.SupplierObj)
            .then(function (response) {
       
                if (response.data == 0) {
@@ -67,7 +67,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/SupplierApi/DeleteSupplier?SupplierID=" + $scope.SupplierID)
+                                $http.get(configurationService.basePath + "api/SupplierApi/DeleteSupplier?SupplierID=" + $scope.SupplierID + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                       .then(function (response) {
                                           $state.go('ShowSupplier');
                                       })

@@ -15,7 +15,7 @@
         $scope.PageTitle = "Update Country";
         $scope.IsEditMode = true;
         $scope.CountryId = $stateParams.CountryId;
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + $stateParams.CountryId)
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + $stateParams.CountryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {              
               if (response.data.length > 0) {
                   $scope.CountryObj = response.data[0];
@@ -38,7 +38,7 @@
     $scope.SaveCountry = function (form) {
 
         if (form.$valid) {
-            $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry", $scope.CountryObj)
+            $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry?&StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.CountryObj)
             .then(function (response) {                
                 if (response.data == 0) {                    
                     notificationFactory.customError("Country Code is already Exists!!");
@@ -70,7 +70,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId)
+                                $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                    .then(function (response) {
                                        $state.go('ShowCountry');
                                    })

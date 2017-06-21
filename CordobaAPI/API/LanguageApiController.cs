@@ -22,11 +22,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetLanguageList(int? languageId)
+        public HttpResponseMessage GetLanguageList(int? languageId, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _LanguageServices.GetLanguageList(languageId);
+                var result = _LanguageServices.GetLanguageList(languageId, StoreId, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -42,12 +42,12 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrUpdateLanguage(LanguageEntity objEntity)
+        public HttpResponseMessage InsertOrUpdateLanguage(int StoreId, int LoggedInUserId, LanguageEntity objEntity)
         {
             try
             {
                 //HttpContext.Current.Server.MapPath("~/Content/NewsImages)
-                int result = _LanguageServices.InsertOrUpdateLanguage(objEntity);
+                int result = _LanguageServices.InsertOrUpdateLanguage(StoreId, LoggedInUserId, objEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch(Exception)
@@ -57,11 +57,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteLanguage(int languageId)
+        public HttpResponseMessage DeleteLanguage(int StoreId, int LoggedInUserId, int languageId)
         {
             try
             {
-                int result = _LanguageServices.DeleteLanguage(languageId);
+                int result = _LanguageServices.DeleteLanguage(StoreId, LoggedInUserId, languageId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)

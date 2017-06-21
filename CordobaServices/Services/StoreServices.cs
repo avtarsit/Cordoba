@@ -15,21 +15,32 @@ namespace CordobaServices.Services
     {
         private GenericRepository<StoreEntity> objGenericRepository = new GenericRepository<StoreEntity>();
 
-        public List<StoreEntity> GetStoreList(int? StoreID)
+        public List<StoreEntity> GetStoreList(int? StoreID, int LoggedInUserId)
         {
             List<StoreEntity> StoreList = new List<StoreEntity>();
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
-            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId).ToList();
+            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", ParameterLoggedInUserId, paramStoreId).ToList();
             return StoreList;
         }
 
 
-        public StoreEntity GetStoreById(int store_id)
+        public StoreEntity GetStoreById(int store_id, int LoggedInUserId)
         {
             StoreEntity storeEntity = new StoreEntity();
-
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = store_id };
-            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", paramStoreId).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", ParameterLoggedInUserId, paramStoreId).FirstOrDefault();
             if (result != null)
             {
                 storeEntity = result;
@@ -38,10 +49,11 @@ namespace CordobaServices.Services
         }
 
 
-        public int InsertUpdateStore(StoreEntity storeEntity)
+        public int InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("store_id", storeEntity.store_id)
+                                                   new SqlParameter("LoggedInUserId", LoggedInUserId)                                 
+                                                 , new SqlParameter("store_id", storeEntity.store_id)
                                                  , new SqlParameter("url", storeEntity.url?? (object) DBNull.Value)
                                                  , new SqlParameter("name", storeEntity.name ??  DBNull.Value.ToString())
                                                  , new SqlParameter("title", storeEntity.title ??  DBNull.Value.ToString())
@@ -69,10 +81,11 @@ namespace CordobaServices.Services
 
         }
 
-        public int? DeleteStoreById_Admin(int storeId)
+        public int? DeleteStoreById_Admin(int storeId, int LoggedInUserId)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("StoreID", storeId)                                                 
+                                                   ,new SqlParameter("LoggedInUserId", LoggedInUserId)
                                                };
             var result = objGenericRepository.ExecuteSQL<int>("DeleteStoreById_Admin", sqlParameter).FirstOrDefault();
             return result;

@@ -467,7 +467,7 @@
     $scope.GetLatestOrderDetailsDashboard();
 
     $scope.GetDashboardTopHeaderFields = function () {
-        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardTopHeaderFields?storeId=0")
+        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardTopHeaderFields?storeId=" + $scope.storeId)
         .then(function (response) {
             debugger;
             if (response.data != null) {
@@ -484,7 +484,7 @@
 
 
     $scope.GetDashboardSummaryCharts = function () {
-        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardSummaryCharts?storeId=0&ChartFiltertype=" + $scope.ChartFiltertype)
+        $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardSummaryCharts?storeId="+ $scope.storeId+'&ChartFiltertype=' + $scope.ChartFiltertype)
         .then(function (response) {
             if (response.data != null) {
                 //$scope.DashboardOrderSummary = response.data;

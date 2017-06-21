@@ -6,7 +6,7 @@
 
     $scope.StoreId = 0;
     $scope.LoggedInUserId = 0;
-
+    $scope.ManufacturersID = 0;
     $scope.CountryList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -20,7 +20,7 @@
 
 
     $scope.GetManufacturersList = function () {
-        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=0")
+        $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=" + $scope.ManufacturersID + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {                  
                   $scope.ManufacturersList = response.data;

@@ -20,11 +20,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufacturersList()
+        public HttpResponseMessage GetManufacturersList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _ManufacturerServices.GetManufacturersList();
+                var result = _ManufacturerServices.GetManufacturersList( StoreId,  LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -40,11 +40,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetManufaturerDetail(int manufacturer_id)
+        public HttpResponseMessage GetManufaturerDetail(int StoreId, int LoggedInUserId, int manufacturer_id)
         {
             try
             {
-                var result = _ManufacturerServices.GetManufaturerDetail(manufacturer_id);
+                var result = _ManufacturerServices.GetManufaturerDetail(StoreId, LoggedInUserId,manufacturer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -60,11 +60,11 @@ namespace CordobaAPI.API
         }
 
          [HttpPost]
-        public HttpResponseMessage InsertUpdateManufacture(ManufacturersEntity manufacturersEntity)  
+        public HttpResponseMessage InsertUpdateManufacture(int StoreId, int LoggedInUserId, ManufacturersEntity manufacturersEntity)  
         {
             try
             {
-                var result = _ManufacturerServices.InsertUpdateManufacture(manufacturersEntity);
+                var result = _ManufacturerServices.InsertUpdateManufacture(StoreId, LoggedInUserId, manufacturersEntity);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -81,11 +81,11 @@ namespace CordobaAPI.API
 
 
          [HttpGet]
-         public HttpResponseMessage DeleteManufacturer(int manufacturer_id)
+         public HttpResponseMessage DeleteManufacturer(int StoreId, int LoggedInUserId, int manufacturer_id)
          {
              try
              {
-                 var result = _ManufacturerServices.DeleteManufacturer(manufacturer_id);
+                 var result = _ManufacturerServices.DeleteManufacturer(StoreId, LoggedInUserId, manufacturer_id);
                  return Request.CreateResponse(HttpStatusCode.OK, result);
              }
              catch (Exception)

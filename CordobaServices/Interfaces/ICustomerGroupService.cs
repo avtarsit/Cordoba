@@ -9,11 +9,11 @@ namespace CordobaServices.Interfaces
 {
     public interface ICustomerGroupService
     {
-        List<CustomerGroupEntity> GetCustomerGroupList();
-        CustomerGroupEntity GetCustomerGroupDetail(int currencyID = 0);
+        List<CustomerGroupEntity> GetCustomerGroupList(int StoreId, int LoggedInUserId);
+        CustomerGroupEntity GetCustomerGroupDetail(int StoreId, int LoggedInUserId, int currencyID = 0);
 
-        int CreateOrUpdateCustomerGroup(CustomerGroupEntity customerGroup);
+        int CreateOrUpdateCustomerGroup(int StoreId, int LoggedInUserId, CustomerGroupEntity customerGroup);
 
-        int DeleteCustomerGroup(int CustomerGroupId);
+        int DeleteCustomerGroup(int StoreId, int LoggedInUserId, int CustomerGroupId);
     }
 }

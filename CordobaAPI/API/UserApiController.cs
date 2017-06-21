@@ -21,11 +21,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetUserList()
+        public HttpResponseMessage GetUserList(int LoggedInUserId, int storeId)
         {
             try
             {
-                var result = _UserServices.GetUserList();
+                var result = _UserServices.GetUserList( LoggedInUserId,  storeId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -41,11 +41,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetUserDetail(int UserID = 0)
+        public HttpResponseMessage GetUserDetail(int LoggedInUserId, int storeId, int UserID = 0)
         {
             try
             {
-                var result = _UserServices.GetUserDetail(UserID);
+                var result = _UserServices.GetUserDetail(LoggedInUserId, storeId, UserID);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -60,11 +60,11 @@ namespace CordobaAPI.API
 
         }
          [HttpPost]
-        public HttpResponseMessage CreateOrUpdateUser(int LoggedInUserId,UserEntity UserModel)
+        public HttpResponseMessage CreateOrUpdateUser(int LoggedInUserId, int storeId, UserEntity UserModel)
         {
             try
             {
-                var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, UserModel);
+                var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, storeId, UserModel);
                     return Request.CreateResponse(HttpStatusCode.OK, result);               
             }
             catch (Exception)
@@ -76,11 +76,11 @@ namespace CordobaAPI.API
         }
 
          [HttpGet]
-         public HttpResponseMessage DeleteUserDetail(int LoggedInUserId,int UserID = 0)
+         public HttpResponseMessage DeleteUserDetail(int LoggedInUserId, int storeId, int UserID = 0)
          {
              try
              {
-                 var result = _UserServices.DeleteUserDetail(LoggedInUserId, UserID);              
+                 var result = _UserServices.DeleteUserDetail(LoggedInUserId, storeId, UserID);              
                      return Request.CreateResponse(HttpStatusCode.OK, result);
                 
              }

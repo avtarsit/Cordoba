@@ -19,7 +19,7 @@
 
 
     $scope.GetSupplierList = function () {
-        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0")
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0" +'&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {                  
                   $scope.SupplierList = response.data;

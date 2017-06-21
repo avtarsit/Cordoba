@@ -17,7 +17,7 @@
     $scope.store_id = 0;
 
     $scope.GetStoreList = function () {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID="+$scope.store_id)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -35,7 +35,7 @@
 
 
     $scope.GetCustomerGroupList = function () {
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList")
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
 
               if (response.data.length > 0) {
@@ -110,7 +110,7 @@
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
 
-        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&customer_group_id=" + $scope.CustomerImportObj.customer_group_id);
+        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&customer_group_id=" + $scope.CustomerImportObj.customer_group_id);
 
         $scope.progressVisible = true;
 

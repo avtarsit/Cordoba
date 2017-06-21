@@ -18,7 +18,7 @@
 
 
     $scope.GetUserList = function () {
-        $http.get(configurationService.basePath + "api/UserApi/GetUserList")
+        $http.get(configurationService.basePath + "api/UserApi/GetUserList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
             
               if (response.data.length > 0) {

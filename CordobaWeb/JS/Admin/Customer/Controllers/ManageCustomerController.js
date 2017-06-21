@@ -95,7 +95,7 @@
     }
 
     function GetCustomerGroupList() {
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList")
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CustomerGroupList = response.data;
@@ -110,7 +110,7 @@
     }
 
     function GetCountryList() {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0")
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -127,7 +127,7 @@
     $scope.GetZoneListByCountry = function (countryId) {
   
         countryId = countryId == null ? 0 : countryId;
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.RegionStateList = [];
             if (response.data.length > 0) {
@@ -202,7 +202,7 @@
         
 
     $scope.GetCustomerById = function () {
-        $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id)
+        $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.CustomerObj = response.data;
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {
@@ -221,7 +221,7 @@
 
 
     function GetStoreList() {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=0")
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID="+ $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -247,7 +247,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomer?customer_id=" + $scope.customer_id)
+                                $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomer?customer_id=" + $scope.customer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                    .then(function (response) {
                                        if (response.data > 0)
                                            notificationFactory.successDelete();
@@ -284,7 +284,7 @@
                 return;
             }
             var CustomerEntity = JSON.stringify($scope.CustomerObj);
-            $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer", CustomerEntity)
+            $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomerStoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, CustomerEntity)
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Customer Saved Successfully.");

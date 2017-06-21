@@ -20,11 +20,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCurrencyList()
+        public HttpResponseMessage GetCurrencyList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _CurrencyService.GetCurrencyList();
+                var result = _CurrencyService.GetCurrencyList( StoreId, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -41,11 +41,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetCurrencyDetail(int CurrencyId = 0)
+        public HttpResponseMessage GetCurrencyDetail(int StoreId, int LoggedInUserId, int CurrencyId = 0)
         {
             try
             {
-                var result = _CurrencyService.GetCurrencyDetail(CurrencyId);
+                var result = _CurrencyService.GetCurrencyDetail( StoreId,  LoggedInUserId, CurrencyId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -60,11 +60,11 @@ namespace CordobaAPI.API
 
         }
         [HttpPost]
-        public HttpResponseMessage CreateOrUpdateCurrency(CurrencyEntity CurrencyEntity)
+        public HttpResponseMessage CreateOrUpdateCurrency(int StoreId, int LoggedInUserId, CurrencyEntity CurrencyEntity)
         {
             try
             {
-                var result = _CurrencyService.CreateOrUpdateCurrency(CurrencyEntity);
+                var result = _CurrencyService.CreateOrUpdateCurrency(StoreId, LoggedInUserId, CurrencyEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -76,11 +76,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage DeleteCurrency(int CurrencyId = 0)
+        public HttpResponseMessage DeleteCurrency(int StoreId, int LoggedInUserId, int CurrencyId = 0)
         {
             try
             {
-                var result = _CurrencyService.DeleteCurrency(CurrencyId);
+                var result = _CurrencyService.DeleteCurrency(StoreId, LoggedInUserId, CurrencyId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
 
             }

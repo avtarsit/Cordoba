@@ -28,11 +28,11 @@ namespace CordobaAPI.API
             _productPurchasedReportService = new ProductPurchasedReportService();
         }
         [HttpGet]
-        public HttpResponseMessage GetOrderStatus(int language_id)
+        public HttpResponseMessage GetOrderStatus(int store_id, int LoggedInUserId, int language_id)
         {
             try
             {
-                var result = _productPurchasedReportService.GetOrderStatus(language_id);
+                var result = _productPurchasedReportService.GetOrderStatus(store_id, LoggedInUserId, language_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -49,13 +49,13 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public TableParameter<OrderProductEntity> GetProductPurchasedList(int PageIndex, int order_status_id, int store_id, DateTime? DateStart, DateTime? DateEnd, TableParameter<OrderProductEntity> tableParameter)
+        public TableParameter<OrderProductEntity> GetProductPurchasedList(int PageIndex, int order_status_id, int store_id, int LoggedInUserId, DateTime? DateStart, DateTime? DateEnd, TableParameter<OrderProductEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _productPurchasedReportService.GetProductPurchasedList(sortColumn, order_status_id, store_id, tableParameter, DateStart, DateEnd).ToList();
+                var result = _productPurchasedReportService.GetProductPurchasedList(sortColumn, order_status_id, store_id, LoggedInUserId, tableParameter, DateStart, DateEnd).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -77,13 +77,13 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public TableParameter<OrderProductEntity> GetProductViewedList(int PageIndex, TableParameter<OrderProductEntity> tableParameter)
+        public TableParameter<OrderProductEntity> GetProductViewedList(int store_id, int LoggedInUserId, int PageIndex, TableParameter<OrderProductEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _productPurchasedReportService.GetProductViewedList(sortColumn, tableParameter).ToList();
+                var result = _productPurchasedReportService.GetProductViewedList(store_id, LoggedInUserId, sortColumn, tableParameter).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -106,7 +106,7 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public HttpResponseMessage ExportToExcelProductPurchasedList(int PageIndex, int order_status_id, int store_id, DateTime? DateStart, DateTime? DateEnd, object tableParameter)
+        public HttpResponseMessage ExportToExcelProductPurchasedList(int PageIndex, int order_status_id, int store_id, int LoggedInUserId, DateTime? DateStart, DateTime? DateEnd, object tableParameter)
         {
 
             SortColumn sr;
@@ -130,7 +130,7 @@ namespace CordobaAPI.API
             DateTime date = DateTime.Now.Date;
             string str = string.Concat("ProductPurchased", date.ToString("ddMMyyyy"), ".xls");
 
-            DataSet ds = this._productPurchasedReportService.ExportToExcelProductPurchasedList(sortColumn, order_status_id, store_id, DateStart, DateEnd);
+            DataSet ds = this._productPurchasedReportService.ExportToExcelProductPurchasedList(sortColumn, order_status_id, store_id, LoggedInUserId, DateStart, DateEnd);
             if (ds.Tables.Count > 0)
             {
                 for (int i = 0; i < ds.Tables.Count; i++)

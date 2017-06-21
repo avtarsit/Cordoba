@@ -15,7 +15,7 @@
     $scope.PageTitle = "Customer Points Importer";
 
     function GetStoreList() {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=0")
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -50,7 +50,7 @@
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
 
-        xhr.open("POST", configurationService.basePath + "api/CustomerApi/PointsImporter?store_id=" + $scope.store_id + "&IsSendEmail=" + $scope.IsSendEmail);
+        xhr.open("POST", configurationService.basePath + "api/CustomerApi/PointsImporter?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId + '&IsSendEmail=' + $scope.IsSendEmail);
 
         $scope.progressVisible = true;
 

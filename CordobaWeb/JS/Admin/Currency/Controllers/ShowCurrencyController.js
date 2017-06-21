@@ -19,7 +19,7 @@
 
 
     $scope.GetUserList = function () {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList")
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
 
               if (response.data.length > 0) {

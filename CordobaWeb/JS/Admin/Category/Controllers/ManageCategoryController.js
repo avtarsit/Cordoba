@@ -40,7 +40,7 @@
                         callback: function (result) {
 
                             if (result) {
-                                $http.post(configurationService.basePath + "api/CategoryApi/DeleteCategory?Category_Id=" + $scope.Category_Id)
+                                $http.post(configurationService.basePath + "api/CategoryApi/DeleteCategory?Category_Id=" + $scope.Category_Id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                .then(function (response) {
                                    if (response.data > 0)
                                        notificationFactory.successDelete();
@@ -75,7 +75,7 @@
 
         $http({
             method: 'GET',
-            url: configurationService.basePath + 'api/CategoryApi/GetLanguageList',
+            url: configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             headers: { 'Content-Type': 'application/json' }
         })
          .success(function (data) {
@@ -92,7 +92,7 @@
 
 
     $scope.GetCategoryById = function () {
-                $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                   .then(function (response) {
                       $scope.CategoryObj = response.data;
                       CreateDescriptionObject();
@@ -147,7 +147,7 @@
 
     function GetParentCategoryList() {
       
-        $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
+        $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.ParentCategoryList = response.data;
@@ -170,7 +170,7 @@
             var categoryEntity = JSON.stringify($scope.CategoryObj);
             
 
-            $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory", categoryEntity)
+            $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
               .then(function (response) {
                   
                   if (response.data > 0) {

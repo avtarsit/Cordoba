@@ -21,7 +21,7 @@
     $scope.PageTitle = "Categories";
 
     $scope.GetCategoryList = function () {
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0")
+        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {          
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;

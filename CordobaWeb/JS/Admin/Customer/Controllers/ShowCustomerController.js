@@ -74,7 +74,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList',
+            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 //aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
@@ -141,7 +141,7 @@
     //}
 
     function GetCustomerGroupList() {
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList")
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CustomerGroupList = response.data;

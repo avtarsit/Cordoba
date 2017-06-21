@@ -9,12 +9,12 @@ namespace CordobaServices.Interfaces
 {
    public interface IStoreServices
     {
-       List<StoreEntity> GetStoreList(int? StoreID);
+       List<StoreEntity> GetStoreList(int? StoreID, int LoggedInUserId);
 
-       StoreEntity GetStoreById(int store_id);
+       StoreEntity GetStoreById(int store_id, int LoggedInUserId);
 
-       int InsertUpdateStore(StoreEntity storeEntity);
+       int InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId);
 
-       int? DeleteStoreById_Admin(int storeId);
+       int? DeleteStoreById_Admin(int storeId, int LoggedInUserId);
     }
 }

@@ -112,7 +112,7 @@
 
     $scope.GetOrderDetails = function () {
 
-        $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.OrderId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.OrderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
            
               if (response.data.length > 0) {
@@ -147,7 +147,7 @@
             comment: OrderHistory.comment
         }
         //return false;
-        $http.post(configurationService.basePath + "api/OrderApi/InsertOrderHistory", objHistoryEntity)
+        $http.post(configurationService.basePath + "api/OrderApi/InsertOrderHistory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, objHistoryEntity)
            .then(function (response) {
     
                if (response.data > 0) {

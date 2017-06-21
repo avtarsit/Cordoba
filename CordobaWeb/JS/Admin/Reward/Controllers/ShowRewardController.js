@@ -9,7 +9,7 @@
                      .withOption("deferRender", true);
 
     $scope.GetRewardList = function () {
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=0")
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.rewardList = response.data;

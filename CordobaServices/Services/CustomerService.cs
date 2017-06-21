@@ -21,10 +21,22 @@ namespace CordobaServices.Services
      
         private GenericRepository<CustomerEntity> CustomerEntityGenericRepository = new GenericRepository<CustomerEntity>();
 
-        public List<CustomerEntity> GetCustomerList(string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added)
+        public List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added)
         {
             try
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
                 var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
@@ -36,7 +48,7 @@ namespace CordobaServices.Services
                 var paramIp = new SqlParameter { ParameterName = "ip", DbType = DbType.String, Value = ip ?? (object)DBNull.Value };
                 var paramDate_added = new SqlParameter { ParameterName = "date_added", DbType = DbType.DateTime, Value = date_added ?? (object)DBNull.Value };
                 var paramstatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = status ?? (object)DBNull.Value };
-                var CustomerList = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerList", paramOrderBy, paramPageSize, paramPageIndex, paramCustomerName, paramEmail, paramCustomer_group_id, paramApproved, paramIp, paramDate_added, paramstatus).ToList<CustomerEntity>().ToList();
+                var CustomerList = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerList", ParameterStoreId, ParameterLoggedInUserId, paramOrderBy, paramPageSize, paramPageIndex, paramCustomerName, paramEmail, paramCustomer_group_id, paramApproved, paramIp, paramDate_added, paramstatus).ToList<CustomerEntity>().ToList();
                 return CustomerList;
             }
             catch (Exception ex)
@@ -46,7 +58,7 @@ namespace CordobaServices.Services
             }
         }
 
-        public CustomerEntity GetCustomerById(int customer_id)
+        public CustomerEntity GetCustomerById(int StoreId, int LoggedInUserId, int customer_id)
         {
             try
             {
@@ -54,10 +66,23 @@ namespace CordobaServices.Services
                 List<AddressEntity> addressEntity = new List<AddressEntity>();
                 List<PointsAuditEntity> PointsAuditList = new List<PointsAuditEntity>();
 
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
+
                 if(customer_id > 0)
                 {
                     var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
-                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById", paramCustomer_id).FirstOrDefault();
+                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById", ParameterStoreId, ParameterLoggedInUserId, paramCustomer_id).FirstOrDefault();
                     if(result != null)
                     {
                         customerEntity = result;
@@ -106,14 +131,15 @@ namespace CordobaServices.Services
 
 
 
-        public int InsertUpdateCustomer(CustomerEntity customerEntity)
+        public int InsertUpdateCustomer(int LoggedInUserId, CustomerEntity customerEntity)
         {
             string AddressXml = Helpers.ConvertToXml<AddressEntity>.GetXMLString(customerEntity.AddressList);
 
             string PointsAuditXml = Helpers.ConvertToXml<PointsAuditEntity>.GetXMLString(customerEntity.PointsAuditList);
 
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("customer_id", customerEntity.customer_id)
+                                                   new SqlParameter("LoggedInUserId", LoggedInUserId)                                 
+                                                 , new SqlParameter("customer_id", customerEntity.customer_id)
                                                  , new SqlParameter("store_id", customerEntity.store_id ?? (object) DBNull.Value)
                                                  , new SqlParameter("firstname", customerEntity.firstname ??  DBNull.Value.ToString())
                                                  , new SqlParameter("lastname", customerEntity.lastname ??  DBNull.Value.ToString())
@@ -135,12 +161,24 @@ namespace CordobaServices.Services
 
       
 
-        public int DeleteCustomer(int customer_id)
+        public int DeleteCustomer(int StoreId, int LoggedInUserId, int customer_id)
         {
             try
             {
+                var ParameterStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+                var ParameterLoggedInUserId = new SqlParameter
+                {
+                    ParameterName = "LoggedInUserId",
+                    DbType = DbType.Int32,
+                    Value = LoggedInUserId
+                };
                 var paramId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
-                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomer", paramId).FirstOrDefault();
+                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomer", ParameterStoreId, ParameterLoggedInUserId, paramId).FirstOrDefault();
                 return result;
             }
             catch (Exception)
@@ -151,15 +189,16 @@ namespace CordobaServices.Services
         }
 
 
-        public int PointsImporter(int store_id, bool IsSendEmail, DataTable PointsTable)
+        public int PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail, DataTable PointsTable)
         {
             string PointsXml = GeneralMethods.ConvertDatatableToXML(PointsTable);
             try
             {
-                SqlParameter[] param = new SqlParameter[3];
+                SqlParameter[] param = new SqlParameter[4];
                 param[0] = new SqlParameter("store_id", store_id);
-                param[1] = new SqlParameter("IsSendEmail", IsSendEmail);
-                param[2] = new SqlParameter("PointsXml", PointsXml);
+                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+                param[2] = new SqlParameter("IsSendEmail", IsSendEmail);
+                param[3] = new SqlParameter("PointsXml", PointsXml);
 
                 var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportPointsXml", param).FirstOrDefault();
                 return result;
@@ -173,15 +212,16 @@ namespace CordobaServices.Services
 
 
 
-        public int CustomerImport(int store_id, int customer_group_id,DataTable CustomerTable)
+        public int CustomerImport(int store_id, int LoggedInUserId, int customer_group_id,DataTable CustomerTable)
         {           
             string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
             try
             {
-                SqlParameter[] param = new SqlParameter[3];
+                SqlParameter[] param = new SqlParameter[4];
                 param[0] = new SqlParameter("store_id", store_id);
-                param[1] = new SqlParameter("customer_group_id", customer_group_id);
-                param[2] = new SqlParameter("CustomerXml", CustomerXml);
+                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
+                param[2] = new SqlParameter("customer_group_id", customer_group_id);
+                param[3] = new SqlParameter("CustomerXml", CustomerXml);
 
                 var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportCustomerXml", param).FirstOrDefault();
                 return result;
