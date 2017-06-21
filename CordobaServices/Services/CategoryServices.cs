@@ -19,8 +19,7 @@ namespace CordobaServices.Services
 
 
         public List<CategoryEntity> GetCategoryList(int StoreId, int LoggedInUserId, int Category_Id = 0)
-        { 
-        public List<CategoryEntity> GetCategoryList(int Category_Id = 0)
+        
         {
 
 

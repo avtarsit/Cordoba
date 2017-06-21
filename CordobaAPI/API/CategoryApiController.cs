@@ -21,12 +21,11 @@ namespace CordobaAPI.API
             _categoryServices = new CategoryService();
         }
         [HttpGet]
-        public HttpResponseMessage GetCategoryList(int Category_Id = 0)
         public HttpResponseMessage GetCategoryList(int StoreId, int LoggedInUserId, int Category_Id = 0)
         {
             try
             {
-                var result = _categoryServices.GetCategoryList(Category_Id);
+
                 var result = _categoryServices.GetCategoryList(StoreId, LoggedInUserId, Category_Id);
                 if (result != null)
                 {
@@ -43,12 +42,10 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCategoryById(int Category_Id)
         public HttpResponseMessage GetCategoryById(int Category_Id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _categoryServices.GetCategoryById(Category_Id);
                 var result = _categoryServices.GetCategoryById(Category_Id, StoreId, LoggedInUserId);
                 if (result != null)
                 {
@@ -68,12 +65,10 @@ namespace CordobaAPI.API
 
         //Popular Category
         [HttpGet]
-        public HttpResponseMessage GetCategoryListByStoreIdPopular(int storeID = 0)
         public HttpResponseMessage GetCategoryListByStoreIdPopular( int LoggedInUserId, int storeID = 0)
         {
             try
             {
-                var result = _categoryServices.GetCategoryListByStoreIdPopular(storeID);
                 var result = _categoryServices.GetCategoryListByStoreIdPopular(LoggedInUserId, storeID);
                 if (result != null)
                 {
@@ -89,12 +84,12 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetStoreNameList()
+        
         public HttpResponseMessage GetStoreNameList(int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _categoryServices.GetStoreNameList();
+                
                 var result = _categoryServices.GetStoreNameList(StoreId, LoggedInUserId);
                 if (result != null)
                 {
@@ -110,12 +105,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertOrUpdateCategoryAsPopular(CategoryPopularEntity CategoryPopularEntity)
+        
         public HttpResponseMessage InsertOrUpdateCategoryAsPopular(int LoggedInUserId, CategoryPopularEntity CategoryPopularEntity)
         {
             try
             {
-                var result = _categoryServices.InsertOrUpdateCategoryAsPopular(CategoryPopularEntity);
                 var result = _categoryServices.InsertOrUpdateCategoryAsPopular( LoggedInUserId, CategoryPopularEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -135,8 +129,7 @@ namespace CordobaAPI.API
             try
             {                
                 var result = _categoryServices.GetLanguageList(StoreId, LoggedInUserId);
-            {
-                var result = _categoryServices.GetLanguageList();
+                
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

@@ -69,8 +69,6 @@ namespace CordobaAPI.API
             try
             {
                 var result = _StoreServices.InsertUpdateStore(storeEntity, LoggedInUserId);
-                if(result!=null)
-                var result = _StoreServices.InsertUpdateStore(storeEntity);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -89,8 +87,6 @@ namespace CordobaAPI.API
             try
             {
                 var result = _StoreServices.DeleteStoreById_Admin(store_id, LoggedInUserId);
-                if(result!=null)
-                var result = _StoreServices.DeleteStoreById_Admin(store_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

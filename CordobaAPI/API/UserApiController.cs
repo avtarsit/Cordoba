@@ -66,13 +66,6 @@ namespace CordobaAPI.API
             {
                 var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, storeId, UserModel);
                     return Request.CreateResponse(HttpStatusCode.OK, result);               
-        [HttpPost]
-        public HttpResponseMessage CreateOrUpdateUser(int LoggedInUserId, UserEntity UserModel)
-        {
-            try
-            {
-                var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, UserModel);
-                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -93,22 +86,11 @@ namespace CordobaAPI.API
              }
              catch (Exception)
              {
-        [HttpGet]
-        public HttpResponseMessage DeleteUserDetail(int LoggedInUserId, int UserID = 0)
-        {
-            try
-            {
-                var result = _UserServices.DeleteUserDetail(LoggedInUserId, UserID);
-                return Request.CreateResponse(HttpStatusCode.OK, result);
 
-            }
-            catch (Exception)
-            {
+                 throw;
+             }
 
-                throw;
-            }
-
-        }
+         }
 
         // GET: api/UserApi
         public IEnumerable<string> Get()
@@ -135,20 +117,6 @@ namespace CordobaAPI.API
         // DELETE: api/UserApi/5
         public void Delete(int id)
         {
-        }
-
-        [HttpPost]
-        public bool IsAuthenticUser(UserEntity model)
-        {
-            try
-            {
-                var result = _UserServices.IsAuthenticUser(model);
-                return result;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
         }
     }
 }

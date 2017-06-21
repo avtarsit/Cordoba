@@ -53,11 +53,7 @@ namespace CordobaServices.Services
                     param[0] = new SqlParameter("LoggedInUserId", LoggedInUserId);
                     param[1] = new SqlParameter("storeId", storeId);
                     param[2] = new SqlParameter("user_id", userID);
-                    SqlParameter[] param = new SqlParameter[]{
-                     new SqlParameter("StoreId", (object)DBNull.Value),
-                     new SqlParameter("LoggedInUserId", (object)DBNull.Value),
-                     new SqlParameter("user_id", userID)
-                    };
+
                     UserDetail = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetUserDetail", param).ToList<UserEntity>().FirstOrDefault();
 
                 }
