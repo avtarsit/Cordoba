@@ -18,9 +18,9 @@ function GetAdminUserDetail() {
 }
 
 function GetLayoutName() {
-
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + "http://lmhfs2015.cordobarewards.co.uk/",
+        //window.location.href,
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
@@ -692,6 +692,12 @@ function GetLayoutName() {
                      //        });
                      //    }
                      //}
+
+                     // check for user authentication
+                     //if (localStorageService.get('AppConfigurationStoreId', data.store_id) != data.store_Id) {
+                     //    window.location.href = 'home/accessdenied';
+                     //}
+
                  });
              });
 

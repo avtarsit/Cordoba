@@ -141,20 +141,31 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public bool IsAuthenticUser(UserEntity model)
+        public UserEntity AuthenticUserDetail(UserEntity model)
         {
             try
             {
-                var result = _UserServices.IsAuthenticUser(model);
+                var result = _UserServices.AuthenticUserDetail(model);
                 return result;
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
         //[HttpGet]
-        //public UserEntity GetAuthenticUserDetail
+        //public UserEntity GetAuthenticUserDetail(UserEntity model)
+        //{
+        //    try
+        //    {
+        //        var result = _UserServices.IsAuthenticUser(model);
+        //        return result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

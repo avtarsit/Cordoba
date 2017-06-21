@@ -118,29 +118,37 @@ namespace CordobaServices.Services
             }
         }
 
-        public bool IsAuthenticUser(UserEntity model)
+        public UserEntity AuthenticUserDetail(UserEntity model)
         {
-            bool IsAuthenticUser = false;
             try
             {
-                SqlParameter[] param = new SqlParameter[2];
-                param[0] = new SqlParameter("Email", model.email);
-                param[1] = new SqlParameter("Password", model.password);
+                SqlParameter[] param = new SqlParameter[]{
+                     new SqlParameter("Email", !string.IsNullOrWhiteSpace(model.email)?(object)model.email:(object)DBNull.Value),
+                     new SqlParameter("Password",!string.IsNullOrWhiteSpace(model.password)? (object)model.password :(object)DBNull.Value)
+                    };
                 var Result = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetAuthenticUserDetail", param).FirstOrDefault();
-                if (Result != null)
-                {
-                    IsAuthenticUser = true;
-                }
-                else
-                {
-                    IsAuthenticUser = false;
-                }
-                return IsAuthenticUser;
+                return Result;
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
+        //public UserEntity GetAuthenticUserDetail(UserEntity model)
+        //{
+        //    try
+        //    {
+        //        SqlParameter[] param = new SqlParameter[2];
+        //        param[0] = new SqlParameter("Email", model.email);
+        //        param[1] = new SqlParameter("Password", model.password);
+        //        var Result = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetAuthenticUserDetail", param).FirstOrDefault();
+        //        return Result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }
