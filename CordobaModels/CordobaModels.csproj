@@ -80,6 +80,7 @@
       <DependentUpon>Cordoba.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\AddressEntity.cs" />
+    <Compile Include="Entities\AppSetting.cs" />
     <Compile Include="Entities\BannerAttributeEntity.cs" />
     <Compile Include="Entities\BannerEntity.cs" />
     <Compile Include="Entities\CartEntity.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Entities\CustomerGroupEntity.cs" />
     <Compile Include="Entities\CustomerOrderEntity.cs" />
     <Compile Include="Entities\DashboardSummaryEntity.cs" />
+    <Compile Include="Entities\EmailNotification.cs" />
     <Compile Include="Entities\HotSpecialProductEntity.cs" />
     <Compile Include="Entities\LanguageEntity.cs" />
     <Compile Include="Entities\ManufacturersEntity.cs" />
