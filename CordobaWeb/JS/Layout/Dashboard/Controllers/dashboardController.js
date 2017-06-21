@@ -93,14 +93,18 @@
         $scope.GetTermsCondition();
         angular.element("#DivTermsConditionModel").modal('show');
     }
+    
 
     $scope.GetTermsCondition = function () {
 
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?StoreID=0")
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.TermsConditionMsg = response.data[0].terms;
+                  $scope.TermsConditionMsg = response.data[0].Terms;
+                  //$scope.html = decodeHtml($scope.TermsConditionMsg);
+                  
               }
+              debugger;
           })
       .catch(function (response) {
 
@@ -109,6 +113,12 @@
 
       });
     }
+
+    //function decodeHtml(html) {
+    //    var txt = document.createElement("textarea");
+    //    txt.innerHTML = html;
+    //    return txt.value;
+    //}
 
     //$scope.GetStoreDetailForDashboard = function () {
 
@@ -130,3 +140,12 @@
     //$scope.GetStoreDetailForDashboard();
 
 });
+
+
+app.filter('trusted', ['$sce', function ($sce) {
+    var div = document.createElement('div');
+    return function (text) {
+        div.innerHTML = text;
+        return $sce.trustAsHtml(div.textContent);
+    };
+}])
