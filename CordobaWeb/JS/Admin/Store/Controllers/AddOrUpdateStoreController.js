@@ -4,7 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    
+
     $scope.LoggedInUserId = 0;
 
     $scope.StoreObj = new Object();
@@ -20,14 +20,14 @@
         $scope.PageTitle = "Add Store";
     }
     //#endregion    
-    
+
 
     $scope.TemplateList = [
-                        { 'TemplateId': 1, 'TemplateName':'Default Theme' }
-                      , { 'TemplateId': 2, 'TemplateName':'Default'}
-                      , { 'TemplateId': 3, 'TemplateName':'Default-2'}
-                    ];
-  
+                        { 'TemplateId': 1, 'TemplateName': 'Default Theme' }
+                      , { 'TemplateId': 2, 'TemplateName': 'Default' }
+                      , { 'TemplateId': 3, 'TemplateName': 'Default-2' }
+    ];
+
     $scope.LayoutList = [
                     { 'LayoutId': 1, 'LayoutName': 'Account' }
                   , { 'LayoutId': 2, 'LayoutName': 'Affiliate' }
@@ -39,9 +39,9 @@
                   , { 'LayoutId': 8, 'LayoutName': 'default2 - Layout Block Demo' }
                   , { 'LayoutId': 9, 'LayoutName': 'Home' }
                   , { 'LayoutId': 10, 'LayoutName': 'Information' }
-                  
+
     ];
-   
+
     function GetCountryList() {
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
@@ -102,19 +102,18 @@
 
        });
     }
-   
+
     $scope.GetStoreById = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
-              if ($scope.StoreObj.store_id == 0)
-              {
+              if ($scope.StoreObj.store_id == 0) {
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
                   $scope.StoreObj.currency = 'P82';
               }
               $scope.GetZoneListByCountry($scope.StoreObj.country_id);
-            
+
           })
       .catch(function (response) {
 
@@ -142,10 +141,13 @@
                                              .then(function (response) {                                  
                                                  if(response.data>0)
                                                  {
+                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id)
+                                             .then(function (response) {
+                                                 if (response.data > 0) {
                                                      notificationFactory.customSuccess("Store Deleted Successfully.");
                                                      $state.go('ShowStore');
                                                  }
-                                         })
+                                             })
                                      .catch(function (response) {
 
                                      })
@@ -190,7 +192,7 @@
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
-                     $state.go('ShowStore');
+                      $state.go('ShowStore');
                   }
               })
           .catch(function (response) {
@@ -202,14 +204,43 @@
     }
 
 
+    $scope.UploadImage = function (store_id, imageKey, uploadId) {
+        var data = new FormData();
+        var files = $('#' + uploadId).get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+        var filename = files[0].name;
+        //var extention = filename.substr(filename.lastIndexOf(".") + 1).toLowerCase();
+        // Add the uploaded image content to the form data collection
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                $('#ImageUpload').val('');
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
+
+    }
+
     function Init() {
         GetCountryList();
         GetLanguageList();
         GetCurrencyList();
         $scope.GetStoreById();
     }
-
-
 
 
     Init();

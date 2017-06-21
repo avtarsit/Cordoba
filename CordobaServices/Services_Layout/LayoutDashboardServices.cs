@@ -27,10 +27,10 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-      
+
         }
 
         public StoreEntity GetStoreDetailByUrl(String URL)
@@ -44,10 +44,10 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-         
+
         }
 
         public List<ProductEntity> GetLatestProductByStoreId(int StoreID)
@@ -60,10 +60,10 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-        
+
         }
 
         public List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID)
@@ -76,7 +76,7 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
@@ -92,10 +92,10 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-        
+
         }
 
         public List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID)
@@ -108,12 +108,12 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
         }
-        
+
         public CustomerEntity CustomerLogin(CustomerEntity CustomerObj)
         {
             try
@@ -129,7 +129,7 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
@@ -150,7 +150,7 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
@@ -170,14 +170,14 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
 
         }
 
-        public CustomerEntity CustomerDetailLayout(int CustomerId,int StoreId)
+        public CustomerEntity CustomerDetailLayout(int CustomerId, int StoreId)
         {
             try
             {
@@ -190,13 +190,13 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
- 
+
         }
 
-        public int? SaveCustomerBasicDetails_Layout(int StoreId,CustomerEntity CustomerObj)
+        public int? SaveCustomerBasicDetails_Layout(int StoreId, CustomerEntity CustomerObj)
         {
             try
             {
@@ -214,7 +214,7 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
@@ -236,10 +236,10 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-   
+
 
         }
 
@@ -256,13 +256,13 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
         }
 
-        public List<AddressEntity> AddOrUpdateAddressDetail_Layout(int StoreId,AddressEntity AddressObj)
+        public List<AddressEntity> AddOrUpdateAddressDetail_Layout(int StoreId, AddressEntity AddressObj)
         {
             try
             {
@@ -285,14 +285,14 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
 
         }
 
 
-        public int? DeleteCustomerAddress(int StoreId, int customer_id,int address_id)
+        public int? DeleteCustomerAddress(int StoreId, int customer_id, int address_id)
         {
             try
             {
@@ -307,11 +307,61 @@ namespace CordobaServices.Services_Layout
             }
             catch (Exception)
             {
-                
+
+                throw;
+            }
+        }
+
+        public List<StoreImageEntity> GetStoreImageList(int Store_Id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {  
+               new SqlParameter("Store_Id",Store_Id)
+            };
+                var result = objGenericRepository.ExecuteSQL<StoreImageEntity>("GetStoreImageByStoreId_Dashboard", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<StoreTermsEntity> GetStoreTermsDetail(int Store_Id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {  
+               new SqlParameter("Store_Id",Store_Id)
+            };
+                var result = objGenericRepository.ExecuteSQL<StoreTermsEntity>("GetStoreTermsDetail", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<ProductEntity> GetBestSellerListByStoreId(int StoreID)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStoreId", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
 
         }
+
+
 
     }
 }

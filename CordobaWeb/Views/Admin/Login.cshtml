@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CordobaModels.Entities.UserEntity
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -69,7 +70,7 @@
                     <!-- Simple login form -->
                    @using (Html.BeginForm("Login", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                    {
-                    @Html.AntiForgeryToken()
+                  
                      <div class="panel panel-body login-form">
                          <div class="text-center">
                              <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>

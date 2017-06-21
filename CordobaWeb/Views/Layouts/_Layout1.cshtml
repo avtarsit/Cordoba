@@ -157,7 +157,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="active"><a href="#" class="cursor-pointer" ui-sref="Home">Home</a></li>
                                     <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
-                                    <li><a href="" class="cursor-pointer">Terms &amp; Conditions</a></li>
+                                    <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
                                     <li><a href="" class="cursor-pointer">Contact Us</a></li>
                                     <li class="pull-right">
                                         <a href="#" class="cursor-pointer" id="fbIcon"></a>
@@ -254,7 +254,26 @@
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>   
+        
+        <!-- Terms and Condition popup -->
+        <div class="modal" id="DivTermsConditionModel" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-content">
+                        <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
+                        <div class="modal-body">
+                            <div class="login_text">
+                                <div ng-bind-html="TermsConditionMsg | trusted"></div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Terms and Condition popup -->
+           
     </div>
         
     @Scripts.Render("~/bundles/Layout1Js")

@@ -1,19 +1,39 @@
 ﻿
 'use strict';
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
-
+//GetAdminUserDetail();
 GetLayoutName();
+
+function GetAdminUserDetail() {
+    var adminUserId = $("#txtAdminUserId").val();
+    if (adminUserId != undefined && adminUserId != null) {
+        $.ajax({
+            url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
+            async: false,
+            success: function (data) {
+                app.value('AdminUserDetail', data);
+                var AdminUser = new Object();
+                AdminUser.UserId = 1;
+                AdminUser.StoreId = 1;
+                AdminUser.UserTypeId = 1;
+                app.value('AdminDetail', AdminUser);
+            }
+        });
+    }
+}
+
 function GetLayoutName() {
+
     $.ajax({
         url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
-        success: function (data) {        
+        success: function (data) {
             app.value('StoreSessionDetail', data);
             var User = new Object();
             User.customer_id = 0;
             User.address_id = 0;
-            User.cartgroup_id=0;
-            User.TotalItemAdded=0;
+            User.cartgroup_id = 0;
+            User.TotalItemAdded = 0;
             app.value('UserDetail', User);
 
             var LayoutName = data.template;
@@ -343,11 +363,11 @@ function GetLayoutName() {
                     url: '/Customer/CustomerImport',
                     templateUrl: 'Templates/' + LayoutName + '/Customer/CustomerImport.html'
                 }
-                ,Checkout = {
+                , Checkout = {
                     name: 'Checkout',
                     url: '/Checkout?cartgroup_id:CartGroupId',
-                      templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
-                  }               
+                    templateUrl: 'Templates/' + LayoutName + '/Cart/Checkout.html'
+                }
                  , EditProfile = {
                      name: 'EditProfile',
                      url: '/EditProfile',
@@ -462,7 +482,7 @@ function GetLayoutName() {
                 $stateProvider.state(AddReward);
 
                 $stateProvider.state(CartDetail);
-                $stateProvider.state(Checkout);                
+                $stateProvider.state(Checkout);
                 $stateProvider.state(EditProfile);
                 $stateProvider.state(ChangePassword);
                 $stateProvider.state(AddressBook);
@@ -470,7 +490,7 @@ function GetLayoutName() {
                 $stateProvider.state(PointsAudit);
                 $stateProvider.state(OrderSuccessful);
                 $stateProvider.state(OrderDetail);
-                
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -480,15 +500,13 @@ function GetLayoutName() {
 
             })
              .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
-                         
+
                  var user = localStorageService.get("loggedInUser");
-                 if( user==null || user==undefined)
-                 {
+                 if (user == null || user == undefined) {
                      user = new Object();
                      user.customer_id = 0;
                  }
-                 if ( user.customer_id > 0)
-                 {
+                 if (user.customer_id > 0) {
                      UserDetail.customer_id = user.customer_id;
                      UserDetail.firstname = user.firstname;
                      UserDetail.lastname = user.lastname;
@@ -501,10 +519,10 @@ function GetLayoutName() {
                  else {
                      localStorageService.set("loggedInUser", UserDetail);
                  }
-               
+
 
                  $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
-              
+
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
                  //var diff = (now1.getTime() - new Date(GETLocalStorageDateTime).getTime());

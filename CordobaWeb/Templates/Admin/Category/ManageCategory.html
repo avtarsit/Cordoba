@@ -130,6 +130,17 @@
                                                             class="form-control" ng-model="CategoryObj.status" name="CategoryStatus"></select>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Upload Image </label>
+                                                <div class="col-sm-3">
+                                                    <input type="file" id="ImageUpload" ng-disabled="Category_Id==0" class="upload" file-model="fileUpload">
+                                                    
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input type="button" class="btn btn-info" ng-disabled="Category_Id==0" ng-click="UploadImage()" value="Upload">
+                                                    <label class="control-label" ng-show="Category_Id==0">Upload functionality will be available in Edit Mode</label>
+                                                </div>  
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
