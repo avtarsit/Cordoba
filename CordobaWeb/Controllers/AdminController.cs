@@ -33,21 +33,16 @@ namespace CordobaWeb.Controllers
         public async Task<ActionResult> Login(UserEntity model)
         {
             //UserEntity obj = new UserEntity();
-            //obj.email = "amit";
-            //obj.user_id = 123;
+            model.email = "john@jonnyreeves.co.uk";
+            model.password = "sit@123";
 
             var apiUrl = System.Configuration.ConfigurationManager.AppSettings["WebApiUrl"].ToString();
 
-            var response = await HttpClientPostPassEntityReturnEntity<bool, UserEntity>(model, apiUrl + "UserApi/IsAuthenticUser");
-            if (response)
+            var response = await HttpClientPostPassEntityReturnEntity<UserEntity, UserEntity>(model, apiUrl + "UserApi/AuthenticUserDetail");
+            if (response != null && response.user_id > 0)
             {
-                var userResponse = new UserEntity();
-                var userDataResponse = await HttpClientRequestResponse<UserEntity>(userResponse, apiUrl + "UserApi/GetUserDetail?UserID=" + model.user_id);
-                if (userDataResponse != null && userDataResponse.user_id > 0)
-                {
-                    ProjectSession.AdminLoginSession = userDataResponse;
-                    Session.Add("AdminUserId", model.user_id);
-                }
+                ProjectSession.AdminLoginSession = response;
+                Session.Add("AdminUserId", response.user_id);
             }
             return RedirectToAction("Index", "Home");
         }

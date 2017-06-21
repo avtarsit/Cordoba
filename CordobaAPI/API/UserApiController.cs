@@ -25,7 +25,7 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _UserServices.GetUserList( LoggedInUserId,  storeId);
+                var result = _UserServices.GetUserList(LoggedInUserId, storeId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -46,6 +46,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _UserServices.GetUserDetail(LoggedInUserId, storeId, UserID);
+
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -59,13 +60,14 @@ namespace CordobaAPI.API
             }
 
         }
-         [HttpPost]
+        [HttpPost]
         public HttpResponseMessage CreateOrUpdateUser(int LoggedInUserId, int storeId, UserEntity UserModel)
         {
             try
             {
                 var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, storeId, UserModel);
-                    return Request.CreateResponse(HttpStatusCode.OK, result);               
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
             }
             catch (Exception)
             {
@@ -75,22 +77,41 @@ namespace CordobaAPI.API
 
         }
 
-         [HttpGet]
-         public HttpResponseMessage DeleteUserDetail(int LoggedInUserId, int storeId, int UserID = 0)
-         {
-             try
-             {
-                 var result = _UserServices.DeleteUserDetail(LoggedInUserId, storeId, UserID);              
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                
-             }
-             catch (Exception)
-             {
+        //[HttpGet]
+        //public HttpResponseMessage DeleteUserDetail(int LoggedInUserId, int UserID = 0)
+        //{
+        //    try
+        //    {
+        //        var result = _UserServices.DeleteUserDetail(LoggedInUserId, UserID);
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
 
-                 throw;
-             }
+        //    }
+        //    catch (Exception)
+        //    {
 
-         }
+        //        throw;
+        //    }
+
+        //}
+
+        [HttpGet]
+        public HttpResponseMessage DeleteUserDetail(int LoggedInUserId, int storeId, int UserID = 0)
+        {
+            try
+            {
+                var result = _UserServices.DeleteUserDetail(LoggedInUserId, storeId, UserID);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        [HttpGet]
 
         // GET: api/UserApi
         public IEnumerable<string> Get()
@@ -118,5 +139,33 @@ namespace CordobaAPI.API
         public void Delete(int id)
         {
         }
+
+        [HttpPost]
+        public UserEntity AuthenticUserDetail(UserEntity model)
+        {
+            try
+            {
+                var result = _UserServices.AuthenticUserDetail(model);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //[HttpGet]
+        //public UserEntity GetAuthenticUserDetail(UserEntity model)
+        //{
+        //    try
+        //    {
+        //        var result = _UserServices.IsAuthenticUser(model);
+        //        return result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

@@ -1,31 +1,26 @@
 ﻿
 'use strict';
 var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
-//GetAdminUserDetail();
+GetAdminUserDetail();
 GetLayoutName();
 
 function GetAdminUserDetail() {
-    var adminUserId = $("#txtAdminUserId").val();
+    var adminUserId = $("#hdAdminUserId").val();
     if (adminUserId != undefined && adminUserId != null) {
         $.ajax({
-            url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
+            url: window.location.origin + "/Home/GetAdminUserDetail",
             async: false,
             success: function (data) {
                 app.value('AdminUserDetail', data);
-                var AdminUser = new Object();
-                AdminUser.UserId = 1;
-                AdminUser.StoreId = 1;
-                AdminUser.UserTypeId = 1;
-                app.value('AdminDetail', AdminUser);
             }
         });
     }
 }
 
 function GetLayoutName() {
-
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + "http://lmhfs2015.cordobarewards.co.uk/",
+        //window.location.href,
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
@@ -697,9 +692,14 @@ function GetLayoutName() {
                      //        });
                      //    }
                      //}
+
+                     // check for user authentication
+                     //if (localStorageService.get('AppConfigurationStoreId', data.store_id) != data.store_Id) {
+                     //    window.location.href = 'home/accessdenied';
+                     //}
+
                  });
              });
-
 
         }
     });

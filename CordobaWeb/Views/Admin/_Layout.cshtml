@@ -18,7 +18,7 @@
 <body>
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
-        <input id="txtAdminUserId" type="hidden" value="@HttpContext.Current.Session["AdminUserId"].ToString()" />
+        <input id="hdAdminUserId" type="hidden" value="@HttpContext.Current.Session["AdminUserId"].ToString()" />
         <div class="navbar-header">
             <a class="navbar-brand" href="#" ui-sref="Home"><img style=" margin-top: -16px; height: 52px;" src="~/Content/admin/images/logo/logo.png" alt=""></a>
             <ul class="nav navbar-nav visible-xs-block">
