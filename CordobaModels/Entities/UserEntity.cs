@@ -20,5 +20,6 @@ namespace CordobaModels.Entities
        public string ip { get; set; }
        public string image { get; set; }
        public Nullable<DateTime> date_added { get; set; }
+       public int? store_id { get; set; }
     }
 }

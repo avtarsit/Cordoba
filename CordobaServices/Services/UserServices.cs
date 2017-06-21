@@ -31,7 +31,7 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = storeId
                 };
-               
+
                 var UserList = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetUserList", ParameterLoggedInUserId, ParameterStoreId).ToList<UserEntity>().ToList();
                 return UserList;
             }
@@ -42,18 +42,18 @@ namespace CordobaServices.Services
             }
         }
 
-        public UserEntity GetUserDetail(int LoggedInUserId,int storeId, int userID = 0)
+        public UserEntity GetUserDetail(int LoggedInUserId, int storeId, int userID = 0)
         {
             UserEntity UserDetail = new UserEntity();
             if (userID > 0)
             {
                 try
                 {
-                    SqlParameter[] param = new SqlParameter[3];
-                    param[0] = new SqlParameter("LoggedInUserId", LoggedInUserId);
-                    param[1] = new SqlParameter("storeId", storeId);
-                    param[2] = new SqlParameter("user_id", userID);
-
+                    SqlParameter[] param = new SqlParameter[]{
+                     new SqlParameter("StoreId", (object)DBNull.Value),
+                     new SqlParameter("LoggedInUserId", (object)DBNull.Value),
+                     new SqlParameter("user_id", userID)
+                    };
                     UserDetail = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetUserDetail", param).ToList<UserEntity>().FirstOrDefault();
 
                 }
@@ -70,7 +70,7 @@ namespace CordobaServices.Services
         }
 
 
-        public int CreateOrUpdateUser(int LoggedInUserId,int storeId, UserEntity user)
+        public int CreateOrUpdateUser(int LoggedInUserId, int storeId, UserEntity user)
         {
             try
             {
@@ -123,12 +123,19 @@ namespace CordobaServices.Services
             bool IsAuthenticUser = false;
             try
             {
-                return true;
-                //SqlParameter[] param = new SqlParameter[2];
-                //param[0] = new SqlParameter("LoggedInUserId", LoggedInUserId);
-                //param[1] = new SqlParameter("user_id", UserId);
-                //var Result = UserEntityGenericRepository.ExecuteSQL<int>("EXEC DeleteUser", param).FirstOrDefault();
-                //return Result;
+                SqlParameter[] param = new SqlParameter[2];
+                param[0] = new SqlParameter("Email", model.email);
+                param[1] = new SqlParameter("Password", model.password);
+                var Result = UserEntityGenericRepository.ExecuteSQL<UserEntity>("EXEC GetAuthenticUserDetail", param).FirstOrDefault();
+                if (Result != null)
+                {
+                    IsAuthenticUser = true;
+                }
+                else
+                {
+                    IsAuthenticUser = false;
+                }
+                return IsAuthenticUser;
             }
             catch (Exception)
             {

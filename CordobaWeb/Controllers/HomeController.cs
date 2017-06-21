@@ -18,19 +18,19 @@ using System.Web.Optimization;
 
 namespace CordobaWeb.Controllers
 {
-   
+
     public class HomeController : Controller
-    {        
-        
+    {
+
         public static string LayoutNames = null;
         public ActionResult Index()
         {
             var masterView = View();
             int PortNumber = Request.Url.Port;
-   
+
             try
             {
-                  
+
 
                 switch (PortNumber)
                 {
@@ -55,17 +55,17 @@ namespace CordobaWeb.Controllers
 
                 var Result = GetStoreDetailByUrl(Request.Url.AbsoluteUri);
                 Result.template = LayoutNames; // This is Temporary
-                ProjectSession.StoreSession = Result;                
-                Session.Add("CssOverride",Result.css_overrides);
-             
+                ProjectSession.StoreSession = Result;
+                Session.Add("CssOverride", Result.css_overrides);
+
                 return masterView;
-          
+
             }
             catch (Exception)
             {
                 throw;
             }
-        
+
         }
 
         public ActionResult About()
@@ -84,37 +84,41 @@ namespace CordobaWeb.Controllers
 
 
         public JsonResult GetStoreDetail(string URL)
-        {            
+        {
             try
             {
                 StoreDetail store = new StoreDetail();
                 store = ProjectSession.StoreSession;
-                return Json(store, JsonRequestBehavior.AllowGet); 
+                return Json(store, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-        
+
 
         }
 
 
         public StoreDetail GetStoreDetailByUrl(String URL)
         {
-            GenericRepository<StoreEntity> StoreRepository = new GenericRepository<StoreEntity>();          
+            GenericRepository<StoreEntity> StoreRepository = new GenericRepository<StoreEntity>();
             SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("URL", URL) };
             var Result = StoreRepository.ExecuteSQL<StoreDetail>("GetStoreDetailByUrl", sqlParameter).FirstOrDefault();
             return Result;
         }
 
-      public ActionResult accessdenied()
+        public ActionResult accessdenied()
         {
             return View();
         }
-      
 
-        
+        public JsonResult GetAdminUserDetail()
+        {
+            UserEntity userDetail = new UserEntity();
+            userDetail = ProjectSession.AdminLoginSession;
+            return Json(userDetail, JsonRequestBehavior.AllowGet);
+        }
     }
 }

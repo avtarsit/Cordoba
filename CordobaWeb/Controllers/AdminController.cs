@@ -33,8 +33,8 @@ namespace CordobaWeb.Controllers
         public async Task<ActionResult> Login(UserEntity model)
         {
             //UserEntity obj = new UserEntity();
-            //obj.email = "amit";
-            //obj.user_id = 123;
+            model.email = "amit";
+            model.user_id = 1;
 
             var apiUrl = System.Configuration.ConfigurationManager.AppSettings["WebApiUrl"].ToString();
 
