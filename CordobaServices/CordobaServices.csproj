@@ -76,6 +76,7 @@
     <Compile Include="Helpers\ExpressionBuilder.cs" />
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\CountryServices.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\CustomerGroupService.cs" />
