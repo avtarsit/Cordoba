@@ -248,7 +248,8 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .close-modal { color: #9c9c9c; float: right; font-size: 16px; position: absolute; right: 25px; top: 20px; right: 30px; width: auto; z-index: 1; }
 .close-modal:hover, .close-modal:focus { color: #9c9c9c; }
 .close { opacity: 0.8; }
-.login_text { width: 90%; float: left; background-color: #f4f3f3; height: 3500px; }
+.login_text { width: 50%; float: left; background-color: #f4f3f3; height: 350px; }
+/*.login_text { width: 90%; float: left; background-color: #f4f3f3; height: 3500px; }*/
 .login_page { width: 50%; height: 350px; float: left; background-color: #f4f3f3; border-right: 1px solid #ddd; padding: 20px; }
 .login_page:last-child { border: none; }
 .login_page h2 { font-size: 30px; color: #cc0001; text-align: left; }

@@ -96,7 +96,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&total="+$scope.filter.Total+"&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
+                    "url": sSource + "&PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&total="+$scope.filter.Total+"&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

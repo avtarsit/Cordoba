@@ -79,14 +79,14 @@ namespace CordobaAPI.API
             }
         }
 
-        [HttpPost]
-        public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id,string CustomerName,decimal? total,Nullable<DateTime> DateAdded,Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
+        [HttpGet]
+        public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _orderService.GetOrderList(StoreId,LoggedInUserId,sortColumn,orderId,order_status_id,CustomerName,total,DateAdded,DateModified, tableParameter, "").ToList();
+                var result = _orderService.GetOrderList(StoreId, LoggedInUserId, sortColumn, orderId, order_status_id, CustomerName, total, DateAdded, DateModified, tableParameter, "").ToList();
 
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
@@ -121,7 +121,7 @@ namespace CordobaAPI.API
         [HttpGet]
         public HttpResponseMessage GetCurrencyList(int StoreId, int LoggedInUserId)
         {
-            var currency = _orderService.GetCurrencyList( StoreId, LoggedInUserId);
+            var currency = _orderService.GetCurrencyList(StoreId, LoggedInUserId);
             if (currency != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, currency);
@@ -190,7 +190,7 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _orderService.UpdateOrder_CutomerDetails( LoggedInUserId, objOrderEntity);
+                var result = _orderService.UpdateOrder_CutomerDetails(LoggedInUserId, objOrderEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -232,7 +232,7 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _orderService.GetCustomersByStore(storeId,LoggedInUserId);
+                var result = _orderService.GetCustomersByStore(storeId, LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -249,27 +249,41 @@ namespace CordobaAPI.API
                 var result = _orderService.UpdateOrder_TotalDetails(StoreId, LoggedInUserId, order_id, order_status_id, comment);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
         }
 
         [HttpGet]
-        public HttpResponseMessage GetOrderDetail_Layout(int LoggedInUserId, int order_id,int store_id)
+        public HttpResponseMessage GetOrderDetail_Layout(int LoggedInUserId, int order_id, int store_id)
         {
             try
             {
                 var result = _orderService.GetOrderDetail_Layout(LoggedInUserId, order_id, store_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        
+        [HttpPost]
+        public HttpResponseMessage UpdateOrderStatus(int OrderId, int OrderStatusId, string Comment)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrderStatus(OrderId, OrderStatusId, Comment);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
     }
 }

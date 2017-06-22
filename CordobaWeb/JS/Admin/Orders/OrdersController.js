@@ -5,6 +5,8 @@
     $scope.PageTitle = "Orders";
     $scope.StoreId = 0;
     $scope.LoggedInUserId = 0;
+    $scope.OrderStatusNotify = 0;
+    $scope.OrderStatusComment = "";
     //$scope.OrderDetails =
     //   {
     //       OrderId: '#41309',
@@ -114,7 +116,7 @@
 
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.OrderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-           
+
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
                   $scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
@@ -149,7 +151,7 @@
         //return false;
         $http.post(configurationService.basePath + "api/OrderApi/InsertOrderHistory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, objHistoryEntity)
            .then(function (response) {
-    
+
                if (response.data > 0) {
                    //alert('already exists');
                    $scope.GetOrderDetails();
@@ -161,6 +163,23 @@
              .finally(function () {
 
              });
+    }
+
+    $scope.UpdateOrderStatus = function () {
+        $http.post(configurationService.basePath + "api/OrderApi/UpdateOrderStatus?OrderId=" + $scope.OrderDetails.order_id + '&OrderStatusId=' + $scope.OrderDetails.order_status_id + "&Comment=" + $scope.OrderStatusComment)
+       .then(function (response) {
+
+           if (response.data > 0) {
+               $scope.GetOrderDetails();
+               $scope.OrderStatusComment = "";
+           }
+       })
+        .catch(function (response) {
+
+        })
+         .finally(function () {
+
+         });
     }
 
 
