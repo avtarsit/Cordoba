@@ -256,11 +256,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetOrderDetail_Layout(int LoggedInUserId, int order_id, int store_id)
+        public HttpResponseMessage GetOrderDetail_Layout(int order_id, int store_id)
         {
             try
             {
-                var result = _orderService.GetOrderDetail_Layout(LoggedInUserId, order_id, store_id);
+                var result = _orderService.GetOrderDetail_Layout(order_id, store_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)

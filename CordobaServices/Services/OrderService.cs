@@ -123,7 +123,7 @@ namespace CordobaServices.Services
                     Value = LoggedInUserId
                 };
                 var paramCustomerId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = CustomerId };
-                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", ParameterStoreId, ParameterLoggedInUserId, paramCustomerId).ToList();
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", paramCustomerId, ParameterStoreId, ParameterLoggedInUserId).ToList();
                 return query;
             }
             catch (Exception)
@@ -388,11 +388,11 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id, int LoggedInUserId)
+        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id)
         {
-            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).FirstOrDefault();
+            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).FirstOrDefault();
 
-            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).ToList();
+            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).ToList();
             return OrderEntity;
         }
 
