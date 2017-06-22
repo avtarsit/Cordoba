@@ -79,7 +79,7 @@ namespace CordobaAPI.API
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
         {
             try

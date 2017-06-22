@@ -6,31 +6,31 @@
     $scope.IsEmptyShoppingCart = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.cartgroup_id = 0;
-    if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null)
-    {
-        $scope.cartgroup_id =parseInt($stateParams.cartgroup_id);
+    if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null) {
+        $scope.cartgroup_id = parseInt($stateParams.cartgroup_id);
     }
-    
+
     $scope.PlaceOrderObj = new Object();
     //#endregion      
-    $scope.GetCartDetailsByCartGroupId = function () {     
+    $scope.GetCartDetailsByCartGroupId = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
-          .then(function (response) {              
-              if (response.data.length > 0) {                 
+          .then(function (response) {
+              if (response.data.length > 0) {
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotal = $scope.CartItemList[0].AllItemSubtotal;
-                  $scope.AllItemTotal = $scope.CartItemList[0].AllItemTotal;                                
+                  $scope.AllItemTotal = $scope.CartItemList[0].AllItemTotal;
                   UserDetail.cartgroup_id = response.data[0].cartgroup_id;
                   UserDetail.TotalItemAdded = response.data[0].TotalItemAdded;
                   $rootScope.CustomerDetail = UserDetail;
                   localStorageService.set("loggedInUser", UserDetail);
               }
+
               else {
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotal = 0;
-                  $scope.AllItemTotal = 0;                          
+                  $scope.AllItemTotal = 0;
                   UserDetail.cartgroup_id = 0;
                   UserDetail.TotalItemAdded = 0;
                   $rootScope.CustomerDetail = UserDetail;
@@ -38,11 +38,10 @@
                   $scope.IsEmptyShoppingCart = 1;
               }
 
-              if (UserDetail.customer_id>0)
-              {
+              if (UserDetail.customer_id > 0) {
                   $scope.GetCustmoreAddressList();
               }
-              
+
           })
       .catch(function (response) {
 
@@ -52,12 +51,10 @@
       });
     }
 
-    $scope.GetCustmoreAddressList=function()
-    {
+    $scope.GetCustmoreAddressList = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCustmoreAddressList?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id)
         .then(function (response) {
-            if (response.data.length>0)
-            {
+            if (response.data.length > 0) {
                 $scope.CustomerAddressList = response.data;
                 $scope.SelectedCustomerAddress = $scope.CustomerAddressList[0];
                 $scope.SelectedCustomerAddress.SelectedIndex = 0;
@@ -65,7 +62,7 @@
             else {
 
             }
-       
+
         })
     .catch(function (response) {
 
@@ -76,10 +73,9 @@
     }
 
 
-    $scope.AddOrRemoveItemFromCart=function(productObj,Quantity)
-    {       
+    $scope.AddOrRemoveItemFromCart = function (productObj, Quantity) {
         $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + "&product_id=" + productObj.product_id + "&qty=" + Quantity + "&cartgroup_id=" + productObj.cartgroup_id)
-        .then(function (response) {              
+        .then(function (response) {
             productObj.quantity = productObj.quantity + Quantity;
             $scope.GetCartDetailsByCartGroupId();
             toastr.success("Shopping bag updated successfully.");
@@ -95,35 +91,33 @@
 
     $scope.DecreaseQuantity = function (Product) {
         if (Product.quantity >= 2) {
-            $scope.AddOrRemoveItemFromCart(Product,-1);        
+            $scope.AddOrRemoveItemFromCart(Product, -1);
         }
 
     }
 
     $scope.IncreaseQuantity = function (Product) {
-        $scope.AddOrRemoveItemFromCart(Product, 1);      
+        $scope.AddOrRemoveItemFromCart(Product, 1);
     }
 
-    $scope.RemoveProductFromCart=function(Product)
-    {
+    $scope.RemoveProductFromCart = function (Product) {
         $http.get(configurationService.basePath + "API/CartApi/RemoveProductFromCart?CartId=" + Product.cart_id)
-        .then(function (response) {    
+        .then(function (response) {
             $scope.GetCartDetailsByCartGroupId();
-            toastr.success("Product successfully removed from cart.");            
+            toastr.success("Product successfully removed from cart.");
         })
           .catch(function (response) {
 
-             })
+          })
          .finally(function () {
 
          });
 
     }
 
-    $scope.Checkout=function()
-    {        
-        if (UserDetail.customer_id>0)
-        {
+    $scope.Checkout = function () {
+        debugger;
+        if (UserDetail.customer_id > 0) {
             if (($rootScope.CustomerDetail.points - $scope.AllItemTotal) >= 0) {
                 $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
             }
@@ -132,13 +126,12 @@
             }
         }
         else {
-            $scope.OpenLoginPopUp();       
-        }                         
+            $scope.OpenLoginPopUp();
+        }
     }
-    
-    $scope.PlaceOrder=function()
-    {
-     
+
+    $scope.PlaceOrder = function () {
+
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
@@ -149,10 +142,10 @@
 
             $http.post(configurationService.basePath + "API/CartApi/PlaceOrder", $scope.PlaceOrderObj)
             .then(function (response) {
-             
+
                 if (response.data > 0) {
                     $scope.PlaceOrderObj = new Object();
-                    toastr.success("Order successfully placed.");             
+                    toastr.success("Order successfully placed.");
                     $scope.GetCartDetailsByCartGroupId();
                     UserDetail.points = Math.ceil($rootScope.CustomerDetail.points - $scope.AllItemTotal);
                     localStorageService.set("loggedInUser", UserDetail);
@@ -171,34 +164,28 @@
         else {
             toastr.warning("Address not found. Please add address.");
         }
-     
-    
+
+
     }
 
-    $scope.GetIpAddress=function()
-    {
+    $scope.GetIpAddress = function () {
         $.getJSON("http://jsonip.com/?callback=?", function (data) {
-            $scope.IpAddress = data.ip;            
+            $scope.IpAddress = data.ip;
         });
     }
 
-    $scope.NavigateAddressSlide=function(index ,IsNext)
-    {        
+    $scope.NavigateAddressSlide = function (index, IsNext) {
         var totalAddress = $scope.CustomerAddressList.length;
         var CurrIndex = 0;
-        if(index>=0)
-        {
-            if (IsNext==1)
-            {
+        if (index >= 0) {
+            if (IsNext == 1) {
                 CurrIndex = index + 1;
-                if (CurrIndex>=totalAddress)
-                {
+                if (CurrIndex >= totalAddress) {
                     CurrIndex = 0;
-                }                
+                }
             }
             else {
-                if (index>0)
-                {
+                if (index > 0) {
                     CurrIndex = index - 1;
                 }
                 else {
@@ -210,10 +197,10 @@
                 $scope.SelectedCustomerAddress.SelectedIndex = CurrIndex;
             }
         }
-       
-      
-       
-       
+
+
+
+
     }
 
     $scope.AddtoWishList = function (productObj) {
@@ -232,7 +219,7 @@
                       else if (response.data > 0) {
                           $scope.GetCartDetailsByCartGroupId();
                           toastr.success('Item successfully added in wish list.');
-                         
+
                       }
                   })
               .catch(function (response) {
@@ -247,7 +234,7 @@
         }
 
     }
-        
+
 
     $scope.GetCartDetailsByCartGroupId();
 

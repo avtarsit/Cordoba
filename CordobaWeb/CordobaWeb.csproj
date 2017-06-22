@@ -636,7 +636,6 @@
     <Content Include="Content\layout2\images\special-offers.jpg" />
     <Content Include="Content\layout2\images\Untitled-13.png" />
     <Content Include="Content\layout2\images\_slide1.jpg" />
-    <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
