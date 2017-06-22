@@ -495,7 +495,7 @@ function GetLayoutName() {
 
             })
              .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
-
+                 debugger;
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();

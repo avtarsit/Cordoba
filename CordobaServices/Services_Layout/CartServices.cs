@@ -68,9 +68,10 @@ namespace CordobaServices.Services_Layout
                                                };
 
 
-            SendInvoiceMailToCustomer(placeOrderObj.order_id);
+            
 
             var result = objGenericRepository.ExecuteSQL<int>("PlaceOrderAfterConfirmation", sqlParameter).FirstOrDefault();
+            SendInvoiceMailToCustomer(result);
             return result;
 
         }
@@ -134,15 +135,15 @@ namespace CordobaServices.Services_Layout
 
             #endregion
 
-            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplates/EmailTemplate.html");
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/EmailTemplate.html");
            
             const string strSubject = "Your Order Summary";
             var strbody = ReadTextFile(filepath);
             if (strbody.Length > 0)
             {
+                strbody = strbody.Replace("##OrderId##", Convert.ToString(orderItemDetailsRecord.order_id));//
+                strbody = strbody.Replace("##InvoiceId##", Convert.ToString(orderItemDetailsRecord.invoice_id));
                 strbody = strbody.Replace("##StoreName##", orderItemDetailsRecord.store_name);//
-                strbody = strbody.Replace("##OrderId##", Convert.ToString (orderItemDetailsRecord.order_id));//
-                strbody = strbody.Replace("##InvoiceId##", Convert.ToString (orderItemDetailsRecord.invoice_id));
                 strbody = strbody.Replace("##CustumerName##", orderItemDetailsRecord.customer_name);
                 strbody = strbody.Replace("##CustumerPhone##", orderItemDetailsRecord.telephone);
                 strbody = strbody.Replace("##CustumerEmail##", orderItemDetailsRecord.email);
@@ -177,8 +178,10 @@ namespace CordobaServices.Services_Layout
             objemailsetting.EmailUsername = ConfigurationManager.AppSettings["emailusername"];
             objemailsetting.EmailPassword = ConfigurationManager.AppSettings["emailpassword"];
             objemailsetting.EmailHostName = ConfigurationManager.AppSettings["emailhostname"];
-            objemailsetting.EmailEnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["emailenablessl"]);
+            objemailsetting.EmailEnableSsl = Convert.ToBoolean(Convert.ToInt32(ConfigurationManager.AppSettings["emailenablessl"]));
             objemailsetting.EmailPort = Convert.ToInt32(ConfigurationManager.AppSettings["emailport"]);
+            objemailsetting.FromName = ConfigurationManager.AppSettings["emailusername"];
+            objemailsetting.FromEmail = ConfigurationManager.AppSettings["emailusername"];
 
             return objemailsetting;
         }
