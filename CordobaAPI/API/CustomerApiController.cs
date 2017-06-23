@@ -27,14 +27,13 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public TableParameter<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, int PageIndex, string customerName, string email, int? customer_group_id,int? status , int? approved, string ip, DateTime? date_added, TableParameter<CustomerEntity> tableParameter)
+        public TableParameter<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, int PageIndex, string customerName, string email, int? customer_group_id,int? status , int? approved, string ip, DateTime? date_added, int storeId , TableParameter<CustomerEntity> tableParameter)
         {
             try
             {
-
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _CustomerService.GetCustomerList(StoreId, LoggedInUserId, sortColumn, tableParameter, customerName, email, customer_group_id,status, approved, ip, date_added).ToList();
+                var result = _CustomerService.GetCustomerList(StoreId, LoggedInUserId, sortColumn, tableParameter, customerName, email, customer_group_id,status, approved, ip, date_added , storeId).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -47,9 +46,9 @@ namespace CordobaAPI.API
                     iTotalDisplayRecords = totalRecords
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.Write(e);
                 throw;
             }
 
@@ -68,7 +67,7 @@ namespace CordobaAPI.API
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

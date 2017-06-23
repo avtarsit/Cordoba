@@ -4,8 +4,9 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+
     $scope.CountryList = [];
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -18,6 +19,7 @@
     $scope.PageTitle = "Show Stores";
 
     $scope.GetStoreList = function () {
+        debugger;
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {

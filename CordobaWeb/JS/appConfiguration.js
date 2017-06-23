@@ -140,17 +140,17 @@ function GetLayoutName() {
                   }
                   , TransactionReport = {
                       name: 'TransactionReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionReport.html'
                   }
                   , TransactionItemReport = {
                       name: 'TransactionItemReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionItemReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemReport.html'
                   }
                   , TransactionItemCategoryReport = {
                       name: 'TransactionItemCategoryReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionItemCategoryReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemCategoryReport.html'
                   }
                  , Product = {

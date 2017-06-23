@@ -4,8 +4,8 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.CatalogueList = [];
     //#endregion  
@@ -23,6 +23,7 @@
     $scope.ProductFilter.Price = "";
     $scope.ProductFilter.Quantity = "";
     $scope.ProductFilter.status = "";
+    
 
     if ($stateParams.Quantity != undefined && $stateParams.Quantity != null) {
         $scope.ProductFilter.Quantity = parseInt($stateParams.Quantity);
@@ -152,6 +153,24 @@
         });
     }
 
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+                  $scope.ProductFilter.storeId = $scope.StoreId;
+                  console.log($scope.StoreList);
+              }
+          })
+      .catch(function (response) {
 
+      })
+      .finally(function () {
+
+      });
+    }
+
+    GetStoreList();
     $scope.GetProductList();
 });

@@ -3,8 +3,8 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.PageTitle = "Order List";
 
     $scope.OrderStatus = [
@@ -21,7 +21,7 @@
         selectedOrderStatus: 1,
         dateAdded: '',
         Customer: '',
-        Total: '',
+        //Total: '',
         dateModified: ''
     };
 
@@ -96,7 +96,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&total="+$scope.filter.Total+"&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
+                    "url": sSource + "&PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -155,6 +155,27 @@
             }
         });
     }
+
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+                  //$scope.CustomerFilter.storeId = $scope.StoreId;
+                  console.log($scope.StoreList);
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    GetStoreList();
+
 
     $scope.GetOrderList();
 });

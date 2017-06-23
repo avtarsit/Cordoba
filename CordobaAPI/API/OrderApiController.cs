@@ -80,13 +80,13 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id,string CustomerName,decimal? total,Nullable<DateTime> DateAdded,Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
+        public TableParameter<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, int PageIndex, int? orderId, int? order_status_id,string CustomerName,Nullable<DateTime> DateAdded,Nullable<DateTime> DateModified, TableParameter<OrderEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _orderService.GetOrderList(StoreId,LoggedInUserId,sortColumn,orderId,order_status_id,CustomerName,total,DateAdded,DateModified, tableParameter, "").ToList();
+                var result = _orderService.GetOrderList(StoreId,LoggedInUserId,sortColumn,orderId,order_status_id,CustomerName,DateAdded,DateModified, tableParameter, "").ToList();
 
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)

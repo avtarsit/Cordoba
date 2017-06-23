@@ -11,7 +11,7 @@ namespace CordobaServices.Interfaces
 {
     public interface ICustomerService
     {
-        List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> tableParameter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added);
+        List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> tableParameter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added , int? storeId);
         
         CustomerEntity GetCustomerById(int StoreId, int LoggedInUserId, int customer_id);
 

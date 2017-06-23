@@ -1,25 +1,28 @@
 ﻿app.controller('TransactionItemCategoryReportController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
+
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     createDatePicker();
 
-    $scope.LoggedInUserId = 0;
-    $scope.TransactionReportObj = new Object();
-    $scope.TransactionReportObj.DateStart = null;
-    $scope.TransactionReportObj.DateEnd = null;
-
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.store_id = $rootScope.storeId;
+    $scope.TransactionItemCategoryReportObj = new Object();
+    $scope.TransactionItemCategoryReportObj.DateStart = null;
+    $scope.TransactionItemCategoryReportObj.DateEnd = null;
+    $scope.TransactionItemCategoryReportObj.store_id = $scope.store_id;
 
     $scope.PageTitle = "Reports - Transaction Item Category Report";
 
-    $scope.store_id = 0;
+    
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
+                  console.log($scope.StoreList);
               }
           })
       .catch(function (response) {
@@ -78,7 +81,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemCategoryReportList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemCategoryReportList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
                 aoData = BindSearchCriteria(aoData);
@@ -89,7 +92,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemCategoryFilter.DateStart + '&DateEnd=' + $scope.TransactionItemCategoryFilter.DateEnd + '&StoreId=' + $scope.TransactionItemCategoryReportObj.store_id,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemCategoryReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemCategoryReportObj.DateEnd + '&StoreId=' + $scope.TransactionItemCategoryReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

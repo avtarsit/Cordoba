@@ -4,13 +4,14 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.OrderReportObj = new Object();
     $scope.OrderReportObj.DateStart = null;
     $scope.OrderReportObj.DateEnd = null;
     $scope.OrderReportObj.GroupById = null;
     $scope.OrderReportObj.StatusId = null;
+    $scope.OrderReportObj.StoreId = $scope.StoreId;
     //#endregion  
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
     //                 .withOption('bDestroy', true)
@@ -93,7 +94,7 @@
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetOrderReportList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-
+                debugger;
                 aoData = BindSearchCriteria(aoData);
 
                 aoData = BindSorting(aoData, oSettings);
@@ -171,6 +172,26 @@
             }
         });
     }
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+                  //$scope.CustomerFilter.storeId = $scope.StoreId;
+                  console.log($scope.StoreList);
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    GetStoreList();
+
 
     $scope.GetOrderReportList();
 });

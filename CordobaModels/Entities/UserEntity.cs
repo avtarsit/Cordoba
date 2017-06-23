@@ -21,5 +21,6 @@ namespace CordobaModels.Entities
        public string image { get; set; }
        public Nullable<DateTime> date_added { get; set; }
        public int? store_id { get; set; }
+       public int IsStoreAdmin { get; set; }
     }
 }

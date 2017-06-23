@@ -75,7 +75,7 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "")
+        public IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -89,7 +89,7 @@ namespace CordobaServices.Services
                ,new SqlParameter("orderId ",orderId!=null?orderId:0) 
                ,new SqlParameter("order_status_id ",order_status_id!=null?order_status_id:0) 
                ,new SqlParameter("customer ",CustomerName!=null?CustomerName:(object)DBNull.Value) 
-               ,new SqlParameter("total ",total!=null?total:0)
+               //,new SqlParameter("total ",total!=null?total:0)
                ,new SqlParameter("dateAdded ",DateAdded!=null?DateAdded:(object)DBNull.Value)
                ,new SqlParameter("dateModifies ",DateModified!=null?DateModified:(object)DBNull.Value)
                 };

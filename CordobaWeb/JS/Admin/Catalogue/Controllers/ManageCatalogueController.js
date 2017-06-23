@@ -4,8 +4,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.StoreId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.IsEditMode = false;
     $scope.CatalogueObj = new Object();

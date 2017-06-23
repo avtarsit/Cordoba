@@ -9,8 +9,8 @@
                      .withOption('bDestroy', true)
     $scope.PageTitle = "Products Purchased List";
 
-    $scope.store_id = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.store_id = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.GridParams = new Object();
 
     $scope.ProductFilter = new Object();
@@ -57,7 +57,7 @@
     }
 
     function GetOrderStatus() {
-        $http.get(configurationService.basePath + "api/ProductPurchasedReportApi/GetOrderStatus?language_id=1" +'&StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId + '&language_id=1')
        .then(function (response) {
            if (response.data.length > 0) {
                $scope.OrderStatusList = response.data;
@@ -95,7 +95,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[1, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ProductPurchasedReportApi/GetProductPurchasedList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ProductPurchasedReportApi/GetProductPurchasedList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 //aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
@@ -105,11 +105,11 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex + "&order_status_id=" + $scope.ProductFilter.order_status_id + "&store_id=" + $scope.ProductFilter.store_id + "&DateStart=" + $scope.ProductFilter.DateStart + "&DateEnd=" + $scope.ProductFilter.DateEnd,
+                    "url": sSource + "?PageIndex=" + PageIndex + "&order_status_id=" + $scope.ProductFilter.order_status_id + "&store_id=" + $scope.ProductFilter.store_id + "&LoggedInUserId=" +$scope.LoggedInUserId  + "&DateStart=" + $scope.ProductFilter.DateStart + "&DateEnd=" + $scope.ProductFilter.DateEnd,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
-                        exceptionService.ShowException(data.responseJSON, data.status);
+                        //exceptionService.ShowException(data.responseJSON, data.status);
                     }
                 });
             },

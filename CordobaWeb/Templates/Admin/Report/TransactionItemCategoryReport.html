@@ -48,11 +48,13 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Store</label>
                                 <select ng-options="store.store_id as store.name  for store in StoreList"
-                                        class="form-control" ng-model="TransactionItemCategoryReportObj.store_id" name="store_List">
+                                        class="form-control" ng-model="TransactionReportObj.store_id" name="store_List" ng-disabled="TransactionReportObj.store_id != 0">
                                     <option value=""> --- Please Select --- </option>
                                 </select>
+                                
                             </div>
                             <button ng-click="GetTransactionItemCategoryReportList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                        
                         </div>
                     </div>
                 </div>

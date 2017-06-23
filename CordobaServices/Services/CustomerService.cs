@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace CordobaServices.Services
 {
-   
+
     public class CustomerService : ICustomerService
     {
-     
+
         private GenericRepository<CustomerEntity> CustomerEntityGenericRepository = new GenericRepository<CustomerEntity>();
 
-        public List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id,int? status, int? approved, string ip, DateTime? date_added)
+        public List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added , int? storeId)
         {
             try
             {
@@ -48,7 +48,8 @@ namespace CordobaServices.Services
                 var paramIp = new SqlParameter { ParameterName = "ip", DbType = DbType.String, Value = ip ?? (object)DBNull.Value };
                 var paramDate_added = new SqlParameter { ParameterName = "date_added", DbType = DbType.DateTime, Value = date_added ?? (object)DBNull.Value };
                 var paramstatus = new SqlParameter { ParameterName = "status", DbType = DbType.Int32, Value = status ?? (object)DBNull.Value };
-                var CustomerList = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerList", ParameterStoreId, ParameterLoggedInUserId, paramOrderBy, paramPageSize, paramPageIndex, paramCustomerName, paramEmail, paramCustomer_group_id, paramApproved, paramIp, paramDate_added, paramstatus).ToList<CustomerEntity>().ToList();
+                var paramStoreId = new SqlParameter { ParameterName = "storeId", DbType = DbType.Int32, Value = storeId ?? (object)DBNull.Value };
+                var CustomerList = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerList", paramOrderBy, paramPageSize, paramPageIndex, paramCustomerName, paramEmail, paramCustomer_group_id, paramApproved, paramIp, paramDate_added, paramstatus, paramStoreId).ToList<CustomerEntity>().ToList();
                 return CustomerList;
             }
             catch (Exception ex)
@@ -79,11 +80,11 @@ namespace CordobaServices.Services
                     Value = LoggedInUserId
                 };
 
-                if(customer_id > 0)
+                if (customer_id > 0)
                 {
                     var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
-                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById", ParameterStoreId, ParameterLoggedInUserId, paramCustomer_id).FirstOrDefault();
-                    if(result != null)
+                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById",paramCustomer_id).FirstOrDefault();
+                    if (result != null)
                     {
                         customerEntity = result;
                         customerEntity.password = Security.Decrypt(result.password);
@@ -117,7 +118,7 @@ namespace CordobaServices.Services
                     customerEntity.PointsAuditList = new List<PointsAuditEntity>();
                 }
 
-               
+
 
 
                 return customerEntity;
@@ -159,7 +160,7 @@ namespace CordobaServices.Services
         }
 
 
-      
+
 
         public int DeleteCustomer(int StoreId, int LoggedInUserId, int customer_id)
         {
@@ -212,8 +213,8 @@ namespace CordobaServices.Services
 
 
 
-        public int CustomerImport(int store_id, int LoggedInUserId, int customer_group_id,DataTable CustomerTable)
-        {           
+        public int CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable)
+        {
             string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
             try
             {

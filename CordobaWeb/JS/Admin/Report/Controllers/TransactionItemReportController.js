@@ -4,15 +4,16 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.LoggedInUserId = 0;
-    $scope.TransactionReportObj = new Object();
-    $scope.TransactionReportObj.DateStart = null;
-    $scope.TransactionReportObj.DateEnd = null;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.store_id = $rootScope.storeId;
+    $scope.TransactionItemReportObj = new Object();
+    $scope.TransactionItemReportObj.DateStart = null;
+    $scope.TransactionItemReportObj.DateEnd = null;
 
 
     $scope.PageTitle = "Reports - Transaction Item Report";
 
-    $scope.store_id = 0;
+  
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
@@ -77,7 +78,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemReportList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionItemReportList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
                 aoData = BindSearchCriteria(aoData);
@@ -88,7 +89,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemFilter.DateStart + '&DateEnd=' + $scope.TransactionItemFilter.DateEnd + '&StoreId=' + $scope.TransactionItemReportObj.store_id,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemReportObj.DateEnd + '&StoreId=' + $scope.store_id + '&LoggedInUserId=' +$scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

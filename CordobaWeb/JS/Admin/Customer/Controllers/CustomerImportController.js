@@ -6,7 +6,7 @@
     Tab();
     
     
-    $scope.LoggedInUserId = 0;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                        .withOption('bDestroy', true)
@@ -14,13 +14,14 @@
 
     $scope.PageTitle = "Customer Import";
 
-    $scope.store_id = 0;
+    $scope.store_id = $rootScope.storeId;
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
+                  debugger;
               }
           })
       .catch(function (response) {

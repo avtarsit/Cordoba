@@ -25,7 +25,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
-            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", ParameterLoggedInUserId, paramStoreId).ToList();
+            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId , ParameterLoggedInUserId).ToList();
             return StoreList;
         }
 
@@ -40,7 +40,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = store_id };
-            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", ParameterLoggedInUserId, paramStoreId).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", paramStoreId , ParameterLoggedInUserId).FirstOrDefault();
             if (result != null)
             {
                 storeEntity = result;

@@ -15,7 +15,7 @@
     <AssemblyName>CordobaWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -692,6 +692,7 @@
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
     <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
     <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
+    <Content Include="JS\Admin\_Layout\Controllers\LayoutController.js" />
     <Content Include="JS\appConfiguration.js" />
     <Content Include="JS\Common.js" />
     <Content Include="JS\Directives\appDirectives.js" />

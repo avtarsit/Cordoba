@@ -3,8 +3,8 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     if ($stateParams.orderId != undefined && $stateParams.orderId != null) {
         $scope.PageTitle = "Update Order";
