@@ -85,10 +85,10 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/OrderApi/GetOrderList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/OrderApi/GetOrderList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
-                aoData = BindSearchCriteria(aoData);
+                //aoData = BindSearchCriteria(aoData);
 
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblOrders').DataTable().page.info().page) + 1;

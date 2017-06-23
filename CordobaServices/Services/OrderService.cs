@@ -9,29 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CordobaServices.Helpers;
+using System.Web;
+using System.IO;
 
 namespace CordobaServices.Services
 {
     public class OrderService : IOrderService
     {
         private GenericRepository<OrderEntity> objGenericRepository = new GenericRepository<OrderEntity>();
+        private GenericRepository<PlaceOrderEntity> placeOrderRepository = new GenericRepository<PlaceOrderEntity>();
 
         public List<OrderEntity> GetOrderDetails(int StoreId, int LoggedInUserId, int orderId)
         {
             List<OrderEntity> orders = new List<OrderEntity>();
-            
-                var ParameterStoreId = new SqlParameter
-                {
-                    ParameterName = "StoreId",
-                    DbType = DbType.Int32,
-                    Value = StoreId
-                };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+
+            var ParameterStoreId = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = StoreId
+            };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramOrderId = new SqlParameter { ParameterName = "order_id", DbType = DbType.Int32, Value = orderId };
             orders = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetails", paramOrderId).ToList();
 
@@ -54,7 +57,7 @@ namespace CordobaServices.Services
 
         public int InsertOrderHistory(int StoreId, int LoggedInUserId, OrderHistoryEntity objHistoryEntity)
         {
-           
+
             var ParameterStoreId = new SqlParameter
             {
                 ParameterName = "StoreId",
@@ -109,7 +112,7 @@ namespace CordobaServices.Services
         {
             try
             {
-               
+
                 var ParameterStoreId = new SqlParameter
                 {
                     ParameterName = "StoreId",
@@ -122,8 +125,8 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = LoggedInUserId
                 };
-                var paramCustomerId= new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = CustomerId };
-                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", ParameterStoreId, ParameterLoggedInUserId, paramCustomerId).ToList();
+                var paramCustomerId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = CustomerId };
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", paramCustomerId, ParameterStoreId, ParameterLoggedInUserId).ToList();
                 return query;
             }
             catch (Exception)
@@ -388,12 +391,149 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id, int LoggedInUserId)
+        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id)
         {
-            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).FirstOrDefault();
+            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).FirstOrDefault();
 
-            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).ToList();
+            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).ToList();
             return OrderEntity;
         }
+
+        public int UpdateOrderStatus(int OrderId, int OrderStatusId, string Comment)
+        {
+            try
+            {
+                var sqlParameter = new SqlParameter[]{
+                    new SqlParameter("OrderId", OrderId),
+                    new SqlParameter("OrderStatusId", OrderStatusId),
+                    new SqlParameter("Comment", !string.IsNullOrWhiteSpace(Comment)? Comment : string.Empty)
+                };
+
+                var result = objGenericRepository.ExecuteSQL<int>("UpdateOrderStatusDetail", sqlParameter).FirstOrDefault();
+                if(result > 0 )
+                {
+                    SendOrderUpdateMailToCustomer(OrderId);
+                }
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        public bool SendOrderUpdateMailToCustomer(int order_id)
+        {
+
+            var orderIdParam = new SqlParameter
+            {
+                ParameterName = "order_id",
+                DbType = DbType.Int64,
+                Value = order_id
+            };
+
+            var result = placeOrderRepository.ExecuteSQL<PlaceOrderEntity>("GetOrderDetailsForEmail", orderIdParam);
+
+            var listOrderDetailsresponse = result.ToList();
+            var orderItemDetailsRecord = listOrderDetailsresponse.FirstOrDefault();
+
+
+
+            #region Generate Email body
+
+            var priceTableString = string.Empty;
+            priceTableString = priceTableString +
+            @"<table cellspacing='0' cellpadding='0' style='width:100%;font-family:Arial,Helvetica,sans-serif'>
+                              <tr style='font-weight:bold;height:25px;'>
+                                    <td style='text-align:left;border-bottom: 1px solid #ddd;width:50%;'>
+                                              Item
+                                    </td>
+                                    <td style='text-align:center;border-bottom: 1px solid #ddd;width:20%;'>
+                                              Quantity
+                                    </td>
+                                    <td style='text-align:right;border-bottom: 1px solid #ddd;width:30%' >
+                                              Price
+                                    </td>
+                              </tr>";
+            priceTableString = listOrderDetailsresponse.Aggregate(priceTableString, (current, a) => current + @"<tr style='font-weight:normal;height:25px;'>
+                                     <td  style='text-align: left;width:50%;'>" + a.product_name + "</td><td style='text-align:center;width:15%;'>" + a.quantity + "</td><td style='text-align:right;width:35%;'>" + a.product_price + "</td></tr>");
+
+
+            priceTableString = priceTableString +
+                // ReSharper disable once PossibleNullReferenceException
+               @"<tr style='font-weight:bold;height:25px;'>
+                                     <td   style='text-align:left;border-top: 1px solid #ddd; width:50%;'>Total</td><td style='text-align:center;border-top: 1px solid #ddd;width:15%;'></td><td style='text-align:right;border-top: 1px solid #ddd;width:35%;'>" + (orderItemDetailsRecord != null ? orderItemDetailsRecord.total.ToString() : "") + "</td></tr>";
+
+            priceTableString = priceTableString + "<table>";
+
+            #endregion
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/OrderStatusUpdateTemplate.html");
+
+            const string strSubject = "Your Order Summary";
+            var strbody = ReadTextFile(filepath);
+            if (strbody.Length > 0)
+            {
+                strbody = strbody.Replace("##OrderId##", Convert.ToString(orderItemDetailsRecord.order_id));//
+                strbody = strbody.Replace("##InvoiceId##", Convert.ToString(orderItemDetailsRecord.invoice_id));
+                strbody = strbody.Replace("##StoreName##", orderItemDetailsRecord.store_name);//
+                strbody = strbody.Replace("##CustumerName##", orderItemDetailsRecord.customer_name);
+                strbody = strbody.Replace("##CustumerPhone##", orderItemDetailsRecord.telephone);
+                strbody = strbody.Replace("##CustumerEmail##", orderItemDetailsRecord.email);
+                strbody = strbody.Replace("##OrderStatusName##", orderItemDetailsRecord.OrderStatusName);
+                strbody = strbody.Replace("##PaymentName##", orderItemDetailsRecord.payment_name);
+                strbody = strbody.Replace("##PaymentAddress##", orderItemDetailsRecord.payment_address);
+                strbody = strbody.Replace("##PaymentMethod##", orderItemDetailsRecord.payment_method);
+                strbody = strbody.Replace("##ShippingAddress##", orderItemDetailsRecord.shipping_address);
+                strbody = strbody.Replace("##ShippingName##", orderItemDetailsRecord.shipping_name);
+                strbody = strbody.Replace("##ShippingCompany##", orderItemDetailsRecord.shipping_company);
+                strbody = strbody.Replace("##ShippingMethod##", orderItemDetailsRecord.shipping_method);
+                strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
+                strbody = strbody.Replace("##FinalTable##", priceTableString);
+                //strbody = strbody.Replace("##RedirectPath##", redirectPath);
+
+                //strbody = strbody.Replace("##LeaveFeedback##", leaveFeedbackUrl);
+                strbody = strbody.Replace("##StoreLogo##", orderItemDetailsRecord.store_logo);
+            }
+
+            var commonServices = new CommonService();
+
+            CommonService.SendMailMessage(orderItemDetailsRecord.email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null);
+            return true;
+        }
+
+
+
+        // READ TEXT FILE
+        public static string ReadTextFile(string strFilePath)
+        {
+            var entireFile = string.Empty;
+            StreamReader objectRead = null;
+
+            try
+            {
+                ////open text file
+                objectRead = File.OpenText(strFilePath);
+                entireFile = objectRead.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Security.DisposeOf(objectRead);
+            }
+
+            return entireFile;
+        }
+
+
+
+
     }
 }

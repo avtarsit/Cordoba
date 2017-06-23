@@ -495,7 +495,7 @@ function GetLayoutName() {
 
             })
              .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
-
+                 debugger;
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
@@ -715,3 +715,13 @@ app.config(function (localStorageServiceProvider) {
       .setStorageType('localStorage');
 
 });
+
+app.constant('OrderStatusEnum',
+    {
+        Processing: 1,
+        Shipped: 2,
+        PartiallyShipped: 3,
+        Returned: 4,
+        Cancelled: 5,
+        Delivered: 6
+    });

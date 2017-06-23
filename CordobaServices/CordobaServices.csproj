@@ -39,6 +39,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +76,7 @@
     <Compile Include="Helpers\ExpressionBuilder.cs" />
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\CountryServices.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\CustomerGroupService.cs" />

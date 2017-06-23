@@ -105,7 +105,7 @@
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblShippingReport').DataTable().page.info().page) + 1;
                 oSettings.jqXHR = $.ajax({
-                    'dataSrc': 'aaData',
+                    'dataSrc': 'aoData',
                     "dataType": 'json',
                     "type": "POST",
                     "url": sSource + "?PageIndex=" + PageIndex,

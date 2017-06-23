@@ -101,7 +101,7 @@
                     </li>
                 </ul>*@
             @*<p class="navbar-text"><span class="label bg-success-400">Online</span></p>*@
-            <ul class="nav navbar-nav navbar-right pull-right">
+            <ul class="nav navbar-nav navbar-right pull-right" ng-controller="dashboard_OrderCountController">
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-life-ring fa-lg"></i></a>
@@ -119,21 +119,20 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        <span class="label label-danger pull-left">400</span>
+                        <span class="label label-danger pull-left">{{ProcessingOrderCount + DeliveredOrderCount + ReturnedOrderCount }}</span>
                         <i class="fa fa-bell fa-lg"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right alerts-dropdown">
                         <li class="dropdown-header">Orders</li>
-                        <li><a style="display: block; overflow: auto;"><span class="label label-warning pull-right">2419</span>Pending</a></li>
-                        <li><a><span class="label label-success pull-right">5992</span>Completed</a></li>
-                        <li><a><span class="label label-danger pull-right">5</span>Returns</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Customers</li>
-                        <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Products</li>
-                        <li ui-sref="Product({Quantity:'0'})"><a><span class="label label-danger pull-right">31</span>Out of stock</a></li>
+                        <li><a style="display: block; overflow: auto;" ui-sref="OrderReport" href="#"><span class="label label-warning pull-right">{{ProcessingOrderCount}}</span>Processing</a></li>
+                        <li><a ui-sref="OrderReport" href="#"><span class="label label-success pull-right">{{DeliveredOrderCount}}</span>Delivered</a></li>
+                        <li><a ui-sref="OrderReport" href="#"><span class="label label-danger pull-right">{{ReturnedOrderCount}}</span>Returned</a></li>
                         @*<li class="divider"></li>*@
+                        @*<li class="dropdown-header">Customers</li>
+                    <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Products</li>
+                                @*<li class="divider"></li>*@
                     </ul>
                 </li>
 
@@ -146,7 +145,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#"><i class="icon-user-plus"></i>profile</a></li>
                         @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-                            <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
+                    <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
                         <li class="divider"></li>
                         @*<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>*@
                         <li><a href="@Url.Action("Login", "Admin", null)"><i class="icon-switch2"></i> Logout</a></li>

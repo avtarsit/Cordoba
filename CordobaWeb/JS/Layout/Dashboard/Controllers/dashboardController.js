@@ -15,6 +15,7 @@
     $scope.Login = function (form) {
 
         if (form.$valid) {
+            debugger;
 
             $scope.CustomerObj.cartgroup_id = UserDetail.cartgroup_id;
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;

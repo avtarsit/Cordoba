@@ -100,7 +100,57 @@
                                         </tbody>
 
                                     </table>
+
                                     <!--End OrderDetails Tab-->
+
+                                    <div>
+                                        <div>
+                                            <h3>Update Order Status</h3>
+                                            <hr />
+                                        </div>
+                                        <div class="panel panel-flat">
+                                            <div class="panel-heading">
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
+                                                        <div class="col-lg-10">
+                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderDetails.order_status_id" class="form-control"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label text-right">Notify Customer</label>
+                                                        <div class="col-lg-10">
+                                                            <input type="checkbox" ng-model="OrderStatusNotify" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label text-right">Comment</label>
+                                                        <div class="col-lg-10">
+                                                            <textarea class="form-control" ng-model="OrderStatusComment"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-2"></div>
+                                                        <div class="col-lg-10 text-right">
+                                                            <input type="button" value="Update Status" class="btn btn-primary" ng-click="UpdateOrderStatus()" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="PaymentDetail">
                                     <!--OrderDetails Tab-->

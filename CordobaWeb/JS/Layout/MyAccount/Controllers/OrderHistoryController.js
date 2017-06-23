@@ -22,8 +22,7 @@ app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail,
 
 
     $scope.GetOrderHistory = function () {
-               
-        $http.get(configurationService.basePath + "API/OrderApi/GetOrderHistory?customer_id=" + UserDetail.customer_id)
+        $http.get(configurationService.basePath + "API/OrderApi/GetOrderHistory?StoreId=" + StoreSessionDetail.store_id + "&LoggedInUserId=0&customer_id=" + UserDetail.customer_id)
           .then(function (response) {              
               $scope.OrderHisotry = response.data;
           })

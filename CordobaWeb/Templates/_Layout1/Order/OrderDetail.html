@@ -38,7 +38,28 @@
                             <p class="product-price"><span>Subtotal:</span> <span ng-bind="(Item.total) +' points'"></span></p>
                         </div>
                     </div>
-                </div>           
+                </div>
+                <div class="cart-detail" ng-if="OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered">
+                    <ul class="order-status">
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                            <!--<li ng-class="{'completed' : ($scope.OrderdetailObj.order_status_id == 1 || $scope.OrderdetailObj.order_status_id == 2 || $scope.OrderdetailObj.order_status_id == 6)}">-->
+                            <i class="fa fa-check"></i>
+                            <span>Order Received</span>
+                        </li>
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                            <i class="fa fa-check"></i>
+                            <span>Shipped</span>
+                        </li>
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                            <i class="fa fa-check"></i>
+                            <span>Delivered</span>
+                        </li>
+                    </ul>
+                    <div class="remove-product">
+                        <button class="remove-item"><i class="fa fa-phone"></i> Contact Us</button>
+                        <!-- <button class="remove-item"><i class="fa fa-file-text-o"></i> Invoice</button> -->
+                    </div>
+                </div>
                 <div class="payment-summary">
                     <button class="remove-item pull-right" ui-sref="OrderHistory"><i class="fa fa-arrow-left"></i> Back to Orders</button>
                 </div>
@@ -53,7 +74,7 @@
                 </div>
             </div>
             <div class="account-block">
-                <h4 class="payment-heading">Payment Summary</h4>              
+                <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <ul>
                         <li ng-repeat="Item in OrderdetailObj.orderProductEntity">
