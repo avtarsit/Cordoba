@@ -101,7 +101,7 @@
                     </li>
                 </ul>*@
             @*<p class="navbar-text"><span class="label bg-success-400">Online</span></p>*@
-            <ul class="nav navbar-nav navbar-right pull-right">
+            <ul class="nav navbar-nav navbar-right pull-right" ng-controller="dashboard_OrderCountController">
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-life-ring fa-lg"></i></a>
@@ -119,21 +119,20 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        <span class="label label-danger pull-left">400</span>
+                        <span class="label label-danger pull-left">{{ProcessingOrderCount + DeliveredOrderCount + ReturnedOrderCount }}</span>
                         <i class="fa fa-bell fa-lg"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right alerts-dropdown">
                         <li class="dropdown-header">Orders</li>
-                        <li><a style="display: block; overflow: auto;"><span class="label label-warning pull-right">2419</span>Pending</a></li>
-                        <li><a><span class="label label-success pull-right">5992</span>Completed</a></li>
-                        <li><a><span class="label label-danger pull-right">5</span>Returns</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Customers</li>
-                        <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Products</li>
-                        <li ui-sref="Product({Quantity:'0'})"><a><span class="label label-danger pull-right">31</span>Out of stock</a></li>
+                        <li><a style="display: block; overflow: auto;" ui-sref="OrderReport" href="#"><span class="label label-warning pull-right">{{ProcessingOrderCount}}</span>Processing</a></li>
+                        <li><a ui-sref="OrderReport" href="#"><span class="label label-success pull-right">{{DeliveredOrderCount}}</span>Delivered</a></li>
+                        <li><a ui-sref="OrderReport" href="#"><span class="label label-danger pull-right">{{ReturnedOrderCount}}</span>Returned</a></li>
                         @*<li class="divider"></li>*@
+                        @*<li class="dropdown-header">Customers</li>
+                    <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Products</li>
+                                @*<li class="divider"></li>*@
                     </ul>
                 </li>
 
@@ -146,7 +145,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#"><i class="icon-user-plus"></i>profile</a></li>
                         @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-                            <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
+                    <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
                         <li class="divider"></li>
                         @*<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>*@
                         <li><a href="@Url.Action("Login", "Admin", null)"><i class="icon-switch2"></i> Logout</a></li>
@@ -222,9 +221,9 @@
 
 
                                         <li><a href="#" ui-sref="Banner"><i class="icon-forward"></i> <span> Banners</span></a></li>
-                                        </ul>
+                                    </ul>
                                 </li>
-                                
+
                                 <li>
                                     <a href="#"><i class="fa fa-tags fa-fw"></i> <span>Sales</span></a>
                                     <ul>
@@ -245,53 +244,53 @@
                                     </ul>
                                 </li>
 
-                           
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Tools <span></span></a>
-                                <ul>
-                                    <li><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
-                                    <li><a href="#" ui-sref="ShowProductCatalogue"><i class="icon-forward"></i> <span>  Product Catalogues</span></a></li>
-                                </ul>
 
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-graph"></i>Report <span></span></a>
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="icon-forward"></i> <span> Sales Analytics</span></a>
-                                        <ul>
-                                            <li><a href="#" ui-sref="OrderReport"><i class="icon-forward"></i> <span> Orders Summary</span></a></li>
-                                            @*<li><a href="#" ui-sref="ShippingReport"><i class="icon-forward"></i> <span> Shipping</span></a></li>*@
-                                            <li><a href="#" ui-sref="ReturnReport"><i class="icon-forward"></i> <span> Orders Returns Summary</span></a></li>
-                                            @*<li><a href="#" ui-sref="CouponsReport"><i class="icon-forward"></i> <span> Coupons</span></a></li>*@
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon-forward"></i> <span> Product Analytics</span></a>
-                                        <ul>
-                                            @*<li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>*@
-                                            <li><a ui-sref="ProductPurchasedReport"><i class="icon-forward"></i> <span> Purchased Summary</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon-forward"></i> <span> Transaction Reports</span></a>
-                                        <ul>
-                                            <li><a ui-sref="TransactionReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Reports</span></a></li>
-                                            <li><a ui-sref="TransactionItemReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Reports</span></a></li>
-                                            <li><a ui-sref="TransactionItemCategoryReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Category</span></a></li>
-                                        </ul>
-                                    </li>
-                                 
+                                <li>
+                                    <a href="#"><i class="fa fa-wrench fa-fw"></i>Tools <span></span></a>
+                                    <ul>
+                                        <li><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
+                                        <li><a href="#" ui-sref="ShowProductCatalogue"><i class="icon-forward"></i> <span>  Product Catalogues</span></a></li>
+                                    </ul>
 
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-gift fa-fw"></i>Rewards <span></span></a>
-                                <ul>
-                                    <li><a href="#" ui-sref="ShowReward"><i class="icon-forward"></i> <span> Rewards</span></a></li>
-                                </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-graph"></i>Report <span></span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon-forward"></i> <span> Sales Analytics</span></a>
+                                            <ul>
+                                                <li><a href="#" ui-sref="OrderReport"><i class="icon-forward"></i> <span> Orders Summary</span></a></li>
+                                                @*<li><a href="#" ui-sref="ShippingReport"><i class="icon-forward"></i> <span> Shipping</span></a></li>*@
+                                                <li><a href="#" ui-sref="ReturnReport"><i class="icon-forward"></i> <span> Orders Returns Summary</span></a></li>
+                                                @*<li><a href="#" ui-sref="CouponsReport"><i class="icon-forward"></i> <span> Coupons</span></a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-forward"></i> <span> Product Analytics</span></a>
+                                            <ul>
+                                                @*<li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>*@
+                                                <li><a ui-sref="ProductPurchasedReport"><i class="icon-forward"></i> <span> Purchased Summary</span></a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-forward"></i> <span> Transaction Reports</span></a>
+                                            <ul>
+                                                <li><a ui-sref="TransactionReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Reports</span></a></li>
+                                                <li><a ui-sref="TransactionItemReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Reports</span></a></li>
+                                                <li><a ui-sref="TransactionItemCategoryReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Category</span></a></li>
+                                            </ul>
+                                        </li>
 
-                            </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-gift fa-fw"></i>Rewards <span></span></a>
+                                    <ul>
+                                        <li><a href="#" ui-sref="ShowReward"><i class="icon-forward"></i> <span> Rewards</span></a></li>
+                                    </ul>
+
+                                </li>
                             </ul>
                         </div>
                     </div>

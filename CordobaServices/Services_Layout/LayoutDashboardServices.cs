@@ -361,6 +361,22 @@ namespace CordobaServices.Services_Layout
 
         }
 
+        public List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                var result = objGenericRepository.ExecuteSQL<OrderDetailCountEntity>("GetOrderCount", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
 
     }
