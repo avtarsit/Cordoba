@@ -57,8 +57,6 @@ namespace CordobaServices.Services
                     ,new SqlParameter("GroupById", GroupById!=null ? GroupById:(object)DBNull.Value)
                     ,new SqlParameter("StatusId", StatusId!=null ? StatusId:(object)DBNull.Value)
                     ,new SqlParameter("store_id", StoreId!=null ? StoreId:(object)DBNull.Value)
-                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
-                    
                 };
 
 

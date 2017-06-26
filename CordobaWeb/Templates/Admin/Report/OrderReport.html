@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Order Status</label>
 
-                                <select ng-options="Status.id as Status.name  for Status in OrderStatus"
+                                <select ng-options="Status.id as Status.name  for Status in OrderStatusList | orderBy : 'name'"
                                         class="form-control"
                                         ng-model="OrderReportObj.StatusId"
                                         id="input-status"

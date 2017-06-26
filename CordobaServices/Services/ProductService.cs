@@ -115,11 +115,10 @@ namespace CordobaServices.Services
             return ProductEntity;
         }
 
-        public CartEntity AddProductToCart(int store_id, int LoggedInUserId, int customer_id, int product_id, int qty, int cartgroup_id)
+        public CartEntity AddProductToCart(int store_id,int customer_id, int product_id, int qty, int cartgroup_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("store_id",store_id)                                 
-                                                 , new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                   new SqlParameter("store_id",store_id)                                                                                
                                                  , new SqlParameter("customer_id", customer_id)
                                                  , new SqlParameter("product_id", product_id)
                                                  , new SqlParameter("qty", qty)
@@ -175,11 +174,10 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int LoggedInUserId, int CategoryId, int Customer_Id=0,string WhatAreYouLookingFor="")
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID,int CategoryId, int Customer_Id=0,string WhatAreYouLookingFor="")
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("StoreID", StoreID)
-                                                   ,new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                   new SqlParameter("StoreID", StoreID)                                             
                                                    , new SqlParameter("CategoryId",CategoryId)
                                                     , new SqlParameter("Customer_Id",Customer_Id)
                                                        , new SqlParameter("WhatAreYouLookingFor",WhatAreYouLookingFor==null?"":WhatAreYouLookingFor)

@@ -64,7 +64,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId)
+        public HttpResponseMessage InsertUpdateStore(int LoggedInUserId , StoreEntity storeEntity)
         {
             try
             {

@@ -102,21 +102,7 @@
                   })
                   .finally(function () {
 
-                     });
-           
-        }
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
-          .then(function (response) {
-              $scope.CategoryObj = response.data;
-              CreateDescriptionObject();
-
-          })
-          .catch(function (response) {
-          })
-          .finally(function () {
-
-          });
-
+                  });           
     }
 
     function CreateDescriptionObject() {
@@ -139,7 +125,6 @@
         });
 
     }
-
 
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;

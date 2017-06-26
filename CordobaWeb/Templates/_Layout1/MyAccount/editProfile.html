@@ -75,19 +75,19 @@
 
                     <div class="col-sm-6">
                         <label>First Name</label>
-                        <input type="text" class="form-control" name="FirstName" ng-model="GetCustomerDetailObj.firstname" required="required" />
+                        <input type="text" class="form-control" maxlength="32" name="FirstName" ng-model="GetCustomerDetailObj.firstname" required="required" />
                     </div>
                     <div class="col-sm-6">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" name="LastName" ng-model="GetCustomerDetailObj.lastname" required="required" />
+                        <input type="text" class="form-control" maxlength="32" name="LastName" ng-model="GetCustomerDetailObj.lastname" required="required" />
                     </div>
                     <div class="col-sm-6">
                         <label>Email Address</label>
-                        <input type="email" class="form-control" name="EmailAddress" ng-model="GetCustomerDetailObj.email" required="required" />
+                        <input type="email" class="form-control" maxlength="96" name="EmailAddress" ng-model="GetCustomerDetailObj.email" required="required" />
                     </div>
                     <div class="col-sm-6">
                         <label>Telephone No</label>
-                        <input type="text" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
+                        <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
                     </div>
 
                 </div>
