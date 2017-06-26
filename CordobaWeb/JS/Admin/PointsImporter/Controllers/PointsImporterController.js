@@ -5,9 +5,9 @@
     Tab();
     //#endregion  
     
-    $scope.LoggedInUserId = 0;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.IsSendEmail = false;
-    $scope.store_id="";
+    $scope.store_id = $rootScope.storeId;
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);

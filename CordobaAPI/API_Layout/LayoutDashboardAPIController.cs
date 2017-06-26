@@ -8,16 +8,12 @@ using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
 using System.Web.Http.Hosting;
 using CordobaModels.Entities;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace CordobaAPI.API_Layout
 {
     public class LayoutDashboardAPIController : ApiController
     {
         public ILayoutDashboardServices _LayoutDashboardServices;
-
-        
 
         public LayoutDashboardAPIController()
         {
@@ -165,45 +161,45 @@ namespace CordobaAPI.API_Layout
         }
 
 
-         [HttpGet]
-         public HttpResponseMessage GetBestSellerListByStoreId(int StoreID)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.GetBestSellerListByStoreId(StoreID);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
+        [HttpGet]
+        public HttpResponseMessage GetBestSellerListByStoreId(int StoreID)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.GetBestSellerListByStoreId(StoreID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
 
-                 throw;
-             }
+                throw;
+            }
 
-         }
+        }
 
-         [HttpPost]
-         public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
-         {
-             try
-             {
-                 var result = _LayoutDashboardServices.AddtoWishList(WishObj);
-                 if (result != null)
-                 {
-                     return Request.CreateResponse(HttpStatusCode.OK, result);
-                 }
-                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-             }
-             catch (Exception)
-             {
+        [HttpPost]
+        public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.AddtoWishList(WishObj);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
 
-                 throw;
-             }
+                throw;
+            }
 
-         }
+        }
 
         [HttpGet]
         public HttpResponseMessage RemoveFromWishList(int StoreID, int product_id, int Customer_Id)
@@ -370,13 +366,12 @@ namespace CordobaAPI.API_Layout
             }
         }
 
-
-        [HttpPost]
-        public HttpResponseMessage ForgotPassword(CustomerEntity CustomerObj)
+        [HttpGet]
+        public HttpResponseMessage GetOrderDetailCount(int Store_Id)
         {
             try
             {
-                var result = _LayoutDashboardServices.ForgotPassword(CustomerObj);
+                var result = _LayoutDashboardServices.GetOrderStatusCount(Store_Id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -385,11 +380,8 @@ namespace CordobaAPI.API_Layout
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
-
     }
 }

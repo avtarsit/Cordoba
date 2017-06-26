@@ -25,7 +25,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
-            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", ParameterLoggedInUserId, paramStoreId).ToList();
+            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId , ParameterLoggedInUserId).ToList();
             return StoreList;
         }
 
@@ -40,7 +40,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = store_id };
-            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", ParameterLoggedInUserId, paramStoreId).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", paramStoreId , ParameterLoggedInUserId).FirstOrDefault();
             if (result != null)
             {
                 storeEntity = result;
@@ -52,8 +52,9 @@ namespace CordobaServices.Services
         public int InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("LoggedInUserId", LoggedInUserId)                                 
-                                                 , new SqlParameter("store_id", storeEntity.store_id)
+                                                                                    
+                                                   new SqlParameter("store_id", storeEntity.store_id)
+                                                 , new SqlParameter("LoggedInUserId", LoggedInUserId)
                                                  , new SqlParameter("url", storeEntity.url?? (object) DBNull.Value)
                                                  , new SqlParameter("name", storeEntity.name ??  DBNull.Value.ToString())
                                                  , new SqlParameter("title", storeEntity.title ??  DBNull.Value.ToString())

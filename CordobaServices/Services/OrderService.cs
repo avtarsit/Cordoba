@@ -78,7 +78,7 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "")
+        public IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "")
         {
             try
             {
@@ -92,7 +92,7 @@ namespace CordobaServices.Services
                ,new SqlParameter("orderId ",orderId!=null?orderId:0) 
                ,new SqlParameter("order_status_id ",order_status_id!=null?order_status_id:0) 
                ,new SqlParameter("customer ",CustomerName!=null?CustomerName:(object)DBNull.Value) 
-               ,new SqlParameter("total ",total!=null?total:0)
+               //,new SqlParameter("total ",total!=null?total:0)
                ,new SqlParameter("dateAdded ",DateAdded!=null?DateAdded:(object)DBNull.Value)
                ,new SqlParameter("dateModifies ",DateModified!=null?DateModified:(object)DBNull.Value)
                 };
@@ -126,7 +126,7 @@ namespace CordobaServices.Services
                     Value = LoggedInUserId
                 };
                 var paramCustomerId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = CustomerId };
-                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", ParameterStoreId, ParameterLoggedInUserId, paramCustomerId).ToList();
+                var query = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderHistory", paramCustomerId, ParameterStoreId, ParameterLoggedInUserId).ToList();
                 return query;
             }
             catch (Exception)
@@ -391,11 +391,11 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id, int LoggedInUserId)
+        public OrderEntity GetOrderDetail_Layout(int order_id, int store_id)
         {
-            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).FirstOrDefault();
+            var OrderEntity = objGenericRepository.ExecuteSQL<OrderEntity>("GetOrderDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).FirstOrDefault();
 
-            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("LoggedInUserId", LoggedInUserId), new SqlParameter("order_id", order_id)).ToList();
+            OrderEntity.orderProductEntity = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetOrderProductDetail_Layout", new SqlParameter("storeId", store_id), new SqlParameter("order_id", order_id)).ToList();
             return OrderEntity;
         }
 

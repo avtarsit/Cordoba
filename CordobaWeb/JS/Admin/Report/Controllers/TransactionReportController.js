@@ -4,15 +4,17 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.LoggedInUserId = 0;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.store_id = $rootScope.storeId;
     $scope.TransactionReportObj = new Object();
     $scope.TransactionReportObj.DateStart = null;
     $scope.TransactionReportObj.DateEnd = null;
+    $scope.TransactionReportObj.store_id = $scope.store_id;
    
 
     $scope.PageTitle = "Reports - Transaction Report";
 
-    $scope.store_id = 0;
+    
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
@@ -77,7 +79,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionReportList?StoreId=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetTransactionReportList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
                 aoData = BindSearchCriteria(aoData);
@@ -88,7 +90,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionFilter.DateStart + '&DateEnd=' + $scope.TransactionFilter.DateEnd + '&StoreId=' + $scope.TransactionReportObj.store_id,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionReportObj.DateStart + '&DateEnd=' + $scope.TransactionReportObj.DateEnd + '&StoreId=' + $scope.TransactionReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

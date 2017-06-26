@@ -278,7 +278,8 @@ namespace CordobaServices.Services_Layout
              , new SqlParameter("address_2",AddressObj.address_2!=null? AddressObj.address_2:(object)DBNull.Value)  
              , new SqlParameter("postcode",AddressObj.postcode!=null? AddressObj.postcode:(object)DBNull.Value)  
              , new SqlParameter("city",AddressObj.city!=null? AddressObj.city:(object)DBNull.Value)  
-             , new SqlParameter("country_id",AddressObj.country_id) 
+             , new SqlParameter("county",AddressObj.county!=null? AddressObj.county:(object)DBNull.Value)  
+             , new SqlParameter("country_id",AddressObj.country_id!=null? AddressObj.country_id:(object)DBNull.Value) 
              , new SqlParameter("IsDefaultAddress",AddressObj.IsDefaultAddress!=null?AddressObj.IsDefaultAddress:false) 
             };
                 var result = objGenericRepository.ExecuteSQL<AddressEntity>("AddOrUpdateAddressDetail_Layout", sqlParameter).ToList();
@@ -352,6 +353,22 @@ namespace CordobaServices.Services_Layout
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStoreId", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                var result = objGenericRepository.ExecuteSQL<OrderDetailCountEntity>("GetOrderCount", sqlParameter).ToList();
                 return result;
             }
             catch (Exception)

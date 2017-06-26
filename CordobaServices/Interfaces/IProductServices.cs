@@ -12,11 +12,11 @@ namespace CordobaServices.Interfaces
     {
         List<ProductEntity> GetProductList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<ProductEntity> filter,  string name, decimal? Price, int? status, string Model, int? Quantity);
         ProductEntity GetProductById(int StoreId, int LoggedInUserId, int product_id);
-        CartEntity AddProductToCart(int store_id, int LoggedInUserId, int customer_id, int product_id, int qty, int cartgroup_id);
+        CartEntity AddProductToCart(int store_id,int customer_id, int product_id, int qty, int cartgroup_id);
         int DeleteProductFromCart(int StoreId, int LoggedInUserId, int cart_id);
 
         int InsertUpdateProduct(int StoreId, int LoggedInUserId, ProductEntity productEntity);
-        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int LoggedInUserId, int CategoryId, int Customer_Id,string WhatAreYouLookingFor);
+        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int Customer_Id,string WhatAreYouLookingFor);
 
         int DeleteProduct(int StoreId, int LoggedInUserId, int product_id);
         ProductEntity GetProductDetailForLayout(int StoreId, int LoggedInUserId, int ProductId);

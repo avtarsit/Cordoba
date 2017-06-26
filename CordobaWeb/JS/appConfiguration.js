@@ -19,8 +19,9 @@ function GetAdminUserDetail() {
 
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" + "http://lmhfs2015.cordobarewards.co.uk/",
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,
         //window.location.href,
+        //http://lmhfs2015.cordobarewards.co.uk/
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
@@ -140,17 +141,17 @@ function GetLayoutName() {
                   }
                   , TransactionReport = {
                       name: 'TransactionReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionReport.html'
                   }
                   , TransactionItemReport = {
                       name: 'TransactionItemReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionItemReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemReport.html'
                   }
                   , TransactionItemCategoryReport = {
                       name: 'TransactionItemCategoryReport',
-                      url: '/Reports/Sales/Transaction',
+                      url: '/Reports/Sales/TransactionItemCategoryReport',
                       templateUrl: 'Templates/' + LayoutName + '/Report/TransactionItemCategoryReport.html'
                   }
                  , Product = {
@@ -290,7 +291,7 @@ function GetLayoutName() {
                 }
                 , ShowOrders = {
                     name: 'ShowOrders',
-                    url: '/ShowOrders',
+                    url: '/ShowOrders?OrderStatusId',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
                 }
                 , ManageOrder = {
@@ -494,8 +495,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
-                 debugger;
+             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {                 
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
@@ -514,7 +514,6 @@ function GetLayoutName() {
                  else {
                      localStorageService.set("loggedInUser", UserDetail);
                  }
-
 
                  $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
 
@@ -715,3 +714,13 @@ app.config(function (localStorageServiceProvider) {
       .setStorageType('localStorage');
 
 });
+
+app.constant('OrderStatusEnum',
+    {
+        Processing: 1,
+        Shipped: 2,
+        PartiallyShipped: 3,
+        Returned: 4,
+        Cancelled: 5,
+        Delivered: 6
+    });

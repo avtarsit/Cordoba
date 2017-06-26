@@ -4,8 +4,8 @@
     BindToolTip();
     Tab();
     //#endregion
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     function Init() {
         $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
         $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];

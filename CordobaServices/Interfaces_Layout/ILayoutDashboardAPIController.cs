@@ -27,13 +27,7 @@ namespace CordobaServices.Interfaces_Layout
         List<StoreImageEntity> GetStoreImageList(int Store_Id);
         List<ProductEntity> GetBestSellerListByStoreId(int StoreID);
         List<StoreTermsEntity> GetStoreTermsDetail(int Store_Id);
-
-
-
-        //forgor password
         CustomerEntity ForgotPassword(CustomerEntity CustomerObj);
-        //CustomerEntity SendOtpFrontUser(CustomerEntity customerEntity);
-
-
+        List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID);
     }
 }

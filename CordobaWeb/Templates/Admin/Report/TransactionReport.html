@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-start">Date Start</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" id="filter_date_start" name="filter_date_start" ng-model="TransactionFilter.DateStart" class="form-control" placeholder="MM/DD/YYYY">
+                                    <input type="text" id="filter_date_start" name="filter_date_start" ng-model="TransactionReportObj.DateStart" class="form-control" placeholder="MM/DD/YYYY">
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-date-end">Date End</label>
                                 <div class="input-group myDatePicker date">
-                                    <input type="text" id="filter_date_End" name="filter_date_End" ng-model="TransactionFilter.DateEnd" class="form-control" placeholder="MM/DD/YYYY">
+                                    <input type="text" id="filter_date_End" name="filter_date_End" ng-model="TransactionReportObj.DateEnd" class="form-control" placeholder="MM/DD/YYYY">
                                     <span class="input-group-addon cursor-pointer">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Store</label>
                                 <select ng-options="store.store_id as store.name  for store in StoreList"
-                                        class="form-control" ng-model="TransactionReportObj.store_id" name="store_List">
+                                        class="form-control" ng-model="TransactionReportObj.store_id" name="store_List" ng-disabled="TransactionReportObj.store_id != 0">
                                     <option value=""> --- Please Select --- </option>
                                 </select>
                             </div>

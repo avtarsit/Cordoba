@@ -4,13 +4,14 @@
     BindToolTip();
     Tab();
     createDatePicker();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.OrderReportObj = new Object();
     $scope.OrderReportObj.DateStart = null;
     $scope.OrderReportObj.DateEnd = null;
     $scope.OrderReportObj.GroupById = null;
     $scope.OrderReportObj.StatusId = null;
+    $scope.OrderReportObj.StoreId = $scope.StoreId;
     //#endregion  
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
     //                 .withOption('bDestroy', true)
@@ -25,16 +26,23 @@
        { id: 3, name: 'Days' }
     ];
 
+    $scope.GetOrderStatus = function () {
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + '&Language_Id=1')
+       .then(function (response) {
+           if (response.data.length > 0) {
+               $scope.OrderStatusList = response.data;
+               var DefaultOption = new Object()
+               DefaultOption.order_status_id = 0;
+               DefaultOption.name = "All Statuses";
+               $scope.OrderStatusList.push(DefaultOption);
+           }
+       })
+   .catch(function (response) {
+   })
+   .finally(function () {
 
-    $scope.OrderStatus = [
-       { id: 0, name: 'All Statuses' },
-       { id: 1, name: 'Processing' },
-       { id: 2, name: 'Shipped' },
-       { id: 3, name: 'Partially Shipped' },
-       { id: 4, name: 'Returned' },
-       { id: 5, name: 'Cancelled' }
-    ];
-
+   });
+    }
 
     $scope.filter = {
         DateStart: '',
@@ -42,7 +50,7 @@
         NoReturns: '',
         NoProducts: '',
         Total: '',
-        Tax:''
+        Tax: ''
     };
 
 
@@ -57,7 +65,7 @@
 
 
     function BindSorting(aoData, oSettings) {
-     
+
         angular.forEach(oSettings.aaSorting, function (row, i) {
             var sortObj = new Object();
             sortObj.Column = oSettings.aoColumns[row[0]].mData;
@@ -69,7 +77,7 @@
     }
 
     $scope.GetOrderReportList = function () {
- 
+
         if ($.fn.DataTable.isDataTable("#tblOrderReport")) {
             $('#tblOrderReport').DataTable().destroy();
         }
@@ -93,16 +101,15 @@
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetOrderReportList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-
                 aoData = BindSearchCriteria(aoData);
-
+                debugger;
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblOrderReport').DataTable().page.info().page) + 1;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + $scope.OrderReportObj.GroupById + '&StatusId=' + $scope.OrderReportObj.StatusId + '&StoreId=' + $scope.StoreId,
+                    "url": sSource + '&PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + $scope.OrderReportObj.GroupById + '&StatusId=' + $scope.OrderReportObj.StatusId + '&StoreId=' + $scope.StoreId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -171,6 +178,26 @@
             }
         });
     }
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+                  //$scope.CustomerFilter.storeId = $scope.StoreId;
+                  console.log($scope.StoreList);
+              }
+          })
+      .catch(function (response) {
 
+      })
+      .finally(function () {
+
+      });
+    }
+
+    GetStoreList();
+
+    $scope.GetOrderStatus();
     $scope.GetOrderReportList();
 });

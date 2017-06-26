@@ -9,8 +9,8 @@
                { 'StatusId': 1, 'StatusName': 'Enabled' }
              , { 'StatusId': 2, 'StatusName': 'Disabled' }
     ];
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.IsEditMode = false;
     $scope.BannerId = 0;
 

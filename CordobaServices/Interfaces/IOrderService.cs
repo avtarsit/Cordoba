@@ -10,7 +10,7 @@ namespace CordobaServices.Interfaces
 {
     public interface IOrderService
     {
-        IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, decimal? total, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "");
+        IEnumerable<OrderEntity> GetOrderList(int StoreId, int LoggedInUserId, string sortColumn, int? orderId, int? order_status_id, string CustomerName, Nullable<DateTime> DateAdded, Nullable<DateTime> DateModified, TableParameter<OrderEntity> filter, string PageFrom = "");
 
         List<OrderEntity> GetOrderDetails(int StoreId, int LoggedInUserId, int orderId);
 
@@ -36,7 +36,7 @@ namespace CordobaServices.Interfaces
 
         int UpdateOrder_TotalDetails(int StoreId, int LoggedInUserId, int order_id, int order_status_id, string comment);
 
-        OrderEntity GetOrderDetail_Layout(int order_id, int store_id, int LoggedInUserId);
+        OrderEntity GetOrderDetail_Layout(int order_id, int store_id);
 
         int UpdateOrderStatus(int OrderId, int OrderStatusId, string Comment);
     }

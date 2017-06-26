@@ -45,6 +45,16 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <!--ng-disabled="StoreId != 0"-->
+                                <label class="control-label" for="input-status">Store</label>
+                                <select ng-model="OrderReportObj.StoreId" ng-options=" store.store_id as store.name for store in StoreList"
+                                        class="form-control" name="store" ng-disabled="StoreId != 0">
+                                    <option value="0"></option>
+                                </select>
+
+                            </div>
+
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -67,12 +77,14 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Order Status</label>
 
-                                <select ng-options="Status.id as Status.name  for Status in OrderStatus"
+                                <select ng-options="Status.id as Status.name  for Status in OrderStatusList | orderBy : 'name'"
                                         class="form-control"
                                         ng-model="OrderReportObj.StatusId"
                                         id="input-status"
                                         name="filter_order_status_id"></select>
                             </div>
+
+                            
                             <!--<div class="form-group">
                                 <label class="control-label" for="input-status">Order Status</label>
                                 <select name="filter_Order_status_id" id="input-status" class="form-control">

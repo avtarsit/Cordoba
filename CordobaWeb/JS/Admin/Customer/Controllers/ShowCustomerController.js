@@ -5,15 +5,15 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     createDatePicker();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                  .withOption('bDestroy', true)
     $scope.PageTitle = "Show Customer";
 
-
+    debugger;
     $scope.CustomerFilter = new Object();
     $scope.CustomerFilter.customerName = "";
     $scope.CustomerFilter.email = "";
@@ -22,6 +22,9 @@
     $scope.CustomerFilter.approved = "";
     $scope.CustomerFilter.ip = "";
     $scope.CustomerFilter.date_added = "";
+    
+
+
     //#endregion  
     
 
@@ -48,13 +51,7 @@
 
     $scope.GetCustomerList = function () {
         //$scope.CustomerFilter = new Object();
-        //$scope.CustomerFilter.customerName = "";
-        //$scope.CustomerFilter.email = "";
-        //$scope.CustomerFilter.customer_group_id = "";
-        //$scope.CustomerFilter.status = "";
-        //$scope.CustomerFilter.approved = "";
-        //$scope.CustomerFilter.ip = "";
-        //$scope.CustomerFilter.date_added = "";
+       
         if ($.fn.DataTable.isDataTable("#tblCustomer")) {
             $('#tblCustomer').DataTable().destroy();
         }
@@ -74,16 +71,17 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                //aoData = BindSearchCriteria(aoData);
+                debugger;
+                aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblCustomer').DataTable().page.info().page) + 1;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex+ "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added,
+                    "url": sSource + "&PageIndex=" + PageIndex + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + $scope.CustomerFilter.storeId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -155,13 +153,32 @@
       });
     }
 
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+                  $scope.CustomerFilter.storeId = $scope.StoreId;
+                  console.log($scope.StoreList);
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
 
 
     function Init() {
       
         GetCustomerGroupList();
-
+        GetStoreList();
         $scope.GetCustomerList();
+        $scope.CustomerFilter.storeId = $scope.StoreId;
     }
 
 

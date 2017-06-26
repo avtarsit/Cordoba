@@ -1,16 +1,16 @@
 ﻿app.controller('AddOrUpdateStoreController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-
+    debugger;
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
 
-    $scope.LoggedInUserId = 0;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.StoreObj = new Object();
 
     $scope.IsEditMode = false;
-    $scope.store_id = 0;
+    $scope.store_id = $stateParams.StoreID;
     if ($stateParams.StoreID != undefined && $stateParams.StoreID != null) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
@@ -43,7 +43,7 @@
     ];
 
     function GetCountryList() {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -57,7 +57,7 @@
       });
     }
     function GetLanguageList() {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.LanguageList = response.data;
         })
@@ -69,7 +69,7 @@
        });
     }
     function GetCurrencyList() {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CurrencyList = response.data;
@@ -85,7 +85,7 @@
 
     $scope.GetZoneListByCountry = function (countryId) {
         countryId = countryId == null ? 0 : countryId;
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.RegionStateList = [];
             if (response.data.length > 0) {
@@ -141,33 +141,31 @@
                                              .then(function (response) {                                  
                                                  if(response.data>0)
                                                  {
-                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id)
-                                             .then(function (response) {
-                                                 if (response.data > 0) {
-                                                     notificationFactory.customSuccess("Store Deleted Successfully.");
-                                                     $state.go('ShowStore');
+                                                     $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id)
+                                                                  .then(function (response) {
+                                                                      if (response.data > 0) {
+                                                                          notificationFactory.customSuccess("Store Deleted Successfully.");
+                                                                          $state.go('ShowStore');
+                                                                      }
+                                                                  })
+                                                          .catch(function (response) {
+
+                                                          })
+                                                          .finally(function () {
+
+                                                          });
                                                  }
                                              })
-                                     .catch(function (response) {
-
-                                     })
-                                     .finally(function () {
-
-                                     });
                             }
-                        }
-                    },
-                danger:
-                    {
-                        label: "No",
-                        className: "btn btn-default",
-                        callback: function () {
-                            return true;
+                
                         }
                     }
-            }
-        });
-    };
+                
+                    }
+            })
+        }
+
+
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -187,10 +185,12 @@
 
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
+            debugger;
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {
                   if (response.data > 0) {
+                      debugger;
                       notificationFactory.customSuccess("Store Saved Successfully.");
                       $state.go('ShowStore');
                   }
@@ -235,7 +235,7 @@
 
     }
 
-    function Init() {
+    function init() {
         GetCountryList();
         GetLanguageList();
         GetCurrencyList();
@@ -243,5 +243,5 @@
     }
 
 
-    Init();
+    init();
 });

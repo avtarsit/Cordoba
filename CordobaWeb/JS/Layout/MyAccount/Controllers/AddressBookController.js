@@ -12,7 +12,7 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
     $scope.NeedToShowAddressDetailForm = 0;
     $scope.GetCountryList=function()
     {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=" + 0)
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + UserDetail.customer_id + "&countryId=" + 0)
         .then(function (response) {            
             if (response.data.length > 0) {
                 $scope.CountryList = response.data;
@@ -25,7 +25,6 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
 
     });
     }
-
 
     $scope.GetCustomerAddressList = function () {
         
@@ -59,21 +58,25 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
         $scope.AddressObj = new Object();
         $scope.NeedToShowAddressDetailForm = 0;
     }
-    $scope.AddOrUpdateAddressDetail = function (AddressObj)
-    {
-        $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddOrUpdateAddressDetail_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, AddressObj)
-        .then(function (response) {
-            $scope.AddressObj = new Object();
-            $scope.NeedToShowAddressDetailForm = 0;
-            $scope.AddressList = response.data;
-            toastr.success("Address book successfully updated.");          
-        })
-    .catch(function (response) {
 
-    })
-    .finally(function () {
+    $scope.AddOrUpdateAddressDetail = function (form)
+    { 
+        if (form.$valid)
+        {
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddOrUpdateAddressDetail_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.AddressObj)
+           .then(function (response) {
+                    $scope.AddressObj = new Object();
+                    $scope.NeedToShowAddressDetailForm = 0;
+                    $scope.AddressList = response.data;
+                    toastr.success("Address book successfully updated.");
+       })
+        .catch(function (response) {
 
-    });
+      })
+      .finally(function () {
+
+      });
+        }      
     }
 
     $scope.DeleteAddress=function(AddressObj)

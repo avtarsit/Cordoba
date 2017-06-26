@@ -68,9 +68,9 @@ namespace CordobaAPI.API
                     iTotalDisplayRecords = totalRecords
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.Write(e);
                 throw;
             }
         }

@@ -691,6 +691,7 @@
     <Content Include="JS\Admin\Supplier\Controllers\ShowSupplierController.js" />
     <Content Include="JS\Admin\Users\Controllers\AddOrUpdateUserController.js" />
     <Content Include="JS\Admin\Users\Controllers\ShowUserController.js" />
+    <Content Include="JS\Admin\_Layout\Controllers\LayoutController.js" />
     <Content Include="JS\appConfiguration.js" />
     <Content Include="JS\Common.js" />
     <Content Include="JS\Directives\appDirectives.js" />
@@ -734,6 +735,7 @@
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_CategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_HotDealsController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_LatestProductController.js" />
+    <Content Include="JS\Admin\Dashboard\Controllers\dashboard_OrderCountController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_PopularCategoryController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_RewardWinnerController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_SpecialOffersController.js" />
