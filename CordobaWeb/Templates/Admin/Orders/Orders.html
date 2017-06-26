@@ -116,7 +116,14 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
                                                         <div class="col-lg-10">
-                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderDetails.order_status_id" class="form-control"></select>
+                                                            <select>
+                                                                <option ng-repeat="OrderStatus in OrderStatusList">
+                                                                    {{OrderStatus.name}}
+                                                                </option>
+                                                            </select>
+                                                            <!--<select ng-options="OrderStatus.order_status_id as OrderStatus.name  for OrderStatus in OrderStatusList"
+                                                                    class="form-control" ng-model="order_status_id" name="OrderStatus"></select>-->
+                                                            <!--<select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatusList" ng-model="OrderDetails.order_status_id" class="form-control"></select>-->
                                                         </div>
                                                     </div>
                                                 </div>

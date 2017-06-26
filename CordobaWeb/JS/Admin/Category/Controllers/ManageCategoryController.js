@@ -101,7 +101,6 @@
                   .catch(function (response) {
                   })
                   .finally(function () {
-
                   });
            
     }
@@ -118,6 +117,8 @@
     //  });
 
     
+                  });           
+    }
 
     function CreateDescriptionObject() {
         var TempDescObject = [];
@@ -139,8 +140,6 @@
         });
     }
 
-
-
         $scope.Cancel = function () {
             var hasAnyUnsavedData = false;
             hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -154,6 +153,18 @@
             else {
                 $state.go('ShowCategory');
             }
+    $scope.Cancel = function () {
+        var hasAnyUnsavedData = false;
+        hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
+        if (hasAnyUnsavedData) {
+            bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
+                if (result) {
+                    $state.go('ShowCategory');
+                }
+            });
+        }
+        else {
+            $state.go('ShowCategory');
         }
 
 

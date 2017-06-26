@@ -19,8 +19,9 @@ function GetAdminUserDetail() {
 
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" + "http://lmhfs2015.cordobarewards.co.uk/",
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,
         //window.location.href,
+        //http://lmhfs2015.cordobarewards.co.uk/
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
@@ -290,7 +291,7 @@ function GetLayoutName() {
                 }
                 , ShowOrders = {
                     name: 'ShowOrders',
-                    url: '/ShowOrders',
+                    url: '/ShowOrders?OrderStatusId',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
                 }
                 , ManageOrder = {
@@ -494,8 +495,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
-                 debugger;
+             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {                 
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
@@ -514,7 +514,6 @@ function GetLayoutName() {
                  else {
                      localStorageService.set("loggedInUser", UserDetail);
                  }
-
 
                  $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
 

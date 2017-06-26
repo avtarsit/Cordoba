@@ -3,7 +3,7 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc">Payment of {{OrderdetailObj.total}} points has been received.</p>
+                    <p class="bag-desc" ng-bind="'Payment of '+(OrderdetailObj.total | number :2)+' points has been received.'"></p>
                 </li>
             </ul>
         </div>
@@ -34,8 +34,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
-                            <p class="product-price"><span>Points:</span><span ng-bind="(Item.price) +' points'"></span></p>
-                            <p class="product-price"><span>Subtotal:</span> <span ng-bind="(Item.total) +' points'"></span></p>
+                            <p class="product-price"><span>Points:</span><span ng-bind="(Item.price | number :2) +' points'"></span></p>
+                            <p class="product-price"><span>Subtotal:</span> <span ng-bind="(Item.total | number :2) +' points'"></span></p>
                         </div>
                     </div>
                 </div>
@@ -79,13 +79,13 @@
                     <ul>
                         <li ng-repeat="Item in OrderdetailObj.orderProductEntity">
                             <p>-{{Item.name}}</p>
-                            <p ng-bind="Item.total+' points'"></p>
+                            <p ng-bind="(Item.total | number :2)+' points'"></p>
                         </li>
                     </ul>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span ng-bind="OrderdetailObj.total +' points'"></span>
+                    <span ng-bind="(OrderdetailObj.total | number :2) +' points'"></span>
                 </div>
             </div>
         </div>

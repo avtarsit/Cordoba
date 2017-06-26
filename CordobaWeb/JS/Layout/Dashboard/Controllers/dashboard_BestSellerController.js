@@ -14,8 +14,7 @@
     $scope.BestSellerList = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetBestSellerListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id )
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {               
                   $scope.BestSellerList = response.data;
               }
           })
