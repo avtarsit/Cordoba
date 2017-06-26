@@ -1,14 +1,18 @@
-﻿app.controller('dashboard_OrderCountController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService, AdminUserDetail) {
+﻿app.controller('dashboard_OrderCountController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService, AdminUserDetail, OrderStatusEnum) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     $scope.AdminUserDetail = AdminUserDetail;
+    $scope.ProcessingOrderStatusId = OrderStatusEnum.Processing;
+    $scope.DeliveredOrderStatusId = OrderStatusEnum.Delivered;
+    $scope.ReturnedOrderStatusId = OrderStatusEnum.Returned;
 
     $scope.GetOrderCountData = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetOrderDetailCount?Store_Id=" + $scope.AdminUserDetail.store_id)
         .then(function (response) {
             if (response.data.length > 0) {
+                debugger;
                 $scope.ProcessingOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Processing' });
                 $scope.DeliveredOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Delivered' });
                 $scope.ReturnedOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Returned' });

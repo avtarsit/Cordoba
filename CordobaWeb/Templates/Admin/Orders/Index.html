@@ -35,7 +35,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label"> Order Status</label>
-                                    <select ng-options="orderstatus.id as orderstatus.name for orderstatus in OrderStatus" ng-model="filter.selectedOrderStatus" class="form-control"></select>
+                                    <select ng-options="orderstatus.order_status_id as orderstatus.name for orderstatus in OrderStatusList | orderBy:'name'" ng-model="filter.selectedOrderStatus" class="form-control"></select>
                                 </div>
                             </div>
                             <div class="col-sm-4">

@@ -1,4 +1,5 @@
 ﻿app.controller('ShowOrdersController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+    debugger;
     decodeParams($stateParams);
     BindToolTip();
     Tab();
@@ -7,23 +8,18 @@
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.PageTitle = "Order List";
 
-    $scope.OrderStatus = [
-       { id: 1, name: 'Processing' },
-       { id: 2, name: 'shipped' },
-       { id: 3, name: 'PartiallyShipped' },
-       { id: 4, name: 'Returned' },
-       { id: 5, name: 'Cancelled' }
-    ];
-
-
     $scope.filter = {
         orderID: '',
-        selectedOrderStatus: 1,
+        selectedOrderStatus: 0,
         dateAdded: '',
         Customer: '',
         //Total: '',
         dateModified: ''
     };
+
+    if ($stateParams.OrderStatusId != undefined && $stateParams.OrderStatusId != null) {
+        $scope.filter.selectedOrderStatus = parseInt($stateParams.OrderStatusId);
+    }
 
     //$scope.GetOrderList = function () {
     //    $http.get(configurationService.basePath + "api/OrderApi/GetOrderList")
@@ -85,7 +81,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId="+$scope.StoreId+"&LoggedInUserId="+$scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
                 //aoData = BindSearchCriteria(aoData);
@@ -96,7 +92,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "&PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&DateAdded="+$scope.filter.dateAdded+"&DateModified="+$scope.filter.dateModified,
+                    "url": sSource + "&PageIndex=" + PageIndex + "&orderId=" + $scope.filter.orderID + "&order_status_id=" + $scope.filter.selectedOrderStatus + "&CustomerName=" + $scope.filter.Customer + "&DateAdded=" + $scope.filter.dateAdded + "&DateModified=" + $scope.filter.dateModified,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -138,7 +134,7 @@
                                  return "";
                              }
                          }
-                     },       
+                     },
                 {
                     "mData": null, "bSortable": false,
                     "sClass": "action text-center",
@@ -174,6 +170,27 @@
       });
     }
 
+
+    function GetOrderStatus() {
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + '&language_id=1')
+       .then(function (response) {
+           if (response.data.length > 0) {
+               debugger;
+               $scope.OrderStatusList = response.data;
+               var DefaultOption = new Object();
+               DefaultOption.order_status_id = 0;
+               DefaultOption.name = "All Status";
+               $scope.OrderStatusList.push(DefaultOption);
+           }
+       })
+   .catch(function (response) {
+   })
+   .finally(function () {
+
+   });
+    }
+
+    GetOrderStatus();
     GetStoreList();
 
 

@@ -290,7 +290,7 @@ function GetLayoutName() {
                 }
                 , ShowOrders = {
                     name: 'ShowOrders',
-                    url: '/ShowOrders',
+                    url: '/ShowOrders?OrderStatusId',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/Index.html'
                 }
                 , ManageOrder = {
