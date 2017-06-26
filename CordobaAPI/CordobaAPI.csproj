@@ -247,7 +247,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="EmailTemplate\EmailTemplate.html" />
+    <Content Include="EmailTemplate\ForgotPassword.html" />
+    <Content Include="EmailTemplate\ForntUserVerified.html" />
     <Content Include="EmailTemplate\OrderStatusUpdateTemplate.html" />
+    <Content Include="EmailTemplate\VerifyOTP.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />

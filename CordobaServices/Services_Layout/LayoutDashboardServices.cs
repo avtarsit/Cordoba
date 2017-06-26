@@ -8,6 +8,7 @@ using CordobaModels.Entities;
 using System.Data.SqlClient;
 using System.Data;
 using CordobaModels;
+using CordobaServices.Services;
 
 namespace CordobaServices.Services_Layout
 {
@@ -361,6 +362,34 @@ namespace CordobaServices.Services_Layout
 
         }
 
+
+
+        public CustomerEntity ForgotPassword(CustomerEntity CustomerObj)
+        {
+            Random rnd = new Random();
+            string otp = rnd.Next(0, 1000000).ToString("D6");
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("email", CustomerObj.email)
+               ,new SqlParameter("store_id", CustomerObj.store_id)
+               ,new SqlParameter("otp", otp)
+               
+            };
+                var result = objGenericRepository.ExecuteSQL<CustomerEntity>("ForgotPasswordCustomerUser", sqlParameter).FirstOrDefault();
+
+                CommonService customerService = new CommonService();
+                customerService.SendOTPEmail(CustomerObj.email, otp, CustomerObj.firstname, CustomerObj.store_name, CustomerObj.logo);
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
 
 
     }

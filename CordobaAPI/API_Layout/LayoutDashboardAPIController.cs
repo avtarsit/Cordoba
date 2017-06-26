@@ -8,12 +8,16 @@ using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
 using System.Web.Http.Hosting;
 using CordobaModels.Entities;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CordobaAPI.API_Layout
 {
     public class LayoutDashboardAPIController : ApiController
     {
         public ILayoutDashboardServices _LayoutDashboardServices;
+
+        
 
         public LayoutDashboardAPIController()
         {
@@ -365,5 +369,27 @@ namespace CordobaAPI.API_Layout
                 throw;
             }
         }
+
+
+        [HttpPost]
+        public HttpResponseMessage ForgotPassword(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.ForgotPassword(CustomerObj);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }

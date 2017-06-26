@@ -44,6 +44,11 @@ namespace CordobaModels.Entities
 
         public int? ErrorTypeId { get; set; }
         public List<PointsAuditEntity> PointsAuditList { get; set; }
+
+
+        public int? otp { get; set; }
+        public string store_name { get; set; }
+        public string logo { get; set; }
     }
 }
         
