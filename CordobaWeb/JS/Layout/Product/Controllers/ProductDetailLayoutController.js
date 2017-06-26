@@ -3,6 +3,9 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
+
+    debugger;
+
     $scope.StoreDetailInSession = StoreSessionDetail;
     //#endregion   
     if ($stateParams.ProductId != undefined && $stateParams.ProductId != null) {

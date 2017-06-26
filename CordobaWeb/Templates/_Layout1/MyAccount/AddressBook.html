@@ -42,51 +42,78 @@
                         </a>
                     </div>
                 </div>
-                <form class="new-address" ng-if="NeedToShowAddressDetailForm==1">
+                <form  name="NewAddressForm" id="NewAddressForm" class="new-address" ng-if="NeedToShowAddressDetailForm==1" novalidate>
                     <div class="col-sm-12">
                         <div class="block-heading">
                             <h4 class="heading">Add New Address</h4>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            <div role="tabpanel" class="form-horizontal" id="messages" style="margin-top:8px">
+                                <div class="alert alert-danger alert-dismissible validationErrors" ng-show="NewAddressForm.$submitted && !NewAddressForm.$valid">
+                                    <ul ng-show="validationErrors">
+                                        <li ng-repeat="error in validationErrors">{{error}}</li>
+                                    </ul>
+                                    <ul ng-show="NewAddressForm.$submitted && (!NewAddressForm.$valid)">
+                                        <li ng-show="NewAddressForm.firstname.$error.required">First name is required.</li>
+                                        <li ng-show="NewAddressForm.lastname.$error.required">Last name is required.</li>
+                                        <li ng-show="NewAddressForm.company.$error.required">Company name is required.</li>
+                                        <li ng-show="NewAddressForm.address_1.$error.required">Address1 is required.</li>
+                                        <li ng-show="NewAddressForm.city.$error.required">City is required.</li>
+                                        <li ng-show="NewAddressForm.county.$error.required">County is required.</li>
+                                        <li ng-show="NewAddressForm.country.$error.required">County is required.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-sm-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.firstname" />
+                        <input type="text" maxlength="32" name="firstname" class="form-control" ng-model="AddressObj.firstname" required="required" />
                     </div>
                     <div class="col-sm-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.lastname"  />
+                        <input type="text" maxlength="32" name="lastname" class="form-control" ng-model="AddressObj.lastname" required="required" />
                     </div>
                     <div class="col-sm-4">
                         <label>Company</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.company"  />
+                        <input type="text" maxlength="32" name="company" class="form-control" ng-model="AddressObj.company" required="required" />
                     </div>
                     <div class="col-sm-4">
                         <label>Address 1</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.address_1" />
+                        <input type="text" maxlength="128" name="address_1" class="form-control" ng-model="AddressObj.address_1" required="required" />
                     </div>
                     <div class="col-sm-4">
                         <label>Address 2</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.address_2" />
-                    </div>
-                    <div class="col-sm-4">
-                        <label>City</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.city" />
+                        <input type="text" maxlength="128" name="address_2" class="form-control" ng-model="AddressObj.address_2" />
                     </div>
                     <div class="col-sm-4">
                         <label>Post Code</label>
-                        <input type="text" class="form-control" ng-model="AddressObj.postcode"  />
-                    </div>                 
-                    <div class="col-sm-4">
-                        <label>Country</label>                     
-                        <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" ng-model="AddressObj.country_id"></select>
+                        <input type="text" maxlength="10" class="form-control" ng-model="AddressObj.postcode" />
                     </div>
-                 
+                    <div class="col-sm-4">
+                        <label>City</label>
+                        <input type="text" maxlength="128" name="city" class="form-control" ng-model="AddressObj.city" required="required" />
+                    </div>                  
+                    <div class="col-sm-4">
+                        <label>County</label>
+                        <input type="text" maxlength="128" class="form-control" name="county" ng-model="AddressObj.county" required="required" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Country</label>
+                        <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" name="country" ng-model="AddressObj.country_id" required="required"></select>
+                    </div>
+
                     <div class="col-sm-12 default-address">
                         <label>Default Address:</label>
-                        <switch  ng-model="AddressObj.IsDefaultAddress" on="Yes" off="No" class="green"></switch>                     
+                        <switch ng-model="AddressObj.IsDefaultAddress" on="Yes" off="No" class="green"></switch>
                     </div>
                     <div class="col-sm-6 col-xs-12 mt-15 pull-right text-right">
-                        <button class="btn btn-success cursor-pointer" ng-click="AddOrUpdateAddressDetail(AddressObj)">Save</button>
+                        <button type="submit" class="btn btn-success cursor-pointer" ng-click="AddOrUpdateAddressDetail(NewAddressForm)">Save</button>
                         <button class="btn btn-default cursor-pointer" ng-click="CancelAddress()">Cancel</button>
                     </div>
                 </form>

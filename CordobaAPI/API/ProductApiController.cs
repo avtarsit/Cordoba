@@ -67,12 +67,13 @@ namespace CordobaAPI.API
             }
 
         }
+
         [HttpGet]
-        public HttpResponseMessage AddProductToCart(int store_id, int LoggedInUserId, int customer_id, int product_id, int qty, int cartgroup_id)
+        public HttpResponseMessage AddProductToCart(int store_id,int customer_id, int product_id, int qty, int cartgroup_id)
         {
             try
             {
-                var result = _ProductServices.AddProductToCart(  store_id, LoggedInUserId, customer_id,  product_id,  qty,  cartgroup_id);             
+                var result = _ProductServices.AddProductToCart(  store_id, customer_id,  product_id,  qty,  cartgroup_id);             
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                
             }
@@ -123,11 +124,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int LoggedInUserId, int CategoryId, int Customer_Id = 0, string WhatAreYouLookingFor = "")
+        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID,int CategoryId, int Customer_Id = 0, string WhatAreYouLookingFor = "")
         {
             try
             {
-                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID, LoggedInUserId, CategoryId, Customer_Id, WhatAreYouLookingFor);
+                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID,CategoryId, Customer_Id, WhatAreYouLookingFor);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
