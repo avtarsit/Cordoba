@@ -208,13 +208,12 @@ namespace CordobaServices.Services
             }
         }
 
-        public ProductEntity GetProductDetailForLayout(int StoreId, int LoggedInUserId, int ProductId)
+        public ProductEntity GetProductDetailForLayout(int StoreId, int ProductId)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("StoreId",StoreId)
-                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId)
+                                                            new SqlParameter("StoreId",StoreId)                                               
                                                            ,new SqlParameter("ProductId", ProductId) 
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductDetailForLayout", sqlParameter).FirstOrDefault();
@@ -227,13 +226,12 @@ namespace CordobaServices.Services
         }
 
 
-        public List<ProductEntity> GetRelatedProductList(int StoreId, int LoggedInUserId, int SelectedProductId, int RelatedProductId)
+        public List<ProductEntity> GetRelatedProductList(int StoreId,int SelectedProductId, int RelatedProductId)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("StoreId",StoreId)
-                                                           ,new SqlParameter("LoggedInUserId",LoggedInUserId) 
+                                                            new SqlParameter("StoreId",StoreId)                             
                                                            ,new SqlParameter("SelectedProductId", SelectedProductId) 
                                                            ,new SqlParameter("RelatedProductId", RelatedProductId) 
                                                                 };

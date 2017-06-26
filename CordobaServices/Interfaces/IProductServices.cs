@@ -19,8 +19,8 @@ namespace CordobaServices.Interfaces
         List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int Customer_Id,string WhatAreYouLookingFor);
 
         int DeleteProduct(int StoreId, int LoggedInUserId, int product_id);
-        ProductEntity GetProductDetailForLayout(int StoreId, int LoggedInUserId, int ProductId);
-        List<ProductEntity> GetRelatedProductList(int StoreId, int LoggedInUserId, int SelectedProductId, int RelatedProductId);
+        ProductEntity GetProductDetailForLayout(int StoreId,int ProductId);
+        List<ProductEntity> GetRelatedProductList(int StoreId,int SelectedProductId, int RelatedProductId);
 
         //InsertAsHotProduct
         int InsertAsHotProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity);

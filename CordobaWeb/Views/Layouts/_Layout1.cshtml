@@ -8,9 +8,7 @@
 
     @Styles.Render("~/bundles/Layout1CSS")       
     <style>
-
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
-
     </style>
     <style>
 
@@ -149,7 +147,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
-                        <a class="footer-logo" href="index.html"><img src="~/Content/layout1/images/logo.png" alt="XPO Logistics"></a>
+                        <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo"></a>
                     </div>
                     <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
                         <div class="row">
