@@ -42,7 +42,7 @@ namespace CordobaServices.Services
             }
         }
 
-        public CustomerGroupEntity GetCustomerGroupDetail(int StoreId, int LoggedInUserId, int customerGroupID = 0)
+        public CustomerGroupEntity GetCustomerGroupDetail(int StoreId, int LoggedInUserId = 0, int customerGroupID = 0)
         {
             CustomerGroupEntity CustomerGroupDetail = new CustomerGroupEntity();
             if (customerGroupID > 0)
@@ -50,10 +50,10 @@ namespace CordobaServices.Services
                 try
                 {
                     SqlParameter[] param = new SqlParameter[1];
-                    param[0] = new SqlParameter("store_id", StoreId);
+                    param[0] = new SqlParameter("StoreId", StoreId);
                     param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
                     param[2] = new SqlParameter("customer_group_id", customerGroupID);
-                    CustomerGroupDetail = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("EXEC GetCustomerGroupDetails ", param ).ToList<CustomerGroupEntity>().FirstOrDefault();
+                    CustomerGroupDetail = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("GetCustomerGroupDetails", param ).ToList<CustomerGroupEntity>().FirstOrDefault();
 
                 }
                 catch (Exception ex)

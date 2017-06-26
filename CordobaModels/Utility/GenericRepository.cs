@@ -262,5 +262,10 @@ namespace CordobaModels
         }
         
         #endregion
+
+        public object ExecuteSQL(string p, SqlParameter ParameterStoreId, SqlParameter paramSupplierId, SqlParameter paramSupplierName, SqlParameter paramSupplierAddress)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

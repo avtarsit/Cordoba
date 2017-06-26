@@ -91,7 +91,7 @@ namespace CordobaServices.Services
                 Value = objEntity.status 
             };
 
-            var result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateLanguage", ParameterStoreId, ParameterLoggedInUserId, paramlanguageId, paramlanguageCd, paramsort_order, paramlanguageName, paramimage, paramstatus).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateLanguage", paramlanguageId, paramlanguageCd, paramsort_order, paramlanguageName, paramimage, paramstatus ,ParameterStoreId, ParameterLoggedInUserId).FirstOrDefault();
             return result;
         }
 

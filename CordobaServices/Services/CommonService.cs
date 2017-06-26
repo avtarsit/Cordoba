@@ -130,5 +130,61 @@ namespace CordobaServices.Services
 
 
 
+
+        /// <summary>
+        /// By Pavan Antala
+        /// 23 JUNE 2017
+        /// Sends the OTP Email to user for verification
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="otp"></param>
+        /// <param name="name"></param>
+        /// <param name="StoreName"></param>
+        ///  <param name="logopath"></param>
+        /// <returns></returns>
+        // ReSharper disable once InconsistentNaming
+        public bool SendOTPEmail(string email, string otp, string name, string store_name, string logopath)
+        {
+            const string strSubject = "Verify Email";
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
+            var strbody = ReadTextFile(filepath);
+
+            if (strbody.Length <= 0)
+                return false;
+
+            strbody = strbody.Replace("##name##", name);
+            strbody = strbody.Replace("##OTP##", otp);
+            strbody = strbody.Replace("##StoreName##", store_name);
+            strbody = strbody.Replace("##LogoPath##", logopath);
+
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
+        }
+
+
+        public static string ReadTextFile(string strFilePath)
+        {
+            var entireFile = string.Empty;
+            StreamReader objectRead = null;
+
+            try
+            {
+                ////open text file
+                objectRead = File.OpenText(strFilePath);
+                entireFile = objectRead.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Security.DisposeOf(objectRead);
+            }
+
+            return entireFile;
+        }
+
     }
 }

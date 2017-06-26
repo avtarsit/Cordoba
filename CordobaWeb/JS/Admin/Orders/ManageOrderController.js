@@ -22,14 +22,6 @@
     $scope.OrderDetails = [];
     $scope.CustomerList = [];
 
-    $scope.OrderStatus = [
-        { id: 1, name: 'Processing' },
-        { id: 2, name: 'shipped' },
-        { id: 3, name: 'PartiallyShipped' },
-        { id: 4, name: 'Returned' },
-        { id: 5, name: 'Cancelled' }
-    ];
-
     $scope.selectedOrderStatus = 1;
     $scope.selectedShippingCountry = 0;
     $scope.selectedPaymentCountry = 0;
@@ -206,6 +198,8 @@
 
         GetCustomerAddress();
 
+        GetOrderStatus();
+
         if ($stateParams.orderId != undefined && $stateParams.orderId != null) {
             getOrderDetails();
         }
@@ -220,7 +214,6 @@
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
                   //$scope.MainTotal = $scope.Products[0].title;
                   if ($scope.Products.length > 0) {
-                      debugger;
                       $scope.total_title = $scope.Products[0].total_title;
                       $scope.total_value = $scope.Products[0].total_value;
                       $scope.subtotal_title = $scope.Products[0].subtotal_title;
@@ -236,6 +229,7 @@
                   //$scope.selectedShippingZone = 0;
                   $scope.selectedCustomerGroup = $scope.OrderDetails.customer_group_id;
                   $scope.selectedStore = $scope.OrderDetails.store_id;
+                  debugger;
                   $scope.selectedOrderStatus = $scope.OrderDetails.order_status_id;
                   $scope.selctedCurrency = $scope.OrderDetails.currency_id;
                   $scope.GetCustomersByStore($scope.selectedStore);
@@ -326,4 +320,23 @@
 
          });
     }
+
+    function GetOrderStatus() {
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + '&language_id=1')
+       .then(function (response) {
+           if (response.data.length > 0) {
+               $scope.OrderStatusList = response.data;
+               var DefaultOption = new Object();
+               DefaultOption.order_status_id = 0;
+               DefaultOption.name = "All Status";
+               $scope.OrderStatusList.push(DefaultOption);
+           }
+       })
+   .catch(function (response) {
+   })
+   .finally(function () {
+
+   });
+    }
+
 });

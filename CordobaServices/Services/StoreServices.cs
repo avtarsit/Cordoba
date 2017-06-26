@@ -52,8 +52,9 @@ namespace CordobaServices.Services
         public int InsertUpdateStore(StoreEntity storeEntity, int LoggedInUserId)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("LoggedInUserId", LoggedInUserId)                                 
-                                                 , new SqlParameter("store_id", storeEntity.store_id)
+                                                                                    
+                                                   new SqlParameter("store_id", storeEntity.store_id)
+                                                 , new SqlParameter("LoggedInUserId", LoggedInUserId)
                                                  , new SqlParameter("url", storeEntity.url?? (object) DBNull.Value)
                                                  , new SqlParameter("name", storeEntity.name ??  DBNull.Value.ToString())
                                                  , new SqlParameter("title", storeEntity.title ??  DBNull.Value.ToString())

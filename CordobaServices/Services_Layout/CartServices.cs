@@ -139,7 +139,7 @@ namespace CordobaServices.Services_Layout
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/EmailTemplate.html");
            
             const string strSubject = "Your Order Summary";
-            var strbody = ReadTextFile(filepath);
+            var strbody = CommonService.ReadTextFile(filepath);
             if (strbody.Length > 0)
             {
                 strbody = strbody.Replace("##OrderId##", Convert.ToString(orderItemDetailsRecord.order_id));//
@@ -173,29 +173,29 @@ namespace CordobaServices.Services_Layout
 
        
        // READ TEXT FILE
-        public static string ReadTextFile(string strFilePath)
-        {
-            var entireFile = string.Empty;
-            StreamReader objectRead = null;
+        //public static string ReadTextFile(string strFilePath)
+        //{
+        //    var entireFile = string.Empty;
+        //    StreamReader objectRead = null;
 
-            try
-            {
-                ////open text file
-                objectRead = File.OpenText(strFilePath);
-                entireFile = objectRead.ReadToEnd();
-            }
-            catch (Exception ex)
-            {
+        //    try
+        //    {
+        //        ////open text file
+        //        objectRead = File.OpenText(strFilePath);
+        //        entireFile = objectRead.ReadToEnd();
+        //    }
+        //    catch (Exception ex)
+        //    {
                 
-                throw;
-            }
-            finally
-            {
-                Security.DisposeOf(objectRead);
-            }
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        Security.DisposeOf(objectRead);
+        //    }
 
-            return entireFile;
-        }
+        //    return entireFile;
+        //}
 
 
        //Send mail

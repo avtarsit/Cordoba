@@ -76,9 +76,16 @@ namespace CordobaServices.Services
             var paramSupplierId = new SqlParameter { ParameterName = "supplierId", DbType = DbType.Int32, Value = Convert.ToInt32(objSupplier.supplier_id) };
             var paramSupplierName = new SqlParameter { ParameterName = "supplierName", DbType = DbType.String, Value = objSupplier.name.Trim() ?? (object)DBNull.Value };
             var paramSupplierAddress = new SqlParameter { ParameterName = "supplierAddress", DbType = DbType.String, Value = objSupplier.address ?? (object)DBNull.Value };
-
-            int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateSupplier", paramSupplierId, paramSupplierName, paramSupplierAddress).FirstOrDefault();
-            return result;
+            try
+            {
+                int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateSupplier", ParameterStoreId, paramSupplierId, paramSupplierName, paramSupplierAddress).FirstOrDefault();
+                return result;
+            }
+            
+            catch(Exception e)
+            {
+                return 0;
+            }
         }
 
         public SupplierEntity GetSupplierDetail(int storeId, int LoggedInUserId, int? SupplierID)
