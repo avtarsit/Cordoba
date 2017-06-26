@@ -284,7 +284,7 @@
                 return;
             }
             var CustomerEntity = JSON.stringify($scope.CustomerObj);
-            $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomerStoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, CustomerEntity)
+            $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, CustomerEntity)
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Customer Saved Successfully.");

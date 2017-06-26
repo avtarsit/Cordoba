@@ -40,7 +40,7 @@
         if (form.$valid) {
             //$scope.LanguageObj.image = $scope.LanguageObj.code + '.png';
     
-            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.LanguageObj)
+            $http.post(configurationService.basePath + "api/LanguageApi/InsertOrUpdateLanguage?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId, $scope.LanguageObj)
            .then(function (response) {
              
                if (response.data == 0) {

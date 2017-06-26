@@ -7,8 +7,9 @@
     BindToolTip();
     Tab();
     $scope.StoreId = 0;
-    $scope.LoggedInUserId = -1;
-    $scope.customer_group_id = 0;
+    $scope.LoggedInUserId = 0;
+    $scope.customer_group_id = $stateParams.CustomerGroupId;
+    debugger;
     $scope.IsEditMode = false;
     if ($stateParams.CustomerGroupId != undefined && $stateParams.CustomerGroupId != null) {
 
@@ -25,7 +26,7 @@
     $scope.GetCustomerGroupDetail = function () {
 
 
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupDetail?CustomerGroupId=" + $scope.customer_group_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupDetail?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId + "&CustomerGroupId=" + $scope.customer_group_id)
           .then(function (response) {
          
               $scope.CustomerGroupObj = response.data;

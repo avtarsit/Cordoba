@@ -139,8 +139,8 @@ namespace CordobaServices.Services
             string PointsAuditXml = Helpers.ConvertToXml<PointsAuditEntity>.GetXMLString(customerEntity.PointsAuditList);
 
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("LoggedInUserId", LoggedInUserId)                                 
-                                                 , new SqlParameter("customer_id", customerEntity.customer_id)
+                                                                                   
+                                                   new SqlParameter("customer_id", customerEntity.customer_id)
                                                  , new SqlParameter("store_id", customerEntity.store_id ?? (object) DBNull.Value)
                                                  , new SqlParameter("firstname", customerEntity.firstname ??  DBNull.Value.ToString())
                                                  , new SqlParameter("lastname", customerEntity.lastname ??  DBNull.Value.ToString())
@@ -179,7 +179,7 @@ namespace CordobaServices.Services
                     Value = LoggedInUserId
                 };
                 var paramId = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
-                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomer", ParameterStoreId, ParameterLoggedInUserId, paramId).FirstOrDefault();
+                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomer", paramId).FirstOrDefault();
                 return result;
             }
             catch (Exception)

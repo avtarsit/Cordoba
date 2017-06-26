@@ -21,7 +21,7 @@
                     <li>
                         <button type="button" ui-sref="ShowCategory" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
-                 
+
                     <li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Category" ng-click="DeleteCategory(CategoryId)"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
                     </li>
@@ -54,21 +54,29 @@
                         <div class="panel-body">
                             <div class="tabbable">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
-                                    <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
+                                    <li role="presentation" class="active" id="id1">
+                                        <a data-target="#GeneralTab" role="tab" data-toggle="tab">General</a>
+                                    </li>
+                                    <li role="presentation" id="id2">
+                                        <a data-target="#DataTab" role="tab" data-toggle="tab">Data</a>
+                                    </li>
                                 </ul>
 
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="GenaralTab">
+                                    <div role="tabpanel" class="tab-pane active" id="GeneralTab">
+                                        test
                                         <!--General Tab-->
                                         <div class="tab-content">
-                                            <div class="tab-pane active in" id="tab-general">
+                                            test
+                                            <div class="tab-pane fade active in" id="tab-general">
+                                                test
                                                 <ul class="nav nav-tabs" id="language">
-                                                    <li ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
+                                                    <li ng-class="$index==0 ? 'active':''" ng-repeat="LangObj in LanguageList">
+                                                        test
                                                         <a data-target="#{{LangObj.language_id}}" data-toggle="tab" aria-expanded="true"><img ng-src="../../../Content/admin/images/flags/{{LangObj.image}}" title="{{LangObj.name}}"> {{LangObj.name}}</a>
                                                     </li>
-                                                </ul>
+                                                </ul> 
                                                 <div class="tab-content">
                                                     <div class="tab-pane {{$index}}" id="{{LangObj.language_id}}" ng-class="$index==0 ? 'active':''" data-ng-repeat="LangObj in LanguageList">
                                                         <div class="form-group required">
@@ -95,9 +103,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-Categories">Parent Category</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.parent_Id">                                                        
-                                                    </select>
-                                                  
+                                                    <select class="form-control" ng-options="option.Category_Id as option.name for  option in ParentCategoryList | unique:'name'" ng-model="CategoryObj.parent_Id"></select>
+
                                                 </div>
                                             </div>
 
@@ -107,7 +114,7 @@
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
                                                         <!--<a ng-repeat="Item in CategoryObj.CategoryStoreList.CategoryStore">
                                                             <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected"><label>&nbsp;&nbsp;{{Item.StoreName}}</label>
-                                                        </a>-->                                              
+                                                        </a>-->
                                                         <div class="col-sm-6 checkbox" ng-repeat="Item in CategoryObj.StoreList">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
@@ -134,12 +141,12 @@
                                                 <label class="col-sm-2 control-label">Upload Image </label>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="ImageUpload" ng-disabled="Category_Id==0" class="upload" file-model="fileUpload">
-                                                    
+
                                                 </div>
                                                 <div class="col-sm-7">
                                                     <input type="button" class="btn btn-info" ng-disabled="Category_Id==0" ng-click="UploadImage()" value="Upload">
                                                     <label class="control-label" ng-show="Category_Id==0">Upload functionality will be available in Edit Mode</label>
-                                                </div>  
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
