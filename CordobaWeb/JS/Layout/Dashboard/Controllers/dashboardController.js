@@ -10,8 +10,10 @@
 
     $scope.OpenLoginPopUp = function () {
         angular.element("#DivLoginModel").modal('show');
+        $scope.IsVisibleloginForm = false;
+        $scope.IsVisibleforgotPasswordForm = true;
+        $scope.IsVisibleOTPForm = true;
     }
-
     $scope.Login = function (form) {
 
         if (form.$valid) {      
@@ -75,6 +77,66 @@
 
         $state.go('Home');
     }
+
+
+
+
+
+
+
+
+
+    $scope.ForgotPassword = function (form) {
+        debugger;
+        $scope.IsVisibleloginForm = true;
+        $scope.IsVisibleforgotPasswordForm = false;
+        
+        if (form.$valid) {
+            debugger;
+            $scope.otpObj.store_id = 3;
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
+                  .then(function (response) {
+                      debugger;
+                      $scope.IsVisibleloginForm = true;
+                      $scope.IsVisibleforgotPasswordForm = true;
+                      $scope.IsVisibleOTPForm = false;
+
+                  })
+              .catch(function (response) {
+
+              })
+              .finally(function () {
+
+              });
+        }
+    }
+
+    $scope.VerifyOTP = function (form) {
+        debugger;
+        $scope.IsVisibleloginForm = true;
+        $scope.IsVisibleforgotPasswordForm = true;
+
+        if (form.$valid) {
+            debugger;
+            //$scope.otpObj.store_id = 3;
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
+                  .then(function (response) {
+
+                      $scope.IsVisibleloginForm = true;
+                      $scope.IsVisibleforgotPasswordForm = true;
+                      $scope.IsVisibleOTPForm = false;
+
+                  })
+              .catch(function (response) {
+
+              })
+              .finally(function () {
+
+              });
+        }
+    }
+    
+
 
     $scope.GotoMyWishlist = function () {
         if (UserDetail.customer_id > 0) {

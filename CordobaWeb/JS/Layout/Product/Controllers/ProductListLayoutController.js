@@ -44,8 +44,6 @@
       });
     }
 
-
-
     $scope.GetCategoryListForDashboard();
     $scope.GetProductListByCategoryAndStoreId();
 

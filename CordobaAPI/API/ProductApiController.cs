@@ -162,11 +162,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductDetailForLayout(int StoreID, int LoggedInUserId, int ProductId)
+        public HttpResponseMessage GetProductDetailForLayout(int StoreID, int ProductId)
         {
             try
             {
-                var result = _ProductServices.GetProductDetailForLayout(StoreID, LoggedInUserId, ProductId);
+                var result = _ProductServices.GetProductDetailForLayout(StoreID,ProductId);
              
                     return Request.CreateResponse(HttpStatusCode.OK, result);              
             }
@@ -177,11 +177,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRelatedProductList(int StoreID, int LoggedInUserId, int SelectedProductId, int RelatedProductId)
+        public HttpResponseMessage GetRelatedProductList(int StoreID,int SelectedProductId, int RelatedProductId)
         {
             try
             {
-                var result = _ProductServices.GetRelatedProductList(StoreID, LoggedInUserId, SelectedProductId, RelatedProductId);
+                var result = _ProductServices.GetRelatedProductList(StoreID,SelectedProductId, RelatedProductId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
