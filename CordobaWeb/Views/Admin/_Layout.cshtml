@@ -127,9 +127,6 @@
                         <li><a style="display: block; overflow: auto;" ui-sref="ShowOrders({OrderStatusId : ProcessingOrderStatusId })" href="#"><span class="label label-warning pull-right">{{ProcessingOrderCount}}</span>Processing</a></li>
                         <li><a ui-sref="ShowOrders ({OrderStatusId : DeliveredOrderStatusId})" href="#"><span class="label label-success pull-right">{{DeliveredOrderCount}}</span>Delivered</a></li>
                         <li><a ui-sref="ShowOrders({OrderStatusId : ReturnedOrderStatusId})" href="#"><span class="label label-danger pull-right">{{ReturnedOrderCount}}</span>Returned</a></li>
-                        <li><a style="display: block; overflow: auto;" ui-sref="OrderReport" href="#"><span class="label label-warning pull-right" ng-bind="ProcessingOrderCount"></span>Processing</a></li>
-                        <li><a ui-sref="OrderReport" href="#"><span class="label label-success pull-right" ng-bind="DeliveredOrderCount"></span>Delivered</a></li>
-                        <li><a ui-sref="OrderReport" href="#"><span class="label label-danger pull-right" ng-bind="ReturnedOrderCount"></span>Returned</a></li>
                         @*<li class="divider"></li>*@
                         @*<li class="dropdown-header">Customers</li>
                     <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
