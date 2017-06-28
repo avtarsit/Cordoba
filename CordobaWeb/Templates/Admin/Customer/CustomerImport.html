@@ -31,7 +31,7 @@
                         <table class="table table-bordered table-hover list">
                             <tbody>
 
-                                <tr>
+                                <!--<tr>
                                     <td width="25%">Customer Group:</td>
                                     <td>
                                         <select ng-options="customer_group.customer_group_id as customer_group.name  for customer_group in CustomerGroupList"
@@ -39,12 +39,12 @@
                                             <option value=""> --- Please Select --- </option>
                                         </select>
                                     </td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <td width="25%">Store:</td>
                                     <td>
                                         <select ng-options="store.store_id as store.name  for store in StoreList"
-                                                class="form-control" ng-model="store_id" name="store_List" ng-disabled="store_id != 0">
+                                                class="form-control" ng-model="CustomerFilter.storeId" name="store_List" ng-disabled="store_id != 0">
                                             <option value=""> --- Please Select --- </option>
                                         </select>
                                         
