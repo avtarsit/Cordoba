@@ -71,17 +71,16 @@ namespace CordobaServices.Services
             try
             {
                 SqlParameter[] param = new SqlParameter[10];
-                param[0] = new SqlParameter("StoreId", StoreId);
-                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
-                param[2] = new SqlParameter("currency_id", currency.currency_id);
-                param[3] = new SqlParameter("title", currency.title);
-                param[4] = new SqlParameter("code", currency.code);
-                param[5] = new SqlParameter("symbol_left", currency.symbol_left);
-                param[6] = new SqlParameter("symbol_right", currency.symbol_right);
-                param[7] = new SqlParameter("decimal_place", currency.decimal_place);
-                param[8] = new SqlParameter("value", currency.value);
-                param[9] = new SqlParameter("status", currency.status);
-                
+                param[0] = new SqlParameter("currency_id", currency.currency_id);
+                param[1] = new SqlParameter("title", currency.title);
+                param[2] = new SqlParameter("code", currency.code);
+                param[3] = new SqlParameter("symbol_left", currency.symbol_left);
+                param[4] = new SqlParameter("symbol_right", currency.symbol_right);
+                param[5] = new SqlParameter("decimal_place", currency.decimal_place);
+                param[6] = new SqlParameter("value", currency.value);
+                param[7] = new SqlParameter("status", currency.status);
+                param[8] = new SqlParameter("StoreId", StoreId);
+                param[9] = new SqlParameter("LoggedInUserId", LoggedInUserId);
 
                 var result = CurrencyEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCurrency", param).ToList<int>().FirstOrDefault();
 
