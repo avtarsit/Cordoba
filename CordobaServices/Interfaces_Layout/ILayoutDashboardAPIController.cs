@@ -29,5 +29,6 @@ namespace CordobaServices.Interfaces_Layout
         List<StoreTermsEntity> GetStoreTermsDetail(int Store_Id);
         CustomerEntity ForgotPassword(CustomerEntity CustomerObj);
         List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID);
+        List<BannerAttributeEntity> GetBanner_Layout(int StoreId);
     }
 }

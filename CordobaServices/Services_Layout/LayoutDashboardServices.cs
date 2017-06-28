@@ -408,6 +408,23 @@ namespace CordobaServices.Services_Layout
 
         }
 
+        public List<BannerAttributeEntity> GetBanner_Layout(int StoreId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreId) };
+                var result = objGenericRepository.ExecuteSQL<BannerAttributeEntity>("GetBanner_Layout", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
 
     }
 }
