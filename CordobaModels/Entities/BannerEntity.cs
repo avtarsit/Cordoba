@@ -9,9 +9,9 @@ namespace CordobaModels.Entities
     public class BannerEntity
     {
 
-        public int? BannerId { get; set; }
-        public string BannerName { get; set; }
-        public int StatusId { get; set; }
+        public int? banner_id { get; set; }
+        public string name { get; set; }
+        public int status { get; set; }
         public string StatusName { get; set; }
         public List<BannerAttributeEntity> BannerAttributeList {get;set;}
     }

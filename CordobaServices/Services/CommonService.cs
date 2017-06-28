@@ -72,22 +72,24 @@ namespace CordobaServices.Services
                 string[] strBCC = bcc.Split(new char[] { ',' });
 
                 // Set the Bcc address of the mail message 
-                for (int intCount = 0; intCount < strBCC.Length; intCount++)
-                {
-                    mailMessage.Bcc.Add(new MailAddress(strBCC[intCount]));
-                }
+                //for (int intCount = 0; intCount < strBCC.Length; intCount++)
+                //{
+                //    mailMessage.Bcc.Add(new MailAddress(strBCC[intCount]));
+                //}
             }
 
             // Check if the cc value is nothing or an empty value 
-            if (!string.IsNullOrEmpty(cc))
-            {
-                // Set the CC address of the mail message 
-                string[] strCC = cc.Split(new char[] { ',' });
-                for (int intCount = 0; intCount < strCC.Length; intCount++)
-                {
-                    mailMessage.CC.Add(new MailAddress(strCC[intCount]));
-                }
-            }
+            //if (!string.IsNullOrEmpty(cc))
+            //{
+            //    // Set the CC address of the mail message 
+            //    string[] strCC = cc.Split(new char[] { ',' });
+            //    for (int intCount = 0; intCount < strCC.Length; intCount++)
+            //    {
+            //        mailMessage.CC.Add(new MailAddress(strCC[intCount]));
+            //    }
+            //}
+
+            mailMessage.CC.Add(new MailAddress("pavan.a@sgit.in"));
 
             // Set the subject of the mail message 
             mailMessage.Subject = subject;
@@ -114,7 +116,7 @@ namespace CordobaServices.Services
                 smtpClient.Credentials = new System.Net.NetworkCredential(emailSetting.EmailUsername, emailSetting.EmailPassword);
 
                 // Send the mail message 
-                smtpClient.Send(mailMessage);
+                //smtpClient.Send(mailMessage);
                 return true;
             }
             catch

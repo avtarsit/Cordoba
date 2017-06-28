@@ -7,7 +7,7 @@
     Tab();
     $scope.IsEditMode = false;
 
-    $scope.StoreId = 0;
+    $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = 0;
 
     $scope.Category_Id = 0;
@@ -24,7 +24,10 @@
     else {
         $scope.PageTitle = "Add Category";
     }
-  
+ 
+    GetLanguageList();
+    GetParentCategoryList();
+    
 
     //Delete Category
     $scope.DeleteCategory = function () {
@@ -72,38 +75,52 @@
     //Get language list
 
     function GetLanguageList() {
+        //$http({
+        //    method: 'GET',
+        //    url: configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+        //    headers: { 'Content-Type': 'application/json' }
+        //}).success(function (data) {
 
-        $http({
-            method: 'GET',
-            url: configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
-            headers: { 'Content-Type': 'application/json' }
-        })
-         .success(function (data) {
-
-             $scope.LanguageList = data;
-             $scope.language_id = $scope.LanguageList[0].language_id
+        //     $scope.LanguageList = data;
+        //     debugger;
+        //     $scope.language_id = $scope.LanguageList[0].language_id
 
 
-         }).error(function (err) {
-             alert("false");
-         });
+        // }).error(function (err) {
+        //     alert("false");
+        // });
+        $http.get(configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+                  .then(function (response) {
+                      debugger;
+                      $scope.LanguageList = response.data;
+                      $scope.language_id = $scope.LanguageList[0].language_id
+                  })
+                  .catch(function (response) {
+                  })
+                  .finally(function () {
+
+                  });
 
     }
 
-
-    $scope.GetCategoryById = function () {
+ 
+    $scope.GetCategoryById = function() {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id + "&StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
                   .then(function (response) {
                       $scope.CategoryObj = response.data;
+                      console.log($scope.CategoryObj)
                       CreateDescriptionObject();
 
                   })
                   .catch(function (response) {
                   })
                   .finally(function () {
+
                   });
            
     }
+
+    $scope.GetCategoryById();
     //$http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
     //  .then(function (response) {
     //      $scope.CategoryObj = response.data;
@@ -117,8 +134,6 @@
     //  });
 
     
-                  });           
-    }
 
     function CreateDescriptionObject() {
         var TempDescObject = [];
@@ -138,7 +153,9 @@
                 $scope.CategoryObj.CategoryDescriptionList.push(CategoryDescObj[0]);
             }
         });
+
     }
+
 
         $scope.Cancel = function () {
             var hasAnyUnsavedData = false;
@@ -153,18 +170,6 @@
             else {
                 $state.go('ShowCategory');
             }
-    $scope.Cancel = function () {
-        var hasAnyUnsavedData = false;
-        hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
-        if (hasAnyUnsavedData) {
-            bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
-                if (result) {
-                    $state.go('ShowCategory');
-                }
-            });
-        }
-        else {
-            $state.go('ShowCategory');
         }
 
 
@@ -173,12 +178,7 @@
 
             $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
 
-            $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
-              .then(function (response) {
-                  if (response.data.length > 0) {
-                      $scope.ParentCategoryList = response.data;
-                  }
-              })
+           
           .catch(function (response) {
 
           })
@@ -190,12 +190,13 @@
 
 
         $scope.InsertOrUpdateCategory = function (form) {
+            debugger;
             if (form.$valid) {
                 $scope.CategoryObj.StoreIdCSV = "";
                 $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
                 var categoryEntity = JSON.stringify($scope.CategoryObj);
 
-
+                debugger;
                 $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
                   .then(function (response) {
 
@@ -273,13 +274,11 @@
 
 
 
-            GetLanguageList();
-            GetParentCategoryList();
-            $scope.GetCategoryById();
+            
 
         }
 
-
+        
     
-
+    
 })

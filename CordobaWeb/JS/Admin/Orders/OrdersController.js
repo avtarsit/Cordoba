@@ -182,5 +182,25 @@
          });
     }
 
+    function GetOrderStatus() {
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + '&language_id=1')
+       .then(function (response) {
+           if (response.data.length > 0) {
+               $scope.OrderStatusList = response.data;
+               var DefaultOption = new Object();
+               DefaultOption.order_status_id = 0;
+               DefaultOption.name = "All Status";
+               $scope.OrderStatusList.push(DefaultOption);
+           }
+       })
+   .catch(function (response) {
+   })
+   .finally(function () {
+
+   });
+    }
+
+    GetOrderStatus();
+
 
 });

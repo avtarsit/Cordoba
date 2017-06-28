@@ -49,11 +49,12 @@ namespace CordobaServices.Services
             {
                 try
                 {
-                    SqlParameter[] param = new SqlParameter[1];
-                    param[0] = new SqlParameter("StoreId", StoreId);
-                    param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
-                    param[2] = new SqlParameter("customer_group_id", customerGroupID);
-                    CustomerGroupDetail = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("GetCustomerGroupDetails", param ).ToList<CustomerGroupEntity>().FirstOrDefault();
+                    SqlParameter[] param = new SqlParameter[] {
+                    new SqlParameter("StoreId", StoreId),
+                    new SqlParameter("LoggedInUserId", LoggedInUserId),
+                    new SqlParameter("customer_group_id", customerGroupID)
+                };
+                    CustomerGroupDetail = CustomerGroupEntityGenericRepository.ExecuteSQL<CustomerGroupEntity>("GetCustomerGroupDetails", param).ToList<CustomerGroupEntity>().FirstOrDefault();
 
                 }
                 catch (Exception ex)
@@ -78,9 +79,9 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("customer_group_id", customerGroup.customer_group_id);
                 param[3] = new SqlParameter("name", customerGroup.name);
 
-                var result = CustomerGroupEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCustomerGroup" , param).ToList<int>().FirstOrDefault();
+                var result = CustomerGroupEntityGenericRepository.ExecuteSQL<int>("EXEC InsertOrUpdateCustomerGroup", param).ToList<int>().FirstOrDefault();
 
-               
+
 
                 return result;
             }

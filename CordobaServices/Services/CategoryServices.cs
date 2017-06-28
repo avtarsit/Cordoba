@@ -264,8 +264,10 @@ namespace CordobaServices.Services
         //Insert Or Update Category
         public int InsertOrUpdateCategory(int StoreId, int LoggedInUserId, CategoryEntity categoryEntity)
         {
-            string CategoryDescriptionXml = Helpers.ConvertToXml<CategoryDescriptionList>.GetXMLString(categoryEntity.CategoryDescriptionList);
-            SqlParameter[] sqlParameter = new SqlParameter[] { 
+            try
+            {
+                string CategoryDescriptionXml = Helpers.ConvertToXml<CategoryDescriptionList>.GetXMLString(categoryEntity.CategoryDescriptionList);
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
                                                    new SqlParameter("StoreId", StoreId)
                                                  , new SqlParameter("LoggedInUserId", LoggedInUserId)
                                                  , new SqlParameter("Category_Id", categoryEntity.Category_Id)
@@ -277,8 +279,13 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("CategoryDescriptionXml", CategoryDescriptionXml !=null?CategoryDescriptionXml:"")
                                                 };
 
-            int result = CategoryEntityGenericRepository.ExecuteSQL<int>("InsertOrUpdateCategory", sqlParameter).FirstOrDefault();
-            return result;
+                int result = CategoryEntityGenericRepository.ExecuteSQL<int>("InsertOrUpdateCategory", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
         }
 
 

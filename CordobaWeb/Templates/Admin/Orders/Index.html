@@ -65,7 +65,7 @@
                             <div class="col-sm-4">
                                 <!--ng-disabled="StoreId != 0"-->
                                 <label class="control-label" for="input-status">Store</label>
-                                <select ng-model="StoreId" ng-options=" store.store_id as store.name for store in StoreList"
+                                <select ng-model="filter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
                                         class="form-control" name="store" ng-disabled="StoreId != 0">
                                     <option value="0"></option>
                                 </select>
