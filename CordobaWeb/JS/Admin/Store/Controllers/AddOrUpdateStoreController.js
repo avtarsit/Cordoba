@@ -43,7 +43,8 @@
     ];
 
     function GetCountryList() {
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        //$http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?storeId=0" + "&LoggedInUserId=" + $scope.LoggedInUserId + "&countryId=0")
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -57,7 +58,7 @@
       });
     }
     function GetLanguageList() {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=0' + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.LanguageList = response.data;
         })
@@ -69,7 +70,7 @@
        });
     }
     function GetCurrencyList() {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=0" + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CurrencyList = response.data;
@@ -85,7 +86,7 @@
 
     $scope.GetZoneListByCountry = function (countryId) {
         countryId = countryId == null ? 0 : countryId;
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=0' + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.RegionStateList = [];
             if (response.data.length > 0) {
