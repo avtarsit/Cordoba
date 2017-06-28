@@ -29,7 +29,7 @@
                     <div class="product-image">
 
                         <div class="magnify">
-                            <div class="large"></div>                          
+                            <div class="large"></div>
                             <img class="small" src="{{ProductObj.Image}}" width="500" />
                         </div>                     
                     </div>
@@ -41,7 +41,7 @@
                     <p>Modal No:</p><span ng-bind="ProductObj.Model"></span>
                 </div>
                 <div class="price mt-10">
-                    <span class="points" ng-bind="ProductObj.Price+' Points'"></span>
+                    <span class="points" ng-bind="(ProductObj.Price | number:2)+' Points'"></span>
                 </div>
               
                 <div class="price mt-10">

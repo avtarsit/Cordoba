@@ -346,7 +346,7 @@ function GetLayoutName() {
                 }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
-                    url: '/ProductDetails?ProductId:productId',
+                    url: '/ProductDetails?ProductId:product_id',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
                 }
                 , CartDetail = {
