@@ -69,6 +69,7 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/SupplierApi/DeleteSupplier?SupplierID=" + $scope.SupplierID + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                       .then(function (response) {
+                                          toastr.success('Successfully Deleted.');
                                           $state.go('ShowSupplier');
                                       })
                                   .catch(function (response) {

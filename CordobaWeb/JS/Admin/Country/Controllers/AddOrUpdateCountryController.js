@@ -72,6 +72,7 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/CountryApi/DeleteCountry?countryId=" + $scope.CountryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                    .then(function (response) {
+                                       notificationFactory.customSuccess("Successfully Deleted!.");
                                        $state.go('ShowCountry');
                                    })
                                .catch(function (response) {
