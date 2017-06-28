@@ -174,7 +174,7 @@ namespace CordobaAPI.API
                 var result = _categoryServices.InsertOrUpdateCategory(StoreId, LoggedInUserId, categoryEntity);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
