@@ -1,7 +1,7 @@
 ﻿app.controller('ManageCategoryController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
-    
+
     decodeParams($stateParams);
     BindToolTip();
     Tab();
@@ -24,7 +24,7 @@
     else {
         $scope.PageTitle = "Add Category";
     }
-  
+
 
     //Delete Category
     $scope.DeleteCategory = function () {
@@ -102,7 +102,7 @@
                   })
                   .finally(function () {
                   });
-           
+
     }
     //$http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
     //  .then(function (response) {
@@ -116,9 +116,6 @@
 
     //  });
 
-    
-                  });           
-    }
 
     function CreateDescriptionObject() {
         var TempDescObject = [];
@@ -140,19 +137,19 @@
         });
     }
 
-        $scope.Cancel = function () {
-            var hasAnyUnsavedData = false;
-            hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
-            if (hasAnyUnsavedData) {
-                bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
-                    if (result) {
-                        $state.go('ShowCategory');
-                    }
-                });
-            }
-            else {
-                $state.go('ShowCategory');
-            }
+    //$scope.Cancel = function () {
+    //    var hasAnyUnsavedData = false;
+    //    hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
+    //    if (hasAnyUnsavedData) {
+    //        bootbox.confirm("You have unsaved data. Are you sure to leave page.", function (result) {
+    //            if (result) {
+    //                $state.go('ShowCategory');
+    //            }
+    //        });
+    //    }
+    //    else {
+    //        $state.go('ShowCategory');
+    //    }
     $scope.Cancel = function () {
         var hasAnyUnsavedData = false;
         hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -166,120 +163,118 @@
         else {
             $state.go('ShowCategory');
         }
+    }
 
 
 
-        function GetParentCategoryList() {
+    function GetParentCategoryList() {
 
-            $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
 
-            $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
+        $http.get(configurationService.basePath + "api/CategoryApi/GetParentCategoryList")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.ParentCategoryList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+
+    $scope.InsertOrUpdateCategory = function (form) {
+        if (form.$valid) {
+            $scope.CategoryObj.StoreIdCSV = "";
+            $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
+            var categoryEntity = JSON.stringify($scope.CategoryObj);
+
+
+            $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
               .then(function (response) {
-                  if (response.data.length > 0) {
-                      $scope.ParentCategoryList = response.data;
+
+                  if (response.data > 0) {
+
+                      notificationFactory.customSuccess("Category Saved Successfully.");
+                      $state.go('ShowCategory');
+                  }
+                  else if (response.data == -1) {
+                      notificationFactory.customError("Category name is already Exists!");
                   }
               })
           .catch(function (response) {
-
+              notificationFactory.error("Error occur during save record.");
           })
           .finally(function () {
 
           });
+
+        }
+    }
+
+    function GetSelectedStoreListCSV(StoreObj) {
+        var StoreIdCSV = "";
+        var SelectedStoreList = $filter('filter')(StoreObj, { IsSelected: true }, true);
+        StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");
+        return StoreIdCSV;
+    }
+
+    $scope.UploadImage = function () {
+        var data = new FormData();
+        var files = $("#ImageUpload").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+        var filename = files[0].name;
+        //var extention = filename.substr(filename.lastIndexOf(".") + 1).toLowerCase();
+        // Add the uploaded image content to the form data collection
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
         }
 
-
-
-        $scope.InsertOrUpdateCategory = function (form) {
-            if (form.$valid) {
-                $scope.CategoryObj.StoreIdCSV = "";
-                $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
-                var categoryEntity = JSON.stringify($scope.CategoryObj);
-
-
-                $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
-                  .then(function (response) {
-
-                      if (response.data > 0) {
-
-                          notificationFactory.customSuccess("Category Saved Successfully.");
-                          $state.go('ShowCategory');
-                      }
-                      else if (response.data == -1) {
-                          notificationFactory.customError("Category name is already Exists!");
-                      }
-                  })
-              .catch(function (response) {
-                  notificationFactory.error("Error occur during save record.");
-              })
-              .finally(function () {
-
-              });
-
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/CategoryApi/UploadCategoryImage?Category_Id=' + $scope.Category_Id,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                notificationFactory.customSuccess("Category Image Upload Successfully.");
+                $('#ImageUpload').val('');
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
             }
-        }
+        });
 
-        function GetSelectedStoreListCSV(StoreObj) {
-            var StoreIdCSV = "";
-            var SelectedStoreList = $filter('filter')(StoreObj, { IsSelected: true }, true);
-            StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");
-            return StoreIdCSV;
-        }
+        return ajaxRequest;
 
-        $scope.UploadImage = function () {
-            var data = new FormData();
-            var files = $("#ImageUpload").get(0).files;
-            if (files.length == 0) {
-                notificationFactory.customError("Please select atleast one file.");
-                return notificationFactory;
-            }
-            var filename = files[0].name;
-            //var extention = filename.substr(filename.lastIndexOf(".") + 1).toLowerCase();
-            // Add the uploaded image content to the form data collection
-            if (files.length > 0) {
-                data.append("UploadedFile", files[0]);
-            }
+        //$http.post(configurationService.basePath + "api/CategoryApi/UploadCategoryImage?Category_Id=" + $scope.Category_Id, data)
+        //      .then(function (response) {
+        //          if (response.data > 0) {
 
-            var ajaxRequest = $.ajax({
-                type: "POST",
-                url: configurationService.basePath + 'api/CategoryApi/UploadCategoryImage?Category_Id=' + $scope.Category_Id,
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (response) {
-                    notificationFactory.customSuccess("Category Image Upload Successfully.");
-                    $('#ImageUpload').val('');
-                },
-                error: function (response) {
-                    notificationFactory.error("Error occur during image upload.");
-                }
-            });
+        //              notificationFactory.customSuccess("Category Image Upload Successfully.");
+        //              $state.go('ShowCategory');
+        //          }
+        //      })
+        //  .catch(function (response) {
+        //      notificationFactory.error("Error occur during image upload.");
+        //  })
+        //  .finally(function () {
 
-            return ajaxRequest;
-
-            //$http.post(configurationService.basePath + "api/CategoryApi/UploadCategoryImage?Category_Id=" + $scope.Category_Id, data)
-            //      .then(function (response) {
-            //          if (response.data > 0) {
-
-            //              notificationFactory.customSuccess("Category Image Upload Successfully.");
-            //              $state.go('ShowCategory');
-            //          }
-            //      })
-            //  .catch(function (response) {
-            //      notificationFactory.error("Error occur during image upload.");
-            //  })
-            //  .finally(function () {
-
-            //  });
+        //  });
 
 
 
-            GetLanguageList();
-            GetParentCategoryList();
-            $scope.GetCategoryById();
+        GetLanguageList();
+        GetParentCategoryList();
+        $scope.GetCategoryById();
 
-        }
+    }
 
-
-    
-
-})
+});
