@@ -14,7 +14,8 @@
         dateAdded: '',
         Customer: '',
         //Total: '',
-        dateModified: ''
+        dateModified: '',
+        storeId: $scope.StoreId
     };
 
     if ($stateParams.OrderStatusId != undefined && $stateParams.OrderStatusId != null) {
@@ -58,7 +59,7 @@
     }
 
     $scope.GetOrderList = function () {
-
+        
         if ($.fn.DataTable.isDataTable("#tblOrders")) {
             $('#tblOrders').DataTable().destroy();
             //$('#tblOrders').html('<table class="table grid table-condensed table-hover" id="tblOrders" width="100%"></table>');
@@ -83,7 +84,7 @@
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-
+                debugger;
                 //aoData = BindSearchCriteria(aoData);
 
                 aoData = BindSorting(aoData, oSettings);

@@ -190,6 +190,7 @@
 
 
         $scope.InsertOrUpdateCategory = function (form) {
+            debugger;
             if (form.$valid) {
                 $scope.CategoryObj.StoreIdCSV = "";
                 $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
