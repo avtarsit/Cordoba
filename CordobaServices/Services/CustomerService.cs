@@ -21,7 +21,7 @@ namespace CordobaServices.Services
 
         private GenericRepository<CustomerEntity> CustomerEntityGenericRepository = new GenericRepository<CustomerEntity>();
 
-        public List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added , int? storeId)
+        public List<CustomerEntity> GetCustomerList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int? storeId)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace CordobaServices.Services
                 if (customer_id > 0)
                 {
                     var paramCustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
-                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById",paramCustomer_id).FirstOrDefault();
+                    var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("EXEC GetCustomerById", paramCustomer_id).FirstOrDefault();
                     if (result != null)
                     {
                         customerEntity = result;
@@ -151,7 +151,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("approved", customerEntity.approved)
                                                  , new SqlParameter("activated", customerEntity.activated)
                                                  , new SqlParameter("is_admin", customerEntity.is_admin)
-                                                 , new SqlParameter("customer_group_id", customerEntity.customer_group_id)
+                                                 , new SqlParameter("customer_department_id", customerEntity.customer_department_id.HasValue?customerEntity.customer_department_id.Value :(object)DBNull.Value)
                                                  , new SqlParameter("AddressXml", AddressXml ??  (object)DBNull.Value)
                                                  , new SqlParameter("PointsAuditXml", PointsAuditXml ??  (object)DBNull.Value)
                                                 };

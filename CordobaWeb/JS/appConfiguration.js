@@ -396,7 +396,20 @@ function GetLayoutName() {
                     name: 'OrderDetail',
                     url: '/OrderDetail?OrderId:orderid',
                     templateUrl: 'Templates/' + LayoutName + '/Order/OrderDetail.html'
-                };
+                }
+                ,
+                  ShowCustomerDepartment = {
+                      name: 'ShowCustomerDepartment',
+                      url: '/ShowCustomerDepartment',
+                      templateUrl: 'Templates/' + LayoutName + '/CustomerDepartment/Index.html'
+                  },
+                  ManageCustomerDepartment = {
+                      name: 'ManageCustomerDepartment',
+                      url: '/ManageCustomerDepartment?CustomerDepartmentId',
+                      templateUrl: 'Templates/' + LayoutName + '/CustomerDepartment/ManageCustomerDepartment.html'
+                  }
+
+                ;
 
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(Home);
@@ -484,6 +497,8 @@ function GetLayoutName() {
                 $stateProvider.state(PointsAudit);
                 $stateProvider.state(OrderSuccessful);
                 $stateProvider.state(OrderDetail);
+                $stateProvider.state(ShowCustomerDepartment);
+                $stateProvider.state(ManageCustomerDepartment);
 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
@@ -493,7 +508,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {                 
+             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
