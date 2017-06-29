@@ -46,11 +46,11 @@
                                                 <li ng-repeat="error in validationErrors">{{error}}</li>
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
-                                                <li ng-show="form.FirstName.$error.required">First name is required.</li>    
-                                                <li ng-show="form.LastName.$error.required">Last name is required.</li>  
+                                                <li ng-show="form.FirstName.$error.required">First name is required.</li>
+                                                <li ng-show="form.LastName.$error.required">Last name is required.</li>
                                                 <li ng-show="form.EmailAddress.$error.required || form.EmailAddress.$error.email">Email address is Required! OR Email address is not valid.</li>
-                                                <li ng-show="form.Telephone.$error.required">Telephone is required.</li>  
-                                                <li ng-show="form.Password.$error.required">Password is required.</li>      
+                                                <li ng-show="form.Telephone.$error.required">Telephone is required.</li>
+                                                <li ng-show="form.Password.$error.required">Password is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <li role="presentation"><a data-target="#HistoryTab" role="tab" data-toggle="tab">History</a></li>
                                     <li role="presentation"><a data-target="#TransactionTab" role="tab" data-toggle="tab">Transactions</a></li>
                                     <li role="presentation"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Reward Points</a></li>
-                                    
+
 
                                 </ul>
 
@@ -80,7 +80,7 @@
                                                     <li ng-repeat="Address  in CustomerObj.AddressList">
                                                         <a data-target="#Address1" class="cursor-pointer" role="tab" data-toggle="tab" ng-click="GotoAddress(Address)"><i class="icon-minus-circle2 cursor-pointer" ng-click="RemoveAddress(Address)"></i>&nbsp;&nbsp;Address {{$index+1}}&nbsp;</a>
                                                     </li>
-                                                    <li class=" cursor-pointer"><a role="tab"  data-toggle="tab" ng-click="AddAddress()"><i class="icon-plus-circle2"></i>&nbsp;&nbsp;Add Address</a></li>
+                                                    <li class=" cursor-pointer"><a role="tab" data-toggle="tab" ng-click="AddAddress()"><i class="icon-plus-circle2"></i>&nbsp;&nbsp;Add Address</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-xs-10">
@@ -136,7 +136,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Password</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="password"  class="form-control" name="Password" maxlength="35" placeholder="Enter Password" ng-model="CustomerObj.password" required="required">
+                                                                    <input type="password" class="form-control" name="Password" maxlength="35" placeholder="Enter Password" ng-model="CustomerObj.password" required="required">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -148,7 +148,7 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                        
+
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label ">Status</label>
                                                                 <div class="col-lg-9">
@@ -166,8 +166,7 @@
                                                                         <option value="number:0">No</option>
                                                                     </select>-->
                                                                     <select ng-options="status.ID as status.Name  for status in Status"
-                                                                            class="form-control" ng-model="CustomerObj.activated" name="Approved">
-                                                                    </select>
+                                                                            class="form-control" ng-model="CustomerObj.activated" name="Approved"></select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -181,15 +180,22 @@
                                                                             class="form-control" ng-model="CustomerObj.is_admin" name="Approved"></select>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label class="col-lg-2 control-label ">Department</label>
+                                                                <div class="col-lg-9">
+                                                                    <select ng-options="department.customer_department_id as department.name  for department in CustomerDepartmentList"
+                                                                            class="form-control" ng-model="CustomerObj.customer_department_id" name="DepartmentId"></select>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane" id="Address1">
                                                         <div class="col-md-12">
-                                                        
+
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">First Name</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="AddressFirstName" maxlength="30" placeholder="Enter First Name" ng-model="CustomerObj.Address.firstname" >
+                                                                    <input type="text" class="form-control" name="AddressFirstName" maxlength="30" placeholder="Enter First Name" ng-model="CustomerObj.Address.firstname">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -207,7 +213,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">Address 1</label>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" name="AddressAddress1" maxlength="120" placeholder="Enter Primary Address" ng-model="CustomerObj.Address.address_1" >
+                                                                    <input type="text" class="form-control" name="AddressAddress1" maxlength="120" placeholder="Enter Primary Address" ng-model="CustomerObj.Address.address_1">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -216,7 +222,7 @@
                                                                     <input type="text" class="form-control" name="AddressAddress2" maxlength="120" placeholder="Enter Secondary Address" ng-model="CustomerObj.Address.address_2">
                                                                 </div>
                                                             </div>
-                                                         
+
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label mandatoryField">City</label>
                                                                 <div class="col-lg-9">
@@ -252,7 +258,8 @@
                                                                 <label class="col-sm-2 control-label">Default Address</label>
                                                                 <div class="col-sm-10">
                                                                     <label class="radio">
-                                                                        <input type="checkbox"  name="address[1][default]" ng-model="CustomerObj.Address.IsDefaultAddress"></label>
+                                                                        <input type="checkbox" name="address[1][default]" ng-model="CustomerObj.Address.IsDefaultAddress">
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -263,24 +270,23 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <!--General Tab-->
-                                    
                                         <!--End General Tab-->
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="HistoryTab">
                                         <div class="tab-pane fade active in" id="tab-data">
-                                            <!--History Tab-->                                   
+                                            <!--History Tab-->
                                             <div class="col-md-12">
                                                 <table class="table table-bordered  table-striped datatable-responsive" datatable="ng" id="tblHistory" dt-options="dtOptions" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>Date Added</th>
-                                                            <th>Comment</th>                                                       
+                                                            <th>Comment</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr ng-repeat="Item in HistoryList">
                                                             <td ng-bind="Item.CreatedDate"></td>
-                                                            <td ng-bind="Item.Comment"></td>                                                           
+                                                            <td ng-bind="Item.Comment"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -289,7 +295,7 @@
                                                     <div class="col-lg-9">
                                                         <textarea type="text" class="form-control" name="Comment" rows="5" placeholder="Enter Comment" ng-model="StoreObj.Comment"></textarea>
                                                     </div>
-                                                  
+
                                                 </div>
                                                 <button class="btn btn-primary pull-right" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add history"><i class="icon-plus-circle2"></i> Add History</button>
                                             </div>
@@ -361,7 +367,7 @@
                                                 </table>
 
                                             </div>
-                                            
+
                                             <div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label mandatoryField">Description</label>
@@ -395,7 +401,7 @@
 </div>
 
 <script>
- 
+
 </script>
 
 

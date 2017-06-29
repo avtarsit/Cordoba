@@ -1,109 +1,201 @@
-﻿<div >
-    <div class="slider">
-        
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="~/Content/layout2/images/slide1.jpg" alt="product1">
-                </div>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pitney Bowes</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/custom.min.css" rel="stylesheet" />
+    <link href="css/jquery.bxslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 
-                <div class="item">
-                    <img src="~/Content/layout2/images/slide2.jpg" alt="product2">
-                </div>
+</head>
+<body>
 
-                <div class="item">
-                    <img src="~/Content/layout2/images/slide3.jpg" alt="product3">
+    <div class="fix-header navbar-fixed-top">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-12">
+
+                    <div class="login">
+                        <ul>
+                            <li class="active"><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#myModal" class="login-popup">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <img src="~/Content/layout2/images/left-arrow.png" alt="leftarrow" />
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <img src="~/Content/layout2/images/right-arrow.png" alt="rightarrow" />
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-        <div class="slider_text text-center">
+        <div class="header">
             <div class="container">
-                <h1>Bienvenue sur la boutique Make a Difference « thank you</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <div class="read-img">
-                    <img src="~/Content/layout2/images/image1.png" alt="slider-image">
-                </div>
-                <div class="more">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Le site Pitney Bowes “Thank You” est l’outil officiel de récompense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant.
 
-                    <p>Le site Pitney Bowes “Thank You” est l’outil officiel de récompense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant. Le site Pitney Bowes “Thank You” est l’outil officiel de récompense des employés pour leur excellence dans leurs domaines, leur sens du service client irréprochable, leur esprit d’équipe ainsi que leur philosophie de gagnant.<p>
+                <div class="col-sm-12">
+
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                    </div>
+                    <div class="main-menu">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="show_cart">
+                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">4</span></a>
+                        </div>
+                        <div class="search_products">
+                            <input id="txtName" class="search_textbox" placeholder="Search" />
+                            <button type="button" class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="products.html">Our Products</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>
 
+
+
+    <div class="slider">
+        <div class="banner-slider">
+            <ul class="main-banner">
+                <li><img src="images/slide1.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide3.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
+            </ul>
+        </div>
+    </div>
+
+
     <div class="catagories_slider">
         <div class="container">
-            <div class="col-md-3" ng-controller="Dashboard_CategoryController">
+            <div class="col-md-3">
                 <div class="letest-product catagories">
                     <h3>CATAGORIES</h3>
                     <div class="content mCustomScrollbar">
                         <ul>
-                            <li ng-repeat="category in CategoryList"><a href="#">{{category.name}}</a></li>
-                            @*<li><a href="">Baby</a></li>
-                        <li><a href="">Beauty & Fragrance</a></li>
-                        <li><a href="">Books</a></li>
-                        <li><a href="">Computing</a></li>
-                        <li><a href="">Cooking & Dining</a></li>
-                        <li><a href="">Home Appliances</a></li>
-                        <li><a href="">Smart Phones</a></li>
-                        <li><a href="">Sports & Leisure</a></li>
-                        <li><a href="">Sunglasses</a></li>
-                        <li><a href="">Watches & Jewellery</a></li>
-                        <li><a href="">Books</a></li>
-                        <li><a href="">Apple Products</a></li>
-                        <li><a href="">Baby</a></li>
-                        <li><a href="">Beauty & Fragrance</a></li>
-                        <li><a href="">Books</a></li>
-                        <li><a href="">Apple Products</a></li>
-                        <li><a href="">Baby</a></li>
-                        <li><a href="">Beauty & Fragrance</a></li>
-                        <li><a href="">Books</a></li>
-                        <li><a href="">Apple Products</a></li>
-                        <li><a href="">Baby</a></li>
-                        <li><a href="">Beauty & Fragrance</a></li>
-                        <li><a href="">Books</a></li>*@
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Computing</a></li>
+                            <li><a href="#">Cooking & Dining</a></li>
+                            <li><a href="#">Home Appliances</a></li>
+                            <li><a href="#">Smart Phones</a></li>
+                            <li><a href="#">Sports & Leisure</a></li>
+                            <li><a href="#">Sunglasses</a></li>
+                            <li><a href="#">Watches & Jewellery</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
                         </ul>
 
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <div class="products">
-                    <div class="letest-product" ng-controller="Dashboard_LatestProductController">
-                        <h3 class="heading">LETEST PRODUCT</h3>
-                        <div class="flexslider carousel">
-
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                                <ul class="slides" style="width: 2400%; transition-duration: 0.6s; transform: translate3d(-1591px, 0px, 0px);">
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="" ng-repeat="LatestProduct in LatestProductList">
-                                        <div class="col-product text-center">
-                                            <img ng-src="{{LatestProduct.ImgSrc}}" alt="letest-product1">
-                                            <h3>{{LatestProduct.product_name}}</h3>
-                                            <p>{{LatestProduct.product_code}}</p>
-                                            <span>{{LatestProduct.Points}}</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>                             
-                                </ul>
+            <div class="col-md-9 ">
+                <div class="products letest-product">
+                    <h3 class="heading">LETEST PRODUCT</h3>
+                    <div id="latest-product">
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
                             </div>
-                            <ol class="flex-control-nav flex-control-paging"><li><a href="#" class="">1</a></li><li><a href="#" class="">2</a></li><li><a href="#" class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#"></a></li><li class="flex-nav-next"><a class="flex-next" href="#" tabindex="-1"></a></li></ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="popular">
                     <div class="row">
                         <div class="popular-catagory">
@@ -111,39 +203,38 @@
                             <div class="col-sm-3">
 
                                 <div class="letest-product polular_catagories">
-                                    <img src="~/Content/layout2/images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="" class="heading_purple">Gifts & Flowers</a>
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Gifts & Flowers</a>
                                 </div>
 
                             </div>
                             <div class="col-sm-3">
 
                                 <div class="letest-product polular_catagories">
-                                    <img src="~/Content/layout2/images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="" class="heading_green">Entertainment</a>
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Entertainment</a>
                                 </div>
 
                             </div>
                             <div class="col-sm-3">
 
                                 <div class="letest-product polular_catagories">
-                                    <img src="~/Content/layout2/images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="" class="heading_purple">Cleaning Products</a>
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Cleaning Products</a>
                                 </div>
 
                             </div>
                             <div class="col-sm-3">
 
                                 <div class="letest-product polular_catagories">
-                                    <img src="~/Content/layout2/images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="" class="heading_green">Mobiles</a>
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Mobiles</a>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -154,106 +245,78 @@
                 <div class="letest-product">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="~/Content/layout2/images/special-offers.jpg" alt="special-offers">
+                            <img src="images/special-offers.jpg" alt="special-offers">
                         </div>
                         <div class="col-sm-8">
                             <div class="special-offers">
                                 <h3 class="heading">SPECIAL OFFERS</h3>
-                                <div class="flexslider carousel">
-                                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                                        <ul class="slides" style="width: 2400%; transition-duration: 0.6s; transform: translate3d(-1591px, 0px, 0px);">
-                                            <li style="width: 100px; margin-top:15px; margin-right: 15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer1.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 100px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer2.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 100px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer3.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 100px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer4.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 200px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer3.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 200px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer2.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 200px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer4.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li style="width: 200px; margin-right: 15px; margin-top:15px; margin-left: 20px; float: left; display: block;" data-thumb-alt="">
-                                                <div class="col-product text-center">
-                                                    <img src="~/Content/layout2/images/special-offer1.png" alt="letest-product1">
-                                                    <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                                    <p>AP-178</p>
-                                                    <span>92 Points</span>
-                                                    <div class="cart-btn">
-                                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                        </ul>
+                                <div id="special-product">
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer1.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ol class="flex-control-nav flex-control-paging"><li><a href="#" class="">1</a></li><li><a href="#" class="">2</a></li><li><a href="#" class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#"></a></li><li class="flex-nav-next"><a class="flex-next" href="#" tabindex="-1"></a></li></ul>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer2.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer3.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer4.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer1.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer3.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -267,87 +330,59 @@
         <div class="container">
             <div class="col-md-9 mt-30">
                 <div class="new">
-                    <img src="~/Content/layout2/images/new-arrivals.png" alt="new-arrivals">
+                    <img src="images/new-arrivals.png" alt="new-arrivals">
 
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="letest-product">
-                    <div class="hot-deals" ng-controller="Dashboard_HotDealsController">
-                        <h2>HOT DEALS</h2>
-                        <div class="flexslider carousel">
-
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                                <ul class="slides" style="width: 2400%; transition-duration: 0.6s; transform: translate3d(-1591px, 0px, 0px);">
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="" ng-repeat="HotDeals in HotDealsList">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li style="width: 200px; margin-right: 15px; float: left; display: block;" data-thumb-alt="">
-                                        <div class="col-product text-center">
-                                            <img src="~/Content/layout2/images/hot-deals.png" alt="letest-product1">
-                                            <h3>Dartington 5 Piece Wine Decanter Set Glitz</h3>
-                                            <p>AP-178</p>
-                                            <span>92 Points</span>
-                                            <div class="cart-btn">
-                                                <input type="button" name="cart_btn" class="add_cart_green" value="ADD TO CART">
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                    <div class="hot-deals">
+                        <h3 class="heading">HOT DEALS</h3>
+                        <div id="hot-product">
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
                             </div>
-                            <ol class="flex-control-nav flex-control-paging"><li><a href="#" class="">1</a></li><li><a href="#" class="">2</a></li><li><a href="#" class="flex-active">3</a></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#"></a></li><li class="flex-nav-next"><a class="flex-next" href="#" tabindex="-1"></a></li></ul>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -359,53 +394,53 @@
         <div class="container">
             <div class="col-sm-12">
                 <div class="letest-product">
-                    <h2>BEST SALLER</h2>
+                    <h3 class="heading">BEST SALLER</h3>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="saller">
-                            <img src="~/Content/layout2/images/best-saller.png" alt="saller">
+                            <img src="images/best-saller.png" alt="saller">
                             <h4>Currys/PC World £50 Gift Code</h4>
                             <p>40 Points</p>
-                            <a href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                         </div>
                     </div>
                 </div>
@@ -413,89 +448,190 @@
         </div>
     </div>
 
-    
-</div>
-<script type="text/javascript">
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            animationLoop: false,
-            itemSlide: 1,
-            itemWidth: 260,
-            itemMargin: 25
-        });
-    });
+    <footer class="footer">
+        <div class="container">
+            <div class="col-sm-3 pb-10">
+                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
+            </div>
+            <div class="col-sm-9 pb-10">
+                <div class="footer_menu">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2017 Cordoba</p>
+        </div>
+    </footer>
 
-    $('.special-offers .flexslider').flexslider({
-        animation: "slide",
-        animationLoop: false,
-        itemSlide: 1,
-        itemWidth: 142,
-        itemMargin: 20
-    });
+    <div class="modal" id="myModal" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                        <div class="login_page_left">
+                            <h2>Login</h2>
+                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                        </div>
+                        <div class="login_page_right">
+                            <div class="form-group pt-20">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <div class="chekbox-main checkbox mr-20">
+                                <input type="checkbox" id="checkbox1" />
+                                <label for="checkbox1">Remember me</label>
+                            </div>
+                            <button type="submit" class="submit_btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    $('.hot-deals .flexslider').flexslider({
-        animation: "slide",
-        animationLoop: false,
-        itemSlide: 1,
-        itemWidth: 240
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <h2>Bienvenue sur la boutique Make a Difference</h2>
+            <div class="col-sm-12 welcome-block">
+                <div class="welcome-img">
+                    <img src="images/welcomeImg.png" alt="welcome" />
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="more-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <a id="readMore" href="javascript:;">Read More</a>
+            </div>
+        </div>
+    </div>
 
-    });
+    <div class="container">
+        <a href="#" id="back-to-top" title="Back to top">
+            &uarr;
+        </a>
+    </div>
 
-    $('.reward-winner .flexslider').flexslider({
-        animation: "slide",
-        animationLoop: false,
-        itemSlide: 1,
-        itemWidth: 240
-
-    });
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.bxslider.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 
-    (function ($) {
-        $(window).on("load", function () {
-
-            $("#content-1").mCustomScrollbar({
-                theme: "minimal"
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.main-banner').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                mode: 'fade'
+            });
+            $('#latest-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 270
+            });
+            $('#special-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 180
+            });
+            $('#hot-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 250
             });
 
-        });
-    })(jQuery);
-
-    $(document).ready(function () {
-        // Configure/customize these variables.
-        var showChar = 145;  // How many characters are shown by default
-        var ellipsestext = "...";
-        var moretext = "Read more";
-        var lesstext = "Show less";
-
-
-        $('.more').each(function () {
-            var content = $(this).html();
-
-            if (content.length > showChar) {
-
-                var c = content.substr(0, showChar);
-                var h = content.substr(showChar, content.length - showChar);
-
-                var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
-                $(this).html(html);
+            //go to top page
+            if ($('#back-to-top').length) {
+                var scrollTrigger = 100, // px
+                    backToTop = function () {
+                        var scrollTop = $(window).scrollTop();
+                        if (scrollTop > scrollTrigger) {
+                            $('#back-to-top').addClass('show');
+                        } else {
+                            $('#back-to-top').removeClass('show');
+                        }
+                    };
+                backToTop();
+                $(window).on('scroll', function () {
+                    backToTop();
+                });
+                $('#back-to-top').on('click', function (e) {
+                    e.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 700);
+                });
             }
 
+            //about-us jquery
+            $(".category-list, #aboutScroll").mCustomScrollbar();
+            $(".showDesc").click(function () {
+                var hidden = $(".about-us");
+                if (hidden.hasClass("visible")) {
+                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                    $(".showDesc").text("About Us");
+                    $(".about-overlay").fadeOut("slow");
+
+                } else {
+                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").text("Close");
+                    $(".about-overlay").fadeIn("slow");
+                }
+            });
+            $('#readMore').click(function () {
+                $('.more-content').slideToggle();
+
+                var LinkText = $("#readMore").text();
+                LinkText = LinkText.replace(/\s/g, '');
+                if (LinkText == "ReadMore") {
+                    $("#readMore").text("Read Less");
+                }
+                else {
+                    $("#readMore").text("Read More");
+                }
+            });
         });
 
-        $(".morelink").click(function () {
-            if ($(this).hasClass("less")) {
-                $(this).removeClass("less");
-                $(this).html(moretext);
-            } else {
-                $(this).addClass("less");
-                $(this).html(lesstext);
+
+        //header-fixed
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 1) {
+                $('.top-header').addClass("hidden");
             }
-            $(this).parent().prev().toggle();
-            $(this).prev().toggle();
-            return false;
+            else {
+                $('.top-header').removeClass("hidden");
+            }
         });
-    });
-</script>
 
+    </script>
+</body>
+</html>

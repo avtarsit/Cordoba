@@ -19,5 +19,7 @@ namespace CordobaServices.Interfaces
       
 
        bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey);
+
+       
     }
 }
