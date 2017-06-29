@@ -1,219 +1,637 @@
-﻿
-<div>
-    <div class="container-fluid">
-        <div class="col-md-9 col-xs-12 mb-30">
-            <div class="row">
-                <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
-                    <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
-                        <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
-                            <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
-                        </li>
-                    </ul>
-                </div>
-                @* Dashboard_BestSellerController *@
-                <div class="col-sm-12 best-block" ng-controller="Dashboard_BestSellerController">
-                    <div class="col-sm-12 white-bg">
-                        <div class="block-heading">
-                            <h4>Best Sellers</h4>
-                        </div>
-                        <div class="col-sm-12" >
-                            <div class="row best-seller" data-bx-slider="pager:false,nextText:'',prevText:''">
-                                <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
-                                    <div class="col-xs-4">
-                                        <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" />
-                                    </div>
-                                    <div class="col-xs-8">
-                                        <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
-                                        <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>            
-            </div>
-        </div>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pitney Bowes</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/custom.min.css" rel="stylesheet" />
+    <link href="css/jquery.bxslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 
+</head>
+<body>
 
-        @*  Dashboard_RewardWinnerController*@
-        <div ng-controller="Dashboard_RewardWinnerController">
-            <div class="col-md-3 col-xs-12 mb-30" ng-if="Make_rewardWinnerVisible">
-                <div class="col-sm-12 block-bg deals">
-                    <div class="block-heading">
-                        <h4>Reward Winners</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row">
+    <div class="fix-header navbar-fixed-top">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-12">
 
-                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
-                            <div class="media col-sm-12" ng-repeat="rewardWinner in RewardWinners" data-notify-when-repeat-finished>
-                                <div class="media-left">
-                                    <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" alt="deals" />
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading" ng-bind="rewardWinner.Title"></h4>
-                                    <p ng-bind="rewardWinner.WinnerName"></p>
-                                    <span ng-bind="rewardWinner.Rewards"></span>
-                                    <span ng-bind="rewardWinner.winner_declared_date | date:'MM-dd-yyyy'"></span>
-                                </div>
-                                @*<div class="add-cart">
-                                    <button class="btn btn-empty">Add to Cart</button>
-                                </div>*@
-                            </div>
-                        </div>
+                    <div class="login">
+                        <ul>
+                            <li class="active"><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#myModal" class="login-popup">Login</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-        </div>    
 
-        @* Dashboard_HotDealsController *@
-        <div ng-controller="Dashboard_HotDealsController" >
-            <div class="col-md-3 col-xs-12 mb-30" ng-if="HotDealsList.length>0">
-                <div class="col-sm-12 block-bg deals">
-                    <div class="block-heading">
-                        <h4>Hot Deals</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
-                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                                <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
-                                </div>
-                                <div class="media-body">                            
-                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>  
-                                    <p ng-bind="HotDeals.Model"></p>
-                                    <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
-                                </div>
-                                <div class="add-cart" ng-controller="AddProductToCartController">
-                                    <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-      
+        <div class="header">
+            <div class="container">
 
-        @* Dashboard_PopularCategoryController *@
-        <div class="col-md-7 col-xs-12 mb-30" ng-controller="Dashboard_PopularCategoryController" >
-            <div class="col-sm-12 block-bg popular-category" ng-if="PopularCategoryList.length>0">
-                <div class="block-heading">
-                    <h4>Popular Categories</h4>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 text-center pb-20" ng-repeat="PopularCategory in PopularCategoryList">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
-                            </div>
-                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
-                        </div>
+                <div class="col-sm-12">
+
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
                     </div>
-                </div>
-            </div>
-        </div>
-        @* Dashboard_StoreImageController *@
-        <div class="col-md-5 col-xs-12  mb-30" ng-controller="Dashboard_StoreImageController">
-            <div class="offer-block new-product">
-                <img src="{{FirstStoreImage}}" alt="Store Image" />
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <div class="row">
-                @* Dashboard_CategoryController *@
-                <div class="col-md-12 col-sm-6 col-xs-12 mb-20" ng-controller="Dashboard_CategoryController">
-                    <div class="block-bg pb-15">
-                        <div class="col-sm-12">
-                            <div class="block-heading">
-                                <h4>Categories</h4>
-                            </div>
+                    <div class="main-menu">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
-                        <div class="category-list">
-                            <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
+
+                        <div class="show_cart">
+                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">4</span></a>
+                        </div>
+                        <div class="search_products">
+                            <input id="txtName" class="search_textbox" placeholder="Search" />
+                            <button type="button" class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="products.html">Our Products</a></li>
+                                <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
                     </div>
+
                 </div>
-                @* Dashboard_SpecialOffersController *@
-                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController" >
-                    <div class="col-sm-12 block-bg deals special-offer mb-30" ng-if="SpecialOfferList.length>0">
-                        <div class="block-heading">
-                            <h4>Special Offers</h4>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="row">
-                            <div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
-                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
-                                    <div class="media-left">
-                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>                                     
-                                        <p ng-bind="SpecialOffer.Model"></p>
-                                        <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
-                                    </div>
-                                    <div class="add-cart" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="slider">
+        <div class="banner-slider">
+            <ul class="main-banner">
+                <li><img src="images/slide1.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide3.jpg" alt="Slider banner" /></li>
+                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="catagories_slider">
+        <div class="container">
+            <div class="col-md-3">
+                <div class="letest-product catagories">
+                    <h3>CATAGORIES</h3>
+                    <div class="content mCustomScrollbar">
+                        <ul>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Computing</a></li>
+                            <li><a href="#">Cooking & Dining</a></li>
+                            <li><a href="#">Home Appliances</a></li>
+                            <li><a href="#">Smart Phones</a></li>
+                            <li><a href="#">Sports & Leisure</a></li>
+                            <li><a href="#">Sunglasses</a></li>
+                            <li><a href="#">Watches & Jewellery</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
-        </div>
-        @* Dashboard_LatestProductController *@
-        <div class="col-lg-9 col-md-8 col-xs-12" ng-controller="Dashboard_LatestProductController">
-            <div class="row">
-                <div class="col-sm-12 latest-product" ng-if="LatestProductList.length>0">
-                    <div class="block-heading">
-                        <h4>Latest Products</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img ng-src='{{LatestProduct.Image}}' alt="latest product"/>
-                                    </div>
-                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
-                                    <p ng-bind="LatestProduct.Model"></p>
-                                    <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
-                                    <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default add_to_cart_dish"    ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
-                                    </div>
+            <div class="col-md-9 ">
+                <div class="products letest-product">
+                    <h3 class="heading">LETEST PRODUCT</h3>
+                    <div id="latest-product">
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-product text-center">
+                                <img src="images/letest-product1.png" alt="letest-product1">
+                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                <p>AP-178</p>
+                                <span>92 Points</span>
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @* Dashboard_StoreImageController *@
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
-                    <div class="offer-block">
-                        <img src="{{SecondStoreImage}}" alt="Store Image" />
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
-                    <div class="offer-block">
-                        <img src="{{ThirdStoreImage}}" alt="Store Image" />
+
+
+                <div class="popular">
+                    <div class="row">
+                        <div class="popular-catagory">
+                            <h4>POPULAR CATAGORIES</h4>
+                            <div class="col-sm-3">
+
+                                <div class="letest-product polular_catagories">
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Gifts & Flowers</a>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-3">
+
+                                <div class="letest-product polular_catagories">
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Entertainment</a>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-3">
+
+                                <div class="letest-product polular_catagories">
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Cleaning Products</a>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-3">
+
+                                <div class="letest-product polular_catagories">
+                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
+                                    <a href="#" class="heading_purple">Mobiles</a>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="~/Scripts/jquery-ui.min.js"></script>
-<script type="text/javascript">
-    
-    $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';       
-        $('.category-list').mCustomScrollbar();
-    });
 
-</script>
+    <div class="special_offers">
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="letest-product">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="images/special-offers.jpg" alt="special-offers">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="special-offers">
+                                <h3 class="heading">SPECIAL OFFERS</h3>
+                                <div id="special-product">
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer1.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer2.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer3.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer4.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer1.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-product text-center">
+                                            <img src="images/special-offer3.png" alt="letest-product1">
+                                            <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                            <p>AP-178</p>
+                                            <span>92 Points</span>
+                                            <div class="cart-btn">
+                                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="new-arrivals">
+        <div class="container">
+            <div class="col-md-9 mt-30">
+                <div class="new">
+                    <img src="images/new-arrivals.png" alt="new-arrivals">
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="letest-product">
+                    <div class="hot-deals">
+                        <h3 class="heading">HOT DEALS</h3>
+                        <div id="hot-product">
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-product text-center">
+                                    <img src="images/hot-deals.png" alt="letest-product1">
+                                    <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
+                                    <p>AP-178</p>
+                                    <span>92 Points</span>
+                                    <div class="cart-btn">
+                                        <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="best-saller">
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="letest-product">
+                    <h3 class="heading">BEST SALLER</h3>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="saller">
+                            <img src="images/best-saller.png" alt="saller">
+                            <h4>Currys/PC World £50 Gift Code</h4>
+                            <p>40 Points</p>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="col-sm-3 pb-10">
+                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
+            </div>
+            <div class="col-sm-9 pb-10">
+                <div class="footer_menu">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2017 Cordoba</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                        <div class="login_page_left">
+                            <h2>Login</h2>
+                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                        </div>
+                        <div class="login_page_right">
+                            <div class="form-group pt-20">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <div class="chekbox-main checkbox mr-20">
+                                <input type="checkbox" id="checkbox1" />
+                                <label for="checkbox1">Remember me</label>
+                            </div>
+                            <button type="submit" class="submit_btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <h2>Bienvenue sur la boutique Make a Difference</h2>
+            <div class="col-sm-12 welcome-block">
+                <div class="welcome-img">
+                    <img src="images/welcomeImg.png" alt="welcome" />
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="more-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <a id="readMore" href="javascript:;">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="#" id="back-to-top" title="Back to top">
+            &uarr;
+        </a>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.bxslider.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.main-banner').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                mode: 'fade'
+            });
+            $('#latest-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 270
+            });
+            $('#special-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 180
+            });
+            $('#hot-product').bxSlider({
+                pager: false,
+                nextText: '',
+                prevText: '',
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 250
+            });
+
+            //go to top page
+            if ($('#back-to-top').length) {
+                var scrollTrigger = 100, // px
+                    backToTop = function () {
+                        var scrollTop = $(window).scrollTop();
+                        if (scrollTop > scrollTrigger) {
+                            $('#back-to-top').addClass('show');
+                        } else {
+                            $('#back-to-top').removeClass('show');
+                        }
+                    };
+                backToTop();
+                $(window).on('scroll', function () {
+                    backToTop();
+                });
+                $('#back-to-top').on('click', function (e) {
+                    e.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 700);
+                });
+            }
+
+            //about-us jquery
+            $(".category-list, #aboutScroll").mCustomScrollbar();
+            $(".showDesc").click(function () {
+                var hidden = $(".about-us");
+                if (hidden.hasClass("visible")) {
+                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                    $(".showDesc").text("About Us");
+                    $(".about-overlay").fadeOut("slow");
+
+                } else {
+                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").text("Close");
+                    $(".about-overlay").fadeIn("slow");
+                }
+            });
+            $('#readMore').click(function () {
+                $('.more-content').slideToggle();
+
+                var LinkText = $("#readMore").text();
+                LinkText = LinkText.replace(/\s/g, '');
+                if (LinkText == "ReadMore") {
+                    $("#readMore").text("Read Less");
+                }
+                else {
+                    $("#readMore").text("Read More");
+                }
+            });
+        });
+
+
+        //header-fixed
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 1) {
+                $('.top-header').addClass("hidden");
+            }
+            else {
+                $('.top-header').removeClass("hidden");
+            }
+        });
+
+    </script>
+</body>
+</html>

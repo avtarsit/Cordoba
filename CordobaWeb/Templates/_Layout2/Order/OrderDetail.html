@@ -1,93 +1,492 @@
-﻿<div ng-controller="OrderDetailController">
-    <section class="my-account">
-        <div class="container">
-            <ul>
-                <li>
-                    <p class="bag-desc" ng-bind="'Payment of '+(OrderdetailObj.total | number :2)+' points has been received.'"></p>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section class="container cart-desc">
-        <div class="col-sm-8">
-            <div class="account-block">
-                <div class="row">
-                    <div class="order-detail">
-                        <p><span>Order ID:</span>#{{OrderdetailObj.order_id}}</p>
-                        <p><span>Order placed Date:</span> {{OrderdetailObj.date_added | date:'MM/dd/yyyy'}}</p>
-                        <p class="pull-right"><span>Payment Method:</span> Points Based Deduction</p>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pitney Bowes</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/custom.min.css" rel="stylesheet" />
+    <link href="css/jquery.bxslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="fix-header navbar-fixed-top">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-12">
+
+                    <div class="login">
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li>
+                                <p class="hi-text ">Hello</p>
+                                <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nitin Patel <span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><p>you have: <span>4000 Points</span></p></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="acoount-info" href="editProfile.html">Personal Info</a></li>
+                                    <li><a class="acoount-info" href="changePassword.html">Change Password</a></li>
+                                    <li><a class="acoount-info" href="addressBook.html">Address Book</a></li>
+                                    <li><a class="acoount-info" href="orderHistory.html">Order History</a></li>
+                                    <li><a class="acoount-info" href="rewardPoints.html">Reward Points</a></li>
+                                    <li><a class="logout" href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
-                <div class="cart-detail" ng-repeat="Item in OrderdetailObj.orderProductEntity">
-                    <div class="row">
+            </div>
+        </div>
+        <div class="header">
+            <div class="container">
+
+                <div class="col-sm-12">
+
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                    </div>
+                    <div class="main-menu">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="show_cart">
+                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">4</span></a>
+                        </div>
+                        <div class="search_products">
+                            <input id="txtName" class="search_textbox" placeholder="Search" />
+                            <button type="button" class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="Products.html">Our Products</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="order-detail mt-30">
+            <div class="col-sm-12">
+                <div class="points">
+                    <h4>Your Orders</h4>
+                    <p>Payment of 6419 points has been received.</p>
+                </div>
+            </div>
+
+
+            <div class="col-sm-8">
+                <div class="orders">
+                    <div class="order-headings">
+                        <div class="order-title">
+                            <p>Order ID:</p> <span> #41354 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Order placed Date:</p> <span>18/05/2017 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Payment Method:</p> <span>Points Based Deduction </span>
+                        </div>
+                    </div>
+                    <div class="order-desc">
                         <div class="col-md-7 col-sm-8">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{Item.ProductImage}}" alt="Image">
+                                    <img class="media-object" src="images/product4.jpg" alt="product">
                                 </div>
                                 <div class="media-body">
-                                    <a href="" class="media-heading" ng-bind="Item.name"></a>
-                                    <p class="model-no"><span>Modal Number: </span> <span ng-bind="Item.model"></span></p>
-                                    <p class="model-no"><span>Quantity: </span> <span ng-bind="Item.quantity"></span></p>
-                                    <!--<p class="model-no"><span>Comment:</span> aghdfv kj vkh h u hui hui h uih uh uk hh fvcd vdfs vdfsfdsf</p>-->
+                                    <a href="#" class="media-heading">Apple Watch Edition, 38mm White Ceramic Case </a>
+                                    <p class="model-no"><span>Modal Number:</span> m6784</p>
+                                    <p class="model-no"><span>Quantity:</span> 2</p>
+                                    <p class="model-no"><span>Comment:</span> hudfhu jbndfsbuihf kjdbuisdh uifhewiuenhkj </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
-                            <p class="product-price"><span>Points:</span><span ng-bind="(Item.price | number :2) +' points'"></span></p>
-                            <p class="product-price"><span>Subtotal:</span> <span ng-bind="(Item.total | number :2) +' points'"></span></p>
+                            <p class="product-price"><span>Points:</span> 2000</p>
+                            <p class="product-price"><span>Subtotal: 4000</span></p>
+                        </div>
+                        <ul class="order-status">
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Order Received</span>
+                            </li>
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Shipped</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i>
+                                <span>Delivered</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="orders">
+                    <div class="order-headings">
+                        <div class="order-title">
+                            <p>Order ID:</p> <span> #41354 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Order placed Date:</p> <span>18/05/2017 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Payment Method:</p> <span>Points Based Deduction </span>
+                        </div>
+                    </div>
+                    <div class="order-desc">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/product5.jpg" alt="product">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">iMac 21.5-inch: 1.6GHz dual-core </a>
+                                    <p class="model-no"><span>Modal Number:</span> im3219</p>
+                                    <p class="model-no"><span>Quantity:</span> 1</p>
+                                    <p class="model-no"><span>Comment:</span> hudfhu jbndfsbuihf kjdbuisdh uifhewiuenhkj </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 2059</p>
+                            <p class="product-price"><span>Subtotal: 2059</span></p>
+                        </div>
+                        <ul class="order-status">
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Order Received</span>
+                            </li>
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Shipped</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i>
+                                <span>Delivered</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="orders">
+                    <div class="order-headings">
+                        <div class="order-title">
+                            <p>Order ID:</p> <span> #41354 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Order placed Date:</p> <span>18/05/2017 </span>
+                        </div>
+                        <div class="order-title">
+                            <p>Payment Method:</p> <span>Points Based Deduction </span>
+                        </div>
+                    </div>
+                    <div class="order-desc">
+                        <div class="col-md-7 col-sm-8">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="images/product8.jpg" alt="product">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">Beats Solo2 On-Ear Headphones</a>
+                                    <p class="model-no"><span>Modal Number:</span> 104</p>
+                                    <p class="model-no"><span>Quantity:</span> 1</p>
+                                    <p class="model-no"><span>Comment:</span> hudfhu jbndfsbuihf kjdbuisdh uifhewiuenhkj </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <p class="product-price"><span>Points:</span> 360</p>
+                            <p class="product-price"><span>Subtotal: 360</span></p>
+                        </div>
+                        <ul class="order-status">
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Order Received</span>
+                            </li>
+                            <li class="completed">
+                                <i class="fa fa-check"></i>
+                                <span>Shipped</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-check"></i>
+                                <span>Delivered</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="orders">
+                    <div class="address">
+                        <div class="addess-heading">
+                            <h2>Delivery Address</h2>
+                        </div>
+
+                        <div class="addess-desc mt-20">
+                            <h4>Nitin Patel</h4>
+                            <p>Satva Softech Ltd <br> 3rd Floor, 100 College Road, <br> Harrow HA1 1BQ Midlothian, <br> United Kingdom</p>
                         </div>
                     </div>
                 </div>
-                <div class="cart-detail" ng-if="OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered">
-                    <ul class="order-status">
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <!--<li ng-class="{'completed' : ($scope.OrderdetailObj.order_status_id == 1 || $scope.OrderdetailObj.order_status_id == 2 || $scope.OrderdetailObj.order_status_id == 6)}">-->
-                            <i class="fa fa-check"></i>
-                            <span>Order Received</span>
-                        </li>
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <i class="fa fa-check"></i>
-                            <span>Shipped</span>
-                        </li>
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <i class="fa fa-check"></i>
-                            <span>Delivered</span>
-                        </li>
-                    </ul>
-                    <div class="remove-product">
-                        <button class="remove-item"><i class="fa fa-phone"></i> Contact Us</button>
-                        <!-- <button class="remove-item"><i class="fa fa-file-text-o"></i> Invoice</button> -->
+            </div>
+
+            <div class="col-sm-4">
+                <div class="orders">
+                    <div class="address">
+                        <div class="addess-heading">
+                            <h2>Payment Summary</h2>
+                        </div>
+
+                        <div class="payment-summary mt-20">
+                            <p>- Apple Watch Edition, 38mm White Ceramic Case </p>
+                            <p>4000 points</p>
+                            <p>- iMac 21.5-inch: 1.6GHz dual-core</p>
+                            <p>2059 points</p>
+                            <p>- Beats Solo2 On-Ear Headphones</p>
+                            <p>360 points</p>
+                        </div>
+                        <div class="payment-summary total">
+                            <span>Order Total:</span>
+                            <span>6419 points</span>
+                        </div>
                     </div>
                 </div>
-                <div class="payment-summary">
-                    <button class="remove-item pull-right" ui-sref="OrderHistory"><i class="fa fa-arrow-left"></i> Back to Orders</button>
-                </div>
             </div>
+
         </div>
-        <div class="col-sm-4 order-desc">
-            <div class="account-block delivery-detail">
-                <h4 class="payment-heading">Delivery Address</h4>
-                <div class="payment-summary">
-                    <span ng-bind="OrderdetailObj.payment_firstname +' '+OrderdetailObj.payment_lastname"></span>
-                    <p ng-bind="OrderdetailObj.shipping_address_1 +', '+OrderdetailObj.shipping_address_2+' , '+OrderdetailObj.shipping_city+' , '+OrderdetailObj.shipping_country"></p>
-                </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="col-sm-3 pb-10">
+                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
             </div>
-            <div class="account-block">
-                <h4 class="payment-heading">Payment Summary</h4>
-                <div class="payment-summary">
+            <div class="col-sm-9 pb-10">
+                <div class="footer_menu">
                     <ul>
-                        <li ng-repeat="Item in OrderdetailObj.orderProductEntity">
-                            <p>-{{Item.name}}</p>
-                            <p ng-bind="(Item.total | number :2)+' points'"></p>
-                        </li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Site Map</a></li>
                     </ul>
                 </div>
-                <div class="payment-summary last">
-                    <span>Order Total:</span>
-                    <span ng-bind="(OrderdetailObj.total | number :2) +' points'"></span>
-                </div>
             </div>
         </div>
-    </section>
-</div>
+        <div class="copyright">
+            <p>Copyright © 2017 Cordoba</p>
+        </div>
+    </footer>
+
+
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                        <div class="login_page_left">
+                            <h2>Login</h2>
+                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                        </div>
+                        <div class="login_page_right">
+                            <div class="form-group pt-20">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <div class="chekbox-main checkbox mr-20">
+                                <input type="checkbox" id="checkbox1" />
+                                <label for="checkbox1">Remember me</label>
+                            </div>
+                            <button type="submit" class="submit_btn">Submit</button>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <h2>Bienvenue sur la boutique Make a Difference</h2>
+            <div class="col-sm-12 welcome-block">
+                <div class="welcome-img">
+                    <img src="images/welcomeImg.png" alt="welcome" />
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="more-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <a id="readMore" href="javascript:;">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="#" id="back-to-top" title="Back to top">
+            &uarr;
+        </a>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/enhance.js"></script>
+    <script src="js/velocity.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      //productimage zooming
+
+      // aboutus
+      $(".category-list, #aboutScroll").mCustomScrollbar();
+      $(".showDesc").click(function () {
+			var hidden = $(".about-us");
+			if (hidden.hasClass("visible")) {
+				hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+				$(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+				$(".showDesc").text("About Us");
+				$(".about-overlay").fadeOut("slow");
+
+			} else {
+				hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+				$(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+				$(".showDesc").text("Close");
+				$(".about-overlay").fadeIn("slow");
+			}
+		});
+        $('#readMore').click(function () {
+			$('.more-content').slideToggle();
+
+			var LinkText = $("#readMore").text();
+			LinkText = LinkText.replace(/\s/g, '');
+			if (LinkText == "ReadMore") {
+				$("#readMore").text("Read Less");
+			}
+			else {
+				$("#readMore").text("Read More");
+			}
+		});
+
+      //go to top
+      if ($('#back-to-top').length) {
+        var scrollTrigger = 100, // px
+            backToTop = function () {
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > scrollTrigger) {
+                    $('#back-to-top').addClass('show');
+                } else {
+                    $('#back-to-top').removeClass('show');
+                }
+            };
+        backToTop();
+        $(window).on('scroll', function () {
+            backToTop();
+        });
+        $('#back-to-top').on('click', function (e) {
+            e.preventDefault();
+            $('html,body').animate({
+                scrollTop: 0
+            }, 700);
+          });
+        }
+    });
+
+    //headertop fixed
+    $(window).scroll(function() {
+    if ($(this).scrollTop() > 1){
+        $('.top-header').addClass("hidden");
+      }
+      else{
+        $('.top-header').removeClass("hidden");
+      }
+    });
+ $(document).ready(function(){
+    var native_width = 0;
+  var native_height = 0;
+  $(".large").css("background","url('" + $(".small").attr("src") + "') no-repeat");
+  $(".magnify").mousemove(function(e){
+    if(!native_width && !native_height)
+    {
+      var image_object = new Image();
+      image_object.src = $(".small").attr("src");
+      native_width = image_object.width;
+      native_height = image_object.height;
+    }
+    else
+    {
+      var magnify_offset = $(this).offset();
+      var mx = e.pageX - magnify_offset.left;
+      var my = e.pageY - magnify_offset.top;
+      if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
+      {
+        $(".large").fadeIn(100);
+      }
+      else
+      {
+        $(".large").fadeOut(100);
+      }
+      if($(".large").is(":visible"))
+      {
+        var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
+        var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
+        var bgp = rx + "px " + ry + "px";
+        var px = mx - $(".large").width()/2;
+        var py = my - $(".large").height()/2;
+        $(".large").css({left: px, top: py, backgroundPosition: bgp});
+      }
+    }
+  })
+    });
+
+    </script>
+
+</body>
+</html>

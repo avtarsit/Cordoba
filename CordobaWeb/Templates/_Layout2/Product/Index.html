@@ -1,57 +1,400 @@
-﻿<div class="container-fluid product-list" ng-controller="ProductListLayoutController">
-    <div class="col-sm-4 col-md-3">
-        <div class="row">
-            <div class="col-sm-12 mb-20">
-                <div class="block pb-15">
-                    <div class="col-sm-12">
-                        <div class="block-heading">
-                            <h4>Categories</h4>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pitney Bowes</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/custom.min.css" rel="stylesheet" />
+    <link href="css/jquery.bxslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+
+</head>
+<body>
+
+    <div class="fix-header navbar-fixed-top">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-12">
+
+                    <div class="login">
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#myModal">Login</a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="container">
+
+                <div class="col-sm-12">
+
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                    </div>
+                    <div class="main-menu">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="show_cart">
+                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">4</span></a>
+                        </div>
+                        <div class="search_products">
+                            <input id="txtName" class="search_textbox" placeholder="Search" />
+                            <button type="button" class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="ProductList.html">Our Products</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="category-list">
-                        <ul class="col-sm-12">
-                            <li ng-class="SelectedCategory.parent_Id==category.Category_Id? 'active' : '' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
-                                <a href="#" ng-bind-html="category.name" ui-sref="LayoutCategory({CategoryId:category.Category_Id})"></a>
-                                <ul>
-                                    <li ng-class="SelectedCategoryId==SubCategory.Category_Id? 'active' : '' " ng-if="(category.Category_Id==SubCategory.parent_Id)" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: ParentCategoryId }">
-                                        <a href="#" ui-sref="LayoutProducts({CategoryId:SubCategory.Category_Id})">{{SubCategory.name}}</a>
-                                    </li>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="catagories_slider productlist">
+        <div class="container">
+            <div class="col-md-3">
+                <div class="letest-product catagories">
+                    <h3>CATAGORIES</h3>
+                    <div class="content mCustomScrollbar">
+                        <ul>
+                            <li class="active">
+                                <a href="#">Apple Products</a>
+                                <ul class="sub-catagory">
+                                    <li class="active"><a href="#">AirPort &amp; Wireless</a></li>
+                                    <li><a href="#">iPhone 7 Plus</a></li>
+                                    <li><a href="#">Watch Hermes</a></li>
+                                    <li><a href="#">Watch Series 2</a></li>
+                                    <li><a href="#">iMac</a></li>
+                                    <li><a href="#">Cables & Docks</a></li>
+                                    <li><a href="#">Apple TV</a></li>
+                                    <li><a href="#">Beats</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Computing</a></li>
+                            <li><a href="#">Cooking & Dining</a></li>
+                            <li><a href="#">Home Appliances</a></li>
+                            <li><a href="#">Smart Phones</a></li>
+                            <li><a href="#">Sports & Leisure</a></li>
+                            <li><a href="#">Sunglasses</a></li>
+                            <li><a href="#">Watches & Jewellery</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="#">Apple Products</a></li>
+                            <li><a href="#">Baby</a></li>
+                            <li><a href="#">Beauty & Fragrance</a></li>
+                            <li><a href="#">Books</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-8 col-md-9">
-        <div class="row">
-            <div class="col-sm-12 latest-product mb-30">
-                <div class="block-heading">
-                    <h4 ng-bind="SelectedCategory.name"></h4>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="product-block" ng-repeat="product in ProductList">
-                        <div class="product-img">
-                            <img ng-src="{{product.Image}}" alt="product" />
-                            <button class="btn btn-empty mt-15 mt-15">Add to Cart</button>
+            <div class="col-md-9 ">
+                <div class="mt-30">
+                    <h3 class="heading">Apple Products</h3>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product1.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">AirPort Express</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
                         </div>
-                        <a href="#">{{product.name}}</a>
-                        <p><span ng-bind="product.Price"></span></p>
-                        <p ng-bind="product.Model"></p>
-
-                    </div>                 
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product2.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product3.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product4.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product5.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product6.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-product text-center">
+                            <div class="background-bg">
+                                <img src="images/product7.jpg" alt="our-products">
+                                <div class="cart-btn">
+                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                </div>
+                            </div>
+                            <a href="#">Watch Series 2</a>
+                            <p>AP-178</p>
+                            <span>92 Points</span>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="col-product text-center">
+                        <div class="background-bg">
+                            <img src="images/product8.jpg" alt="our-products">
+                            <div class="cart-btn">
+                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                            </div>
+                        </div>
+                        <a href="#">Watch Series 2</a>
+                        <p>AP-178</p>
+                        <span>92 Points</span>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
 
-    $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';
-        $('.category-list').mCustomScrollbar();
+    <footer class="footer">
+        <div class="container">
+            <div class="col-sm-3 pb-10">
+                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
+            </div>
+            <div class="col-sm-9 pb-10">
+                <div class="footer_menu">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2017 Cordoba</p>
+        </div>
+    </footer>
 
-    });
-</script>
+    <div class="modal" id="myModal" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                        <div class="login_page_left">
+                            <h2>Login</h2>
+                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                        </div>
+                        <div class="login_page_right">
+                            <div class="form-group pt-20">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <div class="chekbox-main checkbox mr-20">
+                                <input type="checkbox" id="checkbox1" />
+                                <label for="checkbox1">Remember me</label>
+                            </div>
+                            <button type="submit" class="submit_btn">Submit</button>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <h2>Bienvenue sur la boutique Make a Difference</h2>
+            <div class="col-sm-12 welcome-block">
+                <div class="welcome-img">
+                    <img src="images/welcomeImg.png" alt="welcome" />
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="more-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <a id="readMore" href="javascript:;">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="#" id="back-to-top" title="Back to top">
+            &uarr;
+        </a>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.bxslider.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/index.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //abous us
+            $(".category-list, #aboutScroll").mCustomScrollbar();
+            $(".showDesc").click(function () {
+                var hidden = $(".about-us");
+                if (hidden.hasClass("visible")) {
+                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                    $(".showDesc").text("About Us");
+                    $(".about-overlay").fadeOut("slow");
+
+                } else {
+                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").text("Close");
+                    $(".about-overlay").fadeIn("slow");
+                }
+            });
+            $('#readMore').click(function () {
+                $('.more-content').slideToggle();
+
+                var LinkText = $("#readMore").text();
+                LinkText = LinkText.replace(/\s/g, '');
+                if (LinkText == "ReadMore") {
+                    $("#readMore").text("Read Less");
+                }
+                else {
+                    $("#readMore").text("Read More");
+                }
+            });
+
+            //go to top
+            if ($('#back-to-top').length) {
+                var scrollTrigger = 100, // px
+                    backToTop = function () {
+                        var scrollTop = $(window).scrollTop();
+                        if (scrollTop > scrollTrigger) {
+                            $('#back-to-top').addClass('show');
+                        } else {
+                            $('#back-to-top').removeClass('show');
+                        }
+                    };
+                backToTop();
+                $(window).on('scroll', function () {
+                    backToTop();
+                });
+                $('#back-to-top').on('click', function (e) {
+                    e.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 700);
+                });
+            }
+        });
+
+        //headertop fixed
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 1) {
+                $('.top-header').addClass("hidden");
+            }
+            else {
+                $('.top-header').removeClass("hidden");
+            }
+        });
+
+
+    </script>
+</body>
+</html>
