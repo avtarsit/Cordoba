@@ -8,11 +8,11 @@ namespace CordobaModels.Entities
 {
     public class BannerAttributeEntity
     {
-        int Id { get; set; }
-        string Title { get; set; }
-        string Link { get; set; }
-        string Image { get; set; }
-        Nullable<int> SortOrder { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Link { get; set; }
+        public string Image { get; set; }
+        public Nullable<int> SortOrder { get; set; }
     }
 }
 

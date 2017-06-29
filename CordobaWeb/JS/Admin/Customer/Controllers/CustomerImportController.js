@@ -15,13 +15,14 @@
     $scope.PageTitle = "Customer Import";
 
     $scope.store_id = $rootScope.storeId;
+    $scope.CustomerFilter = [];
+    $scope.CustomerFilter.storeId = $scope.store_id;
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
-                  debugger;
               }
           })
       .catch(function (response) {
@@ -35,23 +36,23 @@
     $scope.GetStoreList();
 
 
-    $scope.GetCustomerGroupList = function () {
-        $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {
+    //$scope.GetCustomerGroupList = function () {
+    //    $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+    //      .then(function (response) {
 
-              if (response.data.length > 0) {
-                  $scope.CustomerGroupList = response.data;
-              }
-          })
-      .catch(function (response) {
+    //          if (response.data.length > 0) {
+    //              $scope.CustomerGroupList = response.data;
+    //          }
+    //      })
+    //  .catch(function (response) {
 
-      })
-      .finally(function () {
+    //  })
+    //  .finally(function () {
 
-      });
-    }
+    //  });
+    //}
 
-    $scope.GetCustomerGroupList();
+    //$scope.GetCustomerGroupList();
 
 
 
@@ -94,7 +95,6 @@
     //}
     $scope.CustomerImport = function ()
     {
-        debugger;
         if (!($scope.store_id >=0) || $scope.files.length ==0)
         {
             toastr.error("Select Store & file");
@@ -111,7 +111,7 @@
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
 
-        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&customer_group_id=" + $scope.CustomerImportObj.customer_group_id);
+        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&customer_group_id=");
 
         $scope.progressVisible = true;
 

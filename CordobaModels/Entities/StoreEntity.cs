@@ -48,5 +48,6 @@ namespace CordobaModels.Entities
         public string telephone { get; set; }
         public string county { get; set; }
         public string layout { get; set; }
+        public int? banner_id { get; set; }
     }
 }

@@ -13,7 +13,6 @@
                  .withOption('bDestroy', true)
     $scope.PageTitle = "Show Customer";
 
-    debugger;
     $scope.CustomerFilter = new Object();
     $scope.CustomerFilter.customerName = "";
     $scope.CustomerFilter.email = "";
@@ -22,7 +21,7 @@
     $scope.CustomerFilter.approved = "";
     $scope.CustomerFilter.ip = "";
     $scope.CustomerFilter.date_added = "";
-    
+    $scope.CustomerFilter.storeId = $scope.StoreId;
 
 
     //#endregion  
@@ -50,6 +49,7 @@
 
 
     $scope.GetCustomerList = function () {
+        debugger;
         //$scope.CustomerFilter = new Object();
        
         if ($.fn.DataTable.isDataTable("#tblCustomer")) {
@@ -71,7 +71,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?StoreId=' + $scope.CustomerFilter.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 debugger;
                 aoData = BindSearchCriteria(aoData);

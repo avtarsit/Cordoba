@@ -20,5 +20,6 @@ namespace CordobaServices.Interfaces
 
        int DeleteBanner(int banner_id);
 
+       //BannerEntity GetBannerById(int BannerId, int StoreId, int LoggedInUserId);
     }
 }

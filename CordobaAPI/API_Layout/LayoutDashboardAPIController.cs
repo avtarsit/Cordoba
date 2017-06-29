@@ -383,5 +383,23 @@ namespace CordobaAPI.API_Layout
                 throw;
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetBanner_Layout(int StoreID)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.GetBanner_Layout(StoreID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

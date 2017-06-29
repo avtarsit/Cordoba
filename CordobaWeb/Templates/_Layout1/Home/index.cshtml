@@ -6,7 +6,7 @@
                 <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
                     <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
                         <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
-                            <img ng-src="{{Banner.ImgSrc}}" alt="Slider banner" />
+                            <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
                         </li>
                     </ul>
                 </div>
@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-xs-8">
                                         <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
-                                        <p class="seller-desc"><span ng-bind="BestSeller.Price"></span></p>
+                                        <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -80,8 +80,8 @@
                                 <div class="media-left">
                                     <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
                                 </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading" ng-bind="HotDeals.name"></h4>
+                                <div class="media-body">                            
+                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>  
                                     <p ng-bind="HotDeals.Model"></p>
                                     <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
                                 </div>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>
+                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                         <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading" ng-bind="SpecialOffer.name"></h4>
+                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>                                     
                                         <p ng-bind="SpecialOffer.Model"></p>
                                         <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
                                     </div>
@@ -181,9 +181,9 @@
                                     <div class="product-img">
                                         <img ng-src='{{LatestProduct.Image}}' alt="latest product"/>
                                     </div>
-                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})">{{LatestProduct.name}}</a>
-                                    <p>{{LatestProduct.Model}}</p>
-                                    <p><span>{{LatestProduct.Price}} Points</span></p>
+                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                                    <p ng-bind="LatestProduct.Model"></p>
+                                    <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
                                         <button class="btn btn-default add_to_cart_dish"    ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                     </div>

@@ -55,11 +55,10 @@ namespace CordobaAPI.API
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
+
         [HttpGet]
         public HttpResponseMessage GetBannerImageList(int bannerId)
         {
@@ -130,7 +129,7 @@ namespace CordobaAPI.API
                 }
                 return Request.CreateResponse(HttpStatusCode.OK);
 
-               
+
             }
             if (res == true)
             {
@@ -178,11 +177,11 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateBanner(int banner_id , string name , int status)
+        public HttpResponseMessage InsertUpdateBanner(int banner_id, string name, int status)
         {
             try
             {
-                var result = _BannerServices.InsertUpdateBanner(banner_id , name , status);
+                var result = _BannerServices.InsertUpdateBanner(banner_id, name, status);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -194,7 +193,7 @@ namespace CordobaAPI.API
                 throw;
             }
         }
-        
+
     }
-    
+
 }

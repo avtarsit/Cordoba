@@ -19,7 +19,7 @@ function GetAdminUserDetail() {
 
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         //window.location.href,
         //http://lmhfs2015.cordobarewards.co.uk/
         async: false,
@@ -346,7 +346,7 @@ function GetLayoutName() {
                 }
                 , LayoutProductDetail = {
                     name: 'LayoutProductDetail',
-                    url: '/ProductDetails?ProductId:productId',
+                    url: '/ProductDetails?ProductId:product_id',
                     templateUrl: 'Templates/' + LayoutName + '/Product/ProductDetail.html'
                 }
                 , CartDetail = {
@@ -398,7 +398,20 @@ function GetLayoutName() {
                     name: 'OrderDetail',
                     url: '/OrderDetail?OrderId:orderid',
                     templateUrl: 'Templates/' + LayoutName + '/Order/OrderDetail.html'
-                };
+                }
+                ,
+                  ShowCustomerDepartment = {
+                      name: 'ShowCustomerDepartment',
+                      url: '/ShowCustomerDepartment',
+                      templateUrl: 'Templates/' + LayoutName + '/CustomerDepartment/Index.html'
+                  },
+                  ManageCustomerDepartment = {
+                      name: 'ManageCustomerDepartment',
+                      url: '/ManageCustomerDepartment?CustomerDepartmentId',
+                      templateUrl: 'Templates/' + LayoutName + '/CustomerDepartment/ManageCustomerDepartment.html'
+                  }
+
+                ;
 
                 $stateProvider.state(StoreDashboard);
                 $stateProvider.state(Home);
@@ -486,6 +499,8 @@ function GetLayoutName() {
                 $stateProvider.state(PointsAudit);
                 $stateProvider.state(OrderSuccessful);
                 $stateProvider.state(OrderDetail);
+                $stateProvider.state(ShowCustomerDepartment);
+                $stateProvider.state(ManageCustomerDepartment);
 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
@@ -495,7 +510,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {                 
+             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();

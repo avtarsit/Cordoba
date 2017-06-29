@@ -25,7 +25,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
-            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId , ParameterLoggedInUserId).ToList();
+            StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId, ParameterLoggedInUserId).ToList();
             return StoreList;
         }
 
@@ -40,7 +40,7 @@ namespace CordobaServices.Services
                 Value = LoggedInUserId
             };
             var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = store_id };
-            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", paramStoreId , ParameterLoggedInUserId).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreById", paramStoreId, ParameterLoggedInUserId).FirstOrDefault();
             if (result != null)
             {
                 storeEntity = result;
@@ -76,6 +76,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("language", storeEntity.language  ??   DBNull.Value.ToString())
                                                  , new SqlParameter("currency", storeEntity.currency  ??   DBNull.Value.ToString())
                                                  , new SqlParameter("county", storeEntity.county      ??    DBNull.Value.ToString())
+                                                 ,new SqlParameter("banner_id", storeEntity.banner_id.HasValue? storeEntity.banner_id.Value:0)
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateStore", sqlParameter).FirstOrDefault();
             return result;
