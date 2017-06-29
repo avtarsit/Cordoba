@@ -133,7 +133,7 @@
                         </div>
                         <div class="category-list">
                             <ul class="col-sm-12">
-                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})">{{category.name}}</a></li>
+                                <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
                             </ul>
                         </div>
                     </div>
