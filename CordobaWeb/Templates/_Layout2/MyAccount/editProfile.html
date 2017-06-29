@@ -1,0 +1,114 @@
+﻿<section class="my-account">
+    <div class="container">
+        <ul>
+            <li class ="active">
+                <a href="#" ui-sref="EditProfile"><span data-hover="Personal&nbsp;Info">Personal Info</span></a>
+            </li>
+            <li >
+                <a href="#" ui-sref="ChangePassword"><span data-hover="Change&nbsp;Password">Change Password</span></a>
+            </li>
+            <li>
+                <a href="#" ui-sref="AddressBook"><span data-hover="Address&nbsp;Book">Address Book</span></a>
+            </li>
+            <li>
+                <a href="#" ui-sref="OrderHistory"><span data-hover="Order&nbsp;History">Order History</span></a>
+            </li>
+            <li>
+                <a href="#" ui-sref="PointsAudit"><span data-hover="Audit&nbsp;Points">Audit Points</span></a>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="container" ng-controller="ProfileController">
+    <form name="ProfileForm" id="ProfileForm" class="form-horizontal" novalidate>
+        <div class="account-block profile-block">
+            <a class="edit-profile" href=""><i class="fa fa-pencil"></i></a>
+            <a  href="" class="update-profile" ng-click="SaveCustomerBasicDetails(ProfileForm)"><i class="fa fa-check"></i></a>
+            <div class="col-sm-12" id="editProfile">
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <p>Name:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.firstname +' '+ GetCustomerDetailObj.lastname"></span>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <p>Email ID:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.email"></span>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <p>Telephone No:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.telephone"></span>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <p>Points:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.points"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" id="cancelProfile">
+                <div class="row">
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            <div role="tabpanel" class="form-horizontal" id="messages" style="margin-top:8px">
+                                <div class="alert alert-danger alert-dismissible validationErrors" ng-show="ProfileForm.$submitted && !ProfileForm.$valid">
+                                    <ul ng-show="validationErrors">
+                                        <li ng-repeat="error in validationErrors">{{error}}</li>
+                                    </ul>
+                                    <ul ng-show="ProfileForm.$submitted && (!ProfileForm.$valid)">
+                                        <li ng-show="ProfileForm.FirstName.$error.required">First name is required.</li>
+                                        <li ng-show="ProfileForm.LastName.$error.required">Last name is required.</li>
+                                        <li ng-show="ProfileForm.EmailAddress.$error.required || ProfileForm.EmailAddress.$error.email">Email address is not valid.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" maxlength="32" name="FirstName" ng-model="GetCustomerDetailObj.firstname" required="required" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" maxlength="32" name="LastName" ng-model="GetCustomerDetailObj.lastname" required="required" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" maxlength="96" name="EmailAddress" ng-model="GetCustomerDetailObj.email" required="required" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Telephone No</label>
+                        <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<script>
+    $(document).ready(function(){
+        $(".edit-profile").click(function () {
+            if ($(".update-profile, #cancelProfile").is(":visible")) {
+                $(".update-profile").hide();
+                $("#cancelProfile").hide();
+                $("#editProfile").show();
+            }
+            else {
+                $(".update-profile").show();
+                $("#cancelProfile").show();
+                $("#editProfile").hide();
+            }
+            $(".edit-profile i").toggleClass("fa-pencil fa-close");
+        });
+    });
+    </script>
