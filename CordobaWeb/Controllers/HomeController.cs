@@ -25,36 +25,25 @@ namespace CordobaWeb.Controllers
         public static string LayoutNames = null;
         public ActionResult Index()
         {
-            var masterView = View();
-            int PortNumber = Request.Url.Port;
-
+            var masterView = View();           
             try
             {
-
-
-                switch (PortNumber)
+                var Result = GetStoreDetailByUrl(Request.Url.Authority);
+                switch (Result.template.ToLower())
                 {
-                    case 1012:
+                    case "admin":
                         if (ProjectSession.AdminLoginSession == null)
                         {
                             return RedirectToAction("Login", "Admin");
-                        }
-                        LayoutNames = "Admin";
+                        }                      
                         masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
                         break;
-                    case 1021:
-                        LayoutNames = "_Layout1";
-                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout1");
-                        break;
-                    case 1022:
-                        LayoutNames = "_Layout2";
-                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout2");
-                        break;
-
+                    case "_layout1":
+                    case "_layout2":
+                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);
+                        break;                                         
                 }
-
-                var Result = GetStoreDetailByUrl(Request.Url.AbsoluteUri);
-                Result.template = LayoutNames; // This is Temporary
+            
                 ProjectSession.StoreSession = Result;
                 Session.Add("CssOverride", Result.css_overrides);
 
