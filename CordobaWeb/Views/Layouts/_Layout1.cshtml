@@ -65,11 +65,12 @@
 <body>
     <div ng-controller="DashboardController" ng-cloak>
         <div class="header navbar-fixed-top">
-            <header class="w-hidden-small w-hidden-tiny top-nav">
-                <div class="container-fluid">
+            <header class="w-hidden-small w-hidden-tiny top-nav">             
+                <div class="container-fluid">                           
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
-                        <li><a href="" ng-click="GotoMyWishlist()" >My Wishlist</a></li>
+                        <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
+                          <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>                    
                         <li ng-if="!(CustomerDetail.customer_id>0)">
                             <a ng-click="OpenLoginPopUp()">Login</a>
                         </li>
@@ -86,7 +87,7 @@
                 </div>
             </header>
             <nav class="navbar navbar-default navbar-fixed-top">
-          
+            
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -99,6 +100,7 @@
                         <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" /></a>
                     </div>
                     <div class="main-menu">
+                  
                         <div class="search-panel">
                             <a class="cart-block" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})">
                                 <i class="fa fa-shopping-cart" id="cart_icon"></i>

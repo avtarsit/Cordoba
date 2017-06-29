@@ -5,7 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
-    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
+    //$scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
     $scope.OpenLoginPopUp = function () {
