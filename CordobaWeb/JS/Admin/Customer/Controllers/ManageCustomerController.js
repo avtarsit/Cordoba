@@ -125,7 +125,7 @@
     }
 
     $scope.GetZoneListByCountry = function (countryId) {
-  
+
         countryId = countryId == null ? 0 : countryId;
         $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
@@ -148,12 +148,11 @@
         var IsValidAddress = true;
         angular.forEach($scope.CustomerObj.AddressList, function (col, i) {
             if (col.firstname == undefined || col.firstname == '' || col.lastname == undefined || col.lastname == '' || col.address_1 == undefined || col.address_1 == ''
-                || col.city == undefined || col.city == '' || col.country_id == undefined || col.country_id == '')
-            {
+                || col.city == undefined || col.city == '' || col.country_id == undefined || col.country_id == '') {
                 IsValidAddress = false;
             }
         });
-        return IsValidAddress && $scope.CustomerObj.AddressList.length>0;
+        return IsValidAddress && $scope.CustomerObj.AddressList.length > 0;
     }
     function CalculateTotalRewardBalance() {
         $scope.TotalBalance = 0;
@@ -199,7 +198,7 @@
     }
 
 
-        
+
 
     $scope.GetCustomerById = function () {
         debugger;
@@ -222,7 +221,7 @@
 
 
     function GetStoreList() {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID="+ $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.StoreList = response.data;
@@ -235,7 +234,7 @@
 
       });
     }
-      
+
     $scope.DeleteCustomer = function () {
         bootbox.dialog({
             message: "Do you want to remove Customer?",
@@ -252,7 +251,7 @@
                                    .then(function (response) {
                                        if (response.data > 0)
                                            notificationFactory.successDelete();
-                                            $state.go('Customer');
+                                       $state.go('Customer');
                                    })
                                .catch(function (response) {
                                    notificationFactory.errorDelete();
@@ -278,9 +277,7 @@
     $scope.InsertUpdateCustomer = function (form) {
 
         if (form.$valid) {
-
-            if (!ValidateAddress())
-            {
+            if (!ValidateAddress()) {
                 notificationFactory.customError("Not a valid address/add at least 1 address.");
                 return;
             }
@@ -300,11 +297,28 @@
           });
         }
     }
+
+    function GetCustomerDepartmentList() {
+        $http.get(configurationService.basePath + "api/CustomerDepartmentApi/GetCustomerDepartmentList?StoreId=" + $scope.StoreId)
+         .then(function (response) {
+             if (response.data.length > 0) {
+                 $scope.CustomerDepartmentList = response.data;
+             }
+         })
+     .catch(function (response) {
+
+     })
+     .finally(function () {
+
+     });
+    }
+
     function Init() {
         GetCountryList();
         GetStoreList();
         GetCustomerGroupList();
         $scope.GetCustomerById();
+        GetCustomerDepartmentList();
     }
 
 
