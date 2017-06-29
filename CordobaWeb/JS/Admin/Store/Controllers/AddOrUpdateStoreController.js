@@ -222,7 +222,7 @@
         var ajaxRequest = $.ajax({
             type: "POST",
             url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey,
-            contentType: false,
+            contentType: "application/json",
             processData: false,
             data: data,
             success: function (response) {
