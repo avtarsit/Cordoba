@@ -21,8 +21,7 @@ namespace CordobaWeb.Controllers
 
     public class HomeController : Controller
     {
-
-        public static string LayoutNames = null;
+      
         public ActionResult Index()
         {
             var masterView = View();           
