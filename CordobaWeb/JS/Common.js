@@ -363,14 +363,13 @@ function showValidationErrors($scope, error) {
 
 var keylength = 4;
 var specialCharacter = "~";
-function encodeParams(toParams) {
 
+function encodeParams(toParams) {  
     if (toParams != undefined && toParams != null) {
         $.each(toParams, function (key, element) {
 
             if (element != undefined && element != null) {
-                if (!(element.indexOf(specialCharacter) > -1)) {
-
+                if (!(element.indexOf(specialCharacter) > -1)) {                    
                     toParams[key] = Encodestring(element);
 
                     //makeid(keylength) + "~" + element + "`" + makeid(keylength);

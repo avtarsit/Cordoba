@@ -2,7 +2,9 @@
 
 app.controller('AuditPointsController', function ($timeout,StoreSessionDetail,UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder) {
 
-
+    if (!(UserDetail.customer_id > 0)) {
+        window.location.href = 'home/accessdenied';
+    }
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();

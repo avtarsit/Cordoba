@@ -6,6 +6,14 @@
     $scope.IsEmptyShoppingCart = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.cartgroup_id = 0;
+    
+    if ($state.current.name.toLowerCase() == 'checkout')
+    {
+        if (!(UserDetail.customer_id > 0)) {
+            window.location.href = 'home/accessdenied';
+        }
+    }
+    var aa = $state.current.name;
     if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null) {
         $scope.cartgroup_id = parseInt($stateParams.cartgroup_id);
     }

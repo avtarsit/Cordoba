@@ -19,9 +19,7 @@ function GetAdminUserDetail() {
 
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,
-        //window.location.href,
-        //http://lmhfs2015.cordobarewards.co.uk/
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,     
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);

@@ -1,7 +1,9 @@
 ﻿app.controller('OrderDetailController', function ($timeout, $state, StoreSessionDetail, UserDetail, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, OrderStatusEnum) {
+    if (!(UserDetail.customer_id > 0)) {
+        window.location.href = 'home/accessdenied';
+    }
     decodeParams($stateParams);
     BindToolTip();
-    debugger;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.order_id = parseInt($stateParams.OrderId);
     $scope.OrderStatusEnum = OrderStatusEnum;

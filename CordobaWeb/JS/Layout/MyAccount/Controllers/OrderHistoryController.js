@@ -2,6 +2,9 @@
 
 app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
+    if (!(UserDetail.customer_id > 0)) {
+        window.location.href = 'home/accessdenied';
+    }
     //$scope.dtOptions = DTOptionsBuilder.newOptions()
     //               .withOption('bDestroy', true)
     //               .withOption("deferRender", true);

@@ -51,6 +51,8 @@
 
     $scope.GetSubCategory=function(SubCategoryId)
     {
+        debugger;
+        $state.go('.', { CategoryId: '7H-aN0451zDhk~' }, { notify: false });
         $scope.SelectedSubCategory = SubCategoryId;
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
         if (CategoryObj != undefined && CategoryObj != null) {
@@ -61,7 +63,7 @@
     }
 
 
-    $scope.GetProductListByCategoryAndStoreId = function () {   
+    $scope.GetProductListByCategoryAndStoreId = function () {     
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
                             "&CategoryId=" + $scope.SelectedSubCategory + 
