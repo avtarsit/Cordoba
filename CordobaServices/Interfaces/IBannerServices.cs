@@ -11,7 +11,6 @@ namespace CordobaServices.Interfaces
     {
 
        List<BannerEntity> GetBannerList();
-       BannerEntity GetBannerById(int BannerId, int StoreId, int LoggedInUserId);
-
+       //BannerEntity GetBannerById(int BannerId, int StoreId, int LoggedInUserId);
     }
 }

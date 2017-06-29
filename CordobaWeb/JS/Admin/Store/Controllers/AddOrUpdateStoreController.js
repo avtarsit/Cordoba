@@ -186,12 +186,10 @@
 
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
-            debugger;
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {
                   if (response.data > 0) {
-                      debugger;
                       notificationFactory.customSuccess("Store Saved Successfully.");
                       $state.go('ShowStore');
                   }
@@ -236,11 +234,27 @@
 
     }
 
+    $scope.GetBannerList = function () {
+        $http.get(configurationService.basePath + "api/BannerApi/GetBannerList")
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.BannerList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     function init() {
         GetCountryList();
         GetLanguageList();
         GetCurrencyList();
         $scope.GetStoreById();
+        $scope.GetBannerList();
     }
 
 
