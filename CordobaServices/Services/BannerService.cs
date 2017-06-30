@@ -3,6 +3,8 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +13,21 @@ namespace CordobaServices.Services
 {
     public class BannerService : IBannerServices
     {
-        private GenericRepository<BannerEntity> objGenericRepository = new GenericRepository<BannerEntity>();
-
+        private GenericRepository<BannerEntity> BannerEntityGenericRepository = new GenericRepository<BannerEntity>();
         public List<BannerEntity> GetBannerList()
         {
-            List<BannerEntity> Banners = new List<BannerEntity>();
-            Banners = objGenericRepository.ExecuteSQL<BannerEntity>("GetBannerList").ToList();
-            return Banners;
+            try
+            {
+
+                var bannerEntity = BannerEntityGenericRepository.ExecuteSQL<BannerEntity>("GetBannerList").ToList<BannerEntity>().ToList();
+                return bannerEntity;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
+
         //public List<BannerEntity> GetBannerList()
         //{
         //    List<BannerEntity> Banner = new List<BannerEntity>();
@@ -40,6 +49,120 @@ namespace CordobaServices.Services
         //    return Banner;
         //}
 
+        public BannerEntity GetBannerById(int bannerId)
+        {
+            BannerEntity bannerEntity = new BannerEntity();
+            List<BannerEntity> bannerDetail = new List<BannerEntity>();
+            try
+            {
+                var paramBannerId = new SqlParameter
+                {
+                    ParameterName = "bannerId",
+                    DbType = DbType.Int32,
+                    Value = bannerId
+                };
+                bannerEntity = BannerEntityGenericRepository.ExecuteSQL<BannerEntity>("GetBannerById", paramBannerId).ToList<BannerEntity>().FirstOrDefault();
+                return bannerEntity;
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        public List<BannerEntity> GetBannerImageById(int bannerId)
+        {
+            //BannerEntity bannerImageList = new BannerEntity();
+            List<BannerEntity> bannerImageList = new List<BannerEntity>();
+            //List<BannerEntity> bannerImageList = new List<BannerEntity>();
+            try
+            {
+                var paramBannerId = new SqlParameter
+                {
+                    ParameterName = "bannerId",
+                    DbType = DbType.Int32,
+                    Value = bannerId
+                };
+                bannerImageList = BannerEntityGenericRepository.ExecuteSQL<BannerEntity>("GetBannerImageList", paramBannerId).ToList<BannerEntity>().ToList();
+                return bannerImageList;
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        public bool UploadBannerImage(int banner_id , int banner_image_id , string link , int sort_order , string ImageName , int ImageKey)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("banner_id", banner_id),
+                    new SqlParameter("banner_image_id",banner_image_id),
+                    new SqlParameter("link",!string.IsNullOrWhiteSpace(link)?(object)link:(object)DBNull.Value),
+                    new SqlParameter("sort_order" ,sort_order),
+                    new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(ImageName)?(object)ImageName:(object)DBNull.Value)
+                };
+                int result = BannerEntityGenericRepository.ExecuteSQL<int>("UploadBannerImage", sqlParameter).FirstOrDefault();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int DeleteBannerImage(int banner_image_id)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[] {
+                                                   new SqlParameter("bannerImageId", banner_image_id)                                                 
+                                                   
+                                               };
+            var result = BannerEntityGenericRepository.ExecuteSQL<int>("deleteBannerImage", sqlParameter).FirstOrDefault();
+            return result;
+        }
+
+        public int InsertUpdateBanner(int banner_id, string name, int status)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("banner_id", banner_id),
+                    new SqlParameter("banner_image_id",name), 
+                    new SqlParameter("sort_order" ,status),
+                   
+                };
+                var result = BannerEntityGenericRepository.ExecuteSQL<int>("InsertOrUpdateBanner", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public int DeleteBanner(int banner_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("banner_id", banner_id)                   
+                };
+                var result = BannerEntityGenericRepository.ExecuteSQL<int>("DeleteBanner", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+        }
         //public BannerEntity GetBannerById(int BannerId, int StoreId, int LoggedInUserId)
         //{
         //    BannerEntity bannerEntity = new BannerEntity();

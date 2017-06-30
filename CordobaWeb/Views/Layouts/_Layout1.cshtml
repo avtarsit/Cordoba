@@ -51,7 +51,7 @@
 }
 @@keyframes move {
   0% {left: 0%;}
-  75% {left:100%;}
+  40% {left:100%;}
   100% {left:100%;}
 }
     </style>
@@ -72,7 +72,7 @@
                         <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
                           <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>                    
                         <li ng-if="!(CustomerDetail.customer_id>0)">
-                            <a ng-click="OpenLoginPopUp()">Login</a>
+                            <a href="" ng-click="OpenLoginPopUp()">Login</a>
                         </li>
                         <li ng-if="CustomerDetail.customer_id>0">
                             <p class="hi-text">Hi</p>
@@ -126,7 +126,7 @@
                                 <li class="active"><a href="#" ui-sref="Home">Home</a></li>
                                 <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                 <li><a href="#">Contact Us</a></li>
-                                <li><a ui-sref="MyReward">Rewards</a></li>
+                                <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                             </ul>
                         </div>
                     </div>
@@ -330,8 +330,8 @@
     <script src="~/Scripts/ng-ckeditor.js"></script> 
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
+    <script src="~/Scripts/angular-animate.min.js"></script>
 
- 
     <script type="text/javascript">      
         $(document).ready(function () {
             $.mCustomScrollbar.defaults.theme = 'dark-thick';

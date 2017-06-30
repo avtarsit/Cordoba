@@ -33,6 +33,7 @@ namespace CordobaServices.Services
 
         public DashboardSummaryEntity GetDashboardSummaryCharts(int storeId, int ChartFiltertype, int ChartOrFunctionTypeEnum)
         {
+           
             DashboardSummaryEntity objDashboardSummaryEntity = new DashboardSummaryEntity();
             switch (ChartOrFunctionTypeEnum)
             {

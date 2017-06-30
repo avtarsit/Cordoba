@@ -16,7 +16,7 @@
 
 
     $scope.GetBannerList = function () {
-        $http.get(configurationService.basePath + "api/BannerApi/GetBannerList/StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/BannerApi/GetBannerList")
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.BannerList = response.data;

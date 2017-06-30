@@ -29,7 +29,7 @@
                                        , Top5Customers: 4
                                   };
 
-    $scope.ChartFiltertype = 2;
+    $scope.ChartFiltertype = 4;
 
 
     $scope.CurrentYearOrderData = [

@@ -35,10 +35,10 @@
                 <div class="row">
                     <div class="col-sm-3" ng-if="category.parent_Id==SelectedCategoryId" ng-repeat="category in CategoryList | filter:{ parent_Id: category.Category_Id } ">
                         <div class="product-block">
-                            <div class="product-img">
+                            <div class="product-img cursor-pointer" ng-click="GetSubCategory(category.Category_Id)">
                                 <img ng-src="{{category.image}}" alt="latest product" />
                             </div>
-                            <a href="" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id)">{{category.name}}</a>
+                            <a href="" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name"></a>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                             <img ng-src="{{product.Image}}" alt="product" data-action="zoom" />
                             <button class="btn btnaddtocart add-cart-btn add_to_cart_dish" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
-                        <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}">{{product.name}}</a>
-                        <p><span class="pull-left" ng-bind="(product.Price | number:2)+' points'"> </span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
+                        <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
+                        <p><span class="pull-left" ng-bind="(product.Price | number:2)+' Points'"> </span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
                        
                         <p ng-bind="product.Model"></p>                                                                  
                     </div>
