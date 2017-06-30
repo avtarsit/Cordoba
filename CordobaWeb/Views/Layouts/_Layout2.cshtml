@@ -12,18 +12,76 @@
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
+    <style>
+        .spinner div {
+            /*top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;*/
+            z-index: 999999;
+            opacity: 0.8;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            left: -20px;
+            top: 40px;
+            border-radius: 50%;
+            animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+        }
+
+            .spinner div:nth-child(2) {
+                animation-delay: 150ms;
+            }
+
+            .spinner div:nth-child(3) {
+                animation-delay: 300ms;
+            }
+
+            .spinner div:nth-child(4) {
+                animation-delay: 450ms;
+            }
+
+        #greenDot {
+            background-color: green;
+        }
+
+        #yellowDot {
+            background-color: yellow;
+        }
+
+        #redDot {
+            background-color: red;
+        }
+
+        #blueDot {
+            background-color: blue;
+        }
+
+        @@keyframes move {
+            0% {
+                left: 0%;
+            }
+
+            40% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div ng-controller="DashboardController">
         <div class="fix-header navbar-fixed-top">
             <div class="top-header">
                 <div class="container">
-
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="login">
                                 <ul>
-                                    <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                     <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
                                     <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>
                                     <li ng-if="!(CustomerDetail.customer_id>0)">
@@ -51,7 +109,7 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="logo">
-                                <a href=""><img src="~/Content/layout2/images/logo.png" /></a>
+                                <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
                             </div>
                             <div class="main-menu">
                                 <div class="navbar-header">
@@ -61,19 +119,29 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
+                                    <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" /></a>
                                 </div>
 
                                 <div class="show_cart">
-                                    <a href=""><img src="~/Content/layout2/images/cart.png"><span class="badge">4</span></a>
+                                    <a class="cart-block" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})">
+                                        <i class="fa fa-shopping-cart" id="cart_icon"></i>
+                                        <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
+                                    </a>
                                 </div>
                                 <div class="search_products">
-                                    <input id="txtName" class="search_textbox" placeholder="Search" />
+                                    <div class="input-group add-on">
+                                        <input class="form-control add-on" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="navbar" class="collapse navbar-collapse">
                                     <ul class="nav navbar-nav">
-                                        <li><a class="active" href="#">Home</a></li>
-                                        <li><a href="#about">About</a></li>
-                                        <li><a href="#contact">Contact</a></li>
+                                        <li class="active"><a href="#" ui-sref="Home">Home</a></li>
+                                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,37 +152,16 @@
             </div>
         </div>
 
-        @RenderBody();
-
-        <div class="footer">
-            <div class="container">
-                <div class="col-sm-4 col-md-3">
-                    <a href=""><img src="~/Content/layout2/images/logo.png" alt="footer-logo"></a>
-                </div>
-                <div class="col-sm-4 col-md-6">
-                    <div class="footer_menu">
-                        <h5>Get To Know Us</h5>
-                        <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a href="">My Account</a></li>
-                            <li><a href="">Terms & Conditions</a></li>
-                            <li><a href="">Contact Us</a></li>
-                            <li><a href="">Site Map</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-md-3">
-                    <div class="footer_menu">
-                        <h5>Keep In Touch</h5>
-                        <a href=""><img src="~/Content/layout2/images/fb.png" alt="facebook" /></a>
-                    </div>
-                </div>
-
+        <div class="loader" data-loading>
+            <div class="spinner">
+                <div id="greenDot"></div>
+                <div id="yellowDot"></div>
+                <div id="redDot"></div>
+                <div id="blueDot"></div>
             </div>
         </div>
-        <footer>
-            <p>© Example 2017 <a href="">http://webapp2.cordobarewards.co.uk/</a> - v2.5</p>
-        </footer>
+
+        @RenderBody();
 
         @Scripts.Render("~/bundles/Layout2Js")
         @Scripts.Render("~/bundles/angular")
@@ -124,6 +171,29 @@
 
         <script src="~/Scripts/ng-ckeditor.js"></script>
 
+        <footer class="footer">
+            <div class="container">
+                <div class="col-sm-3 pb-10">
+                    <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                </div>
+                <div class="col-sm-9 pb-10">
+                    <div class="footer_menu">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#" class="cursor-pointer" ui-sref="Home">Home</a></li>
+                            <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
+                            <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
+                            <li><a href="" class="cursor-pointer">Contact Us</a></li>
+                            <li class="pull-right">
+                                <a href="#" class="cursor-pointer" id="fbIcon"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2017 Cordoba</p>
+            </div>
+        </footer>
 
     </div>
 
