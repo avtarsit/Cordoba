@@ -8,7 +8,6 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
-    <link href="~/Content/layout2/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
@@ -168,7 +167,6 @@
         @Scripts.Render("~/bundles/appConfig")
         @Scripts.Render("~/bundles/LayoutControllers")
 
-
         <script src="~/Scripts/ng-ckeditor.js"></script>
 
         <footer class="footer">
@@ -196,6 +194,5 @@
         </footer>
 
     </div>
-
 </body>
 </html>
