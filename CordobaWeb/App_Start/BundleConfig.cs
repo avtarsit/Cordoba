@@ -178,7 +178,15 @@ namespace CordobaWeb
                      "~/Content/layout2/css/flexslider.css",
                      "~/Content/layout2/css/responsive.css",
                      "~/Content/layout2/css/style.css",
-                     "~/Content/layout2/css/jquery.mCustomScrollbar.css"
+                     "~/Content/layout1/css/font-awesome.min.css",
+                     "~/Content/layout1/css/jquery.bxslider.min.css",
+                     "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
+                      "~/Content/layout1/css/dpNumberPicker.min.css",
+                     "~/Content/layout1/css/classes.css",
+                     "~/Content/layout1/css/zoom.css",
+                     "~/Content/css/toastr.min.css",
+                     "~/Scripts/angular-star-rating/main.css",
+                      "~/Content/css/angular-ui-switch.min.css"  
                   ));
             //------------------------CSS-------------------------//
 
@@ -194,7 +202,11 @@ namespace CordobaWeb
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
                      "~/Scripts/bootbox.js",
-                     "~/Scripts/ckeditor/ckeditor.js"
+                     "~/Scripts/ckeditor/ckeditor.js",
+                  "~/Scripts/layout1/js/jquery.bxslider.min.js",   
+                  "~/Scripts/layout1/js/dpNumberPicker.min.js",  
+                  "~/Scripts/layout1/js/enhance.js",  
+                  "~/Scripts/layout1/js/velocity.min.js"  
                      ));
 
             //------------------------js-------------------------//
