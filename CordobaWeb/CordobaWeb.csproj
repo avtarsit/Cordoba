@@ -3815,6 +3815,21 @@
     <Content Include="Templates\_Layout1\Reward\AddReward.html" />
     <Content Include="Templates\_Layout1\Reward\MyRewards.html" />
     <Content Include="Templates\_Layout1\Reward\ViewCustomerRewardDetails.html" />
+    <Content Include="Templates\_Layout2\Cart\CartDetail.html" />
+    <Content Include="Templates\_Layout2\Cart\Checkout.html" />
+    <Content Include="Templates\_Layout2\Cart\OrderSuccessful.html" />
+    <Content Include="Templates\_Layout2\Category\Index.html" />
+    <Content Include="Templates\_Layout2\MyAccount\AddressBook.html" />
+    <Content Include="Templates\_Layout2\MyAccount\ChangePassword.html" />
+    <Content Include="Templates\_Layout2\MyAccount\editProfile.html" />
+    <Content Include="Templates\_Layout2\MyAccount\OrderHistory.html" />
+    <Content Include="Templates\_Layout2\MyAccount\PointsAudit.html" />
+    <Content Include="Templates\_Layout2\Order\OrderDetail.html" />
+    <Content Include="Templates\_Layout2\Product\Index.html" />
+    <Content Include="Templates\_Layout2\Product\ProductDetail.html" />
+    <Content Include="Templates\_Layout2\Reward\AddReward.html" />
+    <Content Include="Templates\_Layout2\Reward\MyRewards.html" />
+    <Content Include="Templates\_Layout2\Reward\ViewCustomerRewardDetails.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3855,8 +3870,8 @@
     <Content Include="Templates\Admin\Home\index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Templates\_Layout1\Home\index.cshtml" />
-    <Content Include="Templates\_Layout2\Home\index.cshtml" />
     <Content Include="Views\Home\accessdenied.cshtml" />
+    <Content Include="Templates\_Layout2\Home\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
