@@ -126,7 +126,7 @@ header .nav li .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li
 /* content start */
 .block-heading { float: left; width: 100%; position: relative; border-bottom: solid 1px #ccc; font-size: 17px; padding: 20px 0 0; margin-bottom: 30px; }
 .block-heading h4 { float: left; width: auto; font-size: 17px; line-height: 26px; color: #333; border-bottom: solid 1px #cc0001; padding: 0 5px 5px 0; margin-bottom: -1px; font-family:inherit}
-.seller-desc { float: left; width: 100%; color: #333; font-size: 16px; line-height: 25px; }
+.seller-desc { float: left; width: 100%; color: #333; font-size: 14px; line-height:20px; }
 .seller-desc span { color: #cc0001; font-weight: 500; }
 .seller-block { float: left; width: 100%; max-width: 370px; }
 .best-seller { float: left; width: 100%; }

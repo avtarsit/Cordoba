@@ -1,5 +1,5 @@
 ﻿app.controller('AddOrUpdateStoreController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
-    debugger;
+    
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -204,6 +204,7 @@
 
 
     $scope.UploadImage = function (store_id, imageKey, uploadId) {
+
         var data = new FormData();
         var files = $('#' + uploadId).get(0).files;
         if (files.length == 0) {
@@ -215,8 +216,7 @@
         // Add the uploaded image content to the form data collection
         if (files.length > 0) {
             data.append("UploadedFile", files[0]);
-        }
-
+        }    
         var ajaxRequest = $.ajax({
             type: "POST",
             url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey,

@@ -20,7 +20,7 @@
                             <div class="row best-seller" data-bx-slider="pager:false,nextText:'',prevText:''">
                                 <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
                                     <div class="col-xs-4">
-                                        <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" />
+                                        <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" style="max-height:100px"/>
                                     </div>
                                     <div class="col-xs-8">
                                         <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>

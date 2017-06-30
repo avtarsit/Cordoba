@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
+var app = angular.module("CordobaApp", ["ui.router","LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
 GetAdminUserDetail();
 GetLayoutName();
 
@@ -297,9 +297,9 @@ function GetLayoutName() {
                     url: '/ManageOrders?orderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
                 }
-                , LayoutCategoryORProductList = {
+                , LayoutCategoryORProductList = {              
                     name: 'LayoutCategoryORProductList',
-                    url: '/Category?CategoryId:categoryId&Search:search',
+                    url: '/Category?CategoryId:categoryId&SubCategoryId:subcategory_id&Search:search',
                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                 }
                 , LayoutProducts = {
