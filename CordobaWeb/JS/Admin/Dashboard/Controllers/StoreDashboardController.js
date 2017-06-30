@@ -468,8 +468,7 @@
 
     $scope.GetDashboardTopHeaderFields = function () {
         $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardTopHeaderFields?storeId=" + $scope.storeId)
-        .then(function (response) {
-            debugger;
+        .then(function (response) {  
             if (response.data != null) {
                 $scope.DashboardSummary.DashboardHeaderSummary = response.data;
             }

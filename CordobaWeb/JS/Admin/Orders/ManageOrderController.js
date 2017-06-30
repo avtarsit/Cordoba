@@ -228,8 +228,7 @@
                   $scope.selectedPaymentZone = $scope.OrderDetails.payment_zone_id == 0 ? '' : $scope.OrderDetails.payment_zone_id;
                   //$scope.selectedShippingZone = 0;
                   $scope.selectedCustomerGroup = $scope.OrderDetails.customer_group_id;
-                  $scope.selectedStore = $scope.OrderDetails.store_id;
-                  debugger;
+                  $scope.selectedStore = $scope.OrderDetails.store_id;    
                   $scope.selectedOrderStatus = $scope.OrderDetails.order_status_id;
                   $scope.selctedCurrency = $scope.OrderDetails.currency_id;
                   $scope.GetCustomersByStore($scope.selectedStore);

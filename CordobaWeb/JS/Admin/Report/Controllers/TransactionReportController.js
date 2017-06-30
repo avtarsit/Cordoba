@@ -56,8 +56,7 @@
         return aoData;
     }
 
-    $scope.GetTransactionReportList = function () {
-        debugger;
+    $scope.GetTransactionReportList = function () {   
         if ($.fn.DataTable.isDataTable("#tblTransactionReport")) {
             $('#tblTransactionReport').DataTable().destroy();
         }

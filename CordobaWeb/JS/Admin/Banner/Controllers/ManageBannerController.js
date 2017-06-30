@@ -128,7 +128,7 @@
 
 
     $scope.GetBannerById = function () {
-        //debugger;
+    
         $http.get(configurationService.basePath + "api/BannerApi/GetBannerById?bannerId=" + $scope.BannerId)
           .then(function (response) {
 
@@ -144,10 +144,8 @@
     $scope.GetBannerImageById = function () {
 
         $http.get(configurationService.basePath + "api/BannerApi/GetBannerImageList?bannerId=" + $scope.BannerId)
-        .then(function (response) {
-            debugger;
-            $scope.BannerImageObj = response.data;
-            //console.log($scope.BannerImageObj)
+        .then(function (response) {      
+            $scope.BannerImageObj = response.data;        
         })
       .catch(function (response) {
       })
@@ -172,10 +170,8 @@
         }
     }
 
-    $scope.UploadBannerImage = function (index) {
-        debugger;
-        var data = new FormData();
-        debugger;
+    $scope.UploadBannerImage = function (index) {      
+        var data = new FormData();  
         var files = $("#Image" + index).get(0).files;
         if (files.length == 0) {
             notificationFactory.customError("Please select atleast one file.");
@@ -205,8 +201,7 @@
                 $('#ImageUpload').val('');
                 $scope.GetBannerImageById();
             },
-            error: function (response) {
-                debugger;
+            error: function (response) {          
                 notificationFactory.error("Error occur during image upload.");
             }
         });

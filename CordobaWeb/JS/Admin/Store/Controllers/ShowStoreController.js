@@ -19,7 +19,6 @@
     $scope.PageTitle = "Show Stores";
 
     $scope.GetStoreList = function () {
-        debugger;
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {

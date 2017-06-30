@@ -11,8 +11,7 @@
     $scope.GetOrderCountData = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetOrderDetailCount?Store_Id=" + $scope.AdminUserDetail.store_id)
         .then(function (response) {
-            if (response.data.length > 0) {
-                debugger;
+            if (response.data.length > 0) {        
                 $scope.ProcessingOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Processing' });
                 $scope.DeliveredOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Delivered' });
                 $scope.ReturnedOrder = $filter('filter')(response.data, { 'OrderStatusName': 'Returned' });

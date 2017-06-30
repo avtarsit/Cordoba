@@ -48,8 +48,7 @@
     }
 
 
-    $scope.GetCustomerList = function () {
-        debugger;
+    $scope.GetCustomerList = function () {  
         //$scope.CustomerFilter = new Object();
        
         if ($.fn.DataTable.isDataTable("#tblCustomer")) {
@@ -72,8 +71,7 @@
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?StoreId=' + $scope.CustomerFilter.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId,
-            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                debugger;
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {       
                 aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblCustomer').DataTable().page.info().page) + 1;
@@ -94,9 +92,10 @@
             "aoColumns": [
                 { "mData": "customerName", "bSortable": true },
                 { "mData": "email", "bSortable": true },
-                { "mData": "customer_group_name", "bSortable": true },
                 { "mData": "StatusName", "bSortable": true },
-                { "mData": "ip", "bSortable": true },
+                   { "mData": "ip", "bSortable": true },
+                //{ "mData": "customer_group_name", "bSortable": true },
+                   
                 {
                     "mData": "date_added", "bSortable": true
                   , "render": function (data, type, row) {
@@ -156,8 +155,7 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {          
                   $scope.StoreList = response.data;
                   $scope.CustomerFilter.storeId = $scope.StoreId;
                   console.log($scope.StoreList);

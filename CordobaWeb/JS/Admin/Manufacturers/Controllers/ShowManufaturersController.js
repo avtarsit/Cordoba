@@ -3,7 +3,6 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    debugger;
     $scope.StoreId = 0;
     $scope.LoggedInUserId = 0;
     $scope.ManufacturersID = 0;
@@ -21,8 +20,7 @@
 
     $scope.GetManufacturersList = function () {
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=" + $scope.ManufacturersID + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {         
               if (response.data.length > 0) {
                   $scope.ManufacturersList = response.data;
               }

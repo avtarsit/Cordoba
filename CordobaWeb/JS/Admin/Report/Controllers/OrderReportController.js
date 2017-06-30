@@ -101,8 +101,7 @@
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetOrderReportList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                aoData = BindSearchCriteria(aoData);
-                debugger;
+                aoData = BindSearchCriteria(aoData); 
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblOrderReport').DataTable().page.info().page) + 1;
                 oSettings.jqXHR = $.ajax({
@@ -181,8 +180,7 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {                  
                   $scope.StoreList = response.data;
                   //$scope.CustomerFilter.storeId = $scope.StoreId;
                   console.log($scope.StoreList);

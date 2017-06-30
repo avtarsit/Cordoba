@@ -74,24 +74,9 @@
 
     //Get language list
 
-    function GetLanguageList() {
-        //$http({
-        //    method: 'GET',
-        //    url: configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
-        //    headers: { 'Content-Type': 'application/json' }
-        //}).success(function (data) {
-
-        //     $scope.LanguageList = data;
-        //     debugger;
-        //     $scope.language_id = $scope.LanguageList[0].language_id
-
-
-        // }).error(function (err) {
-        //     alert("false");
-        // });
+    function GetLanguageList() {     
         $http.get(configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-                  .then(function (response) {
-                      debugger;
+                  .then(function (response) {                
                       $scope.LanguageList = response.data;
                       $scope.language_id = $scope.LanguageList[0].language_id
                   })
@@ -189,14 +174,11 @@
 
 
 
-        $scope.InsertOrUpdateCategory = function (form) {
-            debugger;
+        $scope.InsertOrUpdateCategory = function (form) {        
             if (form.$valid) {
                 $scope.CategoryObj.StoreIdCSV = "";
                 $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
-                var categoryEntity = JSON.stringify($scope.CategoryObj);
-
-                debugger;
+                var categoryEntity = JSON.stringify($scope.CategoryObj);           
                 $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
                   .then(function (response) {
 

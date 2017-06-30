@@ -91,11 +91,11 @@
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Date Added:</td>
-                                                <td>{{OrderDetails.date_added | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{OrderDetails.date_added | date:GlobalDateFormat}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Date Modified:</td>
-                                                <td>{{OrderDetails.date_modified | date : "dd/MM/yyyy"}}</td>
+                                                <td>{{OrderDetails.date_modified | date:GlobalDateFormat}}</td>
                                             </tr>
                                         </tbody>
 
@@ -319,7 +319,7 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="orderHistory in OrderHistoryList">
-                                                <td class="col-sm-3">{{orderHistory.date_added | date : "dd/MM/yyyy"}}</td>
+                                                <td class="col-sm-3">{{orderHistory.date_added | date:GlobalDateFormat}}</td>
                                                 <td class="col-sm-3">{{orderHistory.comment}}</td>
                                                 <td class="col-sm-3">{{orderHistory.name}}</td>
                                                 <td class="col-sm-3">{{orderHistory.notify == 1 ? 'Yes' : 'No'}}</td>

@@ -201,7 +201,7 @@
 
 
     $scope.GetCustomerById = function () {
-        debugger;
+
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.CustomerObj = response.data;

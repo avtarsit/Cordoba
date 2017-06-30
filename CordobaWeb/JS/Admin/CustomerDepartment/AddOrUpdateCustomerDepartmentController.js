@@ -3,7 +3,6 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    debugger;
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.CustomerDepartmentId = 0;
@@ -115,8 +114,7 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {   
                   $scope.StoreList = response.data;
               }
           })

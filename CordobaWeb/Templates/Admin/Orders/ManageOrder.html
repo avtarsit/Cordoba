@@ -138,8 +138,8 @@
                                                 <td>{{product.name}}</td>
                                                 <td>{{product.model}}</td>
                                                 <td class="text-right">{{product.quantity}}</td>
-                                                <td class="text-right">{{product.price | number : 0}}</td>
-                                                <td class="text-right">{{product.total | number : 0}}</td>
+                                                <td class="text-right">{{product.price | number : 2}}</td>
+                                                <td class="text-right">{{product.total | number : 2}}</td>
                                             </tr>
                                             <tr ng-if="Products.length>0">
                                                 <td colspan="4" class="text-right">{{subtotal_title}}</td>

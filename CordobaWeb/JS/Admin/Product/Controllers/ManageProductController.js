@@ -332,7 +332,6 @@
 
     //$scope.GetHotOrSpecialProductById=function()
     //{
-    //    debugger;
 
     //    $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
     //                        + $scope.StoreDetailInSession.language_id +
@@ -539,13 +538,11 @@
     }
 
     //$scope.GetHotOrSpecialProductDetailById = function (isHotProduct, product_id) {
-    //    debugger;
     //    $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductDetailById?IsHotProduct="
     //                       + isHotProduct +
     //                       "&product_id=" + product_id
     //                       )
     //    .success(function (data) {   
-    //        debugger; 
     //        $scope.HotOrSpecialProductObj =
     //            {
     //                startDate: data[0].startDate,

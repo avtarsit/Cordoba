@@ -171,8 +171,7 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {                
                   $scope.StoreList = response.data;
                   //$scope.CustomerFilter.storeId = $scope.StoreId;
                   console.log($scope.StoreList);

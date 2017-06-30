@@ -22,8 +22,7 @@
     $scope.GetLanguageList = function () {
         $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {      
                   $scope.LanguageList = response.data;
               }
           })

@@ -58,8 +58,7 @@
         return aoData;
     }
 
-    $scope.GetTransactionItemCategoryReportList = function () {
-        debugger;
+    $scope.GetTransactionItemCategoryReportList = function () {  
         if ($.fn.DataTable.isDataTable("#tblTransactionItemCategoryReport")) {
             $('#tblTransactionItemCategoryReport').DataTable().destroy();
         }

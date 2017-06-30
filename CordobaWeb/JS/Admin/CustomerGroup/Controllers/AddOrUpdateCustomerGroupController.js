@@ -9,7 +9,6 @@
     $scope.StoreId = 0;
     $scope.LoggedInUserId = 0;
     $scope.customer_group_id = $stateParams.CustomerGroupId;
-    debugger;
     $scope.IsEditMode = false;
     if ($stateParams.CustomerGroupId != undefined && $stateParams.CustomerGroupId != null) {
 

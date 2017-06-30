@@ -1,5 +1,4 @@
-﻿app.controller('ShowOrdersController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
-    debugger;
+﻿app.controller('ShowOrdersController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) { 
     decodeParams($stateParams);
     BindToolTip();
     Tab();
@@ -83,8 +82,7 @@
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId,
-            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                debugger;
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {           
                 //aoData = BindSearchCriteria(aoData);
 
                 aoData = BindSorting(aoData, oSettings);
@@ -156,8 +154,7 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  debugger;
+              if (response.data.length > 0) {           
                   $scope.StoreList = response.data;
                   //$scope.CustomerFilter.storeId = $scope.StoreId;
                   console.log($scope.StoreList);
