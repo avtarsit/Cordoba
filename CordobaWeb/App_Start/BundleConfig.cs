@@ -172,43 +172,34 @@ namespace CordobaWeb
 
             ///////////////////// Layout2//////////////////
             //------------------------CSS-------------------------//
-            bundles.Add(new StyleBundle("~/bundles/Layout2CSS").Include(
-                     "~/Content/layout2/css/bootstrap.min.css",
-                     "~/Content/layout2/css/custom.min.css",
-                     "~/Content/layout2/css/flexslider.css",
-                     "~/Content/layout2/css/responsive.css",
-                     "~/Content/layout2/css/style.css",
-                     "~/Content/layout1/css/font-awesome.min.css",
-                     "~/Content/layout1/css/jquery.bxslider.min.css",
-                     "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
-                      "~/Content/layout1/css/dpNumberPicker.min.css",
-                     "~/Content/layout1/css/classes.css",
-                     "~/Content/layout1/css/zoom.css",
-                     "~/Content/css/toastr.min.css",
-                     "~/Scripts/angular-star-rating/main.css",
-                      "~/Content/css/angular-ui-switch.min.css"  
-                  ));
+                  bundles.Add(new StyleBundle("~/bundles/Layout2CSS").Include(
+                           "~/Content/layout2/css/bootstrap.min.css",
+                           "~/Content/layout2/css/custom.min.css",
+                           "~/Content/layout2/css/flexslider.css",
+                           "~/Content/layout2/css/responsive.css",
+                           "~/Content/layout2/css/style.css",
+                           "~/Content/layout2/css/jquery.mCustomScrollbar.css"
+                        ));
             //------------------------CSS-------------------------//
 
             //------------------------js-------------------------//
             //js/jquery.min.js
             bundles.Add(new ScriptBundle("~/bundles/Layout2Js").Include(
-                     "~/Scripts/layout2/js/jquery.min.js",
-                     "~/Scripts/layout2/js/bootstrap.min.js",
-                     "~/Scripts/layout2/js/jquery.flexslider.js",
-                     "~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js",
-                     "~/Scripts/bootstrap-modalmanager.js",
-                    "~/Scripts/bootstrap-modal.js",
-                    "~/Scripts/bootstrap-datepicker.js",
-                    "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js",
-                     "~/Scripts/ckeditor/ckeditor.js",
-                  "~/Scripts/layout1/js/jquery.bxslider.min.js",   
-                  "~/Scripts/layout1/js/dpNumberPicker.min.js",  
-                  "~/Scripts/layout1/js/enhance.js",  
-                  "~/Scripts/layout1/js/velocity.min.js"  
-                     ));
-
+                       "~/Scripts/layout2/js/jquery.min.js",
+                       "~/Scripts/layout2/js/bootstrap.min.js",
+                       "~/Scripts/layout2/js/jquery.flexslider.js",
+                       "~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js",
+                       "~/Scripts/bootstrap-modalmanager.js",
+                      "~/Scripts/bootstrap-modal.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/jquery.bootstrap-duallistbox.js",
+                      "~/Scripts/bootbox.js",
+                      "~/Scripts/ckeditor/ckeditor.js",
+                      "~/Scripts/layout1/js/jquery.bxslider.min.js",
+                      "~/Scripts/layout1/js/dpNumberPicker.min.js",
+                      "~/Scripts/layout1/js/enhance.js",
+                      "~/Scripts/layout1/js/velocity.min.js"
+                       ));
             //------------------------js-------------------------//
 
 

@@ -8,6 +8,7 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
+    <link href="~/Content/layout2/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
@@ -108,7 +109,7 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="logo">
-                                <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                                @*<a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>*@
                             </div>
                             <div class="main-menu">
                                 <div class="navbar-header">
@@ -118,7 +119,6 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" /></a>
                                 </div>
 
                                 <div class="show_cart">
@@ -162,6 +162,7 @@
 
         @RenderBody();
 
+
         @Scripts.Render("~/bundles/Layout2Js")
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/appConfig")
@@ -194,5 +195,127 @@
         </footer>
 
     </div>
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+
+        $(".category-list, #aboutScroll").mCustomScrollbar();
+        $(".showDesc").click(function () {
+            var hidden = $(".about-us");
+            if (hidden.hasClass("visible")) {
+                hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                $(".showDesc").text("About Us");
+                $(".about-overlay").fadeOut("slow");
+
+            } else {
+                hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                $(".showDesc").text("Close");
+                $(".about-overlay").fadeIn("slow");
+            }
+        });
+
+        $('#readMore').click(function () {
+
+            $('.more-content').slideToggle();
+
+            var LinkText = $("#readMore").text();
+            LinkText = LinkText.replace(/\s/g, '');
+            if (LinkText == "ReadMore") {
+                $("#readMore").text("Read Less");
+            }
+            else {
+                $("#readMore").text("Read More");
+            }
+        });
+
+        $('.category-list').mCustomScrollbar();
+    });
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1) {
+            $('.top-nav').addClass("hidden");
+        }
+        else {
+            $('.top-nav').removeClass("hidden");
+        }
+    });
+
+    if ($('#back-to-top').length) {
+        var scrollTrigger = 100, // px
+            backToTop = function () {
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > scrollTrigger) {
+                    $('#back-to-top').addClass('show');
+                } else {
+                    $('#back-to-top').removeClass('show');
+                }
+            };
+        backToTop();
+        $(window).on('scroll', function () {
+            backToTop();
+        });
+        $('#back-to-top').on('click', function (e) {
+            e.preventDefault();
+            $('html,body').animate({
+                scrollTop: 0
+            }, 700);
+        });
+    }
+
+    function CartAnimation(target, Image) {
+        var cart = $('#cart_icon');
+        if (Image != undefined && Image != null) {
+            var imgtodrag = $('<img id="dynamic">');
+            imgtodrag.attr('src', Image);
+        }
+        else {
+            var imgtodrag = $('<img id="dynamic">');
+            imgtodrag.attr('src', '/Content/layout1/images/step-4-process.png');
+        }
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+            if (imgclone.length) {
+                imgclone.offset({
+                    top: target.offset().top,
+                    left: target.offset().left
+                })
+              .css({
+                  //'opacity': '0.5',
+                  'position': 'absolute',
+                  'width': '150px',
+                  'z-index': '99999'
+              });
+
+                imgclone.appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                }, 1000, 'easeInOutExpo');
+
+                setTimeout(function () {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 0);
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+            }
+        }
+    }
+
+    </script>
+
+
+
 </body>
 </html>
