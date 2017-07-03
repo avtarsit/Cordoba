@@ -29,6 +29,7 @@
     $scope.GetRelatedProductList = function (ProductId) {
         $http.get(configurationService.basePath + "API/ProductApi/GetRelatedProductList?StoreID=" + $scope.StoreDetailInSession.store_id + "&SelectedProductId=" + $scope.SelectedProductId + "&RelatedProductId=" + ProductId)
           .then(function (response) {
+              debugger;
               $scope.RelatedProductList = response.data;
           })
       .catch(function (response) {

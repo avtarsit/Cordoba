@@ -44,10 +44,10 @@
             <div class="col-sm-6">
                 <h3 class="heading" ng-bind="ProductObj.name"></h3>
                 <div class="price mt-10">
-                    <p>Modal No:</p><span ng-bind="ProductObj.Model"></span>
+                    <p>Modal No:<span ng-bind="ProductObj.Model"></span></p>
                 </div>
                 <div class="price mt-10">
-                    <span class="points" ng-bind="(ProductObj.Price | number:2)+' Points'"></span>
+                    <span class="point" ng-bind="(ProductObj.Price | number:2)+' Points'"></span>
                 </div>
               
                 <div class="price mt-10">
@@ -60,7 +60,7 @@
                 <div class="price mt-10" ng-controller="AddProductToCartController">
                     <br />
 
-                    <button class="btn-primary btn-flat btn-lg btnaddtocart add_to_cart_dish" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
+                    <button class="btn-primary btn-flat btn-lg btnaddtocart add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)" data-label="Add to cart">Add to cart</button>
 
                     <!--<button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>-->
                 </div>

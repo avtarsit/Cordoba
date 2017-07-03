@@ -27,7 +27,7 @@
                 <p>Product Code:<span ng-bind="ProductObj.Model"></span></p>
             </div>
             <div class="cart-btn">
-                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                <input type="button" name="cart_btn" ng-click="AddProductToCart(SpecialOffer,$event)" class="add_cart" value="ADD TO CART">
             </div>
         </div>
         <div class="col-sm-12">

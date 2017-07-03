@@ -13,6 +13,7 @@
     $scope.GetCategoryListForDashboard = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID="+$scope.StoreDetailInSession.store_id+"&NeedToGetAllSubcategory=true")
           .then(function (response) {
+              debugger;
               if (response.data.length > 0) {                  
                   $scope.CategoryList = response.data;
                   var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
