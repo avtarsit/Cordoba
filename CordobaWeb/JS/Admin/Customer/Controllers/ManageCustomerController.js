@@ -8,9 +8,10 @@
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
-                   .withOption('bDestroy', true)
-                   .withOption("deferRender", true)
-  .withOption('bFilter', false);
+                      .withOption('bDestroy', true)
+                      .withOption("deferRender", true)
+                      .withOption('bFilter', false);
+
     $scope.CustomerObj = new Object();
     $scope.StoreObj = new Object();
     $scope.IsEditMode = false;
@@ -202,7 +203,7 @@
 
     $scope.GetCustomerById = function () {
 
-        $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?customer_id=" + $scope.customer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
           .then(function (response) {
               $scope.CustomerObj = response.data;
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {

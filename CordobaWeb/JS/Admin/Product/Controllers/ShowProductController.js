@@ -86,7 +86,7 @@
             },
             "autoWidth": false,
             "searching": false,
-            "dom": '<"table-responsive"rt><"bottom"lip<"clear">>',
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
             "bProcessing": true,
             "bServerSide": true,
             "iDisplayStart": 0,
@@ -103,7 +103,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId + "&PageIndex=" + PageIndex + "&name=" + $scope.ProductFilter.name + "&Price=" + $scope.ProductFilter.Price + "&status=" + $scope.ProductFilter.status + "&Model=" + $scope.ProductFilter.Model + "&Quantity=" + $scope.ProductFilter.Quantity,
+                    "url": sSource + "?StoreId=" + ($scope.ProductFilter.storeId == null ? 0 : $scope.ProductFilter.storeId) + "&LoggedInUserId=" + $scope.LoggedInUserId + "&PageIndex=" + PageIndex + "&name=" + $scope.ProductFilter.name + "&Price=" + $scope.ProductFilter.Price + "&status=" + $scope.ProductFilter.status + "&Model=" + $scope.ProductFilter.Model + "&Quantity=" + $scope.ProductFilter.Quantity,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -158,8 +158,7 @@
           .then(function (response) {
               if (response.data.length > 0) {              
                   $scope.StoreList = response.data;
-                  $scope.ProductFilter.storeId = $scope.StoreId;
-                  console.log($scope.StoreList);
+                  $scope.ProductFilter.storeId = $scope.StoreId;             
               }
           })
       .catch(function (response) {

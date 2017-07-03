@@ -173,8 +173,7 @@
           .then(function (response) {
               if (response.data.length > 0) {                
                   $scope.StoreList = response.data;
-                  //$scope.CustomerFilter.storeId = $scope.StoreId;
-                  console.log($scope.StoreList);
+                  //$scope.CustomerFilter.storeId = $scope.StoreId;                  
               }
           })
       .catch(function (response) {

@@ -87,24 +87,19 @@
                   });
 
     }
-
  
     $scope.GetCategoryById = function() {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id + "&StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
                   .then(function (response) {
-                      $scope.CategoryObj = response.data;
-                      console.log($scope.CategoryObj)
+                      $scope.CategoryObj = response.data;                      
                       CreateDescriptionObject();
-
                   })
                   .catch(function (response) {
                   })
                   .finally(function () {
 
-                  });
-           
+                  });           
     }
-
     $scope.GetCategoryById();
     //$http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id)
     //  .then(function (response) {
@@ -141,7 +136,6 @@
 
     }
 
-
         $scope.Cancel = function () {
             var hasAnyUnsavedData = false;
             hasAnyUnsavedData = (($scope.form != null && $("#form .ng-dirty").length > 0));
@@ -174,12 +168,13 @@
 
 
 
-        $scope.InsertOrUpdateCategory = function (form) {        
+        $scope.InsertOrUpdateCategory = function (form) {
+            
             if (form.$valid) {
                 $scope.CategoryObj.StoreIdCSV = "";
                 $scope.CategoryObj.StoreIdCSV = GetSelectedStoreListCSV($scope.CategoryObj.StoreList);
                 var categoryEntity = JSON.stringify($scope.CategoryObj);           
-                $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, categoryEntity)
+                $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategory?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId, categoryEntity)
                   .then(function (response) {
 
                       if (response.data > 0) {

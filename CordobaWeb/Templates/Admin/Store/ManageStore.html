@@ -22,9 +22,7 @@
                     <li>
                         <button type="submit" ng-click="InsertUpdateStore(form)" class="btn btn-success cursor-pointer">Submit <i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                     </li>
-                    <li ng-if="IsEditMode==true">
-                        <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Store" ng-click="DeleteStore()"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -136,7 +134,7 @@
                                             <!--Store Tab-->
                                             <!--General Tab-->
                                             <div class="col-md-12">
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <label class="col-lg-2 control-label mandatoryField">Meta Title</label>
                                                     <div class="col-lg-9">
                                                         <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.meta_title" required="required">
@@ -147,7 +145,7 @@
                                                     <div class="col-lg-9">
                                                         <textarea type="text" class="form-control" name="MetaTagDescription" maxlength="2000" placeholder="Enter Meta Tag Description" ng-model="StoreObj.meta_description"></textarea>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Css Overrides</label>
@@ -164,7 +162,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Template</label>
                                                     <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="TemplateId" ng-model="StoreObj.template" ng-options="option.TemplateName as option.TemplateName for option in TemplateList"></select>
+                                                        <select class="form-control cursor-pointer" name="TemplateId" ng-model="StoreObj.template" ng-options="option.TemplateId as option.TemplateName for option in TemplateList"></select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

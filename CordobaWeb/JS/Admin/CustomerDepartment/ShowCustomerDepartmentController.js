@@ -5,7 +5,9 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
+    $scope.StoreId = $rootScope.storeId; 
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.IsStoreDropDownDisabled = false;
 
     $scope.CustomerDepartmentList = [];
     //#endregion  
@@ -23,7 +25,7 @@
     $scope.GetCustomerDepartmentList = function () {
         $http.get(configurationService.basePath + "api/CustomerDepartmentApi/GetCustomerDepartmentList?StoreId=" + $scope.StoreId)
           .then(function (response) {
-              if (response.data.length > 0) {
+              if (response.data != undefined && response.data != null) {
                   $scope.CustomerDepartmentList = response.data;
               }
           })
@@ -35,8 +37,33 @@
       });
     }
 
+    $scope.GetStoreList = function () {
 
+        $http.get(configurationService.basePath + "api/CategoryApi/GetStoreNameList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+                 .then(function (response) {
+                     if (response.data.length > 0) {
+                         $scope.StoreList = response.data;
+
+                     }
+                 })
+             .catch(function (response) {
+
+             })
+             .finally(function () {
+
+             });
+
+    }
+
+    $scope.CheckIsStoreDropDownDisabled=function()
+    {        
+        if ($scope.StoreId!=0)
+        {
+              $scope.IsStoreDropDownDisabled = true;
+        }
+    }
+
+    $scope.GetStoreList();
     $scope.GetCustomerDepartmentList();
-
 
 });

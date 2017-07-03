@@ -25,10 +25,18 @@
                 <div class="panel-body">
                     <div class="well">
                         <div class="row">
+                            <div class="col-sm-4">
+                                <!--ng-disabled="StoreId != 0"-->
+                                <label class="control-label" for="input-status">Store</label>
+                                <select ng-model="filter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
+                                        class="form-control cursor-pointer" name="store" ng-disabled="StoreId != 0">
+                                    <option value="">All</option>
+                                </select>
 
+                            </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="control-label"> OrderId</label>
+                                    <label class="control-label"> Order Id</label>
                                     <input type="text" class="form-control" ng-model="filter.orderID" />
                                 </div>
                             </div>
@@ -61,16 +69,7 @@
                                     <input type="text" class="form-control" ng-model="filter.Total" />
                                 </div>
                             </div>-->
-
-                            <div class="col-sm-4">
-                                <!--ng-disabled="StoreId != 0"-->
-                                <label class="control-label" for="input-status">Store</label>
-                                <select ng-model="filter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
-                                        class="form-control" name="store" ng-disabled="StoreId != 0">
-                                    <option value="0"></option>
-                                </select>
-
-                            </div>
+                         
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label" for="input-date-start">Date Modified</label>
@@ -122,13 +121,14 @@
                 <div class="panel-heading">
                     <table id="tblOrders" class="table table-bordered table-striped datatable-responsive" width="100%">
                         <thead>
-                            <tr>
+                            <tr>                              
                                 <th class="text-center">Order ID</th>
+                                <th class="text-left">Store</th>
                                 <th>Customer</th>
                                 <th>Status</th>
                                 <th class="text-right">Total</th>
                                 <th>Date Added</th>
-                                <th>Date Modified</th>
+                                <!--<th>Date Modified</th>-->
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>

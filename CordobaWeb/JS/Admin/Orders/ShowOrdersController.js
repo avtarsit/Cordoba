@@ -81,7 +81,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + "api/OrderApi/GetOrderList?StoreId=" + ($scope.filter.storeId==null?0:$scope.filter.storeId) + "&LoggedInUserId=" + $scope.LoggedInUserId,
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {           
                 //aoData = BindSearchCriteria(aoData);
 
@@ -107,6 +107,7 @@
                     //    return '<a data-Id=' + row.JobId + ' class="cursor-pointer" ng-click="EditJobCode($event)">' + data + '</a>'
                     //}
                 },
+                { "mData": "store_name", "bSortable": true },                
                 { "mData": "customer", "bSortable": true },
                  { "mData": "OrderStatusName", "bSortable": true },
                  { "mData": "total", "bSortable": true, "sClass": "text-right" },
@@ -122,18 +123,18 @@
                            }
                        }
                    },
-                     {
-                         "mData": "date_modified", "bSortable": true,
-                         "render": function (data, type, row) {
-                             if (data != null) {
-                                 return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+                     //{
+                     //    "mData": "date_modified", "bSortable": true,
+                     //    "render": function (data, type, row) {
+                     //        if (data != null) {
+                     //            return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
 
-                             }
-                             else {
-                                 return "";
-                             }
-                         }
-                     },
+                     //        }
+                     //        else {
+                     //            return "";
+                     //        }
+                     //    }
+                     //},
                 {
                     "mData": null, "bSortable": false,
                     "sClass": "action text-center",
@@ -156,8 +157,7 @@
           .then(function (response) {
               if (response.data.length > 0) {           
                   $scope.StoreList = response.data;
-                  //$scope.CustomerFilter.storeId = $scope.StoreId;
-                  console.log($scope.StoreList);
+                  //$scope.CustomerFilter.storeId = $scope.StoreId;                 
               }
           })
       .catch(function (response) {

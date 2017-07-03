@@ -23,9 +23,8 @@
 
 
     $scope.TemplateList = [
-                        { 'TemplateId': 1, 'TemplateName': 'Default Theme' }
-                      , { 'TemplateId': 2, 'TemplateName': 'Default' }
-                      , { 'TemplateId': 3, 'TemplateName': 'Default-2' }
+                        { 'TemplateId': 0, 'TemplateName': 'Default Theme' }
+                      , { 'TemplateId': 1, 'TemplateName': 'Theme1' }
     ];
 
     $scope.LayoutList = [
@@ -42,9 +41,8 @@
 
     ];
 
-    function GetCountryList() {
-        //$http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreID=' + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
-        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?storeId=0" + "&LoggedInUserId=" + $scope.LoggedInUserId + "&countryId=0")
+    function GetCountryList() {        
+        $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?storeId="+ $scope.store_id+"&LoggedInUserId=" + $scope.LoggedInUserId + "&countryId=0")
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CountryList = response.data;
@@ -58,7 +56,7 @@
       });
     }
     function GetLanguageList() {
-        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0" + '&StoreID=0' + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=0&StoreID="+$scope.store_id+"&LoggedInUserId=" + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.LanguageList = response.data;
         })
@@ -70,7 +68,7 @@
        });
     }
     function GetCurrencyList() {
-        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID=0" + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/CurrencyApi/GetCurrencyList?StoreID="+$scope.store_id+"&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CurrencyList = response.data;
@@ -84,9 +82,9 @@
       });
     }
 
-    $scope.GetZoneListByCountry = function (countryId) {
+    $scope.GetZoneListByCountry = function (countryId) {          
         countryId = countryId == null ? 0 : countryId;
-        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreID=0' + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + "&StoreID="+$scope.store_id+"&LoggedInUserId=" + $scope.LoggedInUserId)
         .then(function (response) {
             $scope.RegionStateList = [];
             if (response.data.length > 0) {
@@ -105,7 +103,7 @@
     }
 
     $scope.GetStoreById = function () {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
               if ($scope.StoreObj.store_id == 0) {
@@ -138,7 +136,7 @@
                         callback: function (result) {
                             if (result) {
 
-                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
+                                $http.get(configurationService.basePath + "api/StoreApi/DeleteStoreById_Admin?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
                                              .then(function (response) {                                  
                                                  if(response.data>0)
                                                  {
@@ -220,7 +218,7 @@
         var ajaxRequest = $.ajax({
             type: "POST",
             url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey,
-            contentType: "application/json",
+            contentType: false,
             processData: false,
             data: data,
             success: function (response) {

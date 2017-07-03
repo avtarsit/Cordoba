@@ -70,7 +70,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList?StoreId=' + $scope.CustomerFilter.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {       
                 aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
@@ -79,7 +79,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "&PageIndex=" + PageIndex + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + $scope.CustomerFilter.storeId,
+                    "url": sSource + "?PageIndex=" + PageIndex + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + $scope.CustomerFilter.storeId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -157,8 +157,7 @@
           .then(function (response) {
               if (response.data.length > 0) {          
                   $scope.StoreList = response.data;
-                  $scope.CustomerFilter.storeId = $scope.StoreId;
-                  console.log($scope.StoreList);
+                  $scope.CustomerFilter.storeId = $scope.StoreId;             
               }
           })
       .catch(function (response) {
