@@ -1,19 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pitney Bowes</title>
-</head>
+</head>*@
 <body>
+
     <div class="slider">
-        <div class="banner-slider" ng-controller="dashboard_bannercontroller">
-            <ul class="main-banner">
-                <li><img src="images/slide1.jpg" alt="Slider banner" /></li>
-                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
-                <li><img src="images/slide3.jpg" alt="Slider banner" /></li>
-                <li><img src="images/slide2.jpg" alt="Slider banner" /></li>
+        <div class="banner-slider">
+            <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
+                <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
+                    <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
+                </li>
             </ul>
         </div>
     </div>
@@ -21,105 +21,26 @@
 
     <div class="catagories_slider">
         <div class="container">
-            <div class="col-md-3">
+            <div class="col-md-3" ng-controller="Dashboard_CategoryController">
                 <div class="letest-product catagories">
-                    <h3>CATAGORIES</h3>
+                    <h3>Categories</h3>
                     <div class="content mCustomScrollbar">
                         <ul>
-                            <li><a href="#">Apple Products</a></li>
-                            <li><a href="#">Baby</a></li>
-                            <li><a href="#">Beauty & Fragrance</a></li>
-                            <li><a href="#">Books</a></li>
-                            <li><a href="#">Computing</a></li>
-                            <li><a href="#">Cooking & Dining</a></li>
-                            <li><a href="#">Home Appliances</a></li>
-                            <li><a href="#">Smart Phones</a></li>
-                            <li><a href="#">Sports & Leisure</a></li>
-                            <li><a href="#">Sunglasses</a></li>
-                            <li><a href="#">Watches & Jewellery</a></li>
-                            <li><a href="#">Books</a></li>
-                            <li><a href="#">Apple Products</a></li>
-                            <li><a href="#">Baby</a></li>
-                            <li><a href="#">Beauty & Fragrance</a></li>
-                            <li><a href="#">Books</a></li>
-                            <li><a href="#">Apple Products</a></li>
-                            <li><a href="#">Baby</a></li>
-                            <li><a href="#">Beauty & Fragrance</a></li>
-                            <li><a href="#">Books</a></li>
-                            <li><a href="#">Apple Products</a></li>
-                            <li><a href="#">Baby</a></li>
-                            <li><a href="#">Beauty & Fragrance</a></li>
-                            <li><a href="#">Books</a></li>
+                            <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
                         </ul>
-
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 ">
-                <div class="products letest-product">
-                    <h3 class="heading">LETEST PRODUCT</h3>
-                    <div id="latest-product">
-                        <div class="col-sm-3">
+            <div class="col-md-9 " ng-controller="Dashboard_LatestProductController">
+                <div class="products letest-product" ng-if="LatestProductList.length>0">
+                    <h3 class="heading">Latest Products</h3>
+                    <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
+                        <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                             <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="col-product text-center">
-                                <img src="images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
+                                <img src="~/Content/layout2/images/letest-product1.png" alt="letest-product1">
+                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                                <p ng-bind="LatestProduct.Model"></p>
+                                <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
                                 <div class="cart-btn">
                                     <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
                                 </div>
@@ -131,37 +52,12 @@
 
                 <div class="popular">
                     <div class="row">
-                        <div class="popular-catagory">
-                            <h4>POPULAR CATAGORIES</h4>
+                        <div class="popular-catagory" ng-controller="Dashboard_PopularCategoryController">
+                            <h4>Popular Categories</h4>
                             <div class="col-sm-3">
-
-                                <div class="letest-product polular_catagories">
-                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="#" class="heading_purple">Gifts & Flowers</a>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="letest-product polular_catagories">
-                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="#" class="heading_purple">Entertainment</a>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="letest-product polular_catagories">
-                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="#" class="heading_purple">Cleaning Products</a>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-3">
-
-                                <div class="letest-product polular_catagories">
-                                    <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                    <a href="#" class="heading_purple">Mobiles</a>
+                                <div class="letest-product polular_catagories" ng-if="PopularCategoryList.length>0">
+                                    <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
+                                    <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                                 </div>
 
                             </div>
@@ -381,7 +277,27 @@
         </div>
     </div>
 
-
+    <footer class="footer">
+        <div class="container">
+            <div class="col-sm-3 pb-10">
+                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
+            </div>
+            <div class="col-sm-9 pb-10">
+                <div class="footer_menu">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2017 Cordoba</p>
+        </div>
+    </footer>
 
     <div class="modal" id="myModal" role="dialog">
         <div class="vertical-alignment-helper">

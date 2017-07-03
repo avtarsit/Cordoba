@@ -1,4 +1,4 @@
-﻿app.controller('CategoryListController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+﻿app.controller('CategoryListController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http,$location, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -12,6 +12,10 @@
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId!=null)
     {        
         $scope.SelectedCategoryId = parseInt($stateParams.CategoryId);
+        if ($stateParams.SubCategoryId != undefined && $stateParams.SubCategoryId != null)
+        {
+            $scope.SelectedSubCategory = parseInt($stateParams.SubCategoryId);
+        }
         if ($stateParams.Search != undefined && $stateParams.Search != null)
         {
             $scope.WhatAreYouLookingFor = $stateParams.Search;
@@ -26,7 +30,14 @@
                   var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
                   if (CategoryObj != undefined && CategoryObj != null) {
                       $scope.SelectedCategory = CategoryObj[0];
-                      
+                      if ($scope.SelectedSubCategory != undefined && $scope.SelectedSubCategory != null && $scope.SelectedSubCategory != 0) {
+                          var SubCategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
+                      if(SubCategoryObj != undefined && SubCategoryObj != null)
+                      {
+                          $scope.GetSubCategory($scope.SelectedSubCategory);
+                      }   
+                      }
+                                        
                   }
               }
           })
@@ -40,7 +51,9 @@
 
     $scope.GetCategory=function(ParentCategoryId)
     {
-        $scope.SelectedCategoryId = ParentCategoryId;
+        var EncodededParentCategoryValue = Encodestring(ParentCategoryId);
+        $scope.SelectedCategoryId = ParentCategoryId;  
+        $state.go('.', { CategoryId: EncodededParentCategoryValue }, { notify: false, reload: false, location: 'replace', inherit: false });
         $scope.SelectedSubCategory = 0;
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
         if (CategoryObj != undefined && CategoryObj != null) {
@@ -50,10 +63,11 @@
     }
 
     $scope.GetSubCategory=function(SubCategoryId)
-    {
-        debugger;
-        $state.go('.', { CategoryId: '7H-aN0451zDhk~' }, { notify: false });
+    {        
+        var EncodededParentCategoryValue = Encodestring($scope.SelectedCategoryId);
+        var EncodededChildCategoryValue = Encodestring(SubCategoryId);      
         $scope.SelectedSubCategory = SubCategoryId;
+        $state.go('.', { CategoryId: EncodededParentCategoryValue, SubCategoryId: EncodededChildCategoryValue }, { notify: false,reload: false, location: 'replace', inherit: true });
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
         if (CategoryObj != undefined && CategoryObj != null) {
             $scope.SelectedCategory = CategoryObj[0];

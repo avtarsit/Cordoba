@@ -1,5 +1,5 @@
 ﻿app.controller('ProductDetailLayoutController', function (StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
-    //#region CallGlobalFunctions
+    //#region CallGlobalFunctions   
     decodeParams($stateParams);
     BindToolTip();
     Tab();
@@ -29,7 +29,6 @@
     $scope.GetRelatedProductList = function (ProductId) {
         $http.get(configurationService.basePath + "API/ProductApi/GetRelatedProductList?StoreID=" + $scope.StoreDetailInSession.store_id + "&SelectedProductId=" + $scope.SelectedProductId + "&RelatedProductId=" + ProductId)
           .then(function (response) {
-
               $scope.RelatedProductList = response.data;
           })
       .catch(function (response) {

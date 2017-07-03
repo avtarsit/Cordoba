@@ -39,7 +39,7 @@ namespace CordobaWeb.Controllers
                         break;
                     case "_layout1":
                     case "_layout2":
-                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);
+                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml","_Layout2");
                         break;                                         
                 }
             

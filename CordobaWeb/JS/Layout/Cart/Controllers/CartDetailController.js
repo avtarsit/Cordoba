@@ -123,8 +123,7 @@
 
     }
 
-    $scope.Checkout = function () {
-        debugger;
+    $scope.Checkout = function () {     
         if (UserDetail.customer_id > 0) {
             if (($rootScope.CustomerDetail.points - $scope.AllItemTotal) >= 0) {
                 $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
