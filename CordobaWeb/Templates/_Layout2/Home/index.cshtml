@@ -23,16 +23,18 @@
             </div>
             <div class="col-lg-9 col-md-9 col-xs-12" ng-controller="Dashboard_LatestProductController">
                 <div class="products letest-product">
-                    <h3 class="heading">LETEST PRODUCT</h3>
+                    <h3 class="heading">
+                        Latest Products
+                    </h3>
                     <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
                         <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                             <div class="col-product text-center">
                                 <img src="~/Content/layout2/images/letest-product1.png" alt="letest-product1">
-                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                <p>AP-178</p>
-                                <span>92 Points</span>
-                                <div class="cart-btn">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                                <p ng-bind="LatestProduct.Model"></p>
+                                <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
+                                <div class="row" ng-controller="AddProductToCartController">
+                                    <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -60,42 +62,11 @@
                             <div class="popular-catagory">
                                 <h4>Popular Categories</h4>
                                 <div class="col-sm-3">
-                                    <div class="letest-product polular_catagories">
-                                        <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                        <a href="#" class="heading_purple">Gifts & Flowers</a>
+                                    <div class="letest-product polular_catagories" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
+                                        <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
+                                        <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                                     </div>
-
                                 </div>
-                                <div class="col-sm-3">
-
-                                    <div class="letest-product polular_catagories">
-                                        <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                        <a href="#" class="heading_purple">Entertainment</a>
-                                    </div>
-
-                                </div>
-                                <div class="col-sm-3">
-
-                                    <div class="letest-product polular_catagories">
-                                        <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                        <a href="#" class="heading_purple">Cleaning Products</a>
-                                    </div>
-
-                                </div>
-                                <div class="col-sm-3">
-
-                                    <div class="letest-product polular_catagories">
-                                        <img src="images/popular-catagory1.png" alt="popular-catagory">
-                                        <a href="#" class="heading_purple">Mobiles</a>
-                                    </div>
-
-                                </div>
-                                @*<div class="col-sm-3">
-                                        <div class="letest-product polular_catagories" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                                            <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
-                                            <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
-                                        </div>
-                                    </div>*@
                             </div>
                         </div>
                     </div>
