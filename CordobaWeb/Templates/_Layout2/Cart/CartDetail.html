@@ -19,106 +19,37 @@
 
                         </div>
                         <div class="media-body">
-                            <a href="#" class="media-heading">Apple Watch Edition, 38mm White Ceramic Case </a>
-                            <p class="model-no"><span>Modal Number:</span> m6784</p>
+                            <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
+                            <p class="model-no"><span>Modal Number:</span> {{Item.model}}</p>
                             <div class="product-qty">
                                 <label>Quantity:</label>
-                                <div id="qty1"></div>
+                                <div id="qty1" ng-bind="Item.quantity"></div>
                             </div>
                         </div>
                         <div class="stock-img"></div>
                         <div class="stock">
-                            <p>Out Of Stock</p>
+                            <p ng-if="Item.IsOutOfStock=='false'">Out Of Stock</p>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-4">
-                    <p class="product-price"><span>Points:</span> 2000</p>
+                    <p class="product-price"><span>Points:</span> {{Item.price | number : 2}}</p>
                 </div>
                 <div class="col-sm-12">
                     <div class="remove-product mt-10">
-                        <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
-                        <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
+                        <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
+                        <button class="remove-item" ng-if="Item.IsProductInWishlist!=true" ng-click="AddtoWishList(Item)">
+                            <i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist
+                        </button>
                     </div>
                 </div>
 
             </div>
             </div>
 
-            <div class="orders">
+ 
 
-                <div class="order-desc ">
-                    <div class="col-md-7 col-sm-8">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#"><img class="media-object" src="images/product5.jpg" alt="product"></a>
-
-                            </div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">iMac 21.5-inch: 1.6GHz dual-core </a>
-                                <p class="model-no"><span>Modal Number:</span> im3219</p>
-                                <div class="product-qty">
-                                    <label>Quantity:</label>
-                                    <div id="qty1"></div>
-                                </div>
-
-                            </div>
-                            <div class="stock-img"></div>
-                            <div class="stock">
-                                <p>Out Of Stock</p>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-4">
-                        <p class="product-price"><span>Points:</span> 2059</p>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="remove-product mt-10">
-                            <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
-                            <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="orders">
-
-                <div class="order-desc stock-out">
-                    <div class="col-md-7 col-sm-8">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#"><img class="media-object" src="images/product8.jpg" alt="product"></a>
-
-                            </div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">Beats Solo2 On-Ear Headphones</a>
-                                <p class="model-no"><span>Modal Number:</span> 104</p>
-                                <div class="product-qty">
-                                    <label>Quantity:</label>
-                                    <div id="qty1"></div>
-                                </div>
-
-                            </div>
-                            <div class="stock-img"></div>
-                            <div class="stock">
-                                <p>Out Of Stock</p>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-4">
-                        <p class="product-price"><span>Points:</span> 360</p>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="remove-product mt-10">
-                            <button class="remove-item"><i class="fa fa-trash-o"></i> Remove Item</button>
-                            <button class="remove-item"><i class="fa fa-heart-o"></i> Move to Wishlist</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
         <!--<div class="col-sm-4">
@@ -136,24 +67,24 @@
           </div>
         </div>-->
 
-        <div class="col-sm-4">
+        <div class="col-sm-4" ng-if="TotalItems>0">
             <div class="orders">
                 <div class="address">
                     <div class="addess-heading">
                         <h2>Payment Summary</h2>
                     </div>
 
-                    <div class="payment-summary mt-20">
-                        <p>- Apple Watch Edition, 38mm White Ceramic Case </p>
-                        <p>2000 points</p>
-                        <p>- iMac 21.5-inch: 1.6GHz dual-core</p>
+                    <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
+                        <p>- {{Item.name}} </p>
+                        <p>{{Item.price | number : 2}} points</p>
+                        <!--<p>- iMac 21.5-inch: 1.6GHz dual-core</p>
                         <p>2059 points</p>
                         <p>- Beats Solo2 On-Ear Headphones</p>
-                        <p>360 points</p>
+                        <p>360 points</p>-->
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span>4419 points</span>
+                        <span>{{AllItemTotal | number : 2}} points</span>
                     </div>
                 </div>
             </div>
@@ -167,7 +98,7 @@
 
 
 
-    <div class="modal" id="myModal" role="dialog">
+    <!--<div class="modal" id="myModal" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
                 <div class="modal-content">
@@ -202,9 +133,9 @@
 
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="about-overlay"></div>
+    <!--<div class="about-overlay"></div>
     <div class="about-us">
         <div id="aboutScroll">
             <a href="javascript:;" class="showDesc">About Us</a>
@@ -228,7 +159,7 @@
         <a href="#" id="back-to-top" title="Back to top">
             &uarr;
         </a>
-    </div>
+    </div>-->
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

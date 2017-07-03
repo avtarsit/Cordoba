@@ -22,6 +22,7 @@ namespace CordobaModels.Entities
         public string address { get; set; }
         public int? zone_id { get; set; }
         public bool? IsDefaultAddress { get; set; }
+        public string telephone { get; set; }
 
     }
 }
