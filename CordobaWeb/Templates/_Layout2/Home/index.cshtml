@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 " ng-controller="Dashboard_LatestProductController">
+            <div class="col-md-9" ng-controller="Dashboard_LatestProductController">
                 <div class="products letest-product" ng-if="LatestProductList.length>0">
                     <h3 class="heading">Latest Products</h3>
                     <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
@@ -48,7 +48,6 @@
                                     <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
                                     <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -65,7 +64,7 @@
                         <div class="col-sm-4">
                             <img src="images/special-offers.jpg" alt="special-offers">
                         </div>
-                        <div class="col-sm-8" ng-controller="dashboard_specialofferscontroller">
+                        <div class="col-sm-8" ng-controller="Dashboard_SpecialOffersController">
                             <div class="special-offers" ng-if="SpecialOfferList.length>0">
                                 <h3 class="heading">Special Offers</h3>
                                 <div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
@@ -101,7 +100,7 @@
 
                 </div>
             </div>
-            <div class="col-md-3" ng-controller="dashboard_hotdealscontroller">
+            <div class="col-md-3" ng-controller="Dashboard_HotDealsController">
                 <div class="letest-product" ng-if="HotDealsList.length>0">
                     <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
                         <h3 class="heading">Hot Deals</h3>

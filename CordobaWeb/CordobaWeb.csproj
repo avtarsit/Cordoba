@@ -604,10 +604,10 @@
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\jquery.min.js" />
     <Content Include="Content\layout2\css\bootstrap.min.css" />
     <Content Include="Content\layout2\css\custom.min.css" />
-    <Content Include="Content\layout2\css\flexslider.css" />
-    <Content Include="Content\layout2\css\jquery.mCustomScrollbar.css" />
-    <Content Include="Content\layout2\css\responsive.css" />
-    <Content Include="Content\layout2\css\style.css" />
+    <Content Include="Content\layout2\css\font-awesome.min.css" />
+    <Content Include="Content\layout2\css\jquery.bxslider.min.css" />
+    <Content Include="Content\layout2\css\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\layout2\css\responsive.min.css" />
     <Content Include="Content\layout2\images\1494439090770.jpg" />
     <Content Include="Content\layout2\images\6slide2.jpg" />
     <Content Include="Content\layout2\images\best-saller.png" />
