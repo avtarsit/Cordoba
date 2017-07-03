@@ -1,120 +1,43 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿
 
-    <title>Pitney Bowes</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/custom.min.css" rel="stylesheet" />
-    <link href="css/jquery.bxslider.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/responsive.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-
-
-</head>
-
-<body>
-
-    <div class="fix-header navbar-fixed-top">
-        <div class="top-header">
-            <div class="container">
-                <div class="col-sm-12">
-
-                    <div class="login">
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-                        </ul>
+    <div class="product-detail mt-30" ng-controller="ProductDetailLayoutController">
+    <div class="container">
+        <div class="col-sm-6">
+            <div class="image-zooming">
+                <div class="product-image">
+                    <div class="magnify">
+                        <div class="large"></div>
+                        <img class="small " src="{{ProductObj.Image}}" />
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="header">
-            <div class="container">
-
-                <div class="col-sm-12">
-
-                    <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
-                    </div>
-                    <div class="main-menu">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-
-                        <div class="show_cart">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge">4</span></a>
-                        </div>
-                        <div class="search_products">
-                            <input id="txtName" class="search_textbox" placeholder="Search" />
-                            <button type="button" class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                        <div id="navbar" class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="Products.html">Our Products</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
+        <div class="col-sm-6">
+            <h3 class="heading" ng-bind="ProductObj.name"></h3>
+            <div class="price mt-10">
+                <p> Price: <span ng-bind="(ProductObj.Price | number:2)+' Points'"></span> </p>
+            </div>
+            <div class="price mt-10">
+                <p>Manufacture:<span ng-bind="ProductObj.ManufactureName"> </span></p>
+            </div>
+            <div class="price mt-10">
+                <p>Supplier:<span ng-bind="ProductObj.SupplierName"></span></p>
+            </div>
+            <div class="ship mt-10">
+                <p>Product Code:<span ng-bind="ProductObj.Model"></span></p>
+            </div>
+            <div class="cart-btn">
+                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="description">
+                <h3 class="heading">Description</h3>
+                <p ng-bind-html="ProductObj.description"></p>
             </div>
         </div>
     </div>
-
-    <div class="product-detail mt-30">
-        <div class="container">
-            <div class="col-sm-6">
-                <div class="image-zooming">
-                    <div class="product-image">
-                        <div class="magnify">
-                            <div class="large"></div>
-                            <img class="small" src="images/apple-watch-large.png" width="500" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h3 class="heading">Watch Series 2</h3>
-                <div class="price mt-10">
-                    <p> Price: <span>2,551 Points</span> </p>
-                </div>
-                <div class="price mt-10">
-                    <p>Manufacture:<span> MNPF2B/A</span></p>
-                </div>
-                <div class="price mt-10">
-                    <p>Supplier:<span> MNPF2B/A</span></p>
-                </div>
-                <div class="ship mt-10">
-                    <p>Product Code:<span> MNPF2B/A</span></p>
-                </div>
-                <div class="cart-btn">
-                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="description">
-                    <h3 class="heading">Description</h3>
-                    <p>Tag Heuer Link Gents Watch -Automatic chronograph movement, with black dial scratch resistant sapphire crystal, all brushed steel case &bracelet, 200 mtrs/660 feet WR, luminescent hands &markers, screw down crown &caseback model CJF2110.BA0594</p>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
     <footer class="footer">
         <div class="container">
@@ -313,5 +236,3 @@
 
     </script>
 
-</body>
-</html>
