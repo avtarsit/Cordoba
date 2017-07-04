@@ -280,6 +280,7 @@ label { float: left;}
 }
 
 /* product-detail img-zoom */
+.product-img { float: left; width: 100%; padding: 10px; line-height: 183px; border: solid 1px #e5e5e5; background: #ffffff; -webkit-box-shadow: inset 0px 0px 24px 0px rgba(0, 0, 0, 0.11); -moz-box-shadow: inset 0px 0px 24px 0px rgba(0, 0, 0, 0.11); box-shadow: inset 0px 0px 24px 0px rgba(0, 0, 0, 0.11); height: 210px; text-align: center; }
 .magnify { width: 100%; float: left; margin: 50px auto; position: relative; cursor: none }
 .large { width: 175px; height: 175px; position: absolute; border-radius: 100%; box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25); display: none; }
 .small { display: block; width: 100%; }
