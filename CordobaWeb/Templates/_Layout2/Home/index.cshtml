@@ -1,295 +1,227 @@
-﻿<div>
-    <div class="slider">
-        <div class="banner-slider" ng-controller="Dashboard_BannerController">
-            <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
-                <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
-                    <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
-                </li>
-            </ul>
-        </div>
+﻿
+<div class="slider">
+    <div class="banner-slider" ng-controller="Dashboard_BannerController">
+        <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade'">
+            <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
+                <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
+            </li>
+        </ul>
     </div>
+</div>
 
-    <div class="catagories_slider">
-        <div class="container">
-            <div class="col-md-3" ng-controller="Dashboard_CategoryController">
-                <div class="letest-product catagories">
-                    <h3>Categories</h3>
-                    <div class="content mCustomScrollbar">
+<div class="catagories_slider">
+    <div class="container">
+        <div class="col-md-3" ng-controller="Dashboard_CategoryController">
+            <div class="letest-product catagories">
+                <h3>Categories</h3>
+                <div class="content mCustomScrollbar">
+                    <ul>
+                        <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="products letest-product" ng-controller="Dashboard_LatestProductController">
+                <h3 class="heading">Latest Products</h3>
+                <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 270">
+                    <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
+                        <div class="col-product text-center">
+                            <img ng-src='{{LatestProduct.Image}}' alt="latest product">
+                            <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                            <p ng-bind="LatestProduct.Model"></p>
+                            <span>92 Points</span>
+                            <div class="cart-btn">
+                                <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="popular" ng-controller="Dashboard_PopularCategoryController">
+                <div class="row">
+                    <div class="popular-catagory">
+                        <h4>POPULAR CATAGORIES</h4>
+                        <div class="col-sm-3" ng-repeat="PopularCategory in PopularCategoryList">
+                            <div class="letest-product polular_catagories">
+                                <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
+                                <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="special_offers" ng-controller="Dashboard_SpecialOffersController">
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="letest-product">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img src="~/Content/layout2/images/special-offers.jpg" alt="special-offers">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="special-offers">
+                                    <h3 class="heading">SPECIAL OFFERS</h3>
+                                    <div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 180">
+                                        <div class="col-sm-3" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
+                                            <div class="col-product text-center">
+                                                <img ng-src="{{SpecialOffer.Image}}" alt="special Offer">
+                                                <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>
+                                                <p ng-bind="SpecialOffer.Model"></p>
+                                                <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
+                                                <div class="cart-btn" ng-controller="AddProductToCartController">
+                                                    <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(SpecialOffer,$event)" value="ADD TO CART">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="new-arrivals">
+            <div class="container">
+                <div class="col-md-9 mt-30">
+                    <div class="new">
+                        <img src="~/Content/layout2/images/new-arrivals.png" alt="new-arrivals">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="letest-product" ng-controller="Dashboard_HotDealsController">
+                        <div class="hot-deals">
+                            <h3 class="heading">HOT DEALS</h3>
+                            <div id="hot-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 300">
+                                <div class="col-sm-3" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                                    <div class="col-product text-center">
+                                        <img ng-src="{{HotDeals.Image}}" alt="deals">
+                                        <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
+                                        <p ng-bind="HotDeals.Model"></p>
+                                        <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
+                                        <div class="cart-btn" ng-controller="AddProductToCartController">
+                                            <input type="button" name="cart_btn" ng-click="AddProductToCart(HotDeals,$event)" class="add_cart" value="ADD TO CART">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="best-saller" ng-controller="Dashboard_BestSellerController">
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="letest-product">
+                        <h3 class="heading">BEST SELLERS</h3>
+                        <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList | limitTo: 6" data-notify-when-repeat-finished>
+                            <div class="saller">
+                                <img ng-src="{{BestSeller.Image}}" alt="seller">
+                                <h4>{{BestSeller.name}}</h4>
+                                <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
+                                <a href="" ng-controller="AddProductToCartController">
+                                    <span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="col-sm-3 pb-10">
+                    <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
+                </div>
+                <div class="col-sm-9 pb-10">
+                    <div class="footer_menu">
                         <ul>
-                            <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Site Map</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-xs-12" ng-controller="Dashboard_LatestProductController">
-                <div class="products letest-product" ng-if="LatestProductList.length>0">
-                    <h3 class="heading">Latest Products</h3>
-                    <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                        <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
-                            <div class="col-product text-center">
-                                <img src="~/Content/layout2/images/letest-product1.png" alt="letest-product1">
-                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
-                                <p ng-bind="LatestProduct.Model"></p>
-                                <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
-                                <div class="cart-btn row">
-                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div ng-controller="Dashboard_PopularCategoryController">
-                    <div class="popular" ng-if="PopularCategoryList.length>0">
-                        <div class="row">
-                            <div class="popular-catagory">
-                                <h4>Popular Categories</h4>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
-                                    </div>
-                                    <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
-                                </div>
-                                @*<div class="col-sm-3">
-                                    <div class="letest-product popular-catagory" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                                        <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
-                                        <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
-                                    </div>
-                                </div>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="copyright">
+                <p>Copyright © 2017 Cordoba</p>
             </div>
+        </footer>
 
-            <div class="special_offers">
-                <div class="container">
-                    <div class="col-sm-12">
-                        <div class="letest-product">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <img src="~/Content/layout2/images/special-offers.jpg" alt="special-offers">
+        <div class="modal" id="myModal" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                            <div class="login_page_left">
+                                <h2>Login</h2>
+                                <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                            </div>
+                            <div class="login_page_right">
+                                <div class="form-group pt-20">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                                 </div>
-                                <div class="col-sm-8" ng-controller="Dashboard_SpecialOffersController">
-                                    <div class="special-offers" ng-if="SpecialOfferList.length>0">
-                                        <h3 class="heading">Special Offers</h3>
-                                        <div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                                            <div class="col-sm-3" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
-                                                <div class="col-product text-center">
-                                                    <div class="media-left">
-                                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>
-                                                        <p ng-bind="SpecialOffer.Model"></p>
-                                                        <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
-                                                    </div>
-                                                    <div class="add-cart" ng-controller="AddProductToCartController">
-                                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                                 </div>
+                                <div class="chekbox-main checkbox mr-20">
+                                    <input type="checkbox" id="checkbox1" />
+                                    <label for="checkbox1">Remember me</label>
+                                </div>
+                                <button type="submit" class="submit_btn">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="new-arrivals">
-                <div class="container">
-                    <div class="col-md-9 mt-30">
-                        <div class="new">
-                            <img src="~/Content/layout2/images/new-arrivals.png" alt="new-arrivals">
-
-                        </div>
-                    </div>
-
-                    @*<div class="col-md-3" ng-controller="Dashboard_HotDealsController">
-                            <div class="letest-product" ng-if="HotDealsList.length>0">
-                                <div class="hot-deals">
-                                    <h3 class="heading">HOT DEALS</h3>
-                                    <div id="hot-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
-                                        <div class="col-sm-3">
-                                            <div class="col-product text-center">
-                                                <img src="images/hot-deals.png" alt="letest-product1">
-                                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                                <p>AP-178</p>
-                                                <span>92 Points</span>
-                                                <div class="cart-btn">
-                                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="col-product text-center">
-                                                <img src="images/hot-deals.png" alt="letest-product1">
-                                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                                <p>AP-178</p>
-                                                <span>92 Points</span>
-                                                <div class="cart-btn">
-                                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="col-product text-center">
-                                                <img src="images/hot-deals.png" alt="letest-product1">
-                                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                                <p>AP-178</p>
-                                                <span>92 Points</span>
-                                                <div class="cart-btn">
-                                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="col-product text-center">
-                                                <img src="images/hot-deals.png" alt="letest-product1">
-                                                <a href="#">Dartington 5 Piece Wine Decanter Set Glitz</a>
-                                                <p>AP-178</p>
-                                                <span>92 Points</span>
-                                                <div class="cart-btn">
-                                                    <input type="button" name="cart_btn" class="add_cart" value="ADD TO CART">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-
-                    <div class="col-md-3" ng-controller="Dashboard_HotDealsController">
-                        <div class="letest-product" ng-if="HotDealsList.length>0">
-                            <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
-                                <h3 class="heading">Hot Deals</h3>
-                                <div class="clearfix"></div>
-                                <div class="row">
-                                    <div id="hot-product" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                                        <div class="col-sm-3">
-                                            <div class="col-product text-center">
-                                                <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
-                                                <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
-                                                <p ng-bind="HotDeals.Model"></p>
-                                                <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
-                                                <div class="cart-btn" ng-controller="AddProductToCartController">
-                                                    <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="best-saller">
-                <div class="container">
-                    <div class="col-sm-12" ng-controller="Dashboard_BestSellerController">
-                        <div class="letest-product">
-                            <h3 class="heading">Best Sellers</h3>
-                            <div class="col-sm-2" data-bx-slider="pager:false,nextText:'',prevText:''">
-                                <div class="saller" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
-                                    <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" style="max-height:100px" />
-                                    <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
-                                    <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="footer">
-                <div class="container">
-                    <div class="col-sm-3 pb-10">
-                        <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
-                    </div>
-                    <div class="col-sm-9 pb-10">
-                        <div class="footer_menu">
-                            <ul>
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Site Map</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>Copyright © 2017 Cordoba</p>
-                </div>
-            </footer>
-
-            <div class="modal" id="myModal" role="dialog">
-                <div class="vertical-alignment-helper">
-                    <div class="modal-dialog vertical-align-center">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
-                                <div class="login_page_left">
-                                    <h2>Login</h2>
-                                    <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
-                                </div>
-                                <div class="login_page_right">
-                                    <div class="form-group pt-20">
-                                        <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Password:</label>
-                                        <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
-                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                                    </div>
-                                    <div class="chekbox-main checkbox mr-20">
-                                        <input type="checkbox" id="checkbox1" />
-                                        <label for="checkbox1">Remember me</label>
-                                    </div>
-                                    <button type="submit" class="submit_btn">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-overlay"></div>
-            <div class="about-us">
-                <div id="aboutScroll">
-                    <a href="javascript:;" class="showDesc">About Us</a>
-                    <h2>Bienvenue sur la boutique Make a Difference</h2>
-                    <div class="col-sm-12 welcome-block">
-                        <div class="welcome-img">
-                            <img src="images/welcomeImg.png" alt="welcome" />
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <div class="more-content">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        </div>
-                        <a id="readMore" href="javascript:;">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <a href="#" id="back-to-top" title="Back to top">
-                    &uarr;
-                </a>
             </div>
         </div>
 
-        <script src="~/Scripts/jquery-ui.min.js"></script>
-        <script type="text/javascript">
+        <div class="about-overlay"></div>
+        <div class="about-us">
+            <div id="aboutScroll">
+                <a href="javascript:;" class="showDesc">About Us</a>
+                <h2>Bienvenue sur la boutique Make a Difference</h2>
+                <div class="col-sm-12 welcome-block">
+                    <div class="welcome-img">
+                        <img src="images/welcomeImg.png" alt="welcome" />
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <div class="more-content">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </div>
+                    <a id="readMore" href="javascript:;">Read More</a>
+                </div>
+            </div>
+        </div>
 
-            $(document).ready(function () {
-                $.mCustomScrollbar.defaults.theme = 'dark-thick';
-                $('.category-list').mCustomScrollbar();
-            });
+        <div class="container">
+            <a href="#" id="back-to-top" title="Back to top">
+                &uarr;
+            </a>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript">
 
-        </script>
+    $(document).ready(function () {
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        $('.category-list').mCustomScrollbar();
+    });
+
+</script>
