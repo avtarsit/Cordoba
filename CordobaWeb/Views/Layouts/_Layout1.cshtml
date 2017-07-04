@@ -68,8 +68,8 @@
             <header class="w-hidden-small w-hidden-tiny top-nav">             
                 <div class="container-fluid">                           
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                         <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
+                        <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>                   
                           <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>                    
                         <li ng-if="!(CustomerDetail.customer_id>0)">
                             <a href="" ng-click="OpenLoginPopUp()">Login</a>

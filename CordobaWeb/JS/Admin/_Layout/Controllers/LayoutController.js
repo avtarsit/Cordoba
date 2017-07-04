@@ -4,6 +4,23 @@
     $rootScope.storeId = 0;
     //$scope.AdminUserDetail.store_id;
     $rootScope.loggedInUserId = $scope.AdminUserDetail.user_id;
-    $rootScope.userGroupId = $scope.AdminUserDetail.user_group_id
+    $rootScope.userGroupId = $scope.AdminUserDetail.user_group_id;
 
+    $scope.GetStoreList = function () {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $rootScope.storeId + "&LoggedInUserId=" + $rootScope.loggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  debugger;
+                  $scope.StoreList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.GetStoreList();
 });

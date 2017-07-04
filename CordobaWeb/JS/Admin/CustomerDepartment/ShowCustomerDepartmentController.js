@@ -38,12 +38,10 @@
     }
 
     $scope.GetStoreList = function () {
-
         $http.get(configurationService.basePath + "api/CategoryApi/GetStoreNameList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                  .then(function (response) {
                      if (response.data.length > 0) {
                          $scope.StoreList = response.data;
-
                      }
                  })
              .catch(function (response) {
@@ -52,7 +50,6 @@
              .finally(function () {
 
              });
-
     }
 
     $scope.CheckIsStoreDropDownDisabled=function()

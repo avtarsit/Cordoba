@@ -329,7 +329,7 @@
                                     type: ['bar', 'line']
                                 },
                                 restore: { show: true, title: 'Restore' },
-                                saveAsImage: { show: true, title: 'Same as image' }
+                                saveAsImage: { show: true, title: 'Same as image' ,  lang: ['Save'] }
                             }
                         },
                         calculable: false,
@@ -351,6 +351,14 @@
                                 name: 'Sales',
                                 type: 'bar',
                                 data: $scope.DashboardSummary.DashboardTopSellStoreValue,
+                                itemStyle: {
+                                    normal: {
+                                        color: function (param) {
+                                            var colorList = ['#B5C334', '#FCCE10', '#E87C25', '#27727B', '#FE8463'];
+                                            return colorList[param.dataIndex]
+                                        }
+                                    }
+                                }
                             }
                         ]
                     };
@@ -385,7 +393,7 @@
                                     type: ['bar', 'line']
                                 },
                                 restore: { show: true, title: 'Restore' },
-                                saveAsImage: { show: true, title: 'Same as image' }
+                                saveAsImage: { show: true, title: 'Same as image', lang: ['Save'] }
                             }
                         },
                         calculable: false,
@@ -407,6 +415,14 @@
                                 name: 'purchase',
                                 type: 'bar',
                                 data: $scope.DashboardSummary.DashboardTopCustomerValue,
+                                itemStyle: {
+                                    normal: {
+                                        color: function (param) {
+                                            var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
+                                            return colorList[param.dataIndex]
+                                        }
+                                    }
+                                }
                             }
                         ]
                     };

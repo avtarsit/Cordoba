@@ -36,8 +36,8 @@
                 <tr ng-repeat="Item in rewardList">
                     <td ng-bind="Item.Title"></td>
                     <td ng-bind="Item.RewardTypeName"></td>
-                    <td ng-bind="Item.start_date | date:'MM/dd/yyyy'"></td>
-                    <td ng-bind="Item.end_date | date:'MM/dd/yyyy'"></td>
+                    <td ng-bind="Item.start_date | date:GlobalDateFormat"></td>
+                    <td ng-bind="Item.end_date | date:GlobalDateFormat"></td>
                     <td ng-bind="Item.description"></td>
                     <td class="cursor-pointer text-center">
                         <a ui-sref="ManageReward({rewardId:Item.id})" data-placement="top" data-toggle="tooltip" title="Edit"> <i class="glyphicon glyphicon-edit cursor-pointer"></i></a>

@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="order-detail">
                         <p><span>Order ID:</span>#{{OrderdetailObj.order_id}}</p>
-                        <p><span>Order placed Date:</span> {{OrderdetailObj.date_added | date:'MM/dd/yyyy'}}</p>
+                        <p><span>Order placed Date:</span> {{OrderdetailObj.date_added | date:GlobalDateFormat}}</p>
                         <p class="pull-right"><span>Payment Method:</span> Points Based Deduction</p>
                     </div>
                 </div>

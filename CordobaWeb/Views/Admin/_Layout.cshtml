@@ -101,23 +101,32 @@
                     </li>
                 </ul>*@
             @*<p class="navbar-text"><span class="label bg-success-400">Online</span></p>*@
-            <ul class="nav navbar-nav navbar-right pull-right" ng-controller="dashboard_OrderCountController">
+            <ul class="nav navbar-nav navbar-right pull-right" >
 
-                <li class="dropdown">
+                <li class="dropdown" title="Stores">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-life-ring fa-lg"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">Stores <i class="fa fa-shopping-cart"></i></li>
-                        <li><a>Main</a></li>
-                        <li><a>Make a Difference Thank You AE</a></li>
-                        <li><a>Arkle Finance rewards 2015</a></li>
-                        <li><a>Make a Difference Thank You AU</a></li>
-                        <li><a>Make a Difference Thank You CA</a></li>
-                        <li><a>Make a Difference Thank You FR</a></li>
-                        <li><a>Make a Difference Thank You IN</a></li>
-                        <li><a>Make a Difference Thank You JP</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
+
+                    <div class="dropdown-menu dropdown-content width-350">
+                        <div class="dropdown-content-heading">
+                            Stores
+                        </div>
+                        <ul class="media-list dropdown-content-body">
+                            <li class="media" ng-repeat="Store in StoreList">
+                                <div class="media-left"><img src="{{Store.logo}}" class="img-circle img-sm" alt=""></div>
+                                <div class="media-body">
+                                    <a href="{{Store.url}}" target="_blank" class="media-heading">
+                                        <span class="text-semibold" ng-bind="Store.name"></span>
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="dropdown-content-footer">
+                        </div>
+                    </div>
+                </li>               
+             
+                <li class="dropdown" ng-controller="dashboard_OrderCountController">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <span class="label label-danger pull-left" ng-bind="ProcessingOrderCount + DeliveredOrderCount + ReturnedOrderCount"></span>
                         <i class="fa fa-bell fa-lg"></i>
@@ -129,10 +138,10 @@
                         <li><a ui-sref="ShowOrders({OrderStatusId : ReturnedOrderStatusId})" href="#"><span class="label label-danger pull-right">{{ReturnedOrderCount}}</span>Returned</a></li>
                         @*<li class="divider"></li>*@
                         @*<li class="dropdown-header">Customers</li>
-                    <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Products</li>
-                                @*<li class="divider"></li>*@
+                <li><a><span class="label label-danger pull-right">363</span>Pending approval</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Products</li>
+                            @*<li class="divider"></li>*@
                     </ul>
                 </li>
 
@@ -195,12 +204,7 @@
                                         <li><a href="#" ui-sref="ShowManufacturer"><i class="icon-forward"></i> <span> Manufacturers</span></a></li>
                                         <li><a href="#" ui-sref="Users"><i class="icon-forward"></i> <span>Cordoba Users</span></a></li>
                                         @*<li><a href="#" ui-sref="CustomerGroup"><i class="icon-forward"></i> <span> Customer Group</span></a></li>*@
-                                        <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>
-                                        <li><a href="#" ui-sref="PopularCategory"><i class="icon-forward"></i> <span> Popular Category</span></a></li>
-
-
-
-
+                                        <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>                                     
                                     </ul>
                                 </li>
 
@@ -221,6 +225,7 @@
                                         </li>
 
                                         <li><a href="#" ui-sref="Product"><i class="icon-forward"></i> <span> Products</span></a></li>
+                                        <li><a href="#" ui-sref="PopularCategory"><i class="icon-forward"></i> <span> Popular Category</span></a></li>
                                         <li><a href="#" ui-sref="Banner"><i class="icon-forward"></i> <span> Banners</span></a></li>
                                     </ul>
                                 </li>

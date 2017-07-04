@@ -36,7 +36,7 @@
                     <td ng-bind="Item.Customer"></td>
                     <td ng-bind="Item.Medal"></td>
                     <td ng-bind="Item.comment"></td>
-                    <td ng-bind="Item.reward_given_date | date:'dd/MM/yyyy'"></td>
+                    <td ng-bind="Item.reward_given_date | date:GlobalDateFormat"></td>
                     <td class="cursor-pointer text-center">
                         <a data-placement="top" data-toggle="tooltip" ng-click="DeleteRewardUser(Item.id)"> <i class="glyphicon glyphicon-erase cursor-pointer"></i></a>
                         

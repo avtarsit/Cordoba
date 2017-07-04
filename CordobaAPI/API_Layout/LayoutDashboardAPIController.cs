@@ -8,6 +8,8 @@ using CordobaServices.Interfaces_Layout;
 using CordobaServices.Services_Layout;
 using System.Web.Http.Hosting;
 using CordobaModels.Entities;
+using CordobaModels;
+
 
 namespace CordobaAPI.API_Layout
 {
@@ -145,6 +147,8 @@ namespace CordobaAPI.API_Layout
         {
             try
             {
+                CustomerObj.password = Security.Encrypt(CustomerObj.password);
+
                 var result = _LayoutDashboardServices.CustomerLogin(CustomerObj);
                 if (result != null)
                 {
@@ -264,6 +268,7 @@ namespace CordobaAPI.API_Layout
         {
             try
             {
+                CustomerObj.password = Security.Encrypt(CustomerObj.password);
                 var result = _LayoutDashboardServices.SaveChangedPassword_Layout(StoreId, CustomerObj);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);

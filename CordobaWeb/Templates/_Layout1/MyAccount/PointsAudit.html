@@ -31,7 +31,7 @@
                         <th>Deposit</th>
                     </tr>
                     <tr ng-repeat="Item in AuditPointsList">
-                        <td ng-bind="Item.timestamp | date:'dd/MM/yyyy'"></td>
+                        <td ng-bind="Item.timestamp | date:GlobalDateFormat"></td>
                         <td ng-bind="Item.comment"></td>
                         <td ng-bind="Item.Withdrawal"></td>
                         <td ng-bind="Item.Deposit"></td>

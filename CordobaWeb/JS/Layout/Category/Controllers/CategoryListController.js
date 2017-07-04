@@ -56,7 +56,7 @@
         $state.go('.', { CategoryId: EncodededParentCategoryValue }, { notify: false, reload: false, location: 'replace', inherit: false });
         $scope.SelectedSubCategory = 0;
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
-        if (CategoryObj != undefined && CategoryObj != null) {
+        if (CategoryObj != undefined && CategoryObj != null && CategoryObj.length>0) {
             $scope.SelectedCategory = CategoryObj[0];
             $scope.TitleHeader = $scope.SelectedCategory.name;
         }
@@ -69,8 +69,8 @@
         $scope.SelectedSubCategory = SubCategoryId;
         $state.go('.', { CategoryId: EncodededParentCategoryValue, SubCategoryId: EncodededChildCategoryValue }, { notify: false,reload: false, location: 'replace', inherit: true });
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
-        if (CategoryObj != undefined && CategoryObj != null) {
-            $scope.SelectedCategory = CategoryObj[0];
+        if (CategoryObj != undefined && CategoryObj != null && CategoryObj.length>0) {
+            $scope.SelectedCategory = CategoryObj[0];            
             $scope.TitleHeader = $scope.SelectedCategory.name;
         }
         $scope.GetProductListByCategoryAndStoreId();
@@ -124,6 +124,38 @@
 
      });
     }
+
+    $scope.AddtoWishList = function (productObj) {
+        if (UserDetail.customer_id > 0) {
+            var WishObj = new Object();
+            WishObj.customer_id = UserDetail.customer_id;
+            WishObj.product_id = productObj.product_id;
+            WishObj.store_id = $scope.StoreDetailInSession.store_id;
+
+
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddtoWishList", WishObj)
+                  .then(function (response) {
+                      if (response.data == -1) {
+                          toastr.warning('Item already present in wish list.');
+                      }
+                      else if (response.data > 0) {                   
+                          toastr.success('Item successfully added in wish list.');
+
+                      }
+                  })
+              .catch(function (response) {
+
+              })
+              .finally(function () {
+
+              });
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
+
+    }
+
 
     if ($scope.SelectedCategoryId == -1) {
         $scope.SelectedSubCategory = -1;
