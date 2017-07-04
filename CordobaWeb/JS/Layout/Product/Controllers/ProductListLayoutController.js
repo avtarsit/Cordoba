@@ -16,6 +16,7 @@
               debugger;
               if (response.data.length > 0) {                  
                   $scope.CategoryList = response.data;
+                  console.log($scope.CategoryList);
                   var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
                   if(CategoryObj!=undefined && CategoryObj!=null )
                   {
