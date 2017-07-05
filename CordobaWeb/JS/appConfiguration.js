@@ -30,11 +30,7 @@ function GetLayoutName() {
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
 
-            var LayoutName = "_Layout2";
-
-            if (window.location.href.indexOf('1021') > 0) {
-                LayoutName = "_Layout1";
-            }
+            var LayoutName = data.template;
 
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
