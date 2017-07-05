@@ -1007,9 +1007,9 @@ footer {
     margin: 0 auto;
 }
 
-.modal-backdrop {
+/*.modal-backdrop {
     z-index: 99999;
-}
+}*/
 
 .modal {
     z-index: 999999;
