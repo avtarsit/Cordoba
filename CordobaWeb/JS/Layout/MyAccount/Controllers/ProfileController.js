@@ -1,7 +1,8 @@
 ﻿app.controller('ProfileController', function ($timeout,StoreSessionDetail,UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder) {
-    if (!(UserDetail.customer_id > 0)) {
-        window.location.href = 'home/accessdenied';
-    }
+
+    //if (!(UserDetail.customer_id > 0)) {
+    //    window.location.href = 'home/accessdenied';
+    //}
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
@@ -10,10 +11,11 @@
     //#endregion
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.GetCustomerDetails = function () {
-        
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+        debugger;
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
           .then(function (response) { 
-              $scope.GetCustomerDetailObj = response.data;            
+              $scope.GetCustomerDetailObj = response.data;
+              debugger;
           })
       .catch(function (response) {
 

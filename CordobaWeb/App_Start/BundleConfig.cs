@@ -173,12 +173,32 @@ namespace CordobaWeb
             ///////////////////// Layout2//////////////////
             //------------------------CSS-------------------------//
             bundles.Add(new StyleBundle("~/bundles/Layout2CSS").Include(
-                  "~/Content/layout2/css/bootstrap.min.css",
-                  "~/Content/layout2/css/custom.min.css",
-                  "~/Content/layout2/css/flexslider.css",
-                  "~/Content/layout2/css/responsive.css",
-                  "~/Content/layout2/css/style.css",
-                  "~/Content/layout2/css/jquery.mCustomScrollbar.css"
+                  "~/Content/layout1/css/bootstrap.min.css",
+                     "~/Content/layout1/css/font-awesome.min.css",
+                     "~/Content/layout1/css/jquery.bxslider.min.css",
+                     "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
+                     "~/Content/layout2/css/custom.min.css",
+                      "~/Content/layout1/css/dpNumberPicker.min.css",
+                     "~/Content/layout1/css/responsive.css",
+                     "~/Content/layout1/css/classes.css",
+                     "~/Content/layout1/css/zoom.css",
+                     "~/Content/css/toastr.min.css",
+                     "~/Scripts/angular-star-rating/main.css",
+                      "~/Content/css/angular-ui-switch.min.css"
+                //"~/Content/layout2/css/bootstrap.min.css",
+                //"~/Content/layout1/css/font-awesome.min.css",
+                //"~/Content/layout1/css/jquery.bxslider.min.css",
+                //"~/Content/layout2/css/jquery.mCustomScrollbar.min.css",
+                //"~/Content/layout2/css/custom.min.css",
+                //"~/Content/layout2/css/style.css",
+                //"~/Content/layout1/css/dpNumberPicker.min.css",
+                //"~/Content/layout2/css/responsive.css",
+                //"~/Content/layout1/css/classes.css",
+                //"~/Content/layout2/css/flexslider.css",
+                //"~/Content/layout1/css/zoom.css",
+                //"~/Content/css/toastr.min.css",
+                //"~/Scripts/angular-star-rating/main.css",
+                //"~/Content/css/angular-ui-switch.min.css"
                ));
 
             //------------------------CSS-------------------------//

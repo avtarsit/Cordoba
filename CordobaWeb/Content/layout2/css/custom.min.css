@@ -445,3 +445,24 @@ label { float: left;}
     font-size: 13px;
     line-height: 18px;
 }
+
+/*Loader start*/
+.loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10080 !important;
+    background-color: #F7F3F3;
+    opacity: 0.6;
+}
+.Centerloader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+     bring your own prefixes 
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+}
+/*Loader end*/

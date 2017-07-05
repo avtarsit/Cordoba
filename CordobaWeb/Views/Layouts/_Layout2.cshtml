@@ -7,6 +7,7 @@
 
     <title>Cordoba</title>
     <!-- Bootstrap -->
+    
     @Styles.Render("~/bundles/Layout2CSS")
     <link href="~/Content/layout2/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <style>
@@ -74,7 +75,7 @@
     </style>
 </head>
 <body>
-    <div ng-controller="DashboardController">
+    <div ng-controller="DashboardController" ng-cloak>
         <div class="fix-header navbar-fixed-top">
             <div class="top-header">
                 <div class="container">
@@ -197,7 +198,7 @@
     </div>
 
 
-    @Scripts.Render("~/bundles/Layout1Js")
+    @Scripts.Render("~/bundles/Layout2Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
 
 
@@ -325,12 +326,5 @@
         }
 
     </script>
-
-
-
-
-
-
-
 </body>
 </html>
