@@ -7,6 +7,7 @@
 
     <title>Cordoba</title>
     <!-- Bootstrap -->
+    
     @Styles.Render("~/bundles/Layout2CSS")
     <link href="~/Content/layout2/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <style>
@@ -74,7 +75,7 @@
     </style>
 </head>
 <body>
-    <div ng-controller="DashboardController">
+    <div ng-controller="DashboardController" ng-cloak>
         <div class="fix-header navbar-fixed-top">
             <div class="top-header">
                 <div class="container">
@@ -85,7 +86,7 @@
                                     <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
                                     <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>
                                     <li ng-if="!(CustomerDetail.customer_id>0)">
-                                        <a href="#" ng-click="OpenLoginPopUp()">Login</a>
+                                        <a ng-click="OpenLoginPopUp()">Login</a>
                                     </li>
                                     <li ng-if="CustomerDetail.customer_id>0">
                                         <p class="hi-text">Hi</p>
@@ -109,7 +110,7 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="logo">
-                                <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                                @*<a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>*@
                             </div>
                             <div class="main-menu">
                                 <div class="navbar-header">
@@ -127,18 +128,19 @@
                                         <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
                                     </a>
                                 </div>
-                                <div class="show_cart">
-                                    <a href="#" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})"><i class="glyphicon glyphicon-shopping-cart"></i><span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span></a>
-                                </div>
                                 <div class="search_products">
-                                    <input id="txtName" class="search_textbox" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" placeholder="Search" />
-                                    <button type="button" class="search-btn" ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
+                                    <div class="input-group add-on">
+                                        <input class="form-control add-on" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="navbar" class="collapse navbar-collapse">
                                     <ul class="nav navbar-nav">
                                         <li class="active"><a href="#" ui-sref="Home">Home</a></li>
                                         <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="#">Contact Us</a></li>
                                         <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                                     </ul>
                                 </div>
@@ -161,13 +163,12 @@
 
         @RenderBody();
 
+
         @Scripts.Render("~/bundles/Layout2Js")
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/appConfig")
         @Scripts.Render("~/bundles/LayoutControllers")
 
-        <link href="~/Content/layout1/css/jquery.bxslider.min.css" rel="stylesheet" />
-        <script src="~/Scripts/angular-animate.min.js"></script>
         <script src="~/Scripts/ng-ckeditor.js"></script>
 
         <footer class="footer">
@@ -194,63 +195,13 @@
             </div>
         </footer>
 
-        <div class="modal" id="DivLoginModel" role="dialog">
-            <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
-                            <div class="login_page_left">
-                                <h2>Login</h2>
-                                <img src="~/Content/layout2/images/online-shopping.png" class="pt-20" alt="online-shopping">
-                            </div>
-                            <div class="login_page_right">
-                                <div class="form-group pt-20">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Password:</label>
-                                    <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                                </div>
-                                <div class="chekbox-main checkbox mr-20">
-                                    <input type="checkbox" id="checkbox1" />
-                                    <label for="checkbox1">Remember me</label>
-                                </div>
-                                <button type="submit" class="submit_btn">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="about-overlay"></div>
-        <div class="about-us">
-            <div id="aboutScroll" class="welcome-block">
-                <a href="javascript:;" class="showDesc">About Us</a>
-                <div ng-bind-html="WelcomeMsg[0]"></div>
-                <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
-                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
-                </div>
-            </div>
-
-            <div class="container-fluid">
-                <a href="#" id="back-to-top" title="Back to top">
-                    <i class="fa fa-angle-up"></i>
-                </a>
-            </div>
-        </div>
-
-
-
-
     </div>
 
 
-    @Scripts.Render("~/bundles/Layout1Js")
+    @Scripts.Render("~/bundles/Layout2Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
+
+
     @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/ng-ckeditor.js"></script>
     @Scripts.Render("~/bundles/appConfig")
@@ -307,14 +258,14 @@
 
         if ($('#back-to-top').length) {
             var scrollTrigger = 100, // px
-                backToTop = function () {
-                    var scrollTop = $(window).scrollTop();
-                    if (scrollTop > scrollTrigger) {
-                        $('#back-to-top').addClass('show');
-                    } else {
-                        $('#back-to-top').removeClass('show');
-                    }
-                };
+		        backToTop = function () {
+		            var scrollTop = $(window).scrollTop();
+		            if (scrollTop > scrollTrigger) {
+		                $('#back-to-top').addClass('show');
+		            } else {
+		                $('#back-to-top').removeClass('show');
+		            }
+		        };
             backToTop();
             $(window).on('scroll', function () {
                 backToTop();
@@ -375,125 +326,5 @@
         }
 
     </script>
-
-
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $.mCustomScrollbar.defaults.theme = 'dark-thick';
-
-                $(".category-list, #aboutScroll").mCustomScrollbar();
-                $(".showDesc").click(function () {
-                    var hidden = $(".about-us");
-                    if (hidden.hasClass("visible")) {
-                        hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
-                        $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
-                        $(".showDesc").text("About Us");
-                        $(".about-overlay").fadeOut("slow");
-
-                    } else {
-                        hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                        $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
-                        $(".showDesc").text("Close");
-                        $(".about-overlay").fadeIn("slow");
-                    }
-                });
-
-                $('#readMore').click(function () {
-
-                    $('.more-content').slideToggle();
-
-                    var LinkText = $("#readMore").text();
-                    LinkText = LinkText.replace(/\s/g, '');
-                    if (LinkText == "ReadMore") {
-                        $("#readMore").text("Read Less");
-                    }
-                    else {
-                        $("#readMore").text("Read More");
-                    }
-                });
-
-                $('.category-list').mCustomScrollbar();
-            });
-
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 1) {
-                    $('.top-nav').addClass("hidden");
-                }
-                else {
-                    $('.top-nav').removeClass("hidden");
-                }
-            });
-
-            if ($('#back-to-top').length) {
-                var scrollTrigger = 100, // px
-                    backToTop = function () {
-                        var scrollTop = $(window).scrollTop();
-                        if (scrollTop > scrollTrigger) {
-                            $('#back-to-top').addClass('show');
-                        } else {
-                            $('#back-to-top').removeClass('show');
-                        }
-                    };
-                backToTop();
-                $(window).on('scroll', function () {
-                    backToTop();
-                });
-                $('#back-to-top').on('click', function (e) {
-                    e.preventDefault();
-                    $('html,body').animate({
-                        scrollTop: 0
-                    }, 700);
-                });
-            }
-
-            function CartAnimation(target, Image) {
-                var cart = $('#cart_icon');
-                if (Image != undefined && Image != null) {
-                    var imgtodrag = $('<img id="dynamic">');
-                    imgtodrag.attr('src', Image);
-                }
-                else {
-                    var imgtodrag = $('<img id="dynamic">');
-                    imgtodrag.attr('src', '/Content/layout1/images/step-4-process.png');
-                }
-                if (imgtodrag) {
-                    var imgclone = imgtodrag.clone()
-                    if (imgclone.length) {
-                        imgclone.offset({
-                            top: target.offset().top,
-                            left: target.offset().left
-                        })
-                      .css({
-                          //'opacity': '0.5',
-                          'position': 'absolute',
-                          'width': '150px',
-                          'z-index': '99999'
-                      });
-
-                        imgclone.appendTo($('body'))
-                        .animate({
-                            'top': cart.offset().top + 10,
-                            'left': cart.offset().left + 10,
-                            'width': 75,
-                        }, 1000, 'easeInOutExpo');
-
-                        setTimeout(function () {
-                            cart.effect("shake", {
-                                times: 2
-                            }, 200);
-                        }, 0);
-
-                        imgclone.animate({
-                            'width': 0,
-                            'height': 0
-                        }, function () {
-                            $(this).detach()
-                        });
-                    }
-                }
-            }
-
-        </script>*@
 </body>
 </html>

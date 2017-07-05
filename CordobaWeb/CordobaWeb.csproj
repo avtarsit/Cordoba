@@ -3723,6 +3723,7 @@
     <Content Include="Scripts\layout1\js\jquery.simpleLens.js" />
     <Content Include="Scripts\layout1\js\velocity.min.js" />
     <Content Include="Scripts\layout2\js\bootstrap.min.js" />
+    <Content Include="Scripts\layout2\js\jquery.bxslider.min.js" />
     <Content Include="Scripts\layout2\js\jquery.flexslider.js" />
     <Content Include="Scripts\layout2\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\layout2\js\jquery.min.js" />
