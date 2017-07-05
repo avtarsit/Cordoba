@@ -16,7 +16,7 @@
     }
     $scope.Login = function (form) {
 
-        if (form.$valid) {      
+        if (form.$valid) {
 
             $scope.CustomerObj.cartgroup_id = UserDetail.cartgroup_id;
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;
@@ -86,124 +86,119 @@
 
 
 
-    $scope.ForgotPassword = function (form) {    
     $scope.ForgotPassword = function (form) {
-        $scope.IsVisibleloginForm = true;
-        $scope.IsVisibleforgotPasswordForm = false;
-        
-        if (form.$valid) {     
-            $scope.otpObj.store_id = 3;
-            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
-                  .then(function (response) {   
-                      $scope.IsVisibleloginForm = true;
-                      $scope.IsVisibleforgotPasswordForm = true;
-                      $scope.IsVisibleOTPForm = false;
+        $scope.ForgotPassword = function (form) {
+            $scope.IsVisibleloginForm = true;
+            $scope.IsVisibleforgotPasswordForm = false;
+
+            if (form.$valid) {
+                $scope.otpObj.store_id = 3;
+                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
+                      .then(function (response) {
+                          $scope.IsVisibleloginForm = true;
+                          $scope.IsVisibleforgotPasswordForm = true;
+                          $scope.IsVisibleOTPForm = false;
+
+                      })
+                  .catch(function (response) {
 
                   })
-              .catch(function (response) {
+                  .finally(function () {
 
-              })
-              .finally(function () {
-
-              });
+                  });
+            }
         }
-    }
 
-    $scope.VerifyOTP = function (form) { 
-        $scope.IsVisibleloginForm = true;
-        $scope.IsVisibleforgotPasswordForm = true;
+        $scope.VerifyOTP = function (form) {
+            $scope.IsVisibleloginForm = true;
+            $scope.IsVisibleforgotPasswordForm = true;
 
-        if (form.$valid) {  
-            //$scope.otpObj.store_id = 3;
-            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
-                  .then(function (response) {
+            if (form.$valid) {
+                //$scope.otpObj.store_id = 3;
+                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
+                      .then(function (response) {
 
-                      $scope.IsVisibleloginForm = true;
-                      $scope.IsVisibleforgotPasswordForm = true;
-                      $scope.IsVisibleOTPForm = false;
+                          $scope.IsVisibleloginForm = true;
+                          $scope.IsVisibleforgotPasswordForm = true;
+                          $scope.IsVisibleOTPForm = false;
+
+                      })
+                  .catch(function (response) {
 
                   })
-              .catch(function (response) {
+                  .finally(function () {
 
+                  });
+            }
+        }
+
+
+
+        $scope.GotoMyWishlist = function () {
+            debugger;
+            if (UserDetail.customer_id > 0) {
+                $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
+            }
+            else {
+                $scope.OpenLoginPopUp();
+            }
+        }
+
+        $scope.GotoProductList = function (Whatyouarelookingfor) {
+            $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
+        }
+
+        $scope.OpenTermsCondition = function () {
+            $scope.GetTermsCondition();
+            angular.element("#DivTermsConditionModel").modal('show');
+        }
+
+
+        $scope.GetTermsCondition = function () {
+
+            $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
+              .then(function (response) {
+                  if (response.data.length > 0) {
+                      $scope.TermsConditionMsg = response.data[0].Terms;
+                      //$scope.html = decodeHtml($scope.TermsConditionMsg);
+
+                  }
               })
-              .finally(function () {
+          .catch(function (response) {
 
-              });
-        }
-    }
-    
-
-
-    $scope.GotoMyWishlist = function () {
-        debugger;
-        if (UserDetail.customer_id > 0) {
-            $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
-        }
-        else {
-            $scope.OpenLoginPopUp();
-        }
-    }
-
-    $scope.GotoProductList = function (Whatyouarelookingfor) {
-        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
-    }
-
-    $scope.OpenTermsCondition = function () {
-        $scope.GetTermsCondition();
-        angular.element("#DivTermsConditionModel").modal('show');
-    }
-    
-
-    $scope.GetTermsCondition = function () {
-
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {
-              if (response.data.length > 0) {
-                  $scope.TermsConditionMsg = response.data[0].Terms;
-                  //$scope.html = decodeHtml($scope.TermsConditionMsg);
-                  
-              }
           })
-      .catch(function (response) {
+          .finally(function () {
 
-      })
-      .finally(function () {
+          });
+        }
 
-      });
+        //function decodeHtml(html) {
+        //    var txt = document.createElement("textarea");
+        //    txt.innerHTML = html;
+        //    return txt.value;
+        //}
+
+        //$scope.GetStoreDetailForDashboard = function () {
+
+        //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
+        //      .then(function (response) {
+        //          if (response.data.length > 0) {
+        //              $scope.StoreDetail = response.data;
+        //          }
+        //      })
+        //  .catch(function (response) {
+
+        //  })
+        //  .finally(function () {
+
+        //  });
+        //}
+
+
+        //$scope.GetStoreDetailForDashboard();
+
     }
-
-    //function decodeHtml(html) {
-    //    var txt = document.createElement("textarea");
-    //    txt.innerHTML = html;
-    //    return txt.value;
-    //}
-
-    //$scope.GetStoreDetailForDashboard = function () {
-
-    //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
-    //      .then(function (response) {
-    //          if (response.data.length > 0) {
-    //              $scope.StoreDetail = response.data;
-    //          }
-    //      })
-    //  .catch(function (response) {
-
-    //  })
-    //  .finally(function () {
-
-    //  });
-    //}
-
-
-    //$scope.GetStoreDetailForDashboard();
 
 });
 
 
-app.filter('trusted', ['$sce', function ($sce) {
-    var div = document.createElement('div');
-    return function (text) {
-        div.innerHTML = text;
-        return $sce.trustAsHtml(div.textContent);
-    };
-}])

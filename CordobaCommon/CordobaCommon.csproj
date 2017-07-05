@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EncryptionModel.cs" />
     <Compile Include="Enum\CommonEnums.cs" />
     <Compile Include="GeneralMethods\GeneralStaticMethods.cs" />
     <Compile Include="ProjectSession.cs" />
