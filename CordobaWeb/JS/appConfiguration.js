@@ -29,7 +29,13 @@ function GetLayoutName() {
             User.cartgroup_id = 0;
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
+
             var LayoutName = "_Layout2";
+
+            if (window.location.href.indexOf('1021') > 0) {
+                LayoutName = "_Layout1";
+            }
+
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
                     name: 'Home',

@@ -87,7 +87,6 @@
 
 
     $scope.ForgotPassword = function (form) {
-        debugger;
         $scope.IsVisibleloginForm = true;
         $scope.IsVisibleforgotPasswordForm = false;
         
@@ -139,6 +138,7 @@
 
 
     $scope.GotoMyWishlist = function () {
+        debugger;
         if (UserDetail.customer_id > 0) {
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
         }
