@@ -1,5 +1,4 @@
-﻿
-<div class="container-fluid products" ng-controller="CategoryListController">
+﻿<div class="container-fluid products" ng-controller="CategoryListController">
     <div class="col-lg-3 col-md-4 col-xs-12">
         <div class="row">
             <div class="col-md-12 col-sm-6 col-xs-12 mb-20">
@@ -12,13 +11,13 @@
                     <div class="category-list">
                         <ul class="col-sm-12">
                             <li ng-class="SelectedCategoryId==category.Category_Id ? 'active cursor-pointer' : 'cursor-pointer' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
-                                <a  href=""  class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
+                                <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
                                 <ul>
                                     <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
-                                        <a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a>
+                                        <a href="#" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a>
                                     </li>
                                 </ul>
-                            </li>                         
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +37,7 @@
                             <div class="product-img cursor-pointer" ng-click="GetSubCategory(category.Category_Id)">
                                 <img ng-src="{{category.image}}" alt="latest product" />
                             </div>
-                            <a href="" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name"></a>
+                            <a href="#" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name"></a>
                         </div>
                     </div>
                 </div>
@@ -53,21 +52,17 @@
                     <h4 ng-bind="TitleHeader"></h4>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">                                  
+                <div class="row">
                     <div class="product-block" ng-repeat="product in ProductList">
                         <div class="product-img" ng-controller="AddProductToCartController">
                             <img ng-src="{{product.Image}}" alt="product" data-action="zoom" />
                             <button class="btn btnaddtocart add-cart-btn add_to_cart_dish" ng-click="AddProductToCart(product,$event)" data-label="Add to cart"><i class="fa fa-opencart"></i> Add to Cart</button>
                         </div>
                         <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
-                        <p><span class="pull-left" ng-bind="(product.Price | number:2)+' Points'"> </span><span class="pull-right cursor-pointer">
-                            <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right"  ng-click="RemoveFromWishList(product)"></i></a>
-                            <a ng-if="product.IsProductInWishlist==false" href="" title="Add to wishlist" class="cursor-pointer pull-right"><i class="fa fa-heart pull-right" ng-click="AddtoWishList(product)"></i></a>
-                            </span></p>
-                       
-                        <p ng-bind="product.Model"></p>                                                                  
+                        <p><span class="pull-left" ng-bind="(product.Price | number:2)+' Points'"> </span><span class="pull-right cursor-pointer"><a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a></span></p>
+
+                        <p ng-bind="product.Model"></p>
                     </div>
-                 
                 </div>
             </div>
         </div>
@@ -76,8 +71,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';       
-        $('.category-list').mCustomScrollbar();       
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        $('.category-list').mCustomScrollbar();
     });
 </script>
 

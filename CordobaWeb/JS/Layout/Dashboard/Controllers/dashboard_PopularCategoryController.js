@@ -1,10 +1,10 @@
-﻿app.controller('Dashboard_PopularCategoryController', function (StoreSessionDetail,$timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('Dashboard_PopularCategoryController', function (StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
     //#endregion  
-  
+
     $scope.LatestProductList = [];
     //#endregion  
     $scope.StoreDetailInSession = StoreSessionDetail;
@@ -13,7 +13,8 @@
 
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetPopularCategoryListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)
           .then(function (response) {
-              if (response.data.length > 0) {                  
+              if (response.data.length > 0) {
+                  debugger;
                   $scope.PopularCategoryList = response.data;
               }
           })

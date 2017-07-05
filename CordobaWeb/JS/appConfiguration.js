@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router","LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
+var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
 GetAdminUserDetail();
 GetLayoutName();
 
@@ -19,7 +19,7 @@ function GetAdminUserDetail() {
 
 function GetLayoutName() {
     $.ajax({
-        url: window.location.origin + "/Home/GetStoreDetail?URL=" +window.location.href ,     
+        url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
         success: function (data) {
             app.value('StoreSessionDetail', data);
@@ -30,7 +30,12 @@ function GetLayoutName() {
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
 
-            var LayoutName = data.template;
+            var LayoutName = "_Layout2";
+
+            if (window.location.href.indexOf('1021') > 0) {
+                LayoutName = "_Layout1";
+            }
+
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
                     name: 'Home',
@@ -297,7 +302,7 @@ function GetLayoutName() {
                     url: '/ManageOrders?orderId:order_id',
                     templateUrl: 'Templates/' + LayoutName + '/Orders/ManageOrder.html'
                 }
-                , LayoutCategoryORProductList = {              
+                , LayoutCategoryORProductList = {
                     name: 'LayoutCategoryORProductList',
                     url: '/Category?CategoryId:categoryId&SubCategoryId:subcategory_id&Search:search',
                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'

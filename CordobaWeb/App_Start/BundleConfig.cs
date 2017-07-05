@@ -5,7 +5,7 @@ namespace CordobaWeb
 {
     public class BundleConfig
     {
-        
+
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -28,10 +28,10 @@ namespace CordobaWeb
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
-                     "~/Scripts/bootbox.js", 
-                     "~/Scripts/ckeditor/ckeditor.js"                           
+                     "~/Scripts/bootbox.js",
+                     "~/Scripts/ckeditor/ckeditor.js"
                      ));
-                   
+
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/font-awesome.min.css",
@@ -42,7 +42,7 @@ namespace CordobaWeb
                       "~/Content/css/toastr.css",
                       "~/Content/css/site.css",
                       "~/Content/css/rzslider.css",
-                      "~/Content/css/nav.css",                                              
+                      "~/Content/css/nav.css",
                       "~/Content/css/jquery-ui.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
@@ -53,11 +53,11 @@ namespace CordobaWeb
                      "~/Scripts/angular-local-storage.js",
                      "~/Scripts/angular-sanitize.js",
                      "~/Scripts/angular-datatables.min.js",
-                     "~/Scripts/angular-ui-switch.min.js" ,              
+                     "~/Scripts/angular-ui-switch.min.js",
                       "~/Scripts/angular-star-rating/main.js"
                      ));
 
-   
+
             var appConfigBundle = new Bundle("~/bundles/appConfig");
             appConfigBundle.Include("~/Scripts/jquery.dataTables.min.js");
             appConfigBundle.Include("~/Scripts/dataTables.tableTools.js");
@@ -87,21 +87,21 @@ namespace CordobaWeb
             bundles.Add(new StyleBundle("~/bundles/AdminCss").Include(
                         "~/Content/admin/css/bootstrap.css",
                       "~/Content/admin/css/font-awesome.min.css",
-                     "~/Content/admin/css/icons/icomoon/styles.css",                                    
+                     "~/Content/admin/css/icons/icomoon/styles.css",
                      "~/Content/admin/css/core.css",
-                     "~/Content/admin/css/components.css",             
+                     "~/Content/admin/css/components.css",
                      "~/Content/admin/css/colors.css",
                      "~/Content/css/toastr.css",
                       "~/Scripts/angular-star-rating/main.css",
                       "~/Content/css/angular-ui-switch.min.css"
                      ));
-                
+
             //---------------------CSS--------------------//
 
             //--------------------js---------------------------//
             bundles.Add(new ScriptBundle("~/bundles/AdminJs").Include(
-                      "~/Scripts/admin/js/plugins/loaders/pace.min.js",                      
-                      "~/Scripts/admin/js/core/libraries/bootstrap.min.js",                      
+                      "~/Scripts/admin/js/plugins/loaders/pace.min.js",
+                      "~/Scripts/admin/js/core/libraries/bootstrap.min.js",
                         "~/Scripts/admin/js/plugins/loaders/blockui.min.js",
                         "~/Scripts/admin/js/plugins/visualization/d3/d3.min.js",
                        "~/Scripts/admin/js/plugins/visualization/d3/d3_tooltip.js",
@@ -111,8 +111,8 @@ namespace CordobaWeb
                        "~/Scripts/admin/js/plugins/ui/moment/moment.min.js",
                        "~/Scripts/admin/js/plugins/pickers/daterangepicker.js",
                        "~/Scripts/admin/js/core/app.js",
-                       "~/Scripts/admin/js/pages/dashboard.js" ,
-                       "~/Scripts/ckeditor/ckeditor.js"                        
+                       "~/Scripts/admin/js/pages/dashboard.js",
+                       "~/Scripts/ckeditor/ckeditor.js"
                       ));
 
             var AdminControllerBundle = new Bundle("~/bundles/AdminControllers");
@@ -145,27 +145,27 @@ namespace CordobaWeb
                      "~/Content/layout1/css/zoom.css",
                      "~/Content/css/toastr.min.css",
                      "~/Scripts/angular-star-rating/main.css",
-                      "~/Content/css/angular-ui-switch.min.css"                   
+                      "~/Content/css/angular-ui-switch.min.css"
                   ));
             //------------------------CSS-------------------------//
 
             //------------------------js-------------------------//
-            
-               var Layout1Js = new Bundle("~/bundles/Layout1Js");
-                  Layout1Js.Include("~/Scripts/layout1/js/jquery.min.js");                   
-                  Layout1Js.Include("~/Scripts/layout1/js/bootstrap.min.js");                   
-                  Layout1Js.Include( "~/Scripts/layout1/js/jquery.bxslider.min.js");      
-                  Layout1Js.Include("~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js");      
-                  Layout1Js.Include("~/Scripts/layout1/js/dpNumberPicker.min.js");  
-                  Layout1Js.Include("~/Scripts/layout1/js/enhance.js");  
-                  Layout1Js.Include("~/Scripts/layout1/js/velocity.min.js");  
-                  Layout1Js.Include("~/Scripts/bootstrap-modalmanager.js");  
-                  Layout1Js.Include("~/Scripts/bootstrap-modal.js");  
-                  Layout1Js.Include("~/Scripts/bootstrap-datepicker.js");  
-                  Layout1Js.Include("~/Scripts/jquery.bootstrap-duallistbox.js"); 
-                  Layout1Js.Include("~/Scripts/bootbox.js"); 
-                  Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js");                                    
-                  bundles.Add(Layout1Js);
+
+            var Layout1Js = new Bundle("~/bundles/Layout1Js");
+            Layout1Js.Include("~/Scripts/layout1/js/jquery.min.js");
+            Layout1Js.Include("~/Scripts/layout1/js/bootstrap.min.js");
+            Layout1Js.Include("~/Scripts/layout1/js/jquery.bxslider.min.js");
+            Layout1Js.Include("~/Scripts/layout1/js/jquery.mCustomScrollbar.concat.min.js");
+            Layout1Js.Include("~/Scripts/layout1/js/dpNumberPicker.min.js");
+            Layout1Js.Include("~/Scripts/layout1/js/enhance.js");
+            Layout1Js.Include("~/Scripts/layout1/js/velocity.min.js");
+            Layout1Js.Include("~/Scripts/bootstrap-modalmanager.js");
+            Layout1Js.Include("~/Scripts/bootstrap-modal.js");
+            Layout1Js.Include("~/Scripts/bootstrap-datepicker.js");
+            Layout1Js.Include("~/Scripts/jquery.bootstrap-duallistbox.js");
+            Layout1Js.Include("~/Scripts/bootbox.js");
+            Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js");
+            bundles.Add(Layout1Js);
             //------------------------js-------------------------//
 
             ///////////////////// Layout1//////////////////
@@ -173,21 +173,34 @@ namespace CordobaWeb
             ///////////////////// Layout2//////////////////
             //------------------------CSS-------------------------//
             bundles.Add(new StyleBundle("~/bundles/Layout2CSS").Include(
-                     "~/Content/layout2/css/bootstrap.min.css",
-                     "~/Content/layout2/css/custom.min.css",
-                     "~/Content/layout2/css/flexslider.css",
-                     "~/Content/layout2/css/responsive.css",
-                     "~/Content/layout2/css/style.css",
+                  "~/Content/layout1/css/bootstrap.min.css",
                      "~/Content/layout1/css/font-awesome.min.css",
                      "~/Content/layout1/css/jquery.bxslider.min.css",
                      "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
+                     "~/Content/layout2/css/custom.min.css",
                       "~/Content/layout1/css/dpNumberPicker.min.css",
+                     "~/Content/layout1/css/responsive.css",
                      "~/Content/layout1/css/classes.css",
                      "~/Content/layout1/css/zoom.css",
                      "~/Content/css/toastr.min.css",
                      "~/Scripts/angular-star-rating/main.css",
-                      "~/Content/css/angular-ui-switch.min.css"  
-                  ));
+                      "~/Content/css/angular-ui-switch.min.css"
+                //"~/Content/layout2/css/bootstrap.min.css",
+                //"~/Content/layout1/css/font-awesome.min.css",
+                //"~/Content/layout1/css/jquery.bxslider.min.css",
+                //"~/Content/layout2/css/jquery.mCustomScrollbar.min.css",
+                //"~/Content/layout2/css/custom.min.css",
+                //"~/Content/layout2/css/style.css",
+                //"~/Content/layout1/css/dpNumberPicker.min.css",
+                //"~/Content/layout2/css/responsive.css",
+                //"~/Content/layout1/css/classes.css",
+                //"~/Content/layout2/css/flexslider.css",
+                //"~/Content/layout1/css/zoom.css",
+                //"~/Content/css/toastr.min.css",
+                //"~/Scripts/angular-star-rating/main.css",
+                //"~/Content/css/angular-ui-switch.min.css"
+               ));
+
             //------------------------CSS-------------------------//
 
             //------------------------js-------------------------//
@@ -203,17 +216,17 @@ namespace CordobaWeb
                     "~/Scripts/jquery.bootstrap-duallistbox.js",
                      "~/Scripts/bootbox.js",
                      "~/Scripts/ckeditor/ckeditor.js",
-                  "~/Scripts/layout1/js/jquery.bxslider.min.js",   
-                  "~/Scripts/layout1/js/dpNumberPicker.min.js",  
-                  "~/Scripts/layout1/js/enhance.js",  
-                  "~/Scripts/layout1/js/velocity.min.js"  
+                  "~/Scripts/layout1/js/jquery.bxslider.min.js",
+                  "~/Scripts/layout1/js/dpNumberPicker.min.js",
+                  "~/Scripts/layout1/js/enhance.js",
+                  "~/Scripts/layout1/js/velocity.min.js"
                      ));
 
             //------------------------js-------------------------//
 
 
             ///////////////////// Layout2//////////////////
-            
+
 
             ///////Layout Controllers//////
             var LayoutControllerBundle = new Bundle("~/bundles/LayoutControllers");

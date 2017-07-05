@@ -131,7 +131,7 @@
                                 <h4>Categories</h4>
                             </div>
                         </div>
-                        <div class="category-list">
+                        <div class="category-list"  data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
                             <ul class="col-sm-12">
                                 <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
                             </ul>
@@ -157,7 +157,7 @@
                                         <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">Add to Cart</button>
+                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">ADD TO CART</button>
                                     </div>
                                 </div>
                             </div>
