@@ -36,8 +36,8 @@
                     <div class="col-product text-center" ng-repeat="product in ProductList">
                         <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)" ng-controller="AddProductToCartController">
                             <img ng-src="{{product.Image}}" alt="latest product">
-                            <div class="cart-btn">
-                                <input type="button" name="cart_btn" class="add_cart" ng-click="GetSubCategory(category.Category_Id)" value="ADD TO CART">
+                            <div class="cart-btn" ng-controller="AddProductToCartController">
+                                <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
                             </div>
                         </div>
                         <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name">AirPort Express</a>
@@ -49,3 +49,12 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
+        $('.category-list').mCustomScrollbar();
+
+    });
+</script>
