@@ -7,7 +7,6 @@
 
     <title>Cordoba</title>
     <!-- Bootstrap -->
-    
     @Styles.Render("~/bundles/Layout2CSS")
     <link href="~/Content/layout2/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <style>
@@ -197,6 +196,83 @@
 
     </div>
 
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll" class="welcome-block">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <div ng-bind-html="WelcomeMsg[0]"></div>
+            <a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>
+            <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <a href="#" id="back-to-top" title="Back to top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- login modal popup -->
+    <!-- login modal popup -->
+    <div class="modal" id="DivLoginModel" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                        <div class="login_page_left">
+                            <h2>Login</h2>
+                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                        </div>
+                        <div class="login_page_right">
+                            <div class="form-group pt-20">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <div class="chekbox-main checkbox mr-20">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Remember me</label>
+                            </div>
+                            <button type="submit" class="submit_btn" ng-click="Login(loginForm)">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-overlay"></div>
+    <div class="about-us">
+        <div id="aboutScroll">
+            <a href="javascript:;" class="showDesc">About Us</a>
+            <h2>Bienvenue sur la boutique Make a Difference</h2>
+            <div class="col-sm-12 welcome-block">
+                <div class="welcome-img">
+                    <img src="images/welcomeImg.png" alt="welcome" />
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="more-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <a id="readMore" href="javascript:;">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="#" id="back-to-top" title="Back to top">
+            &uarr;
+        </a>
+    </div>
+
 
     @Scripts.Render("~/bundles/Layout2Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
@@ -258,14 +334,14 @@
 
         if ($('#back-to-top').length) {
             var scrollTrigger = 100, // px
-		        backToTop = function () {
-		            var scrollTop = $(window).scrollTop();
-		            if (scrollTop > scrollTrigger) {
-		                $('#back-to-top').addClass('show');
-		            } else {
-		                $('#back-to-top').removeClass('show');
-		            }
-		        };
+                backToTop = function () {
+                    var scrollTop = $(window).scrollTop();
+                    if (scrollTop > scrollTrigger) {
+                        $('#back-to-top').addClass('show');
+                    } else {
+                        $('#back-to-top').removeClass('show');
+                    }
+                };
             backToTop();
             $(window).on('scroll', function () {
                 backToTop();
