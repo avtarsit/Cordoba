@@ -52,11 +52,11 @@ function GetLayoutName() {
                     url: '/Catalog/ManageCountry?CountryId:countryId',
                     templateUrl: 'Templates/' + LayoutName + '/Country/AddOrUpdateCountry.html'
                 }
-                , TestPage = {
-                    name: 'TestPage',
-                    url: '/TestPage',
-                    templateUrl: 'Templates/TestPage/Index.html'
-                }
+                //, TestPage = {
+                //    name: 'TestPage',
+                //    url: '/TestPage',
+                //    templateUrl: 'Templates/TestPage/Index.html'
+                //}
                  , ShowCategory = {
                      name: 'ShowCategory',
                      url: '/Catalog/ShowCategory',
@@ -307,11 +307,11 @@ function GetLayoutName() {
                     url: '/Category?CategoryId:categoryId&SubCategoryId:subcategory_id&Search:search',
                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                 }
-                , LayoutProducts = {
-                    name: 'LayoutProducts',
-                    url: '/Products?CategoryId:categoryId',
-                    templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
-                }
+                //, LayoutProducts = {
+                //    name: 'LayoutProducts',
+                //    url: '/Products?CategoryId:categoryId',
+                //    templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
+                //}
                  , ShowReward = {
                      name: 'ShowReward',
                      url: '/Reward/ShowReward',
@@ -431,7 +431,7 @@ function GetLayoutName() {
                 $stateProvider.state(ManageStore);
                 $stateProvider.state(Users);
                 $stateProvider.state(ManageUser);
-                $stateProvider.state(TestPage);
+                //$stateProvider.state(TestPage);
 
                 $stateProvider.state(ShowProductCatalogue);
                 $stateProvider.state(ManageProductCatalogue);
@@ -479,7 +479,7 @@ function GetLayoutName() {
                 $stateProvider.state(CustomerGroup);
                 $stateProvider.state(ManageCustomerGroup);
                 $stateProvider.state(LayoutCategoryORProductList);
-                $stateProvider.state(LayoutProducts);
+                //$stateProvider.state(LayoutProducts);
                 $stateProvider.state(LayoutProductDetail);
 
                 $stateProvider.state(ShowReward);
