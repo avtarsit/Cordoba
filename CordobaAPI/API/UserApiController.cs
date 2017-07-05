@@ -1,4 +1,5 @@
-﻿using CordobaModels.Entities;
+﻿using CordobaModels;
+using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using System;
@@ -46,9 +47,10 @@ namespace CordobaAPI.API
             try
             {
                 var result = _UserServices.GetUserDetail(LoggedInUserId, storeId, UserID);
-
+          
                 if (result != null)
                 {
+                    result.password = Security.Decrypt(result.password);
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
@@ -65,6 +67,7 @@ namespace CordobaAPI.API
         {
             try
             {
+                UserModel.password = Security.Encrypt(UserModel.password);
                 var result = _UserServices.CreateOrUpdateUser(LoggedInUserId, storeId, UserModel);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
 

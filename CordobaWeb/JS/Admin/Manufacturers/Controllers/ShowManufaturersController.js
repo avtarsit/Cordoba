@@ -3,8 +3,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.ManufacturersID = 0;
     $scope.CountryList = [];
     //#endregion  

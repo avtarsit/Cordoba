@@ -64,7 +64,7 @@
                                     <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
                                     <li role="presentation"><a data-target="#StoreTab" role="tab" data-toggle="tab">Store</a></li>
                                     <li role="presentation"><a data-target="#LocalTab" role="tab" data-toggle="tab">Local</a></li>
-                                    <li role="presentation" ng-hide="store_id==0"><a data-target="#ImageTab" role="tab" data-toggle="tab">Advertisement</a></li>
+                                    <li role="presentation" ng-if="store_id>0"><a data-target="#ImageTab" role="tab" data-toggle="tab">Advertisement</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -216,7 +216,7 @@
                                             <!--End Local Tab-->
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane active" id="ImageTab">
+                                    <div role="tabpanel" class="tab-pane" id="ImageTab">
                                         <!--General Tab-->
                                         <div class="col-md-12">
                                             <div class="form-group">

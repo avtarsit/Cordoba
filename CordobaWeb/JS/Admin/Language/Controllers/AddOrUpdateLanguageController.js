@@ -5,9 +5,8 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
-
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.LanguageId = 0;
     $scope.LanguageObj = {};
@@ -16,10 +15,8 @@
         $scope.PageTitle = "Update Language";
         $scope.IsEditMode = true;
         $scope.languageId = $stateParams.LanguageId;
-
         $http.get(configurationService.basePath + "api/LanguageApi/GetLanguageList?languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-         .then(function (response) {
-    
+         .then(function (response) {    
              $scope.LanguageObj = response.data[0];
          })
         .catch(function (response) {

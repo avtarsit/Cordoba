@@ -6,8 +6,9 @@
     //#endregion  
     
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
-    $scope.IsSendEmail = false;
     $scope.store_id = $rootScope.storeId;
+    $scope.IsSendEmail = false;
+    $scope.IsStoreDropDownEnabled = false;
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
@@ -121,6 +122,12 @@
         alert("The upload has been canceled by the user or the browser dropped the connection.");
     }
 
+    $scope.CheckStoreDropDownEnabled = function () {
+        if (!($scope.store_id > 0)) {
+            $scope.IsStoreDropDownEnabled = true;
+        }
+
+    }
 
     GetStoreList();
 });

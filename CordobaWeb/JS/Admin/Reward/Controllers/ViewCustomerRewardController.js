@@ -5,8 +5,8 @@
     $scope.ViewRewards = [];
     $scope.rewardId = $stateParams.rewardId;
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.GetRewardList = function () {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $scope.rewardId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)

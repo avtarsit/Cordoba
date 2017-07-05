@@ -5,8 +5,8 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.manufacturer_id = 0;
     $scope.ManufacturerObj = new Object();

@@ -4,13 +4,14 @@
     BindToolTip();
     Tab();
     createDatePicker();
+    $scope.store_id = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     //#endregion  
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
     $scope.PageTitle = "Products Purchased List";
 
-    $scope.store_id = $rootScope.storeId;
-    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+
     $scope.GridParams = new Object();
 
     $scope.ProductFilter = new Object();

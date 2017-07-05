@@ -1,8 +1,8 @@
 ﻿app.controller('ViewRewardCustomerDetailsContoller', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
     decodeParams($stateParams);
     BindToolTip();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.PageTitle = "Customer Reward Details";
     $scope.CustomerName = $stateParams.customername;
     //$scope.RewardName = $stateParams.name;

@@ -28,7 +28,7 @@
                 <label class=" control-label">Select Store:</label>
             </div>
             <div class="col-lg-4">
-                <select class="form-control cursor-pointer" name="storeid" ng-model="PopularCategoryObj.store_id" ng-options="option.store_id as option.name for option in StoreList" ng-change="GetCategoryListByStoreIdPopular()"></select>
+                <select class="form-control cursor-pointer" name="storeid" ng-model="PopularCategoryObj.store_id" ng-options="option.store_id as option.name for option in StoreList" ng-change="GetCategoryListByStoreIdPopular()" ng-disabled="StoreId!=0"></select>
 
             </div>
 

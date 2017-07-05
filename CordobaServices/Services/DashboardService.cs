@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 namespace CordobaServices.Services
 {
     public class DashboardService : IDashboardService
-    {
+    {       
         private GenericRepository<OrderEntity> objGenericRepository = new GenericRepository<OrderEntity>();
 
         public List<OrderEntity> GetLatestOrderDetailsDashboard(int storeId)
-        {
+        {           
             List<OrderEntity> orders = new List<OrderEntity>();
             var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = storeId };
             orders = objGenericRepository.ExecuteSQL<OrderEntity>("GetLatestOrderDetailsDashboard", paramStoreId).ToList();
@@ -70,6 +70,10 @@ namespace CordobaServices.Services
                 case 4:
                           var objDashboardTopCustomerList = objGenericRepository.ExecuteSQL<DashboardTopCustomer>("GetDashboardTop5_Customers_Chart", new SqlParameter("storeId", storeId)).ToList();
                           objDashboardSummaryEntity.dashboardTopCustomer = objDashboardTopCustomerList;
+                          break;
+                case 5:
+                          var objDashboardTopPurchaseProductList = objGenericRepository.ExecuteSQL<DashboardTopPurchaseProduct>("GetDashboardTop5_PurchaseProduct_Chart", new SqlParameter("storeId", storeId)).ToList();
+                          objDashboardSummaryEntity.dashboardTopPurchaseProduct = objDashboardTopPurchaseProductList;
                           break;
 
             }

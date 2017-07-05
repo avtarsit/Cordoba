@@ -24,7 +24,7 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = LoggedInUserId
             };
-            var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
+            var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = (StoreID == null ? 0 : StoreID) };
             StoreList = objGenericRepository.ExecuteSQL<StoreEntity>("GetStoreList", paramStoreId, ParameterLoggedInUserId).ToList();
             return StoreList;
         }

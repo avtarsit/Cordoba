@@ -1,11 +1,11 @@
-﻿app.controller('AddOrUpdateUserController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
+﻿app.controller('AddOrUpdateUserController', function ($timeout,AdminUserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval) {
 
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = -1;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.user_id = 0;
     $scope.IsEditMode = false;
     if ($stateParams.UserID != undefined && $stateParams.UserID != null) {

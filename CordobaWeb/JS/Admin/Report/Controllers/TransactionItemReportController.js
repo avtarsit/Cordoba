@@ -4,8 +4,10 @@
     BindToolTip();
     Tab();
     createDatePicker();
+
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
+
     $scope.TransactionItemReportObj = new Object();
     $scope.TransactionItemReportObj.DateStart = null;
     $scope.TransactionItemReportObj.DateEnd = null;

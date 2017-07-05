@@ -6,6 +6,7 @@
     createDatePicker();
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
+
     $scope.OrderReportObj = new Object();
     $scope.OrderReportObj.DateStart = null;
     $scope.OrderReportObj.DateEnd = null;
@@ -20,21 +21,17 @@
 
 
     $scope.GroupBy = [
-       { id: 0, name: 'Years' },
-       { id: 1, name: 'Months' },
-       { id: 2, name: 'Weeks' },
-       { id: 3, name: 'Days' }
+       { id: 1, name: 'Years' },
+       { id: 2, name: 'Months' },
+       { id: 3, name: 'Weeks' },
+       { id: 4, name: 'Days' }
     ];
 
     $scope.GetOrderStatus = function () {
-        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + '&Language_Id=1')
-       .then(function (response) {
+        $http.get(configurationService.basePath + 'api/ProductPurchasedReportApi/GetOrderStatus?store_id=' + ($scope.OrderReportObj.StoreId==null?0:$scope.OrderReportObj.StoreId) + '&LoggedInUserId=' + $scope.LoggedInUserId + '&Language_Id=1')
+       .then(function (response) {           
            if (response.data.length > 0) {
-               $scope.OrderStatusList = response.data;
-               var DefaultOption = new Object()
-               DefaultOption.order_status_id = 0;
-               DefaultOption.name = "All Statuses";
-               $scope.OrderStatusList.push(DefaultOption);
+               $scope.OrderStatusList = response.data;             
            }
        })
    .catch(function (response) {
@@ -76,8 +73,7 @@
         return aoData;
     }
 
-    $scope.GetOrderReportList = function () {
-
+    $scope.GetOrderReportList = function () {        
         if ($.fn.DataTable.isDataTable("#tblOrderReport")) {
             $('#tblOrderReport').DataTable().destroy();
         }
@@ -99,7 +95,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetOrderReportList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetOrderReportList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 aoData = BindSearchCriteria(aoData); 
                 aoData = BindSorting(aoData, oSettings);
@@ -108,7 +104,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '&PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + $scope.OrderReportObj.GroupById + '&StatusId=' + $scope.OrderReportObj.StatusId + '&StoreId=' + $scope.StoreId,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.OrderReportObj.DateStart + '&DateEnd=' + $scope.OrderReportObj.DateEnd + '&GroupById=' + ($scope.OrderReportObj.GroupById == null ? 0 : $scope.OrderReportObj.GroupById) + '&StatusId=' + ($scope.OrderReportObj.StatusId == null ? 0 : $scope.OrderReportObj.StatusId) + '&StoreId=' + ($scope.OrderReportObj.StoreId == null ? 0 : $scope.OrderReportObj.StoreId) + '&LoggedInUserId=' + $scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

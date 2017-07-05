@@ -10,18 +10,16 @@
     $scope.StoreObj = new Object();
 
     $scope.IsEditMode = false;
-    $scope.store_id = $stateParams.StoreID;
+    $scope.store_id =parseInt($stateParams.StoreID);
     if ($stateParams.StoreID != undefined && $stateParams.StoreID != null) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
-        $scope.store_id = $stateParams.StoreID;
+        $scope.store_id = parseInt($stateParams.StoreID);
     }
     else {
         $scope.PageTitle = "Add Store";
     }
     //#endregion    
-
-
     $scope.TemplateList = [
                         { 'TemplateId': 0, 'TemplateName': 'Default Theme' }
                       , { 'TemplateId': 1, 'TemplateName': 'Theme1' }

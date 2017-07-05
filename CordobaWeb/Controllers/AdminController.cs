@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Http.Formatting;
+using CordobaModels;
 
 namespace CordobaWeb.Controllers
 {
@@ -31,16 +32,9 @@ namespace CordobaWeb.Controllers
         [HttpPost]
         // GET: Admin/Details/5
         public async Task<ActionResult> Login(UserEntity model)
-        {
-            //UserEntity obj = new UserEntity();
-            //if (model == null)
-            //{
-            //    model.email = "john@jonnyreeves.co.uk";
-            //    model.password = "sit@123";
-            //}
-
+        {            
             var apiUrl = System.Configuration.ConfigurationManager.AppSettings["WebApiUrl"].ToString();
-
+            model.password = Security.Encrypt(model.password);
             var response = await HttpClientPostPassEntityReturnEntity<UserEntity, UserEntity>(model, apiUrl + "UserApi/AuthenticUserDetail");
             if (response != null && response.user_id > 0)
             {

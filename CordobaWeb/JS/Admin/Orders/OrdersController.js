@@ -3,8 +3,8 @@
     BindToolTip();
     Tab();
     $scope.PageTitle = "Orders";
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.OrderStatusNotify = 0;
     $scope.OrderStatusComment = "";
     //$scope.OrderDetails =

@@ -6,6 +6,7 @@
     createDatePicker();
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
+
     $scope.ReturnReportObj = new Object();
     $scope.ReturnReportObj.DateStart = null;
     $scope.ReturnReportObj.DateEnd = null;
@@ -27,7 +28,6 @@
 
 
     $scope.ReturnStatus = [
-       { id: 0, name: 'All Statuses' },
        { id: 1, name: 'Pending' },
        { id: 2, name: 'Awaiting Products' },
        { id: 3, name: 'Complete' }
@@ -99,7 +99,7 @@
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
-            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetReturnList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetReturnList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
             
                 aoData = BindSearchCriteria(aoData);
@@ -110,7 +110,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex='+PageIndex+'&DateStart=' + $scope.ReturnReportObj.DateStart + '&DateEnd=' + $scope.ReturnReportObj.DateEnd + '&GroupById=' + $scope.ReturnReportObj.GroupById + '&StatusId=' + $scope.ReturnReportObj.StatusId+'&StoreId=' + $scope.StoreId,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.ReturnReportObj.DateStart + '&DateEnd=' + $scope.ReturnReportObj.DateEnd + '&GroupById=' + $scope.ReturnReportObj.GroupById + '&StatusId=' + ($scope.ReturnReportObj.StatusId == null ? 0 : $scope.ReturnReportObj.StatusId) + '&StoreId=' + ($scope.ReturnReportObj.StoreId == null ? 0 : $scope.ReturnReportObj.StoreId )+ '&LoggedInUserId=' + $scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -172,8 +172,7 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {                
-                  $scope.StoreList = response.data;
-                  //$scope.CustomerFilter.storeId = $scope.StoreId;                  
+                  $scope.StoreList = response.data;                   
               }
           })
       .catch(function (response) {

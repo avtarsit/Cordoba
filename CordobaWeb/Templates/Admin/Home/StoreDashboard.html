@@ -27,7 +27,7 @@
         <div class="row">
             <!-- Quick stats boxes -->
 
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <!-- Members online -->
                 <div class="panel bg-teal-400">
                     <div class="panel-body">
@@ -47,7 +47,7 @@
                 </div>
                 <!-- /members online -->
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <!-- Current server load -->
                 <div class="panel bg-pink-300">
                     <div class="panel-body">
@@ -62,7 +62,7 @@
                 </div>
                 <!-- /current server load -->
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <!-- Today's revenue -->
                 <div class="panel bg-blue-300">
                     <div class="panel-body">
@@ -80,8 +80,7 @@
                 </div>
                 <!-- /today's revenue -->
             </div>
-            <div class="col-lg-2">
-                <!-- Today's revenue -->
+            <!--<div class="col-lg-2">                
                 <div class="panel bg-indigo-300">
                     <div class="panel-body">
                         <div class="heading-elements">
@@ -89,16 +88,14 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <!--<h3 class="no-margin">9939</h3>-->
                         <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.AssignedBalance}}</h3>
                         Assigned balance
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
-                </div>
-                <!-- /today's revenue -->
-            </div>
-            <div class="col-lg-2">
+                </div>           
+            </div>-->
+            <div class="col-lg-3">
                 <!-- Today's revenue -->
                 <div class="panel bg-violet-300">
                     <div class="panel-body">
@@ -116,8 +113,7 @@
                 </div>
                 <!-- /today's revenue -->
             </div>
-            <div class="col-lg-2">
-                <!-- Today's revenue -->
+            <!--<div class="col-lg-2">             
                 <div class="panel bg-danger-300">
                     <div class="panel-body">
                         <div class="heading-elements">
@@ -125,16 +121,14 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                        <!--<h3 class="no-margin">232</h3>-->
+                      
                         <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.OutOfStockProduct}}</h3>
                         Out of stock Product
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
-                </div>
-                <!-- /today's revenue -->
-            </div>
-
+                </div>              
+            </div>-->
 
 
         </div>
@@ -154,7 +148,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="chart-container">
-                            <div class="chart has-fixed-height" id="OrderSummary"></div>
+                            <div class="chart has-fixed-height" id="StoreOrderSummary"></div>
                         </div>
                     </div>
                 </div>
@@ -169,9 +163,9 @@
                     <div class="panel-heading">
                         <h5 class="panel-title">
                             Sales Analytics
-                            <div style="float: right;margin-right: 35px;font-size: small;">
-                                <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts()" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
-                            </div>
+                            <span style="float: right;margin-right: 35px;font-size: small;">
+                                <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts(ChartOrFunctionTypeEnum.All)" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
+                            </span>                                                    
                         </h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
@@ -184,7 +178,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="chart-container">
-                            <div class="chart has-fixed-height" id="SalesAnalytics"></div>
+                            <div class="chart has-fixed-height" id="StoreSalesAnalytics"></div>
                         </div>
                     </div>
                 </div>
@@ -283,79 +277,25 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td class="text-right">Order ID</td>
-                                    <td>Customer</td>
-                                    <td>Status</td>
-                                    <td>Date Added</td>
-                                    <td class="text-right">Total</td>
-                                    <td class="text-right">Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="order in Orders">
-                                    <td class="text-right">{{order.order_id}}</td>
-                                    <td>{{order.customer}}</td>
-                                    <td>{{order.OrderStatusName}}</td>
-                                    <td>{{order.date_added}}</td>
-                                    <td class="text-right">{{order.total + 'points'}}</td>
-                                    <td class="text-right"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!--<table class="table">
-                            <thead>
-                                <tr>
                                     <td class="text-center">Order ID</td>
                                     <td>Customer</td>
                                     <td>Status</td>
                                     <td>Date Added</td>
-                                    <td class="text-right">Total</td>
-                                    <td class="text-right">Action</td>
+                                    <td class="text-center">Total</td>
+                                    <td class="text-center">Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">41232</td>
-                                    <td>Daryl Prance</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">446points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41231</td>
-                                    <td>Arjen Cloake</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">1,470points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41229</td>
-                                    <td>Paul Rushton</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">296points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41228</td>
-                                    <td>Neil Johnston</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">1,263points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">41227</td>
-                                    <td>Rob Martin</td>
-                                    <td>Processing</td>
-                                    <td>02/05/2017</td>
-                                    <td class="text-right">790points</td>
-                                    <td class="text-right"><a data-toggle="tooltip" title="" class="btn btn-info" data-original-title="View"><i class="fa fa-eye"></i></a></td>
+                                <tr ng-repeat="order in Orders">
+                                    <td class="text-center" ng-bind="order.order_id"></td>
+                                    <td ng-bind="order.customer"></td>
+                                    <td ng-bind="order.OrderStatusName"></td>
+                                    <td ng-bind="order.date_added | date:GlobalDateFormat"></td>
+                                    <td class="text-center" ng-bind="(order.total | number:2) + ' Points'"></td>
+                                    <td class="text-center"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
                                 </tr>
                             </tbody>
-                        </table>-->
+                        </table>                      
                     </div>
                 </div>
             </div>

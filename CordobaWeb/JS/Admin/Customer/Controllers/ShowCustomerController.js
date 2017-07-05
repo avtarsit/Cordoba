@@ -5,9 +5,9 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = $rootScope.storeId;
+    $scope.StoreId = $rootScope.storeId; 
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
-
+    $scope.IsStoreDropDownEnabled = false;
     createDatePicker();
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                  .withOption('bDestroy', true)
@@ -22,7 +22,7 @@
     $scope.CustomerFilter.ip = "";
     $scope.CustomerFilter.date_added = "";
     $scope.CustomerFilter.storeId = $scope.StoreId;
-
+    
 
     //#endregion  
     
@@ -79,7 +79,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + $scope.CustomerFilter.storeId,
+                    "url": sSource + "?PageIndex=" + PageIndex + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + ($scope.CustomerFilter.storeId == null ? 0 : $scope.CustomerFilter.storeId),
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -168,7 +168,12 @@
       });
     }
 
+    $scope.CheckStoreDropDownEnabled = function () {
+        if (!($scope.StoreId > 0)) {
+            $scope.IsStoreDropDownEnabled = true;
+        }
 
+    }
 
     function Init() {
       
@@ -177,8 +182,6 @@
         $scope.GetCustomerList();
         $scope.CustomerFilter.storeId = $scope.StoreId;
     }
-
-
 
     Init();
 

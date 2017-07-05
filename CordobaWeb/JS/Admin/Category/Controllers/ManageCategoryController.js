@@ -8,7 +8,7 @@
     $scope.IsEditMode = false;
 
     $scope.StoreId = $rootScope.storeId;
-    $scope.LoggedInUserId = 0;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.Category_Id = 0;
     $scope.CategoryStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];

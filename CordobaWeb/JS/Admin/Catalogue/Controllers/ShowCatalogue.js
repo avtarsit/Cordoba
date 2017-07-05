@@ -5,8 +5,8 @@
     Tab();
     $scope.CatalogueList = [];
     //#endregion  
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.StoreId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);

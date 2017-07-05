@@ -3,15 +3,22 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    if ($rootScope.IsStoreAdmin==1)
+    {
+        $state.go('StoreDashboard');
+    }
+    else
+    {
+        $state.go('Home');
+    }
+    $scope.store_id = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
     $scope.CatalogueList = [];
-    //#endregion  
-    $scope.store_id = 0;   // this is temporary
+    //#endregion   
     $scope.DashboardSummary = [];
     $scope.ChartFilterTypeEnum =
         [
@@ -27,6 +34,7 @@
                                        , SalesAnalytics: 2
                                        , Top5SellingStores: 3
                                        , Top5Customers: 4
+                                       , Top5PurchaseItem: 5
                                   };
 
     $scope.ChartFiltertype = 4;
@@ -339,6 +347,22 @@
                                 boundaryGap: ['25%', '24%']
                                , data: $scope.DashboardSummary.DashboardTopSellStoreName
                                 , rotated: true
+                                  , axisLabel: {
+                                      show: true,
+                                      interval: 0,    // {number}
+                                      rotate: 45,
+                                      margin: -10,
+                                      formatter: '{value}',
+                                      textStyle: {
+                                          color: 'blue',
+                                          fontFamily: 'sans-serif',
+                                          fontSize: 10,
+                                          fontStyle: 'italic',
+                                          fontWeight: 'bold'
+                                      }
+
+                                  }
+                                
                             }
                         ],
                         yAxis: [
@@ -403,6 +427,21 @@
                                 data: $scope.DashboardSummary.DashboardTopCustomerName
                                 , rotated: true
                                 , boundaryGap: ['25%', '24%']
+                                 , axisLabel: {
+                                     show: true,
+                                     interval: 0,    // {number}
+                                     rotate: 45,
+                                     margin: -10,
+                                     formatter: '{value}',
+                                     textStyle: {
+                                         color: 'blue',
+                                         fontFamily: 'sans-serif',
+                                         fontSize: 10,
+                                         fontStyle: 'italic',
+                                         fontWeight: 'bold'
+                                     }
+
+                                 }
                             }
                         ],
                         yAxis: [
@@ -488,7 +527,6 @@
         .then(function (response) {
             if (response.data != null) {
 
-                //$scope.DashboardOrderSummary = response.data;
                 if ($scope.ChartOrFunctionTypeEnum.All == ChartOrFunctionTypeEnum)
                 {
                     $scope.DashboardSummary.DashboardOrderSummary = [];

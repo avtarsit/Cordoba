@@ -6,8 +6,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = -1;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.currency_id = 0;
     $scope.IsEditMode = false;
     if ($stateParams.CurrencyId != undefined && $stateParams.CurrencyId != null) {

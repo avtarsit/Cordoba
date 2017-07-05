@@ -5,19 +5,19 @@
     BindToolTip();
     Tab();
     
-    
-    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.store_id = $rootScope.storeId;
+ 
+    $scope.IsStoreDropDownEnabled = false;
+    $scope.CustomerFilter = [];   
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                        .withOption('bDestroy', true)
                        .withOption("deferRender", true);
 
     $scope.PageTitle = "Customer Import";
 
-    $scope.store_id = $rootScope.storeId;
-    $scope.CustomerFilter = [];
-    $scope.CustomerFilter.storeId = $scope.store_id;
-
+  
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
@@ -33,66 +33,16 @@
       });
     }
 
-    $scope.GetStoreList();
+    $scope.CheckStoreDropDownEnabled=function()
+    {
+        if (!($scope.store_id>0))
+        {
+            $scope.IsStoreDropDownEnabled = true;
+        }
+    
+    }
 
-
-    //$scope.GetCustomerGroupList = function () {
-    //    $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
-    //      .then(function (response) {
-
-    //          if (response.data.length > 0) {
-    //              $scope.CustomerGroupList = response.data;
-    //          }
-    //      })
-    //  .catch(function (response) {
-
-    //  })
-    //  .finally(function () {
-
-    //  });
-    //}
-
-    //$scope.GetCustomerGroupList();
-
-
-
-
-    //Import xls/xlsx file
-
-    //$scope.uploadFile = function (file) {
-
-    //    if (file == null) {
-    //        alert("Please Select File");
-    //    }
-
-    //    var filename = file.type;
-    //    var allowed = ["xls", "xlsx"];
-    //    var found = false;
-    //    allowed.forEach(function (extension) {
-    //        if (filename.match('Document/' + extension)) {
-    //            found = true;
-    //        }
-    //    });
-
-    //    if (!found) {
-    //        $scope.docFile = null;
-    //        alert('file type should be .xls, .xlsx');
-    //        return;
-    //    }
-    //    else {
-    //        file.upload = Upload.upload({
-    //            $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer?store_id="+$scope.store_id+'&customer_group_id='+ $scope.customer_group_id)
-                
-    //        });
-    //        file.upload.then(function (response) {
-
-    //            if (response.data.IsSuccess == true) {
-    //                $scope.docFile = null;
-    //            }
-    //            //showNotification(response.data.IsSuccess, response.data.Message);
-    //        });
-    //    }
-    //}
+  
     $scope.CustomerImport = function ()
     {
         if (!($scope.store_id >=0) || $scope.files.length ==0)
@@ -193,6 +143,6 @@
 
 
 
-
+    $scope.GetStoreList();
     
 });

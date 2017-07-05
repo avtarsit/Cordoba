@@ -4,8 +4,8 @@
     BindToolTip();
     Tab();
 
-    $scope.StoreId = 0;
-    $scope.LoggedInUserId = 0;
+    $scope.StoreId = $rootScope.storeId;
+    $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.PopularCategoryList = [];
     //#endregion  
@@ -22,7 +22,7 @@
     $scope.PageTitle = "Popular Categories";
 
     $scope.PopularCategoryObj = new Object();
-    $scope.PopularCategoryObj.store_id = 0;
+    $scope.PopularCategoryObj.store_id = $scope.StoreId;
 
     $scope.GetCategoryListByStoreIdPopular = function () {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryListByStoreIdPopular?storeID=" + $scope.PopularCategoryObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
@@ -68,7 +68,7 @@
 
     $scope.SwitchClick=function(Item)
     {    
-        Item.createdby = -1;
+        Item.createdby = $scope.LoggedInUserId;
         //    $scope.PopularObj.status = 1;
         //    $scope.PopularObj.category_popularId = $scope.category_popularId;
         $http.post(configurationService.basePath + "api/CategoryApi/InsertOrUpdateCategoryAsPopular?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, Item)

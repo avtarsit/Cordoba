@@ -8,6 +8,7 @@
 
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
+
     $scope.TransactionItemCategoryReportObj = new Object();
     $scope.TransactionItemCategoryReportObj.DateStart = null;
     $scope.TransactionItemCategoryReportObj.DateEnd = null;

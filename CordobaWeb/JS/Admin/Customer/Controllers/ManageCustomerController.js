@@ -24,12 +24,6 @@
     }
     //#endregion  
 
-    //$scope.AddressList = [];
-    //var AddressObj = new Object();    
-    //AddressObj.Title = "Address 1";
-    //$scope.AddressList.push(AddressObj);
-
-
     $scope.AddAddress = function () {
         var AddressObj = new Object();
         //  AddressObj.Title = "Address " + ($scope.AddressList.length + 1);            
