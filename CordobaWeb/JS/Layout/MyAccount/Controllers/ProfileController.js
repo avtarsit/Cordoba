@@ -11,8 +11,8 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.GetCustomerDetails = function () {
         
-        //$http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+        //$http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
         .then(function (response) { 
               $scope.GetCustomerDetailObj = response.data;            
           })
@@ -58,6 +58,7 @@
 
     $scope.SaveChangedPassword=function(form)
     {
+        debugger;
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.GetCustomerDetailObj)
                    .then(function (response) {
