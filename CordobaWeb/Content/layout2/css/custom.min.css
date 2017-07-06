@@ -668,7 +668,8 @@ ol, ul, li {
             content: "−";
             display: inline-block;
             font-size: 8px;
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif"; font-style: normal; font-weight: 400; line-height: 1;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif"; font-style: normal; font-weight: 400;
+            line-height: 1;
             position: relative;
             top: -1px;
             right: 8px;
@@ -749,7 +750,6 @@ ol, ul, li {
         text-align: center;
         margin-left: 45px;
     }
-
         .col-product a:hover, .col-product a:focus {
             color: #c75f41;
         }
@@ -1052,10 +1052,11 @@ footer {
     }
 
 .login_page_right {
-    width: 60%;
+    width: 57%;
     float: left;
     background-color: #fff;
     padding: 15px;
+    padding-left: 28px;
 }
 
     .login_page_right .forgot-password {
