@@ -747,7 +747,7 @@ ol, ul, li {
         padding-top: 15px;
         width: 60%;
         text-decoration: none;
-        text-align: center;
+        text-align: left;
         margin-left: 45px;
     }
 
@@ -760,7 +760,7 @@ ol, ul, li {
         font-size: 14px;
         margin: 0;
         padding: 5px 10px 0;
-        text-align: center;
+        text-align: left;
         width: 100%;
     }
 

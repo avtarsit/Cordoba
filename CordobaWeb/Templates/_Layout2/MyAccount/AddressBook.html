@@ -18,12 +18,12 @@
                         <div class="col-sm-6 col-md-4">
                             <div class="new-address">
                                 <div class="box">
-                                    <a href="javascript:;" ng-click="AddORUpdateAddressBinding(null)">Add Address</a>
+                                    <a href="" ng-click="AddORUpdateAddressBinding(null)">Add Address</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4" ng-repeat="AddressObj in AddressList">
-                            <div class="address-box">
+                            <div class="address-box" data-ng-style="AddressObj.IsDefaultAddress && {'border-color':'green'}">
                                 <div class="box">
                                     <h4 ng-bind="AddressObj.firstname+' '+AddressObj.lastname">N</h4>
                                     <p>
@@ -33,7 +33,7 @@
                                         {{AddressObj.county}}
                                     </p>
                                     <p>{{AddressObj.telephone}} </p>
-                                    <a href="javascript:;" class="edit" ng-click="AddORUpdateAddressBinding(AddressObj)">Edit</a>
+                                    <a href="" class="edit"  ng-click="AddORUpdateAddressBinding(AddressObj)">Edit</a>
                                     <a href="" class="delete" ng-click="DeleteAddress(AddressObj)">Delete</a>
                                 </div>
                             </div>
@@ -73,27 +73,27 @@
                         </div>
                         <div class="col-sm-4">
                             <label>First Name</label>
-                            <input type="text" ng-model="AddressObj.firstname" required="required" class="form-control" value="" placeholder="" />
+                            <input type="text" ng-model="AddressObj.firstname" name="firstname" required="required" class="form-control" value="" placeholder="" />
                         </div>
                         <div class="col-sm-4">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.lastname" required="required" />
+                            <input type="text" class="form-control" value="" name="lastname" ng-model="AddressObj.lastname" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Company</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.company" required="required" />
+                            <input type="text" class="form-control" name="company" value="" ng-model="AddressObj.company" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Address 1</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.address_1" required="required" />
+                            <input type="text" class="form-control" name="address_1" value="" ng-model="AddressObj.address_1" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Address 2</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.address_2" />
+                            <input type="text" class="form-control" name="address_2" value="" ng-model="AddressObj.address_2" />
                         </div>
                         <div class="col-sm-4">
                             <label>City</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.city" />
+                            <input type="text" class="form-control" name="city" value="" ng-model="AddressObj.city" />
                         </div>
                         <div class="col-sm-4">
                             <label>Post Code</label>

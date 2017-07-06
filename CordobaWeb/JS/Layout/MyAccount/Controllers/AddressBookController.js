@@ -74,6 +74,7 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
                     $scope.AddressObj = new Object();
                     $scope.NeedToShowAddressDetailForm = 0;
                     $scope.AddressList = response.data;
+                    debugger;
                     toastr.success("Address book successfully updated.");
        })
         .catch(function (response) {
