@@ -16,7 +16,7 @@ namespace CordobaServices.Interfaces
         List<RewardUserEntity> ViewCustomerRewards(int StoreId, int LoggedInUserId, int reward_id);
         List<RewardUserDetailsEntity> GetRewardCustomerDetails(int StoreId, int LoggedInUserId, int reward_user_id);
         int DeleteRewardUser(int StoreId, int LoggedInUserId, int id, int reward_user_id);
-        List<RewardUserDetailsEntity> MyRewards(int StoreId, int LoggedInUserId, int id);
+        List<RewardUserDetailsEntity> MyRewards(int StoreId,int id);
         List<RewardEntity> GetAllRunningRewards(int StoreId, int LoggedInUserId);
         List<RewardUserEntity> RewardCustomerDetails(int StoreId, int LoggedInUserId,int reward_id);
         List<AddRewardEntity> GetRewardGroupCustomers(int StoreId, int loginUserId,int reward_id);

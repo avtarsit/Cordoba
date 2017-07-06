@@ -14,6 +14,7 @@
         $scope.IsVisibleforgotPasswordForm = true;
         $scope.IsVisibleOTPForm = true;
     }
+
     $scope.Login = function (form) {
 
         if (form.$valid) {
@@ -77,17 +78,8 @@
 
         $state.go('Home');
     }
-
-
-
-
-
-
-
-
-
+  
     $scope.ForgotPassword = function (form) {
-        $scope.ForgotPassword = function (form) {
             $scope.IsVisibleloginForm = true;
             $scope.IsVisibleforgotPasswordForm = false;
 
@@ -109,7 +101,7 @@
             }
         }
 
-        $scope.VerifyOTP = function (form) {
+     $scope.VerifyOTP = function (form) {
             $scope.IsVisibleloginForm = true;
             $scope.IsVisibleforgotPasswordForm = true;
 
@@ -132,10 +124,7 @@
             }
         }
 
-
-
-        $scope.GotoMyWishlist = function () {
-            debugger;
+        $scope.GotoMyWishlist = function() {          
             if (UserDetail.customer_id > 0) {
                 $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
             }
@@ -196,8 +185,6 @@
 
 
         //$scope.GetStoreDetailForDashboard();
-
-    }
 
 });
 

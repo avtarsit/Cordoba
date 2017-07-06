@@ -12,8 +12,7 @@
   
     $scope.GetProductDetail = function () {
         $http.get(configurationService.basePath + "API/ProductApi/GetProductDetailForLayout?StoreID=" + $scope.StoreDetailInSession.store_id + "&ProductId=" + $scope.SelectedProductId)
-          .then(function (response) {
-
+          .then(function (response) {    
               $scope.ProductObj = response.data;             
               $scope.SelectedProductId = $scope.ProductObj.product_id;
               $scope.GetRelatedProductList($scope.ProductObj.product_id);
@@ -28,8 +27,7 @@
 
     $scope.GetRelatedProductList = function (ProductId) {
         $http.get(configurationService.basePath + "API/ProductApi/GetRelatedProductList?StoreID=" + $scope.StoreDetailInSession.store_id + "&SelectedProductId=" + $scope.SelectedProductId + "&RelatedProductId=" + ProductId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {      
               $scope.RelatedProductList = response.data;
           })
       .catch(function (response) {

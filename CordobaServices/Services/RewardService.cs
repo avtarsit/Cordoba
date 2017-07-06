@@ -162,7 +162,7 @@ namespace CordobaServices.Services
             return deletedRecord;
         }
 
-        public List<RewardUserDetailsEntity> MyRewards(int StoreId, int LoggedInUserId, int id)
+        public List<RewardUserDetailsEntity> MyRewards(int StoreId,int id)
         {
             var ParameterStoreId = new SqlParameter
                 {
@@ -170,14 +170,9 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+           
             var paramId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = id };
-            var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", ParameterStoreId, ParameterLoggedInUserId, paramId).ToList();
+            var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", ParameterStoreId,paramId).ToList();
             return myRewardlist;
         }
 

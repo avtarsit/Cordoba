@@ -50,9 +50,9 @@
                     <span class="point" ng-bind="(ProductObj.Price | number:2)+' Points'"></span>
                 </div>
               
-                <div class="price mt-10">
+                <!--<div class="price mt-10">
                     <p class="mt-5">Manufacture By:</p><span ng-bind="ProductObj.ManufactureName"> </span> <img ng-src="{{ProductObj.ManufactureImage}}" alt="manufactureImage" />
-                </div>
+                </div>-->
                 <div class="price mt-10">
                     <p>Supplier:</p><span ng-bind="ProductObj.SupplierName"></span>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="price mt-10" ng-controller="AddProductToCartController">
                     <br />
 
-                    <button class="btn-primary btn-flat btn-lg btnaddtocart add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)" data-label="Add to cart">Add to cart</button>
+                    <button class="btn-primary btn-flat btn-lg btnaddtocart add_to_cart_dish" ng-click="AddProductToCart(ProductObj,$event)" data-label="Add to cart">Add to cart</button>
 
                     <!--<button class="btn btn-default" ng-click="AddProductToCart(ProductObj)">Add to Cart</button>-->
                 </div>

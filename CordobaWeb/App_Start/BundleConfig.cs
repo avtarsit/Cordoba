@@ -1,16 +1,25 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.Optimization;
 
 namespace CordobaWeb
 {
+    class NonOrderingBundleOrderer : IBundleOrderer
+    {        
+
+        IEnumerable<BundleFile> IBundleOrderer.OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+        {
+            return files;
+        }
+    }
     public class BundleConfig
     {
-
+   
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            ////////////////// Common /////////////////////////////
-
+            ////////////////// Common /////////////////////////////       
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -45,18 +54,18 @@ namespace CordobaWeb
                       "~/Content/css/nav.css",
                       "~/Content/css/jquery-ui.min.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                     "~/Scripts/angular.js",
-                     "~/Scripts/angular-animate.min.js",
-                     "~/Scripts/angular-dragdrop.min.js",
-                     "~/Scripts/angular-ui-router.min.js",
-                     "~/Scripts/angular-local-storage.js",
-                     "~/Scripts/angular-sanitize.js",
-                     "~/Scripts/angular-datatables.min.js",
-                     "~/Scripts/angular-ui-switch.min.js",
-                      "~/Scripts/angular-star-rating/main.js"
-                     ));
-
+            var angularBundle = new Bundle("~/bundles/angular");
+              angularBundle.Include("~/Scripts/angular.js");
+              angularBundle.Include("~/Scripts/angular-animate.min.js");
+              angularBundle.Include("~/Scripts/angular-dragdrop.min.js");
+              angularBundle.Include("~/Scripts/angular-ui-router.min.js");
+              angularBundle.Include("~/Scripts/angular-local-storage.js");
+              angularBundle.Include( "~/Scripts/angular-sanitize.js");
+              angularBundle.Include("~/Scripts/angular-datatables.min.js");
+              angularBundle.Include("~/Scripts/angular-ui-switch.min.js");
+              angularBundle.Include("~/Scripts/angular-star-rating/main.js");
+              angularBundle.Orderer = new NonOrderingBundleOrderer();
+              bundles.Add(angularBundle);
 
             var appConfigBundle = new Bundle("~/bundles/appConfig");
             appConfigBundle.Include("~/Scripts/jquery.dataTables.min.js");
@@ -77,6 +86,7 @@ namespace CordobaWeb
             appConfigBundle.IncludeDirectory("~/JS/Directives", "*.js", false);
             appConfigBundle.IncludeDirectory("~/JS/Factory", "*.js", false);
             appConfigBundle.IncludeDirectory("~/JS/Filters", "*.js", false);
+            appConfigBundle.Orderer = new NonOrderingBundleOrderer();
             bundles.Add(appConfigBundle);
 
 

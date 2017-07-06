@@ -2,13 +2,13 @@
     <section class="my-account">
         <div class="container">
             <ul>
-                <li>
+                <li ng-if="OrderdetailObj.total!=undefined && OrderdetailObj.total!=null">
                     <p class="bag-desc" ng-bind="'Payment of '+(OrderdetailObj.total | number :2)+' points has been received.'"></p>
                 </li>
             </ul>
         </div>
     </section>
-    <section class="container cart-desc">
+    <section class="container cart-desc" ng-if="OrderdetailObj.total!=undefined && OrderdetailObj.total!=null">
         <div class="col-sm-8">
             <div class="account-block">
                 <div class="row">

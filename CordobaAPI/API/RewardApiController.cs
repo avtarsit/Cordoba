@@ -127,11 +127,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage MyRewards(int StoreId, int LoggedInUserId, int id)
+        public HttpResponseMessage MyRewards(int StoreId,int id)
         {
             try
             {
-                var myRewardslist = _rewardService.MyRewards(StoreId, LoggedInUserId, id);
+                var myRewardslist = _rewardService.MyRewards(StoreId,id);
                 return Request.CreateResponse(HttpStatusCode.OK, myRewardslist);
             }
             catch (Exception)
