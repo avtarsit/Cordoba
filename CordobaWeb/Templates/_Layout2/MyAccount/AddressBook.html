@@ -16,7 +16,7 @@
                 <div class="row">
                     
                         <div class="col-sm-6 col-md-4">
-                            <div class="new-address">
+                            <div class="new-address" >
                                 <div class="box">
                                     <a href="" ng-click="AddORUpdateAddressBinding(null)">Add Address</a>
                                 </div>
@@ -35,6 +35,7 @@
                                     <p>{{AddressObj.telephone}} </p>
                                     <a href="" class="edit"  ng-click="AddORUpdateAddressBinding(AddressObj)">Edit</a>
                                     <a href="" class="delete" ng-click="DeleteAddress(AddressObj)">Delete</a>
+
                                 </div>
                             </div>
                         </div>
@@ -135,14 +136,14 @@
                             <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" name="country" ng-model="AddressObj.country_id" required="required"></select>
                         </div>
                         <!--<div class="col-sm-12 default-address">
-                            <label>Default Address:</label>
-                            <div class="radio-button">
-                                <input id="yes" class="radio-custom" name="radio-group" checked="" type="radio">
-                                <label for="yes" class="radio-custom-label">Yes</label>
-                                <input id="no" class="radio-custom" name="radio-group" type="radio">
-                                <label for="no" class="radio-custom-label">No</label>
-                            </div>
-                        </div>-->
+            <label>Default Address:</label>
+            <div class="radio-button">
+                <input id="yes" class="radio-custom" name="radio-group" checked="" type="radio">
+                <label for="yes" class="radio-custom-label">Yes</label>
+                <input id="no" class="radio-custom" name="radio-group" type="radio">
+                <label for="no" class="radio-custom-label">No</label>
+            </div>
+        </div>-->
 
                         <div class="col-sm-12 default-address">
                             <label>Default Address:</label>
@@ -163,111 +164,4 @@
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //productimage zooming
-
-            // aboutus
-            $(".category-list, add-address.dropdown-menu, #aboutScroll").mCustomScrollbar();
-
-
-            $(".showDesc").click(function () {
-                var hidden = $(".about-us");
-                if (hidden.hasClass("visible")) {
-                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
-                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
-                    $(".showDesc").text("About Us");
-                    $(".about-overlay").fadeOut("slow");
-
-                } else {
-                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
-                    $(".showDesc").text("Close");
-                    $(".about-overlay").fadeIn("slow");
-                }
-            });
-            $('#readMore').click(function () {
-                $('.more-content').slideToggle();
-
-                var LinkText = $("#readMore").text();
-                LinkText = LinkText.replace(/\s/g, '');
-                if (LinkText == "ReadMore") {
-                    $("#readMore").text("Read Less");
-                }
-                else {
-                    $("#readMore").text("Read More");
-                }
-            });
-
-            // new address
-            $(".new-address a").click(function () {
-                $(".add-address").slideToggle();
-            });
-
-            //go to top
-            if ($('#back-to-top').length) {
-                var scrollTrigger = 100, // px
-                    backToTop = function () {
-                        var scrollTop = $(window).scrollTop();
-                        if (scrollTop > scrollTrigger) {
-                            $('#back-to-top').addClass('show');
-                        } else {
-                            $('#back-to-top').removeClass('show');
-                        }
-                    };
-                backToTop();
-                $(window).on('scroll', function () {
-                    backToTop();
-                });
-                $('#back-to-top').on('click', function (e) {
-                    e.preventDefault();
-                    $('html,body').animate({
-                        scrollTop: 0
-                    }, 700);
-                });
-            }
-        });
-
-        //headertop fixed
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 1) {
-                $('.top-header').addClass("hidden");
-            }
-            else {
-                $('.top-header').removeClass("hidden");
-            }
-        });
-        $(document).ready(function () {
-            var native_width = 0;
-            var native_height = 0;
-            $(".large").css("background", "url('" + $(".small").attr("src") + "') no-repeat");
-            $(".magnify").mousemove(function (e) {
-                if (!native_width && !native_height) {
-                    var image_object = new Image();
-                    image_object.src = $(".small").attr("src");
-                    native_width = image_object.width;
-                    native_height = image_object.height;
-                }
-                else {
-                    var magnify_offset = $(this).offset();
-                    var mx = e.pageX - magnify_offset.left;
-                    var my = e.pageY - magnify_offset.top;
-                    if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
-                        $(".large").fadeIn(100);
-                    }
-                    else {
-                        $(".large").fadeOut(100);
-                    }
-                    if ($(".large").is(":visible")) {
-                        var rx = Math.round(mx / $(".small").width() * native_width - $(".large").width() / 2) * -1;
-                        var ry = Math.round(my / $(".small").height() * native_height - $(".large").height() / 2) * -1;
-                        var bgp = rx + "px " + ry + "px";
-                        var px = mx - $(".large").width() / 2;
-                        var py = my - $(".large").height() / 2;
-                        $(".large").css({ left: px, top: py, backgroundPosition: bgp });
-                    }
-                }
-            })
-        });
-
-    </script>
+    

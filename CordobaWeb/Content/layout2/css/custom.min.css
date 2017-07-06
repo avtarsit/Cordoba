@@ -1924,8 +1924,7 @@ label {
 
 .add-address {
     width: 100%;
-    float: left;
-    display: none;
+    float: left; 
 }
 
     .add-address h4 {
