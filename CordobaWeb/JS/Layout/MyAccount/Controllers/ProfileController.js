@@ -29,7 +29,7 @@
 
     $scope.SaveCustomerBasicDetails = function (form)
     {
-        debugger;
+        //debugger;
         $scope.ProfileForm.$submitted = true;
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveCustomerBasicDetails_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.GetCustomerDetailObj)
@@ -58,7 +58,7 @@
 
     $scope.SaveChangedPassword=function(form)
     {
-        debugger;
+        //debugger;
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.GetCustomerDetailObj)
                    .then(function (response) {
