@@ -29,8 +29,7 @@ function GetLayoutName() {
             User.cartgroup_id = 0;
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
-
-            var LayoutName = "_Layout2";
+            var LayoutName = data.template;
 
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
