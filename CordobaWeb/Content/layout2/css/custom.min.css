@@ -387,6 +387,7 @@ ol, ul, li {
 .navbar-nav > .active > a, .navbar-nav > .active > a:focus, .navbar-nav > .active > a:hover {
     color: #fff;
     background-color: rgba(0, 66, 75, 0.5);
+    
 }
 
 .navbar-nav > li a:hover, .navbar-nav > li a:active, .navbar-nav > li a:focus {
@@ -668,8 +669,7 @@ ol, ul, li {
             content: "−";
             display: inline-block;
             font-size: 8px;
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif"; font-style: normal; font-weight: 400;
-            line-height: 1;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif"; font-style: normal; font-weight: 400; line-height: 1;
             position: relative;
             top: -1px;
             right: 8px;
@@ -750,6 +750,7 @@ ol, ul, li {
         text-align: center;
         margin-left: 45px;
     }
+
         .col-product a:hover, .col-product a:focus {
             color: #c75f41;
         }
@@ -921,7 +922,8 @@ footer {
 
 .footer_menu {
     float: right;
-    padding-top: 23px;
+    padding-top: 0px;
+    padding-bottom:0px;
 }
 
     .footer_menu ul {
@@ -1056,7 +1058,6 @@ footer {
     float: left;
     background-color: #fff;
     padding: 15px;
-    padding-left: 28px;
 }
 
     .login_page_right .forgot-password {
@@ -2218,4 +2219,27 @@ label {
 {
     text-align:center;
 }*/
+header .dropdown-menu {
+    left: auto;
+    right: 0;
+    min-width: 230px;
+}
 
+    header .dropdown-menu .divider {
+        float: left;
+        width: 100%;
+    }
+
+    header .dropdown-menu > li > a:hover, header .nav li .dropdown-menu > li > a:focus {
+        color: #cc0001;
+    }
+
+.logo {
+    height:10px;
+    padding-top:2px;
+    /*margin-left: 15px;*/
+}
+
+.header .row {
+    margin-left: 0px;
+}
