@@ -40,7 +40,7 @@
                                 <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
                             </div>
                         </div>
-                        <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name">AirPort Express</a>
+                        <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
                         <p ng-bind="product.Model"></p>
                         <span ng-bind="(product.Price | number:2)+' Points'"></span>
                     </div>
@@ -53,8 +53,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';
-        $('.category-list').mCustomScrollbar();
+        //$.mCustomScrollbar.defaults.theme = 'dark-thick';
+        //$('.category-list').mCustomScrollbar();
 
     });
 </script>
