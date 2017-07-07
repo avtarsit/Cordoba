@@ -32,6 +32,7 @@
                         <a href="" class="cursor-pointer" ng-click="AddORUpdateAddressBinding(AddressObj)"><i class="fa fa-pencil"></i></a>
                         <a href="" class="cursor-pointer" ng-click="DeleteAddress(AddressObj)"><i class="fa fa-trash-o"></i></a>
                     </div>
+
                 </div>
                 <form name="NewAddressForm" id="NewAddressForm" class="new-address" ng-if="NeedToShowAddressDetailForm==1" novalidate>
                     <div class="col-sm-12">
@@ -108,9 +109,9 @@
                         <button class="btn btn-default cursor-pointer" ng-click="CancelAddress()">Cancel</button>
                     </div>
                 </form>
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
+                <div class="col-md-3 col-sm-4 col-xs-12 address-block" ng-if="NeedToShowAddressDetailForm==0">
                     <div class="add-address">
-                        <a href="" class="cursor-pointer"  ng-click="AddORUpdateAddressBinding(null)">
+                        <a href="" class="cursor-pointer" ng-click="AddORUpdateAddressBinding(null)">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             <span>Add New Address</span>
                         </a>
