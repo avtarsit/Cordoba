@@ -33,9 +33,8 @@
             <div class="mt-30">
                 <h3 class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <div class="col-sm-12">
-
-                    <div class="col-product text-center" ng-repeat="product in ProductList">
-                        <div class="col-sm-3">
+                    <div class="col-sm-3" ng-repeat="product in ProductList">
+                        <div class="col-product text-center">
                             <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)" ng-controller="AddProductToCartController">
                                 <img ng-src="{{product.image}}" alt="latest product">
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
