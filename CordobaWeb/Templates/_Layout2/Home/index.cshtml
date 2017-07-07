@@ -24,7 +24,7 @@
         <div class="col-md-9">
             <div class="products letest-product" ng-controller="Dashboard_LatestProductController">
                 <h3 class="heading">LATEST PRODUCT</h3>
-                <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 270">
+                <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 250">
                     <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                         <div class="col-product text-center">
                             <img ng-src='{{LatestProduct.Image}}' alt="latest product">
@@ -55,16 +55,16 @@
             </div>
         </div>
         <div class="special_offers" ng-controller="Dashboard_SpecialOffersController">
-            <div class="container">
-                <div class="letest-product">
+            <div class="container col-sm-12">
+                <div class="letest-product off">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="~/Content/layout2/images/special-offers.jpg" alt="special-offers">
+                            <img src="~/Content/layout2/images/special-offers.jpg" class="offerbanner" alt="special-offers">
                         </div>
                         <div class="col-sm-8">
                             <div class="special-offers">
                                 <h3 class="heading">SPECIAL OFFERS</h3>
-                                <div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 240">
+                                <div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 220">
                                     <div class="col-sm-3" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                         <div class="col-product text-center">
                                             <img ng-src="{{SpecialOffer.Image}}" alt="special Offer">
@@ -115,7 +115,7 @@
             </div>
         </div>
         <div class="best-saller" ng-controller="Dashboard_BestSellerController">
-            <div class="container">
+            <div class="container col-sm-12">
                 <div class="letest-product">
                     <h3 class="heading">BEST SELLER</h3>
                     <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList | limitTo: 6" data-notify-when-repeat-finished>

@@ -266,8 +266,9 @@ ol, ul, li {
 
 .logo {
     float: left;
-    padding: 10px 0;
+    padding: 2px 0;
     width: 170px;
+    padding-left: 15px;
 }
 
 .main-menu {
@@ -417,7 +418,6 @@ ol, ul, li {
         background-color: transparent;
         font-size: 15px;
         position: absolute;
-        right: 17px;
         top: 10px;
     }
 
@@ -502,8 +502,9 @@ ol, ul, li {
 }
 
 .slider {
-    width: 100%;
+    width: 70%;
     float: left;
+    margin-left: 15%;
 }
 
     .slider .bx-wrapper img {
@@ -757,7 +758,7 @@ ol, ul, li {
         font-size: 14px;
         margin: 0;
         padding: 5px 10px 0;
-        text-align: left;
+        text-align: center;
         width: 100%;
     }
 
@@ -910,7 +911,6 @@ footer {
 
 .footer_menu {
     float: right;
-    padding-top: 23px;
 }
 
     .footer_menu ul {
@@ -951,8 +951,9 @@ footer {
         }
 
 .footer img {
-    padding-top: 12px;
+    padding-top: 1px;
     max-width: 70%;
+    max-height: 63px;
 }
 
 .footer_menu img {
@@ -1020,7 +1021,7 @@ footer {
 }
 
 .login_page_left {
-    width: 40%;
+    width: 48%;
     float: left;
     background-color: #006573;
     padding: 20px;
@@ -1037,10 +1038,11 @@ footer {
     }
 
 .login_page_right {
-    width: 60%;
+    width: 48%;
     float: left;
     background-color: #fff;
     padding: 15px;
+    margin-left: 10px;
 }
 
     .login_page_right .forgot-password {
@@ -2151,4 +2153,73 @@ label {
 
 .col-product img {
     max-height: 90%;
+}
+
+
+/*Custom Changes*/
+
+.login_page {
+    width: 50%;
+    height: 350px;
+    float: left;
+    padding: 20px;
+}
+
+    .login_page h2 {
+        font-size: 30px;
+        color: #006573;
+        text-align: left;
+    }
+
+.btn-empty {
+    border: solid 1px #006573;
+    background: none;
+    color: #006573;
+}
+
+    .btn-empty:hover, .btn-empty:focus {
+        color: #fff;
+        background-color: #006573;
+    }
+
+.letest-product img {
+    width: 200px;
+    height: 150px;
+}
+
+.polular_catagories img {
+    width: 200px;
+    height: 100px;
+}
+
+.special_offers img {
+    width: 100%;
+    height: 100%;
+}
+
+.special-offers .col-product img {
+    width: 150px;
+    height: 150px;
+}
+
+.letest-product .col-sm-3 {
+    width: 250px;
+}
+
+/*.container .letest-product
+{
+    width:98%;
+}*/
+
+/*.checkout-block { float:left; width:100%; text-align:center; padding:40px 0 10px; }*/
+
+/*.my-account { float: left; width: 100%; background: #cc0001; padding: 20px 15px 50px; }
+.account-block { float: left; width: 100%; position: relative; border-radius: 5px; padding: 50px 15px 30px 15px; margin-top: -40px; margin-bottom: 20px; background: #fff; border: solid 1px #ccc; -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); }*/
+.headerRow {
+    margin-right: 0px;
+}
+
+.productlist .col-product p
+{
+    text-align:left;
 }

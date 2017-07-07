@@ -35,14 +35,14 @@
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
-                            <div class="background-bg" ng-controller="AddProductToCartController">
+                            <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)" ng-controller="AddProductToCartController">
                                 <img ng-src="{{product.Image}}" alt="latest product">
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
                                 </div>
                             </div>
                             <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
-                            <p ng-bind="product.Model"></p>
+                            <p class="pull-left" ng-bind="product.Model"></p>
                             <span ng-bind="(product.Price | number:2)+' Points'"></span>
                             <span class="pull-right cursor-pointer">
                                 <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>
