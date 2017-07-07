@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
-                            <p class="pull-left" ng-bind="product.Model"></p>
+                            <p ng-bind="product.Model"></p>
                             <span ng-bind="(product.Price | number:2)+' Points'"></span>
                             <span class="pull-right cursor-pointer">
                                 <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>

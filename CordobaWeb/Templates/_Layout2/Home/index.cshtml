@@ -115,7 +115,7 @@
             </div>
         </div>
         <div class="best-saller" ng-controller="Dashboard_BestSellerController">
-            <div class="container col-sm-12">
+            <div class="container col-sm-9 pull-left">
                 <div class="letest-product">
                     <h3 class="heading">BEST SELLER</h3>
                     <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList | limitTo: 6" data-notify-when-repeat-finished>
@@ -128,7 +128,32 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-3 pull-right">
+                <div class="letest-product" ng-controller="Dashboard_RewardWinnerController">
+                    <div class="hot-deals">
+                        <h3 class="heading">REWARD WINNERS</h3>
+                        <div id="hot-product">
+                            <div class="col-sm-12" ng-repeat="rewardWinner in RewardWinners" data-notify-when-repeat-finished>
+                                <div class="col-product rewardWinner text-center">
+                                    <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" alt="deals" />
+                                    <div class="media-body">
+                                        <br /><br />
+                                        <h4 class="media-heading" ng-bind="rewardWinner.Title"></h4>
+                                        <p ng-bind="rewardWinner.WinnerName"></p>
+                                        <span ng-bind="rewardWinner.Rewards"></span>
+                                        <span ng-bind="rewardWinner.winner_declared_date | date:GlobalDateFormat"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
+
         <footer class="footer">
             <div class="container">
                 <div class="col-sm-3 pb-10">
