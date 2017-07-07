@@ -1,7 +1,6 @@
 ﻿app.controller('CartDetailController', function (StoreSessionDetail, UserDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q, localStorageService) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
-    debugger;
     BindToolTip();
     Tab();
     $scope.IsEmptyShoppingCart = 0;

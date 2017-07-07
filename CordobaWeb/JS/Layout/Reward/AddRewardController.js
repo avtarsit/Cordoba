@@ -1,15 +1,16 @@
-﻿app.controller('AddRewardController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('AddRewardController', function (UserDetail,StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
 
     decodeParams($stateParams);
     BindToolTip();
     $scope.PageTitle = "Rewards";
 
     $scope.reward_type_id = $stateParams.type;
-    $scope.loginUserid = 29;
+    $scope.loginUserid = UserDetail.customer_id;
     $scope.reward_id = $stateParams.rewardId;
+    $scope.StoreDetailInSession = StoreSessionDetail;
 
     $scope.GetRewardGroupCustomers = function () {
-        $http.get(configurationService.basePath + "api/RewardApi/GetRewardGroupCustomers?loginUserId=" + $scope.loginUserid + "&reward_id=" + $scope.reward_id)
+        $http.get(configurationService.basePath + "api/RewardApi/GetRewardGroupCustomers?StoreId=" + $scope.StoreDetailInSession.store_id + "&loginUserId=" + $scope.loginUserid + "&reward_id=" + $scope.reward_id)
            .then(function (response) {
                if (response.data.length > 0) {
                    $scope.Customers = response.data;
@@ -70,6 +71,8 @@
                 $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
                 $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
 
+                
+
                 bootbox.dialog({
                     message: "Do you want Give Reward to selected User? Once you will give reward you can't modify it. Please make sure once again.",
                     title: "Confirmation",
@@ -81,7 +84,7 @@
                                 className: "btn btn-primary theme-btn",
                                 callback: function (result) {
                                     if (result) {
-                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward", $scope.AddRewardObj)
+                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
                                           .then(function (response) {
                                          
                                               if (response.data > 0) {
@@ -136,7 +139,7 @@
                                 className: "btn btn-primary theme-btn",
                                 callback: function (result) {
                                     if (result) {
-                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward", $scope.AddRewardObj)
+                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
                                             .then(function (response) {                                            
                                                 if (response.data > 0) {
                                                     notificationFactory.customSuccess("Reward Saved Successfully.");

@@ -45,7 +45,6 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
 
     $scope.AddORUpdateAddressBinding=function(AddressObj)
     {
-        debugger;
         if (AddressObj != null && AddressObj != undefined)
         {
             $scope.AddressObj = AddressObj;
@@ -73,8 +72,7 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
            .then(function (response) {
                     $scope.AddressObj = new Object();
                     $scope.NeedToShowAddressDetailForm = 0;
-                    $scope.AddressList = response.data;
-                    debugger;
+                    $scope.AddressList = response.data;                   
                     toastr.success("Address book successfully updated.");
        })
         .catch(function (response) {

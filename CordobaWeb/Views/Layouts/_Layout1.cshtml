@@ -179,11 +179,14 @@
         <div class="about-overlay"></div>
         <div class="about-us">
             <div id="aboutScroll" class="welcome-block">
-                <a href="javascript:;" class="showDesc">About Us</a>
+                <a href="javascript:;" class="showDesc">About Us</a>               
                 <div ng-bind-html="WelcomeMsg[0]"></div>
-                @*<a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>*@
-                <div class="more-content" ng-bind-html="WelcomeMsg[1]">
+                <div class="more-content">
+                    <div ng-bind-html="WelcomeMsg[1]">
+                    </div>
                 </div>
+                @*<a ng-show="WelcomeMsg[1].length>0" id="readMore" href="javascript:;">Read More</a>*@
+              
             </div>
 
             <div class="container-fluid">
