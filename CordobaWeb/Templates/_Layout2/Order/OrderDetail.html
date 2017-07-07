@@ -10,7 +10,7 @@
 
 
         <div class="col-sm-8">
-            <div class="orders" ng-repeat="Item in OrderdetailObj.orderProductEntity">
+            <div class="orders">
                 <div class="order-headings">
                     <div class="order-title">
                         <p>Order ID:</p> <span> #{{OrderdetailObj.order_id}} </span>
@@ -22,7 +22,7 @@
                         <p>Payment Method:</p> <span>Points Based Deduction </span>
                     </div>
                 </div>
-                <div class="order-desc">
+                <div class="order-desc" ng-repeat="Item in OrderdetailObj.orderProductEntity">
                     <div class="col-md-7 col-sm-8">
                         <div class="media">
                             <div class="media-left">
@@ -34,7 +34,7 @@
                                 <p class="model-no"><span>Quantity: </span> <span ng-bind="Item.quantity"></span></p>
                                 <p class="model-no"><span>Comment:</span> <span ng-bind="Item.comment"></span> </p>
 
-                                
+
                             </div>
                         </div>
                     </div>
@@ -43,19 +43,22 @@
                         <p class="product-price"><span>Subtotal: </span><span ng-bind="(Item.total | number :2) +' points'"></span></p>
                     </div>
                     <ul class="order-status">
-                        <li class="completed">
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
                             <i class="fa fa-check"></i>
                             <span>Order Received</span>
                         </li>
-                        <li class="completed">
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
                             <i class="fa fa-check"></i>
                             <span>Shipped</span>
                         </li>
-                        <li>
+                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
                             <i class="fa fa-check"></i>
                             <span>Delivered</span>
                         </li>
                     </ul>
+                    <div class="remove-product">
+                        <button class="remove-item"><i class="fa fa-phone"></i> Contact Us</button>
+                    </div>
                 </div>
             </div>
 
@@ -100,201 +103,3 @@
 
     </div>
 </div>
-
-
-    <footer class="footer">
-        <div class="container">
-            <div class="col-sm-3 pb-10">
-                <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
-            </div>
-            <div class="col-sm-9 pb-10">
-                <div class="footer_menu">
-                    <ul>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Site Map</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>Copyright © 2017 Cordoba</p>
-        </div>
-    </footer>
-
-
-
-    <div class="modal" id="myModal" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
-                        <div class="login_page_left">
-                            <h2>Login</h2>
-                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
-                        </div>
-                        <div class="login_page_right">
-                            <div class="form-group pt-20">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                            </div>
-                            <div class="chekbox-main checkbox mr-20">
-                                <input type="checkbox" id="checkbox1" />
-                                <label for="checkbox1">Remember me</label>
-                            </div>
-                            <button type="submit" class="submit_btn">Submit</button>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="about-overlay"></div>
-    <div class="about-us">
-        <div id="aboutScroll">
-            <a href="javascript:;" class="showDesc">About Us</a>
-            <h2>Bienvenue sur la boutique Make a Difference</h2>
-            <div class="col-sm-12 welcome-block">
-                <div class="welcome-img">
-                    <img src="images/welcomeImg.png" alt="welcome" />
-                </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="more-content">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                </div>
-                <a id="readMore" href="javascript:;">Read More</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <a href="#" id="back-to-top" title="Back to top">
-            &uarr;
-        </a>
-    </div>
-
-
-
-
-    <script type="text/javascript">
-    $(document).ready(function(){
-      //productimage zooming
-
-      // aboutus
-      $(".category-list, #aboutScroll").mCustomScrollbar();
-      $(".showDesc").click(function () {
-			var hidden = $(".about-us");
-			if (hidden.hasClass("visible")) {
-				hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
-				$(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
-				$(".showDesc").text("About Us");
-				$(".about-overlay").fadeOut("slow");
-
-			} else {
-				hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-				$(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
-				$(".showDesc").text("Close");
-				$(".about-overlay").fadeIn("slow");
-			}
-		});
-        $('#readMore').click(function () {
-			$('.more-content').slideToggle();
-
-			var LinkText = $("#readMore").text();
-			LinkText = LinkText.replace(/\s/g, '');
-			if (LinkText == "ReadMore") {
-				$("#readMore").text("Read Less");
-			}
-			else {
-				$("#readMore").text("Read More");
-			}
-		});
-
-      //go to top
-      if ($('#back-to-top').length) {
-        var scrollTrigger = 100, // px
-            backToTop = function () {
-                var scrollTop = $(window).scrollTop();
-                if (scrollTop > scrollTrigger) {
-                    $('#back-to-top').addClass('show');
-                } else {
-                    $('#back-to-top').removeClass('show');
-                }
-            };
-        backToTop();
-        $(window).on('scroll', function () {
-            backToTop();
-        });
-        $('#back-to-top').on('click', function (e) {
-            e.preventDefault();
-            $('html,body').animate({
-                scrollTop: 0
-            }, 700);
-          });
-        }
-    });
-
-    //headertop fixed
-    $(window).scroll(function() {
-    if ($(this).scrollTop() > 1){
-        $('.top-header').addClass("hidden");
-      }
-      else{
-        $('.top-header').removeClass("hidden");
-      }
-    });
- $(document).ready(function(){
-    var native_width = 0;
-  var native_height = 0;
-  $(".large").css("background","url('" + $(".small").attr("src") + "') no-repeat");
-  $(".magnify").mousemove(function(e){
-    if(!native_width && !native_height)
-    {
-      var image_object = new Image();
-      image_object.src = $(".small").attr("src");
-      native_width = image_object.width;
-      native_height = image_object.height;
-    }
-    else
-    {
-      var magnify_offset = $(this).offset();
-      var mx = e.pageX - magnify_offset.left;
-      var my = e.pageY - magnify_offset.top;
-      if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
-      {
-        $(".large").fadeIn(100);
-      }
-      else
-      {
-        $(".large").fadeOut(100);
-      }
-      if($(".large").is(":visible"))
-      {
-        var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
-        var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
-        var bgp = rx + "px " + ry + "px";
-        var px = mx - $(".large").width()/2;
-        var py = my - $(".large").height()/2;
-        $(".large").css({left: px, top: py, backgroundPosition: bgp});
-      }
-    }
-  })
-    });
-
-    </script>

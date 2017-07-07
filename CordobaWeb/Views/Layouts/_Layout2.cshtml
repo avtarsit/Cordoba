@@ -8,7 +8,6 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
-    <link href="~/Content/layout2/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
@@ -139,7 +138,7 @@
                 <div class="container">
 
                     <div class="col-sm-12">
-                        <div class="row">
+                        <div class="row headerRow">
                             <div class="logo">
                                 <a href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
                             </div>
@@ -172,7 +171,7 @@
                                         <li class="active"><a href="#" ui-sref="Home">Home</a></li>
                                         <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                         <li><a href="#">Contact</a></li>
-                                        @*<li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>*@
+                                        <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -243,13 +242,13 @@
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-content">
+                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
                         <div class="modal-body">
-                            <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                            <div class="login_page_left">
+                                <h2>Login</h2>
+                                <img src="~/Content/layout2/images/online-shopping.png" class="pt-20" alt="online-shopping">
+                            </div>
                             <form name="loginForm" id="loginForm" ng-hide="IsVisibleloginForm" class="form-horizontal" novalidate>
-                                <div class="login_page_left">
-                                    <h2>Login</h2>
-                                    <img src="~/Content/layout2/images/online-shopping.png" class="pt-20" alt="online-shopping">
-                                </div>
                                 <div class="login_page_right">
                                     <div class="form-group pt-20">
                                         <label for="email">Email:</label>
@@ -258,16 +257,46 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password:</label>
-                                        <a class="forgot-password pull-right" href="#">Forgot Password?</a>
+                                        <a href="javascript:;" ng-click="ForgotPassword(forgotPasswordForm)" class="forgot-password pull-right">Forgot Password?</a>
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" ng-model="CustomerObj.password" required="required">
                                         <p class="text-danger validationErrors" ng-show="loginForm.$submitted && (!loginForm.$valid) && loginForm.password.$error.required">Password is required!</p>
-                                        <a href="javascript:;" ng-click="ForgotPassword(forgotPasswordForm)" class="forgot-password">Forgot Password?</a>
+                                        @*<a href="javascript:;" ng-click="ForgotPassword(forgotPasswordForm)" class="forgot-password">Forgot Password?</a>*@
                                     </div>
                                     <div class="form-group chekbox-main checkbox mr-20">
                                         <input type="checkbox" id="checkbox" />
                                         <label for="checkbox">Remember me</label>
                                     </div>
                                     <button type="submit" class="submit_btn form-group" ng-click="Login(loginForm)">Submit</button>
+                                </div>
+                            </form>
+
+                            @*forgot password*@
+                            <form name="forgotPasswordForm" id="forgotPasswordForm" class="form-horizontal" ng-hide="IsVisibleforgotPasswordForm" novalidate>
+                                <div class="login_page">
+                                    <h2>Forgot Password?</h2>
+                                    <div class="form-group pt-20">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" name="EmailAddress" id="email" placeholder="Enter email" ng-model="otpObj.email" required="required">
+                                        <p class="text-danger validationErrors" ng-show="forgotPasswordForm.$submitted && (!forgotPasswordForm.$valid) && (forgotPasswordForm.EmailAddress.$error.required || forgotPasswordForm.EmailAddress.$error.email)">Enter valid email id!</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-click="ForgotPassword(forgotPasswordForm)">Submit</button>
+                                    <button type="button" class="btn btn-empty mt-5 text-center" ng-click="OpenLoginPopUp()">cancel</button>
+                                </div>
+                            </form>
+
+
+                            @*Verify OTP*@
+                            <form name="OTPForm" id="OTPForm" class="form-horizontal" ng-hide="IsVisibleOTPForm" novalidate>
+                                <div class="login_page">
+                                    <input type="hidden" class="form-control" name="email" id="email">
+                                    <div class="form-group pt-20">
+                                        <label for="otp">OTP:</label>
+                                        <input type="number" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
+                                        @*<input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" required="required">*@
+                                        <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid OTP!</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-click="VerifyOTP(OTPForm)">Submit</button>
+
                                 </div>
                             </form>
                         </div>
@@ -303,7 +332,6 @@
         </div>
     </div>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/Layout2Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
 
@@ -313,7 +341,8 @@
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
     <script src="~/Scripts/angular-animate.min.js"></script>
-    <link href="~/Content/layout1/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <script src="~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
 
 
     <script type="text/javascript">

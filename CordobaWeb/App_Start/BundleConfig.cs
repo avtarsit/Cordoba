@@ -219,7 +219,6 @@ namespace CordobaWeb
                      "~/Scripts/layout2/js/jquery.min.js",
                      "~/Scripts/layout2/js/bootstrap.min.js",
                      "~/Scripts/layout2/js/jquery.flexslider.js",
-                     "~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js",
                      "~/Scripts/bootstrap-modalmanager.js",
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
@@ -229,7 +228,8 @@ namespace CordobaWeb
                   "~/Scripts/layout1/js/jquery.bxslider.min.js",
                   "~/Scripts/layout1/js/dpNumberPicker.min.js",
                   "~/Scripts/layout1/js/enhance.js",
-                  "~/Scripts/layout1/js/velocity.min.js"
+                  "~/Scripts/layout1/js/velocity.min.js",
+                  "~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"
                      ));
 
             //------------------------js-------------------------//
