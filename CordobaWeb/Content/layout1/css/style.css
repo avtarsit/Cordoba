@@ -227,11 +227,14 @@ footer { float: left; width: 100%; position: absolute; bottom: 0; left: 0; right
 .copyright { float: left; width: 100%; background: #cc0001; padding: 5px 15px; }
 .copyright p { float: left; width: 100%; color: #fff; text-align: center; font-size: 15px; line-height: 20px; }
 .footer-logo { float: left; width: 100%; }
+
 #fbIcon{   
-    margin: 10px 0 0 20px; 
-    background-image:url("../../Images/fb_ico.png");
-     background-size: 100%;
-    background-repeat:no-repeat
+    margin-top: -8px;   
+}
+
+#fbIcon img{
+    height:40px;
+    width:40px;
 }
 /* footer end */
 

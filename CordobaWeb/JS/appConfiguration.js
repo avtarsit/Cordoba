@@ -633,8 +633,6 @@ function GetLayoutName() {
 
                  //}
 
-
-
                  $rootScope.$on('$locationChangeStart', function (event, next, current) {
 
                      var geturlparameters = next.toString().split('?')[1];
