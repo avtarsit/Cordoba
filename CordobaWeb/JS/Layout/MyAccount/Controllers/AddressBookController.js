@@ -45,7 +45,7 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
 
     $scope.AddORUpdateAddressBinding=function(AddressObj)
     {
-        //debugger;
+        debugger;
         if (AddressObj != null && AddressObj != undefined)
         {
             $scope.AddressObj = AddressObj;

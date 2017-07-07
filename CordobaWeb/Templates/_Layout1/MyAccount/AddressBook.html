@@ -33,16 +33,7 @@
                         <a href="" class="cursor-pointer" ng-click="DeleteAddress(AddressObj)"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
-                    <div class="add-address">
-                        <a href="" class="cursor-pointer"  ng-click="AddORUpdateAddressBinding(null)">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            <span>Add New Address</span>
-                        </a>
-                    </div>
-                </div>
-                <form  name="NewAddressForm" id="NewAddressForm" class="new-address" ng-if="NeedToShowAddressDetailForm==1" novalidate>
+                <form name="NewAddressForm" id="NewAddressForm" class="new-address" ng-if="NeedToShowAddressDetailForm==1" novalidate>
                     <div class="col-sm-12">
                         <div class="block-heading">
                             <h4 class="heading">Add New Address</h4>
@@ -98,7 +89,7 @@
                     <div class="col-sm-4">
                         <label>City</label>
                         <input type="text" maxlength="128" name="city" class="form-control" ng-model="AddressObj.city" required="required" />
-                    </div>                  
+                    </div>
                     <div class="col-sm-4">
                         <label>County</label>
                         <input type="text" maxlength="128" class="form-control" name="county" ng-model="AddressObj.county" required="required" />
@@ -117,7 +108,17 @@
                         <button class="btn btn-default cursor-pointer" ng-click="CancelAddress()">Cancel</button>
                     </div>
                 </form>
+                <div class="col-md-3 col-sm-4 col-xs-12 address-block">
+                    <div class="add-address">
+                        <a href="" class="cursor-pointer"  ng-click="AddORUpdateAddressBinding(null)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span>Add New Address</span>
+                        </a>
+                    </div>
+                </div>
+          
             </div>
         </div>
     </div>
+
 </section>
