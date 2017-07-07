@@ -1,8 +1,8 @@
-﻿    <div class="container" ng-controller="CartDetailController">
+﻿<div class="container" ng-controller="CartDetailController">
     <div class="order-detail cart-detail mt-30">
         <div class="col-sm-12">
             <div class="points">
-                <p ng-if ="CustomerDetail.TotalItemAdded>0">You have {{CustomerDetail.TotalItemAdded}} item's in your Shopping Bag</p>
+                <p ng-if="CustomerDetail.TotalItemAdded>0">You have {{CustomerDetail.TotalItemAdded}} item's in your Shopping Bag</p>
                 <p ng-if="!(CustomerDetail.TotalItemAdded>0)">Your Shopping Bag is Empty.</p>
             </div>
         </div>
@@ -12,43 +12,55 @@
             <div class="orders" ng-repeat="Item in CartItemList">
 
                 <div class=" order-desc stock-out">
-                <div class="col-md-7 col-sm-8">
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#"><img class="media-object" ng-src="{{Item.ProductImage}}" alt="product"></a>
+                    <div class="col-md-7 col-sm-8">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#"><img class="media-object" ng-src="{{Item.ProductImage}}" alt="product"></a>
 
-                        </div>
-                        <div class="media-body">
-                            <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
-                            <p class="model-no"><span>Modal Number:</span> {{Item.model}}</p>
-                            <div class="product-qty">
-                                <label>Quantity:</label>
-                                <div id="qty1" ng-bind="Item.quantity"></div>
                             </div>
+                            <div class="media-body">
+                                <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
+                                <p class="model-no"><span>Modal Number:</span> {{Item.model}}</p>
+                                <div class="price mt-10 ">
+                                    <p><span>Quantity:</span></p>
+                                    <div class="input-group col-sm-2">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger btn-number" ng-click="DecreaseQuantity(Item)">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                        </span>
+                                        <label class="form-control ItemQuantity" ng-bind="Item.quantity"></label>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-success btn-number" ng-click="IncreaseQuantity(Item)">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stock-img"></div>
+                            <div class="stock">
+                                <p ng-if="Item.IsOutOfStock=='false'">Out Of Stock</p>
+                            </div>
+
                         </div>
-                        <div class="stock-img"></div>
-                        <div class="stock">
-                            <p ng-if="Item.IsOutOfStock=='false'">Out Of Stock</p>
+                    </div>
+                    <div class="col-md-5 col-sm-4">
+                        <p class="product-price"><span>Points:</span> {{Item.price | number : 2}}</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="remove-product mt-10">
+                            <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
+                            <button class="remove-item" ng-if="Item.IsProductInWishlist!=true" ng-click="AddtoWishList(Item)">
+                                <i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist
+                            </button>
                         </div>
-
                     </div>
-                </div>
-                <div class="col-md-5 col-sm-4">
-                    <p class="product-price"><span>Points:</span> {{Item.price | number : 2}}</p>
-                </div>
-                <div class="col-sm-12">
-                    <div class="remove-product mt-10">
-                        <button class="remove-item" ng-click="RemoveProductFromCart(Item)"><i class="fa fa-trash-o"></i> Remove Item</button>
-                        <button class="remove-item" ng-if="Item.IsProductInWishlist!=true" ng-click="AddtoWishList(Item)">
-                            <i ng-class="Item.IsProductInWishlist==true? 'fa fa-heart' : 'fa fa-heart-o' "></i> Move to Wishlist
-                        </button>
-                    </div>
-                </div>
 
-            </div>
+                </div>
             </div>
 
- 
+
 
 
         </div>
@@ -86,6 +98,9 @@
                         <span>Order Total:</span>
                         <span>{{AllItemTotal | number : 2}} points</span>
                     </div>
+                    <div class="checkout-block">
+                        <a ng-click="Checkout()" class="btn btn-empty">Checkout</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,181 +109,173 @@
 </div>
 
 
-    
 
 
 
-    <!--<div class="modal" id="myModal" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
-                        <div class="login_page_left">
-                            <h2>Login</h2>
-                            <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+
+<!--<div class="modal" id="myModal" role="dialog">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
+                    <div class="login_page_left">
+                        <h2>Login</h2>
+                        <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
+                    </div>
+                    <div class="login_page_right">
+                        <div class="form-group pt-20">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                         </div>
-                        <div class="login_page_right">
-                            <div class="form-group pt-20">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                            </div>
-                            <div class="chekbox-main checkbox mr-20">
-                                <input type="checkbox" id="checkbox1" />
-                                <label for="checkbox1">Remember me</label>
-                            </div>
-                            <button type="submit" class="submit_btn">Submit</button>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                         </div>
-
+                        <div class="chekbox-main checkbox mr-20">
+                            <input type="checkbox" id="checkbox1" />
+                            <label for="checkbox1">Remember me</label>
+                        </div>
+                        <button type="submit" class="submit_btn">Submit</button>
                     </div>
 
-
-
                 </div>
+
+
 
             </div>
-        </div>
-    </div>-->
 
-    <!--<div class="about-overlay"></div>
-    <div class="about-us">
-        <div id="aboutScroll">
-            <a href="javascript:;" class="showDesc">About Us</a>
-            <h2>Bienvenue sur la boutique Make a Difference</h2>
-            <div class="col-sm-12 welcome-block">
-                <div class="welcome-img">
-                    <img src="images/welcomeImg.png" alt="welcome" />
-                </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <div class="more-content">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                </div>
-                <a id="readMore" href="javascript:;">Read More</a>
-            </div>
         </div>
     </div>
+</div>-->
+<!--<div class="about-overlay"></div>
+<div class="about-us">
+    <div id="aboutScroll">
+        <a href="javascript:;" class="showDesc">About Us</a>
+        <h2>Bienvenue sur la boutique Make a Difference</h2>
+        <div class="col-sm-12 welcome-block">
+            <div class="welcome-img">
+                <img src="images/welcomeImg.png" alt="welcome" />
+            </div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <div class="more-content">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <a id="readMore" href="javascript:;">Read More</a>
+        </div>
+    </div>
+</div>
 
-    <div class="container">
-        <a href="#" id="back-to-top" title="Back to top">
-            &uarr;
-        </a>
-    </div>-->
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/enhance.js"></script>
-    <script src="js/velocity.min.js"></script>
+<div class="container">
+    <a href="#" id="back-to-top" title="Back to top">
+        &uarr;
+    </a>
+</div>-->
 
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //productimage zooming
+<script type="text/javascript">
+    $(document).ready(function () {
+        //productimage zooming
 
-            // aboutus
-            $(".category-list, #aboutScroll").mCustomScrollbar();
-            $(".showDesc").click(function () {
-                var hidden = $(".about-us");
-                if (hidden.hasClass("visible")) {
-                    hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
-                    $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
-                    $(".showDesc").text("About Us");
-                    $(".about-overlay").fadeOut("slow");
+        // aboutus
+        $(".category-list, #aboutScroll").mCustomScrollbar();
+        $(".showDesc").click(function () {
+            var hidden = $(".about-us");
+            if (hidden.hasClass("visible")) {
+                hidden.animate({ "right": "-350px" }, "slow").removeClass("visible");
+                $(".showDesc").animate({ "right": "-54px" }, "slow").removeClass("visible");
+                $(".showDesc").text("About Us");
+                $(".about-overlay").fadeOut("slow");
 
-                } else {
-                    hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
-                    $(".showDesc").text("Close");
-                    $(".about-overlay").fadeIn("slow");
-                }
-            });
-            $('#readMore').click(function () {
-                $('.more-content').slideToggle();
-
-                var LinkText = $("#readMore").text();
-                LinkText = LinkText.replace(/\s/g, '');
-                if (LinkText == "ReadMore") {
-                    $("#readMore").text("Read Less");
-                }
-                else {
-                    $("#readMore").text("Read More");
-                }
-            });
-
-            //go to top
-            if ($('#back-to-top').length) {
-                var scrollTrigger = 100, // px
-                    backToTop = function () {
-                        var scrollTop = $(window).scrollTop();
-                        if (scrollTop > scrollTrigger) {
-                            $('#back-to-top').addClass('show');
-                        } else {
-                            $('#back-to-top').removeClass('show');
-                        }
-                    };
-                backToTop();
-                $(window).on('scroll', function () {
-                    backToTop();
-                });
-                $('#back-to-top').on('click', function (e) {
-                    e.preventDefault();
-                    $('html,body').animate({
-                        scrollTop: 0
-                    }, 700);
-                });
+            } else {
+                hidden.animate({ "right": "0px" }, "slow").addClass("visible");
+                $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                $(".showDesc").text("Close");
+                $(".about-overlay").fadeIn("slow");
             }
         });
+        $('#readMore').click(function () {
+            $('.more-content').slideToggle();
 
-        //headertop fixed
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 1) {
-                $('.top-header').addClass("hidden");
+            var LinkText = $("#readMore").text();
+            LinkText = LinkText.replace(/\s/g, '');
+            if (LinkText == "ReadMore") {
+                $("#readMore").text("Read Less");
             }
             else {
-                $('.top-header').removeClass("hidden");
+                $("#readMore").text("Read More");
             }
         });
-        $(document).ready(function () {
-            var native_width = 0;
-            var native_height = 0;
-            $(".large").css("background", "url('" + $(".small").attr("src") + "') no-repeat");
-            $(".magnify").mousemove(function (e) {
-                if (!native_width && !native_height) {
-                    var image_object = new Image();
-                    image_object.src = $(".small").attr("src");
-                    native_width = image_object.width;
-                    native_height = image_object.height;
+
+        //go to top
+        if ($('#back-to-top').length) {
+            var scrollTrigger = 100, // px
+                backToTop = function () {
+                    var scrollTop = $(window).scrollTop();
+                    if (scrollTop > scrollTrigger) {
+                        $('#back-to-top').addClass('show');
+                    } else {
+                        $('#back-to-top').removeClass('show');
+                    }
+                };
+            backToTop();
+            $(window).on('scroll', function () {
+                backToTop();
+            });
+            $('#back-to-top').on('click', function (e) {
+                e.preventDefault();
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 700);
+            });
+        }
+    });
+
+    //headertop fixed
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1) {
+            $('.top-header').addClass("hidden");
+        }
+        else {
+            $('.top-header').removeClass("hidden");
+        }
+    });
+    $(document).ready(function () {
+        var native_width = 0;
+        var native_height = 0;
+        $(".large").css("background", "url('" + $(".small").attr("src") + "') no-repeat");
+        $(".magnify").mousemove(function (e) {
+            if (!native_width && !native_height) {
+                var image_object = new Image();
+                image_object.src = $(".small").attr("src");
+                native_width = image_object.width;
+                native_height = image_object.height;
+            }
+            else {
+                var magnify_offset = $(this).offset();
+                var mx = e.pageX - magnify_offset.left;
+                var my = e.pageY - magnify_offset.top;
+                if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
+                    $(".large").fadeIn(100);
                 }
                 else {
-                    var magnify_offset = $(this).offset();
-                    var mx = e.pageX - magnify_offset.left;
-                    var my = e.pageY - magnify_offset.top;
-                    if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
-                        $(".large").fadeIn(100);
-                    }
-                    else {
-                        $(".large").fadeOut(100);
-                    }
-                    if ($(".large").is(":visible")) {
-                        var rx = Math.round(mx / $(".small").width() * native_width - $(".large").width() / 2) * -1;
-                        var ry = Math.round(my / $(".small").height() * native_height - $(".large").height() / 2) * -1;
-                        var bgp = rx + "px " + ry + "px";
-                        var px = mx - $(".large").width() / 2;
-                        var py = my - $(".large").height() / 2;
-                        $(".large").css({ left: px, top: py, backgroundPosition: bgp });
-                    }
+                    $(".large").fadeOut(100);
                 }
-            })
-        });
+                if ($(".large").is(":visible")) {
+                    var rx = Math.round(mx / $(".small").width() * native_width - $(".large").width() / 2) * -1;
+                    var ry = Math.round(my / $(".small").height() * native_height - $(".large").height() / 2) * -1;
+                    var bgp = rx + "px " + ry + "px";
+                    var px = mx - $(".large").width() / 2;
+                    var py = my - $(".large").height() / 2;
+                    $(".large").css({ left: px, top: py, backgroundPosition: bgp });
+                }
+            }
+        })
+    });
 
-    </script>
+</script>

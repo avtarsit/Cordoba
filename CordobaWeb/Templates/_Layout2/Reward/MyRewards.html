@@ -1,183 +1,29 @@
-﻿<div ng-controller="RewardController">
-
-    <section class="my-account">
-        <div class="container">
-            <ul>
-                <li>
-                    <p class="bag-desc">{{PageTitle}}</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section class="container">
-        <div class="account-block reward-points">
-            <div class="col-sm-12 table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Medal</th>
-                            <th>comment</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="Item in MyRewardList">
-                            <td ng-bind="Item.Customer"></td>
-                            <td ng-bind="Item.Medal"></td>
-                            <td ng-bind="Item.comment"></td>
-                            <td ng-bind="Item.reward_given_date | date:'MM/dd/yyyy'"></td>
-                        </tr>
-                    </tbody>
-                    <!--<tr>
-                        <th>Award Title</th>
-                        <th>Closing Date</th>
-                        <th>Total (Customer already Participate)</th>
-                        <th>View Detail</th>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>-->
-                </table>
+﻿<div class="container" ng-controller="RewardController">
+    <div class="my-account mt-30">
+        <div class="col-sm-12">
+            <div class="points ">
+                <h3>{{PageTitle}}</h3>
             </div>
         </div>
-    </section>
-
-    <section class="my-account">
-        <div class="container">
-            <ul>
-                <li>
-                    <p class="bag-desc">All Awards</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="account-block reward-points">
-            <div class="col-sm-12 table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Closing Date</th>
-                            <th>Total ( Customer already Participate )</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="Item in AllRewards">
-                            <td ng-bind="Item.Title"></td>
-                            <td ng-bind="Item.end_date | date:'MM/dd/yyyy'"></td>
-                            <td ng-bind="Item.Participate"></td>
-                            <td>
-                                <a ui-sref="CustomerRewardDetail({reward_id:Item.id,rewardname:Item.Title})" data-placement="top" data-toggle="tooltip" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                <a ui-sref="AddReward({rewardId:Item.id,type:Item.reward_type_id})" data-placement="top" data-toggle="tooltip" title="Give Award"><i class="glyphicon glyphicon-gift"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <!--<tr>
-                        <th>Award Title</th>
-                        <th>Closing Date</th>
-                        <th>Total (Customer already Participate)</th>
-                        <th>View Detail</th>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best manager?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Who is the best designer?</td>
-                        <td>26/05/2017</td>
-                        <td>3</td>
-                        <td><a class="view-detail" href="rewardDetail.html"><i class="fa fa-eye"></i></a></td>
-                    </tr>-->
-                </table>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    <div class="col-sm-12 mt-30 text-center table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-default">
+                <tr>
+                    <th>Customer</th>
+                    <th>Medal</th>
+                    <th>comment</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="Item in MyRewardList">
+                    <td ng-bind="Item.Customer"></td>
+                    <td ng-bind="Item.Medal"></td>
+                    <td ng-bind="Item.comment"></td>
+                    <td ng-bind="Item.reward_given_date | date:'MM/dd/yyyy'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

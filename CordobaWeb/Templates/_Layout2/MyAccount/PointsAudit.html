@@ -1,1 +1,45 @@
-﻿
+﻿<div ng-controller="AuditPointsController">
+    <!--<section class="my-account">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="#" ui-sref="EditProfile"><span data-hover="Personal&nbsp;Info">Personal Info</span></a>
+                </li>
+                <li>
+                    <a href="#" ui-sref="ChangePassword"><span data-hover="Change&nbsp;Password">Change Password</span></a>
+                </li>
+                <li>
+                    <a href="#" ui-sref="AddressBook"><span data-hover="Address&nbsp;Book">Address Book</span></a>
+                </li>
+                <li>
+                    <a href="#" ui-sref="OrderHistory"><span data-hover="Order&nbsp;History">Order History</span></a>
+                </li>
+                <li class="active">
+                    <a href="#" ui-sref="PointsAudit"><span data-hover="Audit&nbsp;Points">Audit Points</span></a>
+                </li>
+            </ul>
+        </div>
+    </section>-->
+    <section class="container">
+        <div class="account-block reward-points">
+            <div class="col-sm-12 table-responsive">
+                <table class="table table-hover" id="tblPointsAudit" datatable="ng" dt-options="dtOptions">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Withdrawal</th>
+                        <th>Deposit</th>
+                    </tr>
+                    <tr ng-repeat="Item in AuditPointsList">
+                        <td ng-bind="Item.timestamp | date:'dd/MM/yyyy'"></td>
+                        <td ng-bind="Item.comment"></td>
+                        <td ng-bind="Item.Withdrawal"></td>
+                        <td ng-bind="Item.Deposit"></td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

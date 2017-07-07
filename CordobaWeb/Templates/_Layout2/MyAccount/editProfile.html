@@ -1,4 +1,5 @@
-﻿    <div class="container">
+﻿
+ <div class="container">
         <div class="my-account mt-30">
             <div class="col-sm-12">
                 <div class="points personal-info">
@@ -12,7 +13,7 @@
     <div class="col-sm-12">
         <div class="account-block profile-block">
             <a class="edit-profile" href="javascript:;"><i class="fa fa-pencil"></i></a>
-            <a class="update-profile" ng-click="SaveCustomerBasicDetails(ProfileForm)" href="javascript:;"><i class="fa fa-check"></i></a>
+            <a class="update-profile" ng-click="SaveCustomerBasicDetails(ProfileForm)" href=""><i class="fa fa-check"></i></a>
             <div class="col-sm-12" id="editProfile">
                 <div class="row">
                     <div class="col-md-2 col-sm-3">
@@ -34,6 +35,12 @@
                         <span ng-bind="GetCustomerDetailObj.telephone"></span>
                     </div>
                     <div class="col-md-2 col-sm-3">
+                        <p>Points:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.points"></span>
+                    </div>
+                    <!--<div class="col-md-2 col-sm-3">
                         <p>Date of Birth:</p>
                     </div>
                     <div class="col-md-10 col-sm-9">
@@ -44,7 +51,7 @@
                     </div>
                     <div class="col-md-10 col-sm-9">
                         <span>Male</span>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col-sm-12" id="cancelProfile">
@@ -66,23 +73,23 @@
                         </div>
 
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label>First Name</label>
                             <input type="text" class="form-control" maxlength="32" name="FirstName" ng-model="GetCustomerDetailObj.firstname" required="required" />
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label>Last Name</label>
                             <input type="text" class="form-control" maxlength="32" name="LastName" ng-model="GetCustomerDetailObj.lastname" required="required" />
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label>Email Address</label>
                             <input type="email" class="form-control" maxlength="96" name="EmailAddress" ng-model="GetCustomerDetailObj.email" required="required" />
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label>Mobile Number</label>
                             <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
                         </div>
-                        <div class="col-sm-4">
+                        <!--<div class="col-sm-4">
                             <label>Date of Birth</label>
                             <input type="text" class="form-control" value="12/05/1889" />
                         </div>
@@ -93,7 +100,7 @@
                                 <input id="radio-2" class="radio-custom" name="radio-group" type="radio">
                                 <label for="radio-2" class="radio-custom-label">Female</label>
                             </div>
-                        </div>
+                        </div>-->
                     </form>
                 </div>
             </div>
@@ -102,12 +109,6 @@
 </div>
 
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/enhance.js"></script>
-    <script src="js/velocity.min.js"></script>
 
 
 
@@ -117,7 +118,7 @@
             //productimage zooming
 
             // aboutus
-            $(".category-list, #aboutScroll").mCustomScrollbar();
+            //$(".category-list, #aboutScroll").mCustomScrollbar();
             $(".showDesc").click(function () {
                 var hidden = $(".about-us");
                 if (hidden.hasClass("visible")) {
