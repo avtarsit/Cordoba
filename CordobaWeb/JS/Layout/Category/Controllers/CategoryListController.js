@@ -85,10 +85,9 @@
                             "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
                             )
           .then(function (response) {
-              
-              if (response.data.length > 0) {
+     
                   $scope.ProductList = response.data;
-              }
+             
           })
       .catch(function (response) {
 
