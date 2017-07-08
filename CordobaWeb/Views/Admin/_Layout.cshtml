@@ -7,9 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cordoba</title>
 
+    @*@Styles.Render("~/bundles/AdminCss")*@
     @Styles.Render("~/bundles/AdminCss")
-    @*<link href="~/Content/admin/css/components.css" rel="stylesheet" type="text/css">*@
-    @*<link href="~/Content/css/angular-ui-switch.min.css" rel="stylesheet" />*@
+    <link href="~/Content/admin/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/content/admin/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/admin/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/toastr.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/angular-ui-switch.min.css" rel="stylesheet" />
+  
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -329,29 +337,44 @@
         <!-- /page content -->
     </div>
     <!-- /page container -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/CommonJs")
 
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/CommonJs")
     @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/ng-ckeditor.js"></script>
     @Scripts.Render("~/bundles/AdminJs")
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/AdminControllers")
+    <script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
+    <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>*@
 
-    @*@Scripts.Render("~/bundles/Chart")*@
 
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/admin/js/core/app.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-modalmanager.js"></script>
+    <script src="~/Scripts/bootstrap-modal.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular-dragdrop.min.js"></script>
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
+    <script src="~/Scripts/angular-local-storage.js"></script>
+    <script src="~/Scripts/angular-sanitize.js"></script>
+    <script src="~/Scripts/angular-datatables.min.js"></script>
+    <script src="~/Scripts/angular-ui-switch.min.js"></script>
+    <script src="~/Scripts/angular-sanitize.js"></script>
+    <script src="~/Scripts/angular-star-rating/main.js"></script>
+    <script src="~/Scripts/ng-ckeditor.js"></script>
+    @Scripts.Render("~/bundles/appConfig")
+    @Scripts.Render("~/bundles/AdminControllers")
     <script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
     <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>
-    @*<script src="~/Scripts/admin/js/charts/google/bars/bar.js"></script>*@
-
-    @*<script src="~/Scripts/admin/js/charts/echarts/bars_tornados.js"></script>*@
-
-    @*<script src="~/Scripts/admin/js/charts/echarts/pies_donuts.js"></script>*@
-
-    <!-- Theme JS files -->
-    @*<script type="text/javascript" src="~/Scripts/ckeditor/ckeditor.js"></script>
-        <script type="text/javascript" src="~/Scripts/admin/js/pages/editor_ckeditor.js"></script>*@
-    <!-- /theme JS files -->
+    <script src="~/Scripts/ng-ckeditor.js"></script>
 
 
 </body>

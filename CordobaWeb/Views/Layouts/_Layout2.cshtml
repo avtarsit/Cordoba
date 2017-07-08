@@ -332,28 +332,42 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/Layout2Js")
+    @*@Scripts.Render("~/bundles/Layout2Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
-
-
+    @Scripts.Render("~/bundles/angular")
+    <script src="~/Scripts/ng-ckeditor.js"></script>
+    @Scripts.Render("~/bundles/appConfig")
+    @Scripts.Render("~/bundles/LayoutControllers")
+    <script src="~/Scripts/angular-animate.min.js"></script>
+    <script src="~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script>*@
+    
+    <script src="/Scripts/layout2/js/jquery.min.js"></script>
+    <script src="/Scripts/layout2/js/bootstrap.min.js"></script>
+    <script src="/Scripts/layout2/js/jquery.flexslider.js"></script>
+    <script src="/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/Scripts/bootstrap-modalmanager.js"></script>
+    <script src="/Scripts/bootstrap-modal.js"></script>
+    <script src="/Scripts/bootstrap-datepicker.js"></script>
+    <script src="/Scripts/jquery.bootstrap-duallistbox.js"></script>
+    <script src="/Scripts/bootbox.js"></script>
+    <script src="/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="/Scripts/layout1/js/jquery.bxslider.min.js"></script>
+    <script src="/Scripts/layout1/js/dpNumberPicker.min.js"></script>
+    <script src="/Scripts/layout1/js/enhance.js"></script>
+    <script src="/Scripts/layout1/js/velocity.min.js"></script>
+    <script src="/Scripts/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/ng-ckeditor.js"></script>
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
     <script src="~/Scripts/angular-animate.min.js"></script>
     <script src="~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    
 
 
     <script type="text/javascript">
-
-
         $(document).ready(function () {
-
             $(".dropdown-toggle").dropdown();
-
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
-
             $(".category-list, #aboutScroll").mCustomScrollbar();
             $(".showDesc").click(function () {
                 var hidden = $(".about-us");
@@ -370,9 +384,7 @@
                     $(".about-overlay").fadeIn("slow");
                 }
             });
-
             $('#readMore').click(function () {
-
                 $('.more-content').slideToggle();
 
                 var LinkText = $("#readMore").text();
@@ -384,6 +396,7 @@
                     $("#readMore").text("Read More");
                 }
             });
+            $(".category-list, #aboutScroll").mCustomScrollbar();
         });
 
         $(window).scroll(function () {
@@ -464,7 +477,7 @@
             }
         }
     </script>
-    <script src="~/Scripts/angular-animate.min.js"></script>
+
 </body>
 
 </html>

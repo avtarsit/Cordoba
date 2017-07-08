@@ -360,7 +360,7 @@ ol, ul, li {
 }
 
 .navbar-fixed-top {
-    z-index: 99999;
+    z-index: 1050 !important;
 }
 
 .navbar-nav > li {
@@ -2005,11 +2005,11 @@ label {
     }
 
 .stock-out img {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .stock-out .media-heading, .stock-out .model-no, .stock-out .product-qty {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .comment {
@@ -2219,7 +2219,27 @@ label {
     margin-right: 0px;
 }
 
-.productlist .col-product p
-{
-    text-align:left;
+.productlist .col-product p {
+    text-align: left;
 }
+
+/*Loader start*/
+.loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10080 !important;
+    background-color: #F7F3F3;
+    opacity: 0.6;
+}
+
+.Centerloader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    bring your own prefixes transform: translate(-50%, -50%);
+    z-index: 999999;
+}
+/*Loader end*/

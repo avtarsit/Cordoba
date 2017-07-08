@@ -10,6 +10,7 @@
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <style>
 
 .spinner div {
@@ -316,8 +317,6 @@
         
     @Scripts.Render("~/bundles/Layout1Js")
     @*<script src="~/Scripts/jquery-ui.min.js"></script>*@   
-
-
     @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/ng-ckeditor.js"></script> 
     @Scripts.Render("~/bundles/appConfig")
