@@ -2243,3 +2243,14 @@ label {
     z-index: 999999;
 }
 /*Loader end*/
+.productlist .col-product p
+{
+    text-align:left;
+}
+
+.rewardWinner
+{
+    height:355px;
+}
+
+.rewardWinner p { float:left; width:100%; color:#9c9c9c; font-size:16px; line-height:22px; text-transform:uppercase; margin-bottom:10px; }
