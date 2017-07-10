@@ -24,12 +24,12 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
             listOfRewards = objGenericRepository.ExecuteSQL<RewardEntity>("GetRewardList", ParameterStoreId, ParameterLoggedInUserId, paramRewardId).ToList();
             return listOfRewards;
@@ -44,12 +44,12 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             listOfRewardtype = objGenericRepository.ExecuteSQL<RewardTypeEntity>("GetRewardTypeList", ParameterStoreId, ParameterLoggedInUserId).ToList();
             return listOfRewardtype;
         }
@@ -60,14 +60,16 @@ namespace CordobaServices.Services
                 {
                     ParameterName = "StoreId",
                     DbType = DbType.Int32,
-                    Value = StoreId
+                    Value = objRewardEntity.store_id
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
+
             var paramRewardId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = objRewardEntity.id };
             var paramRewardTitle = new SqlParameter { ParameterName = "Title", DbType = DbType.String, Value = objRewardEntity.Title };
             var paramreward_type_id = new SqlParameter { ParameterName = "reward_type_id", DbType = DbType.Int32, Value = objRewardEntity.reward_type_id };
@@ -80,8 +82,9 @@ namespace CordobaServices.Services
             var paramcreated_by = new SqlParameter { ParameterName = "created_by", DbType = DbType.Int32, Value = objRewardEntity.created_by };
             var paramisAddMode = new SqlParameter { ParameterName = "isAddMode", DbType = DbType.Int32, Value = isAddMode };
             var parammodified_by = new SqlParameter { ParameterName = "modified_by", DbType = DbType.Int32, Value = objRewardEntity.modified_by ?? (object)DBNull.Value };
+            var paramIsCustomerDepartment = new SqlParameter { ParameterName = "isCustomerDepartment", DbType = DbType.Boolean, Value = objRewardEntity.IsCustomerDepartment };
             int rewardId = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateReward", ParameterStoreId, ParameterLoggedInUserId, paramRewardId, paramRewardTitle, paramreward_type_id, paramstart_date, paramend_date,
-                             paramstatus, paramdescription, paramsent_mail, paramdisplay_dashborad, paramcreated_by, paramisAddMode, parammodified_by).SingleOrDefault();
+                             paramstatus, paramdescription, paramsent_mail, paramdisplay_dashborad, paramcreated_by, paramisAddMode, parammodified_by, paramIsCustomerDepartment).SingleOrDefault();
             return rewardId;
         }
 
@@ -93,12 +96,12 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
             int result = objGenericRepository.ExecuteSQL<int>("DeleteReward", ParameterStoreId, ParameterLoggedInUserId, paramRewardId).SingleOrDefault();
             return result;
@@ -112,12 +115,12 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramRewardId = new SqlParameter { ParameterName = "reward_id", DbType = DbType.Int32, Value = reward_id };
             var rewardCustomerlist = objGenericRepository.ExecuteSQL<RewardUserEntity>("ViewCustomer_Reward", ParameterStoreId, ParameterLoggedInUserId, paramRewardId).ToList();
             return rewardCustomerlist;
@@ -131,12 +134,12 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramrewardUserId = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
             var rewardCustomerDetails = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetReward_CustomerDetails", ParameterStoreId, ParameterLoggedInUserId, paramrewardUserId).ToList();
             return rewardCustomerDetails;
@@ -150,19 +153,19 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
             var paramId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = id };
             var paramRewardUserId = new SqlParameter { ParameterName = "reward_user_id", DbType = DbType.Int32, Value = reward_user_id };
             var deletedRecord = objGenericRepository.ExecuteSQL<int>("Delete_RewardUser", ParameterStoreId, ParameterLoggedInUserId, paramId, paramRewardUserId).SingleOrDefault();
             return deletedRecord;
         }
 
-        public List<RewardUserDetailsEntity> MyRewards(int StoreId,int id)
+        public List<RewardUserDetailsEntity> MyRewards(int StoreId, int id)
         {
             var ParameterStoreId = new SqlParameter
                 {
@@ -170,9 +173,9 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-           
+
             var paramId = new SqlParameter { ParameterName = "id", DbType = DbType.Int32, Value = id };
-            var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", ParameterStoreId,paramId).ToList();
+            var myRewardlist = objGenericRepository.ExecuteSQL<RewardUserDetailsEntity>("GetMyRewards", ParameterStoreId, paramId).ToList();
             return myRewardlist;
         }
 
@@ -184,17 +187,17 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = StoreId
                 };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
-            var runningAwards = objGenericRepository.ExecuteSQL<RewardEntity>("GetAllRunningRewards",ParameterStoreId, ParameterLoggedInUserId).ToList();
+            var ParameterLoggedInUserId = new SqlParameter
+            {
+                ParameterName = "LoggedInUserId",
+                DbType = DbType.Int32,
+                Value = LoggedInUserId
+            };
+            var runningAwards = objGenericRepository.ExecuteSQL<RewardEntity>("GetAllRunningRewards", ParameterStoreId, ParameterLoggedInUserId).ToList();
             return runningAwards;
         }
 
-        public List<RewardUserEntity> RewardCustomerDetails(int StoreId, int LoggedInUserId,int reward_id)
+        public List<RewardUserEntity> RewardCustomerDetails(int StoreId, int LoggedInUserId, int reward_id)
         {
             var ParameterStoreId = new SqlParameter
             {
@@ -311,7 +314,7 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = LoggedInUserId
             };
-            var winners = objGenericRepository.ExecuteSQL<RewardUserEntity>("Dashboard_RewardWinner",ParameterStoreId, ParameterLoggedInUserId).ToList();
+            var winners = objGenericRepository.ExecuteSQL<RewardUserEntity>("Dashboard_RewardWinner", ParameterStoreId, ParameterLoggedInUserId).ToList();
             return winners;
         }
     }

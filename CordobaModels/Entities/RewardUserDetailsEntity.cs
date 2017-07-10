@@ -23,7 +23,7 @@ namespace CordobaModels.Entities
     {
         public int customer_id { get; set; }
         public string customer { get; set; }
-        public bool IsRewarded { get; set; }
+        public byte IsRewarded { get; set; }
         public string reward_name { get; set; }
         public string CustomerImage { get; set; }
         public int? reward_id { get; set; }
