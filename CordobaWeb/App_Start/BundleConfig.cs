@@ -56,7 +56,7 @@ namespace CordobaWeb
 
             var angularBundle = new Bundle("~/bundles/angular");
               angularBundle.Include("~/Scripts/angular.js");
-              angularBundle.Include("~/Scripts/angular-animate.min.js");
+              angularBundle.Include("~/Scripts/angular-animate.js");
               angularBundle.Include("~/Scripts/angular-dragdrop.min.js");
               angularBundle.Include("~/Scripts/angular-ui-router.min.js");
               angularBundle.Include("~/Scripts/angular-local-storage.js");
