@@ -2254,3 +2254,8 @@ label {
 }
 
 .rewardWinner p { float:left; width:100%; color:#9c9c9c; font-size:16px; line-height:22px; text-transform:uppercase; margin-bottom:10px; }
+
+/*-----me-----*/
+.hot-deals{
+    padding-bottom: 20px;
+}
