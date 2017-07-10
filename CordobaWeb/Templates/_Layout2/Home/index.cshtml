@@ -120,12 +120,12 @@
                     <div class="letest-product">
                     <h3 class="heading">BEST SELLER</h3>
                         <div class="best-seller" data-bx-slider="pager:false,nextText:'',prevText:'',minSlides: 1,maxSlides: 5,slideWidth: 250">
-                            <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList | limitTo: 6" data-notify-when-repeat-finished>
+                            <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList " data-notify-when-repeat-finished>
                                 <div class="saller">
                                     <img ng-src="{{BestSeller.Image}}" alt="saller">
                                     <h4>{{BestSeller.name}}</h4>
                                     <p ng-bind="BestSeller.Price +' Points'"></p>
-                                    <a href="#" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
+                                    @*<a href="#" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>*@
                                 </div>
                             </div>
                         </div>

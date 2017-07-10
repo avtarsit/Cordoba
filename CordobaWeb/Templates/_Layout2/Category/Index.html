@@ -35,8 +35,8 @@
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
-                            <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)" ng-controller="AddProductToCartController">
-                                <img ng-src="{{product.Image}}" alt="latest product">
+                            <div class="background-bg"  ng-controller="AddProductToCartController">
+                                <img ng-src="{{product.Image}}" alt="latest product" data-action="zoom">
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
                                 </div>
