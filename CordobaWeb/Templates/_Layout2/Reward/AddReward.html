@@ -16,18 +16,14 @@
                         <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" value="bronze" />
                         <label class="medal bronze" for="bronze{{$index}}">Bronze</label>
                     </div>
-                    <div class="medal-rating" ng-if="Item.IsRewarded">
-                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="gold" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}" />
+                    <div class="medal-rating" ng-if="Item.IsRewarded" >
+                        <input id="gold{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="gold" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}"  />
                         <label class="medal-selected-Cls gold" for="gold{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Gold' ? 'run-in':'none'}">Gold</label>
-                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="silver" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}" />
+                        <input id="silver{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="silver" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}"/>
                         <label class="medal-selected-Cls silver" for="silver{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Silver' ?  'run-in':'none'}">Silver</label>
-                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="bronze" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}" />
+                        <input id="bronze{{$index}}" type="radio" name="medal{{$index}}" disabled="disabled" value="bronze" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}"  />
                         <label class="medal-selected-Cls bronze" for="bronze{{$index}}" disabled="disabled" ng-style="{'display': Item.reward_name=='Bronze' ? 'run-in' : 'none'}">Bronze</label>
                     </div>
-                    <!--<div class="start-rating" ng-if="Item.IsRewarded">
-                        <p>Your Rating: <b>{{Item.reward_name}}</b></p>
-                        <p>Comment: <b>{{Item.Comment}}</b></p>
-                    </div>-->
                     <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!Item.IsRewarded"><i class="fa fa-comments"></i></a>
                 </div>
                 <div class="write-cmt" id="write-cmt{{$index}}">
@@ -52,26 +48,7 @@
                         <div ng-if="Item.IsRewarded">
                             <p>Comment: <b>{{Item.Comment}}</b></p>
                         </div>
-                        <!--<select id="example{{$index}}"  ng-init="InitStars($index)">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>-->
-                        <!--<i class="fa fa-star"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>-->
                     </div>
-
-                    <!--<div class="start-rating" ng-if="Item.IsRewarded">
-                        <p>Your Rating: <b>{{Item.reward_name}}</b></p>
-                        <p>Comment: <b>{{Item.Comment}}</b></p>
-                        <angular-star-rating max="maxValue" value="Item.reward_value" id="ratingValue{{$index}}" hover='changeOnHover'
-                                             is-readonly='isreadonlyAleardyAssigned'></angular-star-rating><br />
-                    </div>-->
                     <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!Item.IsRewarded"><i class="fa fa-comments"></i></a>
                 </div>
                 <div class="write-cmt" id="write-cmt{{$index}}">
