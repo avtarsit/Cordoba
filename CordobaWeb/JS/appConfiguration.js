@@ -30,7 +30,7 @@ function GetLayoutName() {
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
             var LayoutName = data.template;
-            
+        
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
                     name: 'Home',

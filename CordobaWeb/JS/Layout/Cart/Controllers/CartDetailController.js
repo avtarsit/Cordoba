@@ -13,7 +13,6 @@
             window.location.href = 'home/accessdenied';
         }
     }
-    var aa = $state.current.name;
     if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null) {
         $scope.cartgroup_id = parseInt($stateParams.cartgroup_id);
     }
@@ -68,7 +67,7 @@
                 $scope.SelectedCustomerAddress.SelectedIndex = 0;
             }
             else {
-
+                toastr.success("Address not found! Please add address.");
             }
 
         })
@@ -120,7 +119,6 @@
          .finally(function () {
 
          });
-
     }
 
     $scope.Checkout = function () {     
@@ -129,7 +127,7 @@
                 $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
             }
             else {
-                toastr.warning('You have insufficient points to purchase items.');
+                toastr.warning("You don't have enough points to purchase items.");
             }
         }
         else {

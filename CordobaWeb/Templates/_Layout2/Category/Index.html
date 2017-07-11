@@ -7,8 +7,8 @@
                     <ul>
                         <li ng-class="SelectedCategoryId==category.Category_Id ? 'active cursor-pointer' : 'cursor-pointer' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
                             <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
-                            <ul class="sub-catagory" ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
-                                <li><a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a></li>
+                            <ul class="sub-catagory" >
+                                <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }"><a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name | limitTo:16" title="{{SubCategory.name}}"></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -23,25 +23,24 @@
                         <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)">
                             <img ng-src="{{category.image}}" alt="latest product">
                         </div>
-                        <a href="#" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name"></a>
+                        <a href="" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name | limitTo:20" title="{{category.name}}"></a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)
-                 || (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
+        <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
             <div class="mt-30">
                 <h3 class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
-                            <div class="background-bg" ng-click="GetSubCategory(category.Category_Id)" ng-controller="AddProductToCartController">
-                                <img ng-src="{{product.Image}}" alt="latest product">
+                            <div class="background-bg" ng-controller="AddProductToCartController">
+                                <img ng-src="{{product.Image}}" alt="latest product" data-action="zoom">
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
                                 </div>
                             </div>
-                            <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind="product.name"></a>
+                            <a href="#" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind-html="product.name"></a>
                             <p ng-bind="product.Model"></p>
                             <span ng-bind="(product.Price | number:2)+' Points'"></span>
                             <span class="pull-right cursor-pointer">

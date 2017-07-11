@@ -3,10 +3,8 @@
     createDatePicker();
 
     $scope.StatusForActive = [{ ID: 1, Name: 'Active' }, { ID: 0, Name: 'InActive' }];
-
     decodeParams($stateParams);
     BindToolTip();
-
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
@@ -20,7 +18,6 @@
     function GetRewardList() {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardTypeList?StoreID=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
          .then(function (response) {
-    
              if (response.data.length > 0) {
                  $scope.RewardTypeList = response.data;
              }
@@ -40,12 +37,10 @@
         $scope.RewardId = $stateParams.rewardId;
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardList?reward_id=" + $stateParams.rewardId + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-        
               if (response.data.length > 0) {
                   $scope.RewardObj = response.data[0];
                   $scope.RewardObj.start_date = $filter('date')($scope.RewardObj.start_date, $rootScope.GlobalDateFormat);
                   $scope.RewardObj.end_date = $filter('date')($scope.RewardObj.end_date, $rootScope.GlobalDateFormat);
-
                   //$('#startdate').data($scope.RewardObj.start_date);
                   //$('#enddate').data($scope.RewardObj.end_date);
 
@@ -71,7 +66,6 @@
             var isAddMode = ($scope.IsEditMode == true ? 0 : 1);
             $http.post(configurationService.basePath + "api/RewardApi/InsertOrUpdateReward?isAddMode=" + isAddMode + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.RewardObj)
            .then(function (response) {
-           
                if (response.data > 0) {
                    notificationFactory.customSuccess("Reward Saved Successfully.");
                    $state.go('ShowReward');
@@ -154,5 +148,22 @@
             return false;
         }
     }
+
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.StoreList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    GetStoreList();
 
 });

@@ -23,21 +23,23 @@
     <section class="container">
         <div class="account-block reward-points">
             <div class="col-sm-12 table-responsive">
-                <table class="table table-hover" id="tblPointsAudit" datatable="ng" dt-options="dtOptions">
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Withdrawal</th>
-                        <th>Deposit</th>
-                    </tr>
-                    <tr ng-repeat="Item in AuditPointsList">
-                        <td ng-bind="Item.timestamp | date:GlobalDateFormat"></td>
-                        <td ng-bind="Item.comment"></td>
-                        <td ng-bind="Item.Withdrawal"></td>
-                        <td ng-bind="Item.Deposit"></td>
-                    </tr>
-
-                   
+                <table class="table table-hover" id="tblPointsAudit" >
+                   <thead>
+                       <tr>
+                           <th class="text-center">Date</th>
+                           <th class="text-center">Description</th>
+                           <th class="text-center">Withdrawal</th>
+                           <th class="text-center">Deposit</th>
+                       </tr>
+                   </thead>  
+                    <tbody>
+                        <tr ng-repeat="Item in AuditPointsList">
+                            <td class="text-center" ng-bind="Item.timestamp | date:GlobalDateFormat"></td>
+                            <td class="text-center" ng-bind="Item.comment"></td>
+                            <td class="text-center" ng-bind="Item.Withdrawal"></td>
+                            <td class="text-center" ng-bind="Item.Deposit"></td>
+                        </tr>
+                    </tbody>                                                     
                 </table>
             </div>
         </div>

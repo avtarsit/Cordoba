@@ -1,4 +1,4 @@
-﻿app.controller('AddRewardController', function (UserDetail,StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('AddRewardController', function (UserDetail, StoreSessionDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
 
     decodeParams($stateParams);
     BindToolTip();
@@ -8,6 +8,9 @@
     $scope.loginUserid = UserDetail.customer_id;
     $scope.reward_id = $stateParams.rewardId;
     $scope.StoreDetailInSession = StoreSessionDetail;
+
+    //$scope.$on('broadcastAddCustomerRating', function () { AddCustomerRating(); });
+
 
     $scope.GetRewardGroupCustomers = function () {
         $http.get(configurationService.basePath + "api/RewardApi/GetRewardGroupCustomers?StoreId=" + $scope.StoreDetailInSession.store_id + "&loginUserId=" + $scope.loginUserid + "&reward_id=" + $scope.reward_id)
@@ -37,9 +40,9 @@
 
     //    $scope.isreadonlyAleardyAssigned = false;
     //    for (var i = 0; i < $scope.Customers.length; i++) {
-  
+
     //        if ($scope.Customers[i].IsRewarded == true) {
-                
+
     //            $("#ratingValue" + i).find('i').removeClass('fa-star-o').addClass('fa-star')
     //            $("#ratingValue" + i + " *").attr("disabled", "disabled").off('click');
     //        }
@@ -59,112 +62,120 @@
 
     $scope.AddReward = function (item, index) {
         if (parseInt($scope.reward_type_id) == 2) {
-        
+
             var ratingValue = $("#medalDiv" + index).find('input[type=radio]:checked').val();
             if ($("#medalDiv" + index).find('input[type=radio]:checked').length > 0) {
 
                 $scope.AddRewardObj = item;
-                $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
-                $scope.AddRewardObj.reward_name = ratingValue;
-                $scope.AddRewardObj.IsWinner = false;
-                $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
-                $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
-                $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
 
-                
+                if ($scope.AddRewardObj.IsRewarded != 1) {
 
-                bootbox.dialog({
-                    message: "Do you want Give Reward to selected User? Once you will give reward you can't modify it. Please make sure once again.",
-                    title: "Confirmation",
-                    className: "model",
-                    buttons: {
-                        success:
-                            {
-                                label: "Yes",
-                                className: "btn btn-primary theme-btn",
-                                callback: function (result) {
-                                    if (result) {
-                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
-                                          .then(function (response) {
-                                         
-                                              if (response.data > 0) {
-                                                  notificationFactory.customSuccess("Reward Saved Successfully.");
-                                                  $scope.GetRewardGroupCustomers();
-                                              }
-                                          })
-                                           .catch(function (response) {
+                    $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
+                    $scope.AddRewardObj.reward_name = ratingValue;
+                    $scope.AddRewardObj.IsWinner = false;
+                    $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
+                    $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
+                    $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
 
-                                           })
-                                           .finally(function () {
+                    bootbox.dialog({
+                        message: "Do you want Give Reward to selected User? Once you will give reward you can't modify it. Please make sure once again.",
+                        title: "Confirmation",
+                        className: "model",
+                        buttons: {
+                            success:
+                                {
+                                    label: "Yes",
+                                    className: "btn btn-primary theme-btn",
+                                    callback: function (result) {
+                                        if (result) {
+                                            $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
+                                              .then(function (response) {
 
-                                           });
+                                                  if (response.data > 0) {
+                                                      notificationFactory.customSuccess("Reward Saved Successfully.");
+                                                      $scope.GetRewardGroupCustomers();
+                                                  }
+                                              })
+                                               .catch(function (response) {
+
+                                               })
+                                               .finally(function () {
+
+                                               });
+                                        }
+                                    }
+                                },
+                            danger:
+                                {
+                                    label: "No",
+                                    className: "btn btn-default",
+                                    callback: function () {
+                                        return true;
                                     }
                                 }
-                            },
-                        danger:
-                            {
-                                label: "No",
-                                className: "btn btn-default",
-                                callback: function () {
-                                    return true;
-                                }
-                            }
-                    }
-                });
+                        }
+                    });
+                }
             }
             else {
                 notificationFactory.customError("Please select Medal.");
             }
         }
+
         if (parseInt($scope.reward_type_id) == 1) {
-      
+            debugger;
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;
-                $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
-                $scope.AddRewardObj.NoOfStars = parseInt(ratingValue);
-                $scope.AddRewardObj.IsWinner = false;
-                $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
-                $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
-                $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
+                if ($scope.AddRewardObj.IsRewarded != 1) {
 
-                bootbox.dialog({
-                    message: "Do you want Give Reward to selected User? Once you will give reward you can't modify it. Please make sure once again.",
-                    title: "Confirmation",
-                    className: "model",
-                    buttons: {
-                        success:
-                            {
-                                label: "Yes",
-                                className: "btn btn-primary theme-btn",
-                                callback: function (result) {
-                                    if (result) {
-                                        $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
-                                            .then(function (response) {                                            
-                                                if (response.data > 0) {
-                                                    notificationFactory.customSuccess("Reward Saved Successfully.");
-                                                    $scope.GetRewardGroupCustomers();
-                                                }
-                                            })
-                                             .catch(function (response) {
+                    $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
+                    $scope.AddRewardObj.NoOfStars = parseInt(ratingValue);
+                    $scope.AddRewardObj.IsWinner = false;
+                    $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
+                    $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
+                    $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
 
-                                             })
-                                              .finally(function () {
 
-                                              });
+                    bootbox.dialog({
+                        message: "Do you want Give Reward to selected User? Once you will give reward you can't modify it. Please make sure once again.",
+                        title: "Confirmation",
+                        className: "model",
+                        buttons: {
+                            success:
+                                {
+                                    label: "Yes",
+                                    className: "btn btn-primary theme-btn",
+                                    callback: function (result) {
+                                        if (result) {
+                                            $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
+                                                .then(function (response) {
+                                                    if (response.data > 0) {
+                                                        notificationFactory.customSuccess("Reward Saved Successfully.");
+                                                        //$scope.MakeWriteCmtFadeIn(index);
+                                                        $scope.GetRewardGroupCustomers();
+                                                    }
+                                                })
+                                                 .catch(function (response) {
+
+                                                 })
+                                                  .finally(function () {
+
+                                                  });
+                                        }
+                                    }
+                                },
+                            danger:
+                                {
+                                    label: "No",
+                                    className: "btn btn-default",
+                                    callback: function () {
+                                        return true;
                                     }
                                 }
-                            },
-                        danger:
-                            {
-                                label: "No",
-                                className: "btn btn-default",
-                                callback: function () {
-                                    return true;
-                                }
-                            }
-                    }
-                });
+                        }
+                    });
+                }
             }
             else {
                 notificationFactory.customError("Please select ratting.");

@@ -77,7 +77,7 @@
                                     <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
                                 </div>
                                 <div class="media-body">
-                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
+                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind-html="HotDeals.name"></a>
                                     <p ng-bind="HotDeals.Model"></p>
                                     <span ng-bind="(HotDeals.cost | number:2) +' Points'"></span>
                                 </div>
@@ -174,7 +174,7 @@
                                         <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
-                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>                                     
+                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name"></a>                                     
                                         <p ng-bind="SpecialOffer.Model"></p>
                                         <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
                                     </div>
@@ -203,7 +203,7 @@
                                     <div class="product-img">
                                         <img ng-src='{{LatestProduct.Image}}' alt="latest product"/>
                                     </div>
-                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
                                     <p ng-bind="LatestProduct.Model"></p>
                                     <p><span ng-bind="LatestProduct.Price +' Points'"></span></p>
                                     <div class="row" ng-controller="AddProductToCartController">

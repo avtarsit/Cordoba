@@ -2499,8 +2499,11 @@ var $$AnimateQueueProvider = ['$animateProvider', function($animateProvider) {
         var state = parseInt(child.getAttribute(NG_ANIMATE_ATTR_NAME));
         var animationDetails = activeAnimationsLookup.get(child);
         switch (state) {
-          case RUNNING_STATE:
-            animationDetails.runner.end();
+            case RUNNING_STATE:
+                if (animationDetails)
+                {
+                  animationDetails.runner.end();
+                }         
             /* falls through */
           case PRE_DIGEST_STATE:
             if (animationDetails) {

@@ -32,7 +32,6 @@
                         <th>Total</th>
                         <th></th>
                     </tr>
-
                     <tr ng-repeat="Item in OrderHisotry">
                         <td ng-bind="'#'+Item.order_id"></td>
                         <td ng-bind="Item.OrderStatusName"></td>
@@ -41,8 +40,6 @@
                         <td ng-bind="Item.OrderTotalText"></td>
                         <td><a class="view-detail cursor-pointer" href="" ui-sref="OrderDetail({OrderId:Item.order_id})"><i class="fa fa-eye"></i></a></td>
                     </tr>
-
-
                 </table>
             </div>
         </div>

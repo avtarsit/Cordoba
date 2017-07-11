@@ -26,15 +26,13 @@
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
                                     <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
-                                    <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>
-                                    <!--<p class="stock-desc">Out of Stock</p>-->
-                                    <!--<label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>-->
+                                    <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>                              
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
                             <p class="product-price"><span>Points:</span> {{Item.price}}</p>
-                            <p class="product-price">Subtotal: {{Item.total}}</p>
+                            <p class="product-price" ng-if="Item.quantity>1">Subtotal: {{Item.total}}</p>
                         </div>
                     </div>
                 </div>           
@@ -66,20 +64,16 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <ul>
-                        <li ng-repeat="Item in CartItemList"><p>-{{Item.name}}</p>
+                        <li ng-repeat="Item in CartItemList"><p ng-bind-html="'- '+Item.name"></p>
                             <p ng-bind="Item.total"></p>
                         </li>                      
-                    </ul>
-                 
-                    <!--<p>- Apple 5W USB Power Adapter</p>
-                    <p>50 points</p>-->
+                    </ul>                
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>{{AllItemTotal}} points</span>
+                    <span ng-bind="AllItemTotal +' Points'"></span>
                 </div>
-                <div class="checkout-block">
-                    <!-- <button class="btn btn-empty">Checkout</button> -->
+                <div class="checkout-block">                    
                     <a ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
                 </div>
             </div>

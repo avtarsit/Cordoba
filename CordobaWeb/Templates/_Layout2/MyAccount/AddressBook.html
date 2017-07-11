@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
 
-                                <div role="tabpanel" class="form-horizontal" id="messages" style="margin-top:8px">
+                                <div role="tabpanel" class="form-horizontal mt-10" id="messages" >
                                     <div class="alert alert-danger alert-dismissible validationErrors" ng-show="NewAddressForm.$submitted && !NewAddressForm.$valid">
                                         <ul ng-show="validationErrors">
                                             <li ng-repeat="error in validationErrors">{{error}}</li>
@@ -99,34 +99,7 @@
                         <div class="col-sm-4">
                             <label>Post Code</label>
                             <input type="text" class="form-control" value="" ng-model="AddressObj.postcode" />
-                        </div>
-                        <!--<div class="col-sm-4">
-            <div class="col-sm-4">
-                <label>Country</label>
-                <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" name="country" ng-model="AddressObj.country_id" required="required"></select>
-            </div>
-        </div>-->
-                        <!--<div class="col-sm-4">
-            <label>Region / State</label>
-            <div class="dropdown">
-                <button class="form-control dropdown-toggle" type="button" id="country" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Select state
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu mCustomScrollbar" aria-labelledby="country">
-                    <li><a href="javascript:;">Aberdeen</a></li>
-                    <li><a href="javascript:;">Aberdeenshire</a></li>
-                    <li><a href="javascript:;">Anglesey</a></li>
-                    <li><a href="javascript:;">Angus</a></li>
-                    <li><a href="javascript:;">Argyll and Bute</a></li>
-                    <li><a href="javascript:;">Bedfordshire</a></li>
-                    <li><a href="javascript:;">Berkshire</a></li>
-                    <li><a href="javascript:;">Blaenau Gwent</a></li>
-                    <li><a href="javascript:;">Bridgend</a></li>
-                    <li><a href="javascript:;">Bristol</a></li>
-                </ul>
-            </div>
-        </div>-->
+                        </div>                       
                         <div class="col-sm-4">
                             <label>County</label>
                             <input type="text" maxlength="128" class="form-control" name="county" ng-model="AddressObj.county" required="required" />
@@ -135,16 +108,7 @@
                             <label>Country</label>
                             <select ng-options="Country.country_id as Country.name  for Country in CountryList" class="form-control" name="country" ng-model="AddressObj.country_id" required="required"></select>
                         </div>
-                        <!--<div class="col-sm-12 default-address">
-            <label>Default Address:</label>
-            <div class="radio-button">
-                <input id="yes" class="radio-custom" name="radio-group" checked="" type="radio">
-                <label for="yes" class="radio-custom-label">Yes</label>
-                <input id="no" class="radio-custom" name="radio-group" type="radio">
-                <label for="no" class="radio-custom-label">No</label>
-            </div>
-        </div>-->
-
+           
                         <div class="col-sm-12 default-address">
                             <label>Default Address:</label>
                             <switch ng-model="AddressObj.IsDefaultAddress" on="Yes" off="No" class="green"></switch>
