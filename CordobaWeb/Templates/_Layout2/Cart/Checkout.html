@@ -1,17 +1,14 @@
 ﻿<div class="container" ng-controller="CartDetailController">
     <div class="order-detail cart-detail mt-30">
         <div class="col-sm-12">
-
             <div class="points">
                 <ul>
                     <li>
-                        <p class="bag-desc">Payment of {{AllItemTotal}} points has been received.</p>
-                    </li>
-                    <p class="bag-desc pull-right">Available Points : {{CustomerDetail.points}} Points</p>
+                        <p class="bag-desc">Payment of {{AllItemTotal}} points has been received.<span class="pull-right">Available Points : {{CustomerDetail.points}} Points</span></p>
+                    </li>              
                 </ul>
             </div>
         </div>
-
         <div class="col-sm-8">
             <div class="orders" ng-repeat="Item in CartItemList">
                 <div class="order-desc">
@@ -19,25 +16,20 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="#"><img class="media-object" ng-src="{{Item.ProductImage}}" alt="product"></a>
-
                             </div>
                             <div class="media-body">
-                                <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
+                                <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind-html="Item.name"></a>
                                 <p class="model-no"><span>Modal Number: </span>{{Item.model}}</p>
                                 <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-4">
                         <p class="product-price"><span>Points:</span> {{Item.price}}</p>
                         <p class="product-price"><span>Subtotal: {{Item.total}}</span></p>
                     </div>
-
-
                 </div>
             </div>
-
         </div>
         <div class="col-sm-4">
             <div class="orders">
@@ -55,9 +47,9 @@
                 </div>
             </div>
             <div class="chckout-add">
-                <a href="javascript:;"><i class="fa fa-angle-left"></i></a>
+                <a href="" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)"><i class="fa fa-angle-left"></i></a>
                 <p>{{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}}</p>
-                <a href="javascript:;"><i class="fa fa-angle-right"></i></a>
+                <a href="" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)"><i class="fa fa-angle-right"></i></a>
             </div>
             <div class="orders">
                 <div class="address">

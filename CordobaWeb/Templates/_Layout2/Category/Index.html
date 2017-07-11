@@ -28,14 +28,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)
-                 || (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
+        <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
             <div class="mt-30">
                 <h3 class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
-                            <div class="background-bg"  ng-controller="AddProductToCartController">
+                            <div class="background-bg" ng-controller="AddProductToCartController">
                                 <img ng-src="{{product.Image}}" alt="latest product" data-action="zoom">
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(product,$event)" value="ADD TO CART">
