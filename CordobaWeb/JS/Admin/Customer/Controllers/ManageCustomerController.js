@@ -187,11 +187,27 @@
 
 
     $scope.AddRewardPointObj = function (item) {
+        debugger;
         var RewardPoint = new Object();
-        RewardPoint.points_audit_id = 0;
-        RewardPoint.customer_id = $scope.customer_id;
-        var CurrentDate = new Date();
+        //RewardPoint.points_audit_id = 0;
+        //RewardPoint.customer_id = $scope.customer_id;
         if (item != undefined && item.Point != '' && item.Description != '') {
+            $http.post(configurationService.basePath + "api/CustomerApi/InsertPointAudit?customer_id=" + $scope.customer_id + "&description=" + item.Description + "&points=" + item.Point)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Points Saved Successfully.");
+                      $scope.GetCustomerById();
+                      $scope.RewardPointObj.Description = '';
+                      $scope.RewardPointObj.Point = '';
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.customError("Error occur during save record.");
+          })
+          .finally(function () {
+
+          });
+
             
             CalculateTotalRewardBalance();
         }

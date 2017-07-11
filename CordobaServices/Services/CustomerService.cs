@@ -290,7 +290,7 @@ namespace CordobaServices.Services
                     new SqlParameter("description", description),
                     new SqlParameter("points", points)
                 };
-                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomerImage", sqlParameter).FirstOrDefault();
+                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertPointAudit", sqlParameter).FirstOrDefault();
                 return result;
             }
             catch(Exception e)
@@ -298,6 +298,7 @@ namespace CordobaServices.Services
                 return 0;
             }
         }
+
 
         
 

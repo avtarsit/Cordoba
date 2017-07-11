@@ -309,6 +309,24 @@ namespace CordobaAPI.API
             }
 
         }
+
+        [HttpPost]
+        public HttpResponseMessage InsertPointAudit(int customer_id, string description, int points)
+        {
+            try
+            {
+                var result = _CustomerService.InsertPointAudit(customer_id, description, points);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
         
       
     }
