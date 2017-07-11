@@ -28,9 +28,9 @@
                         <p>Your Rating: <b>{{Item.reward_name}}</b></p>
                         <p>Comment: <b>{{Item.Comment}}</b></p>
                     </div>-->
-                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!(Item.IsRewarded==1)"><i class="fa fa-comments"></i></a>
+                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!((Item.IsRewarded==1) || (Item.IsRewarded==2))"><i class="fa fa-comments"></i></a>
                 </div>
-                <div class="write-cmt" id="write-cmt{{$index}}">
+                <div class="write-cmt" ng-class="{testBlock: Item.IsRewarded==2}" id="write-cmt{{$index}}">
                     <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..." maxlength="100"></textarea>
                     <button class="btn btn-empty" ng-click="AddReward(Item,$index)">Save</button>
                     <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
@@ -40,24 +40,25 @@
         <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==1" ng-repeat="Item in Customers">
             <div class="block-bg pt-15 pb-15">
                 <div class="col-sm-4">
-                    <!--<img ng-src="{{Item.CustomerImage}}" class="img-thumbnail" alt="Image" />-->
+                    <img ng-src="{{Item.CustomerImage}}" class="img-thumbnail" alt="Image" />
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>
                     <div class="start-rating">
                         <angular-star-rating max="maxValue" value="Item.reward_value" id="ratingValue{{$index}}" hover='changeOnHover'
-                                             ng-if="Item.IsRewarded==0" ng-click="AddCustomerRating(Item,$index)"></angular-star-rating>
+                                             is-readonly='Item.IsRewarded==1' ng-click="AddReward(Item,$index)"></angular-star-rating>
                         <br />
                         <br />
                         <div ng-if="((Item.IsRewarded==1) || (Item.IsRewarded==2))">
                             <p>Comment: <b>{{Item.Comment}}</b></p>
                         </div>
-                    <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!((Item.IsRewarded==1) || (Item.IsRewarded==2))"><i class="fa fa-comments"></i></a>
-                </div>
-                <div class="write-cmt" ng-class="{testBlock: Item.IsRewarded==2}" id="write-cmt{{$index}}">
-                    <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..." maxlength="100"></textarea>
-                    <button class="btn btn-empty" ng-click="AddReward(Item,$index)">Save</button>
-                    <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
+                        <a class="icon-cmt" id="icon-cmt{{$index}}" ng-click="MakeWriteCmtFadeIn($index)" ng-if="!((Item.IsRewarded==1) || (Item.IsRewarded==2))"><i class="fa fa-comments"></i></a>
+                    </div>
+                    <div class="write-cmt" ng-class="{testBlock: Item.IsRewarded==2}" id="write-cmt{{$index}}">
+                        <textarea class="form-control" id="writeTxtArea{{$index}}" placeholder="Write your comment here..." maxlength="100"></textarea>
+                        <button class="btn btn-empty" ng-click="AddReward(Item,$index)">Save</button>
+                        <a id="close-comment" ng-click="MakeWriteCmtFadeOut($index)">✖</a>
+                    </div>
                 </div>
             </div>
         </div>
