@@ -14,7 +14,7 @@
                                 <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
                                 <ul>
                                     <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
-                                        <a href="#" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a>
+                                        <a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a>
                                     </li>
                                 </ul>
                             </li>

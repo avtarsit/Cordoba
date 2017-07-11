@@ -11,6 +11,7 @@ app.controller('AuditPointsController', function ($timeout,StoreSessionDetail,Us
     Tab();
     //#endregion
     $scope.StoreDetailInSession = StoreSessionDetail;
+
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);

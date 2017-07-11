@@ -78,15 +78,14 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <p>Subtotal:</p>
-                    <p>{{AllItemSubtotal | number : 2}} points</p>
+                    <p ng-bind="(AllItemSubtotal | number : 2)+' Points'"></p>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>{{AllItemTotal | number : 2}} points</span>
+                    <span ng-bind="(AllItemTotal | number : 2)+' Points'"></span>
                 </div>
-                <div class="checkout-block">
-                    <!-- <button class="btn btn-empty">Checkout</button> -->
-                    <a href="" class="btn btn-empty">Checkout</a>
+                <div class="checkout-block">            
+                    <a href="" ng-click="Checkout()" class="btn btn-empty cursor-pointer">Checkout</a>
                 </div>
             </div>
         </div>

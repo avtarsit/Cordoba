@@ -66,20 +66,16 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <ul>
-                        <li ng-repeat="Item in CartItemList"><p>-{{Item.name}}</p>
+                        <li ng-repeat="Item in CartItemList"><p ng-bind-html="'- '+Item.name"></p>
                             <p ng-bind="Item.total"></p>
                         </li>                      
-                    </ul>
-                 
-                    <!--<p>- Apple 5W USB Power Adapter</p>
-                    <p>50 points</p>-->
+                    </ul>                
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span>{{AllItemTotal}} points</span>
+                    <span ng-bind="AllItemTotal +' Points'"></span>
                 </div>
-                <div class="checkout-block">
-                    <!-- <button class="btn btn-empty">Checkout</button> -->
+                <div class="checkout-block">                    
                     <a ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
                 </div>
             </div>

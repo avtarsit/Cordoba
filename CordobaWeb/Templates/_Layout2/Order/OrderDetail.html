@@ -13,10 +13,10 @@
             <div class="orders">
                 <div class="order-headings">
                     <div class="order-title">
-                        <p>Order ID:</p> <span> #{{OrderdetailObj.order_id}} </span>
+                        <p>Order ID:</p> <span ng-bind="'#'+ OrderdetailObj.order_id"> #{{}} </span>
                     </div>
                     <div class="order-title">
-                        <p>Order placed Date:</p> <span>{{OrderdetailObj.date_added | date:'MM/dd/yyyy'}} </span>
+                        <p>Order placed Date:</p> <span ng-bind="OrderdetailObj.date_added | date:GlobalDateFormat"></span>
                     </div>
                     <div class="order-title">
                         <p>Payment Method:</p> <span>Points Based Deduction </span>
@@ -89,13 +89,13 @@
                     </div>
 
                     <div class="payment-summary mt-20" ng-repeat="Item in OrderdetailObj.orderProductEntity">
-                        <p>- {{Item.name}}</p>
-                        <p ng-bind="(Item.total | number :2)+' points'"></p>
+                        <p ng-bind-html="'- '+Item.name"></p>
+                        <p ng-bind="(Item.total | number :2)+' Points'"></p>
                        
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span ng-bind="(OrderdetailObj.total | number :2) +' points'"></span>
+                        <span ng-bind="(OrderdetailObj.total | number :2) +' Points'"></span>
                     </div>
                 </div>
             </div>

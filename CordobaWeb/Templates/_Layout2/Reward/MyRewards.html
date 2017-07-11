@@ -2,7 +2,7 @@
     <div class="my-account mt-30">
         <div class="col-sm-12">
             <div class="points ">
-                <h3>{{PageTitle}}</h3>
+                <h3 ng-bind="PageTitle"></h3>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                     <td ng-bind="Item.Customer"></td>
                     <td ng-bind="Item.Medal"></td>
                     <td ng-bind="Item.comment"></td>
-                    <td ng-bind="Item.reward_given_date | date:'MM/dd/yyyy'"></td>
+                    <td ng-bind="Item.reward_given_date | date:GlobalDateFormat"></td>
                 </tr>
                 <tr ng-if="!(MyRewardList.length>0)">
                     <td colspan="4">No records found</td>

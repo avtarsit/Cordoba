@@ -23,7 +23,7 @@
                             </div>
                             <div class="media-body">
                                 <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
-                                <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
+                                <p class="model-no"><span>Modal Number: </span>{{Item.model}}</p>
                                 <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>
                             </div>
 
@@ -77,14 +77,14 @@
                     </div>
 
                     <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
-                        <p>- {{Item.name}} </p>
+                        <p ng-bind="'- '+Item.name"></p>
                         <p ng-bind="Item.total"></p>
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span>{{AllItemTotal}} points</span>
+                        <span ng-bind="AllItemTotal+' Points'"></span>
                         <br />
-                        <a ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
+                        <a href="" ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
                     </div>
                 </div>
             </div>

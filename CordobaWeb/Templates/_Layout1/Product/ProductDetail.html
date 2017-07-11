@@ -1,35 +1,4 @@
 ﻿
-<style>
-  /*Some CSS*/
-.magnify { min-width:200px; margin: 0 auto; position: relative; cursor: none}
-/*Lets create the magnifying glass*/
-.large {
-	width: 175px; height: 175px;
-	position: absolute;
-	border-radius: 100%;	
-	/*Multiple box shadows to achieve the glass effect*/
-	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 
-	0 0 7px 7px rgba(0, 0, 0, 0.25), 
-	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);	
-	/*hide the glass by default*/
-	display: none;
-}
-/*To solve overlap bug at the edges during magnification*/
-.small {
-     display: block; 
-     /*min-height:200px;
-     min-width:200px;*/
-     max-width:500px;
-     max-height:400px;   
-     /*margin-left: auto;
-     margin-right: auto;
-     margin: 0 auto;*/   
-}
-
-.centerContent{
-      margin: 0 auto;     
-}
-</style>
 <div ng-controller="ProductDetailLayoutController">
     <div class="product-detail">
         <div class="container">
@@ -89,7 +58,7 @@
                         <div class="product-img">
                             <img ng-src="{{SimilarProduct.Image}}" alt="latest product" data-action="zoom" />
                         </div>
-                        <a ui-sref="LayoutProductDetail({ProductId:SimilarProduct.product_id})">{{SimilarProduct.name}}</a>
+                        <a ui-sref="LayoutProductDetail({ProductId:SimilarProduct.product_id})" ng-bind-html="SimilarProduct.name"></a>
                         <p ng-bind="SimilarProduct.Model"></p>
                         <p><span ng-bind="SimilarProduct.Price+' Points'"></span></p>
                         <div class="row" ng-controller="AddProductToCartController">
@@ -105,13 +74,10 @@
     </div>
 </div>
 <script>
-
     $(document).ready(function(){
    	var native_width = 0;
-   	var native_height = 0;
-         
+   	var native_height = 0;         
 	$(".large").css("background", "url('" + $(".small").attr("src") + "') no-repeat");
-
 	$(".magnify").mousemove(function(e){
 		if(!native_width && !native_height)
 		{
@@ -132,15 +98,13 @@
 			else
 			{
 				$(".large").fadeOut(100);
-			}	
-	
+			}		
 			    if ($(".large").is(":visible")) {
 			        var rx = Math.round(mx / $(".small").width() * native_width - $(".large").width() / 2) * -1;
 			        var ry = Math.round(my / $(".small").height() * native_height - $(".large").height() / 2) * -1;
 			        var bgp =rx + "px " + ry + "px";
 			        var px = mx - $(".large").width() / 2;
-			        var py = my - $(".large").height() / 2;
-			        
+			        var py = my - $(".large").height() / 2;			        
 			        $(".large").css({ left:px, top:py, backgroundPosition: bgp });
 			    }				
 		}

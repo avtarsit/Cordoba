@@ -8,7 +8,6 @@
             </ul>
         </div>
     </div>
-
     <div class="catagories_slider">
         <div class="container">
             <div class="col-md-3" ng-controller="Dashboard_CategoryController">
@@ -26,17 +25,16 @@
                     <h3 class="heading">LATEST PRODUCT</h3>
                     <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 250">
                         <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
-                            <div class="col-product text-center">
+                            <div class="col-product  text-center">
                                 <img ng-src='{{LatestProduct.Image}}' alt="latest product">
-                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind="LatestProduct.name"></a>
+                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo: 20" title="{{LatestProduct.name}}"></a>
                                 <p ng-bind="LatestProduct.Model"></p>
-                                <span>92 Points</span>
+                                <span ng-bind="LatestProduct.Price+' Points'"></span>
                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                     <input type="button" name="cart_btn" ng-click="AddProductToCart(LatestProduct,$event)" class="add_cart" value="ADD TO CART">
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="popular" ng-controller="Dashboard_PopularCategoryController">
@@ -68,9 +66,9 @@
                                         <div class="col-sm-3" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                             <div class="col-product text-center">
                                                 <img ng-src="{{SpecialOffer.Image}}" alt="special Offer">
-                                                <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind="SpecialOffer.name"></a>
+                                                <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo: 20" title="{{SpecialOffer.name}}"></a>
                                                 <p ng-bind="SpecialOffer.Model"></p>
-                                                <span ng-bind="(SpecialOffer.cost | number:2) +' Points'"></span>
+                                                <span ng-bind-html="(SpecialOffer.cost | number:2) +' Points'"></span>
                                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(SpecialOffer,$event)" value="ADD TO CART">
                                                 </div>
@@ -131,86 +129,7 @@
                         </div>
                         </div>
                 </div>
-            </div>
-            <footer class="footer">
-                <div class="container">
-                    <div class="col-sm-3 pb-10">
-                        <a href="index.html"><img src="images/logo.png" alt="footer-logo"></a>
-                    </div>
-                    <div class="col-sm-9 pb-10">
-                        <div class="footer_menu">
-                            <ul>
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Site Map</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>Copyright © 2017 Cordoba</p>
-                </div>
-            </footer>
-
-            <div class="modal" id="myModal" role="dialog">
-                <div class="vertical-alignment-helper">
-                    <div class="modal-dialog vertical-align-center">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <a href="#" class="bottom-close" data-dismiss="modal">No Thanks</a>
-                                <div class="login_page_left">
-                                    <h2>Login</h2>
-                                    <img src="images/online-shopping.png" class="pt-20" alt="online-shopping">
-                                </div>
-                                <div class="login_page_right">
-                                    <div class="form-group pt-20">
-                                        <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Password:</label>
-                                        <a class="forgot-password pull-right" href="#">Forgot Password ?</a>
-                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                                    </div>
-                                    <div class="chekbox-main checkbox mr-20">
-                                        <input type="checkbox" id="checkbox1" />
-                                        <label for="checkbox1">Remember me</label>
-                                    </div>
-                                    <button type="submit" class="submit_btn">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-overlay"></div>
-            <div class="about-us">
-                <div id="aboutScroll">
-                    <a href="javascript:;" class="showDesc">About Us</a>
-                    <h2>Bienvenue sur la boutique Make a Difference</h2>
-                    <div class="col-sm-12 welcome-block">
-                        <div class="welcome-img">
-                            <img src="images/welcomeImg.png" alt="welcome" />
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <div class="more-content">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        </div>
-                        <a id="readMore" href="javascript:;">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <a href="#" id="back-to-top" title="Back to top">
-                    &uarr;
-                </a>
-            </div>
+            </div>                                    
         </div>
     </div>
 </div>
