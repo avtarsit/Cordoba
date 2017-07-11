@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md-5 col-sm-4">
                         <p class="product-price"><span>Points:</span> {{Item.price}}</p>
-                        <p class="product-price"><span>Subtotal: {{Item.total}}</span></p>
+                        <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal: {{Item.total}}</span></p>
                     </div>
                 </div>
             </div>

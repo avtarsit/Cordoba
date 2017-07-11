@@ -26,15 +26,13 @@
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:Item.product_id})" class="media-heading" ng-bind="Item.name"></a>
                                     <p class="model-no"><span>Modal Number:</span>{{Item.model}}</p>
-                                    <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>
-                                    <!--<p class="stock-desc">Out of Stock</p>-->
-                                    <!--<label class="stock-label"><i class="fa fa-warning"></i>This item will not be included in order</label>-->
+                                    <p class="model-no"><span>Quantity:</span> {{Item.quantity}}</p>                              
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
                             <p class="product-price"><span>Points:</span> {{Item.price}}</p>
-                            <p class="product-price">Subtotal: {{Item.total}}</p>
+                            <p class="product-price" ng-if="Item.quantity>1">Subtotal: {{Item.total}}</p>
                         </div>
                     </div>
                 </div>           
