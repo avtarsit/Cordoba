@@ -21,6 +21,8 @@ namespace CordobaModels.Entities
         public int created_by { get; set; }
         public int? modified_by { get; set; }
         public int? Participate { get; set; }
+        public int? store_id { get; set; }
+        public bool IsCustomerDepartment { get; set; }
     }
 
 }
