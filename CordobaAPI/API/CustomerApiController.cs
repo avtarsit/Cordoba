@@ -310,6 +310,20 @@ namespace CordobaAPI.API
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetUserImage(int customer_id)
+        {
+            try
+            {
+                var result = _CustomerService.getUserImage(customer_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         [HttpPost]
         public HttpResponseMessage InsertPointAudit(int customer_id, string description, int points)
         {
