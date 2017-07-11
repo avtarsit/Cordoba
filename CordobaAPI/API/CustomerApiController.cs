@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Configuration;
 
 
 namespace CordobaAPI.API
@@ -310,6 +311,76 @@ namespace CordobaAPI.API
 
         }
 
+
+
+        [HttpPost]
+        public HttpResponseMessage UploadUserImage(int customerImage_id, int customer_id)
+        {
+            bool res = false;
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = HttpContext.Current.Request.Files[0];
+
+                if (httpPostedFile != null)
+                {
+                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.CustomerImage.ToString();
+                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    {
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        string childFolderPath = folderPath + "/" + customer_id;
+                        if (!Directory.Exists(childFolderPath))
+                        {
+                            Directory.CreateDirectory(childFolderPath);
+                        }
+
+                        //childFolderPath += "/" + banner_image_id;
+                        //if (!Directory.Exists(childFolderPath))
+                        //{
+                        //    Directory.CreateDirectory(childFolderPath);
+                        //}
+
+                        string fileName = customer_id + "/" + httpPostedFile.FileName;
+                        res = _CustomerService.UploadUserImage(customerImage_id, customer_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString() + "/" + fileName);
+
+                        if (res == true)
+                        {
+                            httpPostedFile.SaveAs(folderPath + "\\" + fileName);
+
+                            var directoryFiles = Directory.GetFiles(childFolderPath);
+                            foreach (var filepath in directoryFiles)
+                            {
+                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                {
+                                    File.Delete(filepath);
+                                }
+                            }
+                        }
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+
+
+            }
+            if (res == true)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = true });
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
+        }
+
+
+
+
+
+
+
         [HttpGet]
         public HttpResponseMessage GetUserImage(int customer_id)
         {
@@ -319,6 +390,25 @@ namespace CordobaAPI.API
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage DeleteCustomerImage(int customer_id)
+        {
+            try
+            {
+                var result = _CustomerService.deleteCustomerImage(customer_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
+
+            }
+            catch(Exception e)
             {
                 throw;
             }
