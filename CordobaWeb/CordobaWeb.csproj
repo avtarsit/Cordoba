@@ -3690,6 +3690,8 @@
     <Content Include="Content\layout1\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\sd.pubxml" />
     <None Include="Properties\PublishProfiles\WEB.pubxml" />
+    <Content Include="SampleFile\customer_importer_template.xls" />
+    <Content Include="SampleFile\points_importer_template.xls" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3827,7 +3829,9 @@
     <Content Include="Templates\_Layout2\Reward\AddReward.html" />
     <Content Include="Templates\_Layout2\Reward\MyRewards.html" />
     <Content Include="Templates\_Layout2\Reward\ViewCustomerRewardDetails.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
