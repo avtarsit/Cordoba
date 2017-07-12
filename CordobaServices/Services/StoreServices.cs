@@ -118,6 +118,32 @@ namespace CordobaServices.Services
             }
         }
 
+        public bool UploadStoreLogo(int store_id, string logo)
+        {
+
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("store_id", store_id),
+                    new SqlParameter("logo",logo)
+                };
+                int result = objGenericRepository.ExecuteSQL<int>("UploadStoreLogo", sqlParameter).FirstOrDefault();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+        
+
 
     }
 }
