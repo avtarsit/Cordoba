@@ -91,7 +91,7 @@
                                             </td>
                                             <td class="text-left">
                                                 <a href="" id="thumb-image0" data-toggle="image" class="img-thumbnail">
-                                                    <img src="E:\CordobaFullData\cdb\cordobarewards.co.uk\catalog-images\{{imageObj.image}}" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png">
+                                                    <img src="{{imageObj.image}}" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png">
                                                 </a><input type="hidden" name="banner_image[0][image]" value="" id="input-image{{$index}}">
                                                 <div>
                                                     <input type="file" id="Image{{$index}}" class="upload" file-model="fileUpload">
@@ -101,7 +101,7 @@
                                                 <input type="number" min="0" id="BannerAttributeSortOrder{{$index}}" ng-model="imageObj.sort_order" placeholder="Sort order" class="form-control">
                                             </td>
                                             <td class="text-left">
-                                                <button type="button" ng-click="RemoveBannerImage($index)" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                                <button type="button" ng-if="imageObj.image != null" ng-click="RemoveBannerImage($index)" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
                                                 <input type="button" class="btn btn-info" ng-click="UploadBannerImage($index)" value="Upload">
                                             </td>
                                         </tr>
