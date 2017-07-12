@@ -10,8 +10,9 @@
     $scope.StoreObj = new Object();
 
     $scope.IsEditMode = false;
-    $scope.store_id =parseInt($stateParams.StoreID);
-    if ($stateParams.StoreID != undefined && $stateParams.StoreID != null) {
+    $scope.store_id = parseInt($stateParams.StoreID);
+    debugger;
+    if ($scope.store_id != undefined && $scope.store_id != null && $scope.store_id != 0) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
         $scope.store_id = parseInt($stateParams.StoreID);
@@ -188,13 +189,13 @@
                   debugger;
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
-                      $state.go('ShowStore');
-                      //if ($scope.store_id > 0) {
-                      //     $state.go('ShowStore');
-                      //}
-                      //else {
-                      //   return $state.go('ManageStore', { StoreID: response.data });
-                      //}
+                      
+                      if ($scope.store_id > 0) {
+                           $state.go('ShowStore');
+                      }
+                      else {
+                         return $state.go('ManageStore', { StoreID: response.data });
+                      }
                   }
               })
           .catch(function (response) {
