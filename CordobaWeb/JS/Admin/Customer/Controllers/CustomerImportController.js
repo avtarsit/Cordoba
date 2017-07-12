@@ -61,20 +61,27 @@
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
 
-        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&customer_group_id=");
+        xhr.open("POST", configurationService.basePath + "api/CustomerApi/CustomerImport?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&customer_group_id=0");
 
         $scope.progressVisible = true;
 
         xhr.onreadystatechange = function () {         
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    if (xhr.responseText == -1)
+
+                    //Need to check
+
+                    if (xhr.responseText.code == -1)
                     {
                         toastr.error("Here your Email msg.");
                     }
-                    if (xhr.responseText > 0)
+                    if (xhr.responseText.code > 0)
                     {
                         toastr.success("File Successfully Submitted.");
+                    }
+                    if (xhr.responseText.code == -2)
+                    {
+                        toastr.error(xhr.responseText.ErrorLog);
                     }
                    
                 } else {

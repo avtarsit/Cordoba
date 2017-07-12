@@ -5,6 +5,7 @@
     BindToolTip();
     Tab();
     $scope.StoreId = $rootScope.storeId;
+    //debugger;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -104,6 +105,25 @@
       });
     }
 
+    function GetUserImage() {
+        //debugger;
+        $scope.CustomerImageObj = [];
+        $http.get(configurationService.basePath + "api/CustomerApi/GetUserImage?customer_id=" + $scope.customer_id)
+          .then(function (response) {
+              //debugger;
+              if (response.data.length > 0) {
+                  
+                  $scope.CustomerImageObj = response.data[0];
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     function GetCountryList() {
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?countryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
@@ -167,28 +187,32 @@
 
 
     $scope.AddRewardPointObj = function (item) {
+        //debugger;
         var RewardPoint = new Object();
-        RewardPoint.points_audit_id = 0;
-        RewardPoint.customer_id = $scope.customer_id;
-        var CurrentDate = new Date();
+        //RewardPoint.points_audit_id = 0;
+        //RewardPoint.customer_id = $scope.customer_id;
         if (item != undefined && item.Point != '' && item.Description != '') {
-            RewardPoint.adjustment = item.Point;
-            if (item.Point > 0) {
-                RewardPoint.Deposit = item.Point;
-                RewardPoint.Withdrawal = '-';
-            }
-            else {
-                RewardPoint.Withdrawal = item.Point;
-                RewardPoint.Deposit = '-';
-            }
-            RewardPoint.comment = item.Description;
-            RewardPoint.timestamp = $filter('date')(CurrentDate, $rootScope.GlobalDateFormat);
-            $scope.CustomerObj.PointsAuditList.push(RewardPoint);
-            $scope.RewardPointObj = new Object();
+            $http.post(configurationService.basePath + "api/CustomerApi/InsertPointAudit?customer_id=" + $scope.customer_id + "&description=" + item.Description + "&points=" + item.Point)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Points Saved Successfully.");
+                      $scope.GetCustomerById();
+                      $scope.RewardPointObj.Description = '';
+                      $scope.RewardPointObj.Point = '';
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.customError("Error occur during save record.");
+          })
+          .finally(function () {
+
+          });
+
+            
             CalculateTotalRewardBalance();
         }
         else {
-            notificationFactory.customError("Description and Point are required.");
+            notificationFactory.customError("Description and Points are required.");
         }
     }
 
@@ -199,9 +223,11 @@
 
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
           .then(function (response) {
+              debugger;
               $scope.CustomerObj = response.data;
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {
                   var AddressObj = new Object();
+                  
                   $scope.CustomerObj.AddressList.push(AddressObj);
               }
               CalculateTotalRewardBalance();
@@ -308,12 +334,88 @@
      });
     }
 
+
+    $scope.UploadImagePopUp = function () {
+        var uploadHtml = "<input type='file' id='Image' class='upload' file-model='fileUpload' accept='image/jpg, image/jpeg, image/png'>";
+
+        bootbox.dialog({
+            message: uploadHtml,
+            title: "Image Upload",
+            buttons: {
+                success: {
+                    label: "Upload",
+                    className: "btn btn-info",
+                    callback: function () {
+                        uploadUserImage();
+                    }
+                }
+            }
+        });
+    };
+
+
+    function uploadUserImage()
+    {
+        var data = new FormData();
+        var files = $("#Image").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+
+        var filename = files[0].name;
+
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+            //console.log(data);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.customer_id,
+            contentType: false,
+            processData: false,
+            data: data,
+            //data: {
+            //    data: data,
+            //    banner: $scope.BannerImageObj[index]
+            //},
+            success: function (response) {
+                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                $('#ImageUpload').val('');
+                GetUserImage();
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
+    }
+
+    $scope.deleteCustomerImage = function () {
+
+        $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomerImage?customer_id=" + $scope.customer_id)
+          .then(function (response) {
+              //debugger;
+              notificationFactory.customSuccess("Image deleted Successfully.");
+              GetUserImage();
+
+          })
+      .catch(function (response) {
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+
     function Init() {
         GetCountryList();
         GetStoreList();
         GetCustomerGroupList();
         $scope.GetCustomerById();
         GetCustomerDepartmentList();
+        GetUserImage();
     }
 
 

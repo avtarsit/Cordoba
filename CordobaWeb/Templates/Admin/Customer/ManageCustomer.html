@@ -61,7 +61,7 @@
                             <div class="tabbable">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
-                                    <li role="presentation"><a data-target="#HistoryTab" role="tab" data-toggle="tab">History</a></li>
+                                    <!--<li role="presentation"><a data-target="#HistoryTab" role="tab" data-toggle="tab">History</a></li>-->
                                     <li role="presentation"><a data-target="#TransactionTab" role="tab" data-toggle="tab">Transactions</a></li>
                                     <li role="presentation"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Reward Points</a></li>
 
@@ -82,6 +82,14 @@
                                                     </li>
                                                     <li class=" cursor-pointer"><a role="tab" data-toggle="tab" ng-click="AddAddress()"><i class="icon-plus-circle2"></i>&nbsp;&nbsp;Add Address</a></li>
                                                 </ul>
+
+                                                <div  ng-disabled="IsEditMode != true" class="customerImage">
+                                                    <img ng-src="{{CustomerImageObj.Image}}" alt="no image" /><br/>
+                                                    <input type="button" class="btn btn-info" ng-disabled="store_id==0" ng-click="UploadImagePopUp()" value="Upload">
+                                                    <button type="button" ng-if="CustomerImageObj.Image != undefined" ng-click="deleteCustomerImage()" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+
+                                                </div>
+
                                             </div>
                                             <div class="col-xs-10">
                                                 <!-- Tab panes -->
@@ -314,15 +322,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="Item in TransactionList">
-                                                        <td ng-bind="Item.Description"></td>
-                                                        <td ng-bind="Item.Amount"></td>
+                                                    <tr ng-repeat="Item in CustomerObj.TransactionList">
+                                                        <td ng-bind="Item.date_added | date:GlobalDateFormat"></td>
+                                                        <td ng-bind="Item.comment"></td>
+                                                        <td ng-bind="Item.total"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
 
 
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label class="col-lg-2 control-label ">Description</label>
                                                 <div class="col-lg-9">
                                                     <input type="text" class="form-control" name="Description" maxlength="2000" placeholder="Enter Transaction Description" ng-model="TransactionObj.Description">
@@ -334,7 +343,7 @@
                                                     <input type="text" class="form-control" name="Amount" maxlength="200" placeholder="Enter Postcode Name" ng-model="TransactionObj.Amount">
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary pull-right" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add Transaction"><i class="icon-plus-circle2"></i> Add Transaction</button>
+                                            <button class="btn btn-primary pull-right" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add Transaction"><i class="icon-plus-circle2"></i> Add Transaction</button>-->
                                             <!--End Transaction Tab-->
                                         </div>
                                     </div>

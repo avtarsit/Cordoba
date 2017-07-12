@@ -185,9 +185,16 @@
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {
+                  debugger;
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
                       $state.go('ShowStore');
+                      //if ($scope.store_id > 0) {
+                      //     $state.go('ShowStore');
+                      //}
+                      //else {
+                      //   return $state.go('ManageStore', { StoreID: response.data });
+                      //}
                   }
               })
           .catch(function (response) {
@@ -228,6 +235,42 @@
             }
         });
 
+    }
+
+    $scope.uploadStoreLogo = function () {
+        var data = new FormData();
+        var files = $("#Image").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+
+        var filename = files[0].name;
+
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+            //console.log(data);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/StoreApi/UploadStoreLogo?store_id=' + $scope.store_id + '&store_name=' + $scope.StoreObj.name,
+            contentType: false,
+            processData: false,
+            data: data,
+            //data: {
+            //    data: data,
+            //    banner: $scope.BannerImageObj[index]
+            //},
+            success: function (response) {
+                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                $('#ImageUpload').val('');
+                $scope.GetStoreById();
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
     }
 
     $scope.GetBannerList = function () {

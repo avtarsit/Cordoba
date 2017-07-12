@@ -98,6 +98,7 @@
     <Compile Include="Entities\CustomerDepartmentEntity.cs" />
     <Compile Include="Entities\CustomerEntity.cs" />
     <Compile Include="Entities\CustomerGroupEntity.cs" />
+    <Compile Include="Entities\CustomerImageEntity.cs" />
     <Compile Include="Entities\CustomerOrderEntity.cs" />
     <Compile Include="Entities\DashboardSummaryEntity.cs" />
     <Compile Include="Entities\EmailNotification.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Entities\StoreTermsEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
+    <Compile Include="Entities\TransactionListEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\wishlistEntity.cs" />
     <Compile Include="Entities\ZoneEntity.cs" />

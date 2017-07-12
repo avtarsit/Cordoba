@@ -44,6 +44,7 @@ namespace CordobaModels.Entities
 
         public int? ErrorTypeId { get; set; }
         public List<PointsAuditEntity> PointsAuditList { get; set; }
+        public List<TransactionListEntity> TransactionList { get; set; }
 
 
         public int? otp { get; set; }

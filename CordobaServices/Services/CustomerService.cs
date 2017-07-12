@@ -54,6 +54,7 @@ namespace CordobaServices.Services
                 CustomerEntity customerEntity = new CustomerEntity();
                 List<AddressEntity> addressEntity = new List<AddressEntity>();
                 List<PointsAuditEntity> PointsAuditList = new List<PointsAuditEntity>();
+                List<TransactionListEntity> TransactionList = new List<TransactionListEntity>();
 
                 var ParameterStoreId = new SqlParameter
                 {
@@ -96,8 +97,17 @@ namespace CordobaServices.Services
                         PointsAuditList = PointsAuditResult;
                     }
                     #endregion
+                    
+                    #region Transaction List 
+                    var TransactionListResult = CustomerEntityGenericRepository.ExecuteSQL<TransactionListEntity>("EXEC GetTransactionList", new SqlParameter { ParameterName = "Customer_Id", DbType = DbType.Int32, Value = customer_id }).ToList<TransactionListEntity>().ToList();
+                    if (TransactionListResult != null)
+                    {
+                        TransactionList = TransactionListResult;
+                    }
+                    #endregion
                     customerEntity.AddressList = addressEntity;
                     customerEntity.PointsAuditList = PointsAuditList;
+                    customerEntity.TransactionList = TransactionList;
                 }
                 else
                 {
@@ -201,7 +211,7 @@ namespace CordobaServices.Services
 
 
 
-        public int CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable)
+        public string CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable)
         {
             string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
             try
@@ -212,7 +222,7 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("customer_group_id", customer_group_id);
                 param[3] = new SqlParameter("CustomerXml", CustomerXml);
 
-                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportCustomerXml", param).FirstOrDefault();
+                var result = CustomerEntityGenericRepository.ExecuteSQL<dynamic>("EXEC ImportCustomerXml", param).FirstOrDefault();
                 return result;
             }
             catch (Exception)
@@ -221,6 +231,86 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+        public bool UploadUserImage(int customerImage_id, int customer_id, string ImageName)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("customerImage_id", customerImage_id),
+                    new SqlParameter("customer_id", customer_id),
+                    new SqlParameter("image", ImageName)
+                };
+                int result = CustomerEntityGenericRepository.ExecuteSQL<int>("AddOrUpdateCustomerImage", sqlParameter).FirstOrDefault();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<CustomerImageEntity> getUserImage(int customer_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("customer_id", customer_id),
+                 };
+
+                var CustomerList = CustomerEntityGenericRepository.ExecuteSQL<CustomerImageEntity>("GetUserImage", sqlParameter).ToList<CustomerImageEntity>().ToList();
+                return CustomerList;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public int deleteCustomerImage(int customer_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("customer_id", customer_id)                   
+                };
+                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("DeleteCustomerImage", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public int InsertPointAudit(int customer_id, string description, int points)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("customer_id", customer_id),
+                    new SqlParameter("description", description),
+                    new SqlParameter("points", points)
+                };
+                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertPointAudit", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+        }
+
+
+        
 
     }
 }

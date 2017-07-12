@@ -184,5 +184,57 @@ namespace CordobaAPI.API
 
             return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
         }
+
+        [HttpPost]
+        public HttpResponseMessage UploadStoreLogo(int store_id , string store_name)
+        {
+            bool res = false;
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = HttpContext.Current.Request.Files[0];
+
+                if (httpPostedFile != null)
+                {
+                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.store_logos.ToString();
+                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    {
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        
+
+                        string fileName =  store_name + "-" + httpPostedFile.FileName;
+                        res = _StoreServices.UploadStoreLogo(store_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.store_logos.ToString() + "/" + fileName);
+
+                        if (res == true)
+                        {
+                            httpPostedFile.SaveAs(folderPath + "\\" + fileName);
+
+                            var directoryFiles = Directory.GetFiles(folderPath);
+                            foreach (var filepath in directoryFiles)
+                            {
+                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                {
+                                    //File.Delete(filepath);
+                                }
+                            }
+                        }
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+
+
+            }
+            if (res == true)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = true });
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
+        }
     }
 }
