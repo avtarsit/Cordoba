@@ -66,7 +66,7 @@
                                         <div class="col-sm-3" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                             <div class="col-product text-center">
                                                 <img ng-src="{{SpecialOffer.Image}}" alt="special Offer">
-                                                <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo: 20" title="{{SpecialOffer.name}}"></a>
+                                               <span><a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo: 20" title="{{SpecialOffer.name}}"></a></span> 
                                                 <p ng-bind="SpecialOffer.Model"></p>
                                                 <span ng-bind-html="(SpecialOffer.cost | number:2) +' Points'"></span>
                                                 <div class="cart-btn" ng-controller="AddProductToCartController">
@@ -123,7 +123,7 @@
                                     <img ng-src="{{BestSeller.Image}}" alt="saller">
                                     <h4>{{BestSeller.name}}</h4>
                                     <p ng-bind="BestSeller.Price +' Points'"></p>
-                                    @*<a href="#" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>*@
+                                    <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript">  
     $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.category-list').mCustomScrollbar();

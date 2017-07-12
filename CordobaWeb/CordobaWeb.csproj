@@ -621,6 +621,7 @@
     <Content Include="Content\layout2\images\letest-product1.png" />
     <Content Include="Content\layout2\images\logo.png" />
     <Content Include="Content\layout2\images\new-arrivals.png" />
+    <Content Include="Content\layout2\images\online-shopping.png" />
     <Content Include="Content\layout2\images\popular-catagory1.png" />
     <Content Include="Content\layout2\images\right-arrow.png" />
     <Content Include="Content\layout2\images\slide1.jpg" />

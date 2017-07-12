@@ -72,8 +72,20 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/LanguageApi/DeleteLanguage?languageId=" + $scope.languageId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                    .then(function (response) {
-                                       notificationFactory.customSuccess("Successfully Deleted!.");
-                                       $state.go('Language');
+                                       if (response.data == 1)
+                                       {
+                                           notificationFactory.customSuccess("Successfully Deleted!.");
+                                           $state.go('Language');
+                                       }
+                                       else if (response.data==-1)
+                                       {
+                                           toastr.error("This language is referenced in other table. So this cannot be delete.");
+                                       }
+                                       else {
+                                           toastr.error("There is something wrong! please try again later.");
+                                       }
+                                    
+                                     
                                    })
                                .catch(function (response) {
                                })

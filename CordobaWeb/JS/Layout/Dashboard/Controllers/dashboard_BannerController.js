@@ -9,7 +9,7 @@
 
     $scope.GetBanner_Layout = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetBanner_Layout?StoreID=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {
+          .then(function (response) {           
               if (response.data.length > 0) {
                   $scope.BannerList = response.data;
               }

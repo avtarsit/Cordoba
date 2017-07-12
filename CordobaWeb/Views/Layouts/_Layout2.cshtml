@@ -73,36 +73,36 @@
     </style>
 </head>
 <body>
-    <div ng-controller="DashboardController" ng-cloak>
-        <div class="fix-header navbar-fixed-top">
+    <div class="master-container" ng-controller="DashboardController" ng-cloak>
+        <div class="fix-header  navbar-fixed-top">
             @*<div class="top-header">
-                    <div class="container">
-                        <div class="col-sm-12">
+                <div class="container">
+                    <div class="col-sm-12">
 
-                            <div class="login">
-                                <ul>
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">My Wishlist</a></li>
-                                    <li>
-                                        <p class="hi-text ">Hello</p>
-                                        <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nitin Patel <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><p>you have: <span>4000 Points</span></p></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li class="active"><a class="acoount-info" href="editProfile.html">Personal Info</a></li>
-                                            <li><a class="acoount-info" href="changePassword.html">Change Password</a></li>
-                                            <li><a class="acoount-info" href="addressBook.html">Address Book</a></li>
-                                            <li><a class="acoount-info" href="orderHistory.html">Order History</a></li>
-                                            <li><a class="acoount-info" href="rewardPoints.html">Reward Points</a></li>
-                                            <li><a class="logout" href="#">Logout</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
+                        <div class="login">
+                            <ul>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li>
+                                    <p class="hi-text ">Hello</p>
+                                    <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nitin Patel <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><p>you have: <span>4000 Points</span></p></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li class="active"><a class="acoount-info" href="editProfile.html">Personal Info</a></li>
+                                        <li><a class="acoount-info" href="changePassword.html">Change Password</a></li>
+                                        <li><a class="acoount-info" href="addressBook.html">Address Book</a></li>
+                                        <li><a class="acoount-info" href="orderHistory.html">Order History</a></li>
+                                        <li><a class="acoount-info" href="rewardPoints.html">Reward Points</a></li>
+                                        <li><a class="logout" href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
+
                     </div>
-                </div>*@
+                </div>
+            </div>*@
             <div class="top-header">
                 <div class="container">
                     <div class="col-sm-12">
@@ -128,7 +128,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -136,46 +136,45 @@
 
             <div class="header">
                 <div class="container">
+                    <div class="col-sm-12 headerRow">
 
-                    <div class="col-sm-12">
-                        <div class="row headerRow">
-                            <div class="logo">
-                                <a href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                        <div class="logo">
+                            <a href="#" ui-sref="Home"><img class="headerLogo" ng-src="{{StoreDetailInSession.logo}}" alt="Logo"></a>
+                        </div>
+                        <div class="main-menu">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
                             </div>
-                            <div class="main-menu">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
 
-                                <div class="show_cart" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-shopping-cart" id="cart_icon"></i>
-                                        <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
-                                    </a>
-                                </div>
-                                <div class="search_products">
-                                    <div class="input-group add-on">
-                                        <input class="form-control add-on" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
-                                        </div>
+                            <div class="show_cart" ui-sref="CartDetail({cartgroup_id:CustomerDetail.cartgroup_id})">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-shopping-cart" id="cart_icon"></i>
+                                    <span class="badge" ng-bind="CustomerDetail.TotalItemAdded"></span>
+                                </a>
+                            </div>
+                            <div class="search_products">
+                                <div class="input-group add-on">
+                                    <input class="form-control add-on" placeholder="Search" my-enter="GotoProductList(WhatYouarelookingfor)" name="srch-term" ng-model="WhatYouarelookingfor" id="srch-term" type="text">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" ng-click="GotoProductList(WhatYouarelookingfor)"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
                                 </div>
-                                <div id="navbar" class="navbar-collapse collapse ">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                        <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
-                                    </ul>
-                                </div>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse toplinks">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#" ui-sref="Home">Home</a></li>
+                                    <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
+                                </ul>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -190,10 +189,9 @@
                 <div id="blueDot"></div>
             </div>
         </div>
-
-        @RenderBody()
-
-    
+        <div class="container mainbody">
+            @RenderBody()
+        </div>
 
         <footer class="footer">
             <div class="container">
@@ -307,10 +305,19 @@
 
         <div class="about-overlay"></div>
         <div class="about-us">
-            <div id="aboutScroll">
+            <div id="aboutScroll" class="welcome-block">
                 <a href="javascript:;" class="showDesc">About Us</a>
-              
+                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <div class="more-content">
+                    <div ng-bind-html="WelcomeMsg[1]">
+                    </div>
+                </div>
+            </div>
 
+            <div class="container-fluid">
+                <a href="#" id="back-to-top" title="Back to top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
             </div>
         </div>
 
@@ -349,9 +356,10 @@
     <script src="~/Scripts/ng-ckeditor.js"></script>
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
-    <script src="~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
+    <script src="~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js"></script> 
     <script type="text/javascript">
+      
+     
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
@@ -371,8 +379,7 @@
                     $(".about-overlay").fadeIn("slow");
                 }
             });
-            $('#readMore').click(function () {
-                debugger;
+            $('#readMore').click(function () {             
                 $('.more-content').slideToggle();
 
                 var LinkText = $("#readMore").text();
@@ -464,7 +471,6 @@
                 }
             }
         }
-    </script>
-
+    </script> 
 </body>
 </html>
