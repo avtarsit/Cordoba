@@ -265,7 +265,7 @@
             success: function (response) {
                 notificationFactory.customSuccess("Store Image Upload Successfully.");
                 $('#ImageUpload').val('');
-                $scope.GetStoreById()();
+                $scope.GetStoreById();
             },
             error: function (response) {
                 notificationFactory.error("Error occur during image upload.");
