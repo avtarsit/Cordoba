@@ -8,7 +8,9 @@ body {
     position: relative;
     color: #333;
 }
-
+.master-container{
+    margin-top:-68px;
+}
 img {
     max-width: 100%;
 }
@@ -509,13 +511,13 @@ ol, ul, li {
 }
 
 .slider {
-    width: 84%;
+    width: 100%;
     float: left;
-    margin-left: 14%;
+    margin-left: 1%;
 }
 
     .slider .bx-wrapper img {
-        width: 85%;
+        width: 100%;
         float: left;
         height: 368px;
         box-shadow: none;
@@ -556,18 +558,16 @@ ol, ul, li {
         content: "\00276D";
         left: 6px;
         border-radius: 30px 0 0 30px;
-        padding-left: 16px;
+        padding-left: 1px;
     }
 
     .slider .banner-slider a.bx-prev:hover:before, .banner-slider a.bx-next:hover:before {
         color: #c75f41;
     }
 
-    .slider .banner-slider .bx-controls-direction a {
-        margin-top: -32px;
-        text-indent: 0;
-        border-radius: 10px;
-        margin-right:194px;
+    .slider .banner-slider .bx-controls-direction a {        
+        text-indent:7px;
+        border-radius: 10px;  
     }
 
 /*letest-product*/
@@ -2289,3 +2289,10 @@ label {
     text-overflow:inherit;
     overflow:visible;
 }
+.headerLogo{
+ max-height:60px;
+}
+.mainbody{
+  margin-bottom:104px;
+}
+
