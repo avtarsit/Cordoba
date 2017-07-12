@@ -54,6 +54,7 @@ namespace CordobaServices.Services
                 CustomerEntity customerEntity = new CustomerEntity();
                 List<AddressEntity> addressEntity = new List<AddressEntity>();
                 List<PointsAuditEntity> PointsAuditList = new List<PointsAuditEntity>();
+                List<TransactionListEntity> TransactionList = new List<TransactionListEntity>();
 
                 var ParameterStoreId = new SqlParameter
                 {
@@ -96,8 +97,17 @@ namespace CordobaServices.Services
                         PointsAuditList = PointsAuditResult;
                     }
                     #endregion
+                    
+                    #region Transaction List 
+                    var TransactionListResult = CustomerEntityGenericRepository.ExecuteSQL<TransactionListEntity>("EXEC GetTransactionList", new SqlParameter { ParameterName = "Customer_Id", DbType = DbType.Int32, Value = customer_id }).ToList<TransactionListEntity>().ToList();
+                    if (TransactionListResult != null)
+                    {
+                        TransactionList = TransactionListResult;
+                    }
+                    #endregion
                     customerEntity.AddressList = addressEntity;
                     customerEntity.PointsAuditList = PointsAuditList;
+                    customerEntity.TransactionList = TransactionList;
                 }
                 else
                 {

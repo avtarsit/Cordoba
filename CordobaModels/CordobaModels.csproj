@@ -127,6 +127,7 @@
     <Compile Include="Entities\StoreTermsEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
+    <Compile Include="Entities\TransactionListEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\wishlistEntity.cs" />
     <Compile Include="Entities\ZoneEntity.cs" />

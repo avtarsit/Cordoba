@@ -322,9 +322,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="Item in TransactionList">
-                                                        <td ng-bind="Item.Description"></td>
-                                                        <td ng-bind="Item.Amount"></td>
+                                                    <tr ng-repeat="Item in CustomerObj.TransactionList">
+                                                        <td ng-bind="Item.date_added | date:GlobalDateFormat"></td>
+                                                        <td ng-bind="Item.comment"></td>
+                                                        <td ng-bind="Item.total"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
