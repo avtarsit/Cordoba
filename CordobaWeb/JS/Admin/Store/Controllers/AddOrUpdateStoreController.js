@@ -188,12 +188,13 @@
                   debugger;
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
-                      if ($scope.store_id > 0) {
-                          $state.go('ShowStore');
-                      }
-                      else {
-                          $state.go('ManageStore', { StoreID: response.data });
-                      }
+                      $state.go('ShowStore');
+                      //if ($scope.store_id > 0) {
+                      //     $state.go('ShowStore');
+                      //}
+                      //else {
+                      //   return $state.go('ManageStore', { StoreID: response.data });
+                      //}
                   }
               })
           .catch(function (response) {
@@ -264,7 +265,7 @@
             success: function (response) {
                 notificationFactory.customSuccess("Store Image Upload Successfully.");
                 $('#ImageUpload').val('');
-                $scope.GetBannerImageById();
+                $scope.GetStoreById()();
             },
             error: function (response) {
                 notificationFactory.error("Error occur during image upload.");

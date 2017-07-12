@@ -122,7 +122,7 @@
                                             <div class="form-group" ng-if="store_id>0">
                                                 <label class="col-lg-2 control-label">Image</label>
                                                 <div class="col-lg-5">
-                                                    <img class="pull-left" src="{{StoreObj.logo}}" ng-if="StoreObj.logo != null" />
+                                                    <img class="pull-left" src="{{StoreObj.logo}}" ng-if="StoreObj.logo != undefined " />
                                                     <input type="hidden" name="image" ng-model="StoreObj.logo" id="input-image">
 
                                                     <div class="col-sm-4">
