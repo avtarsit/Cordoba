@@ -6,7 +6,7 @@ body {
     height: 100%;
     min-height: 100vh;
     position: relative;
-    color: #3268a0;
+    color: #333;
 }
 .master-container{
     margin-top:-68px;
@@ -2295,5 +2295,4 @@ label {
 .mainbody{
   margin-top:64px;
 }
-
 

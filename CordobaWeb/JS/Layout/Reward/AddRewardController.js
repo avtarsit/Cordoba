@@ -123,7 +123,7 @@
         }
 
         if (parseInt($scope.reward_type_id) == 1) {
-            debugger;
+        
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;

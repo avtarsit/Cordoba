@@ -41,7 +41,7 @@
 	.navbar-default .navbar-nav > li > a { padding:10px 0 8px; }
 	.main-menu { width:100%; padding:0 0 10px; }
 	.cart-block { width:50px; text-align:left; padding-top:5px; }
-	.cart-block .badge { left:31px; }
+	.search-panel .cart-block .badge { left:20px; top:-10px; }
 	.main-heding { padding-top:0; }
 	.welcome-block p:last-child { padding-bottom:0; }
 	.search-block { width:calc(100% - 50px); }
@@ -52,9 +52,34 @@
 	.footer-links li:before { display:none; }
 	.footer-links li a { font-size:18px; line-height:23px; }
 	.footer-logo, .connect-to { text-align:left; }
+    .cart-desc .col-sm-4 .account-block {
+        margin-top:10px;
+    }
+    .product-price {
+        text-align:left;
+        padding:15px 0 0 90px;
+    }
+    #cancelProfile .row .col-sm-6, #ChangePasswordForm .col-sm-4.col-sm-offset-4 .col-sm-12 {
+        padding:0;
+    }
+    .navbar-default .navbar-nav > li {
+        border-left:none;
+    }
+    #navbar {
+        border-top:none;
+    }
+        #navbar .navbar-nav {
+            float:left;
+        }
+    .container-fluid {
+        padding:0;
+    }
+    .product-detail h3 {
+        font-size:20px;
+    }
 }
 @media (max-width:640px) {
-	body { padding-top:200px; }
+	body { padding-top:220px; }
 	.login_text { display: none; }
 	.login_page { width: 100% }
 }
@@ -62,7 +87,11 @@
 	.recently-viewed .col-md-3 { width: 100%; float: left; }
 }
 @media (max-width:360px) {
-	header .navbar-nav li a { padding:10px; }
+	header .navbar-nav li a { padding:10px 10px 0; }
+    header .navbar-nav li p.hi-text {
+        padding-top:10px;
+        padding-bottom:0;
+    }
 	.navbar-brand { max-width:240px; }
 	.deals .media-left { padding-right:15px; }
 	.deals .media-right { padding-left:15px; }
