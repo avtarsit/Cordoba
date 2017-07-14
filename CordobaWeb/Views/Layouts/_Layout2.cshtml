@@ -7,6 +7,12 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
+
+    @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
+    {
+        @Styles.Render("~/Content/layout2/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
+    }
+    
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>

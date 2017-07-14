@@ -45,6 +45,7 @@ namespace CordobaWeb.Controllers
             
                 ProjectSession.StoreSession = Result;
                 Session.Add("CssOverride", Result.css_overrides);
+                Session.Add("css_file_name", Result.css_file_name);
 
                 return masterView;
 
