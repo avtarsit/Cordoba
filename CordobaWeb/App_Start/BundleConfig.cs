@@ -149,7 +149,7 @@ namespace CordobaWeb
                      "~/Content/layout1/css/jquery.bxslider.min.css",
                      "~/Content/layout1/css/jquery.mCustomScrollbar.min.css",
                      "~/Content/layout1/css/style.css",
-                      "~/Content/layout1/css/dpNumberPicker.min.css",
+                     "~/Content/layout1/css/dpNumberPicker.min.css",
                      "~/Content/layout1/css/responsive.css",
                      "~/Content/layout1/css/classes.css",
                      "~/Content/layout1/css/zoom.css",

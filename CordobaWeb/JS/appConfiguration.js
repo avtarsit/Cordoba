@@ -27,10 +27,10 @@ function GetLayoutName() {
             User.customer_id = 0;
             User.address_id = 0;
             User.cartgroup_id = 0;
-            User.TotalItemAdded = 0;
+            //User.TotalItemAdded = 0;
             app.value('UserDetail', User);
             var LayoutName = data.template;
-        
+            debugger;
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 var Home = {
                     name: 'Home',
@@ -504,11 +504,11 @@ function GetLayoutName() {
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
                 //    enabled: true,
-                //    requireBase: false
+                //    requireBase: true
                 //});
 
             })
-             .run(function ($http, $rootScope, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
+             .run(function ($http, $rootScope, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {             
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
@@ -633,8 +633,7 @@ function GetLayoutName() {
 
                  //}
 
-                 $rootScope.$on('$locationChangeStart', function (event, next, current) {
-
+                 $rootScope.$on('$locationChangeStart', function (event, next, current) {           
                      var geturlparameters = next.toString().split('?')[1];
                      var isAlreadyDecoded = false;
                      if (geturlparameters != undefined) {
@@ -647,7 +646,7 @@ function GetLayoutName() {
 
                  });
                  // Redirect to login if route requires auth and you're not logged in
-                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {         
                      $state.previous = fromState;
                      $state.previousParams = fromParams;
                      if (fromState.name != "") {

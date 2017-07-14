@@ -39,14 +39,7 @@ namespace CordobaWeb.Controllers
                         break;
                     case "_layout1":
                     case "_layout2":
-                        if (Request.Url.Port == 1021)
-                        {
-                            masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout1");
-                        }
-                        else
-                        {
-                            masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", "_Layout2");
-                        }
+                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);                      
                         break;                                         
                 }
             

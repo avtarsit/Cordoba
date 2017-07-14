@@ -5,7 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
-    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
+    //$scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
     $scope.OpenLoginPopUp = function () {
@@ -75,7 +75,6 @@
         UserDetail.TotalItemAdded = 0;
         localStorageService.set("loggedInUser", UserDetail);
         $rootScope.CustomerDetail = UserDetail;
-
         $state.go('Home');
     }
   
@@ -104,7 +103,6 @@
      $scope.VerifyOTP = function (form) {
             $scope.IsVisibleloginForm = true;
             $scope.IsVisibleforgotPasswordForm = true;
-
             if (form.$valid) {
                 //$scope.otpObj.store_id = 3;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)

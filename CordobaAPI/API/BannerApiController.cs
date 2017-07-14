@@ -127,9 +127,14 @@ namespace CordobaAPI.API
                     }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
+              
                 return Request.CreateResponse(HttpStatusCode.OK);
 
 
+            }
+            else
+            {
+                res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, null, 0);               
             }
             if (res == true)
             {

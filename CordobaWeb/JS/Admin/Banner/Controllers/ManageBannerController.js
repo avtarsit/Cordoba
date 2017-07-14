@@ -4,16 +4,16 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-
     $scope.EnumStatus = [
                { 'StatusId': 1, 'StatusName': 'Enabled' }
-             , { 'StatusId': 2, 'StatusName': 'Disabled' }
+             , { 'StatusId': 0, 'StatusName': 'Disabled' }
     ];
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.IsEditMode = false;
     $scope.BannerId = $stateParams.BannerId;
-
+    $scope.BannerObj = new Object();
+    $scope.BannerObj.status = 1;
     if ($stateParams.BannerId != undefined && $stateParams.BannerId != null) {
         $scope.PageTitle = "Update Banner";
         $scope.BannerId = $stateParams.BannerId;
@@ -85,10 +85,14 @@
     $scope.SaveBanner = function (form) {
         if (form.$valid) {
             $http.post(configurationService.basePath + "api/BannerApi/InsertUpdateBanner?banner_id=" + $scope.BannerId + "&name=" + $scope.BannerObj.name + "&status=" + $scope.BannerObj.status)
-          .then(function (response) {
-
-              $scope.BannerObj = response.data;
-              $state.go('Banner')
+          .then(function (response) {          
+              if ($scope.BannerId > 0) {
+                  $state.go('Banner')
+              }
+              else {
+                  $state.go('ManageBanner', { BannerId: response.data });
+                  toastr.success("Saved successfully.");
+              }                        
           })
       .catch(function (response) {
       })
@@ -173,14 +177,15 @@
     $scope.UploadBannerImage = function (index) {      
         var data = new FormData();  
         var files = $("#Image" + index).get(0).files;
-        if (files.length == 0) {
-            notificationFactory.customError("Please select atleast one file.");
+        if (files.length == 0 && !($scope.BannerImageObj[index]["banner_image_id"]>0)) {
+            notificationFactory.customError("Please select Banner Image.");
             return notificationFactory;
         }
-
-        var filename = files[0].name;
+        var filename=null;
+   
 
         if (files.length > 0) {
+            filename = files[0].name;
             data.append("UploadedFile", files[0]);
             //console.log(data);
         }
@@ -188,7 +193,7 @@
 
         var ajaxRequest = $.ajax({
             type: "POST",
-            url: configurationService.basePath + 'api/BannerApi/UploadBannerImage?banner_id=' + $scope.BannerObj.banner_id + '&banner_image_id=' + $scope.BannerImageObj[index]["banner_image_id"] + '&link=' + $scope.BannerImageObj[index]["link"] + '&sort_order=' + $scope.BannerImageObj[index]["sort_order"],
+            url: configurationService.basePath + 'api/BannerApi/UploadBannerImage?banner_id=' + $scope.BannerObj.banner_id + '&banner_image_id=' + $scope.BannerImageObj[index]["banner_image_id"] + '&link=' + ($scope.BannerImageObj[index]["link"]!=null?$scope.BannerImageObj[index]["link"]:'') + '&sort_order=' + ($scope.BannerImageObj[index]["sort_order"]!=null?$scope.BannerImageObj[index]["sort_order"]:0),
             contentType: false,
             processData: false,
             data: data,
@@ -197,7 +202,7 @@
             //    banner: $scope.BannerImageObj[index]
             //},
             success: function (response) {
-                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                notificationFactory.customSuccess("Banner Upload Successfully.");
                 $('#ImageUpload').val('');
                 $scope.GetBannerImageById();
             },
