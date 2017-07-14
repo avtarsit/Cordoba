@@ -269,18 +269,22 @@ ol, ul, li {
 .logo {
     float: left;
     padding: 2px 0;
-    width: 170px;
+    width: 270px;
     padding-left: 15px;
 }
 
 .main-menu {
     float: right;
+    width:calc(100% - 270px);
 }
-
+#navbar {
+    float:right;
+}
 .search_products {
     float: right;
     position: relative;
-    width: 300px;
+    width: 80%;
+    max-width:300px;
     margin-right: 30px;
     margin-top: 16px;
     padding-left: 15px;

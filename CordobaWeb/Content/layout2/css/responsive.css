@@ -21,12 +21,6 @@
 	}
 }
 @media screen and (max-width: 991px) {
-	
-	.search_products {
-		width: 98%;
-		float: left;
-		padding-top: 10px;
-	}
 	.search_products::before {
 		top: 7px;
 	}
@@ -76,16 +70,6 @@
 	.show_cart {
     	float: right;
     	padding-top: 20px;
-    	width: 55px;
-	}
-	.navbar-collapse {
-		float: left;
-    	padding-top: 20px;
-    	width: 100%;
-	}
-	.search_products {
-		width: calc(100% - 90px);
-		padding-top: 15px;
 	}
 	.search_products::before {
 		top: 12px;
@@ -111,13 +95,6 @@
 	.hot-deals .flex-direction-nav .flex-next {
 		top: -12.5%;
 	}
-	.footer{
-		padding-bottom: 20px;
-	}
-	
-}
-@media screen and (max-width: 580px) {
-	
 	
 }
 @media screen and (max-width: 480px) {
