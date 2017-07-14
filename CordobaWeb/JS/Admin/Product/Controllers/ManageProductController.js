@@ -111,6 +111,7 @@
     };
 
     $scope.GetProductById = function () {
+        debugger;
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ProductObj = response.data;
@@ -256,8 +257,16 @@
             $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, productEntity)
               .then(function (response) {
                   if (response.data > 0) {
-                      notificationFactory.customSuccess("Product Saved Successfully.");
-                      $state.go('ManageProduct', ({ 'ProductId': response.data }));
+                      if ($scope.product_id>0)
+                      {
+                          notificationFactory.customSuccess("Product Saved Successfully.");                          
+                          $state.go('Product');
+                      }
+                      else {
+                          notificationFactory.customSuccess("Product Saved Successfully.");
+                          $state.go('ManageProduct', ({ 'ProductId': response.data }));
+                      }
+                   
                   }
                   else if (response.data == -1) {
                       notificationFactory.customError("Product name is already Exists!");
