@@ -106,7 +106,7 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
-              debugger;
+            
               if ($scope.StoreObj.store_id == 0) {
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
