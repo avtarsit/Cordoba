@@ -9,9 +9,9 @@
     $scope.order_id = parseInt($stateParams.OrderId);
 
     $scope.OrderStatusEnum = OrderStatusEnum;
-    $scope.GetOrderDetail_Layout = function () {
+    $scope.GetOrderDetail_Layout = function () {    
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetail_Layout?order_id=" + $scope.order_id + "&store_id=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {
+          .then(function (response) {             
               $scope.OrderdetailObj = response.data;
             
           })

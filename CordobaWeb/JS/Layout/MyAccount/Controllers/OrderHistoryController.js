@@ -21,11 +21,8 @@ app.controller('OrderHistoryController', function ($timeout, StoreSessionDetail,
     //#endregion
     $scope.StoreDetailInSession = StoreSessionDetail;
 
-
-
-
     $scope.GetOrderHistory = function () {
-        $http.get(configurationService.basePath + "API/OrderApi/GetOrderHistory?StoreId=" + StoreSessionDetail.store_id + "&LoggedInUserId=0&customer_id=" + UserDetail.customer_id)
+        $http.get(configurationService.basePath + "API/OrderApi/GetOrderHistory?StoreId=" + StoreSessionDetail.store_id + "&LoggedInUserId=" + UserDetail.customer_id + "&customer_id=" + UserDetail.customer_id)
           .then(function (response) {              
               $scope.OrderHisotry = response.data;
           })

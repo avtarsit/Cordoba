@@ -9,10 +9,29 @@
     $scope.SelectedCustomerAddress = new Object();
     $scope.SelectedCustomerAddress.address_id = 0;
     
+    $scope.GetCustomerDetails = function () {
+
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)       
+        .then(function (response) {            
+            $rootScope.CustomerDetail.points = response.data.points;
+            UserDetail.points = $rootScope.CustomerDetail.points;
+        })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     if ($state.current.name.toLowerCase() == 'checkout')
     {
         if (!(UserDetail.customer_id > 0)) {
             window.location.href = 'home/accessdenied';
+        }
+        else {
+
+            $scope.GetCustomerDetails();
         }
     }
     if ($stateParams.cartgroup_id != undefined && $stateParams.cartgroup_id != null) {

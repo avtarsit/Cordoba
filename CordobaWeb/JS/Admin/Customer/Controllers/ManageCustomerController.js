@@ -222,8 +222,7 @@
     $scope.GetCustomerById = function () {
 
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {        
               $scope.CustomerObj = response.data;
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {
                   var AddressObj = new Object();

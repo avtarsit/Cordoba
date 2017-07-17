@@ -43,19 +43,19 @@
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Store Url:</td>
-                                                <td><a href="#">{{OrderDetails.store_url}}</a></td>
+                                                <td><a href="{{OrderDetails.store_url}}" target="_blank">{{OrderDetails.store_url}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Customer:</td>
-                                                <td><a href="#">{{OrderDetails.customer}}</a></td>
+                                                <td>{{OrderDetails.customer}}</td>
                                             </tr>
-                                            <tr ng-if="OrderDetails.customer_group_id!=0">
+                                            <!--<tr ng-if="OrderDetails.customer_group_id!=0">
                                                 <td class="col-sm-2">Customer:</td>
                                                 <td><a href="#">{{OrderDetails.customer}}</a></td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td class="col-sm-2">E-Mail:</td>
-                                                <td><a href="#">{{OrderDetails.email}}</a></td>
+                                                <td>{{OrderDetails.email}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Telephone:</td>
@@ -102,8 +102,54 @@
                                     </table>
 
                                     <!--End OrderDetails Tab-->
-
                                     <div>
+                                        <div>
+                                            <h3>Update Order Status</h3>
+                                            <hr />
+                                        </div>
+                                        <div class="panel panel-flat">
+                                            <div class="panel-heading">
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
+                                                        <div class="col-lg-10">
+                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label text-right">Notify Customer</label>
+                                                        <div class="col-lg-10">
+                                                            <input type="checkbox" ng-model="OrderHistory.notify" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label text-right">Comment</label>
+                                                        <div class="col-lg-10">
+                                                            <textarea class="form-control" ng-model="OrderHistory.comment"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-2"></div>
+                                                        <div class="col-lg-10 text-right">
+                                                            <input type="button" value="Update order Status" class="btn btn-primary" ng-click="InsertOrderHistory(OrderHistory)" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div>
                                         <div>
                                             <h3>Update Order Status</h3>
                                             <hr />
@@ -149,7 +195,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="PaymentDetail">
@@ -260,7 +306,7 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="product in Products">
-                                                <td><a href="#">{{product.name}}</a></td>
+                                                <td>{{product.name}}</td>
                                                 <td>{{product.model}}</td>
                                                 <td class="text-right">{{product.quantity}}</td>
                                                 <td class="text-right">{{product.price | number : 0}}</td>
@@ -328,7 +374,7 @@
                                     </table>
                                     <br />
                                     <br />
-                                    <div>
+                                    <!--<div>
                                         <div>
                                             <h3>Add Order History</h3>
                                             <hr />
@@ -341,14 +387,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
                                                         <div class="col-lg-10">
-                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>
-                                                            <!--<select class="form-control">
-                                                                <option>Cancelled</option>
-                                                                <option>PartiallyShipped</option>
-                                                                <option>Processing</option>
-                                                                <option>Returned</option>
-                                                                <option>Shipped</option>
-                                                            </select>-->
+                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>                                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -381,7 +420,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
