@@ -117,6 +117,7 @@
                  $("#editProfile").show();
                  $(".edit-profile i").toggleClass("fa-pencil fa-close");
                  toastr.success("Profile Detail successfully updated.");
+                 $scope.GetCustomerDetails();
              }
              else
              {
