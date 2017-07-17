@@ -281,8 +281,16 @@
               .then(function (response) {
                   debugger;
                   if (response.data > 0) {
-                      notificationFactory.customSuccess("Product Saved Successfully.");
-                      $state.go('ManageProduct', ({ 'ProductId': response.data }));
+                      if ($scope.product_id>0)
+                      {
+                          notificationFactory.customSuccess("Product Saved Successfully.");                          
+                          $state.go('Product');
+                      }
+                      else {
+                          notificationFactory.customSuccess("Product Saved Successfully.");
+                          $state.go('ManageProduct', ({ 'ProductId': response.data }));
+                      }
+                   
                   }
                   else if (response.data == -1) {
                       notificationFactory.customError("Product name is already Exists!");

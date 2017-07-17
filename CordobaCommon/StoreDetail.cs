@@ -48,6 +48,7 @@ namespace CordobaCommon
         public string telephone { get; set; }
         public string county { get; set; }
         public string layout { get; set; }
+        public string css_file_name { get; set; }
 
         
     }

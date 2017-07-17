@@ -5,7 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
-    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
+    //$scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
     $scope.OpenLoginPopUp = function () {
@@ -76,7 +76,6 @@
         UserDetail.TotalItemAdded = 0;
         localStorageService.set("loggedInUser", UserDetail);
         $rootScope.CustomerDetail = UserDetail;
-
         $state.go('Home');
     }
   

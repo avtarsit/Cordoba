@@ -41,7 +41,7 @@
                    //alert('already exists');
                    notificationFactory.customError("Supplier Name is already Exists!!");
                }
-               if (response.data == 1) {
+               if (response.data >0) {
                    notificationFactory.customSuccess("Supplier Saved Successfully.");
                    $state.go('ShowSupplier');
                }
@@ -69,8 +69,15 @@
                             if (result) {
                                 $http.get(configurationService.basePath + "api/SupplierApi/DeleteSupplier?SupplierID=" + $scope.SupplierID + '&StoreID=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
                                       .then(function (response) {
-                                          toastr.success('Successfully Deleted.');
-                                          $state.go('ShowSupplier');
+                                          if (response.data == -1) {
+                                              toastr.error('Supplier is assigned to product so you can not delete it.');
+                                          }
+                                          else {
+                                              toastr.success('Successfully Deleted.');
+                                              $state.go('ShowSupplier');
+                                          }
+                                       
+                                          
                                       })
                                   .catch(function (response) {
                                   })

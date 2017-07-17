@@ -6,6 +6,8 @@
     $scope.IsEmptyShoppingCart = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.cartgroup_id = 0;
+    $scope.SelectedCustomerAddress = new Object();
+    $scope.SelectedCustomerAddress.address_id = 0;
     
     if ($state.current.name.toLowerCase() == 'checkout')
     {
@@ -135,8 +137,7 @@
         }
     }
 
-    $scope.PlaceOrder = function () {
-
+    $scope.PlaceOrder = function () {   
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;

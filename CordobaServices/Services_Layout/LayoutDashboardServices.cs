@@ -122,7 +122,7 @@ namespace CordobaServices.Services_Layout
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
                 new SqlParameter("email", CustomerObj.email)
                ,new SqlParameter("password", CustomerObj.password)
-               ,new SqlParameter("cartgroup_id", CustomerObj.cartgroup_id)
+               ,new SqlParameter("cartgroup_id", (CustomerObj.cartgroup_id!=null?CustomerObj.cartgroup_id:(object)DBNull.Value))
                ,new SqlParameter("store_id", CustomerObj.store_id)
             };
                 var result = objGenericRepository.ExecuteSQL<CustomerEntity>("CustomerLogin", sqlParameter).FirstOrDefault();

@@ -4,7 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = $rootScope.StoreId;
+    $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.IsEditMode = false;
@@ -25,7 +25,7 @@
     $scope.InsertUpdateCatalogue = function (form) {
         if (form.$valid) {
             var catalogueEntity = JSON.stringify($scope.CatalogueObj);
-            $http.post(configurationService.basePath + "api/CatalogueApi/InsertUpdateCatalogue", catalogueEntity)
+            $http.post(configurationService.basePath + "api/CatalogueApi/InsertUpdateCatalogue?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId, catalogueEntity)
                 .then(function (response) {
                     if (response.data > 0) {
                         notificationFactory.customSuccess("Product Catalogue Saved Successfully.");
@@ -55,7 +55,7 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-                                $http.get(configurationService.basePath + "api/CatalogueApi/DeleteCatalogue?catalogue_id=" + $scope.catalogue_id)
+                                $http.get(configurationService.basePath + "api/CatalogueApi/DeleteCatalogue?catalogue_id=" + $scope.catalogue_id+ "&StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
                                    .then(function (response) {
                                        if (response.data > 0)
                                            notificationFactory.successDelete();
@@ -82,7 +82,8 @@
     };
 
     function GetCatalogueById() {
-        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueById?catalogue_id=" + $scope.catalogue_id)
+
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueById?catalogue_id=" + $scope.catalogue_id + "&StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
 
               $scope.CatalogueObj = response.data;

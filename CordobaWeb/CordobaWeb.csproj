@@ -603,9 +603,34 @@
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\jquery.elevatezoom.js" />
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\jquery.min.js" />
+    <Content Include="Content\layout1\storecss\annodatarewards.min.css" />
+    <Content Include="Content\layout1\storecss\arkle2016.min.css" />
+    <Content Include="Content\layout1\storecss\assetadvantagerewards.min.css" />
+    <Content Include="Content\layout1\storecss\au.pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout1\storecss\btlblondonrewards.min.css" />
+    <Content Include="Content\layout1\storecss\clearwinnersclub.min.css" />
+    <Content Include="Content\layout1\storecss\cordobarewards.min.css" />
+    <Content Include="Content\layout1\storecss\cvdrewards.min.css" />
+    <Content Include="Content\layout1\storecss\econocomrewards.min.css" />
+    <Content Include="Content\layout1\storecss\fr.pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout1\storecss\goskippyrewards.min.css" />
+    <Content Include="Content\layout1\storecss\grenkerewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\grenkerewards.eu.min.css" />
+    <Content Include="Content\layout1\storecss\kennet-rewards.min.css" />
+    <Content Include="Content\layout1\storecss\maxxiagrouprewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\morechoicerewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout1\storecss\scccapitalloyalty.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\shoretelrewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\shoretelrewards.eu.min.css" />
+    <Content Include="Content\layout1\storecss\ur-rewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\vitrxrewards.co.uk.min.css" />
+    <Content Include="Content\layout1\storecss\xporewards.co.uk.min.css" />
     <Content Include="Content\layout2\css\bootstrap.min.css" />
     <Content Include="Content\layout2\css\custom.min.css" />
     <Content Include="Content\layout2\css\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\layout2\css\responsive.css" />
     <Content Include="Content\layout2\images\1494439090770.jpg" />
     <Content Include="Content\layout2\images\6slide2.jpg" />
     <Content Include="Content\layout2\images\best-saller.png" />
@@ -635,6 +660,29 @@
     <Content Include="Content\layout2\images\special-offers.jpg" />
     <Content Include="Content\layout2\images\Untitled-13.png" />
     <Content Include="Content\layout2\images\_slide1.jpg" />
+    <Content Include="Content\layout2\storecss\annodatarewards.min.css" />
+    <Content Include="Content\layout2\storecss\arkle2016.min.css" />
+    <Content Include="Content\layout2\storecss\assetadvantagerewards.min.css" />
+    <Content Include="Content\layout2\storecss\au.pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\btlblondonrewards.min.css" />
+    <Content Include="Content\layout2\storecss\clearwinnersclub.min.css" />
+    <Content Include="Content\layout2\storecss\cordobarewards.min.css" />
+    <Content Include="Content\layout2\storecss\cvdrewards.min.css" />
+    <Content Include="Content\layout2\storecss\econocomrewards.min.css" />
+    <Content Include="Content\layout2\storecss\fr.pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\goskippyrewards.min.css" />
+    <Content Include="Content\layout2\storecss\grenkerewards.eu.min.css" />
+    <Content Include="Content\layout2\storecss\grenkerewards.min.co.uk.css" />
+    <Content Include="Content\layout2\storecss\kennet-rewards.min.css" />
+    <Content Include="Content\layout2\storecss\maxxiagrouprewards.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\morechoicerewards.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\shoretelrewards.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\shoretelrewards.eu.min.css" />
+    <Content Include="Content\layout2\storecss\ur-rewards.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\vitrxrewards.co.uk.min.css" />
+    <Content Include="Content\layout2\storecss\xporewards.co.uk.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JS\Admin\Banner\Controllers\ManageBannerController.js" />
@@ -3954,7 +4002,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51989</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1012</IISUrl>
+          <IISUrl>http://localhost:1020</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:51989/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

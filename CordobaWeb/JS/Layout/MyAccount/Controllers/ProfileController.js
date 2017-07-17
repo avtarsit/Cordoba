@@ -8,6 +8,8 @@
     BindToolTip();
     Tab();
     //#endregion
+
+
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.GetCustomerDetails = function () {
         

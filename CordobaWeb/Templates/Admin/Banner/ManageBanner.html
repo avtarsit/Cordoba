@@ -44,6 +44,7 @@
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
                                                 <li ng-show="form.BannerName.$error.required"> Banner Name is required.</li>
+                                                <li ng-show="form.BannerStatus.$error.required">Status is required.</li>                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -63,7 +64,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label" for="input-status">Status</label>
                                         <div class="col-sm-5">
-                                            <select class="form-control " name="BannerStatus" ng-model="BannerObj.status" ng-options="option.StatusId as option.StatusName for option in  EnumStatus"></select>
+                                            <select class="form-control " name="BannerStatus" ng-model="BannerObj.status" ng-options="option.StatusId as option.StatusName for option in  EnumStatus" required="required"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +92,7 @@
                                             </td>
                                             <td class="text-left">
                                                 <a href="" id="thumb-image0" data-toggle="image" class="img-thumbnail">
-                                                    <img src="{{imageObj.image}}" alt="" title="" data-placeholder="http://webapp2.cordobarewards.co.uk/image/cache/no_image-100x100.png">
+                                                    <img src="{{imageObj.image}}" alt="" title="Image" style="max-width:200px;max-height:150px;">
                                                 </a><input type="hidden" name="banner_image[0][image]" value="" id="input-image{{$index}}">
                                                 <div>
                                                     <input type="file" id="Image{{$index}}" class="upload" file-model="fileUpload">
@@ -102,7 +103,7 @@
                                             </td>
                                             <td class="text-left">
                                                 <button type="button" ng-if="imageObj.image != null" ng-click="RemoveBannerImage($index)" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
-                                                <input type="button" class="btn btn-info" ng-click="UploadBannerImage($index)" value="Upload">
+                                                <input type="button" class="btn btn-info" ng-click="UploadBannerImage($index)" value="Save">
                                             </td>
                                         </tr>
                                     </tbody>
