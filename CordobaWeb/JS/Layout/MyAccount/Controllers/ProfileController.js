@@ -16,7 +16,8 @@
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         //$http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
         .then(function (response) { 
-              $scope.GetCustomerDetailObj = response.data;            
+            $scope.GetCustomerDetailObj = response.data;
+            console.log($scope.GetCustomerDetailObj);
           })
       .catch(function (response) {
 
@@ -44,7 +45,7 @@
 
         var ajaxRequest = $.ajax({
             type: "POST",
-            url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.customer_id,
+            url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.GetCustomerDetailObj.customer_id,
             contentType: false,
             processData: false,
             data: data,
@@ -61,6 +62,42 @@
                 notificationFactory.error("Error occur during image upload.");
             }
         });
+    }
+
+
+    function GetUserImage() {
+        //debugger;
+        $scope.CustomerImageObj = [];
+        $http.get(configurationService.basePath + "api/CustomerApi/GetUserImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
+          .then(function (response) {
+              //debugger;
+              if (response.data.length > 0) {
+
+                  $scope.GetCustomerDetailObj.Image = response.data[0];
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.deleteCustomerImage = function () {
+
+        $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomerImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
+          .then(function (response) {
+              //debugger;
+              notificationFactory.customSuccess("Image deleted Successfully.");
+              $scope.GetCustomerDetailObj.Image = null;
+              $("#Image").val('');
+          })
+      .catch(function (response) {
+      })
+      .finally(function () {
+
+      });
     }
 
 

@@ -53,6 +53,8 @@ namespace CordobaModels.Entities
 
         public string error { get; set; }
         public int errorcode { get; set; }
+        public string Image { get; set; }
+        public string dept_name { get; set; }
     }
 }
         
