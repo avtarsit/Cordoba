@@ -394,15 +394,41 @@ namespace CordobaServices.Services_Layout
                
             };
                 var result = objGenericRepository.ExecuteSQL<CustomerEntity>("ForgotPasswordCustomerUser", sqlParameter).FirstOrDefault();
-
-                CommonService customerService = new CommonService();
-                customerService.SendOTPEmail(CustomerObj.email, otp, CustomerObj.firstname, CustomerObj.store_name, CustomerObj.logo);
-
+                if (result.errorcode > 0)
+                {
+                    CommonService customerService = new CommonService();
+                    customerService.SendOTPEmail(CustomerObj.email, otp, CustomerObj.firstname, CustomerObj.store_name, CustomerObj.logo);
+                }
+                else
+                {
+                    return result;
+                }
                 return result;
             }
             catch (Exception)
             {
 
+                throw;
+            }
+
+        }
+
+        public CustomerEntity VerifyOTP(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                new SqlParameter("email", CustomerObj.email)
+               ,new SqlParameter("store_id", CustomerObj.store_id)
+               ,new SqlParameter("otp", CustomerObj.otp)
+                };
+
+                var result = objGenericRepository.ExecuteSQL<CustomerEntity>("Password_VerifyOTP", sqlParameter).FirstOrDefault();
+                return result;
+
+            }
+            catch(Exception)
+            {
                 throw;
             }
 
@@ -422,6 +448,33 @@ namespace CordobaServices.Services_Layout
                 throw;
             }
         }
+
+        //public CustomerEntity ChangePassword(CustomerEntity CustomerObj)
+        //{
+        //    try
+        //    {
+        //        try
+        //        {
+        //            SqlParameter[] sqlParameter = new SqlParameter[] { 
+        //        new SqlParameter("email", CustomerObj.email)
+        //       ,new SqlParameter("store_id", CustomerObj.store_id)
+        //       ,new SqlParameter("otp", CustomerObj.otp)
+        //        };
+
+        //            var result = objGenericRepository.ExecuteSQL<CustomerEntity>("ChangePassword", sqlParameter).FirstOrDefault();
+        //            return result;
+
+        //        }
+        //        catch (Exception)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        throw;
+        //    }
+        //}
 
 
 

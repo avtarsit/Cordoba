@@ -290,10 +290,27 @@
                                     <div class="form-group pt-20">
                                         <label for="otp">OTP:</label>
                                         <input type="number" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
+                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
                                         @*<input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" required="required">*@
                                         <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid OTP!</p>
                                     </div>
                                     <button type="submit" class="btn btn-empty mt-5 text-center" ng-click="VerifyOTP(OTPForm)">Submit</button>
+
+                                </div>
+                            </form>
+                            @* Chnage Password *@
+                            <form name="ChangePasswordForm" id="ChangePasswordForm" class="form-horizontal" ng-hide="IsVisibleChangePassswordForm" novalidate>
+                                <div class="login_page">
+                                    <input type="hidden" class="form-control" name="email" id="email">
+                                    <div class="form-group pt-20">
+                                        <label for="otp">Password:</label>
+                                        <input type="text" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
+                                        <label for="otp">Confirm Password:</label>
+                                        <input type="text" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
+
+                                        <p class="text-danger validationErrors" ng-show="ChangePasswordForm.$submitted && (!otpObj.$valid) && (otpObj.password != otpObj.confirmPassword)">Password does not match</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.password != otpObj.confirmPassword" ng-click="ChangePassword(ChangePasswordForm)">Submit</button>
 
                                 </div>
                             </form>

@@ -33,7 +33,7 @@ namespace CordobaModels.Entities
 
         public string customerName { get; set; }
         public string StatusName { get; set; }
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public int TotalRecords { get;set; }
 
@@ -50,6 +50,9 @@ namespace CordobaModels.Entities
         public int? otp { get; set; }
         public string store_name { get; set; }
         public string logo { get; set; }
+
+        public string error { get; set; }
+        public int errorcode { get; set; }
     }
 }
         

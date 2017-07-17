@@ -11,6 +11,7 @@
     $scope.OpenLoginPopUp = function () {
         angular.element("#DivLoginModel").modal('show');
         $scope.IsVisibleloginForm = false;
+        $scope.IsVisibleChangePassswordForm = true;
         $scope.IsVisibleforgotPasswordForm = true;
         $scope.IsVisibleOTPForm = true;
     }
@@ -84,13 +85,23 @@
             $scope.IsVisibleforgotPasswordForm = false;
 
             if (form.$valid) {
-                $scope.otpObj.store_id = 3;
+                $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
                       .then(function (response) {
-                          $scope.IsVisibleloginForm = true;
-                          $scope.IsVisibleforgotPasswordForm = true;
-                          $scope.IsVisibleOTPForm = false;
+                          //debugger;
+                          if (response.data.errorcode > 0) {
+                              $scope.IsVisibleloginForm = true;
+                              $scope.IsVisibleforgotPasswordForm = true;
+                              $scope.IsVisibleOTPForm = false;
+                              $scope.IsVisibleChangePassswordForm = true;
+                              $scope.otpObj.customer_id = response.data.customer_id;
+                             
 
+                          }
+                          else {
+                              //notificationFactory.customError("Email does not exist");
+                              toastr.error("Email does not exist");
+                          }
                       })
                   .catch(function (response) {
 
@@ -104,15 +115,22 @@
      $scope.VerifyOTP = function (form) {
             $scope.IsVisibleloginForm = true;
             $scope.IsVisibleforgotPasswordForm = true;
-
+            
+           
             if (form.$valid) {
-                //$scope.otpObj.store_id = 3;
+                $scope.otpObj.store_id = 3;
+            //debugger;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
                       .then(function (response) {
-
-                          $scope.IsVisibleloginForm = true;
-                          $scope.IsVisibleforgotPasswordForm = true;
-                          $scope.IsVisibleOTPForm = false;
+                          if (response.data.errorcode > 0) {
+                              //$scope.IsVisibleloginForm = true;
+                              //$scope.IsVisibleforgotPasswordForm = true;
+                              $scope.IsVisibleOTPForm = true;
+                              $scope.IsVisibleChangePassswordForm = false;
+                          }
+                          else {
+                              toastr.error("Please Enter valid OTP");
+                          }
 
                       })
                   .catch(function (response) {
@@ -159,6 +177,43 @@
           .finally(function () {
 
           });
+        }
+
+        $scope.ChangePassword = function(form)
+        {
+            if (form.$valid) {
+               
+                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.otpObj)
+                          .then(function (response) {
+                              //debugger;
+                              if (response.data > 0) {
+                                  notificationFactory.customSuccess("Password changed Successfully.");
+                                  
+                                  $scope.IsVisibleforgotPasswordForm = true;
+                                  $scope.IsVisibleOTPForm = true;
+                                  $scope.IsVisibleChangePassswordForm = true;
+                                  $scope.IsVisibleloginForm = false;
+                                  $scope.otpObj.otp = '';
+                                  $scope.otpObj.password = '';
+                                  $scope.otpObj.confirmPassword = '';
+                                  $scope.otpObj.email = '';
+                                  form.$valid = true;
+                                  $scope.forgotPasswordForm.$valid = true;
+                              }
+                              else {
+                                  //notificationFactory.customError("Something went wrong");
+                                  toastr.error("Something went wrong");
+                              }
+
+
+                          })
+                      .catch(function (response) {
+
+                      })
+                      .finally(function () {
+
+                      });
+            }
         }
 
         //function decodeHtml(html) {

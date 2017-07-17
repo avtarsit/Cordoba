@@ -446,7 +446,7 @@ namespace CordobaAPI.API
                         //}
 
                         string fileName = customer_id + "/" + httpPostedFile.FileName;
-                        res = _CustomerService.UploadUserImage(customerImage_id, customer_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString() + "/" + fileName);
+                        res = _CustomerService.UploadUserImage(customerImage_id, customer_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.CustomerImage.ToString() + "/" + fileName);
 
                         if (res == true)
                         {

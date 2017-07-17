@@ -26,7 +26,8 @@ namespace CordobaCommon.Enum
             Advertisement = 2,
             BannerImage = 3,
             CustomerImage = 4,
-            store_logos = 5
+            store_logos = 5,
+            productImage = 6
         }
     }
 }

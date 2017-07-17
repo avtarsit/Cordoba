@@ -504,6 +504,7 @@
     <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
+    <Content Include="Content\Images\avatar.png" />
     <Content Include="Content\Images\bronze.png" />
     <Content Include="Content\Images\error-img.png" />
     <Content Include="Content\Images\fb_ico.png" />

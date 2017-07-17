@@ -11,7 +11,7 @@
 
     $scope.IsEditMode = false;
     $scope.store_id = parseInt($stateParams.StoreID);
-    debugger;
+    //debugger;
     if ($scope.store_id != undefined && $scope.store_id != null && $scope.store_id != 0) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
@@ -186,7 +186,7 @@
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {
-                  debugger;
+                  //debugger;
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
                       
@@ -194,7 +194,9 @@
                            $state.go('ShowStore');
                       }
                       else {
-                         return $state.go('ManageStore', { StoreID: response.data });
+                          //$state.go('ManageStore', { StoreID: response.data });
+                          $state.go('.', { StoreID: response.data })
+                          //window.location.reload(true);
                       }
                   }
               })

@@ -18,7 +18,8 @@
 
 
     $scope.GetCatalogueList = function () {
-        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList/StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        debugger;
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {              
                   $scope.CatalogueList = response.data;
