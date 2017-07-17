@@ -8,6 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CordobaModels.Entities;
+using System.Web;
+using System.Configuration;
+using System.IO;
 
 
 
@@ -259,6 +262,80 @@ namespace CordobaAPI.API
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UploadProductImage(int product_id)
+        {
+            bool res = false;
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                // Get the uploaded image from the Files collection
+                var httpPostedFile = HttpContext.Current.Request.Files[0];
+
+                if (httpPostedFile != null)
+                {
+                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.productImage.ToString();
+                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    {
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        string childFolderPath = folderPath + "/" + product_id;
+                        if (!Directory.Exists(childFolderPath))
+                        {
+                            Directory.CreateDirectory(childFolderPath);
+                        }
+
+                        string fileName = product_id + "/" + httpPostedFile.FileName;
+                        res = _ProductServices.UploadProductImage(product_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.productImage.ToString() + "/" + fileName);
+
+                        if (res == true)
+                        {
+                            httpPostedFile.SaveAs(folderPath + "\\" + fileName);
+
+                            var directoryFiles = Directory.GetFiles(childFolderPath);
+                            foreach (var filepath in directoryFiles)
+                            {
+                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                {
+                                    File.Delete(filepath);
+                                }
+                            }
+                        }
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+
+
+            }
+            if (res == true)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = true });
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetProductImageById(int product_id)
+        {
+            try
+            {
+                var result = _ProductServices.GetProductImageById(product_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch(Exception e)
             {
                 throw;
             }

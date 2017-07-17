@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CordobaModels.Entities
 {
     public class ProductEntity
@@ -61,6 +62,8 @@ namespace CordobaModels.Entities
         public string ManufactureImage { get; set; }
         public bool? IsProductInWishlist { get; set; }
         #endregion Extra Details
+
+        //public dynamic data { get; set; }
 
     }
 }

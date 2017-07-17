@@ -8,6 +8,8 @@
     BindToolTip();
     Tab();
     //#endregion
+
+
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.GetCustomerDetails = function () {
         
@@ -22,6 +24,43 @@
       .finally(function () {
 
       });
+    }
+
+
+    $scope.uploadUserImage = function() {
+        var data = new FormData();
+        var files = $("#Image").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+
+        var filename = files[0].name;
+
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+            //console.log(data);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.customer_id,
+            contentType: false,
+            processData: false,
+            data: data,
+            //data: {
+            //    data: data,
+            //    banner: $scope.BannerImageObj[index]
+            //},
+            success: function (response) {
+                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                $('#ImageUpload').val('');
+                GetUserImage();
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
     }
 
 

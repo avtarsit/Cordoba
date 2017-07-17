@@ -406,5 +406,59 @@ namespace CordobaAPI.API_Layout
                 throw;
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage ForgotPassword(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.ForgotPassword(CustomerObj);
+                
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                
+                //return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage VerifyOTP(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.VerifyOTP(CustomerObj);
+                
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        //[HttpPost]
+        //public HttpResponseMessage ChangePassword(CustomerEntity CustomerObj)
+        //{
+        //    try
+        //    {
+        //        var result = _LayoutDashboardServices.ChangePassword(CustomerObj);
+        //        if (result != null)
+        //        {
+        //            return Request.CreateResponse(HttpStatusCode.OK, result);
+        //        }
+        //        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw;
+        //    }
+        //}
+
     }
 }

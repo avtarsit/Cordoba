@@ -320,5 +320,46 @@ namespace CordobaServices.Services
             }
         }
 
-    }      
+        public bool UploadProductImage(int product_id, string image)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("product_id", product_id),
+                    new SqlParameter("image",image),
+                    
+                };
+                int result = objGenericRepository.ExecuteSQL<int>("UploadProductImage", sqlParameter).FirstOrDefault();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        public List<ProductEntity> GetProductImageById(int product_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("product_id",product_id) };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductImageById", sqlParameter).ToList();
+                return result;
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+    }
+    
+
 }

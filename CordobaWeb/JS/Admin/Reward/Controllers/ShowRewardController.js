@@ -2,7 +2,7 @@
     decodeParams($stateParams);
     BindToolTip();
     $scope.PageTitle = "Rewards";
-    $scope.store_id = $rootScope.storeId;
+    $scope.store_Id = $rootScope.storeId;
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.dtOptions = DTOptionsBuilder.newOptions()

@@ -113,12 +113,16 @@
                                         <!--End General Tab-->
                                     </div>
                                     <div class="tab-pane" id="DataTab">
-                                        <div class="form-group">
+                                        <div class="form-group" ng-if="product_id > 0">
                                             <label class="col-sm-2 control-label" for="input-image">Image</label>
                                             <div class="col-sm-10">
                                                 <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
                                                     <img ng-src="{{ProductObj.Image}}" alt="{{ProductObj.Image}}" style="height: 151px;" class="img-thumbnail" />
                                                 </a>
+                                                <div>
+                                                    <input type="file" id="Image" class="upload col-sm-3" file-model="fileUpload">
+                                                    <input type="button" class="btn btn-info col-sm-1" ng-click="AddImage()" value="Upload">
+                                                </div>
 
                                                 <input type="hidden" name="image" ng-model="ProductObj.Image" value="" id="input-image">
                                             </div>

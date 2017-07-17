@@ -116,7 +116,7 @@ namespace CordobaServices.Services
                 smtpClient.Credentials = new System.Net.NetworkCredential(emailSetting.EmailUsername, emailSetting.EmailPassword);
 
                 // Send the mail message 
-                //smtpClient.Send(mailMessage);
+                smtpClient.Send(mailMessage);
                 return true;
             }
             catch
