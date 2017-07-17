@@ -21,8 +21,7 @@
 
  
     $scope.ImportCatalogue =function()
-    {
-        return;
+    {   
         var fd = new FormData();
         for (var i in $scope.files) {
             fd.append("uploadedFile", $scope.files[i]);
