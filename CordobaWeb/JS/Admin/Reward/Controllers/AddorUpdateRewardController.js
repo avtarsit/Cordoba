@@ -6,6 +6,7 @@
     decodeParams($stateParams);
     BindToolTip();
     $scope.StoreId = $rootScope.storeId;
+    
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.RewardId = 0;
