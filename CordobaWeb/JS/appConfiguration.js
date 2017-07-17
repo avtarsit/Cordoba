@@ -27,7 +27,7 @@ function GetLayoutName() {
             User.customer_id = 0;
             User.address_id = 0;
             User.cartgroup_id = 0;
-            //User.TotalItemAdded = 0;
+            User.TotalItemAdded = 0;
             app.value('UserDetail', User);
             var LayoutName = data.template;
        
@@ -513,8 +513,9 @@ function GetLayoutName() {
                  if (user == null || user == undefined) {
                      user = new Object();
                      user.customer_id = 0;
-                 }
+                 }         
                  if (user.customer_id > 0) {
+
                      UserDetail.customer_id = user.customer_id;
                      UserDetail.firstname = user.firstname;
                      UserDetail.lastname = user.lastname;
@@ -525,7 +526,8 @@ function GetLayoutName() {
                      $rootScope.CustomerDetail = UserDetail;
                  }
                  else {
-                     localStorageService.set("loggedInUser", UserDetail);
+                     localStorageService.set("loggedInUser", user);
+                     $rootScope.CustomerDetail = user;
                  }
                  $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
 

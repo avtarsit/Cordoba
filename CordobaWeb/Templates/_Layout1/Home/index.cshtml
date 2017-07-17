@@ -25,6 +25,7 @@
                                     <div class="col-xs-8">
                                         <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
                                         <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
+                                        <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
                                     </div>
                                 </div>
                             </div>
