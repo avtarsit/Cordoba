@@ -6,10 +6,12 @@
     decodeParams($stateParams);
     BindToolTip();
     $scope.StoreId = $rootScope.storeId;
+    
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.RewardId = 0;
     $scope.RewardObj = {};
+    $scope.RewardObj.store_id = $scope.StoreId;
     $scope.RewardTypeList = [];
     $scope.IsEditMode = false;
     $scope.invalidEndDate = false;
