@@ -48,14 +48,37 @@
 
     //#region Image Tab
     $scope.AddImage = function () {
-        var NewImage = new Object();
-        NewImage.Id = 0;
-        NewImage.Image = null;
-        NewImage.SortOrder = null;
-        if ($scope.ProductObj.ImageList == undefined || $scope.ProductObj.ImageList == null) {
-            $scope.ProductObj.ImageList = [];
+        var data = new FormData();
+        var files = $("#Image").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
         }
-        $scope.ProductObj.ImageList.push(NewImage);
+
+        var filename = files[0].name;
+
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/ProductApi/UploadProductImage?product_id=' + $scope.ProductObj.product_id,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                notificationFactory.customSuccess("Product Image Upload Successfully.");
+                $scope.GetProductImageById();
+                $('#Image').val('');
+                //$scope.GetBannerImageById();
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
+
+
     }
     $scope.RemoveImage = function (event, item) {
         if (item.Id != undefined && item.Id != null && item.Id != 0) {
@@ -111,7 +134,7 @@
     };
 
     $scope.GetProductById = function () {
-        debugger;
+        //debugger;
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ProductObj = response.data;
@@ -256,6 +279,7 @@
             var productEntity = JSON.stringify($scope.ProductObj);
             $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, productEntity)
               .then(function (response) {
+                  debugger;
                   if (response.data > 0) {
                       if ($scope.product_id>0)
                       {
@@ -568,6 +592,17 @@
     //    });
     //};
 
+    $scope.GetProductImageById = function()
+    {
+        //debugger;
+        $scope.store_id = 0;
+        $scope.language_id = 1;
+        $http.get(configurationService.basePath + "API/ProductApi/GetProductImageById?product_id=" + $scope.ProductObj.product_id)
+        .then(function (response) {
+            $scope.ProductObj.Image = response.data[0]["Image"];
+          
+        })
+    }
 
     $scope.NeedtoShowHot_SpeacialContainerDiv=function(IsHotProduct)
     {

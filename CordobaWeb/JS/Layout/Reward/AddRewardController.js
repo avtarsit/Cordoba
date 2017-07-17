@@ -60,9 +60,10 @@
 
     $scope.ratingValue = 0;
 
-    $scope.AddReward = function (item, index) {
+    $scope.AddReward = function (item, index, IsComment) {
+        debugger;
         if (parseInt($scope.reward_type_id) == 2) {
-
+            debugger;
             var ratingValue = $("#medalDiv" + index).find('input[type=radio]:checked').val();
             if ($("#medalDiv" + index).find('input[type=radio]:checked').length > 0) {
 
@@ -116,6 +117,30 @@
                         }
                     });
                 }
+                if (IsComment == 1) {
+                    $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
+                    $scope.AddRewardObj.NoOfStars = parseInt(ratingValue);
+                    $scope.AddRewardObj.IsWinner = false;
+                    $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
+                    $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
+                    $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
+
+                    $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
+                                                .then(function (response) {
+                                                    if (response.data > 0) {
+                                                        notificationFactory.customSuccess("Reward Comment Saved Successfully.");
+
+                                                        $scope.GetRewardGroupCustomers();
+                                                    }
+                                                })
+                                                 .catch(function (response) {
+
+                                                 })
+                                                  .finally(function () {
+
+                                                  });
+
+                }
             }
             else {
                 notificationFactory.customError("Please select Medal.");
@@ -123,7 +148,7 @@
         }
 
         if (parseInt($scope.reward_type_id) == 1) {
-        
+            
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;
@@ -176,9 +201,33 @@
                         }
                     });
                 }
+                if (IsComment == 1) {
+                    $scope.AddRewardObj.reward_id = parseInt($scope.reward_id);
+                    $scope.AddRewardObj.NoOfStars = parseInt(ratingValue);
+                    $scope.AddRewardObj.IsWinner = false;
+                    $scope.AddRewardObj.loginUserid = parseInt($scope.loginUserid);
+                    $scope.AddRewardObj.Comment = $("#writeTxtArea" + index).val();
+                    $scope.AddRewardObj.reward_type_id = parseInt($scope.reward_type_id);
+
+                    $http.post(configurationService.basePath + "api/RewardApi/AddCustomer_Reward?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + $scope.loginUserid, $scope.AddRewardObj)
+                                                .then(function (response) {
+                                                    if (response.data > 0) {
+                                                        notificationFactory.customSuccess("Reward Comment Saved Successfully.");
+                                                         
+                                                        $scope.GetRewardGroupCustomers();
+                                                    }
+                                                })
+                                                 .catch(function (response) {
+
+                                                 })
+                                                  .finally(function () {
+
+                                                  });
+
+                }
             }
             else {
-                notificationFactory.customError("Please select ratting.");
+                notificationFactory.customError("Please select rating.");
             }
         }
     }

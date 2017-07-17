@@ -9,10 +9,9 @@
 
     $scope.StoreObj = new Object();
 
-    $scope.StoreObj.template = '0';
-
     $scope.IsEditMode = false;
     $scope.store_id = parseInt($stateParams.StoreID);
+    //debugger;
     if ($scope.store_id != undefined && $scope.store_id != null && $scope.store_id != 0) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
@@ -23,8 +22,8 @@
     }
     //#endregion    
     $scope.TemplateList = [
-                        { 'TemplateId': '0', 'TemplateName': 'Theme1' }
-                      , { 'TemplateId': '1', 'TemplateName': 'Theme2' }
+                        { 'TemplateId': 0, 'TemplateName': 'Default Theme' }
+                      , { 'TemplateId': 1, 'TemplateName': 'Theme1' }
     ];
 
     $scope.LayoutList = [
@@ -106,7 +105,6 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
-            
               if ($scope.StoreObj.store_id == 0) {
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
@@ -187,7 +185,8 @@
         if (form.$valid) {
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
-              .then(function (response) {             
+              .then(function (response) {
+                  //debugger;
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Store Saved Successfully.");
                       
@@ -195,7 +194,9 @@
                            $state.go('ShowStore');
                       }
                       else {
-                         return $state.go('ManageStore', ({ StoreID: response.data }));
+                          //$state.go('ManageStore', { StoreID: response.data });
+                          $state.go('.', { StoreID: response.data })
+                          //window.location.reload(true);
                       }
                   }
               })

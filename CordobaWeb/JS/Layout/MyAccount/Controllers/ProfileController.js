@@ -16,10 +16,84 @@
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         //$http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
         .then(function (response) { 
-              $scope.GetCustomerDetailObj = response.data;            
+            $scope.GetCustomerDetailObj = response.data;
+            console.log($scope.GetCustomerDetailObj);
           })
       .catch(function (response) {
 
+      })
+      .finally(function () {
+
+      });
+    }
+
+
+    $scope.uploadUserImage = function() {
+        var data = new FormData();
+        var files = $("#Image").get(0).files;
+        if (files.length == 0) {
+            notificationFactory.customError("Please select atleast one file.");
+            return notificationFactory;
+        }
+
+        var filename = files[0].name;
+
+        if (files.length > 0) {
+            data.append("UploadedFile", files[0]);
+            //console.log(data);
+        }
+
+        var ajaxRequest = $.ajax({
+            type: "POST",
+            url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.GetCustomerDetailObj.customer_id,
+            contentType: false,
+            processData: false,
+            data: data,
+            //data: {
+            //    data: data,
+            //    banner: $scope.BannerImageObj[index]
+            //},
+            success: function (response) {
+                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                $('#ImageUpload').val('');
+                GetUserImage();
+            },
+            error: function (response) {
+                notificationFactory.error("Error occur during image upload.");
+            }
+        });
+    }
+
+
+    function GetUserImage() {
+        //debugger;
+        $scope.CustomerImageObj = [];
+        $http.get(configurationService.basePath + "api/CustomerApi/GetUserImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
+          .then(function (response) {
+              //debugger;
+              if (response.data.length > 0) {
+
+                  $scope.GetCustomerDetailObj.Image = response.data[0];
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.deleteCustomerImage = function () {
+
+        $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomerImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
+          .then(function (response) {
+              //debugger;
+              notificationFactory.customSuccess("Image deleted Successfully.");
+              $scope.GetCustomerDetailObj.Image = null;
+              $("#Image").val('');
+          })
+      .catch(function (response) {
       })
       .finally(function () {
 
@@ -43,6 +117,7 @@
                  $("#editProfile").show();
                  $(".edit-profile i").toggleClass("fa-pencil fa-close");
                  toastr.success("Profile Detail successfully updated.");
+                 $scope.GetCustomerDetails();
              }
              else
              {
