@@ -55,6 +55,7 @@ namespace CordobaModels.Entities
         public int errorcode { get; set; }
         public string Image { get; set; }
         public string dept_name { get; set; }
+        public int? customerImage_Id { get; set; }
     }
 }
         

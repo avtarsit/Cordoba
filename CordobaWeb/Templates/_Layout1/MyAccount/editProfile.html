@@ -69,8 +69,7 @@
             </div>
             <div class="col-sm-3 pull-right editProfile">
                 <div class="col-md-10 col-sm-9">
-                    <img src="../../../Content/Images/avatar.png" class="pull-right" alt="no-image" ng-if="GetCustomerDetailObj.Image == null" />
-                    <img src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" ng-if="GetCustomerDetailObj.Image != null" />
+                    <img ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" />
                 </div>
             </div>
             
@@ -112,15 +111,14 @@
                             <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
                         </div>
                         <div class="col-sm-6">
-                            <label>Image</label>
-                            <img src="../../../Content/Images/avatar.png" alt="no-image" ng-if="GetCustomerDetailObj.Image == null" />
-                            <img src="{{GetCustomerDetailObj.Image}}" alt="no-image" ng-if="GetCustomerDetailObj.Image != null" />
+                            <label>Image</label>                   
+                            <img src="{{GetCustomerDetailObj.Image}}" alt="no-image" />
                             <div>
                                 <input type='file' id='Image' class='upload' file-model='fileUpload' accept='image/jpg, image/jpeg, image/png'>
                                 <!--<input type="button" class="btn btn-info col-sm-1" ng-click="uploadUserImage()" value="Upload">
                                 <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>-->
-                                <input type="button" class="btn btn-info" ng-click="uploadUserImage()" value="Upload">
-                                <button type="button" ng-click="deleteCustomerImage()" ng-if="GetCustomerDetailObj.Image != null" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                <input type="button" class="btn btn-sm btn-info" ng-click="uploadUserImage()" value="Upload">
+                                <button type="button" ng-click="deleteCustomerImage()" ng-if="GetCustomerDetailObj.customerImage_Id>0" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
                             </div>
                         </div>
                        

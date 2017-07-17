@@ -114,7 +114,7 @@
              {
                  $(".update-profile").hide();
                  $("#cancelProfile").hide();
-                 $("#editProfile").show();
+                 $(".editProfile").show();
                  $(".edit-profile i").toggleClass("fa-pencil fa-close");
                  toastr.success("Profile Detail successfully updated.");
                  $scope.GetCustomerDetails();
