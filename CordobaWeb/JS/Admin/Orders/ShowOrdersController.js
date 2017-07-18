@@ -23,8 +23,7 @@
 
     //$scope.GetOrderList = function () {
     //    $http.get(configurationService.basePath + "api/OrderApi/GetOrderList")
-    //         .then(function (response) {
-    //             debugger;
+    //         .then(function (response) {   
     //             if (response.data.length > 0) {
     //                 $scope.orderList = response.data;
     //             }

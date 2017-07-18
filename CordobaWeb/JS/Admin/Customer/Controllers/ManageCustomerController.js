@@ -4,8 +4,7 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    $scope.StoreId = $rootScope.storeId;
-    //debugger;
+    $scope.StoreId = $rootScope.storeId; 
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -105,12 +104,10 @@
       });
     }
 
-    function GetUserImage() {
-        //debugger;
+    function GetUserImage() {  
         $scope.CustomerImageObj = [];
         $http.get(configurationService.basePath + "api/CustomerApi/GetUserImage?customer_id=" + $scope.customer_id)
-          .then(function (response) {
-              //debugger;
+          .then(function (response) {        
               if (response.data.length > 0) {
                   
                   $scope.CustomerImageObj = response.data[0];
@@ -186,8 +183,7 @@
     }
 
 
-    $scope.AddRewardPointObj = function (item) {
-        //debugger;
+    $scope.AddRewardPointObj = function (item) {   
         var RewardPoint = new Object();
         //RewardPoint.points_audit_id = 0;
         //RewardPoint.customer_id = $scope.customer_id;
@@ -393,8 +389,7 @@
     $scope.deleteCustomerImage = function () {
 
         $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomerImage?customer_id=" + $scope.customer_id)
-          .then(function (response) {
-              //debugger;
+          .then(function (response) {      
               notificationFactory.customSuccess("Image deleted Successfully.");
               GetUserImage();
 

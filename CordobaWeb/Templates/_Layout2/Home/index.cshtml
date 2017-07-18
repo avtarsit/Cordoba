@@ -121,7 +121,8 @@
                             <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList " data-notify-when-repeat-finished>
                                 <div class="saller">
                                     <img ng-src="{{BestSeller.Image}}" alt="saller">
-                                    <a ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" ng-bind-html="BestSeller.name"></a>                                    
+                                    <a ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" ng-bind-html="BestSeller.name"></a>        
+                                    <p ng-bind="BestSeller.Model"></p>                            
                                     <p ng-bind="BestSeller.Price +' Points'"></p>
                                     <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
                                 </div>

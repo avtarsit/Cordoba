@@ -86,8 +86,7 @@
             if (form.$valid) {
                 $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
-                      .then(function (response) {
-                          //debugger;
+                      .then(function (response) {              
                           if (response.data.errorcode > 0) {
                               $scope.IsVisibleloginForm = true;
                               $scope.IsVisibleforgotPasswordForm = true;
@@ -118,7 +117,6 @@
            
             if (form.$valid) {
                 $scope.otpObj.store_id = 3;
-            //debugger;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
                       .then(function (response) {
                           if (response.data.errorcode > 0) {
@@ -183,8 +181,7 @@
             if (form.$valid) {
                
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.otpObj)
-                          .then(function (response) {
-                              //debugger;
+                          .then(function (response) {                   
                               if (response.data > 0) {
                                   notificationFactory.customSuccess("Password changed Successfully.");
                                   

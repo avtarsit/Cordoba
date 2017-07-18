@@ -56,14 +56,9 @@
     $scope.changeOnHover = false; // default test value
     $scope.maxValue = 5; // default test value
     //////region star ratting Directive deafult setting
-
-
     $scope.ratingValue = 0;
-
-    $scope.AddReward = function (item, index, IsComment) {
-        debugger;
-        if (parseInt($scope.reward_type_id) == 2) {
-            debugger;
+    $scope.AddReward = function (item, index, IsComment) { 
+        if (parseInt($scope.reward_type_id) == 2) { 
             var ratingValue = $("#medalDiv" + index).find('input[type=radio]:checked').val();
             if ($("#medalDiv" + index).find('input[type=radio]:checked').length > 0) {
 

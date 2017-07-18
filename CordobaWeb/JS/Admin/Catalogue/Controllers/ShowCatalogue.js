@@ -17,8 +17,7 @@
     $scope.PageTitle = "Product Catalogues";
 
 
-    $scope.GetCatalogueList = function () {
-        debugger;
+    $scope.GetCatalogueList = function () {    
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {              
