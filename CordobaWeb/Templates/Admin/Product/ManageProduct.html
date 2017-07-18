@@ -68,12 +68,12 @@
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
                                     <li role="presentation"><a data-target="#DataTab" role="tab" data-toggle="tab">Data</a></li>
-                                    <li> <a data-target="#tab-shipping" data-toggle="tab">Shipping Details</a></li>
-                                    <li><a data-target="#tab-links" data-toggle="tab">Links</a></li>
-                                    <li ng-if="product_id>0"><a data-target="#tab-HotOrSpecial" data-toggle="tab">Hot/Special Products</a></li>
+                                    <li role="presentation"> <a data-target="#tab-shipping" role="tab" data-toggle="tab">Shipping Details</a></li>
+                                    <li role="presentation"><a data-target="#tab-links" role="tab" data-toggle="tab">Links</a></li>
+                                    <li role="presentation" ng-if="product_id>0"><a data-target="#tab-HotOrSpecial" role="tab" data-toggle="tab">Hot/Special Products</a></li>
                                 </ul>
                                 <!-- Tab panes -->
-                                <di v class="tab-content">
+                                <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="GenaralTab">
                                         <!--General Tab-->
                                         <div class="tab-content">
@@ -196,7 +196,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab-shipping">
+                                    <div id="tab-shipping" class="tab-pane">
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
                                             <div class="col-sm-10">
@@ -351,20 +351,7 @@
         <!-- /form centered -->
     </form>
 </div>
-<script>
-    $(document).ready(function () {
-        setTimeout(function () {
-            //CKEDITOR.replace('ProductDescriptionLang[1]');
-            //CKEDITOR.replace('ProductDescriptionLang[2]');
-            //CKEDITOR.replace('ProductDescriptionLang[3]');
-            //CKEDITOR.replace('ProductDescriptionLang[4]');
-            //CKEDITOR.replace('ProductDescriptionLang[5]');
-            //CKEDITOR.replace('ProductDescriptionLang[6]');
-            //CKEDITOR.replace('ProductDescriptionLang[7]');
-        }, 50);
 
-    });
-</script>
 
 
 

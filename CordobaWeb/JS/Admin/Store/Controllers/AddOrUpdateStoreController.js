@@ -3,15 +3,13 @@
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
-    Tab();
-
+    Tab(); 
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
-
+    $scope.store_id = 0;
     $scope.StoreObj = new Object();
-
+    $scope.StoreObj.template = '0';
     $scope.IsEditMode = false;
-    $scope.store_id = parseInt($stateParams.StoreID);
-    if ($scope.store_id != undefined && $scope.store_id != null && $scope.store_id != 0) {
+    if ($stateParams.StoreID != undefined && $stateParams.StoreID != null && $stateParams.StoreID != 0) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
         $scope.store_id = parseInt($stateParams.StoreID);
@@ -21,22 +19,8 @@
     }
     //#endregion    
     $scope.TemplateList = [
-                        { 'TemplateId': '0', 'TemplateName': 'Theme1' }
+                        { 'TemplateId':'0', 'TemplateName': 'Theme1' }
                       , { 'TemplateId':'1', 'TemplateName': 'Theme2' }
-    ];
-
-    $scope.LayoutList = [
-                    { 'LayoutId': 1, 'LayoutName': 'Account' }
-                  , { 'LayoutId': 2, 'LayoutName': 'Affiliate' }
-                  , { 'LayoutId': 3, 'LayoutName': 'Categories' }
-                  , { 'LayoutId': 4, 'LayoutName': 'Checkout' }
-                  , { 'LayoutId': 5, 'LayoutName': 'Compare' }
-                  , { 'LayoutId': 6, 'LayoutName': 'Contact' }
-                  , { 'LayoutId': 7, 'LayoutName': 'Default' }
-                  , { 'LayoutId': 8, 'LayoutName': 'default2 - Layout Block Demo' }
-                  , { 'LayoutId': 9, 'LayoutName': 'Home' }
-                  , { 'LayoutId': 10, 'LayoutName': 'Information' }
-
     ];
 
     function GetCountryList() {        
@@ -108,6 +92,7 @@
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
                   $scope.StoreObj.currency = 'P82';
+                  $scope.StoreObj.template = '0';
               }
               $scope.GetZoneListByCountry($scope.StoreObj.country_id);
 
@@ -171,7 +156,6 @@
                 if (result) {
                     $state.go('ShowStore');
                 }
-
             });
         }
         else {
@@ -192,9 +176,9 @@
                            $state.go('ShowStore');
                       }
                       else {
-                          //$state.go('ManageStore', { StoreID: response.data });
-                          $state.go('.', { StoreID: response.data })
-                          //window.location.reload(true);
+                          $scope.store_id = parseInt(response.data);
+                          $state.go('.', { StoreID: Encodestring(response.data) }, { notify: false, reload: false, location: 'replace', inherit: false });
+                          window.location.reload(true);
                       }
                   }
               })
@@ -210,7 +194,7 @@
     $scope.UploadImage = function (store_id, imageKey, uploadId) {
 
         var data = new FormData();
-        var files = $('#' + uploadId).get(0).files;
+        var files = $('#'+uploadId).get(0).files;
         if (files.length == 0) {
             notificationFactory.customError("Please select atleast one file.");
             return notificationFactory;
