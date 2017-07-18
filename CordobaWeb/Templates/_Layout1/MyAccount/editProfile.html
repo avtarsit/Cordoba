@@ -69,13 +69,11 @@
             </div>
             <div class="col-sm-3 pull-right editProfile">
                 <div class="col-md-10 col-sm-9">
-                    <img ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" />
+                    <img ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" style="max-height:150px;" />
                 </div>
-            </div>
-            
+            </div>            
                 <div class="col-sm-12" id="cancelProfile">
                     <div class="row">
-
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
 
@@ -111,8 +109,8 @@
                             <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
                         </div>
                         <div class="col-sm-6">
-                            <label>Image</label>                   
-                            <img src="{{GetCustomerDetailObj.Image}}" alt="no-image" />
+                            <label>Profile Picture</label>                   
+                            <img src="{{GetCustomerDetailObj.Image}}" alt="no-image" style="max-height:150px;" />
                             <div>
                                 <input type='file' id='Image' class='upload' file-model='fileUpload' accept='image/jpg, image/jpeg, image/png'>
                                 <!--<input type="button" class="btn btn-info col-sm-1" ng-click="uploadUserImage()" value="Upload">

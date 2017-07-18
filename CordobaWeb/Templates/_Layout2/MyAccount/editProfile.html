@@ -14,7 +14,7 @@
         <div class="account-block profile-block">
             <a class="edit-profile" href="javascript:;"><i class="fa fa-pencil"></i></a>
             <a class="update-profile" ng-click="SaveCustomerBasicDetails(ProfileForm)" href=""><i class="fa fa-check"></i></a>
-            <div class="col-sm-12" id="editProfile">
+            <div class="col-sm-9 editProfile" id="editProfile">
                 <div class="row">
                     <div class="col-md-2 col-sm-3">
                         <p>Name:</p>
@@ -22,26 +22,43 @@
                     <div class="col-md-10 col-sm-9">
                         <span ng-bind="GetCustomerDetailObj.firstname +' '+ GetCustomerDetailObj.lastname"></span>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-2 col-sm-3">
                         <p>Email ID:</p>
                     </div>
                     <div class="col-md-10 col-sm-9">
                         <span ng-bind="GetCustomerDetailObj.email"></span>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-2 col-sm-3">
-                        <p>Mobile Number:</p>
+                        <p>Telephone No:</p>
                     </div>
                     <div class="col-md-10 col-sm-9">
                         <span ng-bind="GetCustomerDetailObj.telephone"></span>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-2 col-sm-3">
                         <p>Points:</p>
                     </div>
                     <div class="col-md-10 col-sm-9">
                         <span ng-bind="GetCustomerDetailObj.points"></span>
-                    </div>                    
+                    </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <p>Department:</p>
+                    </div>
+                    <div class="col-md-10 col-sm-9">
+                        <span ng-bind="GetCustomerDetailObj.dept_name?NULL : 'NOT APPLICABLE'"></span>
+                    </div>
+                </div>  
+            </div>
+            <div class="col-sm-3 pull-right editProfile">
+                <div class="col-md-10 col-sm-9">
+                    <img ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" style="max-height:150px;" />
                 </div>
             </div>
             <div class="col-sm-12" id="cancelProfile">
@@ -61,8 +78,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
                         <div class="col-sm-6">
                             <label>First Name</label>
                             <input type="text" class="form-control" maxlength="32" name="FirstName" ng-model="GetCustomerDetailObj.firstname" required="required" />
@@ -76,28 +91,40 @@
                             <input type="email" class="form-control" maxlength="96" name="EmailAddress" ng-model="GetCustomerDetailObj.email" required="required" />
                         </div>
                         <div class="col-sm-6">
-                            <label>Mobile Number</label>
+                            <label>Telephone No</label>
                             <input type="text" maxlength="32" class="form-control" ng-model="GetCustomerDetailObj.telephone" />
-                        </div>                    
+                        </div> 
+                        <div class="col-sm-6">
+                            <label>Profile Picture</label>
+                            <img ng-src="{{GetCustomerDetailObj.Image}}" alt="no-image" style="max-height:150px;" />
+                            <div>
+                                <input type='file' id='Image' class='upload' file-model='fileUpload' accept='image/jpg, image/jpeg, image/png'>
+                                <!--<input type="button" class="btn btn-info col-sm-1" ng-click="uploadUserImage()" value="Upload">
+            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>-->
+                                <br />
+                                <input type="button" class="btn btn-sm btn-info" ng-click="uploadUserImage()" value="Upload">
+                                <button type="button" ng-click="deleteCustomerImage()" ng-if="GetCustomerDetailObj.customerImage_Id>0" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                            </div>
+                        </div>                   
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $(".edit-profile").click(function () {
-                if ($(".update-profile, #cancelProfile").is(
-                ":visible")) {
+                if ($(".update-profile, #cancelProfile").is(":visible")) {                
                     $(".update-profile").hide();
                     $("#cancelProfile").hide();
-                    $("#editProfile").show();
+                    $(".editProfile").show();
                 }
                 else {
                     $(".update-profile").show();
                     $("#cancelProfile").show();
-                    $("#editProfile").hide();
+                    $(".editProfile").hide();
                 }
                 $(".edit-profile i").toggleClass("fa-pencil fa-close");
             });

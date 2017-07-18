@@ -84,7 +84,9 @@
                                                 </ul>
 
                                                 <div  ng-disabled="IsEditMode != true" class="customerImage">
-                                                    <img ng-src="{{CustomerImageObj.Image}}" alt="no image" /><br/>
+                                                    <img ng-src="{{CustomerImageObj.Image}}" alt="no image" style="max-height:150px"/>
+                                                    <br/>
+                                                    <br />
                                                     <input type="button" class="btn btn-info" ng-disabled="store_id==0" ng-click="UploadImagePopUp()" value="Upload">
                                                     <button type="button" ng-if="CustomerImageObj.Image != undefined" ng-click="deleteCustomerImage()" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
 

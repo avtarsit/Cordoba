@@ -11,13 +11,10 @@
 
 
     $scope.StoreDetailInSession = StoreSessionDetail;
-    $scope.GetCustomerDetails = function () {
-        
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
-        //$http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=9&StoreId=4")
-        .then(function (response) { 
-            $scope.GetCustomerDetailObj = response.data;
-            console.log($scope.GetCustomerDetailObj);
+    $scope.GetCustomerDetails = function () {    
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)    
+        .then(function (response) {   
+            $scope.GetCustomerDetailObj = response.data;       
           })
       .catch(function (response) {
 
@@ -39,8 +36,7 @@
         var filename = files[0].name;
 
         if (files.length > 0) {
-            data.append("UploadedFile", files[0]);
-            //console.log(data);
+            data.append("UploadedFile", files[0]);   
         }
 
         var ajaxRequest = $.ajax({
@@ -48,13 +44,9 @@
             url: configurationService.basePath + 'api/CustomerApi/UploadUserImage?customerImage_id=0&customer_id=' + $scope.GetCustomerDetailObj.customer_id,
             contentType: false,
             processData: false,
-            data: data,
-            //data: {
-            //    data: data,
-            //    banner: $scope.BannerImageObj[index]
-            //},
+            data: data,         
             success: function (response) {
-                notificationFactory.customSuccess("Store Image Upload Successfully.");
+                notificationFactory.customSuccess("Profile Picture Uploaded Successfully.");
                 $('#ImageUpload').val('');
                 GetUserImage();
             },
@@ -65,19 +57,16 @@
     }
 
 
-    function GetUserImage() {
-        //debugger;
-        $scope.CustomerImageObj = [];
+    function GetUserImage() {   
+        $scope.CustomerImageObj = [];   
         $http.get(configurationService.basePath + "api/CustomerApi/GetUserImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
-          .then(function (response) {
-              //debugger;
-              if (response.data.length > 0) {
-
-                  $scope.GetCustomerDetailObj.Image = response.data[0];
-              }
+          .then(function (response) {  
+              if (response.data.length > 0) {              
+                  $scope.GetCustomerDetailObj.Image = response.data[0].Image;
+                  $scope.GetCustomerDetailObj.customerImage_Id = response.data[0].customerImage_Id;        
+              }             
           })
       .catch(function (response) {
-
       })
       .finally(function () {
 
@@ -85,13 +74,11 @@
     }
 
     $scope.deleteCustomerImage = function () {
-
         $http.get(configurationService.basePath + "api/CustomerApi/DeleteCustomerImage?customer_id=" + $scope.GetCustomerDetailObj.customer_id)
-          .then(function (response) {
-              //debugger;
-              notificationFactory.customSuccess("Image deleted Successfully.");
-              $scope.GetCustomerDetailObj.Image = null;
-              $("#Image").val('');
+          .then(function (response) {         
+              notificationFactory.customSuccess("Profile picture removed Successfully.");
+              $('#ImageUpload').val('');
+              GetUserImage();
           })
       .catch(function (response) {
       })
@@ -104,8 +91,7 @@
 
 
     $scope.SaveCustomerBasicDetails = function (form)
-    {
-        //debugger;
+    {      
         $scope.ProfileForm.$submitted = true;
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveCustomerBasicDetails_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.GetCustomerDetailObj)
@@ -134,8 +120,7 @@
     }
 
     $scope.SaveChangedPassword=function(form)
-    {
-        //debugger;
+    { 
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.GetCustomerDetailObj)
                    .then(function (response) {

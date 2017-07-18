@@ -33,7 +33,6 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCustomerAddressList_Layout?StoreId=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id)
           .then(function (response) {              
               $scope.AddressList = response.data;
-              //debugger;
           })
       .catch(function (response) {
 
@@ -64,10 +63,8 @@ app.controller('AddressBookController', function ($timeout,StoreSessionDetail,Us
 
     $scope.AddOrUpdateAddressDetail = function (form)
     {
-        //debugger;
         if (form.$valid)
         {
-            //debugger;
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/AddOrUpdateAddressDetail_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.AddressObj)
            .then(function (response) {
                     $scope.AddressObj = new Object();

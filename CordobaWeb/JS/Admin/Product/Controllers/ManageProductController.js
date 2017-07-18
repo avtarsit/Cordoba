@@ -134,7 +134,6 @@
     };
 
     $scope.GetProductById = function () {
-        //debugger;
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ProductObj = response.data;
@@ -278,8 +277,7 @@
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
             var productEntity = JSON.stringify($scope.ProductObj);
             $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, productEntity)
-              .then(function (response) {
-                  debugger;
+              .then(function (response) {            
                   if (response.data > 0) {
                       if ($scope.product_id>0)
                       {
@@ -593,8 +591,7 @@
     //};
 
     $scope.GetProductImageById = function()
-    {
-        //debugger;
+    { 
         $scope.store_id = 0;
         $scope.language_id = 1;
         $http.get(configurationService.basePath + "API/ProductApi/GetProductImageById?product_id=" + $scope.ProductObj.product_id)
