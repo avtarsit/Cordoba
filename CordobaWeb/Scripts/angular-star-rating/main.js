@@ -37,6 +37,7 @@
     }
     console.log(scope.test);
     function renderValue() {
+        debugger;
       scope.renderAry = [];
       for (var i = 0; i < scope.max; i++) {
         if (i < scope.value) {
@@ -52,12 +53,14 @@
     }
 
     scope.setValue = function (index) {
+        debugger;
       if (!scope.isReadonly && scope.isReadonly !== undefined) {
-        scope.value = index + 1;
+          scope.value = index + 1;
+           renderValue();
       }
     };
 
-    scope.changeValue = function (index) {
+    scope.changeValue = function (index) { 
       if (scope.hover) {
         scope.setValue(index);
       } else {

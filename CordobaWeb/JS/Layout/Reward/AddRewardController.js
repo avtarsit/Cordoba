@@ -66,7 +66,7 @@
             debugger;
             var ratingValue = $("#medalDiv" + index).find('input[type=radio]:checked').val();
             if ($("#medalDiv" + index).find('input[type=radio]:checked').length > 0) {
-
+                var objChecked = $("#medalDiv" + index).find('input[type=radio]:checked');
                 $scope.AddRewardObj = item;
 
                 if ($scope.AddRewardObj.IsRewarded != 1) {
@@ -111,6 +111,7 @@
                                     label: "No",
                                     className: "btn btn-default",
                                     callback: function () {
+                                        $("#" + objChecked.attr('id')).prop('checked', false);
                                         return true;
                                     }
                                 }
@@ -148,7 +149,7 @@
         }
 
         if (parseInt($scope.reward_type_id) == 1) {
-            
+            debugger;
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;
@@ -195,6 +196,12 @@
                                     label: "No",
                                     className: "btn btn-default",
                                     callback: function () {
+                                        debugger;
+                                                    
+                                        $("#ratingValue" + index + " .fa-star").removeClass('ng-scope fa fa-star fa-2x $$hashKey').addClass('ng-scope fa fa-star-o fa-2x $$hashKey');
+                                   
+                               
+                                                                              
                                         return true;
                                     }
                                 }
@@ -227,7 +234,7 @@
                 }
             }
             else {
-                notificationFactory.customError("Please select rating.");
+                notificationFactory.customError("Please select rating.");           
             }
         }
     }
