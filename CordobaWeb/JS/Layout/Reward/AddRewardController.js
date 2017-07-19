@@ -143,8 +143,7 @@
             }
         }
 
-        if (parseInt($scope.reward_type_id) == 1) {
-            debugger;
+        if (parseInt($scope.reward_type_id) == 1) {         
             var ratingValue = $("#ratingValue" + index + " .fa-star").find('i').prevObject.size();
             if (ratingValue > 0) {
                 $scope.AddRewardObj = item;
@@ -190,9 +189,7 @@
                                 {
                                     label: "No",
                                     className: "btn btn-default",
-                                    callback: function () {
-                                        debugger;
-                                                    
+                                    callback: function () {                                                                                   
                                         $("#ratingValue" + index + " .fa-star").removeClass('ng-scope fa fa-star fa-2x $$hashKey').addClass('ng-scope fa fa-star-o fa-2x $$hashKey');
                                    
                                

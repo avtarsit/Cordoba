@@ -7,7 +7,7 @@
     <title>Cordoba</title>
     <!-- Bootstrap -->
     @Styles.Render("~/bundles/Layout2CSS")
-
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
     {
         @Styles.Render("~/Content/layout2/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
