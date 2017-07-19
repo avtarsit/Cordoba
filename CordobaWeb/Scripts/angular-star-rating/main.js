@@ -35,9 +35,7 @@
     if (scope.max === undefined){
       scope.max = 5; // default
     }
-    console.log(scope.test);
-    function renderValue() {
-        debugger;
+    function renderValue() {   
       scope.renderAry = [];
       for (var i = 0; i < scope.max; i++) {
         if (i < scope.value) {
@@ -53,7 +51,6 @@
     }
 
     scope.setValue = function (index) {
-        debugger;
       if (!scope.isReadonly && scope.isReadonly !== undefined) {
           scope.value = index + 1;
            renderValue();

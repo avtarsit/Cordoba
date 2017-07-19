@@ -65,45 +65,4 @@
         </div>
         </div>
         <!--<button id="hello" ng-click="MarkAlreadyStargiven()">hello</button>-->
-
-
 </div>
-<script type="text/javascript">
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 1) {
-            $('.top-nav').addClass("hidden");
-        }
-        else {
-            $('.top-nav').removeClass("hidden");
-        }
-    });
-
-    if ($('#back-to-top').length) {
-        var scrollTrigger = 100, // px
-            backToTop = function () {
-                var scrollTop = $(window).scrollTop();
-                if (scrollTop > scrollTrigger) {
-                    $('#back-to-top').addClass('show');
-                } else {
-                    $('#back-to-top').removeClass('show');
-                }
-            };
-        backToTop();
-        $(window).on('scroll', function () {
-            backToTop();
-        });
-        $('#back-to-top').on('click', function (e) {
-            e.preventDefault();
-            $('html,body').animate({
-                scrollTop: 0
-            }, 700);
-        });
-    }
-
-</script>
-<style type="text/css">
-    .testBlock {
-        display: block;
-    }
-</style>

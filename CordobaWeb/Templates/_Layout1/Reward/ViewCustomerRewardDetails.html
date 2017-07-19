@@ -29,32 +29,28 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>RewardedBy Customer</th>
-                                            <th>
+                                            <th class="text-center">Rewarded By Customer</th>
+                                            <th class="text-center">
                                                 Customer Photo
                                             </th>
-                                            <th>Medal</th>
-                                            <th>comment</th>
+                                            <th class="text-center">Medal</th>
+                                            <th class="text-center">comment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="childItem in RewardDetails | filter:{'reward_giventouser_id':Item.reward_giventouser_id}:true">
-                                            <td>{{childItem.RewardedByCustomer}}</td>
-                                            <td>
+                                            <td width="20%" class="text-center">{{childItem.RewardedByCustomer}}</td>
+                                            <td width="30%" class="text-center">
                                                 <div>
                                                     <img ng-src="{{Item.Reward_Customer_Img}}" width="100" height="100" />
                                                 </div>
                                             </td>
-                                            <td>{{childItem.Medal}}</td>
-                                            <td>{{childItem.comment}}</td>
+                                            <td width="10%" class="text-center">{{childItem.Medal}}</td>
+                                            <td width="40%" class="text-center">{{childItem.comment}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </td>
-                            <!--<td ng-bind="Item.RewardedByCustomer"></td>
-                            <td ng-bind="Item.Medal"></td>-->
-
-
                         </tr>
                     </tbody>
                     <tbody ng-if="RewardDetails.length==0">
