@@ -22,12 +22,14 @@ namespace CordobaModels.Entities
 
        //Transaction
        public string firstname { get; set; }
-       public string lasstname { get; set; }
+       public string lastname { get; set; }
        public string email { get; set; }
        public string store { get; set; }
-       public string adjustment { get; set; }
+       public int adjustment { get; set; }
        public int points { get; set; }
-       public string comments { get; set; } 
+       public string comments { get; set; }
+       public DateTime Date { get; set; }
+       public string type_of_points { get; set; }
 
 
     }
