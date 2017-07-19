@@ -55,10 +55,7 @@
                             <span>Delivered</span>
                         </li>
                     </ul>
-                    <div class="remove-product">
-                        <button class="remove-item"><i class="fa fa-phone"></i> Contact Us</button>
-                        <!-- <button class="remove-item"><i class="fa fa-file-text-o"></i> Invoice</button> -->
-                    </div>
+                 
                 </div>
                 <div class="payment-summary">
                     <button class="remove-item pull-right" ui-sref="OrderHistory"><i class="fa fa-arrow-left"></i> Back to Orders</button>
@@ -70,7 +67,12 @@
                 <h4 class="payment-heading">Delivery Address</h4>
                 <div class="payment-summary">
                     <span ng-bind="OrderdetailObj.payment_firstname +' '+OrderdetailObj.payment_lastname"></span>
-                    <p ng-bind="OrderdetailObj.shipping_address_1 +', '+OrderdetailObj.shipping_address_2+' , '+OrderdetailObj.shipping_city+' , '+OrderdetailObj.shipping_country"></p>
+                    <p>
+                        <span ng-if="OrderdetailObj.shipping_address_1!='' && OrderdetailObj.shipping_address_1!=null" ng-bind="OrderdetailObj.shipping_address_1 +' ,'"></span>
+                        <span ng-if="OrderdetailObj.shipping_address_2!='' && OrderdetailObj.shipping_address_2!=null" ng-bind="OrderdetailObj.shipping_address_2 +' ,'"></span>
+                        <span ng-if="OrderdetailObj.shipping_city!='' && OrderdetailObj.shipping_city!=null" ng-bind="OrderdetailObj.shipping_city +' ,'"></span>
+                        <span ng-if="OrderdetailObj.shipping_country!='' && OrderdetailObj.shipping_country!=null" ng-bind="OrderdetailObj.shipping_country"></span>
+                    </p>
                 </div>
             </div>
             <div class="account-block">

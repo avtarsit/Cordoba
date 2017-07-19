@@ -42,24 +42,23 @@
                         <p class="product-price"><span>Points:</span> <span ng-bind="(Item.price | number :2) +' points'"></span></p>
                         <p class="product-price"><span>Subtotal: </span><span ng-bind="(Item.total | number :2) +' points'"></span></p>
                     </div>
-                    <ul class="order-status">
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <i class="fa fa-check"></i>
-                            <span>Order Received</span>
-                        </li>
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <i class="fa fa-check"></i>
-                            <span>Shipped</span>
-                        </li>
-                        <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
-                            <i class="fa fa-check"></i>
-                            <span>Delivered</span>
-                        </li>
-                    </ul>
-                    <div class="remove-product">
-                        <button class="remove-item"><i class="fa fa-phone"></i> Contact Us</button>
+                    <div class="cart-detail" ng-if="OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered">
+                        <ul class="order-status">
+                            <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                                <i class="fa fa-check"></i>
+                                <span>Order Received</span>
+                            </li>
+                            <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                                <i class="fa fa-check"></i>
+                                <span>Shipped</span>
+                            </li>
+                            <li ng-class="(OrderdetailObj.order_status_id == OrderStatusEnum.Delivered) ? 'completed' : ''">
+                                <i class="fa fa-check"></i>
+                                <span>Delivered</span>
+                            </li>
+                        </ul>   
+                     </div>                      
                     </div>
-                </div>
             </div>
 
             
@@ -75,7 +74,12 @@
 
                     <div class="addess-desc mt-20">
                         <h4 ng-bind="OrderdetailObj.payment_firstname +' '+OrderdetailObj.payment_lastname"></h4>
-                        <p>{{OrderdetailObj.shipping_address_1}}<br> {{OrderdetailObj.shipping_address_2}}, <br> {{OrderdetailObj.shipping_city}}, <br> {{OrderdetailObj.shipping_country}}</p>
+                        <p>
+                            <span ng-if="OrderdetailObj.shipping_address_1!='' && OrderdetailObj.shipping_address_1!=null" ng-bind="OrderdetailObj.shipping_address_1 +' ,'"></span>
+                            <span ng-if="OrderdetailObj.shipping_address_2!='' && OrderdetailObj.shipping_address_2!=null" ng-bind="OrderdetailObj.shipping_address_2 +' ,'"></span>
+                            <span ng-if="OrderdetailObj.shipping_city!='' && OrderdetailObj.shipping_city!=null" ng-bind="OrderdetailObj.shipping_city +' ,'"></span>
+                            <span ng-if="OrderdetailObj.shipping_country!='' && OrderdetailObj.shipping_country!=null" ng-bind="OrderdetailObj.shipping_country"></span>
+                        </p>
                     </div>
                 </div>
             </div>
