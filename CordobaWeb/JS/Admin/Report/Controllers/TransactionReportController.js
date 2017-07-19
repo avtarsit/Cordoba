@@ -139,7 +139,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "storename",
+                    "mData": "store",
                     "bSortable": true
                 },
                 {
@@ -147,11 +147,11 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "points",
+                    "mData": "type_of_points",
                     "bSortable": true
                 },
                 {
-                    "mData": "comment",
+                    "mData": "comments",
                     "bSortable": true
                 },
 
@@ -166,5 +166,9 @@
         });
     }
 
+    function init() {
+        $scope.GetTransactionReportList();
+    }
 
+    init();
 });
