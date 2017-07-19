@@ -139,7 +139,7 @@ namespace CordobaServices.Services
                     ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
                     ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
                     ,new SqlParameter("store_id", store_id!=null ? store_id:(object)DBNull.Value)
-                    ,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
+                    //,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
                 };
 
 

@@ -4,7 +4,6 @@
     BindToolTip();
     Tab();
     createDatePicker();
-
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
 
@@ -138,7 +137,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "storename",
+                    "mData": "store",
                     "bSortable": true
                 },
                 {
@@ -154,15 +153,15 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Model",
+                    "mData": "model",
                     "bSortable": true
                 },
                 {
-                    "mData": "ItemName",
+                    "mData": "product_name",
                     "bSortable": true
                 },
                 {
-                    "mData": "Quantity",
+                    "mData": "quantity",
                     "bSortable": true
                 },
 
@@ -176,6 +175,6 @@
             }
         });
     }
-
+    $scope.GetTransactionItemReportList();
 
 });

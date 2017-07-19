@@ -32,5 +32,13 @@ namespace CordobaModels.Entities
        public string type_of_points { get; set; }
 
 
+       public string comment { get; set; }
+       public string model { get; set; }
+       public string product_name { get; set; }
+       public int quantity { get; set; }
+
+
+       public string category { get; set; }
+
     }
 }

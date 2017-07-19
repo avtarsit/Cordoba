@@ -139,7 +139,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "storename",
+                    "mData": "store",
                     "bSortable": true
                 },
                 {
@@ -151,11 +151,11 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Model",
+                    "mData": "model",
                     "bSortable": true
                 },
                 {
-                    "mData": "ItemName",
+                    "mData": "product_name",
                     "bSortable": true
                 },
                 {
@@ -163,7 +163,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Quantity",
+                    "mData": "quantity",
                     "bSortable": true
                 },
 
@@ -178,5 +178,6 @@
         });
     }
 
+    $scope.GetTransactionItemCategoryReportList();
 
 });
