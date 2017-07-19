@@ -8,7 +8,7 @@
 .block-heading h4, .address-block:hover .add-address, .address-block:hover .add-address a i, .address-block:focus .add-address a i, .secondary [type="checkbox"]:checked:focus + label:before, .secondary [type="checkbox"]:not(:checked):focus + label:before {
     border-color:#00adef;
 }
-.btn-default, .showDesc, #back-to-top, .copyright, .btn-empty:hover, .btn-empty:focus, #back-to-top:hover, .my-account, .btn-default:hover, .btn-default:focus, .edit-profile, .update-profile, .search-icon {
+.btn-default, .showDesc, #back-to-top, .copyright, .btn-empty:hover, .btn-empty:focus, #back-to-top:hover, .my-account, .btn-default:hover, .btn-default:focus, .edit-profile, .update-profile, .search-icon, .banner-slider .bx-controls-direction a:hover, .banner-slider .bx-controls-direction a:focus {
     background-color:#00adef;
 }
 .mCS-dark-thick.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
