@@ -27,7 +27,10 @@ namespace CordobaModels.Entities
         public decimal? percent { get; set; }
         public int? viewed { get; set; }
 
+        public string purchaseddatestr { get; set; }
+
         public string ProductImage { get; set; }
+        public string totalpoints { get; set; }
         //public decimal MainTotal { get; set; }
     }
 }
