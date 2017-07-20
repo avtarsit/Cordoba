@@ -8,6 +8,8 @@
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
 
     $scope.CatalogueList = [];
+    $scope.LanguageList = [];
+    $scope.SupplierList = [];
     //#endregion  
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -17,48 +19,114 @@
     $scope.PageTitle = "Import Catalogue";
 
 
+    $scope.ImportCatalogueObject = new Object();
+    GetSupplierList();
+    GetLanguageList();
+    GetCatalogueList();
 
+    function GetSupplierList() {
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.SupplierList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.supplier_id = 0;
+                  DefaultOption.name = " --- None --- ";
+                  $scope.SupplierList.push(DefaultOption);
+                  $scope.ImportCatalogueObject.SupplierId = 0;
+              }
+          })
+      .catch(function (response) {
 
- 
-    $scope.ImportCatalogue =function()
-    {   
-        var fd = new FormData();
-        for (var i in $scope.files) {
-            fd.append("uploadedFile", $scope.files[i]);
+      })
+      .finally(function () {
+
+      });
+    }
+
+    function GetLanguageList() {
+        $http.get(configurationService.basePath + 'api/CategoryApi/GetLanguageList?StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+                  .then(function (response) {
+                      $scope.LanguageList = response.data;
+                      $scope.ImportCatalogueObject.language_id = $scope.LanguageList[0].language_id;
+                  })
+                  .catch(function (response) {
+                  })
+                  .finally(function () {
+
+                  });
+
+    }
+
+    function GetCatalogueList() {
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.CatalogueList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.catalogue_Id = 0;
+                  DefaultOption.Name = " --- None --- ";
+                  $scope.CatalogueList.push(DefaultOption);
+                  $scope.ImportCatalogueObject.catalogue_Id = 0;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.ImportCatalogue = function () {
+        if ($scope.ImportCatalogueObject.SupplierId == 0 || $scope.ImportCatalogueObject.language_id == 0 || $scope.ImportCatalogueObject.catalogue_Id == 0) {
+            return false;
         }
+        else {
+            if ($scope.files == null || $scope.files == undefined) {
+                toastr.error("Please select file for import");
+            }
+            else {
+                var fd = new FormData();
 
-        var xhr = new XMLHttpRequest();
-        //xhr.upload.addEventListener("progress", uploadProgress, false);
-        xhr.addEventListener("load", uploadComplete, false);
-        xhr.addEventListener("error", uploadFailed, false);
-        xhr.addEventListener("abort", uploadCanceled, false);
+                for (var i in $scope.files) {
+                    fd.append("uploadedFile", $scope.files[i]);
+                }
 
-       
-        xhr.open("POST", configurationService.basePath + "api/ProductCatalogueApi/ImportCatalogue?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId);
+                var xhr = new XMLHttpRequest();
+                //xhr.upload.addEventListener("progress", uploadProgress, false);
+                xhr.addEventListener("load", uploadComplete, false);
+                xhr.addEventListener("error", uploadFailed, false);
+                xhr.addEventListener("abort", uploadCanceled, false);
 
-        $scope.progressVisible = true;
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    toastr.success("File Successfully Submitted.");
-                } else {
+                xhr.open("POST", configurationService.basePath + "api/CatalogueApi/ImportCatalogue?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId +
+                    "&supplier_id=" + $scope.ImportCatalogueObject.SupplierId + "&language_id=" + $scope.ImportCatalogueObject.language_id + "&catalogue_id=" + $scope.ImportCatalogueObject.catalogue_Id);
+
+                $scope.progressVisible = true;
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            toastr.success("File Successfully Submitted.");
+                        } else {
+                            $scope.$apply(function () {
+                                $scope.progress = "Improper data in file";
+                            })
+                            toastr.error("There is improper data in .xlsx  OR .xls file.");
+                        }
+                    }
+                };
+                xhr.onerror = function () {
                     $scope.$apply(function () {
                         $scope.progress = "Improper data in file";
-                    })
+                    });
                     toastr.error("There is improper data in .xlsx  OR .xls file.");
-                }
+                };
+                xhr.send(fd);
             }
-        };
-        xhr.onerror = function () {
-            $scope.$apply(function () {
-                $scope.progress = "Improper data in file";
-            })
 
-            toastr.error("There is improper data in .xlsx  OR .xls file.");
-
-        };
-        xhr.send(fd);
+        }
     }
 
     $scope.setFiles = function (element) {

@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using CordobaModels.Entities;
+using System.Runtime.InteropServices;
 
 namespace CordobaAPI.API
 {
     public class CatalogueApiController : ApiController
     {
-        
+
         public ICatalogueServices _catalogueServices;
         public CatalogueApiController()
         {
@@ -64,12 +65,12 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateCatalogue(int StoreId,int LoggedInUserId,CatalogueEntity catalogueEntity)
+        public HttpResponseMessage InsertUpdateCatalogue(int StoreId, int LoggedInUserId, CatalogueEntity catalogueEntity)
         {
             try
             {
-                var result = _catalogueServices.InsertUpdateCatalogue(StoreId,LoggedInUserId,catalogueEntity);
-                if (result>=-1)
+                var result = _catalogueServices.InsertUpdateCatalogue(StoreId, LoggedInUserId, catalogueEntity);
+                if (result >= -1)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
@@ -83,12 +84,12 @@ namespace CordobaAPI.API
 
         }
 
-           [HttpGet]
+        [HttpGet]
         public HttpResponseMessage DeleteCatalogue(int catalogue_id, int StoreId, int LoggedInUserId)
         {
             try
             {
-                var result = _catalogueServices.DeleteCatalogue(catalogue_id,StoreId,LoggedInUserId);
+                var result = _catalogueServices.DeleteCatalogue(catalogue_id, StoreId, LoggedInUserId);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
@@ -99,7 +100,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage ImportCatalogue()
+        public HttpResponseMessage ImportCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id)
         {
             try
             {
@@ -110,7 +111,7 @@ namespace CordobaAPI.API
                     System.IO.Directory.CreateDirectory(directoryPath);
                 }
                 //string filePath = directoryPath + @"\" + Guid.NewGuid().ToString() + ".xlsx";
-                string filePath = directoryPath + @"\" + Guid.NewGuid().ToString() + ".csv";
+                string filePath = directoryPath + @"\" + Guid.NewGuid().ToString() + ".xlsx";
                 if (HttpContext.Current.Request.Files.AllKeys.Any())
                 {
                     // Get the uploaded image from the Files collection
@@ -130,22 +131,22 @@ namespace CordobaAPI.API
 
                             File.WriteAllBytes(filePath, fileData);
                         }
-
-
                     }
                 }
 
                 string excelfilepath = filePath;
                 string strConnectionString = "";
-                //if (excelfilepath.ToLower().Trim().EndsWith(".xlsx") || excelfilepath.ToLower().Trim().EndsWith(".xls"))
-                //{
-                //    strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
-                //}
 
-                if (excelfilepath.ToLower().Trim().EndsWith(".xlsx") || excelfilepath.ToLower().Trim().EndsWith(".csv"))
+
+                if (excelfilepath.ToLower().Trim().EndsWith(".xlsx") || excelfilepath.ToLower().Trim().EndsWith(".xls") || filePath.ToLower().Trim().EndsWith(".csv"))
                 {
                     strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
                 }
+
+                //if (filePath.ToLower().Trim().EndsWith(".xlsx") || filePath.ToLower().Trim().EndsWith(".csv"))
+                //{
+                //    strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", filePath);
+                //}
 
 
                 OleDbConnection OleDbConn = new OleDbConnection(strConnectionString);
