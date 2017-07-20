@@ -12,7 +12,7 @@
     $scope.TransactionItemCategoryReportObj = new Object();
     $scope.TransactionItemCategoryReportObj.DateStart = null;
     $scope.TransactionItemCategoryReportObj.DateEnd = null;
-    $scope.TransactionItemCategoryReportObj.store_id = $scope.store_id;
+    $scope.TransactionItemCategoryReportObj.store_id = $rootScope.storeId;
 
     $scope.PageTitle = "Reports - Transaction Item Category Report";
 
@@ -139,7 +139,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "storename",
+                    "mData": "store",
                     "bSortable": true
                 },
                 {
@@ -151,11 +151,11 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Model",
+                    "mData": "model",
                     "bSortable": true
                 },
                 {
-                    "mData": "ItemName",
+                    "mData": "product_name",
                     "bSortable": true
                 },
                 {
@@ -163,7 +163,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Quantity",
+                    "mData": "quantity",
                     "bSortable": true
                 },
 
@@ -178,5 +178,6 @@
         });
     }
 
+    $scope.GetTransactionItemCategoryReportList();
 
 });

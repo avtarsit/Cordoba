@@ -156,7 +156,7 @@ namespace CordobaAPI.API
                 {
                     strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
                 }
-
+                //strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
 
                 OleDbConnection OleDbConn = new OleDbConnection(strConnectionString);
 
@@ -174,9 +174,9 @@ namespace CordobaAPI.API
                 OleDbAdapter.Fill(dtXLS);
                 OleDbConn.Close();
 
-                if (File.Exists(filePath))
+                if (File.Exists(excelfilepath))
                 {
-                    File.Delete(filePath);
+                    File.Delete(excelfilepath);
                 }
 
                 if (dtXLS != null && dtXLS.Rows.Count > 0)

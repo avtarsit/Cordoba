@@ -16,7 +16,7 @@
 
     $scope.ProductFilter = new Object();
     $scope.ProductFilter.order_status_id = 0;
-    $scope.ProductFilter.store_id = $scope.store_id;
+    $scope.ProductFilter.store_id = $rootScope.storeId;
     $scope.ProductFilter.DateStart = '';
     $scope.ProductFilter.DateEnd = '';
 

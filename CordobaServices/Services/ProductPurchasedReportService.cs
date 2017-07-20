@@ -50,15 +50,15 @@ namespace CordobaServices.Services
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
                 var paramOrderStatusId = new SqlParameter { ParameterName = "order_status_id", DbType = DbType.Int32, Value = order_status_id  };
                 var paramStoreId = new SqlParameter { ParameterName = "store_id", DbType = DbType.Int32, Value = store_id };
-                var ParameterLoggedInUserId = new SqlParameter
-                {
-                    ParameterName = "LoggedInUserId",
-                    DbType = DbType.Int32,
-                    Value = LoggedInUserId
-                };
+                //var ParameterLoggedInUserId = new SqlParameter
+                //{
+                //    ParameterName = "LoggedInUserId",
+                //    DbType = DbType.Int32,
+                //    Value = LoggedInUserId
+                //};
                 var paramStartDate = new SqlParameter { ParameterName = "DateStart", DbType = DbType.DateTime, Value = DateStart ?? (object)DBNull.Value };
                 var paramEndDate = new SqlParameter { ParameterName = "DateEnd", DbType = DbType.DateTime, Value = DateEnd ?? (object)DBNull.Value };
-                var query = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetProductPurchasedList", paramOrderBy, paramPageSize, paramPageIndex, paramOrderStatusId, paramStoreId, ParameterLoggedInUserId, paramStartDate, paramEndDate).ToList<OrderProductEntity>();
+                var query = objGenericRepository.ExecuteSQL<OrderProductEntity>("GetProductPurchasedList", paramOrderBy, paramPageSize, paramPageIndex, paramOrderStatusId, paramStoreId, paramStartDate, paramEndDate).ToList<OrderProductEntity>();
                 return query;
             }
             catch (Exception ex )

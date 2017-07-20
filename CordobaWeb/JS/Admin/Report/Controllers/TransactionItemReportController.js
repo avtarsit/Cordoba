@@ -4,13 +4,13 @@
     BindToolTip();
     Tab();
     createDatePicker();
-
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
 
     $scope.TransactionItemReportObj = new Object();
     $scope.TransactionItemReportObj.DateStart = null;
     $scope.TransactionItemReportObj.DateEnd = null;
+    $scope.TransactionItemReportObj.store_id = $rootScope.storeId;
 
 
     $scope.PageTitle = "Reports - Transaction Item Report";
@@ -90,7 +90,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemReportObj.DateEnd + '&StoreId=' + $scope.store_id + '&LoggedInUserId=' +$scope.LoggedInUserId,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemReportObj.DateEnd + '&StoreId=' + $scope.TransactionItemReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -138,7 +138,7 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "storename",
+                    "mData": "store",
                     "bSortable": true
                 },
                 {
@@ -154,15 +154,15 @@
                     "bSortable": true
                 },
                 {
-                    "mData": "Model",
+                    "mData": "model",
                     "bSortable": true
                 },
                 {
-                    "mData": "ItemName",
+                    "mData": "product_name",
                     "bSortable": true
                 },
                 {
-                    "mData": "Quantity",
+                    "mData": "quantity",
                     "bSortable": true
                 },
 
@@ -176,6 +176,6 @@
             }
         });
     }
-
+    $scope.GetTransactionItemReportList();
 
 });

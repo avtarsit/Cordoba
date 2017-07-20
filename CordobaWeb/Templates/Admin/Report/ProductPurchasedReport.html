@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Store</label>
                                 <select ng-options="Store.store_id as Store.name  for Store in StoreList | orderBy:'store_id'"
-                                        class="form-control" ng-model="ProductFilter.store_id" name="Store" ng-disabled="ProductFilter.store_id != 0"></select>
+                                        class="form-control" ng-model="ProductFilter.store_id" name="Store" ng-disabled="store_id != 0"></select>
                             </div>
                             <button ng-click="GetProductPurchasedList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                         </div>
