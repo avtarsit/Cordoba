@@ -11,7 +11,7 @@
     $scope.TransactionReportObj = new Object();
     $scope.TransactionReportObj.DateStart = null;
     $scope.TransactionReportObj.DateEnd = null;
-    $scope.TransactionReportObj.store_id = $scope.store_id;
+    $scope.TransactionReportObj.store_id = $rootScope.storeId;
    
 
     $scope.PageTitle = "Reports - Transaction Report";
