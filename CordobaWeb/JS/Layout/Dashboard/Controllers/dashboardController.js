@@ -5,7 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
-    //$scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
+    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
     $scope.OpenLoginPopUp = function () {
@@ -153,15 +153,16 @@
         }
 
         $scope.OpenTermsCondition = function () {
+            debugger;
             $scope.GetTermsCondition();
             angular.element("#DivTermsConditionModel").modal('show');
         }
 
-
         $scope.GetTermsCondition = function () {
-
+            debugger;
             $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
               .then(function (response) {
+                  debugger;
                   if (response.data.length > 0) {
                       $scope.TermsConditionMsg = response.data[0].Terms;
                       //$scope.html = decodeHtml($scope.TermsConditionMsg);

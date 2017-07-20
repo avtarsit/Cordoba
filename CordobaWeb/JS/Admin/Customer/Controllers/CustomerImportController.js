@@ -65,23 +65,23 @@
 
         $scope.progressVisible = true;
 
-        xhr.onreadystatechange = function () {         
+        xhr.onreadystatechange = function () {       
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
+                   
+                    var ReturnText = JSON.parse(xhr.responseText);
 
-                    //Need to check
-
-                    if (xhr.responseText.code == -1)
+                    if (ReturnText == "-1")
                     {
-                        toastr.error("Here your Email msg.");
+                        toastr.error("Something wrong, please verify file.");
                     }
-                    if (xhr.responseText.code > 0)
+                    else if (ReturnText.length >3)
+                    {
+                        toastr.error(ReturnText);
+                    }
+                    else if (ReturnText == "" || ReturnText == null)
                     {
                         toastr.success("File Successfully Submitted.");
-                    }
-                    if (xhr.responseText.code == -2)
-                    {
-                        toastr.error(xhr.responseText.ErrorLog);
                     }
                    
                 } else {

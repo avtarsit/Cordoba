@@ -121,6 +121,7 @@
                             <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList " data-notify-when-repeat-finished>
                                 <div class="saller">
                                     <img ng-src="{{BestSeller.Image}}" alt="saller">
+                                    <br />
                                     <a ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" ng-bind-html="BestSeller.name"></a>        
                                     <p ng-bind="BestSeller.Model"></p>                            
                                     <p ng-bind="BestSeller.Price +' Points'"></p>

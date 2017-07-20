@@ -222,7 +222,7 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("customer_group_id", customer_group_id);
                 param[3] = new SqlParameter("CustomerXml", CustomerXml);
 
-                var result = CustomerEntityGenericRepository.ExecuteSQL<dynamic>("EXEC ImportCustomerXml", param).FirstOrDefault();
+                var result = CustomerEntityGenericRepository.ExecuteSQL<string>("EXEC ImportCustomerXml", param).FirstOrDefault();
                 return result;
             }
             catch (Exception)
