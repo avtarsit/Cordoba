@@ -671,13 +671,14 @@
     <Content Include="Content\layout2\storecss\econocomrewards.min.css" />
     <Content Include="Content\layout2\storecss\fr.pbmakeadifferencethankyou.min.css" />
     <Content Include="Content\layout2\storecss\goskippyrewards.min.css" />
+    <Content Include="Content\layout2\storecss\grenkerewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\grenkerewards.eu.min.css" />
-    <Content Include="Content\layout2\storecss\grenkerewards.min.co.uk.css" />
     <Content Include="Content\layout2\storecss\kennet-rewards.min.css" />
     <Content Include="Content\layout2\storecss\maxxiagrouprewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\morechoicerewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\scccapitalloyalty.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.eu.min.css" />
     <Content Include="Content\layout2\storecss\ur-rewards.co.uk.min.css" />
