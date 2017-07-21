@@ -333,7 +333,7 @@
         <!-- Terms and Condition popup -->
         <div class="modal" id="DivTermsConditionModel" role="dialog">
             <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog modal-lg vertical-align-center">
                     <div class="modal-content">
                         <div class="panel-heading">
                         </div>
@@ -347,7 +347,6 @@
             </div>
         </div>
         <!-- Terms and Condition popup -->
-
     </div>
 
     @Scripts.Render("~/bundles/Layout1Js")
@@ -389,18 +388,30 @@
                 }
             });
 
-            $('#readMore').click(function () {
+            //$('#readMore').click(function () {
 
+            //    $('.more-content').slideToggle();
+
+            //    var LinkText = $("#readMore").text();
+            //    LinkText = LinkText.replace(/\s/g, '');
+            //    if (LinkText == "ReadMore") {
+            //        $("#readMore").text("Read Less");
+            //    }
+            //    else {
+            //        $("#readMore").text("Read More");
+            //    }
+            //});
+
+            $(".readMore").click(function () {
                 $('.more-content').slideToggle();
+                $(".readMore").hide();
+                $(".readLess").show();
+            });
 
-                var LinkText = $("#readMore").text();
-                LinkText = LinkText.replace(/\s/g, '');
-                if (LinkText == "ReadMore") {
-                    $("#readMore").text("Read Less");
-                }
-                else {
-                    $("#readMore").text("Read More");
-                }
+            $(".readLess").click(function () {
+                $('.more-content').slideToggle();
+                $(".readLess").hide();
+                $(".readMore").show();
             });
 
             $('.category-list').mCustomScrollbar();

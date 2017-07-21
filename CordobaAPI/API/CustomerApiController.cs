@@ -156,7 +156,7 @@ namespace CordobaAPI.API
                 {
                     strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
                 }
-
+                //strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelfilepath);
 
                 OleDbConnection OleDbConn = new OleDbConnection(strConnectionString);
 
@@ -174,9 +174,9 @@ namespace CordobaAPI.API
                 OleDbAdapter.Fill(dtXLS);
                 OleDbConn.Close();
 
-                if (File.Exists(filePath))
+                if (File.Exists(excelfilepath))
                 {
-                    File.Delete(filePath);
+                    File.Delete(excelfilepath);
                 }
 
                 if (dtXLS != null && dtXLS.Rows.Count > 0)
@@ -312,7 +312,7 @@ namespace CordobaAPI.API
         //}
 
         [HttpPost]
-        public HttpResponseMessage CustomerImport(int store_id, int LoggedInUserId, int customer_group_id)
+        public string CustomerImport(int store_id, int LoggedInUserId, int customer_group_id)
         {
             try
             {
@@ -385,15 +385,25 @@ namespace CordobaAPI.API
                         dtXLS.Columns["Last Name"].ColumnName = "lastname";
                         dtXLS.Columns["Email Address"].ColumnName = "email";
                         dtXLS.Columns["Initial Points"].ColumnName = "points";
-                        dtXLS.Columns["Company_Address"].ColumnName = "company";
+                        dtXLS.Columns["Company (Address)"].ColumnName = "company";
                         dtXLS.Columns["Address 1"].ColumnName = "address_1";
                         dtXLS.Columns["Address 2"].ColumnName = "address_2";
                         dtXLS.Columns["City"].ColumnName = "city";
                         dtXLS.Columns["County"].ColumnName = "county";
                         dtXLS.Columns["Post Code"].ColumnName = "postcode";
 
+                        for (int i = 0; i < dtXLS.Rows.Count; i++)
+                        {
+                            if (!(IsValidEmail(Convert.ToString(dtXLS.Rows[i]["email"]))))
+                            {
+                                var str="Email is not valid : "+Convert.ToString(dtXLS.Rows[i]["email"]);
+                                return str;
+                            }
+                            // do something with dr
+                        } 
+
                         var result = _CustomerService.CustomerImport(store_id, LoggedInUserId, customer_group_id, dtXLS);
-                        return Request.CreateResponse(HttpStatusCode.OK, result);
+                        return result;
                     }
                     catch (Exception)
                     {
@@ -401,9 +411,14 @@ namespace CordobaAPI.API
                         throw;
                     }
                 }
+                else
+                {
+                    var errorMsg = "Records Not found!";
+                    return errorMsg;
+                }
 
 
-                return Request.CreateResponse(HttpStatusCode.OK, 0);
+                return "";
             }
             catch (Exception)
             {
@@ -476,12 +491,6 @@ namespace CordobaAPI.API
             return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
         }
 
-
-
-
-
-
-
         [HttpGet]
         public HttpResponseMessage GetUserImage(int customer_id)
         {
@@ -530,6 +539,19 @@ namespace CordobaAPI.API
             catch(Exception e)
             {
                 throw;
+            }
+        }
+
+       public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
         

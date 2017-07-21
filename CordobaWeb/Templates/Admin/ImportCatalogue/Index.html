@@ -1,5 +1,5 @@
 ﻿<div ng-controller="ImportCatalogueController">
-    <form id="form">
+    <form id="form" class="form-horizontal" name="form" novalidate>
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
@@ -17,7 +17,7 @@
                 </ul>
                 <ul class="breadcrumb-elements">
                     <li>
-                        <button type="button" ng-click="ImportCatalogue()" class="btn btn-success cursor-pointer">Import <i class="fa fa-cloud-upload position-right"></i></button>
+                        <button type="submit" ng-click="ImportCatalogue(form)" class="btn btn-success cursor-pointer">Import <i class="fa fa-cloud-upload position-right"></i></button>
                     </li>
 
                 </ul>
@@ -26,15 +26,26 @@
         <div class="page-header-content">
             <div class="panel panel-default">
                 <div class="panel-body">
-
+                    <div role="tabpanel" class="form-horizontal" id="messages">
+                        <div class="alert alert-danger alert-dismissible validationErrors" ng-show="form.$submitted && (ImportCatalogueObject.SupplierId==0 || ImportCatalogueObject.language_id==0 || ImportCatalogueObject.catalogue_Id==0)">
+                            <ul ng-show="validationErrors">
+                                <li ng-repeat="error in validationErrors">{{error}}</li>
+                            </ul>
+                            <ul ng-show="form.$submitted && (ImportCatalogueObject.SupplierId==0 || ImportCatalogueObject.language_id==0 || ImportCatalogueObject.catalogue_Id==0)">
+                                <li ng-show="ImportCatalogueObject.SupplierId<=0">Supplier is required.</li>
+                                <li ng-show="ImportCatalogueObject.language_id<=0">Language is required.</li>
+                                <li ng-show="ImportCatalogueObject.catalogue_Id<=0">Destination Catalogue is required.</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover list">
                             <tbody>
-
                                 <tr>
                                     <td width="25%">Supplier: </td>
                                     <td>
-                                        <select name="supplier" style="width:45%" class="form-control">
+                                        <select ng-options="supplier.supplier_id as supplier.name for supplier in SupplierList" ng-model="ImportCatalogueObject.SupplierId" style="width:45%" class="form-control" name="ddSupplier" required="required"></select>
+                                        <!--<select name="supplier" style="width:45%" class="form-control">
                                             <option value="1">Procurement International Limited</option>
                                             <option value="2">Apple</option>
                                             <option value="3">John Lewis</option>
@@ -64,13 +75,14 @@
                                             <option value="27">Amazon</option>
                                             <option value="28">AV Promotions </option>
                                             <option value="48">Edenred</option>
-                                        </select>
+                                        </select>-->
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="25%">Language:</td>
                                     <td>
-                                        <select name="language" style="width:20%" class="form-control" >
+                                        <select ng-options="lang.language_id as lang.name for lang in LanguageList" ng-model="ImportCatalogueObject.language_id " style="width:20%" class="form-control" name="ddlanguage" required="required"></select>
+                                        <!--<select name="language" style="width:20%" class="form-control" >
                                             <option value="1">English</option>
                                             <option value="2">Deutsch</option>
                                             <option value="3">Français</option>
@@ -78,23 +90,24 @@
                                             <option value="5">Español</option>
                                             <option value="6">Português</option>
                                             <option value="7">Nederlands</option>
-                                        </select>
+                                        </select>-->
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="25%">Catalogue source CSV (UTF-8 encoded): </td>
                                     <td>
-                                    <!--<input type="file" name="upload">-->
-                                        <input type="file" ng-model-instant id="fileToUpload"  onchange="angular.element(this).scope().setFiles(this)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                        <!--<input type="file" name="upload">-->
+                                        <input type="file" ng-model-instant id="fileToUpload" onchange="angular.element(this).scope().setFiles(this)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
                                     </td>
-                                    
+
                                 </tr>
                                 <tr>
                                     <td width="25%">
                                         Destination Catalogue: 				<span class="help">Nb: All existing products in this catalogue will be removed!</span>
                                     </td>
                                     <td>
-                                        <select name="catalouge" style="width:45%" class="form-control">
+                                        <select ng-options="catalog.catalogue_Id as catalog.Name for catalog in CatalogueList" ng-model="ImportCatalogueObject.catalogue_Id" style="width:45%" class="form-control" name="ddCatalogue" required="required"></select>
+                                        <!--<select name="catalouge" style="width:45%" class="form-control">
                                             <option value=""> --- None --- </option>
                                             <option value="18">CVD Edenred Vouchers</option>
                                             <option value="20">Edenred</option>
@@ -145,7 +158,7 @@
                                             <option value="98">French Vouchers</option>
                                             <option value="99">ngc-eu</option>
                                             <option value="100">Spicers Mothers Day 2017</option>
-                                        </select>
+                                        </select>-->
                                     </td>
                                 </tr>
                             </tbody>
@@ -159,7 +172,7 @@
 </div>
 
 <script>
-    $("#fileToUpload").change(function () {  
+    $("#fileToUpload").change(function () {
         var fileExtension = ['csv'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
             alert("Only formats are allowed : " + fileExtension.join(', '));
