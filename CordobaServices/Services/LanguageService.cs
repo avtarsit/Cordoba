@@ -20,7 +20,7 @@ namespace CordobaServices.Services
             List<LanguageEntity> languages = new List<LanguageEntity>();
             var paramLanguageId = new SqlParameter 
             { 
-                ParameterName = "countryId", 
+                ParameterName = "language_id", 
                 DbType = DbType.Int32, 
                 Value = languageId 
             };
@@ -36,7 +36,7 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = LoggedInUserId
             };
-            languages = objGenericRepository.ExecuteSQL<LanguageEntity>("GetLanguageList", paramLanguageId,ParameterStoreId,ParameterLoggedInUserId).ToList();
+            languages = objGenericRepository.ExecuteSQL<LanguageEntity>("GetLanguageList",ParameterStoreId,ParameterLoggedInUserId,paramLanguageId).ToList();
             return languages;
         }
 

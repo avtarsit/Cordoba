@@ -6322,5 +6322,25 @@ h6.panel-title,
     width:350px;
 }
 /* rewards end */
+.ProfilePicTopLinkCircle{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: #fff;
+  line-height: 20px;
+  padding-right:25px;
+  text-align: center;
+  background: rgba(85, 181, 88, 0.74)
+}
 
-
+.ProfilePicCircle{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: #fff;
+  line-height: 28px;
+  text-align: center;
+  background: rgba(85, 181, 88, 0.74)
+}

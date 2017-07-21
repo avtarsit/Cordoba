@@ -282,13 +282,12 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id,int store_id, int LoggedInUserId, int product_id)
+        public List<HotSpecialProductEntity> GetHotOrSpecialProductById(int store_id, int LoggedInUserId, int product_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { 
-                                                            new SqlParameter("language_id",language_id)
-                                                           ,new SqlParameter("store_id", store_id)
+                SqlParameter[] sqlParameter = new SqlParameter[] {                                                          
+                                                           new SqlParameter("store_id", store_id)
                                                            ,new SqlParameter("LoggedInUserId",LoggedInUserId)
                                                            ,new SqlParameter("product_id", product_id)  
                                                                 };
@@ -358,6 +357,22 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+        public List<CategoryEntity> GetSubCategoryList(int StoreId, int LoggedInUserId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreId", StoreId), new SqlParameter("LoggedInUserId", LoggedInUserId) };
+                var result = objGenericRepository.ExecuteSQL<CategoryEntity>("GetSubCategoryList", sqlParameter).ToList();
+                return result;
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        
 
     }
     

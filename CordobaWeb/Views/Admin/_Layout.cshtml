@@ -28,7 +28,9 @@
     <div class="navbar navbar-inverse">
         <input id="hdAdminUserId" type="hidden" value="@Convert.ToString(@HttpContext.Current.Session["AdminUserId"])" />
         <div class="navbar-header">
-            <a class="navbar-brand" href="#" ui-sref="Home"><img style=" margin-top: -16px; height: 52px;" src="~/Content/admin/images/logo/logo.png" alt=""></a>
+            <a class="navbar-brand" href="#" ui-sref="Home">
+            <img style=" margin-top: -16px; height: 52px;" src="~/Content/admin/images/logo/logo.png" alt="">
+            </a>
             <ul class="nav navbar-nav visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
                 <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
@@ -154,13 +156,15 @@
                 </li>
 
                 <li class="dropdown dropdown-user">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="~/Content/admin/images/placeholder.jpg" alt="">
-                        <span>@CordobaCommon.ProjectSession.AdminLoginSession.email</span>
+                    <a class="dropdown-toggle " data-toggle="dropdown">
+                        <span class="ProfilePicTopLinkCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</span>&nbsp;@CordobaCommon.ProjectSession.AdminLoginSession.email
+                        @*<div class="ProfilePicCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</div>*@
+                        @*<img src="~/Content/admin/images/placeholder.jpg" alt="">*@
+                        @*<span></span>*@
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="" onclick="UnderMaintenance()" class="cursor-pointer"><i class="icon-user-plus"></i>profile</a></li>
+                        @*<li><a href="" onclick="UnderMaintenance()" class="cursor-pointer"><i class="icon-user-plus"></i>profile</a></li>*@
                         @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
                     <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
                         <li class="divider"></li>
@@ -183,7 +187,10 @@
                     <div class="sidebar-user">
                         <div class="category-content">
                             <div class="media">
-                                <a href="#" class="media-left"><img src="~/Content/admin/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+                                <a href="" class="cursor-pointer media-left">
+                                @*<img src="~/Content/admin/images/placeholder.jpg" class="img-circle img-sm" alt="">*@
+                                    <div class="ProfilePicCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</div>    
+                                </a>
                                 <div class="media-body">
                                     <span class="media-heading text-semibold">Admin</span>
                                     <div class="text-size-mini text-muted">

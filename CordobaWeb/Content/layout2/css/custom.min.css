@@ -2329,3 +2329,15 @@ label {
 .readLess{
     display:none;
 }
+
+
+.ProfilePicCircle{
+	 width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 150px;
+  text-align: center;
+  background: rgba(85, 181, 88, 0.74)
+}
