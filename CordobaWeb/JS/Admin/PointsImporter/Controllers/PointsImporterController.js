@@ -63,7 +63,7 @@
                     //console.log(invalidEmails[0]["invalidEmail"])
                     if (invalidEmails[0]["invalidEmail"])
                     {
-                        var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"] + "</p>";
+                        var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"].substring(0, invalidEmails[0]["invalidEmail"].length - 1) + "</p>";
                         bootbox.dialog({
                             message: uploadHtml,
                             title: "Alert",
