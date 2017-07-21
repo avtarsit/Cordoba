@@ -188,18 +188,17 @@ namespace CordobaServices.Services
         }
 
 
-        public int PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail, DataTable PointsTable)
+        public List<PointsAuditEntity> PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail, DataTable PointsTable)
         {
             string PointsXml = GeneralMethods.ConvertDatatableToXML(PointsTable);
             try
             {
-                SqlParameter[] param = new SqlParameter[4];
+                SqlParameter[] param = new SqlParameter[3];
                 param[0] = new SqlParameter("store_id", store_id);
-                param[1] = new SqlParameter("LoggedInUserId", LoggedInUserId);
-                param[2] = new SqlParameter("IsSendEmail", IsSendEmail);
-                param[3] = new SqlParameter("PointsXml", PointsXml);
+                param[1] = new SqlParameter("IsSendEmail", IsSendEmail);
+                param[2] = new SqlParameter("PointsXml", PointsXml);
 
-                var result = CustomerEntityGenericRepository.ExecuteSQL<int>("EXEC ImportPointsXml", param).FirstOrDefault();
+                List<PointsAuditEntity> result = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC ImportPointsXml", param).ToList();
                 return result;
             }
             catch (Exception)

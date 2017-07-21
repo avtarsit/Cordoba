@@ -188,7 +188,8 @@ namespace CordobaAPI.API
                         dtXLS.Columns["Comment"].ColumnName = "comment";
 
                         var result = _CustomerService.PointsImporter(store_id, LoggedInUserId, IsSendEmail, dtXLS);
-                        return Request.CreateResponse(HttpStatusCode.OK, result);
+                        Console.Write(result);
+                        return Request.CreateResponse(HttpStatusCode.OK, result );
                     }
                     catch (Exception)
                     {

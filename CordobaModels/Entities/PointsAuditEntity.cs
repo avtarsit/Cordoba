@@ -16,5 +16,7 @@ namespace CordobaModels.Entities
 
         public string Withdrawal { get; set; }
         public string Deposit { get; set; }
+        public string invalidEmail { get; set; }
+        public int code { get; set; }
     }
 }
