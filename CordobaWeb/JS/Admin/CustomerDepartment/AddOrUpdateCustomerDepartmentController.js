@@ -17,8 +17,7 @@
         $scope.IsEditMode = true;
         $scope.CustomerDepartmentId = $stateParams.CustomerDepartmentId;
         $http.get(configurationService.basePath + "api/CustomerDepartmentApi/GetCustomerDepartmentById?CustomerDepartmentId=" + $stateParams.CustomerDepartmentId)
-          .then(function (response) {
-              debugger;
+          .then(function (response) {          
               if (response.data.length > 0) {
                   $scope.CustomerDepartmentObj = response.data[0];
                   $scope.CustomerDepartmentObj.LoggedInUserId = $rootScope.loggedInUserId;

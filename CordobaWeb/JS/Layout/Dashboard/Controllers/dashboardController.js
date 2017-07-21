@@ -152,17 +152,14 @@
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
         }
 
-        $scope.OpenTermsCondition = function () {
-            debugger;
+        $scope.OpenTermsCondition = function () {       
             $scope.GetTermsCondition();
             angular.element("#DivTermsConditionModel").modal('show');
         }
 
-        $scope.GetTermsCondition = function () {
-            debugger;
+        $scope.GetTermsCondition = function () {   
             $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
-              .then(function (response) {
-                  debugger;
+              .then(function (response) {          
                   if (response.data.length > 0) {
                       $scope.TermsConditionMsg = response.data[0].Terms;
                       //$scope.html = decodeHtml($scope.TermsConditionMsg);
