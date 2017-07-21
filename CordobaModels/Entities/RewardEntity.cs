@@ -23,6 +23,7 @@ namespace CordobaModels.Entities
         public int? Participate { get; set; }
         public int? store_id { get; set; }
         public bool IsCustomerDepartment { get; set; }
+        public string store_name { get; set; }
     }
 
 }
