@@ -11,5 +11,6 @@ namespace CordobaModels.Entities
         public int? Store_Id { get; set; }
         public string Image { get; set; }
         public int? ImageKey { get; set; }
+        public int layout { get; set; }
     }
 }

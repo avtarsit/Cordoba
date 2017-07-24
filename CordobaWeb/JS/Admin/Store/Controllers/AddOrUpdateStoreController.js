@@ -191,8 +191,7 @@
     }
 
 
-    $scope.UploadImage = function (store_id, imageKey, uploadId) {
-
+    $scope.UploadImage = function (store_id, imageKey, uploadId, TemplateId) {
         var data = new FormData();
         var files = $('#'+uploadId).get(0).files;
         if (files.length == 0) {
@@ -207,13 +206,14 @@
         }    
         var ajaxRequest = $.ajax({
             type: "POST",
-            url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey,
+            url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey + "&layout=" + TemplateId,
             contentType: false,
             processData: false,
             data: data,
-            success: function (response) {
+            success: function (response) {                
                 notificationFactory.customSuccess("Store Image Upload Successfully.");
-                $('#ImageUpload').val('');
+                $('#' + uploadId).val('');
+                $scope.GetAdvertisementImageList();
             },
             error: function (response) {
                 notificationFactory.error("Error occur during image upload.");
@@ -273,12 +273,29 @@
       });
     }
 
+
+    $scope.GetAdvertisementImageList = function () {
+        $http.get(configurationService.basePath + "api/StoreApi/GetAdvertisementImageList?store_id=" + $scope.store_id )
+          .then(function (response) {         
+              if (response.data.length > 0) {
+                  $scope.StoreAdvertisementImageList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     function init() {
         GetCountryList();
         GetLanguageList();
         GetCurrencyList();
         $scope.GetStoreById();
         $scope.GetBannerList();
+        $scope.GetAdvertisementImageList();
     }
 
 
