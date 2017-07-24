@@ -93,14 +93,15 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey)
+        public bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey,int layout)
         {
             try
             {
                 SqlParameter[] sqlParameter = new SqlParameter[] { 
                     new SqlParameter("Store_Id", Store_Id),
                     new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(ImageName)?(object)ImageName:(object)DBNull.Value),
-                    new SqlParameter("ImageKey", ImageKey)
+                    new SqlParameter("ImageKey", ImageKey),
+                    new SqlParameter("layout", layout)
                 };
                 int result = objGenericRepository.ExecuteSQL<int>("UploadStoreImage", sqlParameter).FirstOrDefault();
                 if (result > 0)
@@ -136,6 +137,23 @@ namespace CordobaServices.Services
                 {
                     return false;
                 }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+
+        public List<StoreImageEntity> GetAdvertisementImageList(int StoreId)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("store_id", StoreId),                  
+                };
+                var result = objGenericRepository.ExecuteSQL<StoreImageEntity>("GetAdvertisementImageList", sqlParameter).ToList();
+                return result;
             }
             catch (Exception e)
             {

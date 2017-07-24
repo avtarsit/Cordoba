@@ -11,25 +11,8 @@
     $scope.GetStoreImageList = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreImageList?Store_Id=" + $scope.StoreDetailInSession.store_id)
           .then(function (response) {
-              if (response.data.length > 0) {
-                  var FirstImage = $filter('filter')(response.data, { 'ImageKey': 1 });
-                  if (FirstImage != undefined && FirstImage != null) {
-                      $scope.FirstStoreImage = FirstImage[0].Image;
-                  }
-
-                  var SecondImage = $filter('filter')(response.data, { 'ImageKey': 2 });
-                  if (SecondImage != undefined && SecondImage != null) {
-                      $scope.SecondStoreImage = SecondImage[0].Image;
-                  }
-
-                  var ThirdImage = $filter('filter')(response.data, { 'ImageKey': 3 });
-                  if (ThirdImage != undefined && ThirdImage != null) {
-                      $scope.ThirdStoreImage = ThirdImage[0].Image;
-                  }
-
-                  //$scope.FirstStoreImage = response.data[0].Image;
-                  //$filter('filter', response.data, { 'ImageKey': '1' });
-                  //var PopularCategoryObj = $filter('filter')($scope.PopularCategoryList, { 'category_Id': Item.category_Id });
+              if (response.data.length > 0) {              
+                  $scope.StoreAdvertisementImageList = response.data;                
               }
           })
       .catch(function (response) {

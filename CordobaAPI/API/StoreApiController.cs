@@ -127,7 +127,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UploadStoreImage(int Store_Id, int ImageKey)
+        public HttpResponseMessage UploadStoreImage(int Store_Id, int ImageKey,int layout)
         {
             bool res = false;
             if (HttpContext.Current.Request.Files.AllKeys.Any())
@@ -158,7 +158,7 @@ namespace CordobaAPI.API
                         }
 
                         string fileName = Store_Id + "/" + ImageKey + "/" + httpPostedFile.FileName;
-                        res = _StoreServices.UploadStoreImage(Store_Id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.Advertisement.ToString() + "/" + fileName, ImageKey);
+                        res = _StoreServices.UploadStoreImage(Store_Id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.Advertisement.ToString() + "/" + fileName, ImageKey,layout);
 
                         if (res == true)
                         {
@@ -236,5 +236,24 @@ namespace CordobaAPI.API
 
             return Request.CreateResponse(HttpStatusCode.NotImplemented, new { data = false });
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetAdvertisementImageList(int store_id)
+        {
+            try
+            {
+                var result = _StoreServices.GetAdvertisementImageList(store_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
