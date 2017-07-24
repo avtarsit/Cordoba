@@ -9,6 +9,6 @@ namespace CordobaServices.Interfaces
 {
     public interface IActivityService
     {
-        List<ActivityEntity> GetActivityList();
+        List<ActivityEntity> GetActivityList(int store_id);
     }
 }
