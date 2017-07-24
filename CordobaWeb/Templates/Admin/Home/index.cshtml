@@ -213,7 +213,10 @@
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="activity in activityList">
-                            <a ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a> {{activity.activity_value}}.<br>
+                            <a ng-if="activity.activity_type==1" ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
+                            <a ng-if="activity.activity_type==2"  ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
+                             {{activity.activity_value}}.
+                            <br>
                             <small class="text-muted"><i class="fa fa-clock-o"></i> {{activity.date_added}}</small>
                         </li>
                         @*<li class="list-group-item">
