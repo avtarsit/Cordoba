@@ -25,7 +25,7 @@
         ];
 
     $scope.ChartOrFunctionTypeEnum = {
-                                      All: 0
+        All: 0
                                     , OrderSummary: 1
                                     , SalesAnalytics: 2
                                     , Top5SellingStores: 3
@@ -674,8 +674,28 @@
          .finally(function () {
          });
     }
+    $scope.getActivityList = function () {
+        $http.get(configurationService.basePath + "api/ActivityApi/GetActivityList"
+         .then(function (response) {
+
+             if (response.data.length > 0) {
+                 $scope.activityList = response.data;
+             }
+         })
+         .catch(function (response) {
+         
+         })
+         .finally(function () {
+         
+         })
+       )
+    }
+
+    $scope.getActivityList();
 
     $scope.GetDashboardSummaryCharts($scope.ChartOrFunctionTypeEnum.All);
+
+    
 
 
 });

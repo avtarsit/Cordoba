@@ -661,6 +661,25 @@
          });
     }
 
+    $scope.getActivityList = function () {
+        $http.get(configurationService.basePath + "api/ActivityApi/GetActivityList")
+         .then(function (response) {
+
+             if (response.data.length > 0) {
+                 $scope.activityList = response.data;
+             }
+         })
+         .catch(function (response) {
+
+         })
+         .finally(function () {
+
+         })
+       
+    }
+
+    $scope.getActivityList();
+
     $scope.GetDashboardTopHeaderFields();
     $scope.GetLatestOrderDetailsDashboard();
     $scope.GetDashboardSummaryCharts($scope.ChartOrFunctionTypeEnum.All);

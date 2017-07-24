@@ -212,11 +212,11 @@
                         <h5 class="panel-title"><i class="fa fa-calendar"></i> Recent Activity</h5>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:21:41</small>
+                        <li class="list-group-item" ng-repeat="activity in activityList">
+                            <a ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a> {{activity.activity_value}}.<br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> {{activity.date_added}}</small>
                         </li>
-                        <li class="list-group-item">
+                        @*<li class="list-group-item">
                             <a>Liam Guinan</a> purchased  ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK.<br>
                             <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:36</small>
                         </li>
@@ -231,7 +231,7 @@
                         <li class="list-group-item">
                             <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
                             <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 08:28:03</small>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
