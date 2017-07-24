@@ -505,6 +505,7 @@
     <Content Include="Content\css\treeGrid.css" />
     <Content Include="Content\fonts\opensans-semibold-demo.html" />
     <Content Include="Content\Images\avatar.png" />
+    <Content Include="Content\Images\banner-laptop-dell.jpg" />
     <Content Include="Content\Images\bronze.png" />
     <Content Include="Content\Images\error-img.png" />
     <Content Include="Content\Images\fb_ico.png" />
@@ -514,6 +515,8 @@
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\canon_logo-100x100.jpg" />
     <Content Include="Content\Images\Manufacturer\no_image-100x100.png" />
+    <Content Include="Content\Images\offer2.jpg" />
+    <Content Include="Content\Images\offer3.jpg" />
     <Content Include="Content\Images\silver.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
