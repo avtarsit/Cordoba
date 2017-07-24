@@ -283,12 +283,11 @@
                                         <div class="col-md-12">
                                             <h4 class="heading">Theme 2</h4>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Beside SPECIAL OFFERS</label>
+                                                <label class="col-sm-2 control-label">Beside special offers</label>
                                                 <div class="col-sm-2" >
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 4 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
-                                                    </div>
-                                                  
+                                                    </div>                                                  
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image1Layout2" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
