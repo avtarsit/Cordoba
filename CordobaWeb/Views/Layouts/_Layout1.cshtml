@@ -286,10 +286,10 @@
                                     <div class="form-group pt-20">
                                         <label for="otp">OTP:</label>
                                         <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
-                                        @*<input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" required="required">*@
+                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.confirmotp" required="required">
                                         <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid OTP!</p>
                                     </div>
-                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-click="VerifyOTP(OTPForm)">Submit</button>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.otp != otpObj.confirmotp" ng-click="VerifyOTP(OTPForm)">Submit</button>
 
                                 </div>
                             </form>

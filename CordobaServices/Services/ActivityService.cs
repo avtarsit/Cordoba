@@ -14,11 +14,17 @@ namespace CordobaServices.Services
     {
         private GenericRepository<ActivityEntity> ActivityEntityGenericRepository = new GenericRepository<ActivityEntity>();
         
-        public List<ActivityEntity> GetActivityList()
+        public List<ActivityEntity> GetActivityList(int store_id)
         {
             try
             {
-                var activityEntity = ActivityEntityGenericRepository.ExecuteSQL<ActivityEntity>("GetActivityList").ToList<ActivityEntity>().ToList();
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "store_id",
+                    DbType = DbType.Int32,
+                    Value = store_id
+                };
+                var activityEntity = ActivityEntityGenericRepository.ExecuteSQL<ActivityEntity>("GetActivityList",paramStoreId).ToList<ActivityEntity>().ToList();
                 return activityEntity;
             }
             catch(Exception e)

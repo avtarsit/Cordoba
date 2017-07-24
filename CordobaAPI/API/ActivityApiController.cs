@@ -23,11 +23,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetActivityList()
+        public HttpResponseMessage GetActivityList(int store_id)
         {
             try
             {
-                var result = activityService.GetActivityList();
+                var result = activityService.GetActivityList(store_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
