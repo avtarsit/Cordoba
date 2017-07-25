@@ -7,6 +7,8 @@
     <title>Cordoba</title>
 
     @Styles.Render("~/bundles/Layout1CSS")
+    <link href="~/Content/layout1/css/ContactUs.min.css" rel="stylesheet" />
+
     <style>
          @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
@@ -144,9 +146,9 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li class="active"><a href="" class="cursor-pointer" ui-sref="Home">Home</a></li>
+                                <li><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
+                                <li><a href="" ui-sref="ContactUs">Contact Us</a></li>
                                 <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                             </ul>
                         </div>
