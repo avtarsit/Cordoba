@@ -510,6 +510,7 @@
     <Content Include="Content\Images\error-img.png" />
     <Content Include="Content\Images\fb_ico.png" />
     <Content Include="Content\Images\gold.png" />
+    <Content Include="Content\Images\icons84d1.png" />
     <Content Include="Content\Images\Loading.gif" />
     <Content Include="Content\Images\manufacture.jpg" />
     <Content Include="Content\Images\Manufacturer\apple_logo-100x100.jpg" />
@@ -518,6 +519,7 @@
     <Content Include="Content\Images\offer2.jpg" />
     <Content Include="Content\Images\offer3.jpg" />
     <Content Include="Content\Images\silver.png" />
+    <Content Include="Content\Images\wave-pattern-white9441.png" />
     <Content Include="Content\Images\x_office_calendar.png" />
     <Content Include="Content\layout1\css\bootstrap.min.css" />
     <Content Include="Content\layout1\css\classes.css" />
@@ -3743,6 +3745,7 @@
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\elevatezoom.jquery.json" />
     <Content Include="Content\layout1\images\zoom\elevatezoom-master\elevatezoom-master\README.md" />
     <Content Include="Content\layout1\images\Thumbs.db" />
+    <Content Include="Content\layout1\css\ContactUs.min.css" />
     <None Include="Properties\PublishProfiles\sd.pubxml" />
     <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <Content Include="SampleFile\customer_importer_template.xls" />
@@ -3858,6 +3861,7 @@
     <Content Include="Templates\_Layout1\Cart\Checkout.html" />
     <Content Include="Templates\_Layout1\Cart\OrderSuccessful.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
+    <Content Include="Templates\_Layout1\ContactUs\index.html" />
     <Content Include="Templates\_Layout1\MyAccount\AddressBook.html" />
     <Content Include="Templates\_Layout1\MyAccount\ChangePassword.html" />
     <Content Include="Templates\_Layout1\MyAccount\EditProfile.html" />
