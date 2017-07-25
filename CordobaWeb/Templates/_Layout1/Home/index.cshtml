@@ -23,7 +23,7 @@
                                         <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" style="max-height:100px"/>
                                     </div>
                                     <div class="col-xs-8">
-                                        <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
+                                        <a href="" ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" class="seller-desc" ng-bind="BestSeller.name"></a>
                                         <p><span ng-bind="BestSeller.Model"></span></p>
                                         <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
                                         <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>

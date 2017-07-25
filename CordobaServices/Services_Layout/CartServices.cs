@@ -93,6 +93,11 @@ namespace CordobaServices.Services_Layout
        public bool SendInvoiceMailToCustomer(int order_id)
        {
 
+           if (order_id<=0)
+           {
+               return false;
+           }
+
            var orderIdParam = new SqlParameter 
            {
                ParameterName = "order_id", 

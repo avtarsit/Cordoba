@@ -677,7 +677,7 @@
     $scope.getActivityList = function () {
         $http.get(configurationService.basePath + "api/ActivityApi/GetActivityList?store_id=" + $scope.storeId)
          .then(function (response) {
-
+             debugger;
              if (response.data.length > 0) {
                  $scope.activityList = response.data;
              }
