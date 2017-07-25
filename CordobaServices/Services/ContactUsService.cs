@@ -15,11 +15,12 @@ namespace CordobaServices.Services
     {
         private GenericRepository<BannerEntity> contactUsGenericRepository = new GenericRepository<BannerEntity>();
 
-        public int sendContactUsDetails(string firstname, string lastname, string email, string phone, string description, StoreEntity storeEntity)
+        public bool sendContactUsDetails(string firstname, string lastname, string email, string phone, string description, StoreEntity storeEntity)
         {
             try
             {
-                return 0;
+                CommonService customerService = new CommonService();
+                return customerService.sendContactUsDetails(firstname + " " + lastname, email, phone, description, storeEntity);
             }
             catch(Exception)
             {

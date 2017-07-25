@@ -163,7 +163,7 @@ namespace CordobaServices.Services
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
         }
 
-        public bool sendContactUsDetails(string name, string email, string phone, string description, string store_name, string logopath)
+        public bool sendContactUsDetails(string name, string email, string phone, string description, StoreEntity storeEntity)
         {
             const string strSubject = "Inquiry";
 
@@ -173,14 +173,12 @@ namespace CordobaServices.Services
             if (strbody.Length <= 0)
                 return false;
 
-            strbody = strbody.Replace("##name##", name);
-            strbody = strbody.Replace("##email##", email);
-            strbody = strbody.Replace("##phone##", phone);
-            strbody = strbody.Replace("##description##", description);
-            strbody = strbody.Replace("##StoreName##", store_name);
-            strbody = strbody.Replace("##LogoPath##", logopath);
-
-            return SendMailMessage(null, null, null, strSubject, strbody, GetEmailSettings(), null);
+            strbody = strbody.Replace("##Name##", name);
+            strbody = strbody.Replace("##Email##", email);
+            strbody = strbody.Replace("##Phone##", phone);
+            strbody = strbody.Replace("##Query##", description);
+           
+            return SendMailMessage("rushil.p@sgit.in", null, null, strSubject, strbody, GetEmailSettings(), null);
 
         }
 
