@@ -9,6 +9,6 @@ namespace CordobaServices.Interfaces
 {
     public interface IContactUsService
     {
-        int sendContactUsDetails(string firstname, string lastname, string email, string phone, string description, StoreEntity storeEntity);
+        bool sendContactUsDetails(string firstname, string lastname, string email, string phone, string description, StoreEntity storeEntity);
     }
 }
