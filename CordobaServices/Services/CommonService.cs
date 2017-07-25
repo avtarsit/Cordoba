@@ -177,6 +177,8 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##Email##", email);
             strbody = strbody.Replace("##Phone##", phone);
             strbody = strbody.Replace("##Query##", description);
+            strbody = strbody.Replace("##LogoPath##", storeEntity.logo);
+            strbody = strbody.Replace("##StoreName##", storeEntity.name);
            
             return SendMailMessage("rushil.p@sgit.in", null, null, strSubject, strbody, GetEmailSettings(), null);
 
