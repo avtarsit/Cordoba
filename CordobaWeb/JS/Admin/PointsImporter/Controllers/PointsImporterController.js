@@ -78,6 +78,7 @@
                         });
                     }
                     toastr.success("File Successfully Submitted.");
+                    $("#upload").val(null);
                 } else {
                     $scope.$apply(function () {
                         $scope.progress = "Improper data in file";
