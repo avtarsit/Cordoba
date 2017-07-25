@@ -53,6 +53,7 @@
     <Compile Include="Interfaces\IBannerServices.cs" />
     <Compile Include="Interfaces\ICategoryServices.cs" />
     <Compile Include="Interfaces\ICommonServices.cs" />
+    <Compile Include="Interfaces\IContactUsService.cs" />
     <Compile Include="Interfaces\ICountryServices.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
     <Compile Include="Interfaces\ICustomerDepartmentService.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\ContactUsService.cs" />
     <Compile Include="Services\CountryServices.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\CustomerDepartmentService.cs" />
