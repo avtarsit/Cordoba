@@ -12,18 +12,20 @@
         description: ''
     }
 
-    $scope.SendContactUsDetail = function () {
-        $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
-          .then(function (response) {
-              toastr.success("Email sent successfully.");
-              $scope.contactUsObj = {};
+    $scope.SendContactUsDetail = function (form) {
+        if (form.$valid) {
+            $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
+              .then(function (response) {
+                  toastr.success("Email sent successfully.");
+                  $scope.contactUsObj = {};
+              })
+          .catch(function (response) {
+
           })
-      .catch(function (response) {
+          .finally(function () {
 
-      })
-      .finally(function () {
-
-      });
+          });
+        }
     }
 
 })
