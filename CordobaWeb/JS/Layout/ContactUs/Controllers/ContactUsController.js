@@ -13,11 +13,9 @@
     }
 
     $scope.SendContactUsDetail = function () {
-        $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails", $scope.StoreDetailInSession, $scope.contactUsObj)
+        $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone, $scope.StoreDetailInSession)
           .then(function (response) {
-              
                   toastr.success("Saved successfully.");
-              
           })
       .catch(function (response) {
 

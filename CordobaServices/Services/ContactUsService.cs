@@ -15,7 +15,7 @@ namespace CordobaServices.Services
     {
         private GenericRepository<BannerEntity> contactUsGenericRepository = new GenericRepository<BannerEntity>();
 
-        public int sendContactUsDetails()
+        public int sendContactUsDetails(string firstname, string lastname, string email, string phone, string description, StoreEntity storeEntity)
         {
             try
             {

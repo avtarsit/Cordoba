@@ -22,11 +22,16 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage SendContactUsDetails(StoreEntity storeEntity, ContactUsEntity contactUsEntity)
+        public HttpResponseMessage SendContactUsDetails(string firstname,string lastname, string email, string phone, string description, StoreEntity storeEntity)
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, 0);
+                var result = _IContactUsService.sendContactUsDetails(firstname, lastname, email, phone, description, storeEntity);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
             }
             catch(Exception)
             {

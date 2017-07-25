@@ -167,7 +167,7 @@ namespace CordobaServices.Services
         {
             const string strSubject = "Inquiry";
 
-            var filepath = HttpContext.Current.Server.MapPath("~/ContactUsTemplate/template1.html");
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/ContactUs.html");
             var strbody = ReadTextFile(filepath);
             
             if (strbody.Length <= 0)
