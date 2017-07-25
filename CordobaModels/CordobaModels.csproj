@@ -94,6 +94,7 @@
     <Compile Include="Entities\CategoryPopularEntity.cs" />
     <Compile Include="Entities\CategoryStoreEntity.cs" />
     <Compile Include="Entities\CompanyLayoutEntity.cs" />
+    <Compile Include="Entities\ContactUsEntity.cs" />
     <Compile Include="Entities\CountryEntity.cs" />
     <Compile Include="Entities\CurrencyEntity.cs" />
     <Compile Include="Entities\CustomerDepartmentEntity.cs" />

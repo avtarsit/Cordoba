@@ -784,6 +784,7 @@
     <Content Include="JS\Layout\AddProductToCart\Controllers\AddProductToCartController.js" />
     <Content Include="JS\Layout\Cart\Controllers\CartDetailController.js" />
     <Content Include="JS\Layout\Category\Controllers\CategoryListController.js" />
+    <Content Include="JS\Layout\ContactUs\Controllers\ContactUsController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboardController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BannerController.js" />
     <Content Include="JS\Layout\Dashboard\Controllers\dashboard_BestSellerController.js" />
@@ -3876,6 +3877,7 @@
     <Content Include="Templates\_Layout2\Cart\Checkout.html" />
     <Content Include="Templates\_Layout2\Cart\OrderSuccessful.html" />
     <Content Include="Templates\_Layout2\Category\Index.html" />
+    <Content Include="Templates\_Layout2\ContactUs\index.html" />
     <Content Include="Templates\_Layout2\MyAccount\AddressBook.html" />
     <Content Include="Templates\_Layout2\MyAccount\ChangePassword.html" />
     <Content Include="Templates\_Layout2\MyAccount\editProfile.html" />
