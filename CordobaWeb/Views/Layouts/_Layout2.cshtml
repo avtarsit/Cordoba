@@ -11,8 +11,7 @@
     @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
     {
         @Styles.Render("~/Content/layout2/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
-    }
-    
+    }    
     <style>
      @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
@@ -173,8 +172,8 @@
                             <div id="navbar" class="navbar-collapse collapse toplinks">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                    <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
+                                    <li><a href="" class="cursor-pointer" ui-sref="ContactUs">Contact</a></li>
                                     <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                                 </ul>
                             </div>

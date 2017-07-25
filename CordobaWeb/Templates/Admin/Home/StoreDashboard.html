@@ -245,8 +245,11 @@
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="activity in activityList">
-                            <a>{{activity.activity_text}}</a> {{activity.activity_value}}.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:21:41</small>
+                            <a ng-if="activity.activity_type==1 || activity.activity_type==4" ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
+                            <a ng-if="activity.activity_type==2" ui-sref="Orders({OrderId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
+                            {{activity.activity_value}} {{activity.comments!=''?activity.comments:''}}.
+                            <br>
+                            <small class="text-muted"><i class="fa fa-clock-o"></i> {{activity.date_added | date:GlobalDateFormat +'  h:mm a'}}</small>
                         </li>
                         <!--<li class="list-group-item">
                             <a>Liam Guinan</a> purchased  ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK.<br>
