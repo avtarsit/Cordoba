@@ -74,31 +74,31 @@
                         </div>
                         <div class="col-sm-4">
                             <label>First Name</label>
-                            <input type="text" ng-model="AddressObj.firstname" name="firstname" required="required" class="form-control" value="" placeholder="" />
+                            <input type="text" maxlength="32" ng-model="AddressObj.firstname" name="firstname" required="required" class="form-control" value="" placeholder="" />
                         </div>
                         <div class="col-sm-4">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" value="" name="lastname" ng-model="AddressObj.lastname" required="required" />
+                            <input maxlength="32" type="text" class="form-control" value="" name="lastname" ng-model="AddressObj.lastname" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Company</label>
-                            <input type="text" class="form-control" name="company" value="" ng-model="AddressObj.company" required="required" />
+                            <input type="text" maxlength="50" class="form-control" name="company" value="" ng-model="AddressObj.company" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Address 1</label>
-                            <input type="text" class="form-control" name="address_1" value="" ng-model="AddressObj.address_1" required="required" />
+                            <input type="text" maxlength="128" class="form-control" name="address_1" value="" ng-model="AddressObj.address_1" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Address 2</label>
-                            <input type="text" class="form-control" name="address_2" value="" ng-model="AddressObj.address_2" />
+                            <input type="text" maxlength="128" class="form-control" name="address_2" value="" ng-model="AddressObj.address_2" />
                         </div>
                         <div class="col-sm-4">
                             <label>City</label>
-                            <input type="text" class="form-control" name="city" value="" ng-model="AddressObj.city" />
+                            <input type="text" maxlength="128" class="form-control" name="city" value="" ng-model="AddressObj.city" required="required" />
                         </div>
                         <div class="col-sm-4">
                             <label>Post Code</label>
-                            <input type="text" class="form-control" value="" ng-model="AddressObj.postcode" />
+                            <input type="text" maxlength="30" class="form-control" value="" ng-model="AddressObj.postcode" />
                         </div>                       
                         <div class="col-sm-4">
                             <label>County</label>

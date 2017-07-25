@@ -16,7 +16,7 @@
     $scope.StoreObj = new Object();
     $scope.IsEditMode = false;
     $scope.PageTitle = "Manage Customer";
-    $scope.Status = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
+    $scope.Status = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
     $scope.customer_id = 0;
     if ($stateParams.CustomerId != undefined && $stateParams.CustomerId != null) {
         $scope.customer_id = $stateParams.CustomerId;
@@ -218,8 +218,11 @@
     $scope.GetCustomerById = function () {
 
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
-          .then(function (response) {        
+          .then(function (response) { 
               $scope.CustomerObj = response.data;
+              if (!($scope.customer_id>0)) {
+                   $scope.CustomerObj.status=1;
+              }
               if ($scope.CustomerObj.AddressList == undefined || $scope.CustomerObj.AddressList.length == 0) {
                   var AddressObj = new Object();
                   
