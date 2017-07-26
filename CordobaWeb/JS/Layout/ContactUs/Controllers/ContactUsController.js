@@ -15,11 +15,14 @@
 
     $scope.SendContactUsDetail = function (form) {    
         $scope.captchaValid = false;
-        if (grecaptcha.getResponse() == undefined || grecaptcha.getResponse() == '' || grecaptcha.getResponse() == null) {         
+        if (grecaptcha.getResponse() == undefined || grecaptcha.getResponse() == '' || grecaptcha.getResponse() == null) {  
             return false;
+            
         }
         else {
             $scope.captchaValid = true;
+           
+
         }
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
@@ -35,5 +38,12 @@
           });
         }
     }
+
+    $scope.test = function()
+    {
+        var el = angular.element('#thumb');
+        el.attr('class', 'fa fa-thumbs-up bigicon');
+    }
+
 
 })
