@@ -21,7 +21,7 @@
                     <ul ng-show="contactForm.$submitted && (!contactForm.$valid)">
                         <li ng-show="contactForm.FirstName.$error.required">First name is required.</li>
                         <li ng-show="contactForm.LastName.$error.required">Last name is required.</li>
-                        <li ng-show="contactForm.Email.$error.required || ProfileForm.Email.$error.email">Email address is not valid.</li>
+                        <li ng-show="contactForm.Email.$error.required || contactForm.Email.$error.email">Email address is not valid.</li>
                         <li ng-show="contactForm.Phone.$error.required">Phone is required.</li>
                         <li ng-show="contactForm.Message.$error.required">Message is required.</li>
                     </ul>
