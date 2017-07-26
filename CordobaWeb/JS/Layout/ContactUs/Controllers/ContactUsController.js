@@ -18,6 +18,7 @@
               .then(function (response) {
                   toastr.success("Email sent successfully.");
                   $scope.contactUsObj = {};
+                  angular.copy({}, form);
               })
           .catch(function (response) {
 
