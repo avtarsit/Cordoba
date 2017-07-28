@@ -170,6 +170,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ActivityApiController.cs" />
+    <Compile Include="API\ContactUsAPIController.cs" />
     <Compile Include="API\CustomerDepartmentApiController.cs" />
     <Compile Include="API\PointsAuditApiController.cs" />
     <Compile Include="API\BannerApiController.cs" />
@@ -247,8 +249,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="ContactUsTemplate\template1.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="EmailTemplate\ContactUs.html" />
     <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="EmailTemplate\ForgotPassword.html" />
     <Content Include="EmailTemplate\ForntUserVerified.html" />
@@ -313,6 +317,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ActivityApi\" />
+    <Folder Include="Views\ContactUsAPI\" />
     <Folder Include="Views\CurrencyApi\" />
     <Folder Include="Views\ReportApi\" />
   </ItemGroup>
@@ -359,7 +365,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54564</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1020/CordobaAPI</IISUrl>
+          <IISUrl>http://localhost:1020/CordobaAPI/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
           <IISAppRootUrl>http://localhost:8084/CordobaApi/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

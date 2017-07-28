@@ -56,8 +56,8 @@
                 <div class="container col-sm-12">
                     <div class="letest-product off">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <img src="~/Content/layout2/images/special-offers.jpg" class="offerbanner" alt="special-offers">
+                            <div class="col-sm-4" ng-controller="Dashboard_StoreImageController">
+                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 4 }">
                             </div>
                             <div class="col-sm-8">
                                 <div class="special-offers">
@@ -84,9 +84,9 @@
             <div class="row">
                 <div class="new-arrivals">
                     <div class="container">
-                        <div class="col-md-9 mt-30">
+                        <div class="col-md-9 mt-30" ng-controller="Dashboard_StoreImageController">
                             <div class="new">
-                                <img src="~/Content/layout2/images/new-arrivals.png" alt="new-arrivals">
+                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 5 }">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -121,6 +121,7 @@
                             <div class="col-sm-2" ng-repeat="BestSeller in BestSellerList " data-notify-when-repeat-finished>
                                 <div class="saller">
                                     <img ng-src="{{BestSeller.Image}}" alt="saller">
+                                    <br />
                                     <a ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" ng-bind-html="BestSeller.name"></a>        
                                     <p ng-bind="BestSeller.Model"></p>                            
                                     <p ng-bind="BestSeller.Price +' Points'"></p>

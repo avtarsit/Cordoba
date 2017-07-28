@@ -43,6 +43,7 @@
                         <tr>
                             <th>Store Name</th>
                             <th>Department Name</th>
+                            <th>Is Active</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                         <tr ng-repeat="Item in CustomerDepartmentList">
                             <td ng-bind="Item.store_name"></td>
                             <td ng-bind="Item.name"></td>
+                            <td ng-bind="Item.showstatus"></td>
                             <td class="cursor-pointer text-center" ui-sref="ManageCustomerDepartment({CustomerDepartmentId:Item.customer_department_id})" data-placement="top" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit cursor-pointer"></i></td>
                         </tr>
                     </tbody>

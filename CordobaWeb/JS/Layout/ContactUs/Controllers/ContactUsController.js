@@ -1,0 +1,49 @@
+﻿app.controller('ContactUsController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http,$location, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
+    decodeParams($stateParams);
+    BindToolTip();
+    Tab();
+
+    $scope.StoreDetailInSession = StoreSessionDetail;
+    debugger;
+    $scope.contactUsObj = {
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        description: ''
+    }
+
+    $scope.SendContactUsDetail = function (form) {    
+        $scope.captchaValid = false;
+        if (grecaptcha.getResponse() == undefined || grecaptcha.getResponse() == '' || grecaptcha.getResponse() == null) {  
+            return false;
+            
+        }
+        else {
+            $scope.captchaValid = true;
+           
+
+        }
+        if (form.$valid) {
+            $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
+              .then(function (response) {
+                  toastr.success("Successfully Submitted.");
+                  $scope.contactUsObj =new Object();
+              })
+          .catch(function (response) {
+
+          })
+          .finally(function () {
+
+          });
+        }
+    }
+
+    $scope.test = function()
+    {
+        var el = angular.element('#thumb');
+        el.attr('class', 'fa fa-thumbs-up bigicon');
+    }
+
+
+})

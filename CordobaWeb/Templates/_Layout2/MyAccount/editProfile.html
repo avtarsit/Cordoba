@@ -58,7 +58,8 @@
             </div>
             <div class="col-sm-3 pull-right editProfile">
                 <div class="col-md-10 col-sm-9">
-                    <img ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" style="max-height:150px;" />
+                    <img ng-if="GetCustomerDetailObj.Image!='' && GetCustomerDetailObj.Image!=NULL" ng-src="{{GetCustomerDetailObj.Image}}" class="pull-right" alt="no-image" style="max-height:150px;" />
+                    <div ng-if="GetCustomerDetailObj.Image=='' || GetCustomerDetailObj.Image==NULL" class="ProfilePicCircle" ng-bind="GetCustomerDetailObj.firstname[0]+GetCustomerDetailObj.lastname[0]"></div>                    
                 </div>
             </div>
             <div class="col-sm-12" id="cancelProfile">
@@ -96,7 +97,11 @@
                         </div> 
                         <div class="col-sm-6">
                             <label>Profile Picture</label>
-                            <img ng-src="{{GetCustomerDetailObj.Image}}" alt="no-image" style="max-height:150px;" />
+                            <br />
+                            <div ng-if="GetCustomerDetailObj.Image=='' || GetCustomerDetailObj.Image==NULL" class="ProfilePicCircle" ng-bind="GetCustomerDetailObj.firstname[0]+GetCustomerDetailObj.lastname[0]"></div>   
+                            <img ng-if="GetCustomerDetailObj.Image!='' && GetCustomerDetailObj.Image!=NULL" ng-src="{{GetCustomerDetailObj.Image}}"  alt="no-image" style="max-height:150px;" />
+                 
+                            <!--<img ng-src="{{GetCustomerDetailObj.Image}}" alt="no-image" style="max-height:150px;" />-->
                             <div>
                                 <input type='file' id='Image' class='upload' file-model='fileUpload' accept='image/jpg, image/jpeg, image/png'>
                                 <!--<input type="button" class="btn btn-info col-sm-1" ng-click="uploadUserImage()" value="Upload">

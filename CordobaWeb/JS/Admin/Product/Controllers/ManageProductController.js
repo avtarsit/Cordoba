@@ -43,7 +43,7 @@
         $scope.GetProductById();
         $scope.GetHotOrSpecialProductById();
         $scope.NeedToShowAddHotBtn = 0;
-        $scope.NeedToShowSpecialAddBtn = 0;
+        $scope.NeedToShowSpecialAddBtn = 0;    
     }
 
     //#region Image Tab
@@ -135,8 +135,9 @@
 
     $scope.GetProductById = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetProductById?product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {
+          .then(function (response) {             
               $scope.ProductObj = response.data;
+              $scope.ProductObj.date_available = $filter('date')(response.data.date_available, $rootScope.GlobalDateFormat);
               CreateDescriptionObject();
               if ($scope.ProductObj.product_id == 0) {
                   // Default Values
@@ -231,8 +232,8 @@
     }
 
     function GetCategoryList() {
-        $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {
+        $http.get(configurationService.basePath + "api/ProductApi/GetSubCategoryList?&StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {        
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;
               }
@@ -315,10 +316,9 @@
                 return false;
             }
             $scope.HotOrSpecialProductObj.CatalogueIdCSV = "";
-            $scope.HotOrSpecialProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
-            $scope.HotOrSpecialProductObj.store_id = 0;  // this is temporary
+            $scope.HotOrSpecialProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);    
             $scope.HotOrSpecialProductObj.product_id = $scope.product_id;
-            $scope.HotOrSpecialProductObj.created_by = -1;// this is temporary
+            $scope.HotOrSpecialProductObj.created_by = $scope.LoggedInUserId;
             var hotSpecialProductEntity = JSON.stringify($scope.HotOrSpecialProductObj);
             if($scope.HotOrSpecialProductObj.IsHotProduct==true)
             {            
@@ -326,6 +326,9 @@
                   .then(function (response) {
                       if (response.data > 0) {
                           notificationFactory.customSuccess("Product Saved Successfully.");
+                          $scope.HotOrSpecialProductObj = new Object();
+                          $scope.NeedtoShowHot_SpeacialContainer = 0;
+                          form.$valid = true;
                           $scope.GetHotOrSpecialProductById();                          
                       }
                       else if (response.data == -1) {
@@ -344,6 +347,8 @@
                             .then(function (response) {
                                 if (response.data > 0) {
                                     notificationFactory.customSuccess("Product Saved Successfully.");
+                                    $scope.HotOrSpecialProductObj = new Object();
+                                    $scope.NeedtoShowHot_SpeacialContainer = 0;                                
                                     $scope.GetHotOrSpecialProductById();
                                 }
                                 else if (response.data == -1) {
@@ -359,30 +364,6 @@
             }
         }
     }
-
-
-    //$scope.GetHotOrSpecialProductById=function()
-    //{
-
-    //    $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
-    //                        + $scope.StoreDetailInSession.language_id +
-    //                        "&store_id=" + $scope.StoreDetailInSession.store_id +
-    //                        "&product_id=" + $scope.product_id  
-    //                        )
-    //      .then(function (response) {
-
-    //          if (response.data.length > 0) {
-    //              $scope.HotOrSpecialProductList = response.data;
-    //          }
-    //      })
-    //  .catch(function (response) {
-
-    //  })
-    //  .finally(function () {
-
-    //  });
-
-    //}
 
     $scope.bindHotOrSpecial = function (data) {
       
@@ -410,10 +391,16 @@
                     title: '<B><h5>Product Name</h5></B>',
                     targets: [0]
                 },
+                  {
+                      orderable: true,
+                      mData: 'store_name',
+                      title: '<B><h5>Store</h5></B>',
+                      targets: [1]
+                  },
                 {
                     orderable: true,                    
                     title: 'Type',
-                    targets: [1],
+                    targets: [2],
                     "render": function (data, type, row) {
                         if (row.IsHotProduct ==true) {
                             return '<label>' + 'Hot Product' + '</label>';
@@ -436,7 +423,7 @@
                             return "";
                         }
                     },
-                    targets: [2]
+                    targets: [3]
                 },
                 {
                     orderable: true,
@@ -451,12 +438,12 @@
                             return "";
                         }
                     },
-                    targets: [3]
+                    targets: [4]
                 },
                 {
                     orderable: true,
                     title: '<B><h5>Status</h5></B>',
-                    targets: [4],
+                    targets: [5],
                     render: function (data, type, row) {
                         if (row.status == 1) {
                             return "Enabled";
@@ -471,7 +458,7 @@
                    orderable: true,
                    mData: 'PrimaryKeyId',
                    title: '<B><h5>Id</h5></B>',
-                   targets: [5],
+                   targets: [6],
                    visible:false
                },
                 {
@@ -490,7 +477,7 @@
                       
                     },
                     title: 'Action',
-                    targets: [6]
+                    targets: [7]
                 }
 
             ],
@@ -534,33 +521,12 @@
     }
     $scope.GetHotOrSpecialProductById=function()
     {
-        $scope.store_id = 0;
-        $scope.language_id = 1;
-        $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?language_id="
-                           + $scope.language_id +
-                           "&store_id=" + $scope.store_id +
-                           "&product_id=" + $scope.product_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId
-                           )
-        .success(function (data) {       
-            //var Hot = $filter('filter')(data, { IsHotProduct: true ,status:1}, true)[0];
-            //var Special = $filter('filter')(data, { IsHotProduct: false, status: 1 }, true)[0];
-            //if (Hot != undefined && Hot!=null)
-            //{
-            //    $scope.NeedToShowAddHotBtn = 0;
-            //}
-            //else {
-            //    $scope.NeedToShowAddHotBtn = 1;
-            //}
-            //if (Special != undefined && Special != null) {
-            //    $scope.NeedToShowSpecialAddBtn = 0;
-            //}
-            //else {
-            //    $scope.NeedToShowSpecialAddBtn = 1;
-            //}        
+        $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductById?store_id=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId + "&product_id=" + $scope.product_id)                                                                                                         
+        .success(function (data) {               
             $scope.bindHotOrSpecial(data);
 
         }).error(function (err) {
-            showNotification(false, "error : " + err);
+          
         });
     };
 
@@ -568,32 +534,8 @@
         $scope.NeedtoShowHot_SpeacialContainer = 0;
     }
 
-    //$scope.GetHotOrSpecialProductDetailById = function (isHotProduct, product_id) {
-    //    $http.get(configurationService.basePath + "API/ProductApi/GetHotOrSpecialProductDetailById?IsHotProduct="
-    //                       + isHotProduct +
-    //                       "&product_id=" + product_id
-    //                       )
-    //    .success(function (data) {   
-    //        $scope.HotOrSpecialProductObj =
-    //            {
-    //                startDate: data[0].startDate,
-    //                endDate: data[0].endDate,
-    //                priority: data[0].priority,
-    //                status : data[0].status
-    //            };
-           
-    //        $scope.NeedtoShowHot_SpeacialContainer = 1;
-
-    //        $scope.bindHotOrSpecial(data);
-    //    }).error(function (err) {
-    //        alert(false, "error : " + err);
-    //    });
-    //};
-
     $scope.GetProductImageById = function()
     { 
-        $scope.store_id = 0;
-        $scope.language_id = 1;
         $http.get(configurationService.basePath + "API/ProductApi/GetProductImageById?product_id=" + $scope.ProductObj.product_id)
         .then(function (response) {
             $scope.ProductObj.Image = response.data[0]["Image"];
@@ -603,10 +545,14 @@
 
     $scope.NeedtoShowHot_SpeacialContainerDiv=function(IsHotProduct)
     {
+
         $scope.HotOrSpecialProductObj = new Object();
+        $scope.HotOrSpecialProductObj.store_id = $scope.StoreId;
         $scope.HotOrSpecialProductObj.IsHotProduct = IsHotProduct;
         $scope.HotOrSpecialProductObj.status = 1;
-        $scope.NeedtoShowHot_SpeacialContainer = 1;
+        $scope.HotOrSpecialProductObj.created_by = $scope.LoggedInUserId;
+        $scope.NeedtoShowHot_SpeacialContainer = 1;    
+
         if(IsHotProduct==1)
         {
             $scope.NeedtoShowHot_SpeacialContainerTitle = "Add as Hot Product";
@@ -616,7 +562,24 @@
         }
     }
 
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.StoreList = response.data;          
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     //#region init
+
+    GetStoreList();
     Init();
    
     //#endregion Image Tab

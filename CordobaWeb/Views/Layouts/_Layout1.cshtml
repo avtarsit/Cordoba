@@ -7,9 +7,11 @@
     <title>Cordoba</title>
 
     @Styles.Render("~/bundles/Layout1CSS")
+    <link href="~/Content/layout1/css/ContactUs.min.css" rel="stylesheet" />
+
     <style>
          @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
-        </style>
+    </style>
 
     @Styles.Render("~/bundles/Layout1CSS")  
        
@@ -144,9 +146,9 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="#" ui-sref="Home">Home</a></li>
-                                <li><a href="#" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li class="active"><a href="" class="cursor-pointer" ui-sref="Home">Home</a></li>
+                                <li><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
+                                <li><a href="" ui-sref="ContactUs">Contact Us</a></li>
                                 <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
                             </ul>
                         </div>
@@ -286,10 +288,10 @@
                                     <div class="form-group pt-20">
                                         <label for="otp">OTP:</label>
                                         <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
-                                        @*<input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" required="required">*@
+                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.confirmotp" required="required">
                                         <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid OTP!</p>
                                     </div>
-                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-click="VerifyOTP(OTPForm)">Submit</button>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.otp != otpObj.confirmotp" ng-click="VerifyOTP(OTPForm)">Submit</button>
 
                                 </div>
                             </form>
@@ -333,7 +335,7 @@
         <!-- Terms and Condition popup -->
         <div class="modal" id="DivTermsConditionModel" role="dialog">
             <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog modal-lg vertical-align-center">
                     <div class="modal-content">
                         <div class="panel-heading">
                         </div>
@@ -347,7 +349,6 @@
             </div>
         </div>
         <!-- Terms and Condition popup -->
-
     </div>
 
     @Scripts.Render("~/bundles/Layout1Js")
@@ -389,18 +390,30 @@
                 }
             });
 
-            $('#readMore').click(function () {
+            //$('#readMore').click(function () {
 
+            //    $('.more-content').slideToggle();
+
+            //    var LinkText = $("#readMore").text();
+            //    LinkText = LinkText.replace(/\s/g, '');
+            //    if (LinkText == "ReadMore") {
+            //        $("#readMore").text("Read Less");
+            //    }
+            //    else {
+            //        $("#readMore").text("Read More");
+            //    }
+            //});
+
+            $(".readMore").click(function () {
                 $('.more-content').slideToggle();
+                $(".readMore").hide();
+                $(".readLess").show();
+            });
 
-                var LinkText = $("#readMore").text();
-                LinkText = LinkText.replace(/\s/g, '');
-                if (LinkText == "ReadMore") {
-                    $("#readMore").text("Read Less");
-                }
-                else {
-                    $("#readMore").text("Read More");
-                }
+            $(".readLess").click(function () {
+                $('.more-content').slideToggle();
+                $(".readLess").hide();
+                $(".readMore").show();
             });
 
             $('.category-list').mCustomScrollbar();

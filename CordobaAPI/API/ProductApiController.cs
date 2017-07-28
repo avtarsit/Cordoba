@@ -232,11 +232,11 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetHotOrSpecialProductById(int language_id, int store_id, int LoggedInUserId, int product_id)
+        public HttpResponseMessage GetHotOrSpecialProductById(int store_id, int LoggedInUserId, int product_id)
         {
             try
             {
-                var result = _ProductServices.GetHotOrSpecialProductById(language_id, store_id, LoggedInUserId, product_id);
+                var result = _ProductServices.GetHotOrSpecialProductById(store_id, LoggedInUserId, product_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -336,6 +336,25 @@ namespace CordobaAPI.API
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
             catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetSubCategoryList(int StoreId,int LoggedInUserId)
+        {
+            try
+            {
+                var result = _ProductServices.GetSubCategoryList(StoreId, LoggedInUserId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception e)
             {
                 throw;
             }

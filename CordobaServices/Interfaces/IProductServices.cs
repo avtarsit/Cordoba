@@ -25,10 +25,11 @@ namespace CordobaServices.Interfaces
         //InsertAsHotProduct
         int InsertAsHotProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity);
         int InsertAsSpecialProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity);
-        List<HotSpecialProductEntity> GetHotOrSpecialProductById(int language_id, int store_id, int LoggedInUserId, int product_id);
+        List<HotSpecialProductEntity> GetHotOrSpecialProductById(int store_id, int LoggedInUserId, int product_id);
         List<HotSpecialProductEntity> GetHotOrSpecialProductDetailById(int store_id, int LoggedInUserId, bool IsHotProduct, int product_id);
         bool UploadProductImage(int product_id, string image);
 
         List<ProductEntity> GetProductImageById(int product_id);
+        List<CategoryEntity> GetSubCategoryList(int StoreId, int LoggedInUserId);
     }
 }

@@ -23,7 +23,7 @@
                                         <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" style="max-height:100px"/>
                                     </div>
                                     <div class="col-xs-8">
-                                        <a href="" class="seller-desc" ng-bind="BestSeller.name"></a>
+                                        <a href="" ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" class="seller-desc" ng-bind="BestSeller.name"></a>
                                         <p><span ng-bind="BestSeller.Model"></span></p>
                                         <p class="seller-desc"><span ng-bind="BestSeller.Price +' Points'"></span></p>
                                         <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
@@ -140,8 +140,8 @@
         </div>
         @* Dashboard_StoreImageController *@
         <div class="col-md-5 col-xs-12  mb-30" ng-controller="Dashboard_StoreImageController">
-            <div class="offer-block new-product">
-                <img src="{{FirstStoreImage}}" alt="Store Image" />
+            <div class="offer-block new-product" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 1 }">
+                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" alt="Store Image" />               
             </div>
         </div>
         <div class="clearfix"></div>
@@ -217,14 +217,14 @@
                     </div>
                 </div>
                 @* Dashboard_StoreImageController *@
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController" >
                     <div class="offer-block">
-                        <img src="{{SecondStoreImage}}" alt="Store Image" />
+                        <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 2 }" alt="Store Image" />                  
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController" >
                     <div class="offer-block">
-                        <img src="{{ThirdStoreImage}}" alt="Store Image" />
+                        <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 3 }" alt="Store Image" />
                     </div>
                 </div>
             </div>

@@ -28,7 +28,9 @@
     <div class="navbar navbar-inverse">
         <input id="hdAdminUserId" type="hidden" value="@Convert.ToString(@HttpContext.Current.Session["AdminUserId"])" />
         <div class="navbar-header">
-            <a class="navbar-brand" href="#" ui-sref="Home"><img style=" margin-top: -16px; height: 52px;" src="~/Content/admin/images/logo/logo.png" alt=""></a>
+            <a class="navbar-brand" href="#" ui-sref="Home">
+            <img style=" margin-top: -16px; height: 52px;" src="~/Content/admin/images/logo/logo.png" alt="">
+            </a>
             <ul class="nav navbar-nav visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
                 <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
@@ -154,13 +156,15 @@
                 </li>
 
                 <li class="dropdown dropdown-user">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="~/Content/admin/images/placeholder.jpg" alt="">
-                        <span>@CordobaCommon.ProjectSession.AdminLoginSession.email</span>
+                    <a class="dropdown-toggle " data-toggle="dropdown">
+                        <span class="ProfilePicTopLinkCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</span>&nbsp;@CordobaCommon.ProjectSession.AdminLoginSession.email
+                        @*<div class="ProfilePicCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</div>*@
+                        @*<img src="~/Content/admin/images/placeholder.jpg" alt="">*@
+                        @*<span></span>*@
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="" onclick="UnderMaintenance()" class="cursor-pointer"><i class="icon-user-plus"></i>profile</a></li>
+                        @*<li><a href="" onclick="UnderMaintenance()" class="cursor-pointer"><i class="icon-user-plus"></i>profile</a></li>*@
                         @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
                     <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>*@
                         <li class="divider"></li>
@@ -183,11 +187,14 @@
                     <div class="sidebar-user">
                         <div class="category-content">
                             <div class="media">
-                                <a href="#" class="media-left"><img src="~/Content/admin/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+                                <a href="" class="cursor-pointer media-left">
+                                @*<img src="~/Content/admin/images/placeholder.jpg" class="img-circle img-sm" alt="">*@
+                                    <div class="ProfilePicCircle">@CordobaCommon.ProjectSession.AdminLoginSession.firstname[0]@CordobaCommon.ProjectSession.AdminLoginSession.lastname[0]</div>    
+                                </a>
                                 <div class="media-body">
-                                    <span class="media-heading text-semibold">Admin</span>
+                                    <span class="media-heading text-semibold">@CordobaCommon.ProjectSession.AdminLoginSession.firstname @CordobaCommon.ProjectSession.AdminLoginSession.lastname</span>
                                     <div class="text-size-mini text-muted">
-                                        <i class="icon-pin text-size-small"></i> &nbsp;India
+                                        <i class="text-size-small"></i> &nbsp;Administrator
                                     </div>
                                 </div>
                             </div>
@@ -205,41 +212,41 @@
                                 <li ng-show="!(storeId>0)">
                                     <a href="#"><i class="fa fa-tags fa-fw"></i> <span>Master Management</span></a>
                                     <ul>
-                                        <li><a href="#" ui-sref="Language"><i class="icon-forward"></i> <span> Language</span></a></li>
-                                        <li><a href="#" ui-sref="ShowCountry"><i class="icon-forward"></i> <span> Countries</span></a></li>
-                                        <li><a href="#" ui-sref="Currency"><i class="icon-forward"></i> <span> Currency</span></a></li>
-                                        <li><a href="#" ui-sref="ShowSupplier"><i class="icon-forward"></i> <span> Supplier</span></a></li>
-                                        <li><a href="#" ui-sref="ShowManufacturer"><i class="icon-forward"></i> <span> Manufacturers</span></a></li>
-                                        <li><a href="#" ui-sref="Users"><i class="icon-forward"></i> <span>Cordoba Users</span></a></li>
+                                        <li><a href="#" ui-sref="Language"><i class="fa fa-language"></i> <span> Language</span></a></li>
+                                        <li><a href="#" ui-sref="ShowCountry"><i class="fa fa-flag"></i> <span> Countries</span></a></li>
+                                        <li><a href="#" ui-sref="Currency"><i class="fa fa-money"></i> <span> Currency</span></a></li>
+                                        <li><a href="#" ui-sref="ShowSupplier"><i class="fa fa-industry"></i> <span> Supplier</span></a></li>
+                                        <li><a href="#" ui-sref="ShowManufacturer"><i class="fa fa-building-o"></i> <span> Manufacturers</span></a></li>
+                                        <li><a href="#" ui-sref="Users"><i class="fa fa-user"></i> <span>Cordoba Users</span></a></li>
                                         @*<li><a href="#" ui-sref="CustomerGroup"><i class="icon-forward"></i> <span> Customer Group</span></a></li>*@
-                                        <li><a href="#" ui-sref="ShowCategory"><i class="icon-forward"></i> <span> Categories</span></a></li>
+                                        <li><a href="#" ui-sref="ShowCategory"><i class="fa fa-list"></i> <span> Categories</span></a></li>
                                     </ul>
                                 </li>
 
                                 <li>
                                     <a href="#"><i class="icon-gear"></i>Store Management <span></span></a>
                                     <ul>
-                                        <li><a href="#" ui-sref="ShowStore"><i class="icon-forward"></i> <span> Store</span></a></li>
+                                        <li><a href="#" ui-sref="ShowStore"><i class="fa fa-building-o"></i> <span> Store</span></a></li>
                                         <li>
-                                            <a href="#"><i class="icon-forward"></i> <span> Customers</span></a>
+                                            <a href="#"><i class="fa fa-users"></i> <span> Customers</span></a>
                                             <ul>
                                                 <li><a href="#" ui-sref="Customer"><i class="icon-forward"></i> <span> Customer</span></a></li>
 
-                                                <li><a href="" ui-sref="CustomerImport" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Import</span></a></li>
+                                                <li><a href="" ui-sref="CustomerImport" class="cursor-pointer"><i class="fa fa-file"></i> <span> Customers Import</span></a></li>
                                                 @*<li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Export</span></a></li>*@
-                                                <li><a href="" ui-sref="PointsImporter" class="cursor-pointer"><i class="icon-forward"></i> <span> Points Importer</span></a></li>
-                                                <li><a href="" ui-sref="ShowCustomerDepartment" class="cursor-pointer"><i class="icon-forward"></i> <span> Customer Department</span></a></li>
+                                                <li><a href="" ui-sref="PointsImporter" class="cursor-pointer"><i class="fa fa-file"></i> <span> Points Importer</span></a></li>
+                                                <li><a href="" ui-sref="ShowCustomerDepartment" class="cursor-pointer"><i class="fa fa-industry"></i> <span> Customer Department</span></a></li>
                                             </ul>
                                         </li>
 
-                                        <li><a href="#" ui-sref="Product"><i class="icon-forward"></i> <span> Products</span></a></li>
-                                        <li><a href="#" ui-sref="PopularCategory"><i class="icon-forward"></i> <span> Popular Category</span></a></li>
-                                        <li><a href="#" ui-sref="Banner"><i class="icon-forward"></i> <span> Banners</span></a></li>
+                                        <li><a href="#" ui-sref="Product"><i class="fa fa-product-hunt"></i> <span> Products</span></a></li>
+                                        <li><a href="#" ui-sref="PopularCategory"><i class="fa fa-list-alt"></i> <span> Popular Category</span></a></li>
+                                        <li><a href="#" ui-sref="Banner"><i class="fa fa-picture-o"></i> <span> Banners</span></a></li>
                                     </ul>
                                 </li>
 
                                 <li>
-                                    <a href="#"><i class="fa fa-tags fa-fw"></i> <span>Sales</span></a>
+                                    <a href="#"><i class="fa fa-shopping-cart"></i> <span>Sales</span></a>
                                     <ul>
                                         <li><a href="#" ui-sref="ShowOrders"><i class="icon-forward"></i> <span> Orders</span></a></li>
                                         @*<li><a href="#"><i class="icon-forward"></i> <span> Recurring Orders</span></a></li>*@

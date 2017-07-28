@@ -17,9 +17,11 @@ namespace CordobaServices.Interfaces
 
        int? DeleteStoreById_Admin(int storeId, int LoggedInUserId);
 
-       bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey);
+       bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey,int layout);
 
        bool UploadStoreLogo(int store_id, string logo);
+
+       List<StoreImageEntity> GetAdvertisementImageList(int StoreId);
        
     }
 }

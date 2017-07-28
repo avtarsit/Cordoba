@@ -22,9 +22,9 @@
                     <li>
                         <button type="button" ng-click="Cancel()" class="btn btn-default cursor-pointer"><i class="icon-arrow-left13 position-left"></i>Cancel </button> &nbsp;
                     </li>
-                    <li ng-if="IsEditMode==true">
+                    <!--<li ng-if="IsEditMode==true">
                         <button type="button" class="btn btn-primary" data-placement="top" data-toggle="tooltip" title="Delete Customer" ng-click="DeleteCustomer()"><i class="glyphicon glyphicon-trash position-left"></i> Delete</button>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -63,7 +63,7 @@
                                     <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
                                     <!--<li role="presentation"><a data-target="#HistoryTab" role="tab" data-toggle="tab">History</a></li>-->
                                     <li role="presentation"><a data-target="#TransactionTab" role="tab" data-toggle="tab">Transactions</a></li>
-                                    <li role="presentation"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Reward Points</a></li>
+                                    <li role="presentation"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Audit Points</a></li>
 
 
                                 </ul>
@@ -162,9 +162,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label ">Status</label>
                                                                 <div class="col-lg-9">
-                                                                    <select name="status" id="input-status" ng-model="CustomerObj.status" class="form-control">
-                                                                        <option value="1" selected="selected">Enabled</option>
-                                                                        <option value="0">Disabled</option>
+                                                                    <select name="status" id="input-status" ng-model="CustomerObj.status" ng-options="status.ID as status.Name  for status in Status" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -393,7 +391,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <label class="btn btn-primary pull-right" ng-click="AddRewardPointObj(RewardPointObj)" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add Reward Points"><i class="icon-plus-circle2"></i> Add Reward Points</label>
+                                            <label class="btn btn-primary pull-right" ng-click="AddRewardPointObj(RewardPointObj)" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add Reward Points"><i class="icon-plus-circle2"></i> Add Points</label>
                                             <!--End Transaction Tab-->
                                         </div>
                                     </div>

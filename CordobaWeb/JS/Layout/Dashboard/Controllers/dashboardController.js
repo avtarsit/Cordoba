@@ -5,7 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
-    //$scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
+    $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
     $scope.OpenLoginPopUp = function () {
@@ -84,6 +84,7 @@
             $scope.IsVisibleforgotPasswordForm = false;
 
             if (form.$valid) {
+
                 $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
                       .then(function (response) {              
@@ -92,7 +93,7 @@
                               $scope.IsVisibleforgotPasswordForm = true;
                               $scope.IsVisibleOTPForm = false;
                               $scope.IsVisibleChangePassswordForm = true;
-                              $scope.otpObj.customer_id = response.data.customer_id;
+                              $scope.otpObj = response.data;
                              
 
                           }
@@ -116,7 +117,6 @@
             
            
             if (form.$valid) {
-                $scope.otpObj.store_id = 3;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
                       .then(function (response) {
                           if (response.data.errorcode > 0) {
@@ -124,6 +124,7 @@
                               //$scope.IsVisibleforgotPasswordForm = true;
                               $scope.IsVisibleOTPForm = true;
                               $scope.IsVisibleChangePassswordForm = false;
+                              $scope.otpObj.password = '';
                           }
                           else {
                               toastr.error("Please Enter valid OTP");
@@ -152,16 +153,14 @@
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
         }
 
-        $scope.OpenTermsCondition = function () {
+        $scope.OpenTermsCondition = function () {       
             $scope.GetTermsCondition();
             angular.element("#DivTermsConditionModel").modal('show');
         }
 
-
-        $scope.GetTermsCondition = function () {
-
+        $scope.GetTermsCondition = function () {   
             $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
-              .then(function (response) {
+              .then(function (response) {          
                   if (response.data.length > 0) {
                       $scope.TermsConditionMsg = response.data[0].Terms;
                       //$scope.html = decodeHtml($scope.TermsConditionMsg);

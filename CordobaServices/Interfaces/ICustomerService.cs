@@ -21,7 +21,7 @@ namespace CordobaServices.Interfaces
 
         string CustomerImport(int store_id,int LoggedInUserId, int customer_group_id, DataTable CustomerTable);
 
-        int PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail, DataTable PointsTable);
+        List<PointsAuditEntity> PointsImporter(int store_id, int LoggedInUserId, bool IsSendEmail, DataTable PointsTable);
 
         bool UploadUserImage(int customerImage_id, int customer_id, string ImageName);
 

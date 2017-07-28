@@ -69,10 +69,16 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = objCustomerDepartmentEntity.LoggedInUserId
             };
+            var ParameterStatus = new SqlParameter
+            {
+                ParameterName = "status",
+                DbType = DbType.Int32,
+                Value = objCustomerDepartmentEntity.status
+            };
 
 
 
-            int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateCustomerDepartment", paramCustomerDepartmentId, paramStoreId, paramDepartmentName, paramLoggedInUserId).FirstOrDefault();
+            int result = objGenericRepository.ExecuteSQL<int>("InsertOrUpdateCustomerDepartment", paramCustomerDepartmentId, paramStoreId, paramDepartmentName, paramLoggedInUserId, ParameterStatus).FirstOrDefault();
             return result;
         }
 

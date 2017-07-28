@@ -10,15 +10,25 @@
     $scope.CustomerDepartmentObj.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.IsEditMode = false;
 
+    $scope.CustomerDeptStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
+
     if ($stateParams.CustomerDepartmentId != undefined && $stateParams.CustomerDepartmentId != null) {
         $scope.PageTitle = "Update Customer Department";
         $scope.IsEditMode = true;
         $scope.CustomerDepartmentId = $stateParams.CustomerDepartmentId;
         $http.get(configurationService.basePath + "api/CustomerDepartmentApi/GetCustomerDepartmentById?CustomerDepartmentId=" + $stateParams.CustomerDepartmentId)
-          .then(function (response) {
+          .then(function (response) {          
               if (response.data.length > 0) {
                   $scope.CustomerDepartmentObj = response.data[0];
                   $scope.CustomerDepartmentObj.LoggedInUserId = $rootScope.loggedInUserId;
+                  if ($scope.CustomerDepartmentObj.status == true)
+                  {
+                      $scope.CustomerDepartmentObj.statuscode = 1;
+                  }
+                  else if ($scope.CustomerDepartmentObj.status == false)
+                  {
+                      $scope.CustomerDepartmentObj.statuscode = 0;
+                  }
               }
           })
       .catch(function (response) {
@@ -38,6 +48,13 @@
     $scope.SaveCustomerDepartment = function (form) {
 
         if (form.$valid) {
+            if ($scope.CustomerDepartmentObj.statuscode == 1)
+            {
+                $scope.CustomerDepartmentObj.status = true;
+            }
+            else {
+                $scope.CustomerDepartmentObj.status = false;
+            }
             $http.post(configurationService.basePath + "api/CustomerDepartmentApi/InsertOrUpdateCustomerDepartment", $scope.CustomerDepartmentObj)
             .then(function (response) {
                 if (response.data == 0) {

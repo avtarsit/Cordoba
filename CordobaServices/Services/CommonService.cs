@@ -163,6 +163,27 @@ namespace CordobaServices.Services
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
         }
 
+        public bool sendContactUsDetails(string name, string email, string phone, string description, StoreEntity storeEntity)
+        {
+            const string strSubject = "Inquiry";
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/ContactUs.html");
+            var strbody = ReadTextFile(filepath);
+            
+            if (strbody.Length <= 0)
+                return false;
+
+            strbody = strbody.Replace("##Name##", name);
+            strbody = strbody.Replace("##Email##", email);
+            strbody = strbody.Replace("##Phone##", phone);
+            strbody = strbody.Replace("##Query##", description);
+            strbody = strbody.Replace("##LogoPath##", storeEntity.logo);
+            strbody = strbody.Replace("##StoreName##", storeEntity.name);
+           
+            return SendMailMessage("rushil.p@sgit.in", null, null, strSubject, strbody, GetEmailSettings(), null);
+
+        }
+
 
         public static string ReadTextFile(string strFilePath)
         {

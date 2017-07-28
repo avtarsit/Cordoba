@@ -34,7 +34,6 @@
  
     $scope.PointsImporter =function()
     {
-        debugger;
         if ($scope.store_id == '' || $scope.files==undefined)
         {
             toastr.error("Select Store & file");
@@ -57,8 +56,29 @@
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
+                
                 if (xhr.status == 200) {
+                    var invalidEmails = JSON.parse(xhr.response);
+                    //console.log(invalidEmails[0]["invalidEmail"])
+                    if (invalidEmails[0]["invalidEmail"])
+                    {
+                        var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"].substring(0, invalidEmails[0]["invalidEmail"].length - 1) + "</p>";
+                        bootbox.dialog({
+                            message: uploadHtml,
+                            title: "Alert",
+                            buttons: {
+                                success: {
+                                    label: "Ok",
+                                    className: "btn btn-info",
+                                    //callback: function () {
+                                    //    uploadUserImage();
+                                    //}
+                                }
+                            }
+                        });
+                    }
                     toastr.success("File Successfully Submitted.");
+                    $("#upload").val(null);
                 } else {
                     $scope.$apply(function () {
                         $scope.progress = "Improper data in file";
@@ -129,6 +149,9 @@
         }
 
     }
+
+
+        
 
     GetStoreList();
 });
