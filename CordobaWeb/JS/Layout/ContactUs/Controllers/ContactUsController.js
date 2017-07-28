@@ -21,14 +21,14 @@
         }
         else {
             $scope.captchaValid = true;
-           
-
         }
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
               .then(function (response) {
+                  
+                  $scope.contactUsObj = new Object();
+                  window.location.reload(true);
                   toastr.success("Successfully Submitted.");
-                  $scope.contactUsObj =new Object();
               })
           .catch(function (response) {
 
@@ -39,11 +39,7 @@
         }
     }
 
-    $scope.test = function()
-    {
-        var el = angular.element('#thumb');
-        el.attr('class', 'fa fa-thumbs-up bigicon');
-    }
+
 
 
 })

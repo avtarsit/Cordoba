@@ -86,6 +86,8 @@
             if (form.$valid) {
 
                 $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
+                $scope.otpObj.store_name = $scope.StoreDetailInSession.name;
+                $scope.otpObj.logo = $scope.StoreDetailInSession.logo;
                 $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
                       .then(function (response) {              
                           if (response.data.errorcode > 0) {

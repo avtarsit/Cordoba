@@ -89,7 +89,7 @@ namespace CordobaServices.Services
             //    }
             //}
 
-            mailMessage.CC.Add(new MailAddress("pavan.a@sgit.in"));
+            mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
 
             // Set the subject of the mail message 
             mailMessage.Subject = subject;
@@ -179,8 +179,8 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##Query##", description);
             strbody = strbody.Replace("##LogoPath##", storeEntity.logo);
             strbody = strbody.Replace("##StoreName##", storeEntity.name);
-           
-            return SendMailMessage("rushil.p@sgit.in", null, null, strSubject, strbody, GetEmailSettings(), null);
+
+            return SendMailMessage(ConfigurationManager.AppSettings["emailTo"], null, null, strSubject, strbody, GetEmailSettings(), null);
 
         }
 
