@@ -43,11 +43,11 @@
     $scope.GetCartDetailsByCartGroupId = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
           .then(function (response) {
-              if (response.data.length > 0) {
+              if (response.data.length > 0) {                 
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
-                  $scope.AllItemSubtotal = $scope.CartItemList[0].AllItemSubtotal;
-                  $scope.AllItemTotal = $scope.CartItemList[0].AllItemTotal;
+                  $scope.AllItemSubtotalPoints = $scope.CartItemList[0].AllItemSubtotalPoints;
+                  $scope.AllItemTotalPoints = $scope.CartItemList[0].AllItemTotalPoints;
                   UserDetail.cartgroup_id = response.data[0].cartgroup_id;
                   UserDetail.TotalItemAdded = response.data[0].TotalItemAdded;
                   $rootScope.CustomerDetail = UserDetail;
@@ -57,8 +57,8 @@
               else {
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
-                  $scope.AllItemSubtotal = 0;
-                  $scope.AllItemTotal = 0;
+                  $scope.AllItemSubtotalPoints = 0;
+                  $scope.AllItemTotalPoints = 0;
                   UserDetail.cartgroup_id = 0;
                   UserDetail.TotalItemAdded = 0;
                   $rootScope.CustomerDetail = UserDetail;
@@ -144,7 +144,7 @@
 
     $scope.Checkout = function () {     
         if (UserDetail.customer_id > 0) {
-            if (($rootScope.CustomerDetail.points - $scope.AllItemTotal) >= 0) {
+            if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
                 $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
             }
             else {
@@ -172,7 +172,7 @@
                     $scope.PlaceOrderObj = new Object();
                     toastr.success("Order successfully placed.");
                     $scope.GetCartDetailsByCartGroupId();
-                    UserDetail.points = Math.ceil($rootScope.CustomerDetail.points - $scope.AllItemTotal);
+                    UserDetail.points = Math.ceil($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints);
                     localStorageService.set("loggedInUser", UserDetail);
                     $state.go('OrderSuccessful', { 'OrderId': response.data });
 

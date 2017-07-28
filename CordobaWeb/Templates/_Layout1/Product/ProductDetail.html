@@ -13,10 +13,10 @@
             <div class="col-sm-6">
                 <h3 class="heading" ng-bind-html="ProductObj.name"></h3>
                 <div class="price mt-10">
-                    <p>Modal No:<span ng-bind="ProductObj.Model"></span></p>
+                    <p>Product Code: <span ng-bind="ProductObj.Model"></span></p>
                 </div>
                 <div class="price mt-10">
-                    <span class="point" ng-bind="(ProductObj.Price | number:2)+' Points'"></span>
+                    <p>Price: <span class="point" ng-bind="(ProductObj.points | number:2)+' Points'"></span></p>
                 </div>
               
                 <!--<div class="price mt-10">

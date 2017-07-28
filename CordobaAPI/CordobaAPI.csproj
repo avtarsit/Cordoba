@@ -314,6 +314,20 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="TempFiles\06f69306-34df-4058-b018-852e3d0a2b3e.xlsx" />
+    <Content Include="TempFiles\0ea39d4c-79d0-4aaa-afcd-bff3e4395362.xlsx" />
+    <Content Include="TempFiles\139b41dc-2786-4186-975c-3d72ed0453eb.xlsx" />
+    <Content Include="TempFiles\2f2da7a2-ec5f-40b5-a1f2-58f1ccad3921.xlsx" />
+    <Content Include="TempFiles\31f67960-56af-4a01-be4d-c0c51a866b26.xlsx" />
+    <Content Include="TempFiles\43a8d414-9e7d-435d-84a7-f550baba81d8.csv" />
+    <Content Include="TempFiles\63efc1b3-4e19-4135-abfe-e8f2f62e5928.xlsx" />
+    <Content Include="TempFiles\838a532a-da08-4caf-87fe-852b950be049.xlsx" />
+    <Content Include="TempFiles\86678615-dad1-4f1f-864c-9f30c84baee0.xlsx" />
+    <Content Include="TempFiles\9d452adb-82f8-4791-a65e-515bb80d8465.csv" />
+    <Content Include="TempFiles\a1ae55b6-9775-49e4-b93f-d5354669e8db.xlsx" />
+    <Content Include="TempFiles\ae76b4d8-7c57-4c40-a11d-39b7ebbc804c.xlsx" />
+    <Content Include="TempFiles\e7abaf17-c2c2-4f15-9398-99daba84b73a.xlsx" />
+    <Content Include="TempFiles\ee3e752b-2a26-4e95-8499-626a15b48ed6.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

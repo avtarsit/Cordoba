@@ -60,6 +60,8 @@ namespace CordobaModels.Entities
         
         public int TotalQtyInOrder { get; set; }
         public string OrderTotalText { get; set; }
+
+        public double? totalpoints { get; set; }
         
         public List<OrderProductEntity> orderProductEntity { get; set; }
 

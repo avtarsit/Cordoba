@@ -26,7 +26,7 @@ namespace CordobaModels.Entities
         public int? status { get; set; }
         public string StatusName { get; set; }
         public int? sort_order { get; set; }
-
+        public double? points { get; set; }
         #endregion Data Tab
 
         #region Shipping Details

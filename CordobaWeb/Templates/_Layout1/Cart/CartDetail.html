@@ -3,8 +3,8 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc" ng-if="CustomerDetail.TotalItemAdded>0"> You have {{CustomerDetail.TotalItemAdded}} item's in your Shopping Bag</p>
-                    <p class="bag-desc" ng-if="!(CustomerDetail.TotalItemAdded>0)">Your Shopping Bag is Empty.</p>
+                    <p class="bag-desc" ng-if="CartItemList.length>0"> You have {{CartItemList.length}} item's in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="!(CartItemList.length>0)">Your Shopping Bag is Empty.</p>
                 </li>
             </ul>
         </div>
@@ -47,9 +47,9 @@
                         </div>
                         <div class="col-sm-5">
                             <p class="product-price">
-                            <span>Points: {{Item.price | number : 2}}</span>
+                            <span>Points: {{Item.points | number : 2}}</span>
                                 <br />
-                                <span ng-if="Item.quantity>1">Subtotal: {{Item.total | number : 2}}</span>
+                                <span ng-if="Item.quantity>1">Subtotal: {{Item.totalpoints | number : 2}}</span>
                             </p>                            
                         </div>
                         <div class="col-sm-12">
@@ -78,11 +78,11 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <p>Subtotal:</p>
-                    <p ng-bind="(AllItemSubtotal | number : 2)+' Points'"></p>
+                    <p ng-bind="(AllItemSubtotalPoints | number : 2)+' Points'"></p>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span ng-bind="(AllItemTotal | number : 2)+' Points'"></span>
+                    <span ng-bind="(AllItemTotalPoints | number : 2)+' Points'"></span>
                 </div>
                 <div class="checkout-block">            
                     <a href="" ng-click="Checkout()" class="btn btn-empty cursor-pointer">Checkout</a>

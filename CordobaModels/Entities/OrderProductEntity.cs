@@ -13,6 +13,7 @@ namespace CordobaModels.Entities
         public string model { get; set; }
         public int quantity { get; set; }
         public decimal price { get; set; }
+        public double? points { get; set; }
         public decimal total { get; set; }
         public string total_title { get; set; }
         public decimal? total_value { get; set; }

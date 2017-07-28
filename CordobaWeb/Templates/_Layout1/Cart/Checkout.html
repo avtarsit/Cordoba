@@ -3,7 +3,7 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc">{{AllItemTotal}} Points will be deducted from your account.</p>
+                    <p class="bag-desc">{{AllItemTotalPoints}} Points will be deducted from your account.</p>
 
                
                 </li>
@@ -31,8 +31,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
-                            <p class="product-price"><span>Points:</span> {{Item.price}}</p>
-                            <p class="product-price" ng-if="Item.quantity>1">Subtotal: {{Item.total}}</p>
+                            <p class="product-price"><span>Points:</span> {{Item.points}}</p>
+                            <p class="product-price" ng-if="Item.quantity>1">Subtotal: {{Item.totalpoints}}</p>
                         </div>
                     </div>
                 </div>           
@@ -65,13 +65,13 @@
                 <div class="payment-summary">
                     <ul>
                         <li ng-repeat="Item in CartItemList"><p ng-bind-html="'- '+Item.name"></p>
-                            <p ng-bind="Item.total"></p>
+                            <p ng-bind="Item.totalpoints"></p>
                         </li>                      
                     </ul>                
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span ng-bind="AllItemTotal +' Points'"></span>
+                    <span ng-bind="AllItemTotalPoints +' Points'"></span>
                 </div>
                 <div class="checkout-block">                    
                     <a ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>

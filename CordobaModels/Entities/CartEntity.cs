@@ -17,6 +17,8 @@ namespace CordobaModels.Entities
        public int? quantity { get; set; }
        public int? cartgroup_id { get; set; }
        public decimal? price { get; set; }
+       public double? points { get; set; }
+       public double? totalpoints { get; set; }
        public decimal? total { get; set; }
        public decimal? tax { get; set; }
        public Nullable<DateTime> createddate { get; set; }
@@ -35,6 +37,9 @@ namespace CordobaModels.Entities
        public decimal? AllItemSubtotal { get; set; }
        public decimal? AllItemTotal { get; set; }
        public decimal? CustomerAvailablePoints { get; set; }
+
+       public double? AllItemSubtotalPoints { get; set; }
+       public double? AllItemTotalPoints { get; set; }
 
        public bool? IsProductInWishlist { get; set; }
        
