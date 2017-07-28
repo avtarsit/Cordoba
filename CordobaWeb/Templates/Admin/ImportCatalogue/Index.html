@@ -1,4 +1,12 @@
-﻿<div ng-controller="ImportCatalogueController">
+﻿<style>
+    .modal-dialog {
+        z-index: 0;
+    }
+</style>
+
+
+
+<div ng-controller="ImportCatalogueController">
     <form id="form" class="form-horizontal" name="form" novalidate>
         <div class="page-header">
             <div class="page-header-content">
@@ -17,7 +25,7 @@
                 </ul>
                 <ul class="breadcrumb-elements">
                     <li>
-                        <button type="submit" ng-click="ImportCatalogue(form)" class="btn btn-success cursor-pointer">Import <i class="fa fa-cloud-upload position-right"></i></button>
+                        <button type="submit" ng-click="ImportCatalogue(false)" class="btn btn-success cursor-pointer">Import <i class="fa fa-cloud-upload position-right"></i></button>
                     </li>
 
                 </ul>
@@ -168,6 +176,66 @@
                 </div>
             </div>
         </div>
+        <div class="page-header-content" ng-if="NotValidRecordsInImport.length>0">
+            <div class="panel panel-default form-horizontal">
+                <div class="panel-body">
+                    <div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-1 text-right  text-bold"> Note: </div>
+                            <div class="col-sm-9 text-bold">
+                                Code,Name,price_excl_vat,description,delivery_zone_PIL_RATE_1,image_full_url Fields are mandatory While Importing Data.
+                                <br />
+                                <br />
+                                So, This are invalid records in Attached File.
+                                <br />
+                                <br />
+                                Do you want to Countine??
+                                <br />
+                                <br />
+                                <input type="button" data-toggle="modal" data-target="#DivConfirmIgnore" value="Submit" class="btn btn-primary" />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped datatable-responsive" width="100%" datatable="ng" dt-column-defs="dtColumnDefs" dt-options="dtOptions">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Item in NotValidRecordsInImport">
+                                <td ng-bind="Item.code"></td>
+                                <td ng-bind="Item.name"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="DivConfirmIgnore">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Confirmation</h5>
+                    </div>
+                    <div class="modal-body">
+                        Do you Confirm for Importing Data that are valid? Please note no any kind of Opeartion will perform on Invalid data.
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ImportCatalogue(true)">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
 </div>
 

@@ -13,6 +13,9 @@ using System.Web;
 using System.Web.Http;
 using CordobaModels.Entities;
 using System.Runtime.InteropServices;
+using System.Management;
+using System.Diagnostics;
+using System.ServiceProcess;
 
 namespace CordobaAPI.API
 {
@@ -100,7 +103,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage ImportCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id)
+        public HttpResponseMessage ImportCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id, bool IsConfirmToIgnore)
         {
             try
             {
@@ -169,20 +172,51 @@ namespace CordobaAPI.API
                     File.Delete(filePath);
                 }
 
-                if (dtXLS != null && dtXLS.Rows.Count > 0)
+                List<ImportProductCatalogueEntity> result = _catalogueServices.ImportDatatoCatalogue(StoreId, LoggedInUserId, supplier_id, language_id, catalogue_id, dtXLS, IsConfirmToIgnore);
+                if (result.Count > 0)
                 {
-                    Dictionary<string, string> selectedColumnName = SetColumnConfiguration();
-                    selectedColumnName.ToList().ForEach(item =>
+                }
+                else
+                {
+                    using (var m = new ManagementObject(string.Format("Win32_Service.Name=\"{0}\"", "CordobaInstaller")))
                     {
-                        if (dtXLS.Columns[item.Value] != null)
-                        {
-                            dtXLS.Columns[item.Value].ColumnName = item.Key;
-                        }
-                    });
-
+                        m.InvokeMethod("ChangeStartMode", new object[] { "Automatic" });
+                    }
                 }
 
-                var result = true;
+                //ServiceController controller = new ServiceController();
+
+                //controller.MachineName = ".";
+                //controller.ServiceName = "CordobaInstaller";
+                //string status = controller.Status.ToString();
+                //controller.Stop();
+
+                //controller.Start();
+
+                //var sc = new System.ServiceProcess.ServiceController("CordobaInstaller");
+                //sc.Start();
+                //sc.WaitForStatus(System.ServiceProcess.ServiceControllerStatus.Running);
+                //sc.Stop();
+                //sc.WaitForStatus(System.ServiceProcess.ServiceControllerStatus.Stopped);
+
+                //Process process = new Process();
+                //process.Start("CordobaCatalogImageService.exe");
+
+
+                //if (dtXLS != null && dtXLS.Rows.Count > 0)
+                //{
+                //    Dictionary<string, string> selectedColumnName = SetColumnConfiguration();
+                //    selectedColumnName.ToList().ForEach(item =>
+                //    {
+                //        if (dtXLS.Columns[item.Value] != null)
+                //        {
+                //            dtXLS.Columns[item.Value].ColumnName = item.Key;
+                //        }
+                //    });
+
+                //}
+
+                //var result = true;
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -192,18 +226,5 @@ namespace CordobaAPI.API
             }
 
         }
-
-        /// <summary>
-        ///  Configure Column selection list for School Export Import process
-        /// </summary>
-        /// <returns> Returns List of Orignal Column Name vs Diplay Column Name </returns>
-        private Dictionary<string, string> SetColumnConfiguration()
-        {
-            Dictionary<string, string> selectedColumnName = new Dictionary<string, string>();
-            selectedColumnName.Add("Name", "Name");
-            selectedColumnName.Add("SupplierName", "SupplierName");
-            return selectedColumnName;
-        }
-
     }
 }

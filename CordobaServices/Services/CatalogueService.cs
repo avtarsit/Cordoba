@@ -13,9 +13,6 @@ namespace CordobaServices.Services
 {
     public class CatalogueService : ICatalogueServices
     {
-
-
-
         private GenericRepository<CatalogueEntity> objGenericRepository = new GenericRepository<CatalogueEntity>();
 
         public List<CatalogueEntity> GetCatalogueList(int StoreId, int LoggedInUserId)
@@ -48,7 +45,7 @@ namespace CordobaServices.Services
             return Catalogue;
         }
 
-        public CatalogueEntity GetCatalogueById(int StoreId, int LoggedInUserId,int CatalogueId = 0)
+        public CatalogueEntity GetCatalogueById(int StoreId, int LoggedInUserId, int CatalogueId = 0)
         {
             CatalogueEntity ProductCatalogueEntity = new CatalogueEntity();
             if (CatalogueId > 0)
@@ -71,33 +68,33 @@ namespace CordobaServices.Services
                     DbType = DbType.Int32,
                     Value = LoggedInUserId
                 };
-                var result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueById", paramCatalogueId,paramStoreId,paramLoggedInUserId).FirstOrDefault();
+                var result = objGenericRepository.ExecuteSQL<CatalogueEntity>("GetCatalogueById", paramCatalogueId, paramStoreId, paramLoggedInUserId).FirstOrDefault();
                 ProductCatalogueEntity = result;
             }
             else
             {
                 ProductCatalogueEntity = new CatalogueEntity();
             }
-             
+
             return ProductCatalogueEntity;
 
         }
 
 
-        public int InsertUpdateCatalogue(int StoreId, int LoggedInUserId,CatalogueEntity catalogueEntity)
+        public int InsertUpdateCatalogue(int StoreId, int LoggedInUserId, CatalogueEntity catalogueEntity)
         {
-            var catalogueIdparam = new SqlParameter 
-            { 
-                ParameterName = "catalogue_Id", 
-                DbType = DbType.Int32, 
-                Value = catalogueEntity.catalogue_Id 
-            };   
-            
-            var nameparam = new SqlParameter 
-            { 
-                ParameterName = "Name", 
-                DbType = DbType.String, 
-                Value = catalogueEntity.Name 
+            var catalogueIdparam = new SqlParameter
+            {
+                ParameterName = "catalogue_Id",
+                DbType = DbType.Int32,
+                Value = catalogueEntity.catalogue_Id
+            };
+
+            var nameparam = new SqlParameter
+            {
+                ParameterName = "Name",
+                DbType = DbType.String,
+                Value = catalogueEntity.Name
             };
 
             var paramStoreId = new SqlParameter
@@ -113,7 +110,7 @@ namespace CordobaServices.Services
                 DbType = DbType.Int32,
                 Value = LoggedInUserId
             };
-            var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue",catalogueIdparam, nameparam, paramStoreId, paramLoggedInUserId ).FirstOrDefault();
+            var result = objGenericRepository.ExecuteSQL<int>("InsertUpdateCatalogue", catalogueIdparam, nameparam, paramStoreId, paramLoggedInUserId).FirstOrDefault();
             return result;
         }
 
@@ -122,11 +119,11 @@ namespace CordobaServices.Services
         {
             try
             {
-                var paramCatalogueId = new SqlParameter 
-                { 
-                    ParameterName = "catalogue_id", 
-                    DbType = DbType.Int32, 
-                    Value = catalogue_id 
+                var paramCatalogueId = new SqlParameter
+                {
+                    ParameterName = "catalogue_id",
+                    DbType = DbType.Int32,
+                    Value = catalogue_id
                 };
 
                 var paramStoreId = new SqlParameter
@@ -148,10 +145,68 @@ namespace CordobaServices.Services
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-         
+
+        }
+
+        public List<ImportProductCatalogueEntity> ImportDatatoCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id, DataTable XLS, bool IsConfirmToIgnore)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = "Data Source=SITPC0031\\SQLEXPRESS;Initial Catalog=Cordoba_260617_bak; User ID=sa;Password=sit@123";
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("ImportCatalogueDataToTable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter parameter = new SqlParameter();
+                parameter.ParameterName = "@importTypetbl";
+                parameter.SqlDbType = SqlDbType.Structured;
+                parameter.TypeName = "dbo.ImportCatalogType";
+                parameter.Value = XLS;
+                cmd.Parameters.Add(parameter);
+                cmd.Parameters.AddWithValue("@Supplier_Id", supplier_id);
+                cmd.Parameters.AddWithValue("@Language_Id", language_id);
+                cmd.Parameters.AddWithValue("@Catalogue_Id", catalogue_id);
+                cmd.Parameters.AddWithValue("@CreatedBy", LoggedInUserId);
+                cmd.Parameters.AddWithValue("@IsConfirmToIgnore", IsConfirmToIgnore);
+
+                System.Data.IDataReader dr = cmd.ExecuteReader();
+                List<ImportProductCatalogueEntity> lstEntity = new List<ImportProductCatalogueEntity>();
+
+                while (dr.Read())
+                {
+                    ImportProductCatalogueEntity objEntity = new ImportProductCatalogueEntity();
+                    objEntity.code = Convert.ToString(dr.GetValue(0));
+                    objEntity.name = Convert.ToString(dr.GetValue(1));
+                    lstEntity.Add(objEntity);
+                    //result = Convert.ToInt32(dr[0]);
+                }
+
+                dr.Close();
+
+
+                //tvpParam.TypeName = "dbo.ImportCatalogType";
+                //    int result = 0;
+                //result = cmd.ExecuteNonQuery();
+                //  result = Convert.ToInt32(cmd.ExecuteScalar());
+
+                //System.Data.IDataReader dr = cmd.ExecuteReader();
+                //while (dr.Read())
+                //{
+                //    result = Convert.ToInt32(dr[0]);
+                //}
+                //dr.Close();
+                con.Close();
+                return lstEntity;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

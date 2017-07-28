@@ -1,4 +1,4 @@
-﻿app.controller('ImportCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ImportCatalogueController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, DTColumnDefBuilder) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -10,11 +10,18 @@
     $scope.CatalogueList = [];
     $scope.LanguageList = [];
     $scope.SupplierList = [];
+    $scope.NotValidRecordsInImport = [];
     //#endregion  
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                      .withOption('bDestroy', true)
-                     .withOption("deferRender", true);
+                     .withOption("deferRender", true)
+                     .withOption('searching', false)
+                     .withOption('paging', false);
+
+    $scope.dtColumnDefs = [
+                                    DTColumnDefBuilder.newColumnDef(2).notSortable()
+    ];
 
     $scope.PageTitle = "Import Catalogue";
 
@@ -78,7 +85,7 @@
       });
     }
 
-    $scope.ImportCatalogue = function () {
+    $scope.ImportCatalogue = function (IsConfirmToIgnore) {
         if ($scope.ImportCatalogueObject.SupplierId == 0 || $scope.ImportCatalogueObject.language_id == 0 || $scope.ImportCatalogueObject.catalogue_Id == 0) {
             return false;
         }
@@ -101,14 +108,33 @@
 
 
                 xhr.open("POST", configurationService.basePath + "api/CatalogueApi/ImportCatalogue?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId +
-                    "&supplier_id=" + $scope.ImportCatalogueObject.SupplierId + "&language_id=" + $scope.ImportCatalogueObject.language_id + "&catalogue_id=" + $scope.ImportCatalogueObject.catalogue_Id);
+                    "&supplier_id=" + $scope.ImportCatalogueObject.SupplierId + "&language_id=" + $scope.ImportCatalogueObject.language_id + "&catalogue_id=" + $scope.ImportCatalogueObject.catalogue_Id +
+                    "&IsConfirmToIgnore=" + IsConfirmToIgnore);
 
                 $scope.progressVisible = true;
 
                 xhr.onreadystatechange = function () {
+                    debugger;
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {
-                            toastr.success("File Successfully Submitted.");
+                            debugger;
+                            if ($.parseJSON(xhr.responseText).length > 0) {
+                                alert($.parseJSON(xhr.responseText));
+
+                                //$scope.dtOptions = DTOptionsBuilder.newOptions()
+                                //                    .withOption('bDestroy', true)
+                                //                    .withOption("deferRender", true);
+
+
+                                $scope.$apply(function () {
+                                    $scope.NotValidRecordsInImport = $.parseJSON(xhr.responseText);
+                                })
+
+                            }
+                            else {
+                                toastr.success("File Successfully Submitted.");
+                                location.reload(true);
+                            }
                         } else {
                             $scope.$apply(function () {
                                 $scope.progress = "Improper data in file";
@@ -156,4 +182,7 @@
         alert("The upload has been canceled by the user or the browser dropped the connection.");
     }
 
+    $scope.ConfirmIgnoreDialog = function () {
+        angular.element("#DivConfirmIgnore").modal('show');
+    }
 });
