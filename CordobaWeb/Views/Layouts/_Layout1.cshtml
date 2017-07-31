@@ -20,7 +20,7 @@
         @Styles.Render("~/Content/layout1/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
     }          
     <style>
-     @Html.Raw(Convert.ToString(HttpContext.Current.Session["CssOverride"]));
+     @Html.Raw(Convert.ToString(HttpContext.Current.Session["CssOverride"]))
     </style>
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <style>
@@ -166,7 +166,7 @@
             </div>
         </div>
 
-        @RenderBody();
+        @RenderBody()
 
         <footer>
             <div class="container">
