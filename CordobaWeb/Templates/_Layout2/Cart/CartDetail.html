@@ -45,7 +45,7 @@
                         </div>                       
                     </div>
                     <div class="col-md-5 col-sm-4">
-                        <p class="product-price"><span>Points:</span> {{Item.price | number : 2}}</p>
+                        <p class="product-price"><span>Points:</span> {{Item.totalpoints | number : 2}}</p>
                     </div>
                     <div class="col-sm-12">
                         <div class="remove-product mt-10">
@@ -79,11 +79,11 @@
 
                     <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
                         <p>- {{Item.name}} </p>
-                        <p>{{Item.price | number : 2}} points</p>               
+                        <p>{{AllItemSubtotalPoints | number : 2}} points</p>               
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span>{{AllItemTotal | number : 2}} points</span>
+                        <span>{{AllItemTotalPoints | number : 2}} points</span>
                     </div>
                 </div>
                 <div class="checkout-block">
