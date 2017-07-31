@@ -8,6 +8,9 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.TitleHeader = '';
     $scope.WhatAreYouLookingFor = '';
+    $scope.SelectedPageIndex = 1;
+    $scope.maxSize = 10;
+     
     //#endregion   
     if ($stateParams.CategoryId != undefined && $stateParams.CategoryId!=null)
     {        
@@ -20,6 +23,13 @@
         {
             $scope.WhatAreYouLookingFor = $stateParams.Search;
         }
+        if ($stateParams.PageIndex != undefined && $stateParams.PageIndex != null) {
+            $scope.SelectedPageIndex = parseInt($stateParams.PageIndex);
+            $scope.currentPage = $scope.SelectedPageIndex;
+        }
+        //else {
+        //    $scope.currentPage = 1;
+        //}
         
     }  
     $scope.GetCategoryListForDashboard = function () {
@@ -33,8 +43,8 @@
                       if ($scope.SelectedSubCategory != undefined && $scope.SelectedSubCategory != null && $scope.SelectedSubCategory != 0) {
                           var SubCategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
                       if(SubCategoryObj != undefined && SubCategoryObj != null)
-                      {
-                          $scope.GetSubCategory($scope.SelectedSubCategory);
+                      {                          
+                          $scope.GetSubCategory($scope.SelectedSubCategory, 0);                       
                       }   
                       }
                                         
@@ -62,12 +72,21 @@
         }
     }
 
-    $scope.GetSubCategory=function(SubCategoryId)
-    {        
+    $scope.GetSubCategory = function (SubCategoryId, PageIndex)
+    {      
         var EncodededParentCategoryValue = Encodestring($scope.SelectedCategoryId);
-        var EncodededChildCategoryValue = Encodestring(SubCategoryId);      
+        var EncodededChildCategoryValue = Encodestring(SubCategoryId); 
+       
+        if (PageIndex > 0) {
+            var pageIndex = Encodestring(PageIndex);
+            $scope.SelectedPageIndex = PageIndex;
+        }
+        else {
+            var pageIndex = Encodestring($scope.SelectedPageIndex);
+        }
+      
         $scope.SelectedSubCategory = SubCategoryId;
-        $state.go('.', { CategoryId: EncodededParentCategoryValue, SubCategoryId: EncodededChildCategoryValue }, { notify: false,reload: false, location: 'replace', inherit: true });
+        $state.go('.', { CategoryId: EncodededParentCategoryValue, SubCategoryId: EncodededChildCategoryValue, PageIndex: pageIndex }, { notify: false, reload: false, location: 'replace', inherit: true });
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedSubCategory });
         if (CategoryObj != undefined && CategoryObj != null && CategoryObj.length>0) {
             $scope.SelectedCategory = CategoryObj[0];            
@@ -77,17 +96,19 @@
     }
 
 
-    $scope.GetProductListByCategoryAndStoreId = function () {     
+    $scope.GetProductListByCategoryAndStoreId = function () {   
         $http.get(configurationService.basePath + "API/ProductApi/GetProductListByCategoryAndStoreId?StoreID="
                             + $scope.StoreDetailInSession.store_id +
-                            "&CategoryId=" + $scope.SelectedSubCategory + 
-                            "&Customer_Id=" + UserDetail.customer_id+
-                            "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
+                            "&CategoryId=" + $scope.SelectedSubCategory +
+                             "&PageIndex=" + $scope.SelectedPageIndex +
+                             "&Customer_Id=" + UserDetail.customer_id+
+                            "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor                           
                             )
-          .then(function (response) {
-     
-                  $scope.ProductList = response.data;
-             
+          .then(function (response) {            
+              $scope.ProductList = response.data;
+              if ($scope.ProductList.length>0) {
+                  $scope.totalRecords = $scope.ProductList[0].TotalRecords;
+              }                
           })
       .catch(function (response) {
 
@@ -96,6 +117,8 @@
 
       });
     }
+
+
 
 
     $scope.GetOurProductListByByStoreId = function () {
@@ -154,6 +177,15 @@
         }
 
     }
+    $scope.GoToPage = function (Index) {
+        $scope.SelectedPageIndex = Index;
+        $scope.currentPage = Index;
+        var EncodededParentCategoryValue = Encodestring($scope.SelectedCategoryId);
+        var EncodededChildCategoryValue = Encodestring($scope.SelectedSubCategory);
+        var pageIndex = Encodestring(Index);
+        $state.go('.', { CategoryId: EncodededParentCategoryValue, SubCategoryId: EncodededChildCategoryValue, PageIndex: pageIndex }, { notify: false, reload: false, location: 'replace', inherit: true });
+        $scope.GetProductListByCategoryAndStoreId();
+    }
 
 
     if ($scope.SelectedCategoryId == -1) {
@@ -170,8 +202,6 @@
         $scope.SelectedSubCategory = -3;
         $scope.TitleHeader = 'Search Result'; 
         $scope.GetOurProductListByByStoreId();
-    }
-
-    $scope.GetCategoryListForDashboard();
-
+    } 
+    $scope.GetCategoryListForDashboard(); 
 });
