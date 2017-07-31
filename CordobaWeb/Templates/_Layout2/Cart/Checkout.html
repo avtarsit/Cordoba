@@ -25,8 +25,8 @@
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-4">
-                        <p class="product-price"><span>Points:</span> {{Item.price}}</p>
-                        <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal: {{Item.total}}</span></p>
+                        <p class="product-price"><span>Points:</span> {{Item.points}}</p>
+                        <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal: {{Item.totalpoints}}</span></p>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,11 @@
 
                     <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
                         <p ng-bind="'- '+Item.name"></p>
-                        <p ng-bind="Item.total"></p>
+                        <p ng-bind="Item.totalpoints"></p>
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span ng-bind="AllItemTotal+' Points'"></span>
+                        <span ng-bind="AllItemTotalPoints+' Points'"></span>
                         <br />
                         <a href="" ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
                     </div>
