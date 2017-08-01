@@ -49,5 +49,6 @@ namespace CordobaModels.Entities
         public string county { get; set; }
         public string layout { get; set; }
         public int? banner_id { get; set; }
+        public string catalougeIdCsv { get; set; }
     }
 }

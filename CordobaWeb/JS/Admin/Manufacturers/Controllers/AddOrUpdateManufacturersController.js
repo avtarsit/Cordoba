@@ -27,6 +27,7 @@
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ManufacturerObj = response.data;
+              debugger;
           })
       .catch(function (response) {
 

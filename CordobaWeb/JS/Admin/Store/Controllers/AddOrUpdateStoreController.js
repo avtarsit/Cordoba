@@ -88,6 +88,7 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
+              console.log($scope.StoreObj);
               if ($scope.StoreObj.store_id == 0) {
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
@@ -164,8 +165,18 @@
 
     }
 
+    function GetSelectedCatalogueListCSV(CatalogueObj) {
+        var CatalogueIdCSV = "";
+        var SelectedCatalogueList = $filter('filter')(CatalogueObj, { IsSelected: true }, true);
+        CatalogueIdCSV = GetCSVFromJsonArray(SelectedCatalogueList, "catalogue_Id");
+        return CatalogueIdCSV;
+    }
+
+
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
+            $scope.StoreObj.catalougeIdCsv = GetSelectedCatalogueListCSV($scope.CatalougeListObj);
+            debugger;
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {           
@@ -273,6 +284,23 @@
       });
     }
 
+    
+    $scope.GetCatalougeList = function () {
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.store_id + "&LoggedInUserId=" +$scope.LoggedInUserId )
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.CatalougeListObj = response.data;
+                  debugger;
+              }
+          })
+      .catch(function (response) {
+ 
+      })
+      .finally(function () {
+
+      });
+    }
+
 
     $scope.GetAdvertisementImageList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetAdvertisementImageList?store_id=" + $scope.store_id )
@@ -296,6 +324,7 @@
         $scope.GetStoreById();
         $scope.GetBannerList();
         $scope.GetAdvertisementImageList();
+        $scope.GetCatalougeList();
     }
 
 
