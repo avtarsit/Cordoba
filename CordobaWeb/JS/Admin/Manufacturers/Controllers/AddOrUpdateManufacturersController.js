@@ -27,6 +27,7 @@
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.ManufacturerObj = response.data;
+              debugger;
           })
       .catch(function (response) {
 
@@ -46,7 +47,7 @@
     }
     $scope.InsertUpdateManufacture = function (form) {
         if (form.$valid) {
-
+            debugger;
             $scope.ManufacturerObj.StoreIdCSV = GetSelectedStoreListCSV($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore);
             var manufacturersEntity = JSON.stringify($scope.ManufacturerObj);
             $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, manufacturersEntity)
@@ -121,6 +122,27 @@
         else {
             $state.go('ShowManufacturer');
         }
+
+    }
+
+    $scope.toggleAll = function (id) {
+        if (id == 0)
+        {
+            if($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore[0]["IsSelected"] == true){
+                angular.forEach($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore, function (itm) { itm.IsSelected = true; });
+            }
+            else {
+                angular.forEach($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore, function (itm) { itm.IsSelected = false; });
+            }
+          
+        }
+        else {
+            $scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore[0]["IsSelected"] = false;
+            return true;
+        }
+       
+        
+        
 
     }
 

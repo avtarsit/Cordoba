@@ -64,6 +64,7 @@
                                     <li role="presentation"><a data-target="#StoreTab" role="tab" data-toggle="tab">Store</a></li>
                                     <li role="presentation"><a data-target="#LocalTab" role="tab" data-toggle="tab">Local</a></li>
                                     <li role="presentation" ng-if="store_id>0"><a data-target="#ImageTab" role="tab" data-toggle="tab">Advertisement</a></li>
+                                    <li role="presentation" ng-if="store_id>0"><a data-target="#Catalouge" role="tab" data-toggle="tab">Catalouge</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -319,6 +320,31 @@
                                         </div>
                                         <!--End General Tab-->
                                     </div>
+
+
+                                    <div role="tabpanel" class="tab-pane active" id="Catalouge">
+                                        <!--General Tab-->
+                                        <div class="col-md-12">
+                                        
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Catalouge:</label>
+                                                <div class="col-lg-9">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                        <div class="col-sm-6 checkbox" ng-repeat="Item in CatalougeListObj">
+                                                            <label>
+                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected" ng-change="toggleAll($index)"><label>&nbsp;&nbsp;{{Item.name}}</label>
+                                                                {{Item.Name}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+               
+                                            
+                                        </div>
+                                        <!--End General Tab-->
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
