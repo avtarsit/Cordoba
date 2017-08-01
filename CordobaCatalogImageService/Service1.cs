@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -70,7 +71,7 @@ namespace CordobaCatalogImageService
             for (int i = 0; i < productCatalogue.Count; i++)
             {
                 WebClient request = new WebClient();
-                request.DownloadFile(new Uri(productCatalogue[i].image_full_url), @"D:\Projects\DUMMY\" + productCatalogue[i].image_full);
+                request.DownloadFile(new Uri(productCatalogue[i].image_full_url), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImportProductImagePath"]) + productCatalogue[i].image_full);
                 //request.DownloadFile(new Uri(productCatalogue[i].image_full_url), @"D:\Project\CordobaGIT\CordobaWeb\image\data\ProductCatalogueImages\" + productCatalogue[i].image_full);
             }
 

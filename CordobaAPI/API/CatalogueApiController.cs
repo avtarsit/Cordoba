@@ -176,13 +176,16 @@ namespace CordobaAPI.API
                 if (result.Count > 0)
                 {
                 }
-                else
-                {
-                    using (var m = new ManagementObject(string.Format("Win32_Service.Name=\"{0}\"", "CordobaInstaller")))
-                    {
-                        m.InvokeMethod("ChangeStartMode", new object[] { "Automatic" });
-                    }
-                }
+                //else
+                //{
+                //    //using (var m = new ManagementObject(string.Format("Win32_Service.Name=\"{0}\"", "CordobaInstaller")))
+                //    //{
+                //    //    m.InvokeMethod("ChangeStartMode", new object[] { "Automatic" });
+                //    //}
+                //    var sc = new System.ServiceProcess.ServiceController();
+                //    sc.ServiceName = "CordobaInstaller";                
+                //    sc.Start();
+                //}
 
                 //ServiceController controller = new ServiceController();
 
