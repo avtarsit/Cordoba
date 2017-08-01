@@ -108,7 +108,7 @@
               $scope.ProductList = response.data;
               if ($scope.ProductList.length>0) {
                   $scope.totalRecords = $scope.ProductList[0].TotalRecords;
-              }                
+              }            
           })
       .catch(function (response) {
 
@@ -117,8 +117,6 @@
 
       });
     }
-
-
 
 
     $scope.GetOurProductListByByStoreId = function () {
@@ -202,6 +200,11 @@
         $scope.SelectedSubCategory = -3;
         $scope.TitleHeader = 'Search Result'; 
         $scope.GetOurProductListByByStoreId();
-    } 
+    }
+
+
+    $scope.set = function () {        
+        $scope.totalRecords = 100000000;
+    }
     $scope.GetCategoryListForDashboard(); 
 });
