@@ -4,7 +4,7 @@
             <div class="points">
                 <ul>
                     <li>
-                        <p class="bag-desc">Payment of {{AllItemTotal}} points has been received.<span class="pull-right">Available Points : {{CustomerDetail.points}} Points</span></p>
+                        <p class="bag-desc">{{AllItemTotalPoints}} Points will be deducted from your account.<span class="pull-right">Available Points : {{CustomerDetail.points}} Points</span></p>
                     </li>              
                 </ul>
             </div>
@@ -70,7 +70,7 @@
 
                     <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
                         <p ng-bind="'- '+Item.name"></p>
-                        <p ng-bind="Item.totalpoints"></p>
+                        <p ng-bind="Item.totalpoints +' Points'"></p>
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>

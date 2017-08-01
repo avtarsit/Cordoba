@@ -13,6 +13,7 @@ D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageSe
 D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csproj.GenerateResource.Cache
 D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.exe
 D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.pdb
+D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csprojResolveAssemblyReference.cache
 E:\Cordoba_Git\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.exe.config
 E:\Cordoba_Git\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.exe
 E:\Cordoba_Git\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.pdb

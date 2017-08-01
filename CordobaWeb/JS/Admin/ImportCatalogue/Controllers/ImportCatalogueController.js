@@ -113,19 +113,10 @@
 
                 $scope.progressVisible = true;
 
-                xhr.onreadystatechange = function () {
-                    debugger;
+                xhr.onreadystatechange = function () {                   
                     if (xhr.readyState == 4) {
-                        if (xhr.status == 200) {
-                            debugger;
-                            if ($.parseJSON(xhr.responseText).length > 0) {
-                                alert($.parseJSON(xhr.responseText));
-
-                                //$scope.dtOptions = DTOptionsBuilder.newOptions()
-                                //                    .withOption('bDestroy', true)
-                                //                    .withOption("deferRender", true);
-
-
+                        if (xhr.status == 200) {                            
+                            if ($.parseJSON(xhr.responseText).length > 0) {                                                           
                                 $scope.$apply(function () {
                                     $scope.NotValidRecordsInImport = $.parseJSON(xhr.responseText);
                                 })

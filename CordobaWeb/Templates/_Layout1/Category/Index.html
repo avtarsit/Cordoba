@@ -1,34 +1,7 @@
 ﻿<style>
-    .pagination {
-    display: inline-block;
-    float:right;
-}
-
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-}
-
-/*.pagination a:hover:not(.active) {background-color: #ddd;}*/
-
-.pagination a:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.pagination a:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+    .pagination{
+        float:right;
+    }
 </style>
 <div class="container-fluid products" ng-controller="CategoryListController">
     <div class="col-lg-3 col-md-4 col-xs-12">
@@ -46,7 +19,7 @@
                                 <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
                                 <ul>
                                     <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
-                                        <a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id)" ng-bind-html="SubCategory.name"></a>
+                                        <a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id,1)" ng-bind-html="SubCategory.name"></a>
                                     </li>
                                 </ul>
                             </li>
@@ -66,10 +39,10 @@
                 <div class="row">
                     <div class="col-sm-3" ng-if="category.parent_Id==SelectedCategoryId" ng-repeat="category in CategoryList | filter:{ parent_Id: category.Category_Id } ">
                         <div class="product-block">
-                            <div class="product-img cursor-pointer" ng-click="GetSubCategory(category.Category_Id)">
+                            <div class="product-img cursor-pointer" ng-click="GetSubCategory(category.Category_Id,1)">
                                 <img ng-src="{{category.image}}" alt="latest product" />
                             </div>
-                            <a href="" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id)" ng-bind-html="category.name"></a>
+                            <a href="" class="cursor-pointer" ng-click="GetSubCategory(category.Category_Id,1)" ng-bind-html="category.name"></a>
                         </div>
                     </div>
                 </div>
@@ -77,8 +50,8 @@
         </div>
     </div>
     <div class="col-lg-9 col-md-8 col-xs-12 product-list" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)
-                 || (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
-        <div class="row">
+                 || (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" >
+        <div class="row" style="min-height:750px">
             <div class="col-sm-12 latest-product mb-30">
                 <div class="block-heading">
                     <h4 ng-bind="TitleHeader"></h4>
@@ -101,24 +74,18 @@
             </div>
            
         </div>
+        <ul ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>      
     </div>
 </div>
-<div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a class="active" href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-</div>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.category-list').mCustomScrollbar();
+        
     });
+
 </script>
 
 

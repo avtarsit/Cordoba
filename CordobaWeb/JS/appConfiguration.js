@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating"]);
+var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating","ui.bootstrap"]);
 GetAdminUserDetail();
 GetLayoutName();
 
@@ -299,7 +299,7 @@ function GetLayoutName() {
                 }
                 , LayoutCategoryORProductList = {
                     name: 'LayoutCategoryORProductList',
-                    url: '/Category?CategoryId:categoryId&SubCategoryId:subcategory_id&Search:search',
+                    url: '/Category?CategoryId:categoryId&SubCategoryId:subcategory_id&Search:search&PageIndex:pageindex',
                     templateUrl: 'Templates/' + LayoutName + '/Category/Index.html'
                 }
                 //, LayoutProducts = {

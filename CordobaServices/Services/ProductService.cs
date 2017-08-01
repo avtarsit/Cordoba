@@ -174,11 +174,12 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID,int CategoryId, int Customer_Id=0,string WhatAreYouLookingFor="")
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID,int CategoryId,int PageIndex,int Customer_Id=0,string WhatAreYouLookingFor="")
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("StoreID", StoreID)                                             
                                                    , new SqlParameter("CategoryId",CategoryId)
+                                                   , new SqlParameter("PageIndex",PageIndex) 
                                                     , new SqlParameter("Customer_Id",Customer_Id)
                                                        , new SqlParameter("WhatAreYouLookingFor",WhatAreYouLookingFor==null?"":WhatAreYouLookingFor)
                                                };

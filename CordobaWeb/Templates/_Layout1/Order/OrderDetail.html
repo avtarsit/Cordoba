@@ -34,8 +34,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-4">
-                            <p class="product-price"><span>Points:</span><span ng-bind="(Item.points | number :2) +' points'"></span></p>
-                            <p class="product-price"><span>Subtotal:</span> <span ng-bind="(Item.totalpoints) +' points'"></span></p>
+                            <p class="product-price"><span>Points:</span><span ng-bind="(Item.points | number :2) +' Points'"></span></p>
+                            <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal:</span> <span ng-bind="(Item.totalpoints) +' Points'"></span></p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span ng-bind="(OrderdetailObj.totalpoints | number :2) +' points'"></span>
+                    <span ng-bind="(OrderdetailObj.totalpoints | number :2) +' Points'"></span>
                 </div>
             </div>
         </div>

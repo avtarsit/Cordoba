@@ -42,7 +42,7 @@
     //#endregion      
     $scope.GetCartDetailsByCartGroupId = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
-          .then(function (response) {
+          .then(function (response) {             
               if (response.data.length > 0) {                 
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;

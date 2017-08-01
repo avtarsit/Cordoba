@@ -3764,6 +3764,7 @@
     <Content Include="Scripts\jquery.dataTables.rowReordering.js" />
     <Content Include="Scripts\jquery.responsiveTabs.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.twbsPagination.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -3801,6 +3802,7 @@
     <Content Include="Scripts\textAngular-sanitize.js" />
     <Content Include="Scripts\textAngular.min.js" />
     <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.12.1.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls.js" />
     <Content Include="Templates\Admin\Banner\Index.html" />
     <Content Include="Templates\Admin\Banner\ManageBanner.html" />
