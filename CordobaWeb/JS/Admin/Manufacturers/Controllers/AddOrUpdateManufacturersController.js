@@ -26,8 +26,7 @@
     $scope.GetManufaturerDetail = function () {
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufaturerDetail?manufacturer_id=" + $scope.manufacturer_id + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              $scope.ManufacturerObj = response.data;
-              debugger;
+              $scope.ManufacturerObj = response.data;         
           })
       .catch(function (response) {
 
@@ -46,8 +45,7 @@
 
     }
     $scope.InsertUpdateManufacture = function (form) {
-        if (form.$valid) {
-            debugger;
+        if (form.$valid) {          
             $scope.ManufacturerObj.StoreIdCSV = GetSelectedStoreListCSV($scope.ManufacturerObj.ManufacturerStoreList.ManufacturerStore);
             var manufacturersEntity = JSON.stringify($scope.ManufacturerObj);
             $http.post(configurationService.basePath + "api/ManufacturersApi/InsertUpdateManufacture?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, manufacturersEntity)

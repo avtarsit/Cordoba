@@ -35,7 +35,7 @@
     $scope.GetCategoryListForDashboard = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID="+$scope.StoreDetailInSession.store_id+"&NeedToGetAllSubcategory=true")
           .then(function (response) {
-              if (response.data.length > 0) {              
+              if (response.data.length > 0) {                
                   $scope.CategoryList = response.data;
                   var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
                   if (CategoryObj != undefined && CategoryObj != null) {
@@ -46,6 +46,18 @@
                       {                          
                           $scope.GetSubCategory($scope.SelectedSubCategory, 0);                       
                       }   
+                      }
+                      else {                        
+                          var SubCategoryObj = $filter('filter')($scope.CategoryList, { 'parent_Id': $scope.SelectedCategoryId });
+                          if ((CategoryObj != undefined && CategoryObj != null && CategoryObj.length > 0) && (SubCategoryObj != undefined && SubCategoryObj != null && SubCategoryObj.length > 0)) {
+                              $scope.SelectedCategory = CategoryObj[0];
+                              $scope.TitleHeader = $scope.SelectedCategory.name;
+                          }
+                          else {
+                              $scope.SelectedSubCategory = $scope.SelectedCategoryId;
+                              $scope.GetProductListByCategoryAndStoreId();
+                          }
+
                       }
                                         
                   }
@@ -60,20 +72,25 @@
     }
 
     $scope.GetCategory=function(ParentCategoryId)
-    {
+    { 
         var EncodededParentCategoryValue = Encodestring(ParentCategoryId);
         $scope.SelectedCategoryId = ParentCategoryId;  
         $state.go('.', { CategoryId: EncodededParentCategoryValue }, { notify: false, reload: false, location: 'replace', inherit: false });
         $scope.SelectedSubCategory = 0;
         var CategoryObj = $filter('filter')($scope.CategoryList, { 'Category_Id': $scope.SelectedCategoryId });
-        if (CategoryObj != undefined && CategoryObj != null && CategoryObj.length>0) {
+        var SubCategoryObj = $filter('filter')($scope.CategoryList, { 'parent_Id': $scope.SelectedCategoryId });
+        if ((CategoryObj != undefined && CategoryObj != null && CategoryObj.length>0) && (SubCategoryObj != undefined && SubCategoryObj != null && SubCategoryObj.length>0)) {
             $scope.SelectedCategory = CategoryObj[0];
             $scope.TitleHeader = $scope.SelectedCategory.name;
+        }
+        else {
+            $scope.SelectedSubCategory = ParentCategoryId;
+            $scope.GetProductListByCategoryAndStoreId();
         }
     }
 
     $scope.GetSubCategory = function (SubCategoryId, PageIndex)
-    {      
+    {       
         var EncodededParentCategoryValue = Encodestring($scope.SelectedCategoryId);
         var EncodededChildCategoryValue = Encodestring(SubCategoryId); 
        
@@ -108,7 +125,10 @@
               $scope.ProductList = response.data;
               if ($scope.ProductList.length>0) {
                   $scope.totalRecords = $scope.ProductList[0].TotalRecords;
-              }            
+              }
+              else {
+                  $scope.totalRecords = 0;
+              }
           })
       .catch(function (response) {
 
