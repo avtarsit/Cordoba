@@ -18,7 +18,7 @@
                             <li ng-class="SelectedCategoryId==category.Category_Id ? 'active cursor-pointer' : 'cursor-pointer' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
                                 <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
                                 <ul>
-                                    <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ parent_Id: category.Category_Id }">
+                                    <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id && SubCategory.parent_Id==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ 'parent_Id' : category.Category_Id } | unique:'name'| orderBy : 'name'">
                                         <a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id,1)" ng-bind-html="SubCategory.name"></a>
                                     </li>
                                 </ul>
@@ -54,7 +54,7 @@
         <div class="row" style="min-height:750px">
             <div class="col-sm-12 latest-product mb-30">
                 <div class="block-heading">
-                    <h4 ng-bind="TitleHeader"></h4>
+                    <h4 ng-bind-html="TitleHeader"></h4>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">

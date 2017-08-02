@@ -282,7 +282,6 @@
 
       });
     }
-
     
     $scope.GetCatalougeList = function () {
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.store_id + "&LoggedInUserId=" +$scope.LoggedInUserId )
