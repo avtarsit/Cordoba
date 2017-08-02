@@ -226,5 +226,25 @@ namespace CordobaAPI.API
             }
 
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetCategoryListForStore(int StoreId)
+        {
+            try
+            {
+                var result = _catalogueServices.GetCategoryListForStore(StoreId);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

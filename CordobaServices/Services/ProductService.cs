@@ -373,6 +373,56 @@ namespace CordobaServices.Services
             }
         }
 
+        public List<ProductEntity> GetProductBycategoryForStore(int category_id , int store_id)
+        {
+            List<ProductEntity> product = new List<ProductEntity>();
+            try
+            {
+                var paramCategoryId = new SqlParameter
+                {
+                    ParameterName = "category_id",
+                    DbType = DbType.Int32,
+                    Value = category_id
+                };
+
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "store_id",
+                    DbType = DbType.Int32,
+                    Value = category_id
+                };
+
+                var Result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductBycategoryForStore",paramCategoryId , paramStoreId).ToList<ProductEntity>();
+
+                if (Result != null)
+                    product = Result.ToList();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return product;
+        }
+
+        public int ExcludeProduct(int store_id, string product_id, string operation)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                                new SqlParameter("store_id",store_id)
+                                                                ,new SqlParameter("product_id",product_id)
+                                                                ,new SqlParameter("operation", operation)  
+                };
+                int result = objGenericRepository.ExecuteSQL<int>("ExcludeProduct", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         
 
     }

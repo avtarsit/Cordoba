@@ -31,5 +31,8 @@ namespace CordobaServices.Interfaces
 
         List<ProductEntity> GetProductImageById(int product_id);
         List<CategoryEntity> GetSubCategoryList(int StoreId, int LoggedInUserId);
+        List<ProductEntity> GetProductBycategoryForStore(int category_id , int store_id);
+        int ExcludeProduct(int store_id, string product_id, string operation);
+
     }
 }

@@ -360,6 +360,36 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetProductBycategoryForStore(int category_id , int store_id)
+        {
+            try
+            {
+                var result = _ProductServices.GetProductBycategoryForStore(category_id , store_id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage ExcludeProduct(int store_id, string product_id, string operation)
+        {
+            try
+            {
+                var result = _ProductServices.ExcludeProduct(store_id, product_id, operation);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

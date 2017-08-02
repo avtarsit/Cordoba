@@ -208,5 +208,32 @@ namespace CordobaServices.Services
                 throw;
             }
         }
+
+        public List<CategoryEntity> GetCategoryListForStore(int StoreId)
+        {
+            List<CategoryEntity> category = new List<CategoryEntity>();
+            try
+            {
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "StoreId",
+                    DbType = DbType.Int32,
+                    Value = StoreId
+                };
+
+                var Result = objGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryListForStore", paramStoreId).ToList<CategoryEntity>();
+
+                if (Result != null)
+                    category = Result.ToList();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return category;
+        }
+
+
     }
 }

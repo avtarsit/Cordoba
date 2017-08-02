@@ -317,6 +317,74 @@
       });
     }
 
+    $scope.getCategoryListForStore = function()
+    {
+        $http.get(configurationService.basePath + "api/CatalogueApi/GetCategoryListForStore?StoreId=" + $scope.store_id)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.categoryListObj = response.data;
+                  console.log($scope.categoryListObj)
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.getProductByCategory = function() {
+        debugger;
+        $http.get(configurationService.basePath + "api/ProductApi/GetProductBycategoryForStore?category_id=" + $scope.StoreObj.category_id + "&store_id=" + $scope.store_id)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.productListObj = response.data;
+                  $scope.IncludedProductListObj = $filter('filter')(response.data, { IsExcluded: false }, true);
+                  $scope.ExcludedProductListObj = $filter('filter')(response.data, { IsExcluded: true }, true);
+                  console.log($scope.IncludedProductListObj);
+                  debugger;
+
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    function GetSelectedProductListCSV(productObj) {
+        var ProductIdCSV = "";
+        var SelectedProductList = $filter('filter')(productObj, { IsSelected: true }, true);
+        ProductIdCSV = GetCSVFromJsonArray(SelectedProductList, "product_id");
+        return ProductIdCSV;
+    }
+
+    $scope.ExcludeProduct = function (operation) {
+        if (operation == 'add') {
+            var productIdCSV = GetSelectedProductListCSV($scope.IncludedProductListObj);
+        }
+        else {
+            var productIdCSV = GetSelectedProductListCSV($scope.ExcludedProductListObj);
+        }
+        debugger;
+        $http.post(configurationService.basePath + "api/ProductApi/ExcludeProduct?store_id=" + $scope.store_id + "&product_id=" + productIdCSV + "&operation=" + operation)
+              .then(function (response) {
+                  if (response.data > 0) {
+                      notificationFactory.customSuccess("Store Saved Successfully.");
+                      $scope.getProductByCategory();
+                  }
+              })
+          .catch(function (response) {
+              notificationFactory.customError("Error occur during save record.");
+          })
+          .finally(function () {
+          });
+        
+    }
+
     function init() {
         GetCountryList();
         GetLanguageList();
@@ -325,8 +393,11 @@
         $scope.GetBannerList();
         $scope.GetAdvertisementImageList();
         $scope.GetCatalougeList();
+        $scope.getCategoryListForStore();
     }
 
 
     init();
+
+
 });

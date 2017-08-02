@@ -146,6 +146,10 @@
 
     }
 
+    $scope.getCatagoryList = function () {
+
+    }
+
 
     $scope.GetManufaturerDetail();
 

@@ -327,8 +327,8 @@
                                         <div class="col-md-12">
                                         
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Catalouge:</label>
-                                                <div class="col-lg-9">
+                                                <label class="col-md-1 control-label">Catalouge:</label>
+                                                <div class="col-md-12">
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
                                                         <div class="col-sm-6 checkbox" ng-repeat="Item in CatalougeListObj">
                                                             <label>
@@ -339,8 +339,44 @@
                                                     </div>
                                                 </div>
                                             </div>
-               
-                                            
+
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label pull-left">Category</label>
+                                                <div class="col-md-11">
+                                                    <select class="form-control cursor-pointer" name="CategoryId"  ng-options="option.Category_Id as option.name for option in categoryListObj" ng-model="StoreObj.category_id" ng-change="getProductByCategory()"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">Products:</label>
+                                                <div class="col-md-12">
+                                                <div class="col-md-5">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj">
+                                                            <label>
+                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
+                                                                {{Item.name}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="col-md-1 pull-left">
+                                                    <button type="button" class="button-success" ng-click="ExcludeProduct('add')">>></button>
+                                                    <button type="button" class="button-success" ng-click="ExcludeProduct('remove')"><<</button>
+                                                </span>
+                                                <div class="col-md-5">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj">
+                                                            <label>
+                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
+                                                                {{Item.name}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <!--End General Tab-->
                                     </div>

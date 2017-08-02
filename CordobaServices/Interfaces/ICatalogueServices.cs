@@ -19,5 +19,7 @@ namespace CordobaServices.Interfaces
         int DeleteCatalogue(int catalogue_id, int StoreId, int LoggedInUserId);
 
         List<ImportProductCatalogueEntity> ImportDatatoCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id, DataTable XLS, bool IsConfirmToIgnore);
+
+        List<CategoryEntity> GetCategoryListForStore(int StoreId);
     }
 }
