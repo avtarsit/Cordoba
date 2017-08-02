@@ -175,8 +175,7 @@
 
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
-            $scope.StoreObj.catalougeIdCsv = GetSelectedCatalogueListCSV($scope.CatalougeListObj);
-            debugger;
+            $scope.StoreObj.catalougeIdCsv = GetSelectedCatalogueListCSV($scope.CatalougeListObj);            
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {           
@@ -283,14 +282,12 @@
 
       });
     }
-
     
     $scope.GetCatalougeList = function () {
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.store_id + "&LoggedInUserId=" +$scope.LoggedInUserId )
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.CatalougeListObj = response.data;
-                  debugger;
+                  $scope.CatalougeListObj = response.data;             
               }
           })
       .catch(function (response) {

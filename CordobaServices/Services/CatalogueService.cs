@@ -3,6 +3,7 @@ using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -154,12 +155,10 @@ namespace CordobaServices.Services
         public List<ImportProductCatalogueEntity> ImportDatatoCatalogue(int StoreId, int LoggedInUserId, int supplier_id, int language_id, int catalogue_id, DataTable XLS, bool IsConfirmToIgnore)
         {
             try
-            {
+            {                            
                 SqlConnection con = new SqlConnection();
-                con.ConnectionString = "Data Source=SITPC0031\\SQLEXPRESS;Initial Catalog=Cordoba_260617_bak; User ID=sa;Password=sit@123";
-
+                con.ConnectionString = Convert.ToString(ConfigurationManager.ConnectionStrings["DefaultConnection"]);
                 con.Open();
-
                 SqlCommand cmd = new SqlCommand("ImportCatalogueDataToTable", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter parameter = new SqlParameter();
