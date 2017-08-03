@@ -352,7 +352,7 @@
                                                 
                                                 <div class="col-md-12">
                                                 <div class="col-md-5">
-                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto; font-size: 11px">
                                                         <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj | orderBy: 'name' ">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
@@ -362,11 +362,12 @@
                                                     </div>
                                                 </div>
                                                 <span class="col-md-2 pull-left">
-                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 mb-10 col-md-7" ng-click="ExcludeProduct('add')"><span class="glyphicon glyphicon-forward"></span></button>
-                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 col-md-7" ng-click="ExcludeProduct('remove')"><span class="glyphicon glyphicon-backward"></span></button>
+                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 col-md-5" ng-click="ExcludeProduct('remove')"><span class="glyphicon glyphicon-backward"></span></button>
+                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 mb-10 col-md-5 ml-15 pull-right" ng-click="ExcludeProduct('add')"><span class="glyphicon glyphicon-forward"></span></button>
+                                                   
                                                 </span>
                                                 <div class="col-md-5">
-                                                    <div class="well well-sm" style="height: 150px; overflow: auto;">
+                                                    <div class="well well-sm" style="height: 150px; overflow: auto; font-size: 11px">
                                                         <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj | orderBy: 'name'">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
