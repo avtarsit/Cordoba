@@ -49,7 +49,7 @@
                                             </ul>
                                             <ul ng-show="form.$submitted && (!form.$valid)">
                                                 <li ng-show="form.ProductNameLang_en.$error.required">Product Name is required.[English]</li>
-                                                <li ng-show="form.product_shipping_costs.$error.required">Shipping cost is required.</li>
+                                                <!--<li ng-show="form.product_shipping_costs.$error.required">Shipping cost is required.</li>-->
                                                 <li ng-show="form.model.$error.required">Model is required.</li>
                                                 <li ng-show="form.price.$error.required">Price is required.</li>
                                                 <li ng-show="form.quantity.$error.required">Quantity is required.</li>
@@ -211,10 +211,12 @@
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
                                             <div class="col-sm-5">
-                                                <select class="form-control" ng-model="ProductObj.selectedCountryForShippingCost">
+                                                <!--<select class="form-control" ng-model="ProductObj.selectedCountryForShippingCost">
                                                     <option class="form-control" ng-value="$index" ng-repeat="list in shippingCostList" ng-bind="list.name"></option>
 
-                                                </select>
+                                                </select>-->
+                                                <select class="form-control" ng-model="ShippingObj.country_id" ng-options="shipCountry.country_id as shipCountry.name for shipCountry in shippingCostList" ng-change="NgChangeShippingCountryDropDown(ShippingObj.country_id)"></select>
+                                               
                                             </div>
 
 
@@ -225,9 +227,9 @@
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Shipping Cost</label>
                                             <div class="col-sm-2">
-                                                <input type="hidden" class="form-control" ng-bind="ProductObj.country_id" name="product_shipping_costs[0][country_id]">
-                                                <input type="hidden" class="form-control" ng-bind="ProductObj.country_name" name="product_shipping_costs[0][country_name]" value="United Kingdom">
-                                                <input type="number" maxlength="10" class="form-control" ng-model="shippingCostList[ProductObj.selectedCountryForShippingCost]['shipping_cost']" name="product_shipping_costs" required="required">
+                                                <!--<input type="hidden" class="form-control" ng-bind="ProductObj.country_id" name="product_shipping_costs[0][country_id]">
+                                                <input type="hidden" class="form-control" ng-bind="ProductObj.country_name" name="product_shipping_costs[0][country_name]" value="United Kingdom">-->
+                                                <input type="number" maxlength="10" class="form-control" ng-model="ShippingObj.shipping_cost" name="product_shipping_costs">
                                             </div>
                                            
                                             

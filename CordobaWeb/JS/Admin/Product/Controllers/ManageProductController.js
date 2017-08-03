@@ -577,11 +577,29 @@
       });
     }
 
+    $scope.NgChangeShippingCountryDropDown = function (CountryId) {
+
+        var SelectedShippingCountry = $filter('filter')($scope.shippingCostList, { country_id: CountryId }, true);
+        if (SelectedShippingCountry.length>0) {
+            $scope.ShippingObj = new Object();
+            $scope.ShippingObj.country_id = SelectedShippingCountry[0].country_id;
+            $scope.ShippingObj.shipping_cost = SelectedShippingCountry[0].shipping_cost;
+        }
+        else {
+            $scope.ShippingObj.shipping_cost = 0;
+        }
+
+       
+    }
     $scope.GetShippingCostDetail = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetShippingCostDetail?product_id=" + $scope.product_id)
           .then(function (response) {
+              debugger;
               if (response.data.length > 0) {
                   $scope.shippingCostList = response.data;
+                  $scope.ShippingObj = new Object();
+                  $scope.ShippingObj.country_id = $scope.shippingCostList[0].country_id;
+                  $scope.ShippingObj.shipping_cost = $scope.shippingCostList[0].shipping_cost;
               }
           })
       .catch(function (response) {
@@ -599,6 +617,7 @@
         $http.post(configurationService.basePath + "api/ProductApi/updateShippingCost?product_id="+$scope.product_id+"&country_id="+country_id+"&shipping_cost="+shipping_cost)
                             .then(function (response) {
                                 if (response.data > 0) {
+                                    $scope.shippingCostList = [];
                                     notificationFactory.customSuccess("Product Saved Successfully.");
                                     $scope.GetShippingCostDetail();
                                 }
