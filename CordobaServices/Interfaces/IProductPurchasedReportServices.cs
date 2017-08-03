@@ -18,5 +18,6 @@ namespace CordobaServices.Interfaces
        List<OrderProductEntity> GetProductViewedList(int store_id, int LoggedInUserId, string sortColumn, TableParameter<OrderProductEntity> tableParameter);
 
        DataSet ExportToExcelProductPurchasedList(string sortColumn, int order_status_id, int store_id, int LoggedInUserId, DateTime? DateStart, DateTime? DateEnd);
-    }
+
+   }
 }

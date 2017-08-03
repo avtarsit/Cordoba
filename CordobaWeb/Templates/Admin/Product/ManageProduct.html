@@ -197,21 +197,45 @@
                                         </div>
                                     </div>
                                     <div id="tab-shipping" class="tab-pane">
+                                        <!--<div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
+                                            <div class="col-sm-5">
+                                                <select ng-options="shippingCost.country_id as shippingCost.name  for shippingCost in shippingCostList"
+                                                        class="form-control" ng-model="ProductObj.selectedCountryForShippingCost" name="Shippingcost">
+                                                </select>
+                                            </div>
+                                            
+
+                                            </div>-->
+
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
-                                            <div class="col-sm-10">
-                                                <p class="form-control-static">Shipping cost</p>
+                                            <div class="col-sm-5">
+                                                <select class="form-control" ng-model="ProductObj.selectedCountryForShippingCost">
+                                                    <option class="form-control" ng-value="$index" ng-repeat="list in shippingCostList" ng-bind="list.name"></option>
+
+                                                </select>
                                             </div>
+
+
                                         </div>
+
+
+
                                         <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">United Kingdom</label>
+                                            <label for="inputEmail3" class="col-sm-2 control-label">Shipping Cost</label>
                                             <div class="col-sm-2">
                                                 <input type="hidden" class="form-control" ng-bind="ProductObj.country_id" name="product_shipping_costs[0][country_id]">
                                                 <input type="hidden" class="form-control" ng-bind="ProductObj.country_name" name="product_shipping_costs[0][country_name]" value="United Kingdom">
-                                                <input type="number" maxlength="10" class="form-control" ng-model="ProductObj.shipping_cost" name="product_shipping_costs" required="required">
+                                                <input type="number" maxlength="10" class="form-control" ng-model="shippingCostList[ProductObj.selectedCountryForShippingCost]['shipping_cost']" name="product_shipping_costs" required="required">
                                             </div>
+                                           
+                                            
+                                       </div>
+                                        <div class="form-group col-sm-10 pull-right">
+                                            <input type="button" class="btn btn-info col-sm-1" ng-click="updateShippingCost()" value="Save">
                                         </div>
-                                    </div>
+                                     </div>
                                     <div class="tab-pane" id="tab-links">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="input-manufacturer">Manufacturer</label>

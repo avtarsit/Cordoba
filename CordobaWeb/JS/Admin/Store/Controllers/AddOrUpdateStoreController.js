@@ -88,7 +88,6 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreById?store_id=" + $scope.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
           .then(function (response) {
               $scope.StoreObj = response.data;
-              console.log($scope.StoreObj);
               if ($scope.StoreObj.store_id == 0) {
                   $scope.StoreObj.country_id = 222;
                   $scope.StoreObj.language = 'en';
@@ -320,7 +319,8 @@
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.categoryListObj = response.data;
-                  console.log($scope.categoryListObj)
+                  $scope.StoreObj.category_id = $scope.categoryListObj[0]["Category_Id"];
+                  $scope.getProductByCategory($scope.StoreObj.category_id, $scope.store_id);
               }
           })
       .catch(function (response) {
@@ -331,16 +331,14 @@
       });
     }
 
-    $scope.getProductByCategory = function() {
+    $scope.getProductByCategory = function(category_id , store_id) {
         debugger;
-        $http.get(configurationService.basePath + "api/ProductApi/GetProductBycategoryForStore?category_id=" + $scope.StoreObj.category_id + "&store_id=" + $scope.store_id)
+        $http.get(configurationService.basePath + "api/ProductApi/GetProductBycategoryForStore?category_id=" + category_id + "&store_id=" + store_id)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.productListObj = response.data;
                   $scope.IncludedProductListObj = $filter('filter')(response.data, { IsExcluded: false }, true);
                   $scope.ExcludedProductListObj = $filter('filter')(response.data, { IsExcluded: true }, true);
-                  console.log($scope.IncludedProductListObj);
-                  debugger;
 
               }
           })
@@ -391,6 +389,7 @@
         $scope.GetAdvertisementImageList();
         $scope.GetCatalougeList();
         $scope.getCategoryListForStore();
+        
     }
 
 
