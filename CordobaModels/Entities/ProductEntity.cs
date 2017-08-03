@@ -52,8 +52,8 @@ namespace CordobaModels.Entities
         public string CatalogueIdCSV { get; set; }
         public List<ProductDescriptionList> ProductDescriptionList { get; set; }
         public List<CatalogueEntity> CatalogueList { get; set; }
-        public bool IsSelected { get; set; }
-        public bool IsExcluded { get; set; }
+        public bool? IsSelected { get; set; }
+        public bool? IsExcluded { get; set; }
 
         #region Extra Details
 

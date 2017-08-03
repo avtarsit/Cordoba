@@ -390,6 +390,39 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetShippingCostDetail(int product_id)
+        {
+            try
+            {
+                var result = _ProductServices.GetShippingCostDetail(product_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage updateShippingCost(int product_id, int country_id, decimal shipping_cost)
+        {
+            try
+            {
+                var result = _ProductServices.updateShippingCost(product_id, country_id, shipping_cost);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

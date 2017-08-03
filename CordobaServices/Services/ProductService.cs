@@ -422,6 +422,44 @@ namespace CordobaServices.Services
                 throw ex;
             }
         }
+        public List<CountryEntity> GetShippingCostDetail(int product_id)
+        {
+            List<CountryEntity> product = new List<CountryEntity>();
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("product_id",product_id)  
+                };
+
+                product = objGenericRepository.ExecuteSQL<CountryEntity>("GetShippingCostDetail", sqlParameter).ToList<CountryEntity>();
+
+                return product;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+        }
+
+        public int updateShippingCost(int product_id, int country_id, decimal shipping_cost)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                                                                new SqlParameter("product_id",product_id)
+                                                                ,new SqlParameter("country_id",country_id)
+                                                                ,new SqlParameter("shipping_cost", shipping_cost)  
+                };
+                int result = objGenericRepository.ExecuteSQL<int>("updateShippingCost", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         
 

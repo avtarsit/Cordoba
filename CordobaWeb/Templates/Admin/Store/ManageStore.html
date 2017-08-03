@@ -322,7 +322,7 @@
                                     </div>
 
 
-                                    <div role="tabpanel" class="tab-pane active" id="Catalouge">
+                                    <div role="tabpanel" class="tab-pane" id="Catalouge">
                                         <!--General Tab-->
                                         <div class="col-md-12">
                                         
@@ -341,18 +341,19 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-1 control-label pull-left">Category</label>
-                                                <div class="col-md-11">
-                                                    <select class="form-control cursor-pointer" name="CategoryId"  ng-options="option.Category_Id as option.name for option in categoryListObj" ng-model="StoreObj.category_id" ng-change="getProductByCategory()"></select>
+                                                <label class="col-md-1 control-label">Products:</label>
+                                                <!--<label class="col-md-1 control-label pull-left">Category</label>-->
+                                                <div class="col-md-12">
+                                                    <select class="form-control cursor-pointer" name="CategoryId"  ng-options="option.Category_Id as option.name for option in categoryListObj" ng-model="StoreObj.category_id" ng-change="getProductByCategory(StoreObj.category_id , store_id)"></select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-1 control-label">Products:</label>
+                                                
                                                 <div class="col-md-12">
                                                 <div class="col-md-5">
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
-                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj">
+                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj | orderBy: 'name' ">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
                                                                 {{Item.name}}
@@ -360,13 +361,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="col-md-1 pull-left">
-                                                    <button type="button" class="button-success" ng-click="ExcludeProduct('add')">>></button>
-                                                    <button type="button" class="button-success" ng-click="ExcludeProduct('remove')"><<</button>
+                                                <span class="col-md-2 pull-left">
+                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 mb-10 col-md-7" ng-click="ExcludeProduct('add')"><span class="glyphicon glyphicon-forward"></span></button>
+                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 col-md-7" ng-click="ExcludeProduct('remove')"><span class="glyphicon glyphicon-backward"></span></button>
                                                 </span>
                                                 <div class="col-md-5">
                                                     <div class="well well-sm" style="height: 150px; overflow: auto;">
-                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj">
+                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj | orderBy: 'name'">
                                                             <label>
                                                                 <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
                                                                 {{Item.name}}

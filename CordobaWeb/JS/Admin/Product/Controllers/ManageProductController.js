@@ -577,10 +577,48 @@
       });
     }
 
+    $scope.GetShippingCostDetail = function () {
+        $http.get(configurationService.basePath + "api/ProductApi/GetShippingCostDetail?product_id=" + $scope.product_id)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.shippingCostList = response.data;
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.updateShippingCost = function()
+    {
+        var shipping_cost = $scope.shippingCostList[$scope.ProductObj.selectedCountryForShippingCost]['shipping_cost'];
+        var country_id = $scope.shippingCostList[$scope.ProductObj.selectedCountryForShippingCost]['country_id'];
+        $http.post(configurationService.basePath + "api/ProductApi/updateShippingCost?product_id="+$scope.product_id+"&country_id="+country_id+"&shipping_cost="+shipping_cost)
+                            .then(function (response) {
+                                if (response.data > 0) {
+                                    notificationFactory.customSuccess("Product Saved Successfully.");
+                                    $scope.GetShippingCostDetail();
+                                }
+                                
+                            })
+                        .catch(function (response) {
+                            notificationFactory.error("Error occur during save record.");
+                        })
+                        .finally(function () {
+
+                        });
+
+        
+    }
+
     //#region init
 
     GetStoreList();
     Init();
+    $scope.GetShippingCostDetail();
    
     //#endregion Image Tab
 });

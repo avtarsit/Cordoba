@@ -34,5 +34,8 @@ namespace CordobaServices.Interfaces
         List<ProductEntity> GetProductBycategoryForStore(int category_id , int store_id);
         int ExcludeProduct(int store_id, string product_id, string operation);
 
+        List<CountryEntity> GetShippingCostDetail(int product_id);
+        int updateShippingCost(int product_id, int country_id, decimal shipping_cost);
+
     }
 }
