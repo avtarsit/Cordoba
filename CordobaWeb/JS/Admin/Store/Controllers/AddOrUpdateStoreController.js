@@ -368,8 +368,9 @@
         $http.post(configurationService.basePath + "api/ProductApi/ExcludeProduct?store_id=" + $scope.store_id + "&product_id=" + productIdCSV + "&operation=" + operation)
               .then(function (response) {
                   if (response.data > 0) {
+                      $scope.getProductByCategory($scope.StoreObj.category_id, $scope.store_id);
                       notificationFactory.customSuccess("Store Saved Successfully.");
-                      $scope.getProductByCategory();
+                      
                   }
               })
           .catch(function (response) {
