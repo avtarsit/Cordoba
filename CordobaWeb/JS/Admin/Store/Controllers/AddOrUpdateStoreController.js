@@ -331,8 +331,7 @@
       });
     }
 
-    $scope.getProductByCategory = function(category_id , store_id) {
-        debugger;
+    $scope.getProductByCategory = function(category_id , store_id) {       
         $http.get(configurationService.basePath + "api/ProductApi/GetProductBycategoryForStore?category_id=" + category_id + "&store_id=" + store_id)
           .then(function (response) {
               if (response.data.length > 0) {
@@ -351,8 +350,13 @@
     }
 
     function GetSelectedProductListCSV(productObj) {
+
         var ProductIdCSV = "";
         var SelectedProductList = $filter('filter')(productObj, { IsSelected: true }, true);
+        if (!SelectedProductList.length > 0) {
+            toastr.error("please select products!");
+            return false;
+        }
         ProductIdCSV = GetCSVFromJsonArray(SelectedProductList, "product_id");
         return ProductIdCSV;
     }
@@ -363,13 +367,12 @@
         }
         else {
             var productIdCSV = GetSelectedProductListCSV($scope.ExcludedProductListObj);
-        }
-        debugger;
+        }        
         $http.post(configurationService.basePath + "api/ProductApi/ExcludeProduct?store_id=" + $scope.store_id + "&product_id=" + productIdCSV + "&operation=" + operation)
               .then(function (response) {
                   if (response.data > 0) {
                       $scope.getProductByCategory($scope.StoreObj.category_id, $scope.store_id);
-                      notificationFactory.customSuccess("Store Saved Successfully.");
+                      notificationFactory.customSuccess("Successfully updated.");
                       
                   }
               })

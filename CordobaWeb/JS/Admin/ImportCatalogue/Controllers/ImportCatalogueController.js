@@ -110,8 +110,7 @@
 
                 $scope.progressVisible = true;
 
-                xhr.onreadystatechange = function () {
-                    debugger;
+                xhr.onreadystatechange = function () {                  
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {                            
                             if ($.parseJSON(xhr.responseText).length > 0) {                                                           
