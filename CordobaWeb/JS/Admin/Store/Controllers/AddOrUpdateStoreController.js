@@ -355,32 +355,39 @@
         var SelectedProductList = $filter('filter')(productObj, { IsSelected: true }, true);
         if (!SelectedProductList.length > 0) {
             toastr.error("please select products!");
+            $scope.IsProductSelected = 0;
             return false;
+        } else {
+            $scope.IsProductSelected = 1;
         }
         ProductIdCSV = GetCSVFromJsonArray(SelectedProductList, "product_id");
         return ProductIdCSV;
     }
 
     $scope.ExcludeProduct = function (operation) {
+        $scope.IsProductSelected = 0;
         if (operation == 'add') {
             var productIdCSV = GetSelectedProductListCSV($scope.IncludedProductListObj);
         }
         else {
             var productIdCSV = GetSelectedProductListCSV($scope.ExcludedProductListObj);
-        }        
-        $http.post(configurationService.basePath + "api/ProductApi/ExcludeProduct?store_id=" + $scope.store_id + "&product_id=" + productIdCSV + "&operation=" + operation)
-              .then(function (response) {
-                  if (response.data > 0) {
-                      $scope.getProductByCategory($scope.StoreObj.category_id, $scope.store_id);
-                      notificationFactory.customSuccess("Successfully updated.");
-                      
-                  }
-              })
-          .catch(function (response) {
-              notificationFactory.customError("Error occur during save record.");
-          })
-          .finally(function () {
-          });
+        }
+        if ($scope.IsProductSelected > 0) {
+            $http.post(configurationService.basePath + "api/ProductApi/ExcludeProduct?store_id=" + $scope.store_id + "&product_id=" + productIdCSV + "&operation=" + operation)
+                       .then(function (response) {
+                           if (response.data > 0) {
+                               $scope.getProductByCategory($scope.StoreObj.category_id, $scope.store_id);
+                               notificationFactory.customSuccess("Successfully updated.");
+
+                           }
+                       })
+                   .catch(function (response) {
+                       notificationFactory.customError("Error occur during save record.");
+                   })
+                   .finally(function () {
+                   });
+        }
+     
         
     }
 
