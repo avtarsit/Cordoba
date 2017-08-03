@@ -252,6 +252,9 @@
     <Content Include="ContactUsTemplate\template1.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.exe" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.pdb" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.vshost.exe" />
     <Content Include="EmailTemplate\ContactUs.html" />
     <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="EmailTemplate\ForgotPassword.html" />
@@ -281,6 +284,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.exe.config" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.vshost.exe.config" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.vshost.exe.manifest" />
     <None Include="Properties\PublishProfiles\API.pubxml" />
     <None Include="Properties\PublishProfiles\DF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -331,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DownloadProductImage\" />
     <Folder Include="Views\ActivityApi\" />
     <Folder Include="Views\ContactUsAPI\" />
     <Folder Include="Views\CurrencyApi\" />
