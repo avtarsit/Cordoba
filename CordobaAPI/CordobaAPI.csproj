@@ -331,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DownloadProductImage\" />
     <Folder Include="Views\ActivityApi\" />
     <Folder Include="Views\ContactUsAPI\" />
     <Folder Include="Views\CurrencyApi\" />

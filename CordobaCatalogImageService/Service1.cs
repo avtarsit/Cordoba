@@ -21,9 +21,7 @@ namespace CordobaCatalogImageService
         }
 
         protected override void OnStart(string[] args)
-        {
-            //int supplierId = 27;
-            //int catalogueId = 62;
+        {   
             this.GetImportCatalogImageURLs();
         }
 
@@ -32,8 +30,7 @@ namespace CordobaCatalogImageService
         }
 
         public List<ProductCatalogue> GetImportCatalogImageURLs()
-        {
-            //List<string> lstOfImageUrls = new List<string>();
+        {  
             List<ProductCatalogue> objProductCatalogue = new List<ProductCatalogue>();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;

@@ -335,10 +335,11 @@
         debugger;
         $http.get(configurationService.basePath + "api/ProductApi/GetProductBycategoryForStore?category_id=" + $scope.StoreObj.category_id + "&store_id=" + $scope.store_id)
           .then(function (response) {
+              debugger;
               if (response.data.length > 0) {
                   $scope.productListObj = response.data;
-                  $scope.IncludedProductListObj = $filter('filter')(response.data, { IsExcluded: false }, true);
-                  $scope.ExcludedProductListObj = $filter('filter')(response.data, { IsExcluded: true }, true);
+                  $scope.IncludedProductListObj = $filter('filter')(response.data, { 'IsExcluded': false }, true);
+                  $scope.ExcludedProductListObj = $filter('filter')(response.data, { 'IsExcluded': true }, true);
                   console.log($scope.IncludedProductListObj);
                   debugger;
 

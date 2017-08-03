@@ -19,12 +19,9 @@
                      .withOption('searching', false)
                      .withOption('paging', false);
 
-    $scope.dtColumnDefs = [
-                                    DTColumnDefBuilder.newColumnDef(2).notSortable()
-    ];
-
+    $scope.dtColumnDefs = [DTColumnDefBuilder.newColumnDef(2).notSortable()];
+                              
     $scope.PageTitle = "Import Catalogue";
-
 
     $scope.ImportCatalogueObject = new Object();
     GetSupplierList();
@@ -32,7 +29,7 @@
     GetCatalogueList();
 
     function GetSupplierList() {
-        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?SupplierID=0" + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+        $http.get(configurationService.basePath + "api/SupplierApi/GetSupplierList?storeId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId+'&SupplierID=0')    
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.SupplierList = response.data;
@@ -113,7 +110,8 @@
 
                 $scope.progressVisible = true;
 
-                xhr.onreadystatechange = function () {                   
+                xhr.onreadystatechange = function () {
+                    debugger;
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {                            
                             if ($.parseJSON(xhr.responseText).length > 0) {                                                           

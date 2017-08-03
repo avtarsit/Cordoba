@@ -173,60 +173,39 @@ namespace CordobaAPI.API
                 }
 
                 List<ImportProductCatalogueEntity> result = _catalogueServices.ImportDatatoCatalogue(StoreId, LoggedInUserId, supplier_id, language_id, catalogue_id, dtXLS, IsConfirmToIgnore);
-                if (result.Count > 0)
+                if (!(result.Count > 0))
                 {
+                    StartCordobaInstallerService();
                 }
-                //else
-                //{
-                //    //using (var m = new ManagementObject(string.Format("Win32_Service.Name=\"{0}\"", "CordobaInstaller")))
-                //    //{
-                //    //    m.InvokeMethod("ChangeStartMode", new object[] { "Automatic" });
-                //    //}
-                //    var sc = new System.ServiceProcess.ServiceController();
-                //    sc.ServiceName = "CordobaInstaller";                
-                //    sc.Start();
-                //}
-
-                //ServiceController controller = new ServiceController();
-
-                //controller.MachineName = ".";
-                //controller.ServiceName = "CordobaInstaller";
-                //string status = controller.Status.ToString();
-                //controller.Stop();
-
-                //controller.Start();
-
-                //var sc = new System.ServiceProcess.ServiceController("CordobaInstaller");
-                //sc.Start();
-                //sc.WaitForStatus(System.ServiceProcess.ServiceControllerStatus.Running);
-                //sc.Stop();
-                //sc.WaitForStatus(System.ServiceProcess.ServiceControllerStatus.Stopped);
-
-                //Process process = new Process();
-                //process.Start("CordobaCatalogImageService.exe");
-
-
-                //if (dtXLS != null && dtXLS.Rows.Count > 0)
-                //{
-                //    Dictionary<string, string> selectedColumnName = SetColumnConfiguration();
-                //    selectedColumnName.ToList().ForEach(item =>
-                //    {
-                //        if (dtXLS.Columns[item.Value] != null)
-                //        {
-                //            dtXLS.Columns[item.Value].ColumnName = item.Key;
-                //        }
-                //    });
-
-                //}
-
-                //var result = true;
-
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
                 throw;
             }
+
+        }
+
+        private void StartCordobaInstallerService()
+        {
+            try
+            {
+                string path = System.Web.Hosting.HostingEnvironment.MapPath("~/DownloadProductImage/CordobaProductImageDownloadService.exe");
+                System.Diagnostics.Process.Start(path);
+                //var sc = new System.ServiceProcess.ServiceController();
+                //sc.ServiceName = "CordobaInstaller";
+                //sc.MachineName = System.Environment.MachineName;
+                //if (Convert.ToString(sc.Status) == "Stopped")
+                //{
+                //    sc.Start();
+                //}
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
 
         }
 

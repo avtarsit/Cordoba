@@ -389,7 +389,7 @@ namespace CordobaServices.Services
                 {
                     ParameterName = "store_id",
                     DbType = DbType.Int32,
-                    Value = category_id
+                    Value = store_id
                 };
 
                 var Result = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductBycategoryForStore",paramCategoryId , paramStoreId).ToList<ProductEntity>();
