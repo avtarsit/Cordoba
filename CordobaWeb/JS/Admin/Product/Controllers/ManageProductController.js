@@ -593,7 +593,7 @@
     }
     $scope.GetShippingCostDetail = function () {
         $http.get(configurationService.basePath + "api/ProductApi/GetShippingCostDetail?product_id=" + $scope.product_id)
-          .then(function (response) {      
+          .then(function (response) {  
               if (response.data.length > 0) {
                   $scope.shippingCostList = response.data;
                   $scope.ShippingObj = new Object();
@@ -615,8 +615,7 @@
         if (!($scope.ShippingObj.country_id > 0) || ($scope.ShippingObj.shipping_cost == undefined || $scope.ShippingObj.shipping_cost == null)) {
             toastr.error("Shipping Country OR Shipping Cost should not be empty.");
             return false;
-        }
-
+        }        
         var shipping_cost = $scope.ShippingObj.shipping_cost;
         var country_id = $scope.ShippingObj.country_id;
         $http.post(configurationService.basePath + "api/ProductApi/updateShippingCost?product_id="+$scope.product_id+"&country_id="+country_id+"&shipping_cost="+shipping_cost)

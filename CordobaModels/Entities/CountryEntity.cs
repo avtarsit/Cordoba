@@ -14,7 +14,7 @@ namespace CordobaModels.Entities
         public string address_format { get; set; }
         public int postcode_required { get; set; }
         public string name { get; set; }
-        public int Status { get; set; }
-        public decimal shipping_cost { get; set; }
+        public int? Status { get; set; }
+        public decimal? shipping_cost { get; set; }
     }
 }
