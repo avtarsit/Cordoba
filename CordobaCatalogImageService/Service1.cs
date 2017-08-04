@@ -54,6 +54,7 @@ namespace CordobaCatalogImageService
                     recordProductCatalog.image_full_url = Convert.ToString(dr["image_full_url"]);
                     recordProductCatalog.IsOperationCompleted = Convert.ToBoolean(dr["IsOperationCompleted"] == null ? false : true);
                     recordProductCatalog.product_id = Convert.ToInt32(dr["product_id"]);
+                    recordProductCatalog.CatalogueName = Convert.ToString(dr["CatalogueName"]);
                     objProductCatalogue.Add(recordProductCatalog);
                 }
             }
@@ -65,26 +66,51 @@ namespace CordobaCatalogImageService
 
         public void DownloadCatalogueImages(List<ProductCatalogue> productCatalogue)
         {
-            for (int i = 0; i < productCatalogue.Count; i++)
+            try
             {
-                WebClient request = new WebClient();
-                request.DownloadFile(new Uri(productCatalogue[i].image_full_url), Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImportProductImagePath"]) + productCatalogue[i].image_full);
-                //request.DownloadFile(new Uri(productCatalogue[i].image_full_url), @"D:\Project\CordobaGIT\CordobaWeb\image\data\ProductCatalogueImages\" + productCatalogue[i].image_full);
+                for (int i = 0; i < productCatalogue.Count; i++)
+                {
+                    WebClient request = new WebClient();
+                    if (productCatalogue[i].CatalogueName == null || productCatalogue[i].CatalogueName == "")
+                    {
+                        productCatalogue[i].CatalogueName = "Procurement Image Files";
+                    }
+                    string DirectoryPath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImportProductImagePath"]) + "data//" + productCatalogue[i].CatalogueName;
+
+                    if (!System.IO.Directory.Exists(DirectoryPath))
+                    {
+                        System.IO.Directory.CreateDirectory(DirectoryPath);
+                    }
+
+                    request.DownloadFile(new Uri(productCatalogue[i].image_full_url), DirectoryPath + "//" + productCatalogue[i].image_full);
+                }
             }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
 
         }
 
         public void ProductActive_CatalogImport()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("ProductActive_CatalogImport", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            int result = cmd.ExecuteNonQuery();
+            try
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("ProductActive_CatalogImport", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                int result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+           
         }
     }
 }

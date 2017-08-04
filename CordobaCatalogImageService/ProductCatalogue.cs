@@ -13,5 +13,6 @@ namespace CordobaCatalogImageService
         public bool IsOperationCompleted { get; set; }
         public string image_full_url { get; set; }
         public string image_full { get; set; }
+        public string CatalogueName { get; set; }
     }
 }
