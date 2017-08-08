@@ -154,7 +154,7 @@ function GetLayoutName() {
                   }
                  , Product = {
                      name: 'Product',
-                     url: '/Catalog/Product?Quantity:quantity',
+                     url: '/Catalog/Product?Quantity:quantity&Status:status',
                      templateUrl: 'Templates/' + LayoutName + '/Product/Index.html'
                  }
                   , ManageProduct = {
@@ -261,7 +261,7 @@ function GetLayoutName() {
                  }
                 , Customer = {
                     name: 'Customer',
-                    url: '/System/Customer',
+                    url: '/System/Customer?CustomerApproved:customerApproved',
                     templateUrl: 'Templates/' + LayoutName + '/Customer/Index.html'
 
                 }
@@ -736,6 +736,7 @@ app.constant('OrderStatusEnum',
     {
         Processing: 1,
         Shipped: 2,
+        Completed: 2,
         PartiallyShipped: 3,
         Returned: 4,
         Cancelled: 5,

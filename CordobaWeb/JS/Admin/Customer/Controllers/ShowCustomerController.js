@@ -24,6 +24,10 @@
     $scope.CustomerFilter.storeId = $scope.StoreId;
     
 
+    if ($stateParams.CustomerApproved != undefined && $stateParams.CustomerApproved != null) {
+        $scope.CustomerFilter.approved = $stateParams.CustomerApproved;
+    }
+
     //#endregion  
     
 

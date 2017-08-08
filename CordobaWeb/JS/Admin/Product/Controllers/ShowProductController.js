@@ -28,7 +28,10 @@
     if ($stateParams.Quantity != undefined && $stateParams.Quantity != null) {
         $scope.ProductFilter.Quantity = parseInt($stateParams.Quantity);
     }
-
+   
+    if ($stateParams.Status != undefined && $stateParams.Status != null) {
+        $scope.ProductFilter.status =$stateParams.Status;
+    }
     
     //$scope.GetProductList = function () {
     //    $http.get(configurationService.basePath + "api/ProductApi/GetProductList")
