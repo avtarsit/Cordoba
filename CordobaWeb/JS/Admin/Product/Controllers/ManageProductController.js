@@ -306,7 +306,9 @@
     }
 
 
-    $scope.InsertAsHotOrSpecialProduct = function (form) {
+    $scope.InsertAsHotOrSpecialProduct = function (form) {       
+        $scope.form.HotOrSpecialStart.$setValidity("required", !($scope.HotOrSpecialProductObj.startDate == null || $scope.HotOrSpecialProductObj.startDate == undefined));
+        $scope.form.HotOrSpecialEnd.$setValidity("required", !($scope.HotOrSpecialProductObj.endDate == null || $scope.HotOrSpecialProductObj.endDate == undefined));
 
         if (form.$valid) {
 
@@ -326,6 +328,8 @@
                   .then(function (response) {
                       if (response.data > 0) {
                           notificationFactory.customSuccess("Product Saved Successfully.");
+                          $scope.form.HotOrSpecialStart.$setValidity("required", true);
+                          $scope.form.HotOrSpecialEnd.$setValidity("required", true);
                           $scope.HotOrSpecialProductObj = new Object();
                           $scope.NeedtoShowHot_SpeacialContainer = 0;
                           form.$valid = true;
@@ -544,7 +548,9 @@
     }
 
     $scope.NeedtoShowHot_SpeacialContainerDiv=function(IsHotProduct)
-    {
+    { 
+        $scope.form.HotOrSpecialStart.$setValidity("required", true);
+        $scope.form.HotOrSpecialEnd.$setValidity("required", true);
 
         $scope.HotOrSpecialProductObj = new Object();
         $scope.HotOrSpecialProductObj.store_id = $scope.StoreId;
