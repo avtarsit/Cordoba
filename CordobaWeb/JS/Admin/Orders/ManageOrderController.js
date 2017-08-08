@@ -162,7 +162,7 @@
     }
 
     $scope.GetCustomersByStore = function (storeId) {
-  
+        debugger;
         $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             if (response.data.length > 0) {
@@ -206,6 +206,7 @@
     }
 
     function getOrderDetails() {
+        debugger;
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {            
               if (response.data.length > 0) {
@@ -249,7 +250,7 @@
             $scope.OrderDetails.customer_id = $scope.selectedCustomer;
             $scope.OrderDetails.customer_group_id = $scope.selectedCustomerGroup;
             $scope.OrderDetails.store_id = $scope.selectedStore;
-
+            debugger;
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_CutomerDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
            .then(function (response) {
                if (response.data == 1) {
