@@ -21,4 +21,3 @@ E:\Cordoba_Git\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.c
 E:\Cordoba_Git\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.exe
 E:\Cordoba_Git\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.pdb
 E:\Cordoba_Git\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csprojResolveAssemblyReference.cache
-D:\Project\CordobaGIT\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csprojResolveAssemblyReference.cache

@@ -17,6 +17,7 @@ a:focus, a:hover, .popular-catagory h4, .heading, .show_cart .badge, .footer_men
 .footer .container {
     display:none;
 }
+
 body {
     padding-bottom:50px;
     padding-top:140px;
@@ -72,6 +73,7 @@ body {
     font-size: 17px;
     border-radius: 5px;
 }
+
 
 @media (max-width:991px) {
     .show_cart {

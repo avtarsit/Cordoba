@@ -164,8 +164,7 @@
             $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
               .then(function (response) {          
                   if (response.data.length > 0) {
-                      $scope.TermsConditionMsg = response.data[0].Terms;
-                      //$scope.html = decodeHtml($scope.TermsConditionMsg);
+                      $scope.TermsConditionMsg = $('<div />').html(response.data[0].Terms).text();                   
 
                   }
               })

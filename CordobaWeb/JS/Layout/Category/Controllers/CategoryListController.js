@@ -125,7 +125,7 @@
                              "&Customer_Id=" + UserDetail.customer_id+
                             "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor                           
                             )
-          .then(function (response) {            
+          .then(function (response) {       
               $scope.ProductList = response.data;
               if ($scope.ProductList.length>0) {
                   $scope.totalRecords = $scope.ProductList[0].TotalRecords;

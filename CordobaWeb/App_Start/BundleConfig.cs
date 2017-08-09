@@ -244,6 +244,60 @@ namespace CordobaWeb
             bundles.Add(LayoutControllerBundle);
             ///////////////////////////////
 
+
+
+            ////////////////////////Layout2 Complete Js Bundling////////////////
+            var Layout2AllJs = new Bundle("~/bundles/Layout2AllJs");        
+                Layout2AllJs.Include("~/Scripts/layout2/js/jquery.min.js");
+                Layout2AllJs.Include("~/Scripts/layout2/js/bootstrap.min.js");
+                Layout2AllJs.Include("~/Scripts/layout2/js/jquery.flexslider.js");
+                Layout2AllJs.Include("~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js");
+                Layout2AllJs.Include("~/Scripts/bootstrap-modalmanager.js");
+                Layout2AllJs.Include("~/Scripts/bootstrap-modal.js");
+                Layout2AllJs.Include("~/Scripts/bootstrap-datepicker.js");
+                Layout2AllJs.Include("~/Scripts/jquery.bootstrap-duallistbox.js");
+                Layout2AllJs.Include("~/Scripts/bootbox.js");
+                Layout2AllJs.Include("~/Scripts/ckeditor/ckeditor.js");
+                Layout2AllJs.Include("~/Scripts/layout1/js/jquery.bxslider.min.js");
+                Layout2AllJs.Include("~/Scripts/layout1/js/dpNumberPicker.min.js");
+                Layout2AllJs.Include("~/Scripts/layout1/js/enhance.js");
+                Layout2AllJs.Include("~/Scripts/layout1/js/velocity.min.js");
+                Layout2AllJs.Include("~/Scripts/jquery-ui.min.js"); 
+                Layout2AllJs.Include("~/Scripts/angular.js");
+                Layout2AllJs.Include("~/Scripts/angular-animate.js");
+                Layout2AllJs.Include("~/Scripts/angular-dragdrop.min.js");
+                Layout2AllJs.Include("~/Scripts/angular-ui-router.min.js");
+                Layout2AllJs.Include("~/Scripts/angular-local-storage.js");
+                Layout2AllJs.Include("~/Scripts/angular-sanitize.js");
+                Layout2AllJs.Include("~/Scripts/angular-datatables.min.js");
+                Layout2AllJs.Include("~/Scripts/angular-ui-switch.min.js");
+                Layout2AllJs.Include("~/Scripts/angular-star-rating/main.js");
+                Layout2AllJs.Include("~/Scripts/ui-bootstrap-tpls-0.12.1.min.js");
+                Layout2AllJs.Include("~/Scripts/ng-ckeditor.js");
+                Layout2AllJs.Include("~/Scripts/jquery.dataTables.min.js");
+                Layout2AllJs.Include("~/Scripts/dataTables.tableTools.js");
+                Layout2AllJs.Include("~/Scripts/jquery.dataTables.rowReordering.js");
+                Layout2AllJs.Include("~/Scripts/ng-file-upload.min.js");
+                Layout2AllJs.Include("~/Scripts/ng-file-upload-shim.min.js");
+                Layout2AllJs.Include("~/Scripts/textAngular-rangy.min.js");
+                Layout2AllJs.Include("~/Scripts/textAngular-sanitize.js");
+                Layout2AllJs.Include("~/Scripts/textAngular.min.js");
+                Layout2AllJs.Include("~/Scripts/jquery.responsiveTabs.js");
+                Layout2AllJs.Include("~/Scripts/menuscript.js");
+                Layout2AllJs.Include("~/Scripts/toastr.js");
+                Layout2AllJs.Include("~/Scripts/Chart.min.js");
+                Layout2AllJs.Include("~/JS/appConfiguration.js");
+                Layout2AllJs.Include("~/JS/Common.js");
+                Layout2AllJs.Include("~/Scripts/bsDuallistbox.js");
+                Layout2AllJs.IncludeDirectory("~/JS/Directives", "*.js", false);
+                Layout2AllJs.IncludeDirectory("~/JS/Factory", "*.js", false);
+                Layout2AllJs.IncludeDirectory("~/JS/Filters", "*.js", false); 
+                Layout2AllJs.IncludeDirectory("~/JS/Layout", "*.js", true);
+                Layout2AllJs.Include("~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js");
+                Layout2AllJs.Orderer = new NonOrderingBundleOrderer();
+                bundles.Add(Layout2AllJs);
+            //////////////////////////////////////////////////////////////////
+
         }
     }
 }

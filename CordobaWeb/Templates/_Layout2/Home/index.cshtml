@@ -43,7 +43,7 @@
                             <h4>POPULAR CATAGORIES</h4>
                             <div class="col-sm-3" ng-repeat="PopularCategory in PopularCategoryList">
                                 <div class="letest-product polular_catagories">
-                                    <img ng-src="{{PopularCategory.image}}" alt="{{PopularCategory.name}}" />
+                                    <img ng-src="{{PopularCategory.image}}" alt="Img" />
                                     <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                                 </div>
 
