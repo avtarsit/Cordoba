@@ -88,7 +88,7 @@
                 $scope.SelectedCustomerAddress.SelectedIndex = 0;
             }
             else {
-                toastr.success("Address not found! Please add address.");
+                //toastr.success("Address not found! Please add address.");
             }
 
         })
@@ -103,7 +103,7 @@
 
     $scope.AddOrRemoveItemFromCart = function (productObj, Quantity) {
         $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + "&product_id=" + productObj.product_id + "&qty=" + Quantity + "&cartgroup_id=" + productObj.cartgroup_id)
-        .then(function (response) {
+        .then(function (response) {         
             productObj.quantity = productObj.quantity + Quantity;
             $scope.GetCartDetailsByCartGroupId();
             toastr.success("Shopping bag updated successfully.");

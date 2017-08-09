@@ -6,8 +6,7 @@
     $scope.LoggedInUserId = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     //#endregion  
-    $scope.AddProductToCart = function (ProductObj, e) {
- 
+    $scope.AddProductToCart = function (ProductObj, e) { 
         ////////////////   
         $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + '&LoggedInUserId=' + UserDetail.customer_id + "&product_id=" + ProductObj.product_id + "&qty=1&cartgroup_id=" + (UserDetail.cartgroup_id == null ? 0 : UserDetail.cartgroup_id))
           .then(function (response) {
