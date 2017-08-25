@@ -412,6 +412,11 @@ function GetLayoutName() {
                       name: 'ContactUs',
                       url: '/ContactUs',
                       templateUrl: 'Templates/' + LayoutName + '/ContactUs/index.html'
+                  },
+                  StoreReport = {
+                      name: 'StoreReport',
+                      url: '/StoreReport',
+                      templateUrl: 'Templates/' + LayoutName + '/Report/StoreReport.html'
                   }
 
                 ;
@@ -505,6 +510,8 @@ function GetLayoutName() {
                 $stateProvider.state(ShowCustomerDepartment);
                 $stateProvider.state(ManageCustomerDepartment);
                 $stateProvider.state(ContactUs);
+                $stateProvider.state(StoreReport);
+                
 
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');

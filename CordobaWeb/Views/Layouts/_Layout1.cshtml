@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE html>
 <html ng-app="CordobaApp" lang="en">
 <head>
-    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title ng-bind="StoreName"></title>
+    <title ng-bind="storeName"></title>
 
     @Styles.Render("~/bundles/Layout1CSS")
     <link href="~/Content/layout1/css/ContactUs.min.css" rel="stylesheet" />
@@ -182,7 +181,7 @@
                                     <li class="active"><a href="#" class="cursor-pointer" ui-sref="Home">Home</a></li>
                                     <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                     <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
-                                    <li><a href="" class="cursor-pointer">Contact Us</a></li>
+                                    <li><a href="" class="cursor-pointer" ui-sref="ContactUs">Contact Us</a></li>
                                     <li class="pull-right">
                                         <a href="#" class="cursor-pointer" id="fbIcon">
                                             <img src="~/Content/Images/fb_ico.png" />
@@ -369,53 +368,10 @@
     <script src="~/Scripts/ng-ckeditor.js"></script>
     @Scripts.Render("~/bundles/appConfig")
     @Scripts.Render("~/bundles/LayoutControllers")
-
-    <script src="~/Scripts/jquery.cookiesdirective.js"></script>
-
     @*<script src="~/Scripts/jquery.twbsPagination.min.js"></script>*@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            // Cookie setting script wrapper
-            var cookieScripts = function () {          
-                // Internal javascript called          
-		
-                // Loading external javascript file
-                $.cookiesDirective.loadScript({
-                    uri:'external.js',
-                    appendTo: 'eantics'
-                });
-            }
-	
-            /* Call cookiesDirective, overriding any default params
-            
-                *** These are the defaults ***
-                    explicitConsent: true,
-                    position: 'top',
-                    duration: 10,
-                    limit: 0,
-                    message: null,				
-                    cookieScripts: null,
-                    privacyPolicyUri: 'privacy.html',
-                    scriptWrapper: function(){},	
-                    fontFamily: 'helvetica',
-                    fontColor: '#FFFFFF',
-                    fontSize: '13px',
-                    backgroundColor: '#000000',
-                    backgroundOpacity: '80',
-                    linkColor: '#CA0000'
-                    
-            */		
-            $.cookiesDirective({
-                privacyPolicyUri: 'myprivacypolicy.html',
-                explicitConsent: false,
-                position : 'bottom',
-                scriptWrapper: cookieScripts, 
-                cookieScripts: 'Google Analytics, My Stats Ultimate ', 
-                backgroundColor: '#263238',
-                linkColor: '#ffffff'
-            }); 
-
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
 
             $(".category-list, #aboutScroll").mCustomScrollbar();

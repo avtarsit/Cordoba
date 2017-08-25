@@ -155,5 +155,59 @@ namespace CordobaServices.Services
             //return result;
         }
 
+        public IEnumerable<ReportEntity> GetStoreReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("DateStart", DateStart!=null ? DateStart:(object)DBNull.Value)
+                    ,new SqlParameter("DateEnd", DateEnd!=null ? DateEnd:(object)DBNull.Value)
+                    ,new SqlParameter("store_id", store_id )
+                    //,new SqlParameter("LoggedInUserId", LoggedInUserId!=null ? LoggedInUserId:(object)DBNull.Value)
+                };
+
+
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetStoreReportList", param).AsQueryable();
+
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
+        public List<StoreChartEntity> GetCustomerByStoreForChart(int store_id, int ChartFilterType)
+        {
+            List<StoreChartEntity> customerByStoreForChart = new List<StoreChartEntity>();
+            try
+            {
+                var paramStoreId = new SqlParameter
+                {
+                    ParameterName = "store_id",
+                    DbType = DbType.Int32,
+                    Value = store_id
+                };
+
+                var paramChartFilterType = new SqlParameter
+                {
+                    ParameterName = "ChartFilterType",
+                    DbType = DbType.Int32,
+                    Value = ChartFilterType
+                };
+                customerByStoreForChart = ReportEntityGenericRepository.ExecuteSQL<StoreChartEntity>("GetCustomerByStoreForChart", paramStoreId, paramChartFilterType).ToList<StoreChartEntity>().ToList();
+                return customerByStoreForChart;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
     }
 }

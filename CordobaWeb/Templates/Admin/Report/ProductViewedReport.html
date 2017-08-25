@@ -14,6 +14,7 @@
             <ul class="breadcrumb">
                 <li>  This page allows you to lookup products viewed report</li>
             </ul>
+            
 
         </div>
     </div>
@@ -23,20 +24,33 @@
                 <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Products Viewed List</h3>
             </div>-->
             <div class="panel-body">
-                <div class="table-responsive">
-                    <br />
-                    <table id="tblProductViewed"  class="table table-bordered table-striped datatable-responsive" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Model</th>
-                                <th>Viewed	</th>
-                                <th>Percent</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="panel-body">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-status">Store</label>
+                                    <select ng-options="Store.store_id as Store.name  for Store in StoreList | orderBy:'store_id'"
+                                            class="form-control" ng-model="selectedStore_id" name="Store" ng-disabled="StoreId != 0"></select>
+                                </div>
+                                <button ng-click="GetProductViewedList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <br />
+                        <table id="tblProductViewed" class="table table-bordered table-striped datatable-responsive" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Model</th>
+                                    <th>Viewed	</th>
+                                    <th>Percent</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

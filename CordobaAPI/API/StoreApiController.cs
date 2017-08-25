@@ -127,7 +127,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UploadStoreImage(int Store_Id, int ImageKey,int layout)
+        public HttpResponseMessage UploadStoreImage(int Store_Id, int ImageKey, int layout, string Store_Name)
         {
             bool res = false;
             if (HttpContext.Current.Request.Files.AllKeys.Any())
@@ -137,7 +137,7 @@ namespace CordobaAPI.API
 
                 if (httpPostedFile != null)
                 {
-                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.Advertisement.ToString();
+                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.StoreImage.ToString();
                     if (!string.IsNullOrWhiteSpace(folderPath))
                     {
                         if (!Directory.Exists(folderPath))
@@ -157,8 +157,8 @@ namespace CordobaAPI.API
                             Directory.CreateDirectory(childFolderPath);
                         }
 
-                        string fileName = Store_Id + "/" + ImageKey + "/" + httpPostedFile.FileName;
-                        res = _StoreServices.UploadStoreImage(Store_Id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.Advertisement.ToString() + "/" + fileName, ImageKey,layout);
+                        string fileName = Store_Id + "/" + ImageKey + "/" + Store_Name + "_Image.png"; //before httpPostedFile.FileName
+                        res = _StoreServices.UploadStoreImage(Store_Id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.StoreImage.ToString() + "/" + fileName, ImageKey, layout);
 
                         if (res == true)
                         {
@@ -167,7 +167,7 @@ namespace CordobaAPI.API
                             var directoryFiles = Directory.GetFiles(childFolderPath);
                             foreach (var filepath in directoryFiles)
                             {
-                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                if (Path.GetFileName(filepath) != Store_Name + "_Image.png") //before httpPostedFile.FileName
                                 {
                                     File.Delete(filepath);
                                 }

@@ -100,7 +100,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 2,mode: 'vertical'">
+                        <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 3,maxSlides: 3,mode: 'vertical' ">
                             <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
                                 <div class="media-left">
                                     <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
@@ -198,18 +198,18 @@
                         <h4>Latest Products</h4>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row">
-                        <div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 290">
+                    <div class="row pull-left">
+                        <div id="latest-product" class="col-sm-12" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 5,slideWidth: 250">
                             <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src='{{LatestProduct.Image}}' alt="latest product"/>
+                                        <img ng-src='{{LatestProduct.Image}}' alt="latest product" />
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
                                     <p ng-bind="LatestProduct.Model"></p>
                                     <p><span ng-bind="LatestProduct.points +' Points'"></span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default add_to_cart_dish"    ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
+                                        <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -240,4 +240,5 @@
     });
 
 </script>
+
 

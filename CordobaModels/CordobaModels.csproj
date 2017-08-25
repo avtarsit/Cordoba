@@ -124,6 +124,7 @@
     <Compile Include="Entities\RewardTypeEntity.cs" />
     <Compile Include="Entities\RewardUserDetailsEntity.cs" />
     <Compile Include="Entities\RewardUserEntity.cs" />
+    <Compile Include="Entities\StoreChartEntity.cs" />
     <Compile Include="Entities\StoreDescriptionEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
     <Compile Include="Entities\StoreImageEntity.cs" />

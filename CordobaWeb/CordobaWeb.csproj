@@ -733,6 +733,7 @@
     <Content Include="JS\Admin\Product\Controllers\ManageProductController.js" />
     <Content Include="JS\Admin\Product\Controllers\ShowProductController.js" />
     <Content Include="JS\Admin\Report\Controllers\ShowCustomerOrderReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\StoreReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\TransactionItemCategoryReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\TransactionItemReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\TransactionReportController.js" />
@@ -3844,6 +3845,7 @@
     <Content Include="Templates\Admin\Report\ShippingReport.html" />
     <Content Include="Templates\Admin\Product\Index.html" />
     <Content Include="Templates\Admin\Product\ManageProduct.html" />
+    <Content Include="Templates\Admin\Report\StoreReport.html" />
     <Content Include="Templates\Admin\Report\TransactionItemCategoryReport.html" />
     <Content Include="Templates\Admin\Report\TransactionItemReport.html" />
     <Content Include="Templates\Admin\Report\TransactionReport.html" />
