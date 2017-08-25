@@ -71,7 +71,7 @@
             "iDisplayLength": configurationService.pageSize,
             "lengthMenu": configurationService.lengthMenu,
             "sAjaxDataProp": "aaData",
-            "aaSorting": [[0, 'desc']],
+            "aaSorting": [[2, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ProductPurchasedReportApi/GetProductViewedList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 //aoData = BindSearchCriteria(aoData);

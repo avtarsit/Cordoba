@@ -30,10 +30,12 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="control-label" for="input-status">Store</label>
-                                    <select ng-options="Store.store_id as Store.name  for Store in StoreList | orderBy:'store_id'"
-                                            class="form-control" ng-model="selectedStore_id" name="Store" ng-disabled="StoreId != 0"></select>
+                                    <select ng-options="Store.store_id as Store.name  for Store in StoreList | orderBy:'store_id'" ng-change="GetProductViewedList()"
+                                            class="form-control" ng-model="selectedStore_id" name="Store" ng-disabled="StoreId != 0">
+                                        <option value="">All</option>
+                                    </select>
                                 </div>
-                                <button ng-click="GetProductViewedList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                                <!--<button ng-click="GetProductViewedList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>-->
                             </div>
                         </div>
                     </div>

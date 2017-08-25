@@ -54,6 +54,8 @@ namespace CordobaModels.Entities
         public int? customer_id { get; set; }
         public int? address_id { get; set; }
         public string payment_zone { get; set; }
+        public string SupplierName { get; set; }
+        public string SupplierAddress { get; set; }
 
         public int TotalRecords { get; set; }
 

@@ -521,7 +521,7 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {             
+             .run(function ($http, $rootScope,StoreSessionDetail, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {             
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
@@ -542,6 +542,8 @@ function GetLayoutName() {
                      localStorageService.set("loggedInUser", user);
                      $rootScope.CustomerDetail = user;
                  }
+
+                 $rootScope.storeName = StoreSessionDetail.name;
                  $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
 
                  //var now1 = new Date();
