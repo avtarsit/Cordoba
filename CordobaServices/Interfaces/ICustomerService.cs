@@ -30,6 +30,7 @@ namespace CordobaServices.Interfaces
         int deleteCustomerImage(int banner_id);
 
         int InsertPointAudit(int customer_id, string description, int points);
+        DataSet CustomerExportToExcel(string sortColumn, object filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int? storeId);
       
     }
 }

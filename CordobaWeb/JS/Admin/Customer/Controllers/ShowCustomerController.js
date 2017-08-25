@@ -79,6 +79,7 @@
                 aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblCustomer').DataTable().page.info().page) + 1;
+                $scope.GridParams = aoData;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
@@ -97,7 +98,8 @@
                 { "mData": "customerName", "bSortable": true },
                 { "mData": "email", "bSortable": true },
                 { "mData": "StatusName", "bSortable": true },
-                   { "mData": "ip", "bSortable": true },
+                { "mData": "ip", "bSortable": true },
+                { "mData": "store_name", "bSortable": true },
                 //{ "mData": "customer_group_name", "bSortable": true },
                    
                 {
@@ -140,6 +142,58 @@
 
     //  });
     //}
+
+
+
+    //export Employee List to Excel
+    $scope.CustomerExportToExcel = function () {
+        var column = "";
+        if ($scope.GridParams.length != undefined) {
+            column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);
+            //  alert(JSON.stringify(column));
+        }
+
+        $http({
+            url: configurationService.basePath + 'api/Customerapi/CustomerExportToExcel?PageIndex=' + 1 + "&customerName=" + $scope.CustomerFilter.customerName + "&email=" + $scope.CustomerFilter.email + "&customer_group_id=" + $scope.CustomerFilter.customer_group_id + "&status=" + $scope.CustomerFilter.status + "&approved=" + $scope.CustomerFilter.approved + "&ip=" + $scope.CustomerFilter.ip + "&date_added=" + $scope.CustomerFilter.date_added + "&storeId=" + ($scope.CustomerFilter.storeId == null ? 0 : $scope.CustomerFilter.storeId),
+            method: "POST",
+            'dataSrc': 'aaData',
+            "dataType": 'json',
+            data: column != "" ? column[0].value : "",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            responseType: 'arraybuffer'
+        }).success(function (data, status, headers, config) {
+
+            var type = headers('Content-Type');
+            var disposition = headers('Content-Disposition');
+            if (disposition) {
+                var match = disposition.match(/.*filename=\"?([^;\"]+)\"?.*/);
+                if (match[1])
+                    defaultFileName = match[1];
+            }
+            defaultFileName = defaultFileName.replace(/[<>:"\/\\|?*]+/g, '_');
+
+            var blob = new Blob([data], { type: type });
+
+            if (navigator.appVersion.toString().indexOf('.NET') > 0) // For IE 
+                window.navigator.msSaveBlob(blob, defaultFileName);
+            else {
+                var objectUrl = URL.createObjectURL(blob);
+                var downloadLink = document.createElement("a");
+                downloadLink.href = objectUrl;
+                downloadLink.download = defaultFileName;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                //window.open(objectUrl);
+            }
+        }).error(function (data, status, headers, config) {
+        });
+
+    }
+
+
 
     function GetCustomerGroupList() {
         $http.get(configurationService.basePath + "api/CustomerGroupApi/GetCustomerGroupList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)

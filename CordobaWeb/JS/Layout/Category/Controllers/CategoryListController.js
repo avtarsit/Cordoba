@@ -1,6 +1,6 @@
 ﻿app.controller('CategoryListController', function (StoreSessionDetail,UserDetail, $timeout, $state, $http,$location, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions
-    decodeParams($stateParams);
+    decodeParams($stateParams);  
     BindToolTip();
     Tab();
     $scope.SelectedCategoryId = 0;

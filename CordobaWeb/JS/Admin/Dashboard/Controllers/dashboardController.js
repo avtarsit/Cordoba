@@ -18,6 +18,8 @@
                      .withOption('bDestroy', true)
                      .withOption("deferRender", true);
     $scope.CatalogueList = [];
+
+
     //#endregion   
     $scope.DashboardSummary = [];
     $scope.ChartFilterTypeEnum =
@@ -143,6 +145,17 @@
                                         funnel: 'Switch to funnel',
                                     },
                                     type: ['pie', 'funnel']
+                                },
+                                emphasis: {
+                                    label: {
+                                        show: true,
+                                        formatter: '{b}' + '\n\n' + '{c} ({d}%)',
+                                        position: 'center',
+                                        textStyle: {
+                                            fontSize: '17',
+                                            fontWeight: '500'
+                                        }
+                                    }
                                 },
                                 restore: {
                                     show: true,
@@ -676,6 +689,49 @@
          })
        
     }
+
+   
+
+    //$scope.GeneratePNG = function () {
+    //    debugger;
+    //    var node = document.getElementById("aaaaa");
+    //    var canvas = document.createElement("canvas");
+    //    canvas.height = node.offsetHeight;
+    //    canvas.width = node.offsetWidth;
+    //    var name = "test.png"
+
+    //    rasterizeHTML.drawHTML(node.outerHTML, canvas)
+    //         .then(function (renderResult) {
+    //             if (navigator.msSaveBlob) {
+    //                 window.navigator.msSaveBlob(canvas.msToBlob(), name);
+    //             } else {
+    //                 const a = document.createElement("a");
+    //                 document.body.appendChild(a);
+    //                 a.style = "display: none";
+    //                 a.href = canvas.toDataURL();
+    //                 a.download = name;
+    //                 a.click();
+    //                 document.body.removeChild(a);
+    //             }
+    //         });
+    //}
+
+
+    downloadPNG = function () {      
+        html2canvas($("#aaaaa"), {
+            onrendered: function (canvas) {         
+                var url = canvas.toDataURL();
+                $("<a>", {
+                    href: url,
+                    download: "Dashboard_"+$scope.store_id 
+                })
+                .on("click", function () { $(this).remove() })
+                .appendTo("body")[0].click()
+            }
+
+        });
+    }
+
 
     $scope.getActivityList();
 
