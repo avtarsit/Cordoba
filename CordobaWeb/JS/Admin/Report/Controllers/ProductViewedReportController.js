@@ -13,6 +13,7 @@
                      .withOption('bDestroy', true)
 
     $scope.PageTitle = "Products Viewed Report";
+    $scope.selectedStore_id = $scope.StoreId;
 
 
     function BindSearchCriteria(aoData) {
@@ -31,6 +32,24 @@
             return;
         });
         return aoData;
+    }
+
+    function GetStoreList() {
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.StoreList = response.data;
+                  var DefaultOption = new Object()
+                  DefaultOption.store_id = 0;
+                  DefaultOption.name = "All Stores";
+                  $scope.StoreList.push(DefaultOption);
+              }
+          })
+      .catch(function (response) {
+      })
+      .finally(function () {
+
+      });
     }
 
 
@@ -62,7 +81,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + "?PageIndex=" + PageIndex,
+                    "url": sSource + "?store_id=" + $scope.selectedStore_id + "&LoggedInUserId=" + $scope.LoggedInUserId + "&PageIndex=" + PageIndex,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {

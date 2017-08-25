@@ -40,5 +40,10 @@ namespace CordobaModels.Entities
 
        public string category { get; set; }
 
+       public string status { get; set; }
+       public string activated { get; set; }
+
+       public DateTime Date_Added { get; set; }
+
     }
 }

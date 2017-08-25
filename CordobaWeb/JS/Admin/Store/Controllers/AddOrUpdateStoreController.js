@@ -215,7 +215,7 @@
         }    
         var ajaxRequest = $.ajax({
             type: "POST",
-            url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey + "&layout=" + TemplateId,
+            url: configurationService.basePath + 'api/StoreApi/UploadStoreImage?Store_Id=' + store_id + "&ImageKey=" + imageKey + "&layout=" + TemplateId + "&Store_Name=" + $scope.StoreObj.name,
             contentType: false,
             processData: false,
             data: data,

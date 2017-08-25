@@ -50,7 +50,8 @@
    
    $scope.IncreaseQuantity = function (Product) {
         Product.CartQuantity = Product.CartQuantity + 1;
-    }
+   }
+
 
     $scope.GetProductDetail();
 

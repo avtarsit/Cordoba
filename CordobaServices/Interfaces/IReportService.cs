@@ -25,5 +25,10 @@ namespace CordobaServices.Interfaces
 
         //Transaction Item Category Report
         IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
+
+        IEnumerable<ReportEntity> GetStoreReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
+
+        List<StoreChartEntity> GetCustomerByStoreForChart(int store_id, int ChartFilterType);
+    
     }
 }
