@@ -10,6 +10,21 @@
                 </div>
             </div>
         </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li>  This page allows you to manage Order.</li>
+            </ul>
+            <div class="text-right">
+
+
+
+            </div>
+            <ul class="breadcrumb-elements">
+                <li>
+                    <button type="button" ng-click="PrintOrder()" class="btn btn-success cursor-pointer" title="Print Order"><i class="fa fa-print" aria-hidden="true"></i></button>&nbsp;
+                </li>               
+            </ul>
+        </div>
     </div>
     <div class="page-header-content">
         <div class="row">
@@ -309,46 +324,17 @@
                                                 <td>{{product.name}}</td>
                                                 <td>{{product.model}}</td>
                                                 <td class="text-right">{{product.quantity}}</td>
-                                                <td class="text-right">{{product.price | number : 0}}</td>
-                                                <td class="text-right">{{product.total | number : 0}}</td>
+                                                <td class="text-right">{{product.price | number : 0 | currency:'£'}}{{' ('+product.points+' Points)'}}</td>
+                                                <td class="text-right">{{product.total | number : 0 | currency:'£'}}{{' ('+product.totalpoints+' Points)'}}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" class="text-right">{{subtotal_title}}</td>
-                                                <td class="text-right">{{subtotal_value}}</td>
+                                                <td class="text-right">{{(Products[0].subtotal_value | currency:'£') + ' (' + Products[0].subtotal_text + ')'}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right" colspan="4">{{total_title}}</td>
-                                                <td class="text-right">{{total_value}}</td>
-                                            </tr>
-                                            <!--<tr ng-repeat="product in Products">
-                                                <td ng-if="product.Product!=''"><a href="#">{{product.name}}</a></td>
-                                                <td ng-if="product.Product!=''">{{product.model}}</td>
-                                                <td ng-if="product.Product!=''">{{product.quantity}}</td>
-                                                <td colspan="{{product.name=='' ? '4' : '0'}}" cl class="{{product.name==''?'text-right':''}}">{{>{{product.UnitPrice}}</td>
-                                                <td>{{product.total}}</td>
-                                            </tr>-->
-                                            <!--<tr>
-                                                <td class="col-sm-4"><a href="#">Sonos Playbase White</a></td>
-                                                <td class="col-sm-2">SONOS-00004</td>
-                                                <td class="col-sm-2 text-right">1</td>
-                                                <td class="col-sm-2 text-right">1,321points</td>
-                                                <td class="col-sm-2 text-right">1,321points</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-sm-4"><a href="#">Amazon £50 Gift Code</a></td>
-                                                <td class="col-sm-2">AMDD0050</td>
-                                                <td class="col-sm-2 text-right">20</td>
-                                                <td class="col-sm-2 text-right">100points</td>
-                                                <td class="col-sm-2 text-right">2,000points</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-sm-2 text-right" colspan="4">Sub Total:</td>
-                                                <td class="col-sm-2 text-right">3,321points</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-sm-2 text-right" colspan="4">Total:</td>
-                                                <td class="col-sm-2 text-right">3,321points</td>
-                                            </tr>-->
+                                                <td class="text-right">{{(Products[0].total_value | currency:'£') + ' (' + Products[0].total_text +')'}}</td>
+                                            </tr>                                           
                                         </tbody>
                                     </table>
                                 </div>
@@ -429,4 +415,99 @@
             </div>
         </div>
     </div>
+
+    <!--Order print Section  -->
+    <div id="OrderPrintSection" ng-hide="true">
+        <div class="container">
+            <div style="page-break-after: always;">
+                <h1>Order {{'#'+OrderDetails.order_id}}</h1>
+                    Date :{{OrderDetails.date_added | date:GlobalDateFormat}} 
+                <br />           
+                <table class="table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <td style="width: 50%;"><b>Supplier</b></td>
+                            <td style="width: 50%;"><b>To</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <address>
+                                    Procurement International Limited<br>VICTORY HOUSE<br />
+                                    17 &amp; 19 MARINO WAY<br />
+                                    FINCHAMPSTEAD<br />
+                                    BERKSHIRE<br />
+                                    RG40 4RF
+                                </address>
+                            </td>
+                            <td>
+                                <address>
+                                    {{OrderDetails.shipping_firstname+' '+OrderDetails.shipping_lastname}}
+                                     <br />
+                                    {{OrderDetails.shipping_company}}
+                                    <br />
+                                    {{OrderDetails.shipping_address_1}}
+                                    <br />
+                                   {{OrderDetails.shipping_address_2}}
+                                    <br />
+                                    {{OrderDetails.shipping_city}} {{OrderDetails.shipping_postcode}}
+                                    <br />
+                                    {{OrderDetails.shipping_country}}
+                                    <br />
+                                     <b> Customer Email :</b> {{OrderDetails.email}}
+                                    <br/>
+                                    <b>E-Mail:</b> contact@cordobarewards.co.uk<br />
+                                    <b>Web Site:</b> <a href="{{OrderDetails.store_url}}" target="_blank">{{OrderDetails.store_url}}</a>
+                                </address>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table class="table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <td><b>Product</b></td>
+                            <td><b>Model</b></td>
+                            <td class="text-right"><b>Quantity</b></td>
+                            <td class="text-right"><b>Unit Price</b></td>
+                            <td class="text-right"><b>Total</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in Products">
+                            <td>{{product.name}}</td>
+                            <td>{{product.model}}</td>
+                            <td class="text-right">{{product.quantity}}</td>
+                            <td class="text-right">{{product.price | number : 0 | currency:'£'}}{{' ('+product.points+' Points)'}}</td>
+                            <td class="text-right">{{product.total | number : 0 | currency:'£'}}{{' ('+product.totalpoints+' Points)'}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">{{subtotal_title}}</td>
+                            <td class="text-right">{{(Products[0].subtotal_value | currency:'£') + ' (' + Products[0].subtotal_text + ')'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="4">{{total_title}}</td>
+                            <td class="text-right">{{(Products[0].total_value | currency:'£') + ' (' + Products[0].total_text +')'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table ng-if="OrderDetails.comment!=''&& OrderDetails.comment!=null" class="table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <td><b>Comment</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{OrderDetails.comment}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Order print Section-->
 </div>

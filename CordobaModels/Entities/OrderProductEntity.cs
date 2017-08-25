@@ -9,17 +9,19 @@ namespace CordobaModels.Entities
     public class OrderProductEntity
     {
         public string name { get; set; }
-        public int product_id { get; set; }
+        public int? product_id { get; set; }
         public string model { get; set; }
-        public int quantity { get; set; }
+        public int? quantity { get; set; }
         public decimal price { get; set; }
         public double? points { get; set; }
-        public decimal total { get; set; }
+        public decimal? total { get; set; }
         public string total_title { get; set; }
         public decimal? total_value { get; set; }
         public string subtotal_title { get; set; }
         public decimal? subtotal_value { get; set; }
 
+        public string total_text { get; set; }
+        public string subtotal_text { get; set; }
 
         public string categoryname { get; set; }
         public string storename { get; set; }

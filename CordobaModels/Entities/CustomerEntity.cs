@@ -49,6 +49,7 @@ namespace CordobaModels.Entities
 
         public int? otp { get; set; }
         public string store_name { get; set; }
+        public string store_url { get; set; }
         public string logo { get; set; }
 
         public string error { get; set; }

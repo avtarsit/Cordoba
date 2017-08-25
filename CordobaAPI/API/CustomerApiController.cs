@@ -13,6 +13,9 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Configuration;
+using Newtonsoft.Json;
+using CordobaCommon;
+using System.Net.Http.Headers;
 
 
 namespace CordobaAPI.API
@@ -52,6 +55,80 @@ namespace CordobaAPI.API
                 Console.Write(e);
                 throw;
             }
+
+        }
+
+      
+        [HttpPost]
+        public HttpResponseMessage CustomerExportToExcel(int PageIndex, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int storeId,object tableParameter)
+        {
+            SortColumn sr;
+            string sortColumn;
+            if (tableParameter != null)
+            {
+                sr = (SortColumn)JsonConvert.DeserializeObject(tableParameter.ToString(), typeof(SortColumn));
+                sortColumn = sr.Desc ? sr.Column + " desc" : sr.Column + " asc";
+            }
+            else
+            {
+                sortColumn = "customerName desc";
+            }
+
+            HttpResponseMessage httpResponseMessage;
+            DateTime date = DateTime.Now.Date;
+            string str = string.Concat("Customers_export", date.ToString("ddMMyyyy"), ".xls");
+
+            DataSet ds = _CustomerService.CustomerExportToExcel(sortColumn, tableParameter, customerName, email, customer_group_id, status, approved, ip, date_added, storeId);
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
+                selectedColumn.Add(new ColumnConfiguration("customer_id", "ID"));
+                selectedColumn.Add(new ColumnConfiguration("customerName", "Name"));
+                selectedColumn.Add(new ColumnConfiguration("email", "Email"));
+                selectedColumn.Add(new ColumnConfiguration("StatusName", "Status"));
+                selectedColumn.Add(new ColumnConfiguration("ip", "IP"));
+                selectedColumn.Add(new ColumnConfiguration("date_added", "Date Added"));
+                selectedColumn.Add(new ColumnConfiguration("approved", "Approved"));
+                selectedColumn.Add(new ColumnConfiguration("Points", "Points"));
+                selectedColumn.Add(new ColumnConfiguration("storeId", "StoreID"));
+                selectedColumn.Add(new ColumnConfiguration("store_name", "Store Name"));
+                selectedColumn.Add(new ColumnConfiguration("store_url", "Store Url"));
+
+                if (!string.IsNullOrEmpty(sortColumn))
+                {
+                    ds.Tables[0].DefaultView.Sort = sortColumn;
+                }
+                DataTable dt = ds.Tables[0].DefaultView.ToTable(false, selectedColumn.Select(s => s.OriginalColumnName).ToArray());
+
+                ds.Tables.RemoveAt(0); // Delete Existing Table 
+                ds.Tables.Add(dt); // Add Modified Table
+                ds = CordobaCommon.GeneralMethods.ChangeDataSetColumnTitleAndReorder(ds, selectedColumn); // Rename Selected Columns
+
+            }
+
+            try
+            {
+                if (ds == null)
+                {
+                    return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
+                }
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Customers");
+
+                HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+                Stream @null = Stream.Null;
+                streamContent.Content = new StreamContent(new MemoryStream(asByteArray));
+                streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                streamContent.Content.Headers.Add("content-disposition", string.Concat("attachment;  filename=\"", str, "\""));
+                httpResponseMessage = streamContent;
+
+
+            }
+            catch (Exception)
+            {
+                httpResponseMessage = base.Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+            }
+            return httpResponseMessage;
 
         }
 

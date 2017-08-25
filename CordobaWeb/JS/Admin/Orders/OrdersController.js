@@ -36,9 +36,9 @@
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
                   //$scope.MainTotal = $scope.Products[0].title;
                   $scope.total_title = $scope.Products[0].total_title;
-                  $scope.total_value = $scope.Products[0].total_value;
+                  $scope.total_value = $scope.Products[0].total_value + ' (' + $scope.Products[0].total_text +')';
                   $scope.subtotal_title = $scope.Products[0].subtotal_title;
-                  $scope.subtotal_value = $scope.Products[0].subtotal_value;
+                  $scope.subtotal_value = $scope.Products[0].subtotal_value + ' (' + $scope.Products[0].subtotal_text + ')';
                   $scope.OrderHistory.order_status_id = $scope.OrderDetails.order_status_id;
               }
           })
@@ -107,6 +107,21 @@
    .finally(function () {
 
    });
+    }
+
+    $scope.PrintOrder = function () {
+        var htmlString = $("#OrderPrintSection").html();
+        var mywindow = window.open('', 'PRINT');                         
+        mywindow.document.write('<html><head><title></title>');
+        mywindow.document.write('<style>.table-bordered th,.table-bordered td {border: 1px solid #ddd !important;padding:15px;font-size:11px;}</style>');
+        mywindow.document.write('</head><body >');  
+        mywindow.document.write(htmlString);
+        mywindow.document.write('</body></html>');
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        mywindow.print();
+        mywindow.close();
+        return true;
     }
 
     $scope.GetOrderDetails();

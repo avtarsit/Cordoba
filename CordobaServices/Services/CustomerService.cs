@@ -6,6 +6,7 @@ using CordobaServices.Helpers;
 using CordobaServices.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -45,6 +46,48 @@ namespace CordobaServices.Services
 
                 throw;
             }
+        }
+
+        public DataSet CustomerExportToExcel(string sortColumn, object filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int? storeId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                DataSet ds = new DataSet();
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                cmd = new SqlCommand("GetCustomerList", con);
+                cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
+                cmd.Parameters.Add(new SqlParameter("@PageSize", 10000000));
+                cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
+                cmd.Parameters.Add(new SqlParameter("@customerName",customerName!=null?customerName:(object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@email", email));
+                cmd.Parameters.Add(new SqlParameter("@customer_group_id", customer_group_id));
+                cmd.Parameters.Add(new SqlParameter("@approved", 1));
+                cmd.Parameters.Add(new SqlParameter("@ip", ip));
+                cmd.Parameters.Add(new SqlParameter("@date_added", date_added ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@status", status ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@storeId", storeId ?? (object)DBNull.Value));
+                cmd.CommandType = CommandType.StoredProcedure;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds, "data");
+                return ds;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    cmd.Dispose();
+                }
+            }
+
         }
 
         public CustomerEntity GetCustomerById(int StoreId, int LoggedInUserId, int customer_id)

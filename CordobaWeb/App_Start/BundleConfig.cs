@@ -294,6 +294,7 @@ namespace CordobaWeb
                 Layout2AllJs.IncludeDirectory("~/JS/Filters", "*.js", false); 
                 Layout2AllJs.IncludeDirectory("~/JS/Layout", "*.js", true);
                 Layout2AllJs.Include("~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js");
+                Layout2AllJs.Include("~/Scripts/jquery.cookiesdirective.js");            
                 Layout2AllJs.Orderer = new NonOrderingBundleOrderer();
                 bundles.Add(Layout2AllJs);
             //////////////////////////////////////////////////////////////////
