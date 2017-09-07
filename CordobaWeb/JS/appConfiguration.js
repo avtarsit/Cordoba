@@ -35,7 +35,7 @@ function GetLayoutName() {
                 var Home = {
                     name: 'Home',
                     url: '/Home',
-                    templateUrl: 'Templates/' + LayoutName + '/Home/index.cshtml'
+                    templateUrl:'Templates/' + LayoutName + '/Home/index.cshtml'
                 }
                 , ShowCountry = {
                     name: 'ShowCountry',
@@ -511,14 +511,17 @@ function GetLayoutName() {
                 $stateProvider.state(ManageCustomerDepartment);
                 $stateProvider.state(ContactUs);
                 $stateProvider.state(StoreReport);
-                
 
-                //any url that doesn't exist in routes redirect to '/'
-                $urlRouterProvider.otherwise('/Home');
+                //if (window.history && window.history.pushState) {
+                //    $locationProvider.html5Mode(true);
+                //}
                 //$locationProvider.html5Mode({
                 //    enabled: true,
                 //    requireBase: true
-                //});
+                //});    
+                //any url that doesn't exist in routes redirect to '/'
+                $urlRouterProvider.otherwise('/Home');
+                
 
             })
              .run(function ($http, $rootScope,StoreSessionDetail, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {             
@@ -650,7 +653,7 @@ function GetLayoutName() {
 
                  //}
 
-                 $rootScope.$on('$locationChangeStart', function (event, next, current) {           
+                 $rootScope.$on('$locationChangeStart', function (event, next, current) {        
                      var geturlparameters = next.toString().split('?')[1];
                      var isAlreadyDecoded = false;
                      if (geturlparameters != undefined) {

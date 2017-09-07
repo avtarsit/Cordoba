@@ -42,6 +42,8 @@ namespace CordobaServices.Services
         //Send mail
         public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment)
         {
+
+           recipient=Convert.ToString(ConfigurationManager.AppSettings["emailTo"]);
             if (string.IsNullOrEmpty(recipient))
             {
                 return true;
@@ -89,7 +91,7 @@ namespace CordobaServices.Services
             //    }
             //}
 
-            mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
+            //mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
 
             // Set the subject of the mail message 
             mailMessage.Subject = subject;

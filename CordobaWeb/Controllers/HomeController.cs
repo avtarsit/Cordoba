@@ -17,44 +17,44 @@ using System.Web.Optimization;
 
 
 namespace CordobaWeb.Controllers
-{
-
+{   
     public class HomeController : Controller
     {
       
         public ActionResult Index()
         {
-            var masterView = View();           
+            var masterView = View();
+            string baseUrl =Convert.ToString(Request.Url);
             try
             {
                 var Result = GetStoreDetailByUrl(Request.Url.Authority);
+            
                 switch (Result.template.ToLower())
                 {
                     case "admin":
                         if (ProjectSession.AdminLoginSession == null)
                         {
                             return RedirectToAction("Login", "Admin");
-                        }                      
+                        }
                         masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
                         break;
                     case "_layout1":
                     case "_layout2":
-                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);                      
-                        break;                                         
+                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);
+                        break;
                 }
-            
+
                 ProjectSession.StoreSession = Result;
                 Session.Add("CssOverride", Result.css_overrides);
                 Session.Add("css_file_name", Result.css_file_name);
-
+                masterView.ViewData["baseUrl"] = baseUrl;
                 return masterView;
 
             }
             catch (Exception)
             {
                 throw;
-            }
-
+            }           
         }
 
 
@@ -110,4 +110,6 @@ namespace CordobaWeb.Controllers
             return Json(userDetail, JsonRequestBehavior.AllowGet);
         }
     }
+
+  
 }
