@@ -41,7 +41,7 @@
             $http.post(configurationService.basePath + "api/CountryApi/InsertOrUpdateCountry?&StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.CountryObj)
             .then(function (response) {                
                 if (response.data == 0) {                    
-                    notificationFactory.customError("Country Code is already Exists!!");
+                    notificationFactory.customError("Country Code already Exists!!");
                 }
                 if (response.data > 0) {
                     notificationFactory.customSuccess("Country Saved Successfully.");

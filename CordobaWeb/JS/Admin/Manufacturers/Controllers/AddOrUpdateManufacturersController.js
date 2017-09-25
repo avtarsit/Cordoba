@@ -55,7 +55,7 @@
                       $state.go('ShowManufacturer');
                   }
                   else if (response.data == -1) {
-                      notificationFactory.customError("Manufacturer name is already Exists!");
+                      notificationFactory.customError("Manufacturer name already Exists!");
                   }
               })
           .catch(function (response) {

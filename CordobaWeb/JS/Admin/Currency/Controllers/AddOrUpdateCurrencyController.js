@@ -54,6 +54,9 @@
                  toastr.success('Successfully Added.');
                  $state.go('Currency');
              }
+             else if (response.data == -1) {
+                 notificationFactory.customError("Currency already Exists!!");
+             }
 
          })
       .catch(function (response) {
