@@ -1,0 +1,8 @@
+C:\Projects\Cordoba\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.exe.config
+C:\Projects\Cordoba\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.exe
+C:\Projects\Cordoba\CordobaCatalogImageService\bin\Debug\CordobaCatalogImageService.pdb
+C:\Projects\Cordoba\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csprojResolveAssemblyReference.cache
+C:\Projects\Cordoba\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.ProjectInstaller.resources
+C:\Projects\Cordoba\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.csproj.GenerateResource.Cache
+C:\Projects\Cordoba\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.exe
+C:\Projects\Cordoba\CordobaCatalogImageService\obj\Debug\CordobaCatalogImageService.pdb
