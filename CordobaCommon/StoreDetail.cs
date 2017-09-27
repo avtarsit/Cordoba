@@ -49,7 +49,6 @@ namespace CordobaCommon
         public string county { get; set; }
         public string layout { get; set; }
         public string css_file_name { get; set; }
-
-        
+        public string no_image_path { get; set; }
     }
 }

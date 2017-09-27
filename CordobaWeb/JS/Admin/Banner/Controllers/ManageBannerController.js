@@ -67,10 +67,10 @@
 
     $scope.removeBanner = function ()
     {
-        $http.get(configurationService.basePath + "api/BannerApi/DeleteBanner?bannerId=" + $scope.BannerId)
+        $http.get(configurationService.basePath + "api/BannerApi/DeleteBanner?banner_id=" + $scope.BannerId)
           .then(function (response) {
               notificationFactory.customSuccess("Banner deleted Successfully.");
-              
+              $state.go('Banner');
           })
       .catch(function (response) {
       })
@@ -87,7 +87,7 @@
             $http.post(configurationService.basePath + "api/BannerApi/InsertUpdateBanner?banner_id=" + $scope.BannerId + "&name=" + $scope.BannerObj.name + "&status=" + $scope.BannerObj.status)
           .then(function (response) {          
               if ($scope.BannerId > 0) {
-                  $state.go('Banner')
+                  $state.go('Banner');
               }
               else {
                   $state.go('ManageBanner', { BannerId: response.data });
@@ -114,13 +114,13 @@
                         className: "btn btn-primary theme-btn",
                         callback: function (result) {
                             if (result) {
-
+                                $scope.removeBanner();
                             }
                         }
                     },
                 danger:
                     {
-                        label: "NO",
+                        label: "No",
                         className: "btn btn-default",
                         callback: function () {
                             return true;
