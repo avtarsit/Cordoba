@@ -26,7 +26,7 @@
                     <div class="col-md-7 col-sm-8">
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object" ng-src="{{Item.ProductImage}}" alt="product">
+                                <img class="media-object" ng-src="{{Item.ProductImage}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="product">
                             </div>
                             <div class="media-body">
                                 <a href="" class="media-heading" ng-bind="Item.name"></a>

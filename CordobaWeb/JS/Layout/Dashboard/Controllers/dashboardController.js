@@ -5,6 +5,7 @@
     Tab();
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
+    $rootScope.no_image_path = StoreSessionDetail.no_image_path;
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
@@ -78,164 +79,167 @@
         $rootScope.CustomerDetail = UserDetail;
         $state.go('Home');
     }
-  
+
     $scope.ForgotPassword = function (form) {
-            $scope.IsVisibleloginForm = true;
-            $scope.IsVisibleforgotPasswordForm = false;
+        $scope.IsVisibleloginForm = true;
+        $scope.IsVisibleforgotPasswordForm = false;
 
-            if (form.$valid) {
+        if (form.$valid) {
 
-                $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
-                $scope.otpObj.store_name = $scope.StoreDetailInSession.name;
-                $scope.otpObj.logo = $scope.StoreDetailInSession.logo;
-                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
-                      .then(function (response) {              
-                          if (response.data.errorcode > 0) {
-                              $scope.IsVisibleloginForm = true;
-                              $scope.IsVisibleforgotPasswordForm = true;
-                              $scope.IsVisibleOTPForm = false;
-                              $scope.IsVisibleChangePassswordForm = true;
-                              $scope.otpObj = response.data;
-                             
+            $scope.otpObj.store_id = $scope.StoreDetailInSession.store_id;
+            $scope.otpObj.store_name = $scope.StoreDetailInSession.name;
+            $scope.otpObj.logo = $scope.StoreDetailInSession.logo;
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
+                  .then(function (response) {
+                      if (response.data.errorcode > 0) {
+                          $scope.IsVisibleloginForm = true;
+                          $scope.IsVisibleforgotPasswordForm = true;
+                          $scope.IsVisibleOTPForm = false;
+                          $scope.IsVisibleChangePassswordForm = true;
+                          $scope.otpObj = response.data;
 
-                          }
-                          else {
-                              //notificationFactory.customError("Email does not exist");
-                              toastr.error("Email does not exist");
-                          }
-                      })
-                  .catch(function (response) {
 
+                      }
+                      else {
+                          //notificationFactory.customError("Email does not exist");
+                          toastr.error("Email does not exist");
+                      }
                   })
-                  .finally(function () {
+              .catch(function (response) {
 
-                  });
-            }
-        }
-
-     $scope.VerifyOTP = function (form) {
-            $scope.IsVisibleloginForm = true;
-            $scope.IsVisibleforgotPasswordForm = true;
-            
-           
-            if (form.$valid) {
-                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
-                      .then(function (response) {
-                          if (response.data.errorcode > 0) {
-                              //$scope.IsVisibleloginForm = true;
-                              //$scope.IsVisibleforgotPasswordForm = true;
-                              $scope.IsVisibleOTPForm = true;
-                              $scope.IsVisibleChangePassswordForm = false;
-                              $scope.otpObj.password = '';
-                          }
-                          else {
-                              toastr.error("Please Enter valid OTP");
-                          }
-
-                      })
-                  .catch(function (response) {
-
-                  })
-                  .finally(function () {
-
-                  });
-            }
-        }
-
-        $scope.GotoMyWishlist = function() {          
-            if (UserDetail.customer_id > 0) {
-                $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
-            }
-            else {
-                $scope.OpenLoginPopUp();
-            }
-        }
-
-        $scope.GotoProductList = function (Whatyouarelookingfor) {
-            $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
-        }
-
-        $scope.OpenTermsCondition = function () {       
-            $scope.GetTermsCondition();
-            angular.element("#DivTermsConditionModel").modal('show');
-        }
-
-        $scope.GetTermsCondition = function () {   
-            $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
-              .then(function (response) {          
-                  if (response.data.length > 0) {
-                      $scope.TermsConditionMsg = $('<div />').html(response.data[0].Terms).text();                   
-
-                  }
               })
-          .catch(function (response) {
+              .finally(function () {
 
-          })
-          .finally(function () {
-
-          });
+              });
         }
+    }
 
-        $scope.ChangePassword = function(form)
-        {
-            if (form.$valid) {
-               
-                $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.otpObj)
-                          .then(function (response) {                   
-                              if (response.data > 0) {
-                                  notificationFactory.customSuccess("Password changed Successfully.");
-                                  
-                                  $scope.IsVisibleforgotPasswordForm = true;
-                                  $scope.IsVisibleOTPForm = true;
-                                  $scope.IsVisibleChangePassswordForm = true;
-                                  $scope.IsVisibleloginForm = false;
-                                  $scope.otpObj.otp = '';
-                                  $scope.otpObj.password = '';
-                                  $scope.otpObj.confirmPassword = '';
-                                  $scope.otpObj.email = '';
-                                  form.$valid = true;
-                                  $scope.forgotPasswordForm.$valid = true;
-                              }
-                              else {
-                                  //notificationFactory.customError("Something went wrong");
-                                  toastr.error("Something went wrong");
-                              }
+    $scope.VerifyOTP = function (form) {
+        $scope.IsVisibleloginForm = true;
+        $scope.IsVisibleforgotPasswordForm = true;
 
 
-                          })
-                      .catch(function (response) {
+        if (form.$valid) {
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
+                  .then(function (response) {
+                      if (response.data.errorcode > 0) {
+                          //$scope.IsVisibleloginForm = true;
+                          //$scope.IsVisibleforgotPasswordForm = true;
+                          $scope.IsVisibleOTPForm = true;
+                          $scope.IsVisibleChangePassswordForm = false;
+                          $scope.otpObj.password = '';
+                      }
+                      else {
+                          toastr.error("Please Enter valid OTP");
+                      }
+
+                  })
+              .catch(function (response) {
+
+              })
+              .finally(function () {
+
+              });
+        }
+    }
+
+    $scope.GotoMyWishlist = function () {
+        if (UserDetail.customer_id > 0) {
+            $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
+    }
+
+    $scope.GotoProductList = function (Whatyouarelookingfor) {
+        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
+    }
+
+    $scope.OpenTermsCondition = function () {
+        $scope.GetTermsCondition();
+        angular.element("#DivTermsConditionModel").modal('show');
+    }
+
+    $scope.GetTermsCondition = function () {
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
+          .then(function (response) {
+              if (response.data.length > 0) {
+                  $scope.TermsConditionMsg = $('<div />').html(response.data[0].Terms).text();
+
+              }
+          })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
+    $scope.ChangePassword = function (form) {
+        if (form.$valid) {
+
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.otpObj)
+                      .then(function (response) {
+                          if (response.data > 0) {
+                              notificationFactory.customSuccess("Password changed Successfully.");
+
+                              $scope.IsVisibleforgotPasswordForm = true;
+                              $scope.IsVisibleOTPForm = true;
+                              $scope.IsVisibleChangePassswordForm = true;
+                              $scope.IsVisibleloginForm = false;
+                              $scope.otpObj.otp = '';
+                              $scope.otpObj.password = '';
+                              $scope.otpObj.confirmPassword = '';
+                              $scope.otpObj.email = '';
+                              form.$valid = true;
+                              $scope.forgotPasswordForm.$valid = true;
+                          }
+                          else {
+                              //notificationFactory.customError("Something went wrong");
+                              toastr.error("Something went wrong");
+                          }
+
 
                       })
-                      .finally(function () {
+                  .catch(function (response) {
 
-                      });
-            }
+                  })
+                  .finally(function () {
+
+                  });
         }
+    }
 
-        //function decodeHtml(html) {
-        //    var txt = document.createElement("textarea");
-        //    txt.innerHTML = html;
-        //    return txt.value;
-        //}
+    $scope.SetNoImageSrc = function (Image) {
+        Image.src = $rootScope.no_image_path;
+    }
 
-        //$scope.GetStoreDetailForDashboard = function () {
+    //function decodeHtml(html) {
+    //    var txt = document.createElement("textarea");
+    //    txt.innerHTML = html;
+    //    return txt.value;
+    //}
 
-        //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
-        //      .then(function (response) {
-        //          if (response.data.length > 0) {
-        //              $scope.StoreDetail = response.data;
-        //          }
-        //      })
-        //  .catch(function (response) {
+    //$scope.GetStoreDetailForDashboard = function () {
 
-        //  })
-        //  .finally(function () {
+    //    $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreDetailByStoreId?StoreID=0")
+    //      .then(function (response) {
+    //          if (response.data.length > 0) {
+    //              $scope.StoreDetail = response.data;
+    //          }
+    //      })
+    //  .catch(function (response) {
 
-        //  });
-        //}
+    //  })
+    //  .finally(function () {
+
+    //  });
+    //}
 
 
-        //$scope.GetStoreDetailForDashboard();
+    //$scope.GetStoreDetailForDashboard();
 
 });
 

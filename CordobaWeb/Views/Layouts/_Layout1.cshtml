@@ -125,7 +125,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" /></a>
+                        <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo" /></a>
                     </div>
                     <div class="main-menu">
                         <div class="search-panel">
@@ -172,7 +172,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
-                        <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                        <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo" style="max-height:60px"></a>
                     </div>
                     <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
                         <div class="row">
