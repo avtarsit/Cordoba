@@ -57,7 +57,7 @@
                     <div class="letest-product off">
                         <div class="row">
                             <div class="col-sm-4" ng-controller="Dashboard_StoreImageController">
-                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 4 }">
+                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " ng-src="{{AdvImg.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 4 }">
                             </div>
                             <div class="col-sm-8">
                                 <div class="special-offers">
@@ -86,7 +86,7 @@
                     <div class="container">
                         <div class="col-md-9 mt-30" ng-controller="Dashboard_StoreImageController">
                             <div class="new">
-                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 5 }">
+                                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " ng-src="{{AdvImg.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="offerbanner" alt="special-offers" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 5 }">
                             </div>
                         </div>
                         <div class="col-md-3" ng-controller="Dashboard_HotDealsController">
