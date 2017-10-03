@@ -4,6 +4,8 @@ var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "data
 GetAdminUserDetail();
 GetLayoutName();
 
+
+
 function GetAdminUserDetail() {
     var adminUserId = $("#hdAdminUserId").val();
     if (adminUserId != undefined && adminUserId != null) {
@@ -32,11 +34,12 @@ function GetLayoutName() {
             var LayoutName = data.template;
        
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                var Home = {
-                    name: 'Home',
-                    url: '/Home',
-                    templateUrl: 'Templates/' + LayoutName + '/Home/index.cshtml'
-                }
+                var  
+                 Home = {
+                     name: 'Home',
+                     url: '/Home?Email:email',
+                     templateUrl: 'Templates/' + LayoutName + '/Home/index.cshtml'
+                 }
                 , ShowCountry = {
                     name: 'ShowCountry',
                     url: '/Catalog/ShowCountry',
@@ -512,7 +515,6 @@ function GetLayoutName() {
                 $stateProvider.state(ContactUs);
                 $stateProvider.state(StoreReport);
                 
-
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -751,3 +753,14 @@ app.constant('OrderStatusEnum',
         Cancelled: 5,
         Delivered: 6
     });
+
+//var allowCrossDomain = function (req, res, next) {
+//    res.header('Access-Control-Allow-Origin', '*');
+//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//    res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+//    // Pass to next layer of middleware
+//    next();
+
+//}
+//app.use(allowCrossDomain);

@@ -1,4 +1,5 @@
 ﻿app.controller('DashboardController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService) {
+    debugger;
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -9,6 +10,14 @@
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
 
+    function OpenLoginForm() {
+        $rootScope.OpenLoginPopUpUsingRootScope();
+    }
+
+    $rootScope.OpenLoginPopUpUsingRootScope = function () {
+        $scope.Logout();
+        $scope.OpenLoginPopUp();
+    }
     $scope.OpenLoginPopUp = function () {
         angular.element("#DivLoginModel").modal('show');
         $scope.IsVisibleloginForm = false;
@@ -18,11 +27,11 @@
     }
 
     $scope.Login = function (form) {
-
         if (form.$valid) {
 
             $scope.CustomerObj.cartgroup_id = UserDetail.cartgroup_id;
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;
+            $scope.CustomerObj.IsFromAdmin = $("#IsFromAdmin").val();
 
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
                   .then(function (response) {
@@ -241,6 +250,47 @@
 
     //$scope.GetStoreDetailForDashboard();
 
+    function inIframe() {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    angular.element(document).ready(function () {
+        function param(name) {
+            return (location.href.split(name + '=')[1] || '').split('&')[0];
+        }
+
+        function DecodeString(element) {
+            if (element.indexOf(specialCharacter) > -1) {
+                element = decodeURIComponent(element);
+                var decodedstring = element.substring(keylength + 1, element.length - (keylength + 1));
+                if (decodedstring.length >= 3) {
+
+                    decodedstring = (String.fromCharCode(parseInt(decodedstring.substring(0, 3))) + decodedstring.substring(3, decodedstring.length)).toString();
+                }
+                return decodedstring;
+            }
+        }
+
+        if (window.location.href.indexOf("IsFromAdmin") > 0 && window.location.href.indexOf("Email") > 0) {
+            var IsFromAdmin = DecodeString(param('IsFromAdmin'));
+            var Email = DecodeString(param('Email'));
+            if (IsFromAdmin == "true") {
+                window.document.getElementById("IsFromAdmin").value = IsFromAdmin;
+                window.document.getElementById("email").value = Email;
+                var scope = angular.element('#loginForm').scope();
+                scope.CustomerObj = new Object();
+                scope.CustomerObj.email = Email;
+
+                if (inIframe()) {
+                    OpenLoginForm();
+                }
+            }
+        }
+    });
 });
 
 

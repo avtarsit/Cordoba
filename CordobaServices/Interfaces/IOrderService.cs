@@ -39,5 +39,7 @@ namespace CordobaServices.Interfaces
         OrderEntity GetOrderDetail_Layout(int order_id, int store_id);
 
         int UpdateOrderStatus(int OrderId, int OrderStatusId, string Comment);
+
+        int UpdateOrderDate(int OrderId, DateTime OrderDate);
     }
 }

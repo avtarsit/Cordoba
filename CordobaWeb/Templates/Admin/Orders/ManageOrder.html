@@ -514,6 +514,32 @@
                                     <hr />
                                     <br />
                                     <div class="row">
+                                        <form name="OrderDetailForm" id="OrderDetailForm" class="form-horizontal" novalidate>
+                                            <label class="col-lg-2 mandatoryField">Order Date</label>
+                                            <div class="col-lg-2">
+                                                <div class="input-group myDatePicker date">
+                                                    <input type="text" class="form-control" name="OrderDate" ng-model="OrderDetails.date_added" date="MM/dd/yyyy" required="required" />
+                                                    <span class="input-group-addon cursor-pointer">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <input type="submit" class="btn btn-primary" value="Save" ng-click="UpdateOrderDate(OrderDetailForm)" />
+
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="text-warning" ng-show="OrderDetailForm.$submitted && !OrderDetailForm.$valid">
+                                                    <ul ng-show="OrderDetailForm.OrderDate.$error.required">
+                                                        <li ng-show="OrderDetailForm.OrderDate.$error.required">Order Date is required.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--<input type="button" class="btn btn-primary col-lg-1" value="Apply" style="margin-left: -16px;height: 33px;" />-->
+                                        </form>
+                                    </div>
+                                    <br />
+                                    <div class="row">
                                         <label class="col-lg-2 mandatoryField">Shipping Method</label>
                                         <div class="col-lg-10">
                                             <label class="control-label">{{OrderDetails.shipping_method}}</label>
@@ -577,7 +603,7 @@
                                     <br />-->
                                     <div class="row">
                                         <div class="col-lg-2"></div>
-                                        <div class="col-lg-10 text-right">                                        
+                                        <div class="col-lg-10 text-right">
                                             <input type="submit" class="btn btn-primary" value="Save" ng-click="UpdateOrder_TotalDetails()" />
                                         </div>
                                     </div>
@@ -591,3 +617,9 @@
     </div>
     <!--</form>-->
 </div>
+<script type="text/javascript">
+    $('.myDatePicker').bootstrapDP({
+        autoclose: true,
+        format: 'mm/dd/yyyy'
+    });
+</script>

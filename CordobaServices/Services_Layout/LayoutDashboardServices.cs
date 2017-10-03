@@ -124,6 +124,7 @@ namespace CordobaServices.Services_Layout
                ,new SqlParameter("password", CustomerObj.password)
                ,new SqlParameter("cartgroup_id", (CustomerObj.cartgroup_id!=null?CustomerObj.cartgroup_id:(object)DBNull.Value))
                ,new SqlParameter("store_id", CustomerObj.store_id)
+               ,new SqlParameter("IsFromAdmin",CustomerObj.IsFromAdmin)
             };
                 var result = objGenericRepository.ExecuteSQL<CustomerEntity>("CustomerLogin", sqlParameter).FirstOrDefault();
                 return result;

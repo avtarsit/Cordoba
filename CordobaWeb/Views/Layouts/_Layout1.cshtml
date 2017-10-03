@@ -13,75 +13,75 @@
          @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
 
-    @Styles.Render("~/bundles/Layout1CSS")  
-       
+    @Styles.Render("~/bundles/Layout1CSS")
+
     @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
     {
         @Styles.Render("~/Content/layout1/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
-    }          
+    }
     <style>
      @Html.Raw(Convert.ToString(HttpContext.Current.Session["CssOverride"]))
     </style>
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <style>
-            .spinner div {
-                /*top: 0;
+        .spinner div {
+            /*top: 0;
         right: 0;
         bottom: 0;
         left: 0;*/
-                z-index: 999999;
-                opacity: 0.8;
-                background-color: black;
-                width: 20px;
-                height: 20px;
-                position: fixed;
-                left: -20px;
-                top: 40px;
-                border-radius: 50%;
-                animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+            z-index: 999999;
+            opacity: 0.8;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            left: -20px;
+            top: 40px;
+            border-radius: 50%;
+            animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+        }
+
+            .spinner div:nth-child(2) {
+                animation-delay: 150ms;
             }
 
-                .spinner div:nth-child(2) {
-                    animation-delay: 150ms;
-                }
-
-                .spinner div:nth-child(3) {
-                    animation-delay: 300ms;
-                }
-
-                .spinner div:nth-child(4) {
-                    animation-delay: 450ms;
-                }
-
-            #greenDot {
-                background-color: green;
+            .spinner div:nth-child(3) {
+                animation-delay: 300ms;
             }
 
-            #yellowDot {
-                background-color: yellow;
+            .spinner div:nth-child(4) {
+                animation-delay: 450ms;
             }
 
-            #redDot {
-                background-color: red;
+        #greenDot {
+            background-color: green;
+        }
+
+        #yellowDot {
+            background-color: yellow;
+        }
+
+        #redDot {
+            background-color: red;
+        }
+
+        #blueDot {
+            background-color: blue;
+        }
+
+        @@keyframes move {
+            0% {
+                left: 0%;
             }
 
-            #blueDot {
-                background-color: blue;
+            40% {
+                left: 100%;
             }
 
-            @@keyframes move {
-                0% {
-                    left: 0%;
-                }
-
-                40% {
-                    left: 100%;
-                }
-
-                100% {
-                    left: 100%;
-                }
+            100% {
+                left: 100%;
             }
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -92,6 +92,7 @@
 </head>
 <body>
     <div ng-controller="DashboardController" ng-cloak>
+        <input type="hidden" value="false" id="IsFromAdmin" />
         <div class="header navbar-fixed-top">
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
@@ -100,7 +101,7 @@
                         <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                         <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>
                         <li ng-if="!(CustomerDetail.customer_id>0)">
-                            <a href="" ng-click="OpenLoginPopUp()">Login</a>
+                            <a href="" id="lnkLoginPopUp" ng-click="OpenLoginPopUp()">Login</a>
                         </li>
                         <li ng-if="CustomerDetail.customer_id>0">
                             <p class="hi-text">Hi</p>
@@ -182,11 +183,6 @@
                                     <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                     <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
                                     <li><a href="" class="cursor-pointer" ui-sref="ContactUs">Contact Us</a></li>
-                                    <li class="pull-right">
-                                        <a href="#" class="cursor-pointer" id="fbIcon">
-                                            <img src="~/Content/Images/fb_ico.png" />
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -353,7 +349,7 @@
 
     @Scripts.Render("~/bundles/Layout1Js")
     <script src="~/Scripts/jquery-ui.min.js"></script>
-    @*@Scripts.Render("~/bundles/angular")*@    
+    @*@Scripts.Render("~/bundles/angular")*@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/angular-dragdrop.min.js"></script>
