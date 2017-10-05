@@ -1,5 +1,4 @@
 ﻿app.controller('DashboardController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService) {
-    debugger;
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();

@@ -321,13 +321,12 @@
 
 
     $scope.UpdateOrderDate = function (OrderDetailForm) {
-        debugger;
         if (OrderDetailForm.$valid) {
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrderDate?OrderId=" + $scope.OrderDetails.order_id + '&OrderDate=' + $scope.OrderDetails.date_added)
            .then(function (response) {
                if (response.data > 0) {
                    toastr.success("Order Date updated successfully.");
-                   $scope.GetOrderDetails();
+                   getOrderDetails();
                }
            })
             .catch(function (response) {

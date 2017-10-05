@@ -42,6 +42,7 @@ namespace CordobaServices.Services
         //Send mail
         public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment)
         {
+            recipient = ConfigurationManager.AppSettings["emailTo"];
             if (string.IsNullOrEmpty(recipient))
             {
                 return true;
