@@ -477,7 +477,79 @@ namespace CordobaServices.Services_Layout
         //    }
         //}
 
+        public int? VerifyCustomerVisitedInfo(string CustomerEmail,int? store_id)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("email", CustomerEmail)
+                    ,new SqlParameter("store_id", store_id)
+                };
 
+                var result = objGenericRepository.ExecuteSQL<int>("Email_VerifyCustomerVisitedInfo", sqlParameter).FirstOrDefault();
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public CustomerEntity ResetPasswordOTP(CustomerEntity CustomerObj)
+        {
+            Random rnd = new Random();
+            string otp = rnd.Next(0, 1000000).ToString("D6");
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("email", CustomerObj.email)
+                    ,new SqlParameter("store_id", CustomerObj.store_id)
+                    ,new SqlParameter("otp", otp)
+
+                };
+                var result = objGenericRepository.ExecuteSQL<CustomerEntity>("ResetPasswordOTPSend", sqlParameter).FirstOrDefault();
+                if (result.errorcode > 0)
+                {
+                    CommonService customerService = new CommonService();
+                    customerService.SendResetPassOTPEmail(CustomerObj.email, otp, CustomerObj.firstname, CustomerObj.store_name, CustomerObj.logo);
+                }
+                else
+                {
+                    return result;
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public CustomerEntity ResetPasswordAndVerifyOTP(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("email", CustomerObj.email)
+                    ,new SqlParameter("store_id", CustomerObj.store_id)
+                    ,new SqlParameter("otp", CustomerObj.otp)
+                    ,new SqlParameter("new_pass",Security.Encrypt(CustomerObj.password) ??  DBNull.Value.ToString())
+
+                };
+                var result = objGenericRepository.ExecuteSQL<CustomerEntity>("ResetPasswordAndVerifyOTP", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
 
 
     }

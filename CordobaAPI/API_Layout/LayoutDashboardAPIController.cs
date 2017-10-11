@@ -442,6 +442,55 @@ namespace CordobaAPI.API_Layout
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage VisitedCustomerInfo(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.VerifyCustomerVisitedInfo(CustomerObj.email , CustomerObj.store_id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SendResetPassEmail(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.ResetPasswordOTP(CustomerObj);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage ResetPasswordAndOtpVerify(CustomerEntity CustomerObj)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.ResetPasswordAndVerifyOTP(CustomerObj);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+
         //[HttpPost]
         //public HttpResponseMessage ChangePassword(CustomerEntity CustomerObj)
         //{

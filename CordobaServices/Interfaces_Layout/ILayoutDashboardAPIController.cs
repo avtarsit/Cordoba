@@ -31,6 +31,11 @@ namespace CordobaServices.Interfaces_Layout
         List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID);
         List<BannerAttributeEntity> GetBanner_Layout(int StoreId);
         CustomerEntity VerifyOTP(CustomerEntity CustomerObj);
+
+        int? VerifyCustomerVisitedInfo(string CustomerEmail, int? store_id);
+        CustomerEntity ResetPasswordOTP(CustomerEntity CustomerObj);
+
+        CustomerEntity ResetPasswordAndVerifyOTP(CustomerEntity CustomerObj);
         //CustomerEntity ChangePassword(CustomerEntity CustomerObj);
     }
 }

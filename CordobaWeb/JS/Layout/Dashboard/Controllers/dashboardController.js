@@ -8,7 +8,7 @@
     $rootScope.no_image_path = StoreSessionDetail.no_image_path;
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
-
+    
     function OpenLoginForm() {
         $rootScope.OpenLoginPopUpUsingRootScope();
     }
@@ -22,6 +22,8 @@
         $scope.IsVisibleloginForm = false;
         $scope.IsVisibleChangePassswordForm = true;
         $scope.IsVisibleforgotPasswordForm = true;
+        $scope.IsVisibleResetPassswordForm = true;
+        $scope.IsVisibleFirstTimeVisiteForm = true;
         $scope.IsVisibleOTPForm = true;
     }
 
@@ -74,6 +76,98 @@
         }
     }
 
+    //for first time login 
+    $scope.validateEmailaddress = function () {
+        if ($scope.CustomerObj.email != null) {
+            
+            $scope.validateObj = new Object();
+            $scope.validateObj.email = $scope.CustomerObj.email;
+            $scope.validateObj.store_id = $scope.StoreDetailInSession.store_id;
+           
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VisitedCustomerInfo", $scope.validateObj)
+               .then(function (response) {
+                  
+                  
+                   if (response.data === 0) {
+                       $scope.IsVisibleloginForm = true;
+                       $scope.IsVisibleFirstTimeVisiteForm = false;
+                   }
+                })
+                .catch(function (response) {
+
+                })
+                .finally(function () {
+
+                });
+        }
+    }
+
+    $scope.OpenResetPasswordForm = function() {
+        if ($scope.CustomerObj.email != null) {
+           
+            $scope.resetObj = new Object();
+            $scope.resetObj.store_id = $scope.StoreDetailInSession.store_id;
+            $scope.resetObj.store_name = $scope.StoreDetailInSession.name;
+            $scope.resetObj.logo = $scope.StoreDetailInSession.logo;
+            $scope.resetObj.email = $scope.CustomerObj.email;
+
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SendResetPassEmail",  $scope.resetObj)
+                .then(function (response) {
+                   
+                    
+                    if (response.data.errorcode > 0) {
+                        
+                        $scope.IsVisibleloginForm = true;
+                        $scope.IsVisibleFirstTimeVisiteForm = true;
+                        $scope.IsVisibleResetPassswordForm = false;
+                    }
+                })
+                .catch(function (response) {
+
+                })
+                .finally(function () {
+
+                });
+        }
+    }
+
+    $scope.ResetPassword = function(form) {
+        if (form.$valid) {
+            $scope.resetObj.email = $scope.CustomerObj.email;
+            $scope.resetObj.store_id = $scope.StoreDetailInSession.store_id;
+
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ResetPasswordAndOtpVerify", $scope.resetObj)
+                .then(function (response) {
+                 
+                    
+                    if (response.data.errorcode > 0) {
+
+                        notificationFactory.customSuccess("Password Reseted Successfully.");
+
+                        $scope.IsVisibleforgotPasswordForm = true;
+                        $scope.IsVisibleOTPForm = true;
+                        $scope.IsVisibleChangePassswordForm = true;
+                        $scope.IsVisibleResetPassswordForm = true;
+                        $scope.IsVisibleFirstTimeVisiteForm = true;
+                        $scope.IsVisibleloginForm = false;
+                        $scope.otpObj.otp = '';
+                        $scope.otpObj.password = '';
+                        $scope.otpObj.confirmPassword = '';
+                        $scope.otpObj.email = '';
+                        form.$valid = true;
+                        $scope.forgotPasswordForm.$valid = true;
+                    } else {
+                        toastr.error("OTP verification failed.Please Check");
+                    }
+                })
+                .catch(function (response) {
+
+                })
+                .finally(function () {
+
+                });
+        }
+    }
 
     $scope.Logout = function () {
         UserDetail.customer_id = 0;

@@ -164,6 +164,24 @@ namespace CordobaServices.Services
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
         }
 
+        public bool SendResetPassOTPEmail(string email, string otp, string name, string store_name, string logopath)
+        {
+            const string strSubject = "Reset Password";
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
+            var strbody = ReadTextFile(filepath);
+
+            if (strbody.Length <= 0)
+                return false;
+
+            strbody = strbody.Replace("##name##", name);
+            strbody = strbody.Replace("##OTP##", otp);
+            strbody = strbody.Replace("##StoreName##", store_name);
+            strbody = strbody.Replace("##LogoPath##", logopath);
+
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
+        }
+
         public bool sendContactUsDetails(string name, string email, string phone, string description, StoreEntity storeEntity)
         {
             const string strSubject = "Inquiry";
