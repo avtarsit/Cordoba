@@ -242,7 +242,7 @@
                                     <h2>Login</h2>
                                     <div class="form-group pt-20">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" name="EmailAddress" id="email" placeholder="Enter email" ng-model="CustomerObj.email" required="required">
+                                        <input type="email" class="form-control" name="EmailAddress" id="email" placeholder="Enter email" ng-model="CustomerObj.email" required="required" ng-blur="validateEmailaddress()">
                                         <p class="text-danger validationErrors" ng-show="loginForm.$submitted && (!loginForm.$valid) && (loginForm.EmailAddress.$error.required || loginForm.EmailAddress.$error.email)">Enter valid email id!</p>
                                     </div>
                                     <div class="form-group">
@@ -298,14 +298,54 @@
                                     <input type="hidden" class="form-control" name="email" id="email">
                                     <div class="form-group pt-20">
                                         <label for="otp">Password:</label>
-                                        <input type="text" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
                                         <label for="otp">Confirm Password:</label>
-                                        <input type="text" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
 
                                         <p class="text-danger validationErrors" ng-show="ChangePasswordForm.$submitted && (!otpObj.$valid) && (otpObj.password != otpObj.confirmPassword)">Password does not match</p>
                                     </div>
                                     <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.password != otpObj.confirmPassword" ng-click="ChangePassword(ChangePasswordForm)">Submit</button>
 
+                                </div>
+                            </form>
+                            
+                            @*Reset Password for first time visited customer*@
+                            <form name="FirstTimeVisiteForm" id="FirstTimeVisiteForm" class="form-horizontal" ng-hide="IsVisibleFirstTimeVisiteForm" novalidate>
+                                <div class="login_page">
+                                    <input type="hidden" class="form-control" name="email" id="email">
+                                    <div class="form-group pt-20">
+                                        <p>Hi .... </p>
+                                        <p>
+                                            Welcome to new platform of {{StoreDetailInSession.name}}store.com We are here to serve you with better user experience. For security reason to access the store, we need your co-operation to set the secured password.
+                                            Pressing on NEXT button will provide you acess for setup new password.
+                                        </p>
+                                        <p>
+                                            Thanks.<br />
+                                            {{StoreDetailInSession.name}}store.com
+                                        </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-4 text-center" ng-click="OpenResetPasswordForm()">NEXT</button>
+                                </div>
+                            </form>
+
+                            @*Reset Password with OTP cerification*@
+                            <form name="ResetPassForm" id="ResetPassForm" class="form-horizontal" ng-hide="IsVisibleResetPassswordForm" novalidate>
+                                <div class="login_page">
+                                    @*<input type="hidden" class="form-control" name="email" id="emailreset">*@
+                                    <div class="form-group pt-20">
+                                        <p>Kindly check your email that contains OTP.</p>
+                                        <label for="otp">OTP:</label>
+                                        <input type="text" class="form-control" name="otpreset" id="otpreset" placeholder="Enter OTP" ng-model="resetObj.otp" min="0" max="6" required="required">
+                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!ResetPassForm.$valid) && (ResetPassForm.otpreset.$error.required || ResetPassForm.otpreset.$error.otp)">Enter valid OTP!</p>
+
+                                        <label for="otp">Password:</label>
+                                        <input type="password" class="form-control" name="password" id="pass" placeholder="Enter Password" ng-model="resetObj.password" min="0" max="6" required="required">
+                                        <label for="otp">Confirm Password:</label>
+                                        <input type="password" class="form-control" name="confirmPasssword" id="cnfirmpass" placeholder="Confirm Password" ng-model="resetObj.confirmPassword" min="0" max="6" required="required">
+                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!resetObj.$valid) && (resetObj.password != resetObj.confirmPassword)">Password does not match</p>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="resetObj.password != resetObj.confirmPassword" ng-click="ResetPassword(ResetPassForm)">Submit</button>
                                 </div>
                             </form>
 

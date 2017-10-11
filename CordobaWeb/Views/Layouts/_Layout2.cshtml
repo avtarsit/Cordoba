@@ -303,9 +303,9 @@
                                     <input type="hidden" class="form-control" name="email" id="email">
                                     <div class="form-group pt-20">
                                         <label for="otp">Password:</label>
-                                        <input type="text" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
                                         <label for="otp">Confirm Password:</label>
-                                        <input type="text" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
 
                                         <p class="text-danger validationErrors" ng-show="ChangePasswordForm.$submitted && (!otpObj.$valid) && (otpObj.password != otpObj.confirmPassword)">Password does not match</p>
                                     </div>

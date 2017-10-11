@@ -25,6 +25,9 @@
         $scope.IsVisibleResetPassswordForm = true;
         $scope.IsVisibleFirstTimeVisiteForm = true;
         $scope.IsVisibleOTPForm = true;
+        $scope.CustomerObj = new Object();
+        $scope.loginForm.$submitted = false;
+
     }
 
     $scope.Login = function (form) {
@@ -34,9 +37,12 @@
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.CustomerObj.IsFromAdmin = $("#IsFromAdmin").val();
 
+            debugger;
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
                   .then(function (response) {
-                      switch (response.data.ErrorTypeId) {
+                      debugger;
+                      if (response.data != null) {
+                          switch (response.data.ErrorTypeId) {
                           case 0:
 
                               UserDetail.customer_id = response.data.customer_id;
@@ -65,7 +71,12 @@
                               toastr.error('Please enter correct email and password!');
                               $scope.CustomerObj = null;
                               break;
+                          }
+                      } else {
+                          toastr.error('Please enter correct email and password!');
+                          //$scope.CustomerObj = null;
                       }
+                      
                   })
               .catch(function (response) {
 
@@ -78,6 +89,7 @@
 
     //for first time login 
     $scope.validateEmailaddress = function () {
+        debugger;
         if ($scope.CustomerObj.email != null) {
             
             $scope.validateObj = new Object();
@@ -180,6 +192,7 @@
         localStorageService.set("loggedInUser", UserDetail);
         $rootScope.CustomerDetail = UserDetail;
         $state.go('Home');
+        
     }
 
     $scope.ForgotPassword = function (form) {
