@@ -21,10 +21,10 @@ namespace CordobaWeb.Controllers
 
     public class HomeController : Controller
     {
-      
+
         public ActionResult Index()
         {
-            var masterView = View();           
+            var masterView = View();
             try
             {
                 var Result = GetStoreDetailByUrl(Request.Url.Authority);
@@ -34,15 +34,15 @@ namespace CordobaWeb.Controllers
                         if (ProjectSession.AdminLoginSession == null)
                         {
                             return RedirectToAction("Login", "Admin");
-                        }                      
+                        }
                         masterView.MasterName = string.Format("~/Views/Admin/{0}.cshtml", "_Layout");
                         break;
                     case "_layout1":
                     case "_layout2":
-                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);                      
-                        break;                                         
+                        masterView.MasterName = string.Format("~/Views/Layouts/{0}.cshtml", Result.template);
+                        break;
                 }
-            
+
                 ProjectSession.StoreSession = Result;
                 Session.Add("CssOverride", Result.css_overrides);
                 Session.Add("css_file_name", Result.css_file_name);
@@ -60,7 +60,7 @@ namespace CordobaWeb.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";       
+            ViewBag.Message = "Your application description page.";
             return View();
         }
 
@@ -108,6 +108,15 @@ namespace CordobaWeb.Controllers
             UserEntity userDetail = new UserEntity();
             userDetail = ProjectSession.AdminLoginSession;
             return Json(userDetail, JsonRequestBehavior.AllowGet);
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        public string CheckVersionNumber()
+        {
+            string str = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]);
+
+            return str;
+
         }
     }
 }

@@ -141,7 +141,7 @@
     </div>
 
     <!-- Create Order popup -->
-    <div class="modal fade" id="DivCreateOrderModel" style="width:1000px" role="dialog">
+    <div class="modal fade" id="DivCreateOrderModel" style="width:1000px;overflow:scroll" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
                 <div class="modal-content">
@@ -151,7 +151,8 @@
                     </div>
                     <div class="modal-body">
                         <iframe id="LoginFrame" ng-src="{{CreatedOrderUrl | trusted}}"
-                                height="100%" width="100%" target="_parent" data-attr-IsFromAdmin="{{IsFromAdmin || 0}}" data-attr-Email="{{Email}}"></iframe>
+                                height="100%" width="100%" scrolling="true" target="_parent" onload="resize()"
+                                data-attr-IsFromAdmin="{{IsFromAdmin || 0}}" data-attr-Email="{{Email}}"></iframe>
                         <!--<form name="CreateOrderForm" id="CreateOrderForm" class="form-horizontal" novalidate>
                         </form>-->
                     </div>
@@ -164,10 +165,12 @@
 <style type="text/css">
     #DivCreateOrderModel .modal-dialog {
         margin-left: 60px;
+        min-width: 1350px;
     }
 
     #DivCreateOrderModel .modal-content {
         width: 1350px;
+        max-width: 1400px;
     }
 
     #DivCreateOrderModel .modal-body {
@@ -183,4 +186,51 @@
         width: 24px;
         height: 24px;
     }
+
+    div#DivCreateOrderModel iframe {
+        width: 100%;
+    }
+
+    #DivCreateOrderModel{
+        overflow:scroll;
+    }
+
+    body {
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+
+    .modal.fade.in {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 </style>
+
+<script>
+    $(window).resize(function () {
+        resize();
+    });
+
+    window.addEventListener('message', function (e) {
+        var iframe = $("#LoginFrame");
+        var divCreateModel = $('#DivCreateOrderModel .modal-content');
+        var eventName = e.data[0];
+        var data = e.data[1];
+        switch (eventName) {
+            case 'setWidth':
+                iframe.width(data - 130);
+                divCreateModel.width(data - 100);
+                break;
+        }
+    }, false);
+
+    function resize() {
+        var width = document.getElementsByTagName("html")[0].scrollWidth;
+        window.parent.postMessage(["setWidth", width], "*");
+    }
+</script>

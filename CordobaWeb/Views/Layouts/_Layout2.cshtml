@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title ng-bind="storeName"></title>
     <!-- Bootstrap -->
-    @Styles.Render("~/bundles/Layout2CSS")
+    @Styles.Render("~/bundles/Layout2CSS?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
     {
@@ -403,13 +403,16 @@
         <!-- Terms and Condition popup -->
     </div>
 
-    @Scripts.Render("~/bundles/Layout2AllJs")
+    @Scripts.Render("~/bundles/Layout2AllJs?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
 
     <script type="text/javascript">
 
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
+
+            ApplicationVersion = '@Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"])';
+
             $(".content, #aboutScroll").mCustomScrollbar();
 
             $(".showDesc").click(function () {
@@ -441,7 +444,7 @@
             });
 
             $(".content, #aboutScroll").mCustomScrollbar();
-     
+
         });
 
         $(window).scroll(function () {
@@ -522,5 +525,36 @@
             }
         }
     </script>
+
+    <div class="modal fade" id="Reloadlookup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Cordoba Store</h4>
+                </div>
+                <div class="wthbox">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">System Updates</h3>
+                        </div>
+                        <div class="panel panel-body">
+                            <div class="row">
+                                <b>
+                                    There have been updated to the system. Click OK to refresh the page.<br />
+                                    <span style="color:red;"> Note:  All unsaved changes will be lost.</span>
+                                    <br /><br />
+                                    Click Later to go back and save all changes first.
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="javascript: window.location.reload(false);">OK</button>
+                        <button type="button" class="btn btn-default" onclick="javascript: angular.element('#Reloadlookup').modal('hide');">LATER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

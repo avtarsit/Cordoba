@@ -89,7 +89,6 @@
 
     //for first time login 
     $scope.validateEmailaddress = function () {
-        debugger;
         if ($scope.CustomerObj.email != null) {
             
             $scope.validateObj = new Object();
@@ -397,6 +396,21 @@
             }
         }
     });
+
+    $interval(function () { CheckVersionNumber(); }, 3000);
+    function CheckVersionNumber() {
+        $.ajax({
+            method: "GET",
+            url: "Home/CheckVersionNumber",
+            async: false,
+            success: function (data) {
+                if (data != ApplicationVersion) {
+                    angular.element("#Reloadlookup").modal('show');
+                }
+            }
+
+        })
+    };
 });
 
 

@@ -732,6 +732,22 @@
         });
     }
 
+    
+    $interval(function () { CheckVersionNumber(); }, 3000);
+    function CheckVersionNumber() {
+        $.ajax({
+            method: "GET",
+            url: "Home/CheckVersionNumber",
+            async: false,
+            success: function (data) {
+                if (data != ApplicationVersion) {
+                    angular.element("#Reloadlookup").modal('show');
+                }
+            }
+
+        })
+    };
+
 
     $scope.getActivityList();
 
