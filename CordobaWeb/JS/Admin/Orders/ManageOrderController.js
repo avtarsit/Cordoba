@@ -27,10 +27,10 @@
     $scope.selectedPaymentCountry = 0;
 
     $scope.GetZoneListByCountryPayment = function (countryId) {
-       
+
         $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
-           
+
             $scope.RegionStateListPayment = [];
             if (response.data.length > 0) {
                 $scope.RegionStateListPayment = response.data;
@@ -49,7 +49,7 @@
     }
 
     //$scope.GetZoneListByCountryShipping = function (countryId) {
- 
+
     //    $http.get(configurationService.basePath + "api/OrderApi/GetZoneListByCountry?countryId=" + countryId)
     //    .then(function (response) {
 
@@ -132,7 +132,7 @@
              if (response.data.length > 0) {
                  $scope.CountryList = response.data;
                  $scope.selectedPaymentCountry = $scope.CountryList[0].country_id;
-                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;                 
+                 $scope.selectedShippingCountry = $scope.CountryList[0].country_id;
              }
          })
         .catch(function (response) {
@@ -161,11 +161,11 @@
         });
     }
 
-    $scope.GetCustomersByStore = function (storeId) {   
+    $scope.GetCustomersByStore = function (storeId) {
         $http.get(configurationService.basePath + "api/OrderApi/GetCustomersByStore?storeId=" + storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)
         .then(function (response) {
             if (response.data.length > 0) {
-      
+
                 $scope.CustomerList = response.data;
                 $scope.selectedCustomer = $scope.CustomerList[0].customer_id;
                 if ($scope.OrderDetails.customer_id != 0 || $scope.OrderDetails.customer_id != null) {
@@ -204,11 +204,12 @@
         }
     }
 
-    function getOrderDetails() {    
+    function getOrderDetails() {
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.orderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {            
+          .then(function (response) {
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
+                  $scope.OrderDetails.date_added = $filter('date')(response.data[0].date_added, $rootScope.GlobalDateFormat);
                   //$scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
                   //$scope.MainTotal = $scope.Products[0].title;
@@ -222,12 +223,12 @@
                   $scope.selectedShippingCountry = ($scope.OrderDetails.shipping_country_id == null || $scope.OrderDetails.shipping_country_id == '') ? 0 : $scope.OrderDetails.shipping_country_id;
                   $scope.selectedPaymentAddressId = parseInt($scope.OrderDetails.address_id);
                   $scope.selectedAddressShippingId = parseInt($scope.OrderDetails.address_id);
-                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);           
+                  $scope.GetZoneListByCountryPayment($scope.selectedPaymentCountry);
                   //$scope.GetZoneListByCountryShipping($scope.selectedShippingCountry);
                   $scope.selectedPaymentZone = $scope.OrderDetails.payment_zone_id == 0 ? '' : $scope.OrderDetails.payment_zone_id;
                   //$scope.selectedShippingZone = 0;
                   $scope.selectedCustomerGroup = $scope.OrderDetails.customer_group_id;
-                  $scope.selectedStore = $scope.OrderDetails.store_id;    
+                  $scope.selectedStore = $scope.OrderDetails.store_id;
                   $scope.selectedOrderStatus = $scope.OrderDetails.order_status_id;
                   $scope.selctedCurrency = $scope.OrderDetails.currency_id;
                   $scope.GetCustomersByStore($scope.selectedStore);
@@ -247,7 +248,7 @@
             $scope.OrderDetails.currency_id = $scope.selctedCurrency;
             $scope.OrderDetails.customer_id = $scope.selectedCustomer;
             $scope.OrderDetails.customer_group_id = $scope.selectedCustomerGroup;
-            $scope.OrderDetails.store_id = $scope.selectedStore;      
+            $scope.OrderDetails.store_id = $scope.selectedStore;
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_CutomerDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
            .then(function (response) {
                if (response.data == 1) {
@@ -264,10 +265,10 @@
     }
 
     $scope.UpdateOrder_PaymentDetails = function (form) {
-        if (form.$valid) {             
+        if (form.$valid) {
             $scope.OrderDetails.address_id = $scope.selectedPaymentAddressId;
             $scope.OrderDetails.payment_country_id = $scope.selectedPaymentCountry;
-            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;       
+            $scope.OrderDetails.payment_zone_id = $scope.selectedPaymentZone;
             $http.post(configurationService.basePath + "api/OrderApi/UpdateOrder_PaymentDetails?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, $scope.OrderDetails)
             .then(function (response) {
                 if (response.data == 1) {
@@ -316,6 +317,25 @@
          .finally(function () {
 
          });
+    }
+
+
+    $scope.UpdateOrderDate = function (OrderDetailForm) {
+        if (OrderDetailForm.$valid) {
+            $http.post(configurationService.basePath + "api/OrderApi/UpdateOrderDate?OrderId=" + $scope.OrderDetails.order_id + '&OrderDate=' + $scope.OrderDetails.date_added)
+           .then(function (response) {
+               if (response.data > 0) {
+                   toastr.success("Order Date updated successfully.");
+                   getOrderDetails();
+               }
+           })
+            .catch(function (response) {
+
+            })
+             .finally(function () {
+
+             });
+        }
     }
 
     function GetOrderStatus() {

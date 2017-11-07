@@ -42,7 +42,7 @@
              
                if (response.data == 0) {
                    //alert('already exists');
-                   notificationFactory.customError("Language Code is already Exists!!");
+                   notificationFactory.customError("Language Code already Exists!!");
                }
                if (response.data > 0) {
                    notificationFactory.customSuccess("Language Saved Successfully.");

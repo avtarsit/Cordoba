@@ -1,14 +1,13 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="CordobaApp">
-<head>  
+<head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cordoba</title>
 
     @*@Styles.Render("~/bundles/AdminCss")*@
-    @Styles.Render("~/bundles/AdminCss")
+    @Styles.Render("~/bundles/AdminCss?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <link href="~/Content/admin/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="~/content/admin/css/components.css" rel="stylesheet" type="text/css">
     <link href="~/Content/admin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +16,8 @@
     <link href="~/Content/admin/css/colors.css" rel="stylesheet" type="text/css">
     <link href="~/Content/css/toastr.css" rel="stylesheet" type="text/css">
     <link href="~/Content/css/angular-ui-switch.min.css" rel="stylesheet" />
-     
+  
+
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 
@@ -391,7 +391,7 @@
     <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>*@
 
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <script src="~/Scripts/admin/js/core/app.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -413,22 +413,52 @@
     <script src="~/Scripts/angular-star-rating/main.js"></script>
     <script src="~/Scripts/ng-ckeditor.js"></script>
     <script src="~/Scripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
-    @Scripts.Render("~/bundles/appConfig")
-    @Scripts.Render("~/bundles/AdminControllers")
+    @Scripts.Render("~/bundles/appConfig?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
+    @Scripts.Render("~/bundles/AdminControllers?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <script src="~/Scripts/admin/js/plugins/visualization/echarts/echarts.js"></script>
     <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>
     <script src="~/Scripts/jquery.cookiesdirective.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="~/Scripts/canvas2image.js"></script>
     
+    <div class="modal fade" id="Reloadlookup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Cordoba</h4>
+                </div>
+                <div class="wthbox">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">System Updates</h3>
+                        </div>
+                        <div class="panel panel-body">
+                            <div class="row">
+                                <b>
+                                    There have been updated to the system. You will be redirect to login page.<br />
+                                    <span style="color:red;"> Note:  All unsaved changes will be lost.</span>
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="javascript: window.location.reload(false);">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
 <script>
-    $(document).ready(function () {       
+    $(document).ready(function () {
+    
+        ApplicationVersion = '@Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"])';
+
         // Cookie setting script wrapper
         var cookieScripts = function () {
-            // Internal javascript called   
+            // Internal javascript called
             // Loading external javascript file
             $.cookiesDirective.loadScript({
                 uri: 'external.js',
@@ -437,23 +467,23 @@
         }
 
         /* Call cookiesDirective, overriding any default params
-		
+
 			*** These are the defaults ***
 				explicitConsent: true,
 				position: 'top',
 				duration: 10,
 				limit: 0,
-				message: null,				
+				message: null,
 				cookieScripts: null,
 				privacyPolicyUri: 'privacy.html',
-				scriptWrapper: function(){},	
+				scriptWrapper: function(){},
 				fontFamily: 'helvetica',
 				fontColor: '#FFFFFF',
 				fontSize: '13px',
 				backgroundColor: '#000000',
 				backgroundOpacity: '80',
 				linkColor: '#CA0000'
-				
+
 		*/
 
         $.cookiesDirective({
@@ -468,10 +498,16 @@
 
 
         $(".dropdown-toggle").dropdown();
+
+
+        /// Versioning Code
+
+
     });
 
-    function UnderMaintenance() {     
+    function UnderMaintenance() {
         alert('this page is under maintenance!');
     }
+
 
 </script>

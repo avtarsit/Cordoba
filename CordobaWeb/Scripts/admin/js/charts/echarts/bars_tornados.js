@@ -672,7 +672,7 @@ $(function () {
                         },
                         saveAsImage: {
                             show: true,
-                            title: 'Same as image',
+                            title: 'Save as image',
                             lang: ['Save']
                         }
                     }

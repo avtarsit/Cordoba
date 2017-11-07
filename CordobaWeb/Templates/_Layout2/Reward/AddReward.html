@@ -4,7 +4,7 @@
         <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==2" ng-repeat="Item in Customers" ng-init="">
             <div class="block-bg pt-15 pb-15">
                 <div class="col-sm-4">
-                    <img ng-src="{{Item.CustomerImage}}" class="img-thumbnail" alt="Image" />
+                    <img ng-src="{{Item.CustomerImage}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="img-thumbnail" alt="Image" />
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>
@@ -41,7 +41,7 @@
         <div class="col-sm-6 col-xs-12 mb-30" ng-if="reward_type_id==1" ng-repeat="Item in Customers">
             <div class="block-bg pt-15 pb-15">
                 <div class="col-sm-4">
-                    <img ng-src="{{Item.CustomerImage}}" class="img-thumbnail" alt="image" />
+                    <img ng-src="{{Item.CustomerImage}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" class="img-thumbnail" alt="image" />
                 </div>
                 <div class="col-sm-8">
                     <p class="emp-name">{{Item.customer}}</p>

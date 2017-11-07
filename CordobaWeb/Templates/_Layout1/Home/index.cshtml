@@ -6,7 +6,7 @@
                 <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
                     <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade',auto:true,autoStart: true">
                         <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
-                            <img ng-src="{{Banner.Image}}" alt="Slider banner" height="355" width="1115" />
+                            <img ng-src="{{Banner.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Slider banner" height="355" width="1115" />
                         </li>
                     </ul>
                 </div>
@@ -20,7 +20,7 @@
                             <div class="row best-seller" data-bx-slider="pager:false,nextText:'',prevText:''">
                                 <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
                                     <div class="col-xs-4">
-                                        <img class="full-width" ng-src="{{BestSeller.Image}}" alt="seller" style="max-height:100px"/>
+                                        <img class="full-width" ng-src="{{BestSeller.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="seller" style="max-height:100px"/>
                                     </div>
                                     <div class="col-xs-8">
                                         <a href="" ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" class="seller-desc" ng-bind="BestSeller.name"></a>
@@ -49,7 +49,7 @@
                         <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
                             <div class="media col-sm-12" ng-repeat="rewardWinner in RewardWinners" data-notify-when-repeat-finished>
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" alt="deals" />
+                                    <img class="media-object" ng-src="{{rewardWinner.Customer_img}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading" ng-bind="rewardWinner.Title"></h4>
@@ -76,7 +76,7 @@
                         <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">
                             <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
+                                    <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
                                 </div>
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind-html="HotDeals.name"></a>
@@ -103,7 +103,7 @@
                         <div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 3,maxSlides: 2,mode: 'vertical' ">
                             <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.Image}}" alt="deals" />
+                                    <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
                                 </div>
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name | limitTo:27" title="{{HotDeals.name}}"></a>
@@ -130,7 +130,7 @@
                     <div class="col-sm-3 text-center pb-20" ng-repeat="PopularCategory in PopularCategoryList">
                         <div class="row">
                             <div class="col-sm-12">
-                                <img ng-src="{{PopularCategory.image}}" alt="Img" />
+                                <img ng-src="{{PopularCategory.image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Img" />
                             </div>
                             <a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:PopularCategory.category_Id})" ng-bind-html="PopularCategory.name"></a>
                         </div>
@@ -173,7 +173,7 @@
                             <div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical',stopAuto: false">
                                 <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
                                     <div class="media-left">
-                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" alt="special Offer" />
+                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
                                         <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo:35" title="{{SpecialOffer.name}}"></a>
@@ -203,7 +203,7 @@
                             <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
                                 <div class="product-block">
                                     <div class="product-img">
-                                        <img ng-src='{{LatestProduct.Image}}' alt="latest product" />
+                                        <img ng-src='{{LatestProduct.Image}}' onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="latest product" />
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
                                     <p ng-bind="LatestProduct.Model| limitTo:15" title="{{LatestProduct.Model}}"></p>

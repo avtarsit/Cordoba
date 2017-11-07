@@ -156,7 +156,7 @@
                             },
                             saveAsImage: {
                                 show: true,
-                                title: 'Same as image',
+                                title: 'Save as image',
                                 lang: ['Save']
                             }
                         }
@@ -267,7 +267,7 @@
                             },
                             saveAsImage: {
                                 show: true,
-                                title: 'Same as image',
+                                title: 'Save as image',
                                 lang: ['Save']
                             }
                         }
@@ -344,7 +344,7 @@
                                 type: ['bar', 'line']
                             },
                             restore: { show: true, title: 'Restore' },
-                            saveAsImage: { show: true, title: 'Same as image' }
+                            saveAsImage: { show: true, title: 'Save as image' }
                         }
                     },
                     calculable: false,
@@ -425,7 +425,7 @@
                                 type: ['bar', 'line']
                             },
                             restore: { show: true, title: 'Restore' },
-                            saveAsImage: { show: true, title: 'Same as image' }
+                            saveAsImage: { show: true, title: 'Save as image' }
                         }
                     },
                     calculable: false,

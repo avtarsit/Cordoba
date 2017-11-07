@@ -163,7 +163,7 @@
                                 },
                                 saveAsImage: {
                                     show: true,
-                                    title: 'Same as image',
+                                    title: 'Save as image',
                                     lang: ['Save']
                                 }
                             }
@@ -275,7 +275,7 @@
                                 },
                                 saveAsImage: {
                                     show: true,
-                                    title: 'Same as image',
+                                    title: 'Save as image',
                                     lang: ['Save']
                                 }
                             }
@@ -350,7 +350,7 @@
                                     type: ['bar', 'line']
                                 },
                                 restore: { show: true, title: 'Restore' },
-                                saveAsImage: { show: true, title: 'Same as image' ,  lang: ['Save'] }
+                                saveAsImage: { show: true, title: 'Save as image' ,  lang: ['Save'] }
                             }
                         },
                         calculable: false,
@@ -430,7 +430,7 @@
                                     type: ['bar', 'line']
                                 },
                                 restore: { show: true, title: 'Restore' },
-                                saveAsImage: { show: true, title: 'Same as image', lang: ['Save'] }
+                                saveAsImage: { show: true, title: 'Save as image', lang: ['Save'] }
                             }
                         },
                         calculable: false,
@@ -731,6 +731,22 @@
 
         });
     }
+
+    
+    $interval(function () { CheckVersionNumber(); }, 3000);
+    function CheckVersionNumber() {
+        $.ajax({
+            method: "GET",
+            url: "Home/CheckVersionNumber",
+            async: false,
+            success: function (data) {
+                if (data != ApplicationVersion) {
+                    angular.element("#Reloadlookup").modal('show');
+                }
+            }
+
+        })
+    };
 
 
     $scope.getActivityList();

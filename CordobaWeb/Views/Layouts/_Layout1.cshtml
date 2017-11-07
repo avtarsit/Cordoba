@@ -6,82 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title ng-bind="storeName"></title>
 
-    @Styles.Render("~/bundles/Layout1CSS")
+    @Styles.Render("~/bundles/Layout1CSS?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <link href="~/Content/layout1/css/ContactUs.min.css" rel="stylesheet" />
 
     <style>
          @Html.Raw(HttpContext.Current.Session["CssOverride"].ToString());
     </style>
 
-    @Styles.Render("~/bundles/Layout1CSS")  
-       
+    @Styles.Render("~/bundles/Layout1CSS?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
+
     @if (Convert.ToString(HttpContext.Current.Session["css_file_name"]) != "")
     {
         @Styles.Render("~/Content/layout1/storecss/" + Convert.ToString(HttpContext.Current.Session["css_file_name"]))
-    }          
+    }
     <style>
      @Html.Raw(Convert.ToString(HttpContext.Current.Session["CssOverride"]))
     </style>
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
     <style>
-            .spinner div {
-                /*top: 0;
+        .spinner div {
+            /*top: 0;
         right: 0;
         bottom: 0;
         left: 0;*/
-                z-index: 999999;
-                opacity: 0.8;
-                background-color: black;
-                width: 20px;
-                height: 20px;
-                position: fixed;
-                left: -20px;
-                top: 40px;
-                border-radius: 50%;
-                animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+            z-index: 999999;
+            opacity: 0.8;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            left: -20px;
+            top: 40px;
+            border-radius: 50%;
+            animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+        }
+
+            .spinner div:nth-child(2) {
+                animation-delay: 150ms;
             }
 
-                .spinner div:nth-child(2) {
-                    animation-delay: 150ms;
-                }
-
-                .spinner div:nth-child(3) {
-                    animation-delay: 300ms;
-                }
-
-                .spinner div:nth-child(4) {
-                    animation-delay: 450ms;
-                }
-
-            #greenDot {
-                background-color: green;
+            .spinner div:nth-child(3) {
+                animation-delay: 300ms;
             }
 
-            #yellowDot {
-                background-color: yellow;
+            .spinner div:nth-child(4) {
+                animation-delay: 450ms;
             }
 
-            #redDot {
-                background-color: red;
+        #greenDot {
+            background-color: green;
+        }
+
+        #yellowDot {
+            background-color: yellow;
+        }
+
+        #redDot {
+            background-color: red;
+        }
+
+        #blueDot {
+            background-color: blue;
+        }
+
+        @@keyframes move {
+            0% {
+                left: 0%;
             }
 
-            #blueDot {
-                background-color: blue;
+            40% {
+                left: 100%;
             }
 
-            @@keyframes move {
-                0% {
-                    left: 0%;
-                }
-
-                40% {
-                    left: 100%;
-                }
-
-                100% {
-                    left: 100%;
-                }
+            100% {
+                left: 100%;
             }
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -92,6 +92,7 @@
 </head>
 <body>
     <div ng-controller="DashboardController" ng-cloak>
+        <input type="hidden" value="false" id="IsFromAdmin" />
         <div class="header navbar-fixed-top">
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
@@ -100,7 +101,7 @@
                         <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                         <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>
                         <li ng-if="!(CustomerDetail.customer_id>0)">
-                            <a href="" ng-click="OpenLoginPopUp()">Login</a>
+                            <a href="" id="lnkLoginPopUp" ng-click="OpenLoginPopUp()">Login</a>
                         </li>
                         <li ng-if="CustomerDetail.customer_id>0">
                             <p class="hi-text">Hi</p>
@@ -125,7 +126,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" /></a>
+                        <a class="navbar-brand" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo" /></a>
                     </div>
                     <div class="main-menu">
                         <div class="search-panel">
@@ -172,7 +173,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
-                        <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" alt="Logo" style="max-height:60px"></a>
+                        <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo" style="max-height:60px"></a>
                     </div>
                     <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
                         <div class="row">
@@ -182,11 +183,6 @@
                                     <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                     <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
                                     <li><a href="" class="cursor-pointer" ui-sref="ContactUs">Contact Us</a></li>
-                                    <li class="pull-right">
-                                        <a href="#" class="cursor-pointer" id="fbIcon">
-                                            <img src="~/Content/Images/fb_ico.png" />
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -246,7 +242,7 @@
                                     <h2>Login</h2>
                                     <div class="form-group pt-20">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" name="EmailAddress" id="email" placeholder="Enter email" ng-model="CustomerObj.email" required="required">
+                                        <input type="email" class="form-control" name="EmailAddress" id="email" placeholder="Enter email" ng-model="CustomerObj.email" required="required" ng-blur="validateEmailaddress()">
                                         <p class="text-danger validationErrors" ng-show="loginForm.$submitted && (!loginForm.$valid) && (loginForm.EmailAddress.$error.required || loginForm.EmailAddress.$error.email)">Enter valid email id!</p>
                                     </div>
                                     <div class="form-group">
@@ -302,14 +298,54 @@
                                     <input type="hidden" class="form-control" name="email" id="email">
                                     <div class="form-group pt-20">
                                         <label for="otp">Password:</label>
-                                        <input type="text" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="password" id="otp" placeholder="Enter Password" ng-model="otpObj.password" min="0" max="6" required="required">
                                         <label for="otp">Confirm Password:</label>
-                                        <input type="text" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
+                                        <input type="password" class="form-control" name="confirmPasssword" id="otp" placeholder="Confirm Password" ng-model="otpObj.confirmPassword" min="0" max="6" required="required">
 
                                         <p class="text-danger validationErrors" ng-show="ChangePasswordForm.$submitted && (!otpObj.$valid) && (otpObj.password != otpObj.confirmPassword)">Password does not match</p>
                                     </div>
                                     <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.password != otpObj.confirmPassword" ng-click="ChangePassword(ChangePasswordForm)">Submit</button>
 
+                                </div>
+                            </form>
+                            
+                            @*Reset Password for first time visited customer*@
+                            <form name="FirstTimeVisiteForm" id="FirstTimeVisiteForm" class="form-horizontal" ng-hide="IsVisibleFirstTimeVisiteForm" novalidate>
+                                <div class="login_page">
+                                    <input type="hidden" class="form-control" name="email" id="email">
+                                    <div class="form-group pt-20">
+                                        <p>Hi .... </p>
+                                        <p>
+                                            Welcome to new platform of {{StoreDetailInSession.name}}store.com We are here to serve you with better user experience. For security reason to access the store, we need your co-operation to set the secured password.
+                                            Pressing on NEXT button will provide you acess for setup new password.
+                                        </p>
+                                        <p>
+                                            Thanks.<br />
+                                            {{StoreDetailInSession.name}}store.com
+                                        </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-4 text-center" ng-click="OpenResetPasswordForm()">NEXT</button>
+                                </div>
+                            </form>
+
+                            @*Reset Password with OTP cerification*@
+                            <form name="ResetPassForm" id="ResetPassForm" class="form-horizontal" ng-hide="IsVisibleResetPassswordForm" novalidate>
+                                <div class="login_page">
+                                    @*<input type="hidden" class="form-control" name="email" id="emailreset">*@
+                                    <div class="form-group pt-20">
+                                        <p>Kindly check your email that contains OTP.</p>
+                                        <label for="otp">OTP:</label>
+                                        <input type="text" class="form-control" name="otpreset" id="otpreset" placeholder="Enter OTP" ng-model="resetObj.otp" min="0" max="6" required="required">
+                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!ResetPassForm.$valid) && (ResetPassForm.otpreset.$error.required || ResetPassForm.otpreset.$error.otp)">Enter valid OTP!</p>
+
+                                        <label for="otp">Password:</label>
+                                        <input type="password" class="form-control" name="password" id="pass" placeholder="Enter Password" ng-model="resetObj.password" min="0" max="6" required="required">
+                                        <label for="otp">Confirm Password:</label>
+                                        <input type="password" class="form-control" name="confirmPasssword" id="cnfirmpass" placeholder="Confirm Password" ng-model="resetObj.confirmPassword" min="0" max="6" required="required">
+                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!resetObj.$valid) && (resetObj.password != resetObj.confirmPassword)">Password does not match</p>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="resetObj.password != resetObj.confirmPassword" ng-click="ResetPassword(ResetPassForm)">Submit</button>
                                 </div>
                             </form>
 
@@ -351,9 +387,9 @@
         <!-- Terms and Condition popup -->
     </div>
 
-    @Scripts.Render("~/bundles/Layout1Js")
+    @Scripts.Render("~/bundles/Layout1Js?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     <script src="~/Scripts/jquery-ui.min.js"></script>
-    @*@Scripts.Render("~/bundles/angular")*@    
+    @*@Scripts.Render("~/bundles/angular")*@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/angular-dragdrop.min.js"></script>
@@ -366,14 +402,16 @@
     <script src="~/Scripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
 
     <script src="~/Scripts/ng-ckeditor.js"></script>
-    @Scripts.Render("~/bundles/appConfig")
-    @Scripts.Render("~/bundles/LayoutControllers")
+    @Scripts.Render("~/bundles/appConfig?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
+    @Scripts.Render("~/bundles/LayoutControllers?v=" + @Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]))
     @*<script src="~/Scripts/jquery.twbsPagination.min.js"></script>*@
 
     <script type="text/javascript">
         $(document).ready(function () {        
 
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
+
+            ApplicationVersion = '@Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"])';
 
             $(".category-list, #aboutScroll").mCustomScrollbar();
             $(".showDesc").click(function () {
@@ -500,6 +538,37 @@
         }
 
     </script>
+
+    <div class="modal fade" id="Reloadlookup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Cordoba Store</h4>
+                </div>
+                <div class="wthbox">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">System Updates</h3>
+                        </div>
+                        <div class="panel panel-body">
+                            <div class="row">
+                                <b>
+                                    There have been updated to the system. Click OK to refresh the page.<br />
+                                    <span style="color:red;"> Note:  All unsaved changes will be lost.</span>
+                                    <br /><br />
+                                    Click Later to go back and save all changes first.
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="javascript: window.location.reload(false);">OK</button>
+                        <button type="button" class="btn btn-default" onclick="javascript: angular.element('#Reloadlookup').modal('hide');">LATER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

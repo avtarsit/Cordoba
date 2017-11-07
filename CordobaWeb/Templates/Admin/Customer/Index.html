@@ -1,5 +1,6 @@
 ﻿
 <div ng-controller="ShowCustomerController">
+
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -17,8 +18,8 @@
             </ul>
             <ul class="breadcrumb-elements">
                 <li><button type="button" class="btn btn-primary btn-md" data-placement="top" data-toggle="tooltip" title="Add Customer" ui-sref="ManageCustomer"><i class="glyphicon glyphicon-plus-sign position-left"></i> Create</button></li>
-             
-                 <li> &nbsp;<button type="button" class="btn btn-success btn-md" data-placement="top" data-toggle="tooltip" title="Export Customer Data" ng-click="CustomerExportToExcel()"> Export<i class="icon-arrow-right14 position-right"></i></button></li>
+
+                <li> &nbsp;<button type="button" class="btn btn-success btn-md" data-placement="top" data-toggle="tooltip" title="Export Customer Data" ng-click="CustomerExportToExcel()"> Export<i class="icon-arrow-right14 position-right"></i></button></li>
             </ul>
         </div>
     </div>
@@ -105,6 +106,7 @@
                                 <th>IP</th>
                                 <th>Store</th>
                                 <th>Created Date</th>
+                                <th class="text-center">Create Order</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -137,16 +139,98 @@
             </div>
         </div>
     </div>
+
+    <!-- Create Order popup -->
+    <div class="modal fade" id="DivCreateOrderModel" style="width:1000px;overflow:scroll" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title" id="myModalLabel">Store - {{StoreName}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="LoginFrame" ng-src="{{CreatedOrderUrl | trusted}}"
+                                height="100%" width="100%" scrolling="true" target="_parent" onload="resize()"
+                                data-attr-IsFromAdmin="{{IsFromAdmin || 0}}" data-attr-Email="{{Email}}"></iframe>
+                        <!--<form name="CreateOrderForm" id="CreateOrderForm" class="form-horizontal" novalidate>
+                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Create Order popup -->
 </div>
+<style type="text/css">
+    #DivCreateOrderModel .modal-dialog {
+        margin-left: 60px;
+        min-width: 1350px;
+    }
 
+    #DivCreateOrderModel .modal-content {
+        width: 1350px;
+        max-width: 1400px;
+    }
 
+    #DivCreateOrderModel .modal-body {
+        height: 600px;
+        width: 1350px;
+    }
 
+    .modal-header .close {
+        position: absolute;
+        top: 12px;
+        right: 11px;
+        background: url(/Content/images/ic-close.png) no-repeat;
+        width: 24px;
+        height: 24px;
+    }
 
+    div#DivCreateOrderModel iframe {
+        width: 100%;
+    }
 
+    #DivCreateOrderModel{
+        overflow:scroll;
+    }
 
+    body {
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
 
+    .modal.fade.in {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
 
+<script>
+    $(window).resize(function () {
+        resize();
+    });
 
+    window.addEventListener('message', function (e) {
+        var iframe = $("#LoginFrame");
+        var divCreateModel = $('#DivCreateOrderModel .modal-content');
+        var eventName = e.data[0];
+        var data = e.data[1];
+        switch (eventName) {
+            case 'setWidth':
+                iframe.width(data - 130);
+                divCreateModel.width(data - 100);
+                break;
+        }
+    }, false);
 
-
+    function resize() {
+        var width = document.getElementsByTagName("html")[0].scrollWidth;
+        window.parent.postMessage(["setWidth", width], "*");
+    }
+</script>

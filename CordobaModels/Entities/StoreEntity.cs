@@ -50,5 +50,6 @@ namespace CordobaModels.Entities
         public string layout { get; set; }
         public int? banner_id { get; set; }
         public string catalougeIdCsv { get; set; }
+        public string no_image_path { get; set; }
     }
 }

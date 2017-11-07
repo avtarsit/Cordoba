@@ -515,6 +515,7 @@
     <Content Include="Content\Images\error-img.png" />
     <Content Include="Content\Images\fb_ico.png" />
     <Content Include="Content\Images\gold.png" />
+    <Content Include="Content\Images\ic-close.png" />
     <Content Include="Content\Images\icons84d1.png" />
     <Content Include="Content\Images\Loading.gif" />
     <Content Include="Content\Images\manufacture.jpg" />

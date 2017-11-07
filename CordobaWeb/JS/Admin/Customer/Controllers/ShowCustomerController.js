@@ -1,11 +1,11 @@
-﻿app.controller('ShowCustomerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ShowCustomerController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, $sce, localStorageService) {
     //#region CallGlobalFunctions
-
+    
     decodeParams($stateParams);
     BindToolTip();
     Tab();
 
-    $scope.StoreId = $rootScope.storeId; 
+    $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.IsStoreDropDownEnabled = false;
     createDatePicker();
@@ -22,14 +22,14 @@
     $scope.CustomerFilter.ip = "";
     $scope.CustomerFilter.date_added = "";
     $scope.CustomerFilter.storeId = $scope.StoreId;
-    
+
 
     if ($stateParams.CustomerApproved != undefined && $stateParams.CustomerApproved != null) {
         $scope.CustomerFilter.approved = $stateParams.CustomerApproved;
     }
 
     //#endregion  
-    
+
 
     function BindSearchCriteria(aoData) {
 
@@ -52,9 +52,9 @@
     }
 
 
-    $scope.GetCustomerList = function () {  
+    $scope.GetCustomerList = function () {
         //$scope.CustomerFilter = new Object();
-       
+
         if ($.fn.DataTable.isDataTable("#tblCustomer")) {
             $('#tblCustomer').DataTable().destroy();
         }
@@ -75,7 +75,7 @@
             "sAjaxDataProp": "aaData",
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/CustomerApi/GetCustomerList',
-            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {       
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
                 aoData = BindSearchCriteria(aoData);
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblCustomer').DataTable().page.info().page) + 1;
@@ -101,12 +101,19 @@
                 { "mData": "ip", "bSortable": true },
                 { "mData": "store_name", "bSortable": true },
                 //{ "mData": "customer_group_name", "bSortable": true },
-                   
+
                 {
                     "mData": "date_added", "bSortable": true
                   , "render": function (data, type, row) {
                       return $filter('date')(data, $rootScope.GlobalDateFormat);
-                }
+                  }
+                },
+                {
+                    "mData": null, "bSortable": true,
+                    "sClass": "action text-center",
+                    "render": function (data, type, row) {
+                        return '<a ng-click="OpenCreatOrderPopup($event)"><i class="glyphicon glyphicon-plus-sign position-left cursor-pointer" title="Create Order"></i></a>'
+                    }
                 },
                 {
                     "mData": null, "bSortable": false,
@@ -213,9 +220,9 @@
     function GetStoreList() {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
-              if (response.data.length > 0) {          
+              if (response.data.length > 0) {
                   $scope.StoreList = response.data;
-                  $scope.CustomerFilter.storeId = $scope.StoreId;             
+                  $scope.CustomerFilter.storeId = $scope.StoreId;
               }
           })
       .catch(function (response) {
@@ -233,8 +240,18 @@
 
     }
 
+    $scope.OpenCreatOrderPopup = function ($event) {
+        var table = $('#tblCustomer').DataTable();
+        var row = table.row($($event.target).parents('tr')).data();
+        angular.element("#DivCreateOrderModel").modal('show');
+        $scope.CreatedOrderUrl = $sce.trustAsResourceUrl(row.localhosturl) + "/#/Home" + "?IsFromAdmin=" + Encodestring(true) + "&Email=" + Encodestring(row.email);
+        $scope.Email = row.email;
+        $scope.IsFromAdmin = true;
+        $scope.StoreName = row.store_name;
+    }
+
     function Init() {
-      
+
         GetCustomerGroupList();
         GetStoreList();
         $scope.GetCustomerList();

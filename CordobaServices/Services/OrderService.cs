@@ -87,10 +87,10 @@ namespace CordobaServices.Services
                ,new SqlParameter("LoggedInUserId",LoggedInUserId)
                ,new SqlParameter("OrderBy",sortColumn)
                ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10 )
-               ,new SqlParameter("PageIndex", filter != null ? filter.PageIndex : 1) 
-               ,new SqlParameter("PageFrom",PageFrom) 
-               ,new SqlParameter("orderId ",orderId!=null?orderId:0) 
-               ,new SqlParameter("order_status_id ",order_status_id!=null?order_status_id:0) 
+               ,new SqlParameter("PageIndex", filter != null ? filter.PageIndex : 1)
+               ,new SqlParameter("PageFrom",PageFrom)
+               ,new SqlParameter("orderId ",orderId!=null?orderId:0)
+               ,new SqlParameter("order_status_id ",order_status_id!=null?order_status_id:0)
                ,new SqlParameter("customer ",CustomerName!=null?CustomerName:(object)DBNull.Value) 
                //,new SqlParameter("total ",total!=null?total:0)
                ,new SqlParameter("dateAdded ",DateAdded!=null?DateAdded:(object)DBNull.Value)
@@ -261,6 +261,7 @@ namespace CordobaServices.Services
                 var paramtelephone = new SqlParameter { ParameterName = "telephone", DbType = DbType.String, Value = objOrderEntity.telephone };
                 var paramfax = new SqlParameter { ParameterName = "fax", DbType = DbType.String, Value = objOrderEntity.fax };
                 var paramorder_id = new SqlParameter { ParameterName = "order_id", DbType = DbType.Int32, Value = objOrderEntity.order_id };
+                var paramdate_added = new SqlParameter { ParameterName = "date_added", DbType = DbType.DateTime, Value = objOrderEntity.date_added == null ? (object)DBNull.Value : objOrderEntity.date_added };
                 var list = objGenericRepository.ExecuteSQL<int>("UpdateOrder_CutomerDetails", ParameterLoggedInUserId, paramstore_id, paramcurrency_id, paramcustomer_id, paramcustomer_group_id,
                     paramfirstname, paramlastname, paramemail,
                     paramtelephone, paramfax, paramorder_id).FirstOrDefault();
@@ -410,10 +411,29 @@ namespace CordobaServices.Services
                 };
 
                 var result = objGenericRepository.ExecuteSQL<int>("UpdateOrderStatusDetail", sqlParameter).FirstOrDefault();
-                if(result > 0 )
+                if (result > 0)
                 {
                     SendOrderUpdateMailToCustomer(OrderId);
                 }
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int UpdateOrderDate(int OrderId, DateTime OrderDate)
+        {
+            try
+            {
+                var sqlParameter = new SqlParameter[]{
+                    new SqlParameter("OrderId", OrderId),
+                    new SqlParameter("OrderDate", OrderDate)
+                };
+
+                var result = objGenericRepository.ExecuteSQL<int>("UpdateOrderDate", sqlParameter).FirstOrDefault();
                 return result;
 
             }
@@ -463,7 +483,7 @@ namespace CordobaServices.Services
 
 
             priceTableString = priceTableString +
-                // ReSharper disable once PossibleNullReferenceException
+               // ReSharper disable once PossibleNullReferenceException
                @"<tr style='font-weight:bold;height:25px;'>
                                      <td   style='text-align:left;border-top: 1px solid #ddd; width:50%;'>Total</td><td style='text-align:center;border-top: 1px solid #ddd;width:15%;'></td><td style='text-align:right;border-top: 1px solid #ddd;width:35%;'>" + (orderItemDetailsRecord != null ? orderItemDetailsRecord.total.ToString() : "") + "</td></tr>";
 

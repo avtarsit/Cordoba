@@ -284,6 +284,19 @@ namespace CordobaAPI.API
         }
 
 
+        [HttpPost]
+        public HttpResponseMessage UpdateOrderDate(int OrderId, DateTime OrderDate)
+        {
+            try
+            {
+                var result = _orderService.UpdateOrderDate(OrderId, OrderDate);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
     }
 }

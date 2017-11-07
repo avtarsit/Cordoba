@@ -17,18 +17,17 @@ using System.Web.Optimization;
 
 
 namespace CordobaWeb.Controllers
-{   
+{
+
     public class HomeController : Controller
     {
-      
+
         public ActionResult Index()
         {
             var masterView = View();
-            string baseUrl =Convert.ToString(Request.Url);
             try
             {
                 var Result = GetStoreDetailByUrl(Request.Url.Authority);
-            
                 switch (Result.template.ToLower())
                 {
                     case "admin":
@@ -47,20 +46,21 @@ namespace CordobaWeb.Controllers
                 ProjectSession.StoreSession = Result;
                 Session.Add("CssOverride", Result.css_overrides);
                 Session.Add("css_file_name", Result.css_file_name);
-                masterView.ViewData["baseUrl"] = baseUrl;
+
                 return masterView;
 
             }
             catch (Exception)
             {
                 throw;
-            }           
+            }
+
         }
 
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";       
+            ViewBag.Message = "Your application description page.";
             return View();
         }
 
@@ -109,7 +109,14 @@ namespace CordobaWeb.Controllers
             userDetail = ProjectSession.AdminLoginSession;
             return Json(userDetail, JsonRequestBehavior.AllowGet);
         }
-    }
 
-  
+        [System.Web.Mvc.AllowAnonymous]
+        public string CheckVersionNumber()
+        {
+            string str = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]);
+
+            return str;
+
+        }
+    }
 }

@@ -31,3 +31,9 @@ app.filter('htmlToPlaintext', function () {
         return angular.element(text).text();
     }
 });
+
+app.filter('trusted', ['$sce', function ($sce) {
+    return function (url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+}]);

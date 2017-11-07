@@ -4,7 +4,7 @@
     BindToolTip();
     Tab();
     //#endregion  
-    
+
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
     $scope.IsSendEmail = false;
@@ -31,15 +31,13 @@
     }
 
 
- 
-    $scope.PointsImporter =function()
-    {
-        if ($scope.store_id == '' || $scope.files==undefined)
-        {
+
+    $scope.PointsImporter = function () {
+        if ($scope.store_id == '' || $scope.files == undefined) {
             toastr.error("Select Store & file");
             return;
         }
-            
+
         var fd = new FormData();
         for (var i in $scope.files) {
             fd.append("uploadedFile", $scope.files[i]);
@@ -56,29 +54,32 @@
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
-                
+
                 if (xhr.status == 200) {
-                    var invalidEmails = JSON.parse(xhr.response);
-                    //console.log(invalidEmails[0]["invalidEmail"])
-                    if (invalidEmails[0]["invalidEmail"])
-                    {
-                        var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"].substring(0, invalidEmails[0]["invalidEmail"].length - 1) + "</p>";
-                        bootbox.dialog({
-                            message: uploadHtml,
-                            title: "Alert",
-                            buttons: {
-                                success: {
-                                    label: "Ok",
-                                    className: "btn btn-info",
-                                    //callback: function () {
-                                    //    uploadUserImage();
-                                    //}
+                    if (xhr.response == "0") {
+                        toastr.error("Records Not found!");
+                    } else {
+                        var invalidEmails = JSON.parse(xhr.response);
+                        //console.log(invalidEmails[0]["invalidEmail"])
+                        if (invalidEmails[0]["invalidEmail"]) {
+                            var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"].substring(0, invalidEmails[0]["invalidEmail"].length - 1) + "</p>";
+                            bootbox.dialog({
+                                message: uploadHtml,
+                                title: "Alert",
+                                buttons: {
+                                    success: {
+                                        label: "Ok",
+                                        className: "btn btn-info",
+                                        //callback: function () {
+                                        //    uploadUserImage();
+                                        //}
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
+                        toastr.success("File Successfully Submitted.");
+                        $("#upload").val(null);
                     }
-                    toastr.success("File Successfully Submitted.");
-                    $("#upload").val(null);
                 } else {
                     $scope.$apply(function () {
                         $scope.progress = "Improper data in file";
@@ -100,8 +101,7 @@
 
     $scope.setFiles = function (element) {
         checkfile(element);
-        if (!checkfile(element))
-        {
+        if (!checkfile(element)) {
             return;
         }
         $scope.$apply(function ($scope) {
@@ -151,7 +151,7 @@
     }
 
 
-        
+
 
     GetStoreList();
 });

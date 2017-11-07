@@ -42,8 +42,7 @@ namespace CordobaServices.Services
         //Send mail
         public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment)
         {
-
-           recipient=Convert.ToString(ConfigurationManager.AppSettings["emailTo"]);
+            recipient = ConfigurationManager.AppSettings["emailTo"];
             if (string.IsNullOrEmpty(recipient))
             {
                 return true;
@@ -91,7 +90,7 @@ namespace CordobaServices.Services
             //    }
             //}
 
-            //mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
+            mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
 
             // Set the subject of the mail message 
             mailMessage.Subject = subject;
@@ -150,6 +149,24 @@ namespace CordobaServices.Services
         public bool SendOTPEmail(string email, string otp, string name, string store_name, string logopath)
         {
             const string strSubject = "Verify Email";
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
+            var strbody = ReadTextFile(filepath);
+
+            if (strbody.Length <= 0)
+                return false;
+
+            strbody = strbody.Replace("##name##", name);
+            strbody = strbody.Replace("##OTP##", otp);
+            strbody = strbody.Replace("##StoreName##", store_name);
+            strbody = strbody.Replace("##LogoPath##", logopath);
+
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
+        }
+
+        public bool SendResetPassOTPEmail(string email, string otp, string name, string store_name, string logopath)
+        {
+            const string strSubject = "Reset Password";
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
             var strbody = ReadTextFile(filepath);

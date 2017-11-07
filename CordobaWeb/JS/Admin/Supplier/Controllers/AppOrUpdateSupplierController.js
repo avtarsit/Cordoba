@@ -39,7 +39,7 @@
       
                if (response.data == 0) {
                    //alert('already exists');
-                   notificationFactory.customError("Supplier Name is already Exists!!");
+                   notificationFactory.customError("Supplier Name already Exists!!");
                }
                if (response.data >0) {
                    notificationFactory.customSuccess("Supplier Saved Successfully.");

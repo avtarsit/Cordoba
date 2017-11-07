@@ -32,7 +32,7 @@
                         $state.go('ShowProductCatalogue');
                     }
                     else if (response.data == -1) {
-                        notificationFactory.customError("Product Catalogue name is already Exists!");
+                        notificationFactory.customError("Product Catalogue name already Exists!");
                     }
                 })
                 .catch(function (response) {

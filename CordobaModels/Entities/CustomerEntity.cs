@@ -57,6 +57,8 @@ namespace CordobaModels.Entities
         public string Image { get; set; }
         public string dept_name { get; set; }
         public int? customerImage_Id { get; set; }
+        public string localhosturl { get; set; }
+        public bool IsFromAdmin { get; set; }
     }
 }
         
