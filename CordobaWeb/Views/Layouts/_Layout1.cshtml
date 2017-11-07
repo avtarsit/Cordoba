@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html ng-app="CordobaApp" lang="en">
-<head>
+<head>  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -407,7 +407,8 @@
     @*<script src="~/Scripts/jquery.twbsPagination.min.js"></script>*@
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {        
+
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
 
             ApplicationVersion = '@Html.Raw(System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"])';

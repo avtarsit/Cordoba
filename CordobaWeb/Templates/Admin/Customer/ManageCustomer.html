@@ -51,6 +51,7 @@
                                                 <li ng-show="form.EmailAddress.$error.required || form.EmailAddress.$error.email">Email address is Required! OR Email address is not valid.</li>
                                                 <li ng-show="form.Telephone.$error.required">Telephone is required.</li>
                                                 <li ng-show="form.Password.$error.required">Password is required.</li>
+                                                <li ng-show="form.Store.$error.required">Store is required.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -62,10 +63,8 @@
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a data-target="#GenaralTab" role="tab" data-toggle="tab">General</a></li>
                                     <!--<li role="presentation"><a data-target="#HistoryTab" role="tab" data-toggle="tab">History</a></li>-->
-                                    <li role="presentation"><a data-target="#TransactionTab" role="tab" data-toggle="tab">Transactions</a></li>
-                                    <li role="presentation"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Audit Points</a></li>
-
-
+                                    <li role="presentation" ng-show="customer_id>0"><a data-target="#TransactionTab" role="tab" data-toggle="tab">Transactions</a></li>
+                                    <li role="presentation" ng-show="customer_id>0"><a data-target="#RewardPointTab" role="tab" data-toggle="tab">Audit Points</a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -153,7 +152,7 @@
                                                                 <label class="col-lg-2 control-label ">Store</label>
                                                                 <div class="col-lg-9">
                                                                     <select ng-options="store.store_id as store.name  for store in StoreList"
-                                                                            class="form-control" ng-model="CustomerObj.store_id" name="store_List">
+                                                                            class="form-control" ng-model="CustomerObj.store_id" name="Store" required="required">
                                                                         <option value="number:0"> --- Please Select --- </option>
                                                                     </select>
                                                                 </div>

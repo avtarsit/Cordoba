@@ -181,6 +181,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -627,6 +632,8 @@
     <Content Include="Content\layout1\storecss\morechoicerewards.co.uk.min.css" />
     <Content Include="Content\layout1\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
     <Content Include="Content\layout1\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout1\storecss\pgipartners.min.css" />
+    <Content Include="Content\layout1\storecss\PGIPartnersUSA.min.css" />
     <Content Include="Content\layout1\storecss\scccapitalloyalty.co.uk.min.css" />
     <Content Include="Content\layout1\storecss\shoretelrewards.co.uk.min.css" />
     <Content Include="Content\layout1\storecss\shoretelrewards.eu.min.css" />
@@ -684,6 +691,8 @@
     <Content Include="Content\layout2\storecss\morechoicerewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\pgipartners.min.css" />
+    <Content Include="Content\layout2\storecss\PGIPartnersUSA.min.css" />
     <Content Include="Content\layout2\storecss\scccapitalloyalty.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.eu.min.css" />
@@ -3753,6 +3762,10 @@
     <None Include="Properties\PublishProfiles\WEB.pubxml" />
     <Content Include="SampleFile\customer_importer_template.xls" />
     <Content Include="SampleFile\points_importer_template.xls" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -106,8 +106,8 @@
                                     <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
                                 </div>
                                 <div class="media-body">
-                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
-                                    <p ng-bind="HotDeals.Model"></p>
+                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name | limitTo:27" title="{{HotDeals.name}}"></a>
+                                    <p ng-bind="HotDeals.Model |limitTo:10" title="{{HotDeals.Model}}"></p>
                                     <span ng-bind="(HotDeals.points | number:2) +' Points'"></span>
                                 </div>
                                 <div class="add-cart" ng-controller="AddProductToCartController">
@@ -176,8 +176,8 @@
                                         <img class="media-object" ng-src="{{SpecialOffer.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="special Offer" />
                                     </div>
                                     <div class="media-body">
-                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name"></a>
-                                        <p ng-bind="SpecialOffer.Model"></p>
+                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo:35" title="{{SpecialOffer.name}}"></a>
+                                        <p ng-bind="SpecialOffer.Model | limitTo:15" title="{{SpecialOffer.Model}}"></p>
                                         <span ng-bind="(SpecialOffer.points | number:2) +' Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
@@ -206,7 +206,7 @@
                                         <img ng-src='{{LatestProduct.Image}}' onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="latest product" />
                                     </div>
                                     <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
-                                    <p ng-bind="LatestProduct.Model"></p>
+                                    <p ng-bind="LatestProduct.Model| limitTo:15" title="{{LatestProduct.Model}}"></p>
                                     <p><span ng-bind="LatestProduct.points +' Points'"></span></p>
                                     <div class="row" ng-controller="AddProductToCartController">
                                         <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>

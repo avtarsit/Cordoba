@@ -305,7 +305,13 @@
               .then(function (response) {
                   if (response.data > 0) {
                       notificationFactory.customSuccess("Customer Saved Successfully.");
-                      $state.go('Customer');
+                      if ($scope.customer_id>0) {
+                          $state.go('Customer');
+                      }
+                      else {
+                          $state.go('ManageCustomer', ({ 'CustomerId': response.data }));
+                      }
+                    
                   }
               })
           .catch(function (response) {

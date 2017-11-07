@@ -17,14 +17,14 @@
                             </p>
                         </div>
                         <div role="tabpanel" class="form-horizontal" id="messages" style="margin-top:8px">
-                            <div class="alert alert-danger alert-dismissible validationErrors" ng-show="contactForm.$submitted &&(!contactForm.$valid || !captchaValid)">
+                            <div class="alert alert-danger alert-dismissible validationErrors" ng-show="contactForm.$submitted &&(!contactForm.$valid)">
                                 <ul>
                                     <li ng-show="contactForm.FirstName.$error.required">First name is required.</li>
                                     <li ng-show="contactForm.LastName.$error.required">Last name is required.</li>
-                                    <li ng-show="contactForm.Email.$error.required || contactform.Email.$error.email">Email address is not valid.</li>
+                                    <li ng-show="contactForm.Email.$error.required || contactForm.Email.$error.email">Email address is not valid.</li>
                                     <li ng-show="contactForm.Phone.$error.required">Phone is required.</li>
                                     <li ng-show="contactForm.Message.$error.required">Enquiry message is required.</li>
-                                    <li ng-show="!captchaValid">You must complete the antispam verification.</li>
+                                    <!--<li ng-show="!captchaValid">You must complete the antispam verification.</li>-->
                                 </ul>
                             </div>
                         </div>
@@ -44,10 +44,10 @@
                             <label for="id_message">Enquiry<span class="required">*</span> : If your enquiry relates to an order placed on the site, please include your Order Id below:</label>
                             <span class="field"><textarea cols="40" ng-model="contactUsObj.description" rows="5" name="Message" required="required"></textarea></span>
                         </p>
-                        <div class="row half first">
+                        <!--<div class="row half first">
                             <label for="id_tapcha_0">Verify: <span class="required">*</span></label>
                             <div class="g-recaptcha" data-sitekey="6LdVYCoUAAAAAKY0fQMj0adUreM8txNLs59ULs8J"></div>
-                        </div>
+                        </div>-->
 
                         <p class="submit-row">
                             <button type="submit" ng-click="SendContactUsDetail(contactForm)">SEND</button>
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
