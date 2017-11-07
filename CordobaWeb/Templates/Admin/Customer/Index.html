@@ -151,7 +151,7 @@
                     </div>
                     <div class="modal-body">
                         <iframe id="LoginFrame" ng-src="{{CreatedOrderUrl | trusted}}"
-                                height="100%" width="100%" scrolling="true" target="_parent" onload="resize()"
+                                height="100%" width="100%" scrolling="true" target="_parent"
                                 data-attr-IsFromAdmin="{{IsFromAdmin || 0}}" data-attr-Email="{{Email}}"></iframe>
                         <!--<form name="CreateOrderForm" id="CreateOrderForm" class="form-horizontal" novalidate>
                         </form>-->
@@ -191,8 +191,8 @@
         width: 100%;
     }
 
-    #DivCreateOrderModel{
-        overflow:scroll;
+    #DivCreateOrderModel {
+        overflow: scroll;
     }
 
     body {
@@ -212,6 +212,12 @@
 </style>
 
 <script>
+    $(document).ready(function () {
+        $('iframe').bind('onload', function () {
+            alert(123);
+        });
+    });
+
     $(window).resize(function () {
         resize();
     });
@@ -223,8 +229,8 @@
         var data = e.data[1];
         switch (eventName) {
             case 'setWidth':
-                iframe.width(data - 130);
-                divCreateModel.width(data - 100);
+                iframe.width(data - 130); // 240 on Live
+                divCreateModel.width(data - 100); // 210 on Live
                 break;
         }
     }, false);
