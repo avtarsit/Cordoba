@@ -36,7 +36,8 @@
         <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
             <div class="mt-30">
                 <h3 ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)" class="heading" ng-bind-html="SelectedCategory.name"></h3>
-                <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>        
+                <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>  
+                <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>      
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
