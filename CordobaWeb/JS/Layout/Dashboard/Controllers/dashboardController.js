@@ -8,7 +8,7 @@
     $rootScope.no_image_path = StoreSessionDetail.no_image_path;
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     $scope.TermsConditionMsg = "";
-    
+
     function OpenLoginForm() {
         $rootScope.OpenLoginPopUpUsingRootScope();
     }
@@ -258,6 +258,7 @@
     }
 
     $scope.GotoMyWishlist = function () {
+
         if (UserDetail.customer_id > 0) {
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -2 });
         }
@@ -267,7 +268,9 @@
     }
 
     $scope.GotoProductList = function (Whatyouarelookingfor) {
-        $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
+        if (Whatyouarelookingfor != undefined && Whatyouarelookingfor != null && Whatyouarelookingfor != "") {        
+            $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
+        }     
     }
 
     $scope.OpenTermsCondition = function () {
