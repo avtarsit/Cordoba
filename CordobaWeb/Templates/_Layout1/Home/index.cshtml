@@ -81,7 +81,7 @@
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind-html="HotDeals.name"></a>
                                     <p ng-bind="HotDeals.Model"></p>
-                                    <span ng-bind="(HotDeals.points | number:2) +' Points'"></span>
+                                    <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
                                 </div>
                                 <div class="add-cart" ng-controller="AddProductToCartController">
                                     <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
@@ -108,7 +108,7 @@
                                 <div class="media-body">
                                     <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name | limitTo:27" title="{{HotDeals.name}}"></a>
                                     <p ng-bind="HotDeals.Model |limitTo:10" title="{{HotDeals.Model}}"></p>
-                                    <span ng-bind="(HotDeals.points | number:2) +' Points'"></span>
+                                    <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
                                 </div>
                                 <div class="add-cart" ng-controller="AddProductToCartController">
                                     <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
@@ -178,7 +178,7 @@
                                     <div class="media-body">
                                         <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo:35" title="{{SpecialOffer.name}}"></a>
                                         <p ng-bind="SpecialOffer.Model | limitTo:15" title="{{SpecialOffer.Model}}"></p>
-                                        <span ng-bind="(SpecialOffer.points | number:2) +' Points'"></span>
+                                        <span ng-bind="(SpecialOffer.points | number:0) +' Points'"></span>
                                     </div>
                                     <div class="add-cart" ng-controller="AddProductToCartController">
                                         <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">ADD TO CART</button>

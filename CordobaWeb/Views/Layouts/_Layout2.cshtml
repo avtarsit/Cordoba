@@ -122,7 +122,7 @@
                                     <p class="hi-text ">Hello</p>
                                     <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-bind="CustomerDetail.firstname +' '+CustomerDetail.lastname"><span class="caret"></span></a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><p>you have: <span ng-bind="(CustomerDetail.points | number : 2)+' Points'"></span></p></li>
+                                        <li><p>you have: <span ng-bind="(CustomerDetail.points | number : 0)+' Points'"></span></p></li>
                                         <li role="separator" class="divider"></li>
                                         <li class="active"><a class="acoount-info" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">Personal Info</a></li>
                                         <li><a class="acoount-info cursor-pointer" href="" ui-sref="ChangePassword">Change Password</a></li>

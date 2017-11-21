@@ -68,7 +68,7 @@
                                                 <img ng-src="{{SpecialOffer.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="special Offer">
                                                <span><a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo: 20" title="{{SpecialOffer.name}}"></a></span> 
                                                 <p ng-bind="SpecialOffer.Model"></p>
-                                                <span ng-bind-html="(SpecialOffer.points | number:2) +' Points'"></span>
+                                                <span ng-bind-html="(SpecialOffer.points | number:0) +' Points'"></span>
                                                 <div class="cart-btn" ng-controller="AddProductToCartController">
                                                     <input type="button" name="cart_btn" class="add_cart" ng-click="AddProductToCart(SpecialOffer,$event)" value="ADD TO CART">
                                                 </div>
@@ -99,7 +99,7 @@
                                                 <img ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals">
                                                 <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
                                                 <p ng-bind="HotDeals.Model"></p>
-                                                <span ng-bind="(HotDeals.points | number:2) +' Points'"></span>
+                                                <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
                                                 <div class="add-cart" ng-controller="AddProductToCartController">
                                                     <input type="button" name="cart_btn" ng-click="AddProductToCart(HotDeals,$event)" class="add_cart" value="ADD TO CART">
                                                 </div>

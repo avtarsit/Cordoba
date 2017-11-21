@@ -3,7 +3,7 @@
         <div class="container">
             <ul>
                 <li>
-                    <p class="bag-desc" ng-if="CartItemList.length>0"> You have {{CartItemList.length}} item's in your Shopping Bag</p>
+                    <p class="bag-desc" ng-if="CartItemList.length>0"> You have {{CartItemList.length}} items in your Shopping Bag</p>
                     <p class="bag-desc" ng-if="!(CartItemList.length>0)">Your Shopping Bag is Empty.</p>
                 </li>
             </ul>
@@ -69,7 +69,7 @@
                     <img class="cursor-pointer" src="../../../Content/layout1/images/EmptyShoppingCart.png" ui-sref="Home" alt="Empty Cart" />
                 </div>
                 <div class="payment-summary">
-                    <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
+                    <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Continue Shopping</button>
                 </div>
             </div>
         </div>
@@ -78,11 +78,11 @@
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">
                     <p>Subtotal:</p>
-                    <p ng-bind="(AllItemSubtotalPoints | number : 2)+' Points'"></p>
+                    <p ng-bind="(AllItemSubtotalPoints | number : 0)+' Points'"></p>
                 </div>
                 <div class="payment-summary last">
                     <span>Order Total:</span>
-                    <span ng-bind="(AllItemTotalPoints | number : 2)+' Points'"></span>
+                    <span ng-bind="(AllItemTotalPoints | number : 0)+' Points'"></span>
                 </div>
                 <div class="checkout-block">            
                     <a href="" ng-click="Checkout()" class="btn btn-empty cursor-pointer">Checkout</a>

@@ -91,25 +91,25 @@
     $scope.validateEmailaddress = function () {
         if ($scope.CustomerObj.email != null) {
             
-            $scope.validateObj = new Object();
-            $scope.validateObj.email = $scope.CustomerObj.email;
-            $scope.validateObj.store_id = $scope.StoreDetailInSession.store_id;
+            //$scope.validateObj = new Object();
+            //$scope.validateObj.email = $scope.CustomerObj.email;
+            //$scope.validateObj.store_id = $scope.StoreDetailInSession.store_id;
            
-            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VisitedCustomerInfo", $scope.validateObj)
-               .then(function (response) {
+            //$http.post(configurationService.basePath + "API/LayoutDashboardAPI/VisitedCustomerInfo", $scope.validateObj)
+            //   .then(function (response) {
                   
                   
-                   if (response.data === 0) {
-                       $scope.IsVisibleloginForm = true;
-                       $scope.IsVisibleFirstTimeVisiteForm = false;
-                   }
-                })
-                .catch(function (response) {
+            //       if (response.data === 0) {
+            //           $scope.IsVisibleloginForm = true;
+            //           $scope.IsVisibleFirstTimeVisiteForm = false;
+            //       }
+            //    })
+            //    .catch(function (response) {
 
-                })
-                .finally(function () {
+            //    })
+            //    .finally(function () {
 
-                });
+            //    });
         }
     }
 

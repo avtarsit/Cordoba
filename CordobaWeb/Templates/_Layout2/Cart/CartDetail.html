@@ -2,7 +2,7 @@
     <div class="order-detail cart-detail mt-30">
         <div class="col-sm-12">
             <div class="points">
-                <p ng-if="CustomerDetail.TotalItemAdded>0">You have {{CustomerDetail.TotalItemAdded}} item's in your Shopping Bag</p>
+                <p ng-if="CustomerDetail.TotalItemAdded>0">You have {{CustomerDetail.TotalItemAdded}} items in your Shopping Bag</p>
                 <p ng-if="!(CustomerDetail.TotalItemAdded>0)">Your Shopping Bag is Empty.</p>
             </div>
         </div>
@@ -11,7 +11,7 @@
         <div class="col-sm-8">
             <div class="orders" ng-repeat="Item in CartItemList">
 
-                <div class=" order-desc stock-out">
+                <div class="order-desc stock-out">
                     <div class="col-md-7 col-sm-8">
                         <div class="media">
                             <div class="media-left">
@@ -70,7 +70,7 @@
                 <img class="cursor-pointer" src="../../../Content/layout1/images/EmptyShoppingCart.png" ui-sref="Home" alt="Empty Cart" />
             </div>
             <div class="payment-summary">
-                <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Countinue Shopping</button>
+                <button class="remove-item pull-right" ui-sref="Home"><i class="fa fa-arrow-left"></i> Continue Shopping</button>
             </div>
         </div>
 

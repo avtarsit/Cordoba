@@ -107,7 +107,7 @@
                             <p class="hi-text">Hi</p>
                             <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-bind="CustomerDetail.firstname +' '+CustomerDetail.lastname"><span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><p>You have: <span ng-bind="(CustomerDetail.points | number : 2)+' Points'"></span></p></li>
+                                <li><p>You have: <span ng-bind="(CustomerDetail.points | number : 0)+' Points'"></span></p></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="" class="cursor-pointer" ng-click="Logout()">Logout</a></li>
                             </ul>

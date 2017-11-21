@@ -4,7 +4,7 @@
         <div class="col-sm-12">
             <div class="points">
                 <h4>Your Orders</h4>
-                <p ng-bind="'Payment of '+(OrderdetailObj.totalpoints | number :2)+' points has been received.'"></p>
+                <p ng-bind="'Payment of '+ OrderdetailObj.totalpoints +' points has been received.'"></p>
             </div>
         </div>
 
@@ -39,8 +39,8 @@
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-4">
-                        <p class="product-price"><span>Points:</span> <span ng-bind="(Item.points | number :2) +' points'"></span></p>
-                        <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal: </span><span ng-bind="(Item.total | number :2) +' points'"></span></p>
+                        <p class="product-price"><span>Points:</span> <span ng-bind="(Item.points | number :0) +' points'"></span></p>
+                        <p class="product-price" ng-if="Item.quantity>1"><span>Subtotal: </span><span ng-bind="(Item.total | number :0) +' points'"></span></p>
                     </div>
                     <div class="cart-detail" ng-if="OrderdetailObj.order_status_id == OrderStatusEnum.Processing || OrderdetailObj.order_status_id == OrderStatusEnum.Shipped || OrderdetailObj.order_status_id == OrderStatusEnum.Delivered">
                         <ul class="order-status">
@@ -94,12 +94,12 @@
 
                     <div class="payment-summary mt-20" ng-repeat="Item in OrderdetailObj.orderProductEntity">
                         <p ng-bind-html="'- '+Item.name"></p>
-                        <p ng-bind="(Item.totalpoints | number :2)+' Points'"></p>
+                        <p ng-bind="(Item.totalpoints | number :0)+' Points'"></p>
                        
                     </div>
                     <div class="payment-summary total">
                         <span>Order Total:</span>
-                        <span ng-bind="(OrderdetailObj.totalpoints | number :2) +' Points'"></span>
+                        <span ng-bind="(OrderdetailObj.totalpoints | number :0) +' Points'"></span>
                     </div>
                 </div>
             </div>

@@ -329,7 +329,7 @@
                         //},
                         tooltip: {
                             trigger: 'axis'
-                             , formatter: "{a} <br/>{b}: {c}$"
+                             , formatter: "{a} <br/>{b}: {c}£"
                         },
                         //legend: {
                         //    data: ['sdfds']
@@ -539,7 +539,7 @@
         $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardSummaryCharts?storeId=" + $scope.store_id + "&ChartFiltertype=" + $scope.ChartFiltertype + "&ChartOrFunctionTypeEnum=" + ChartOrFunctionTypeEnum)
         .then(function (response) {
             if (response.data != null) {
-
+                
                 if ($scope.ChartOrFunctionTypeEnum.All == ChartOrFunctionTypeEnum)
                 {
                     $scope.DashboardSummary.DashboardOrderSummary = [];

@@ -34,6 +34,7 @@
                   $scope.OrderDetails = response.data[0];
                   $scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
+                  debugger;
                   //$scope.MainTotal = $scope.Products[0].title;
                   $scope.total_title = $scope.Products[0].total_title;
                   $scope.total_value = $scope.Products[0].total_value + ' (' + $scope.Products[0].total_text +')';

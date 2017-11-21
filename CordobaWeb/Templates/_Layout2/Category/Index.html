@@ -49,7 +49,7 @@
                             </div>
                             <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind-html="product.name"></a>
                             <p ng-bind="product.Model"></p>
-                            <span ng-bind="(product.points | number:2)+' Points'"></span>
+                            <span ng-bind="(product.points | number:0)+' Points'"></span>
                             <span class="pull-right cursor-pointer">
                                 <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>
                             </span>

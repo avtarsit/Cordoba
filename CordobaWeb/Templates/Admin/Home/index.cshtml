@@ -9,7 +9,10 @@
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
+                <h4>
+                    @*<i class="icon-arrow-left52 position-left"></i>*@
+                    <span class="text-semibold">Home</span> - Dashboard
+                </h4>
             </div>
             <div class="heading-elements">
                 <div class="heading-btn-group">
@@ -44,8 +47,8 @@
                             {{DashboardSummary.DashboardHeaderSummary.TotalOrders}}
                         </h3>
                         Total Orders
-                        <div class="text-muted text-size-small">                                                   
-                        </div>                       
+                        <div class="text-muted text-size-small">
+                        </div>
                     </div>
                     @*<div class="container-fluid">
                             <div id="members-online"></div>
@@ -143,7 +146,7 @@
                                 <select ng-model="ChartFiltertype" class="form-control" ng-change="GetDashboardSummaryCharts(ChartOrFunctionTypeEnum.All)" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
                             </span>
                         </h5>
-                        
+
                         <div class="heading-elements">
                             <ul class="icons-list">
                                 @*<li><a data-action="collapse"></a></li>
@@ -218,26 +221,26 @@
                         <li class="list-group-item" ng-repeat="activity in activityList">
                             <a ng-if="activity.activity_type==1 || activity.activity_type==4" ui-sref="ManageCustomer({CustomerId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
                             <a ng-if="activity.activity_type==2" ui-sref="Orders({OrderId: {{activity.entitykey}} })">{{activity.activity_text}}</a>
-                             {{activity.activity_value}} {{activity.comments!=''?activity.comments:''}}.
+                            {{activity.activity_value}} {{activity.comments!=''?activity.comments:''}}.
                             <br>
                             <small class="text-muted"><i class="fa fa-clock-o"></i> {{activity.date_added | date:GlobalDateFormat +'  h:mm a'}}</small>
                         </li>
                         @*<li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:36</small>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  TAG HEUER WAY1413.BA0920 AQUARACER LADIES WATCH.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:10</small>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:05:38</small>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
-                            <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 08:28:03</small>
-                        </li>*@
+                                <a>Liam Guinan</a> purchased  ROBERTS ECO PLAY DAB FM RDS DIGITAL RADIO BLACK.<br>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:36</small>
+                            </li>
+                            <li class="list-group-item">
+                                <a>Liam Guinan</a> purchased  TAG HEUER WAY1413.BA0920 AQUARACER LADIES WATCH.<br>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:20:10</small>
+                            </li>
+                            <li class="list-group-item">
+                                <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 09:05:38</small>
+                            </li>
+                            <li class="list-group-item">
+                                <a>Liam Guinan</a> purchased  KINDLE 80250901 FIRE HDX 8.9 WIFI 16GB BLACK.<br>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> 03/05/2017 08:28:03</small>
+                            </li>*@
                     </ul>
                 </div>
             </div>
@@ -264,14 +267,16 @@
                                     <td ng-bind="order.customer"></td>
                                     <td ng-bind="order.OrderStatusName"></td>
                                     <td ng-bind="order.date_added | date:GlobalDateFormat"></td>
-                                    <td class="text-center" ng-bind="(order.total | number:2) + ' Points'"></td>
-                                    <td class="text-center"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
+                                    <td class="text-center" ng-bind="(order.total | number:0) + ' Points'"></td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" target="_blank" title="view Order details"><span>View</span></a>
+                                    </td>
                                 </tr>
                             </tbody>
-                        </table>                       
+                        </table>
                     </div>
                 </div>
-            </div>                       
+            </div>
         </div>
     </div>
 </div>

@@ -80,7 +80,7 @@
                 </div>
                 <!-- /today's revenue -->
             </div>
-            <!--<div class="col-lg-2">                
+            <!--<div class="col-lg-2">
                 <div class="panel bg-indigo-300">
                     <div class="panel-body">
                         <div class="heading-elements">
@@ -93,7 +93,7 @@
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
-                </div>           
+                </div>
             </div>-->
             <div class="col-lg-3">
                 <!-- Today's revenue -->
@@ -113,7 +113,7 @@
                 </div>
                 <!-- /today's revenue -->
             </div>
-            <!--<div class="col-lg-2">             
+            <!--<div class="col-lg-2">
                 <div class="panel bg-danger-300">
                     <div class="panel-body">
                         <div class="heading-elements">
@@ -121,13 +121,13 @@
                                 <li><a data-action=""></a></li>
                             </ul>
                         </div>
-                      
+
                         <h3 class="no-margin">{{DashboardSummary.DashboardHeaderSummary.OutOfStockProduct}}</h3>
                         Out of stock Product
                         <div class="text-muted text-size-small"></div>
                     </div>
                     <div id="today-revenue"></div>
-                </div>              
+                </div>
             </div>-->
 
 
@@ -165,7 +165,7 @@
                             Sales Analytics
                             <span style="float: right;margin-right: 35px;font-size: small;">
                                 <select ng-model="ChartFiltertype" ng-change="GetDashboardSummaryCharts(ChartOrFunctionTypeEnum.All)" ng-options="chartfilter.id as chartfilter.name for chartfilter in ChartFilterTypeEnum"></select>
-                            </span>                                                    
+                            </span>
                         </h5>
                         <div class="heading-elements">
                             <ul class="icons-list">
@@ -294,11 +294,13 @@
                                     <td ng-bind="order.customer"></td>
                                     <td ng-bind="order.OrderStatusName"></td>
                                     <td ng-bind="order.date_added | date:GlobalDateFormat"></td>
-                                    <td class="text-center" ng-bind="(order.total | number:2) + ' Points'"></td>
-                                    <td class="text-center"><input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" /></td>
+                                    <td class="text-center" ng-bind="(order.total | number:0) + ' Points'"></td>
+                                    <td class="text-center">
+                                        <input type="button" value="view" title="view Order details" class="btn btn-success" ui-sref="Orders({OrderId:order.order_id})" />
+                                    </td>
                                 </tr>
                             </tbody>
-                        </table>                      
+                        </table>
                     </div>
                 </div>
             </div>
