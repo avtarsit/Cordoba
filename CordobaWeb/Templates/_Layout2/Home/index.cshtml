@@ -92,7 +92,7 @@
                         <div class="col-md-3" ng-controller="Dashboard_HotDealsController">
                             <div class="letest-product">
                                 <div class="hot-deals">
-                                    <h3 class="heading">HOT DEALS</h3>
+                                    <h3 class="heading lblMonthlyPrize">MONTHLY PRIZE</h3>
                                     <div id="hot-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 300,mode: 'vertical'">
                                         <div class="col-sm-3" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
                                             <div class="col-product text-center">
@@ -100,8 +100,8 @@
                                                 <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
                                                 <p ng-bind="HotDeals.Model"></p>
                                                 <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
-                                                <div class="add-cart" ng-controller="AddProductToCartController">
-                                                    <input type="button" name="cart_btn" ng-click="AddProductToCart(HotDeals,$event)" class="add_cart" value="ADD TO CART">
+                                                @*<div class="add-cart" ng-controller="AddProductToCartController">
+                                                    <input type="button" name="cart_btn" ng-click="AddProductToCart(HotDeals,$event)" class="add_cart" value="ADD TO CART">*@
                                                 </div>
                                             </div>
                                         </div>

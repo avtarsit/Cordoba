@@ -2,6 +2,11 @@
     .pagination {
         float: right;
     }
+
+    .filterProductDiv {
+        float: left;
+        margin-top: 10px;
+    }
 </style>
 <div class="catagories_slider productlist" ng-controller="CategoryListController">
     <div class="container">
@@ -12,7 +17,7 @@
                     <ul>
                         <li ng-class="SelectedCategoryId==category.Category_Id ? 'active cursor-pointer' : 'cursor-pointer' " ng-if="category.parent_Id==0" ng-repeat="category in CategoryList">
                             <a href="" class="cursor-pointer" ng-bind-html="category.name" ng-click="GetCategory(category.Category_Id)"></a>
-                            <ul class="sub-catagory" >
+                            <ul class="sub-catagory">
                                 <li ng-class="SelectedSubCategory==SubCategory.Category_Id? 'active cursor-pointer' : 'cursor-pointer' " ng-if="SubCategory.parent_Id>0  && SelectedCategoryId==category.Category_Id && SubCategory.parent_Id==category.Category_Id" ng-repeat="SubCategory in CategoryList | filter:{ 'parent_Id' : category.Category_Id } | unique:'name'| orderBy : 'name'"><a href="" class="cursor-pointer" ng-click="GetSubCategory(SubCategory.Category_Id,1)" ng-bind-html="SubCategory.name | limitTo:16" title="{{SubCategory.name}}"></a></li>
                             </ul>
                         </li>
@@ -36,8 +41,36 @@
         <div class="col-md-9" ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)">
             <div class="mt-30">
                 <h3 ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)" class="heading" ng-bind-html="SelectedCategory.name"></h3>
-                <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>  
-                <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>      
+                <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>
+                <div class="filterProductDiv col-sm-12 form-group">
+                    <div class="col-sm-3" style="margin-top:4px">
+                        <input type="checkbox" class="col-sm-1 mt-5" name="IncludePriceOnly" ng-model="IncludePriceOnlyFilter" ng-true-value="1" ng-false-value="0" />
+                        <label class="col-sm-11 rn_pad control-label">
+                            Points Only
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-5 rn_pad control-label mt-5">
+                            Points By
+                        </label>
+                        <div class="col-sm-7">
+                            <select ng-options="PriceEnum.Id as PriceEnum.Name  for PriceEnum in PriceSortByEnum"
+                                    class="form-control" ng-model="PriceSortById" name="PriceSort"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-5 rn_pad control-label mt-5">
+                            Name By
+                        </label>
+                        <div class="col-sm-7">
+                            <select ng-options="NameEnum.Id as NameEnum.Name  for NameEnum in NameSortByEnum"
+                                    class="form-control" ng-model="NameSortById" name="NameSort"></select>
+                        </div>
+                    </div>
+                </div>
+                <div style="float:right">
+                    <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>
+                </div>
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
@@ -49,10 +82,27 @@
                             </div>
                             <a href="" class="cursor-pointer" ui-sref="LayoutProductDetail({ProductId:product.product_id})" title="{{product.name}}" ng-bind-html="product.name"></a>
                             <p ng-bind="product.Model"></p>
-                            <span ng-bind="(product.points | number:0)+' Points'"></span>
-                            <span class="pull-right cursor-pointer">
-                                <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <span ng-bind="(product.points | number:0)+' Points'">
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-right cursor-pointer">
+                                            <a ng-if="product.IsProductInWishlist!=true" href="" title="Move to wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart-o pull-right" ng-click="AddtoWishList(product)"></i></a>
+                                            <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--<span ng-bind="(product.points | number:0)+' Points'">
                             </span>
+                            <span ng-bind="(product.points | number:0)+' Points'"></span>-->
+                            <!--<span class="pull-right cursor-pointer">
+                                <a ng-if="Item.IsProductInWishlist!=true" href="" title="Move to wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart-o pull-right" ng-click="AddtoWishList(Item)"></i></a>
+                                <a ng-if="product.IsProductInWishlist==true" href="" title="Remove from wishlist" class="cursor-pointer remove-item pull-right"><i class="fa fa-heart pull-right" ng-click="RemoveFromWishList(product)"></i></a>
+                            </span>-->
                         </div>
                     </div>
                 </div>
@@ -67,4 +117,5 @@
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.content').mCustomScrollbar();
     });
+
 </script>

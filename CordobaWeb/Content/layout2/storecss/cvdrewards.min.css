@@ -9,7 +9,7 @@ a:focus, a:hover, .popular-catagory h4, .heading, .show_cart .badge, .footer_men
     background-color:#0077C8;
 }
 .copyright {
-    background-color:#000;
+    background-color:#0077C8;
 }
 .form-control:focus, .btn-empty, [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before, .submit_btn {
     border-color:#0077C8;

@@ -37,10 +37,8 @@
             $scope.CustomerObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.CustomerObj.IsFromAdmin = $("#IsFromAdmin").val();
 
-            debugger;
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
                   .then(function (response) {
-                      debugger;
                       if (response.data != null) {
                           switch (response.data.ErrorTypeId) {
                           case 0:

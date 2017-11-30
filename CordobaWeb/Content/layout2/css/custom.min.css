@@ -2512,7 +2512,33 @@ label {
         background-position: -592px -8px;
     }
 
- .vertical-alignment-helper { display: table; height: 100%; width: 100%; }
-.vertical-align-center { display: table-cell; vertical-align: middle; }
-.modal-content { width: inherit; height: inherit; margin: 0 auto; background-color: #f4f3f3; box-shadow: none; border: none; }
-.modal-body { width: 100%; float: left;padding-left:30px;padding-right:30px; }
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.modal-content {
+    width: inherit;
+    height: inherit;
+    margin: 0 auto;
+    background-color: #f4f3f3;
+    box-shadow: none;
+    border: none;
+}
+
+.modal-body {
+    width: 100%;
+    float: left;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.lblMonthlyPrize {
+    font-size: 16px;
+}

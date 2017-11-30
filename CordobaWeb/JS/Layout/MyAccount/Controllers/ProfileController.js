@@ -11,7 +11,6 @@
 
 
     $scope.StoreDetailInSession = StoreSessionDetail;
-    debugger;
     $scope.GetCustomerDetails = function () {    
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)    
         .then(function (response) {   

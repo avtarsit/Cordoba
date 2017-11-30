@@ -10,17 +10,17 @@ namespace CordobaServices.Interfaces
 {
     public interface IProductServices
     {
-        List<ProductEntity> GetProductList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<ProductEntity> filter,  string name, decimal? Price, int? status, string Model, int? Quantity);
+        List<ProductEntity> GetProductList(int StoreId, int LoggedInUserId, string sortColumn, TableParameter<ProductEntity> filter, string name, decimal? Price, int? status, string Model, int? Quantity);
         ProductEntity GetProductById(int StoreId, int LoggedInUserId, int product_id);
-        CartEntity AddProductToCart(int store_id,int customer_id, int product_id, int qty, int cartgroup_id);
+        CartEntity AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id);
         int DeleteProductFromCart(int StoreId, int LoggedInUserId, int cart_id);
 
         int InsertUpdateProduct(int StoreId, int LoggedInUserId, ProductEntity productEntity);
-        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId,int PageIndex, int Customer_Id,string WhatAreYouLookingFor);
+        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id, string WhatAreYouLookingFor);
 
         int DeleteProduct(int StoreId, int LoggedInUserId, int product_id);
-        ProductEntity GetProductDetailForLayout(int StoreId,int ProductId);
-        List<ProductEntity> GetRelatedProductList(int StoreId,int SelectedProductId, int RelatedProductId);
+        ProductEntity GetProductDetailForLayout(int StoreId, int ProductId, int CustomerId);
+        List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId);
 
         //InsertAsHotProduct
         int InsertAsHotProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity);
@@ -31,7 +31,7 @@ namespace CordobaServices.Interfaces
 
         List<ProductEntity> GetProductImageById(int product_id);
         List<CategoryEntity> GetSubCategoryList(int StoreId, int LoggedInUserId);
-        List<ProductEntity> GetProductBycategoryForStore(int category_id , int store_id);
+        List<ProductEntity> GetProductBycategoryForStore(int category_id, int store_id);
         int ExcludeProduct(int store_id, string product_id, string operation);
 
         List<CountryEntity> GetShippingCostDetail(int product_id);

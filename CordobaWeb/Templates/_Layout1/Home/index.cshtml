@@ -68,8 +68,8 @@
         <div ng-controller="Dashboard_HotDealsController" ng-if="Make_rewardWinnerVisible">
             <div class="col-md-3 col-xs-12 mb-30" ng-if="HotDealsList.length>0">
                 <div class="col-sm-12 block-bg deals">
-                    <div class="block-heading">
-                        <h4>Hot Deals</h4>
+                    <div class="block-heading lblMonthlyPrize">
+                        <h4>MONTHLY PRIZE</h4>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
@@ -95,8 +95,8 @@
         <div ng-controller="Dashboard_HotDealsController" ng-if="!(Make_rewardWinnerVisible)">
             <div class="col-md-3 col-xs-12 mb-30" ng-if="HotDealsList.length>0">
                 <div class="col-sm-12 block-bg deals">
-                    <div class="block-heading">
-                        <h4>Hot Deals</h4>
+                    <div class="block-heading lblMonthlyPrize">
+                        <h4>MONTHLY PRIZE</h4>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
@@ -110,9 +110,9 @@
                                     <p ng-bind="HotDeals.Model |limitTo:10" title="{{HotDeals.Model}}"></p>
                                     <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
                                 </div>
-                                <div class="add-cart" ng-controller="AddProductToCartController">
+                                @*<div class="add-cart" ng-controller="AddProductToCartController">
                                     <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>

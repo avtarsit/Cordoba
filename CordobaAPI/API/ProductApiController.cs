@@ -31,7 +31,7 @@ namespace CordobaAPI.API
 
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _ProductServices.GetProductList(StoreId, LoggedInUserId, sortColumn, tableParameter, name,  Price,  status, Model,  Quantity).ToList();
+                var result = _ProductServices.GetProductList(StoreId, LoggedInUserId, sortColumn, tableParameter, name, Price, status, Model, Quantity).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -57,7 +57,7 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _ProductServices.GetProductById(StoreId, LoggedInUserId,product_id);
+                var result = _ProductServices.GetProductById(StoreId, LoggedInUserId, product_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -72,13 +72,13 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage AddProductToCart(int store_id,int customer_id, int product_id, int qty, int cartgroup_id)
+        public HttpResponseMessage AddProductToCart(int store_id, int customer_id, int product_id, int qty, int cartgroup_id)
         {
             try
             {
-                var result = _ProductServices.AddProductToCart(  store_id, customer_id,  product_id,  qty,  cartgroup_id);             
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-               
+                var result = _ProductServices.AddProductToCart(store_id, customer_id, product_id, qty, cartgroup_id);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
             }
             catch (Exception)
             {
@@ -127,11 +127,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int CategoryId,int PageIndex, int Customer_Id = 0, string WhatAreYouLookingFor = "")
+        public HttpResponseMessage GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id = 0, string WhatAreYouLookingFor = "")
         {
             try
             {
-                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID,CategoryId,PageIndex,Customer_Id, WhatAreYouLookingFor);
+                var result = _ProductServices.GetProductListByCategoryAndStoreId(StoreID, CategoryId, PageIndex, Customer_Id, WhatAreYouLookingFor);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -152,26 +152,11 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.DeleteProduct(StoreId, LoggedInUserId, product_id);
-                if (result>0)
+                if (result > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
-            }
-            catch (Exception ex )
-            {
-                throw ex;
-            }
-        }
-
-        [HttpGet]
-        public HttpResponseMessage GetProductDetailForLayout(int StoreID, int ProductId)
-        {
-            try
-            {
-                var result = _ProductServices.GetProductDetailForLayout(StoreID,ProductId);
-             
-                    return Request.CreateResponse(HttpStatusCode.OK, result);              
             }
             catch (Exception ex)
             {
@@ -180,11 +165,26 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRelatedProductList(int StoreID,int SelectedProductId, int RelatedProductId)
+        public HttpResponseMessage GetProductDetailForLayout(int StoreID, int ProductId, int CustomerId)
         {
             try
             {
-                var result = _ProductServices.GetRelatedProductList(StoreID,SelectedProductId, RelatedProductId);
+                var result = _ProductServices.GetProductDetailForLayout(StoreID, ProductId, CustomerId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetRelatedProductList(int StoreID, int SelectedProductId, int RelatedProductId)
+        {
+            try
+            {
+                var result = _ProductServices.GetRelatedProductList(StoreID, SelectedProductId, RelatedProductId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -211,13 +211,13 @@ namespace CordobaAPI.API
                 throw;
             }
         }
-        
+
         [HttpPost]
         public HttpResponseMessage InsertAsSpecialProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity)
         {
             try
             {
-                var result = _ProductServices.InsertAsSpecialProduct( LoggedInUserId, hotSpecialProductEntity);
+                var result = _ProductServices.InsertAsSpecialProduct(LoggedInUserId, hotSpecialProductEntity);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -335,7 +335,7 @@ namespace CordobaAPI.API
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw;
             }
@@ -343,7 +343,7 @@ namespace CordobaAPI.API
 
 
         [HttpGet]
-        public HttpResponseMessage GetSubCategoryList(int StoreId,int LoggedInUserId)
+        public HttpResponseMessage GetSubCategoryList(int StoreId, int LoggedInUserId)
         {
             try
             {
@@ -361,11 +361,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProductBycategoryForStore(int category_id , int store_id)
+        public HttpResponseMessage GetProductBycategoryForStore(int category_id, int store_id)
         {
             try
             {
-                var result = _ProductServices.GetProductBycategoryForStore(category_id , store_id);
+                var result = _ProductServices.GetProductBycategoryForStore(category_id, store_id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

@@ -5,9 +5,9 @@
     $scope.PageTitle = "Orders";
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.IsStoreAdmin = $rootScope.IsStoreAdmin;
     $scope.OrderStatusNotify = 0;
-    $scope.OrderStatusComment = "";  
-
+    $scope.OrderStatusComment = "";
     $scope.OrderStatus = [
         { Id: 1, Name: 'Processing' },
         { Id: 2, Name: 'Shipped' },
@@ -27,17 +27,16 @@
 
 
     $scope.GetOrderDetails = function () {
-
+        debugger;
         $http.get(configurationService.basePath + "api/OrderApi/GetOrderDetails?orderId=" + $stateParams.OrderId + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {        
+          .then(function (response) {
               if (response.data.length > 0) {
                   $scope.OrderDetails = response.data[0];
                   $scope.OrderHistoryList = $scope.OrderDetails.orderHistoryEntity;
                   $scope.Products = $scope.OrderDetails.orderProductEntity;
-                  debugger;
                   //$scope.MainTotal = $scope.Products[0].title;
                   $scope.total_title = $scope.Products[0].total_title;
-                  $scope.total_value = $scope.Products[0].total_value + ' (' + $scope.Products[0].total_text +')';
+                  $scope.total_value = $scope.Products[0].total_value + ' (' + $scope.Products[0].total_text + ')';
                   $scope.subtotal_title = $scope.Products[0].subtotal_title;
                   $scope.subtotal_value = $scope.Products[0].subtotal_value + ' (' + $scope.Products[0].subtotal_text + ')';
                   $scope.OrderHistory.order_status_id = $scope.OrderDetails.order_status_id;
@@ -50,7 +49,7 @@
 
       });
     }
-  
+
 
     $scope.InsertOrderHistory = function (OrderHistory) {
         var objHistoryEntity = {
@@ -79,7 +78,7 @@
     $scope.UpdateOrderStatus = function () {
         $http.post(configurationService.basePath + "api/OrderApi/UpdateOrderStatus?OrderId=" + $scope.OrderDetails.order_id + '&OrderStatusId=' + $scope.OrderDetails.order_status_id + "&Comment=" + $scope.OrderStatusComment)
        .then(function (response) {
-           if (response.data > 0) {       
+           if (response.data > 0) {
                $scope.GetOrderDetails();
                $scope.OrderStatusComment = "";
            }
@@ -112,10 +111,10 @@
 
     $scope.PrintOrder = function () {
         var htmlString = $("#OrderPrintSection").html();
-        var mywindow = window.open('', 'PRINT');                         
+        var mywindow = window.open('', 'PRINT');
         mywindow.document.write('<html><head><title></title>');
         mywindow.document.write('<style>.table-bordered th,.table-bordered td {border: 1px solid #ddd !important;padding:15px;font-size:11px;}</style>');
-        mywindow.document.write('</head><body >');  
+        mywindow.document.write('</head><body >');
         mywindow.document.write(htmlString);
         mywindow.document.write('</body></html>');
         mywindow.document.close(); // necessary for IE >= 10

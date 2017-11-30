@@ -66,6 +66,11 @@
                 <div class="block-heading">
                     <h4 ng-bind-html="TitleHeader"></h4>
                 </div>
+                <br />
+                <div>
+                    Hello World
+                    <input type="button" value="Hello World" />
+                </div>
                 <ul  ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
                 <div class="clearfix"></div>
                 <div class="row">
@@ -97,7 +102,6 @@
     $(document).ready(function () {
         $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.category-list').mCustomScrollbar();
-        
     });
 
 </script>

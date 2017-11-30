@@ -22,7 +22,7 @@
             <ul class="breadcrumb-elements">
                 <li>
                     <button type="button" ng-click="PrintOrder()" class="btn btn-success cursor-pointer" title="Print Order"><i class="fa fa-print" aria-hidden="true"></i></button>&nbsp;
-                </li>               
+                </li>
             </ul>
         </div>
     </div>
@@ -324,17 +324,45 @@
                                                 <td>{{product.name}}</td>
                                                 <td>{{product.model}}</td>
                                                 <td class="text-right">{{product.quantity}}</td>
-                                                <td class="text-right">{{product.price | number : 0 | currency:'£'}}{{' ('+product.points+' Points)'}}</td>
-                                                <td class="text-right">{{product.total | number : 0 | currency:'£'}}{{' ('+product.totalpoints+' Points)'}}</td>
+                                                <td class="text-right">
+                                                    <span ng-show="IsStoreAdmin==0">
+                                                        {{product.price | number : 0 | currency:'£'}}
+                                                    </span>
+                                                    <span>
+                                                        {{' ('+product.points+' Points)'}}
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span ng-show="IsStoreAdmin==0">
+                                                        {{product.total | number : 0 | currency:'£'}}
+                                                    </span>
+                                                    <span>
+                                                        {{' ('+product.totalpoints+' Points)'}}
+                                                    </span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" class="text-right">{{subtotal_title}}</td>
-                                                <td class="text-right">{{(Products[0].subtotal_value | currency:'£') + ' (' + Products[0].subtotal_text + ')'}}</td>
+                                                <td class="text-right">
+                                                    <span ng-show="IsStoreAdmin==0">
+                                                        {{(Products[0].subtotal_value | currency:'£')}}
+                                                    </span>
+                                                    <span>
+                                                        {{' (' + Products[0].subtotal_text + ')'}}
+                                                    </span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right" colspan="4">{{total_title}}</td>
-                                                <td class="text-right">{{(Products[0].total_value | currency:'£') + ' (' + Products[0].total_text +')'}}</td>
-                                            </tr>                                           
+                                                <td class="text-right">
+                                                    <span ng-show="IsStoreAdmin==0">
+                                                        {{(Products[0].total_value | currency:'£')}}
+                                                    </span>
+                                                    <span>
+                                                        {{' (' + Products[0].total_text +')'}}
+                                                    </span>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -373,7 +401,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 rn_pad control-label text-right">Order Status</label>
                                                         <div class="col-lg-10">
-                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>                                                           
+                                                            <select ng-options="orderstatus.Id as orderstatus.Name for orderstatus in  OrderStatus" ng-model="OrderHistory.order_status_id" class="form-control"></select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -421,8 +449,8 @@
         <div class="container">
             <div style="page-break-after: always;">
                 <h1>Order {{'#'+OrderDetails.order_id}}</h1>
-                    Date :{{OrderDetails.date_added | date:GlobalDateFormat}} 
-                <br />           
+                Date :{{OrderDetails.date_added | date:GlobalDateFormat}}
+                <br />
                 <table class="table table-bordered" width="100%">
                     <thead>
                         <tr>
@@ -435,25 +463,25 @@
                             <td>
                                 <address>
                                     {{OrderDetails.SupplierName}}
-                                    <br>{{OrderDetails.SupplierAddress}}<br />                                   
+                                    <br>{{OrderDetails.SupplierAddress}}<br />
                                 </address>
                             </td>
                             <td>
                                 <address>
                                     {{OrderDetails.shipping_firstname+' '+OrderDetails.shipping_lastname}}
-                                     <br />
+                                    <br />
                                     {{OrderDetails.shipping_company}}
                                     <br />
                                     {{OrderDetails.shipping_address_1}}
                                     <br />
-                                   {{OrderDetails.shipping_address_2}}
+                                    {{OrderDetails.shipping_address_2}}
                                     <br />
                                     {{OrderDetails.shipping_city}} {{OrderDetails.shipping_postcode}}
                                     <br />
                                     {{OrderDetails.shipping_country}}
                                     <br />
-                                     <b> Customer Email :</b> {{OrderDetails.email}}
-                                    <br/>
+                                    <b> Customer Email :</b> {{OrderDetails.email}}
+                                    <br />
                                     <b>E-Mail:</b> contact@cordobarewards.co.uk<br />
                                     <b>Web Site:</b> <a href="{{OrderDetails.store_url}}" target="_blank">{{OrderDetails.store_url}}</a>
                                 </address>
@@ -473,20 +501,49 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{Products}}
                         <tr ng-repeat="product in Products">
                             <td>{{product.name}}</td>
                             <td>{{product.model}}</td>
                             <td class="text-right">{{product.quantity}}</td>
-                            <td class="text-right">{{product.price | number : 0 | currency:'£'}}{{' ('+product.points+' Points)'}}</td>
-                            <td class="text-right">{{product.total | number : 0 | currency:'£'}}{{' ('+product.totalpoints+' Points)'}}</td>
+                            <td class="text-right">
+                                <span ng-show="IsStoreAdmin==0">
+                                    {{product.price | number : 0 | currency:'£'}}
+                                </span>
+                                <span>
+                                    {{' ('+product.points+' Points)'}}
+                                </span>
+                            </td>
+                            <td class="text-right">
+                                <span ng-show="IsStoreAdmin==0">
+                                    {{product.total | number : 0 | currency:'£'}}
+                                </span>
+                                <span>
+                                    {{' ('+product.totalpoints+' Points)'}}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right">{{subtotal_title}}</td>
-                            <td class="text-right">{{(Products[0].subtotal_value | currency:'£') + ' (' + Products[0].subtotal_text + ')'}}</td>
+                            <td class="text-right">
+                                <span ng-show="IsStoreAdmin==0">
+                                    {{(Products[0].subtotal_value | currency:'£')}}
+                                </span>
+                                <span>
+                                    {{' (' + Products[0].subtotal_text + ')'}}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-right" colspan="4">{{total_title}}</td>
-                            <td class="text-right">{{(Products[0].total_value | currency:'£') + ' (' + Products[0].total_text +')'}}</td>
+                            <td class="text-right">
+                                <span ng-show="IsStoreAdmin==0">
+                                    {{(Products[0].total_value | currency:'£')}}
+                                </span>
+                                <span>
+                                    {{' (' + Products[0].total_text +')'}}
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
