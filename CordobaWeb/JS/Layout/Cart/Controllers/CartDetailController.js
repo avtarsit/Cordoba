@@ -229,7 +229,6 @@
     }
 
     $scope.AddtoWishList = function (productObj) {
-        debugger;
         if (UserDetail.customer_id > 0) {
             var WishObj = new Object();
             WishObj.customer_id = UserDetail.customer_id;

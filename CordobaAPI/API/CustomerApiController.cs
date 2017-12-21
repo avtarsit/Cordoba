@@ -498,7 +498,7 @@ namespace CordobaAPI.API
 
                 return "";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

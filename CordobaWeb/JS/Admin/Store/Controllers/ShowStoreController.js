@@ -35,7 +35,4 @@
 
     $scope.GetStoreList();
 
-
-
-
 });

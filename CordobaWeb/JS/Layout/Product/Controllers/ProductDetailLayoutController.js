@@ -1,9 +1,9 @@
 ﻿app.controller('ProductDetailLayoutController', function (StoreSessionDetail, UserDetail, $timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, $http, $log, $q) {
     //#region CallGlobalFunctions   
     decodeParams($stateParams);
+    debugger;
     BindToolTip();
     Tab();
-
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.CustomerId = $scope.CustomerDetail != null && $scope.CustomerDetail.customer_id != null ? $scope.CustomerDetail.customer_id : 0;
 

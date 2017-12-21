@@ -7,10 +7,57 @@
         float: left;
         margin-top: 10px;
     }
+
+    .searchByPointsContent {
+        float: left;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+        .searchByPointsContent ul li {
+            font-weight: bold;
+        }
+
+    /*.searchByPointsContent ul li span {
+                text-align: center;
+            }*/
 </style>
 <div class="catagories_slider productlist" ng-controller="CategoryListController">
     <div class="container">
         <div class="col-md-3">
+            <div class="letest-product catagories">
+                <h3>Search by Points</h3>
+                <div class="searchByPointsContent">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected" ng-change="toggleAll($index)" style="">
+                            <span>
+                                1 to 10
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                11 to 25
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                26 to 50
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                51 to 100
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                Above 100
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="letest-product catagories">
                 <h3>Categories</h3>
                 <div class="content mCustomScrollbar">
@@ -42,7 +89,7 @@
             <div class="mt-30">
                 <h3 ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)" class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>
-                <div class="filterProductDiv col-sm-12 form-group">
+                <!--<div class="filterProductDiv col-sm-12 form-group">
                     <div class="col-sm-3" style="margin-top:4px">
                         <input type="checkbox" class="col-sm-1 mt-5" name="IncludePriceOnly" ng-model="IncludePriceOnlyFilter" ng-true-value="1" ng-false-value="0" />
                         <label class="col-sm-11 rn_pad control-label">
@@ -67,7 +114,7 @@
                                     class="form-control" ng-model="NameSortById" name="NameSort"></select>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div style="float:right">
                     <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>
                 </div>
