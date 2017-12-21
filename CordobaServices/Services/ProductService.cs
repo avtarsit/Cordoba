@@ -174,7 +174,7 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id = 0, string WhatAreYouLookingFor = "")
+        public List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id = 0, string WhatAreYouLookingFor = "", string SearchByFilterId = "", int OrderById = 1)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
                                                    new SqlParameter("StoreID", StoreID)
@@ -182,6 +182,8 @@ namespace CordobaServices.Services
                                                    , new SqlParameter("PageIndex",PageIndex)
                                                     , new SqlParameter("Customer_Id",Customer_Id)
                                                        , new SqlParameter("WhatAreYouLookingFor",WhatAreYouLookingFor==null?"":WhatAreYouLookingFor)
+                                                       , new SqlParameter("SearchByFilterId",SearchByFilterId==null?"":SearchByFilterId)
+                                                       , new SqlParameter("OrderById",OrderById)
                                                };
 
             var ProductList = objGenericRepository.ExecuteSQL<ProductEntity>("GetProductListByCategoryAndStoreId", sqlParameter).ToList();

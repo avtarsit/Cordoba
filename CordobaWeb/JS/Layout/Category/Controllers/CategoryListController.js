@@ -8,20 +8,26 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     $scope.TitleHeader = '';
     $scope.WhatAreYouLookingFor = '';
+    $scope.SearchByFilterId = '';
     $scope.SelectedPageIndex = 1;
     $scope.maxSize = 10;
-    $scope.PriceSortById = 1;
-    $scope.NameSortById = 1;
+    $scope.SortById = 1;
 
-    $scope.PriceSortByEnum = [
- { Id: 1, Name: 'Low-High' },
- { Id: 2, Name: 'High-Low' },
+    $scope.SortByEnum = [
+{ Id: 1, Name: 'High-Low' },
+{ Id: 2, Name: 'Low-High' },
+{ Id: 3, Name: 'A-Z' },
+{ Id: 4, Name: 'Z-A' },
     ];
 
-    $scope.NameSortByEnum = [
-{ Id: 1, Name: 'A-Z' },
-{ Id: 2, Name: 'Z-A' },
+    $scope.SearchByPointsEnum = [
+{ Id: 1, Name: '1 to 10', Checked: false },
+{ Id: 2, Name: '11 to 25', Checked: false },
+{ Id: 3, Name: '26 to 50', Checked: false },
+{ Id: 4, Name: '50 to 100', Checked: false },
+{ Id: 5, Name: 'Above 100', Checked: false },
     ];
+
 
 
 
@@ -131,7 +137,9 @@
                             "&CategoryId=" + $scope.SelectedSubCategory +
                              "&PageIndex=" + $scope.SelectedPageIndex +
                              "&Customer_Id=" + UserDetail.customer_id +
-                            "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor
+                            "&WhatAreYouLookingFor=" + $scope.WhatAreYouLookingFor +
+                            "&SearchByFilterId=" + $scope.SearchByFilterId +
+                            "&OrderById=" + $scope.SortById
                             )
           .then(function (response) {
               $scope.ProductList = response.data;
@@ -233,9 +241,25 @@
         $scope.GetOurProductListByByStoreId();
     }
 
-
     $scope.set = function () {
         $scope.totalRecords = 100000000;
     }
+
+    $scope.SearchFilterByArray = function () {
+        var SearchByFilterId = "";
+        angular.forEach($scope.SearchByPointsEnum, function (dataItem) {
+            if (dataItem.Checked) {
+                SearchByFilterId += dataItem.Id + ",";
+            }
+        });
+        $scope.SearchByFilterId = SearchByFilterId.slice(0, -1);
+        $scope.GetOurProductListByByStoreId();
+    }
+
+    $scope.SortBy = function (SortById) {
+        $scope.SortById = SortById;
+        $scope.GetOurProductListByByStoreId();
+    }
+
     $scope.GetCategoryListForDashboard();
 });

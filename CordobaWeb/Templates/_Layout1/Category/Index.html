@@ -1,20 +1,45 @@
 ﻿<style>
-    .pagination{
-        float:right;
+    .pagination {
+        float: right;
     }
-    .pagination  .btn-default{
-        color: #333;
-    background-color: #fff;
-    border-color: #ccc
-    }
-     .pagination  .btn-primary{
-     color: #fff;
-    background-color: #286090;
-    border-color: #204d74;
+
+        .pagination .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        .pagination .btn-primary {
+            color: #fff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        -webkit-appearance: checkbox;
     }
 </style>
 <div class="container-fluid products" ng-controller="CategoryListController">
     <div class="col-lg-3 col-md-4 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-xs-12 mb-20">
+                <div class="block pb-15">
+                    <div class="col-sm-12">
+                        <div class="block-heading">
+                            <h4>Search by Points</h4>
+                        </div>
+                        <div class="searchByPointsContent">
+                            <ul>
+                                <li ng-repeat="SearchByPoint in SearchByPointsEnum">
+                                    <input type="checkbox" class="cursor-pointer ng-pristine ng-valid ng-touched" ng-checked="SearchByPoint.Checked" ng-model="SearchByPoint.Checked" ng-change="SearchFilterByArray()"><span>{{'    ' + SearchByPoint.Name}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-sm-6 col-xs-12 mb-20">
                 <div class="block pb-15">
@@ -67,11 +92,20 @@
                     <h4 ng-bind-html="TitleHeader"></h4>
                 </div>
                 <br />
-                <!--<div>
-                    Hello World
-                    <input type="button" value="Hello World" />
-                </div>-->
-                <ul  ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
+                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3">
+                    <div class="col-sm-9">
+                        <label class="col-sm-3 rn_pad control-label mt-5">
+                            Sort By
+                        </label>
+                        <div class="col-sm-5">
+                            <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
+                                    class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <ul ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
+                </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="product-block" ng-repeat="product in ProductList">
@@ -93,7 +127,7 @@
             </div>
 
         </div>
-        <ul  ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
+        <ul ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
     </div>
 </div>
 

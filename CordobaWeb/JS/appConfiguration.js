@@ -1,6 +1,6 @@
 ﻿
 'use strict';
-var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating","ui.bootstrap"]);
+var app = angular.module("CordobaApp", ["ui.router", "LocalStorageModule", "datatables", "ngFileUpload", "ngSanitize", 'ngAnimate', 'ngDragDrop', "textAngular", "uiSwitch", "ngCkeditor", "angular-star-rating", "ui.bootstrap", "textAngular"]);
 GetAdminUserDetail();
 GetLayoutName();
 
@@ -32,9 +32,9 @@ function GetLayoutName() {
             User.TotalItemAdded = 0;
             app.value('UserDetail', User);
             var LayoutName = data.template;
-       
+
             app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-                var  
+                var
                  Home = {
                      name: 'Home',
                      url: '/Home?Email:email',
@@ -514,7 +514,7 @@ function GetLayoutName() {
                 $stateProvider.state(ManageCustomerDepartment);
                 $stateProvider.state(ContactUs);
                 $stateProvider.state(StoreReport);
-                
+
                 //any url that doesn't exist in routes redirect to '/'
                 $urlRouterProvider.otherwise('/Home');
                 //$locationProvider.html5Mode({
@@ -523,12 +523,12 @@ function GetLayoutName() {
                 //});
 
             })
-             .run(function ($http, $rootScope,StoreSessionDetail, $location,UserDetail, $filter, $state, localStorageService, $templateCache) {             
+             .run(function ($http, $rootScope, StoreSessionDetail, $location, UserDetail, $filter, $state, localStorageService, $templateCache) {
                  var user = localStorageService.get("loggedInUser");
                  if (user == null || user == undefined) {
                      user = new Object();
                      user.customer_id = 0;
-                 }         
+                 }
                  if (user.customer_id > 0) {
 
                      UserDetail.customer_id = user.customer_id;
@@ -652,7 +652,7 @@ function GetLayoutName() {
 
                  //}
 
-                 $rootScope.$on('$locationChangeStart', function (event, next, current) {           
+                 $rootScope.$on('$locationChangeStart', function (event, next, current) {
                      var geturlparameters = next.toString().split('?')[1];
                      var isAlreadyDecoded = false;
                      if (geturlparameters != undefined) {
@@ -665,7 +665,7 @@ function GetLayoutName() {
 
                  });
                  // Redirect to login if route requires auth and you're not logged in
-                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {         
+                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                      $state.previous = fromState;
                      $state.previousParams = fromParams;
                      if (fromState.name != "") {

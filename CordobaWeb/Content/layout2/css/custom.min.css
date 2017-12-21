@@ -2543,3 +2543,7 @@ label {
 .lblMonthlyPrize {
     font-size: 16px;
 }
+
+.textAlignRight {
+    text-align: right;
+}

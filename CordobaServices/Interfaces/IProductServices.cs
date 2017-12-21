@@ -16,7 +16,7 @@ namespace CordobaServices.Interfaces
         int DeleteProductFromCart(int StoreId, int LoggedInUserId, int cart_id);
 
         int InsertUpdateProduct(int StoreId, int LoggedInUserId, ProductEntity productEntity);
-        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id, string WhatAreYouLookingFor);
+        List<ProductEntity> GetProductListByCategoryAndStoreId(int StoreID, int CategoryId, int PageIndex, int Customer_Id, string WhatAreYouLookingFor, string SearchByFilterId, int OrderById);
 
         int DeleteProduct(int StoreId, int LoggedInUserId, int product_id);
         ProductEntity GetProductDetailForLayout(int StoreId, int ProductId, int CustomerId);

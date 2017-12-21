@@ -18,6 +18,15 @@
             font-weight: bold;
         }
 
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        left: -9999px;
+    }
+
+        .form-control:focus, .btn-empty, [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before, .submit_btn {
+            border-color: inherit;
+        }
+
     /*.searchByPointsContent ul li span {
                 text-align: center;
             }*/
@@ -25,35 +34,12 @@
 <div class="catagories_slider productlist" ng-controller="CategoryListController">
     <div class="container">
         <div class="col-md-3">
-            <div class="letest-product catagories">
+            <div class="letest-product catagories" ng-if="SelectedSubCategory==-3">
                 <h3>Search by Points</h3>
                 <div class="searchByPointsContent">
                     <ul>
-                        <li>
-                            <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected" ng-change="toggleAll($index)" style="">
-                            <span>
-                                1 to 10
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                11 to 25
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                26 to 50
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                51 to 100
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                Above 100
-                            </span>
+                        <li ng-repeat="SearchByPoint in SearchByPointsEnum">
+                            <input type="checkbox" class="cursor-pointer ng-pristine ng-valid ng-touched" ng-checked="SearchByPoint.Checked" ng-model="SearchByPoint.Checked" ng-change="SearchFilterByArray()"><span>{{'  '+SearchByPoint.Name}}</span>
                         </li>
                     </ul>
                 </div>
@@ -89,33 +75,18 @@
             <div class="mt-30">
                 <h3 ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)" class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>
-                <!--<div class="filterProductDiv col-sm-12 form-group">
-                    <div class="col-sm-3" style="margin-top:4px">
-                        <input type="checkbox" class="col-sm-1 mt-5" name="IncludePriceOnly" ng-model="IncludePriceOnlyFilter" ng-true-value="1" ng-false-value="0" />
-                        <label class="col-sm-11 rn_pad control-label">
-                            Points Only
-                        </label>
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="col-sm-5 rn_pad control-label mt-5">
-                            Points By
+                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3">
+                    <div class="col-sm-9">
+                        <label class="col-sm-4 rn_pad control-label mt-5 text-right">
+                            Sort By
                         </label>
                         <div class="col-sm-7">
-                            <select ng-options="PriceEnum.Id as PriceEnum.Name  for PriceEnum in PriceSortByEnum"
-                                    class="form-control" ng-model="PriceSortById" name="PriceSort"></select>
+                            <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
+                                    class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label class="col-sm-5 rn_pad control-label mt-5">
-                            Name By
-                        </label>
-                        <div class="col-sm-7">
-                            <select ng-options="NameEnum.Id as NameEnum.Name  for NameEnum in NameSortByEnum"
-                                    class="form-control" ng-model="NameSortById" name="NameSort"></select>
-                        </div>
-                    </div>
-                </div>-->
-                <div style="float:right">
+                </div>
+                <div class="pull-right">
                     <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>
                 </div>
                 <div class="col-sm-12">

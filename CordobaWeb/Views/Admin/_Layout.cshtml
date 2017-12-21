@@ -25,6 +25,14 @@
             color: #263238;
             background-color: #ffffff;
         }
+
+        .ta-editor {
+            min-height: 400px;
+            height: auto;
+            overflow: auto;
+            font-family: inherit;
+            font-size: 100%;
+        }
     </style>
 </head>
 <body ng-controller="LayoutController">
@@ -126,7 +134,7 @@
                         </div>
                         <ul class="media-list dropdown-content-body">
                             <li class="media" ng-repeat="Store in StoreList">
-                                <div class="media-left"><img src="{{Store.logo}}" class="img-circle img-sm" alt=""></div>
+                                @*<div class="media-left"><img src="{{Store.logo}}" class="img-circle img-sm" alt=""></div>*@
                                 <div class="media-body">
                                     <a href="{{Store.url}}" target="_blank" class="media-heading">
                                         <span class="text-semibold" ng-bind="Store.name"></span>
@@ -423,6 +431,7 @@
     <script type="text/javascript" src="~/Scripts/admin/js/charts/google/googleJSapi.js"></script>
     <script src="~/Scripts/jquery.cookiesdirective.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="~/Scripts/textAngular.min.js"></script>
     @*<script src="~/Scripts/canvas2image.js"></script>*@
 
     <div class="modal fade" id="Reloadlookup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
