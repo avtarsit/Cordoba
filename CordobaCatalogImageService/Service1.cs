@@ -107,7 +107,6 @@ namespace CordobaCatalogImageService
             }
             catch (Exception)
             {
-                
                 throw;
             }
            

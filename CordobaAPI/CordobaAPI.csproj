@@ -350,6 +350,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CordobaCatalogImageService\CordobaCatalogImageService.csproj">
+      <Project>{ca89273b-04ea-46a6-92eb-0ba2591c2225}</Project>
+      <Name>CordobaCatalogImageService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CordobaCommon\CordobaCommon.csproj">
       <Project>{15f9d105-6f02-4892-92aa-f8d4bb4ffb71}</Project>
       <Name>CordobaCommon</Name>
@@ -384,9 +388,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54564</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1020/CordobaAPI/</IISUrl>
+          <IISUrl>http://localhost:1020/CordobaAPI</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:8084/CordobaApi/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:1020/CordobaAPI</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

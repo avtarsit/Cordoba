@@ -75,12 +75,28 @@
             <div class="mt-30">
                 <h3 ng-if="(SelectedCategoryId>0 && SelectedSubCategory>0)" class="heading" ng-bind-html="SelectedCategory.name"></h3>
                 <h3 ng-if="(SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" class="heading" ng-bind-html="TitleHeader"></h3>
-                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3">
-                    <div class="col-sm-9">
-                        <label class="col-sm-4 rn_pad control-label mt-5 text-right">
+                <!--<div class="pull-left">
+                    <br />
+                    <div class="filterProductDiv form-group pull-left" ng-if="SelectedSubCategory==-3 && ProductList.length>0">
+                        <div>
+                            <label class="rn_pad control-label mt-5">
+                                Sort By
+                            </label>
+                            &nbsp;&nbsp;
+                            <div class="pull-right">
+                                <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
+                                        class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>-->
+                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3 && ProductList.length>0">
+                    <div>
+                        <label class="col-sm-3 rn_pad control-label mt-5">
                             Sort By
                         </label>
-                        <div class="col-sm-7">
+                        <div class="pull-left">
                             <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
                                     class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
                         </div>

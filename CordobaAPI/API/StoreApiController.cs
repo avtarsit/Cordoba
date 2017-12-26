@@ -28,7 +28,7 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _StoreServices.GetStoreList(StoreID,  LoggedInUserId);
+                var result = _StoreServices.GetStoreList(StoreID, LoggedInUserId);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -64,16 +64,12 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertUpdateStore(int LoggedInUserId , StoreEntity storeEntity)
+        public HttpResponseMessage InsertUpdateStore(int LoggedInUserId, StoreEntity storeEntity)
         {
             try
             {
                 var result = _StoreServices.InsertUpdateStore(storeEntity, LoggedInUserId);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -186,7 +182,7 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
-        public HttpResponseMessage UploadStoreLogo(int store_id , string store_name)
+        public HttpResponseMessage UploadStoreLogo(int store_id, string store_name)
         {
             bool res = false;
             if (HttpContext.Current.Request.Files.AllKeys.Any())
@@ -204,9 +200,9 @@ namespace CordobaAPI.API
                             Directory.CreateDirectory(folderPath);
                         }
 
-                        
 
-                        string fileName =  store_name + "-" + httpPostedFile.FileName;
+
+                        string fileName = store_name + "-" + httpPostedFile.FileName;
                         res = _StoreServices.UploadStoreLogo(store_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.store_logos.ToString() + "/" + fileName);
 
                         if (res == true)

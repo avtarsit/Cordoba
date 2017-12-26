@@ -31,13 +31,13 @@ namespace CordobaAPI.API
 
 
         [HttpPost]
-        public TableParameter<CustomerEntity> GetCustomerList(int PageIndex, string customerName, string email, int? customer_group_id,int? status , int? approved, string ip, DateTime? date_added, int storeId , TableParameter<CustomerEntity> tableParameter)
+        public TableParameter<CustomerEntity> GetCustomerList(int PageIndex, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int storeId, TableParameter<CustomerEntity> tableParameter)
         {
             try
             {
                 tableParameter.PageIndex = PageIndex;
                 string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
-                var result = _CustomerService.GetCustomerList(sortColumn, tableParameter, customerName, email, customer_group_id,status, approved, ip, date_added , storeId).ToList();
+                var result = _CustomerService.GetCustomerList(sortColumn, tableParameter, customerName, email, customer_group_id, status, approved, ip, date_added, storeId).ToList();
                 int totalRecords = 0;
                 if (result != null && result.Count > 0)
                 {
@@ -58,9 +58,9 @@ namespace CordobaAPI.API
 
         }
 
-      
+
         [HttpPost]
-        public HttpResponseMessage CustomerExportToExcel(int PageIndex, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int storeId,object tableParameter)
+        public HttpResponseMessage CustomerExportToExcel(int PageIndex, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int storeId, object tableParameter)
         {
             SortColumn sr;
             string sortColumn;
@@ -158,12 +158,8 @@ namespace CordobaAPI.API
         {
             try
             {
-                var result = _CustomerService.InsertUpdateCustomer( LoggedInUserId, customerEntity);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                var result = _CustomerService.InsertUpdateCustomer(LoggedInUserId, customerEntity);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -266,7 +262,7 @@ namespace CordobaAPI.API
 
                         var result = _CustomerService.PointsImporter(store_id, LoggedInUserId, IsSendEmail, dtXLS);
                         Console.Write(result);
-                        return Request.CreateResponse(HttpStatusCode.OK, result );
+                        return Request.CreateResponse(HttpStatusCode.OK, result);
                     }
                     catch (Exception)
                     {
@@ -275,7 +271,7 @@ namespace CordobaAPI.API
                     }
                 }
 
-            
+
                 return Request.CreateResponse(HttpStatusCode.OK, 0);
             }
             catch (Exception)
@@ -379,7 +375,7 @@ namespace CordobaAPI.API
         //            }
         //        }
 
-            
+
         //        return Request.CreateResponse(HttpStatusCode.OK, 0);
         //    }
         //    catch (Exception)
@@ -474,11 +470,11 @@ namespace CordobaAPI.API
                         {
                             if (!(IsValidEmail(Convert.ToString(dtXLS.Rows[i]["email"]))))
                             {
-                                var str="Email is not valid : "+Convert.ToString(dtXLS.Rows[i]["email"]);
+                                var str = "Email is not valid : " + Convert.ToString(dtXLS.Rows[i]["email"]);
                                 return str;
                             }
                             // do something with dr
-                        } 
+                        }
 
                         var result = _CustomerService.CustomerImport(store_id, LoggedInUserId, customer_group_id, dtXLS);
                         return result;
@@ -589,14 +585,9 @@ namespace CordobaAPI.API
             try
             {
                 var result = _CustomerService.deleteCustomerImage(customer_id);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
-
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw;
             }
@@ -608,19 +599,15 @@ namespace CordobaAPI.API
             try
             {
                 var result = _CustomerService.InsertPointAudit(customer_id, description, points);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw;
             }
         }
 
-       public bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
             try
             {
@@ -632,7 +619,7 @@ namespace CordobaAPI.API
                 return false;
             }
         }
-        
-      
+
+
     }
 }

@@ -92,17 +92,23 @@
                     <h4 ng-bind-html="TitleHeader"></h4>
                 </div>
                 <br />
-                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3">
-                    <div class="col-sm-9">
-                        <label class="col-sm-3 rn_pad control-label mt-5">
-                            Sort By
-                        </label>
-                        <div class="col-sm-5">
-                            <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
-                                    class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
+                <div class="pull-left">
+                    <br />
+                    <div class="filterProductDiv form-group pull-left" ng-if="SelectedSubCategory==-3 && ProductList.length>0">
+                        <div>
+                            <label class="rn_pad control-label mt-5">
+                                Sort By
+                            </label>
+                            &nbsp;&nbsp;
+                            <div class="pull-right">
+                                <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
+                                        class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
                 <div class="pull-right">
                     <ul ng-show="(SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)" pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()"></ul>
                 </div>

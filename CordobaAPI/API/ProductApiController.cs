@@ -94,11 +94,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.DeleteProductFromCart(StoreId, LoggedInUserId, cart_id);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -114,11 +110,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.InsertUpdateProduct(StoreId, LoggedInUserId, productEntity);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -170,7 +162,6 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.GetProductDetailForLayout(StoreID, ProductId, CustomerId);
-
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
@@ -185,7 +176,6 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.GetRelatedProductList(StoreID, SelectedProductId, RelatedProductId);
-
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
@@ -200,11 +190,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.InsertAsHotProduct(LoggedInUserId, hotSpecialProductEntity);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {
@@ -218,11 +204,7 @@ namespace CordobaAPI.API
             try
             {
                 var result = _ProductServices.InsertAsSpecialProduct(LoggedInUserId, hotSpecialProductEntity);
-                if (result != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception)
             {

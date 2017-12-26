@@ -613,11 +613,13 @@
     <Content Include="Content\layout1\storecss\arkle2016.min.css" />
     <Content Include="Content\layout1\storecss\assetadvantagerewards.min.css" />
     <Content Include="Content\layout1\storecss\au.pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout1\storecss\bcdloyalty.co.uk.css" />
     <Content Include="Content\layout1\storecss\btlblondonrewards.min.css" />
     <Content Include="Content\layout1\storecss\ca.pbmakeadifferencethankyou.min.css" />
     <Content Include="Content\layout1\storecss\clearwinnersclub.min.css" />
     <Content Include="Content\layout1\storecss\cordobarewards.min.css" />
     <Content Include="Content\layout1\storecss\cvdrewards.min.css" />
+    <Content Include="Content\layout1\storecss\econocomrewards.ie.css" />
     <Content Include="Content\layout1\storecss\econocomrewards.min.css" />
     <Content Include="Content\layout1\storecss\fr.pbmakeadifferencethankyou.min.css" />
     <Content Include="Content\layout1\storecss\goskippyrewards.min.css" />
@@ -4026,7 +4028,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:1020</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:51989/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:1020</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
