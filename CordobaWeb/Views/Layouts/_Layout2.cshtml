@@ -366,9 +366,9 @@
         <div class="about-us">
             <div id="aboutScroll" class="welcome-block">
                 <a href="javascript:;" class="showDesc">About Us</a>
-                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <div ng-bind-unsafe-html="WelcomeMsg[0] | noHTML | newlines"></div>
                 <div class="more-content">
-                    <div ng-bind-html="WelcomeMsg[1]">
+                    <div ng-bind-unsafe-html="WelcomeMsg[1] | noHTML | newlines">
                     </div>
                 </div>
             </div>

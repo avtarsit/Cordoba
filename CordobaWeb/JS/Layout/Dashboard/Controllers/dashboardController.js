@@ -1,4 +1,4 @@
-﻿app.controller('DashboardController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService) {
+﻿app.controller('DashboardController', function (StoreSessionDetail, $timeout, UserDetail, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService, $sce) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -41,40 +41,40 @@
                   .then(function (response) {
                       if (response.data != null) {
                           switch (response.data.ErrorTypeId) {
-                          case 0:
+                              case 0:
 
-                              UserDetail.customer_id = response.data.customer_id;
-                              UserDetail.firstname = response.data.firstname;
-                              UserDetail.lastname = response.data.lastname;
-                              UserDetail.points = response.data.points;
-                              UserDetail.address_id = response.data.address_id;
-                              UserDetail.cartgroup_id = response.data.cartgroup_id;
-                              UserDetail.TotalItemAdded = response.data.TotalItemAdded;
+                                  UserDetail.customer_id = response.data.customer_id;
+                                  UserDetail.firstname = response.data.firstname;
+                                  UserDetail.lastname = response.data.lastname;
+                                  UserDetail.points = response.data.points;
+                                  UserDetail.address_id = response.data.address_id;
+                                  UserDetail.cartgroup_id = response.data.cartgroup_id;
+                                  UserDetail.TotalItemAdded = response.data.TotalItemAdded;
 
-                              localStorageService.set("loggedInUser", response.data);
-                              $rootScope.CustomerDetail = response.data;
+                                  localStorageService.set("loggedInUser", response.data);
+                                  $rootScope.CustomerDetail = response.data;
 
-                              angular.element("#DivLoginModel").modal('hide');
+                                  angular.element("#DivLoginModel").modal('hide');
 
-                              break;
-                          case 1:
-                              toastr.error('Please enter correct email!');
-                              $scope.CustomerObj.email = null;
-                              break;
-                          case 2:
-                              toastr.error('Please enter correct password!');
-                              $scope.CustomerObj.password = null;
-                              break;
-                          case 3:
-                              toastr.error('Please enter correct email and password!');
-                              $scope.CustomerObj = null;
-                              break;
+                                  break;
+                              case 1:
+                                  toastr.error('Please enter correct email!');
+                                  $scope.CustomerObj.email = null;
+                                  break;
+                              case 2:
+                                  toastr.error('Please enter correct password!');
+                                  $scope.CustomerObj.password = null;
+                                  break;
+                              case 3:
+                                  toastr.error('Please enter correct email and password!');
+                                  $scope.CustomerObj = null;
+                                  break;
                           }
                       } else {
                           toastr.error('Please enter correct email and password!');
                           //$scope.CustomerObj = null;
                       }
-                      
+
                   })
               .catch(function (response) {
 
@@ -88,15 +88,15 @@
     //for first time login 
     $scope.validateEmailaddress = function () {
         if ($scope.CustomerObj.email != null) {
-            
+
             //$scope.validateObj = new Object();
             //$scope.validateObj.email = $scope.CustomerObj.email;
             //$scope.validateObj.store_id = $scope.StoreDetailInSession.store_id;
-           
+
             //$http.post(configurationService.basePath + "API/LayoutDashboardAPI/VisitedCustomerInfo", $scope.validateObj)
             //   .then(function (response) {
-                  
-                  
+
+
             //       if (response.data === 0) {
             //           $scope.IsVisibleloginForm = true;
             //           $scope.IsVisibleFirstTimeVisiteForm = false;
@@ -111,21 +111,21 @@
         }
     }
 
-    $scope.OpenResetPasswordForm = function() {
+    $scope.OpenResetPasswordForm = function () {
         if ($scope.CustomerObj.email != null) {
-           
+
             $scope.resetObj = new Object();
             $scope.resetObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.resetObj.store_name = $scope.StoreDetailInSession.name;
             $scope.resetObj.logo = $scope.StoreDetailInSession.logo;
             $scope.resetObj.email = $scope.CustomerObj.email;
 
-            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SendResetPassEmail",  $scope.resetObj)
+            $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SendResetPassEmail", $scope.resetObj)
                 .then(function (response) {
-                   
-                    
+
+
                     if (response.data.errorcode > 0) {
-                        
+
                         $scope.IsVisibleloginForm = true;
                         $scope.IsVisibleFirstTimeVisiteForm = true;
                         $scope.IsVisibleResetPassswordForm = false;
@@ -140,15 +140,15 @@
         }
     }
 
-    $scope.ResetPassword = function(form) {
+    $scope.ResetPassword = function (form) {
         if (form.$valid) {
             $scope.resetObj.email = $scope.CustomerObj.email;
             $scope.resetObj.store_id = $scope.StoreDetailInSession.store_id;
 
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ResetPasswordAndOtpVerify", $scope.resetObj)
                 .then(function (response) {
-                 
-                    
+
+
                     if (response.data.errorcode > 0) {
 
                         notificationFactory.customSuccess("Password Reseted Successfully.");
@@ -189,7 +189,7 @@
         localStorageService.set("loggedInUser", UserDetail);
         $rootScope.CustomerDetail = UserDetail;
         $state.go('Home');
-        
+
     }
 
     $scope.ForgotPassword = function (form) {
@@ -266,9 +266,9 @@
     }
 
     $scope.GotoProductList = function (Whatyouarelookingfor) {
-        if (Whatyouarelookingfor != undefined && Whatyouarelookingfor != null && Whatyouarelookingfor != "") {        
+        if (Whatyouarelookingfor != undefined && Whatyouarelookingfor != null && Whatyouarelookingfor != "") {
             $state.go('LayoutCategoryORProductList', { 'CategoryId': -3, 'Search': Whatyouarelookingfor });
-        }     
+        }
     }
 
     $scope.OpenTermsCondition = function () {
@@ -280,8 +280,7 @@
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.TermsConditionMsg = $('<div />').html(response.data[0].Terms).text();
-
+                  $scope.TermsConditionMsg = response.data[0].Terms;
               }
           })
       .catch(function (response) {

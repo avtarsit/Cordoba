@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html ng-app="CordobaApp" lang="en">
-<head>  
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,7 +82,8 @@
                 left: 100%;
             }
         }
-          #impliedsubmit {
+
+        #impliedsubmit {
             color: #263238;
             background-color: #ffffff;
         }
@@ -203,9 +204,9 @@
         <div class="about-us">
             <div id="aboutScroll" class="welcome-block">
                 <a href="javascript:;" class="showDesc">About Us</a>
-                <div ng-bind-html="WelcomeMsg[0]"></div>
+                <div ng-bind-html="WelcomeMsg[0] | htmlToPlaintext"></div>
                 <div class="more-content">
-                    <div ng-bind-html="WelcomeMsg[1]">
+                    <div ng-bind-html-unsafe="WelcomeMsg[1] | htmlToPlaintext">
                     </div>
                 </div>
             </div>
@@ -312,7 +313,7 @@
 
                                 </div>
                             </form>
-                            
+
                             @*Reset Password for first time visited customer*@
                             <form name="FirstTimeVisiteForm" id="FirstTimeVisiteForm" class="form-horizontal" ng-hide="IsVisibleFirstTimeVisiteForm" novalidate>
                                 <div class="login_page">
@@ -382,7 +383,6 @@
                         <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
                         <div class="modal-body category-list" style="background-color:whitesmoke">
                             <div ng-bind-html="TermsConditionMsg"></div>
-
                         </div>
                     </div>
                 </div>
@@ -411,7 +411,7 @@
     @*<script src="~/Scripts/jquery.twbsPagination.min.js"></script>*@
 
     <script type="text/javascript">
-        $(document).ready(function () {        
+        $(document).ready(function () {
 
             $.mCustomScrollbar.defaults.theme = 'dark-thick';
 
