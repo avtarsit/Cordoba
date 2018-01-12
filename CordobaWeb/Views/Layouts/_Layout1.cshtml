@@ -195,7 +195,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>Copyright © 2017 Cordoba</p>
+                <p>Copyright © @DateTime.UtcNow.Year Cordoba</p>
             </div>
         </footer>
 
@@ -204,9 +204,10 @@
         <div class="about-us">
             <div id="aboutScroll" class="welcome-block">
                 <a href="javascript:;" class="showDesc">About Us</a>
-                <div ng-bind-html="WelcomeMsg[0] | htmlToPlaintext"></div>
+                <div ng-bind-html="WelcomeMsg[0] | HTMLtrusted"></div>
+                @*<div ng-bind-html="trustAsHtml(WelcomeMsg[0])"></div>*@
                 <div class="more-content">
-                    <div ng-bind-html-unsafe="WelcomeMsg[1] | htmlToPlaintext">
+                    <div ng-bind-html-unsafe="WelcomeMsg[1] | HTMLtrusted">
                     </div>
                 </div>
             </div>
@@ -223,7 +224,7 @@
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-content">
-                        <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
+                        <a href="javascript:;" class="close-modal" data-dismiss="modal">Ok</a>
                         <div class="modal-body">
                             <div class="login_text">
                                 <div class="icon-text">
@@ -380,7 +381,7 @@
                     <div class="modal-content">
                         <div class="panel-heading">
                         </div>
-                        <a href="javascript:;" class="close-modal" data-dismiss="modal">No Thanks</a>
+                        <a href="javascript:;" class="close-modal" data-dismiss="modal">Ok</a>
                         <div class="modal-body category-list" style="background-color:whitesmoke">
                             <div ng-bind-html="TermsConditionMsg"></div>
                         </div>
@@ -428,7 +429,7 @@
 
                 } else {
                     hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "197px" }, "slow").addClass("visible");
                     $(".showDesc").text("Close");
                     $(".about-overlay").fadeIn("slow");
                 }

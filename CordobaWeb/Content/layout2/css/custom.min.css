@@ -1214,9 +1214,10 @@ label {
 
 #aboutScroll {
     float: left;
-    width: 100%;
+    width: 90%;
     height: 100%;
     overflow: auto;
+    margin-left: 20px;
 }
 
 .showDesc {

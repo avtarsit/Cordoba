@@ -5,6 +5,8 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CordobaModels
 {
@@ -44,7 +46,7 @@ namespace CordobaModels
         /// <returns>returns a string value</returns>
         public static string Encrypt(string strValue)
         {
-            return string.IsNullOrWhiteSpace(strValue) ? string.Empty : TamperProofStringEncode(strValue, StrTamperProofKey);
+            return string.IsNullOrWhiteSpace(strValue) ? string.Empty : TamperProofStringEncode(strValue);
         }
 
         /// <summary>
@@ -63,12 +65,22 @@ namespace CordobaModels
         /// <param name="strValue">The string value.</param>
         /// <param name="strKey">The string key.</param>
         /// <returns>The <see cref="string" />.</returns>
-        private static string TamperProofStringEncode(string strValue, string strKey)
+        private static string TamperProofStringEncode(string strValue)
         {
-            System.Security.Cryptography.MACTripleDES mac3Des = new System.Security.Cryptography.MACTripleDES();
-            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            mac3Des.Key = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(strKey));
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(strValue)) + Convert.ToChar("-") + Convert.ToBase64String(mac3Des.ComputeHash(System.Text.Encoding.UTF8.GetBytes(strValue)));
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(strValue));
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+            return hash.ToString();
+
+            ////System.Security.Cryptography.MACTripleDES mac3Des = new System.Security.Cryptography.MACTripleDES();
+            //System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            ////md5.Key = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(strKey));
+            //return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(strValue)) + Convert.ToChar("-") + Convert.ToBase64String(md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(strValue)));
         }
 
         /// <summary>

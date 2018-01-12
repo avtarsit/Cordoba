@@ -63,9 +63,18 @@ app.filter('noHTML', function () {
 
 app.filter('newlines', function () {
     return function (text) {
-        return angular.element(text).text()
+        var abc = angular.element(text).text()
         .replace(/(&#13;)?&#10;/g, '<br/>')
         .replace('\r\n', '<br/>')
         ;
+        return abc;
     }
 })
+
+app.filter('HTMLtrusted', ['$sce', function ($sce) {
+    var div = document.createElement('div');
+    return function (text) {
+        div.innerHTML = text;
+        return $sce.trustAsHtml(div.textContent);
+    };
+}])

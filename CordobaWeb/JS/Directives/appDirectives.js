@@ -1134,11 +1134,12 @@ app.directive('notifyWhenRepeatFinished', ['$timeout', function ($timeout) {
         }
     }
 }]);
-
-
-
-
-
-
-
-
+app.directive("htmlStyle", function () {
+    return {
+        restrict: "EA",
+        template: "<p></p>",
+        scope: {
+            text: "@text"
+        }
+    };
+});

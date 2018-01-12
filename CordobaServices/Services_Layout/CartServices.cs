@@ -16,10 +16,10 @@ using CordobaServices.Services;
 
 namespace CordobaServices.Services_Layout
 {
-   public class CartServices : ICartServices
+    public class CartServices : ICartServices
     {
         private GenericRepository<CartEntity> objGenericRepository = new GenericRepository<CartEntity>();
-       private GenericRepository<PlaceOrderEntity> placeOrderRepository = new GenericRepository<PlaceOrderEntity>();
+        private GenericRepository<PlaceOrderEntity> placeOrderRepository = new GenericRepository<PlaceOrderEntity>();
 
 
         public List<CartEntity> GetCartDetailsByCustomerAndStoreId(int? StoreID, int CustomerId)
@@ -49,7 +49,7 @@ namespace CordobaServices.Services_Layout
         public int? RemoveProductFromCart(int? CartId)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("cart_id", CartId)                                             
+                                                   new SqlParameter("cart_id", CartId)
                                                };
 
             var result = objGenericRepository.ExecuteSQL<int>("DeleteProductFromCart", sqlParameter).FirstOrDefault();
@@ -60,16 +60,16 @@ namespace CordobaServices.Services_Layout
         public int? PlaceOrder(PlaceOrderEntity placeOrderObj)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                     new SqlParameter("store_id", placeOrderObj.store_id)   
-                                                   ,  new SqlParameter("customer_id", placeOrderObj.customer_id)  
-                                                   ,  new SqlParameter("shipping_addressId", placeOrderObj.shipping_addressId)  
-                                                   ,  new SqlParameter("ip", placeOrderObj.IpAddress!=null? placeOrderObj.IpAddress:(object)DBNull.Value)  
-                                                   ,  new SqlParameter("Comment", placeOrderObj.Comment!=null?placeOrderObj.Comment:(object)DBNull.Value)  
-                                                   ,  new SqlParameter("CartGroupId", placeOrderObj.CartGroupId)  
+                                                     new SqlParameter("store_id", placeOrderObj.store_id)
+                                                   ,  new SqlParameter("customer_id", placeOrderObj.customer_id)
+                                                   ,  new SqlParameter("shipping_addressId", placeOrderObj.shipping_addressId)
+                                                   ,  new SqlParameter("ip", placeOrderObj.IpAddress!=null? placeOrderObj.IpAddress:(object)DBNull.Value)
+                                                   ,  new SqlParameter("Comment", placeOrderObj.Comment!=null?placeOrderObj.Comment:(object)DBNull.Value)
+                                                   ,  new SqlParameter("CartGroupId", placeOrderObj.CartGroupId)
                                                };
 
 
-            
+
 
             var result = objGenericRepository.ExecuteSQL<int>("PlaceOrderAfterConfirmation", sqlParameter).FirstOrDefault();
             SendInvoiceMailToCustomer(result);
@@ -79,8 +79,8 @@ namespace CordobaServices.Services_Layout
         public List<AddressEntity> GetCustmoreAddressList(int? store_id, int customer_id)
         {
             SqlParameter[] sqlParameter = new SqlParameter[] {
-                                                   new SqlParameter("store_id", store_id)                                             
-                                                 , new SqlParameter("customer_id", customer_id)                                             
+                                                   new SqlParameter("store_id", store_id)
+                                                 , new SqlParameter("customer_id", customer_id)
                                                };
 
             var result = objGenericRepository.ExecuteSQL<AddressEntity>("GetCustmoreAddressList", sqlParameter).ToList();
@@ -90,29 +90,29 @@ namespace CordobaServices.Services_Layout
 
 
 
-       public bool SendInvoiceMailToCustomer(int order_id)
-       {
+        public bool SendInvoiceMailToCustomer(int order_id)
+        {
 
-           if (order_id<=0)
-           {
-               return false;
-           }
+            if (order_id <= 0)
+            {
+                return false;
+            }
 
-           var orderIdParam = new SqlParameter 
-           {
-               ParameterName = "order_id", 
-               DbType = DbType.Int64, 
-               Value = order_id
-           };
+            var orderIdParam = new SqlParameter
+            {
+                ParameterName = "order_id",
+                DbType = DbType.Int64,
+                Value = order_id
+            };
 
-            var result = placeOrderRepository.ExecuteSQL<PlaceOrderEntity>("GetOrderDetailsForEmail",orderIdParam);
+            var result = placeOrderRepository.ExecuteSQL<PlaceOrderEntity>("GetOrderDetailsForEmail", orderIdParam);
 
             var listOrderDetailsresponse = result.ToList();
             var orderItemDetailsRecord = listOrderDetailsresponse.FirstOrDefault();
 
 
 
-           #region Generate Email body
+            #region Generate Email body
 
             var priceTableString = string.Empty;
             priceTableString = priceTableString +
@@ -125,15 +125,15 @@ namespace CordobaServices.Services_Layout
                                               Quantity
                                     </td>
                                     <td style='text-align:right;border-bottom: 1px solid #ddd;width:30%' >
-                                              Price
+                                              Point
                                     </td>
                               </tr>";
             priceTableString = listOrderDetailsresponse.Aggregate(priceTableString, (current, a) => current + @"<tr style='font-weight:normal;height:25px;'>
                                      <td  style='text-align: left;width:50%;'>" + a.product_name + "</td><td style='text-align:center;width:15%;'>" + a.quantity + "</td><td style='text-align:right;width:35%;'>" + a.product_price + "</td></tr>");
 
-            
+
             priceTableString = priceTableString +
-                               // ReSharper disable once PossibleNullReferenceException
+               // ReSharper disable once PossibleNullReferenceException
                @"<tr style='font-weight:bold;height:25px;'>
                                      <td   style='text-align:left;border-top: 1px solid #ddd; width:50%;'>Total</td><td style='text-align:center;border-top: 1px solid #ddd;width:15%;'></td><td style='text-align:right;border-top: 1px solid #ddd;width:35%;'>" + (orderItemDetailsRecord != null ? orderItemDetailsRecord.total.ToString() : "") + "</td></tr>";
 
@@ -142,8 +142,8 @@ namespace CordobaServices.Services_Layout
             #endregion
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/EmailTemplate.html");
-           
-            const string strSubject = "Your Order Summary";
+
+            string strSubject = orderItemDetailsRecord.store_name + " -  Order " + Convert.ToString(orderItemDetailsRecord.order_id);
             var strbody = CommonService.ReadTextFile(filepath);
             if (strbody.Length > 0)
             {
@@ -161,23 +161,23 @@ namespace CordobaServices.Services_Layout
                 strbody = strbody.Replace("##ShippingName##", orderItemDetailsRecord.shipping_name);
                 strbody = strbody.Replace("##ShippingCompany##", orderItemDetailsRecord.shipping_company);
                 strbody = strbody.Replace("##ShippingMethod##", orderItemDetailsRecord.shipping_method);
-                strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
+                //strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
                 strbody = strbody.Replace("##FinalTable##", priceTableString);
                 //strbody = strbody.Replace("##RedirectPath##", redirectPath);
-                
+
                 //strbody = strbody.Replace("##LeaveFeedback##", leaveFeedbackUrl);
                 strbody = strbody.Replace("##StoreLogo##", orderItemDetailsRecord.store_logo);
             }
 
             var commonServices = new CommonService();
 
-           CommonService.SendMailMessage(orderItemDetailsRecord.email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null);
+            CommonService.SendMailMessage(orderItemDetailsRecord.email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null, orderItemDetailsRecord.store_name);
             return true;
-       }
+        }
 
 
-       
-       // READ TEXT FILE
+
+        // READ TEXT FILE
         //public static string ReadTextFile(string strFilePath)
         //{
         //    var entireFile = string.Empty;
@@ -191,7 +191,7 @@ namespace CordobaServices.Services_Layout
         //    }
         //    catch (Exception ex)
         //    {
-                
+
         //        throw;
         //    }
         //    finally
@@ -203,7 +203,7 @@ namespace CordobaServices.Services_Layout
         //}
 
 
-       //Send mail
+        //Send mail
         //public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment)
         //{
         //    if (string.IsNullOrEmpty(recipient))

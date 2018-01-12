@@ -245,6 +245,7 @@
         var row = table.row($($event.target).parents('tr')).data();
         angular.element("#DivCreateOrderModel").modal('show');
         $scope.CreatedOrderUrl = $sce.trustAsResourceUrl(row.localhosturl) + "/#/Home" + "?IsFromAdmin=" + Encodestring(true) + "&Email=" + Encodestring(row.email);
+        debugger;
         $scope.Email = row.email;
         $scope.IsFromAdmin = true;
         $scope.StoreName = row.store_name;

@@ -220,6 +220,7 @@
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
           .then(function (response) {
               $scope.CustomerObj = response.data;
+              debugger;
               if (!($scope.customer_id>0)) {
                    $scope.CustomerObj.status=1;
               }
@@ -294,7 +295,7 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
-
+        debugger;
         if (form.$valid) {
             if (!ValidateAddress()) {
                 notificationFactory.customError("Not a valid address/add at least 1 address.");

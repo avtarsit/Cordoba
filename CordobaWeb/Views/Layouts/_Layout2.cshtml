@@ -233,7 +233,7 @@
                 </p>
                 <br />
                 <p>
-                    Copyright © 2017 Cordoba
+                    Copyright © @DateTime.UtcNow.Year Cordoba
                 </p>
 
             </div>
@@ -364,11 +364,11 @@
 
         <div class="about-overlay"></div>
         <div class="about-us">
-            <div id="aboutScroll" class="welcome-block">
+                <div id="aboutScroll" class="welcome-block">
                 <a href="javascript:;" class="showDesc">About Us</a>
-                <div ng-bind-unsafe-html="WelcomeMsg[0] | noHTML | newlines"></div>
+                <div ng-bind-html="WelcomeMsg[0] | htmlToPlaintext"></div>
                 <div class="more-content">
-                    <div ng-bind-unsafe-html="WelcomeMsg[1] | noHTML | newlines">
+                    <div ng-bind-html-unsafe="WelcomeMsg[1] | htmlToPlaintext">
                     </div>
                 </div>
             </div>
@@ -430,7 +430,7 @@
 
                 } else {
                     hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                    $(".showDesc").animate({ "right": "296px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "197px" }, "slow").addClass("visible");
                     $(".showDesc").text("Close");
                     $(".about-overlay").fadeIn("slow");
                 }

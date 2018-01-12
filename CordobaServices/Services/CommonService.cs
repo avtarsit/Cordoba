@@ -40,9 +40,9 @@ namespace CordobaServices.Services
 
 
         //Send mail
-        public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment)
+        public static bool SendMailMessage(string recipient, string bcc, string cc, string subject, string body, EmailNotification emailSetting, string attachment, string storeName)
         {
-            recipient = ConfigurationManager.AppSettings["emailTo"];
+            //recipient = ConfigurationManager.AppSettings["emailTo"];
             if (string.IsNullOrEmpty(recipient))
             {
                 return true;
@@ -51,8 +51,24 @@ namespace CordobaServices.Services
             // Instantiate a new instance of MailMessage 
             MailMessage mailMessage = new MailMessage();
 
+            if (!string.IsNullOrWhiteSpace(storeName))
+            {
+                mailMessage.From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"], storeName);
+
+                mailMessage.Sender = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"], storeName);
+
+                mailMessage.ReplyToList.Add(new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"], storeName));
+            }
+            else
+            {
+                mailMessage.From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"]);
+
+                mailMessage.Sender = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"]);
+
+                mailMessage.ReplyToList.Add(new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailTo"]));
+            }
+
             // Set the sender address of the mail message 
-            mailMessage.From = new MailAddress(emailSetting.FromEmail, emailSetting.FromName);
 
             // Set the recipient address of the mail message 
             // mailMessage.To.Add(new MailAddress(recipient));
@@ -67,18 +83,6 @@ namespace CordobaServices.Services
                 }
             }
 
-            // Check if the bcc value is nothing or an empty string 
-            if (!string.IsNullOrEmpty(bcc))
-            {
-                string[] strBCC = bcc.Split(new char[] { ',' });
-
-                // Set the Bcc address of the mail message 
-                //for (int intCount = 0; intCount < strBCC.Length; intCount++)
-                //{
-                //    mailMessage.Bcc.Add(new MailAddress(strBCC[intCount]));
-                //}
-            }
-
             // Check if the cc value is nothing or an empty value 
             //if (!string.IsNullOrEmpty(cc))
             //{
@@ -90,7 +94,32 @@ namespace CordobaServices.Services
             //    }
             //}
 
-            mailMessage.CC.Add(new MailAddress(ConfigurationManager.AppSettings["emailCC"]));
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["emailCC"]))
+            {
+                string[] strBCC = ConfigurationManager.AppSettings["emailCC"].Split(new char[] { ',' });
+
+                //Set the Bcc address of the mail message
+                for (int intCount = 0; intCount < strBCC.Length; intCount++)
+                {
+                    mailMessage.CC.Add(new MailAddress(strBCC[intCount]));
+                }
+            }
+
+
+            if (!subject.ToLower().Contains("verify".ToString()))
+            {
+
+                if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["emailBCC"]))
+                {
+                    string[] strBCC = ConfigurationManager.AppSettings["emailBCC"].Split(new char[] { ',' });
+
+                    //Set the Bcc address of the mail message
+                    for (int intCount = 0; intCount < strBCC.Length; intCount++)
+                    {
+                        mailMessage.Bcc.Add(new MailAddress(strBCC[intCount]));
+                    }
+                }
+            }
 
             // Set the subject of the mail message 
             mailMessage.Subject = subject;
@@ -116,11 +145,12 @@ namespace CordobaServices.Services
                 smtpClient.Port = emailSetting.EmailPort;
                 smtpClient.Credentials = new System.Net.NetworkCredential(emailSetting.EmailUsername, emailSetting.EmailPassword);
 
+
                 // Send the mail message 
                 smtpClient.Send(mailMessage);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -148,7 +178,7 @@ namespace CordobaServices.Services
         // ReSharper disable once InconsistentNaming
         public bool SendOTPEmail(string email, string otp, string name, string store_name, string logopath)
         {
-            const string strSubject = "Verify Email";
+            string strSubject = store_name + " -  Verify Email";
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
             var strbody = ReadTextFile(filepath);
@@ -161,12 +191,12 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##StoreName##", store_name);
             strbody = strbody.Replace("##LogoPath##", logopath);
 
-            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);
         }
 
         public bool SendResetPassOTPEmail(string email, string otp, string name, string store_name, string logopath)
         {
-            const string strSubject = "Reset Password";
+            string strSubject = store_name + " - Reset Password";
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/VerifyOTP.html");
             var strbody = ReadTextFile(filepath);
@@ -179,16 +209,16 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##StoreName##", store_name);
             strbody = strbody.Replace("##LogoPath##", logopath);
 
-            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null);
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);
         }
 
         public bool sendContactUsDetails(string name, string email, string phone, string description, StoreEntity storeEntity)
         {
-            const string strSubject = "Inquiry";
+            string strSubject = storeEntity.name + " - Inquiry";
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/ContactUs.html");
             var strbody = ReadTextFile(filepath);
-            
+
             if (strbody.Length <= 0)
                 return false;
 
@@ -199,7 +229,7 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##LogoPath##", storeEntity.logo);
             strbody = strbody.Replace("##StoreName##", storeEntity.name);
 
-            return SendMailMessage(ConfigurationManager.AppSettings["emailTo"], null, null, strSubject, strbody, GetEmailSettings(), null);
+            return SendMailMessage(ConfigurationManager.AppSettings["emailTo"], null, null, strSubject, strbody, GetEmailSettings(), null, storeEntity.name);
 
         }
 

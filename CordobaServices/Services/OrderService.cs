@@ -493,7 +493,7 @@ namespace CordobaServices.Services
 
             var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/OrderStatusUpdateTemplate.html");
 
-            const string strSubject = "Your Order Summary";
+            string strSubject = orderItemDetailsRecord.store_name + " -  Order " + Convert.ToString(orderItemDetailsRecord.order_id);
             var strbody = ReadTextFile(filepath);
             if (strbody.Length > 0)
             {
@@ -511,7 +511,7 @@ namespace CordobaServices.Services
                 strbody = strbody.Replace("##ShippingName##", orderItemDetailsRecord.shipping_name);
                 strbody = strbody.Replace("##ShippingCompany##", orderItemDetailsRecord.shipping_company);
                 strbody = strbody.Replace("##ShippingMethod##", orderItemDetailsRecord.shipping_method);
-                strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
+                //strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
                 strbody = strbody.Replace("##FinalTable##", priceTableString);
                 //strbody = strbody.Replace("##RedirectPath##", redirectPath);
 
@@ -521,7 +521,7 @@ namespace CordobaServices.Services
 
             var commonServices = new CommonService();
 
-            CommonService.SendMailMessage(orderItemDetailsRecord.email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null);
+            CommonService.SendMailMessage(orderItemDetailsRecord.email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null, orderItemDetailsRecord.store_name);
             return true;
         }
 

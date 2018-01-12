@@ -91,7 +91,7 @@ namespace CordobaAPI.API_Layout
                  }
                  return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
              }
-             catch (Exception)
+             catch (Exception ex)
              {
 
                  throw;

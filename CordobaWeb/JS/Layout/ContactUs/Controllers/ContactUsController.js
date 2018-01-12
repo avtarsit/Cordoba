@@ -13,7 +13,7 @@
     }
 
     $scope.SendContactUsDetail = function (form) {    
-        //$scope.captchaValid = false;
+        $scope.captchaValid = true;
         //if (grecaptcha.getResponse() == undefined || grecaptcha.getResponse() == '' || grecaptcha.getResponse() == null) {  
         //    return false;
             

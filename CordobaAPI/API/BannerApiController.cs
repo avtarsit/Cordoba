@@ -88,53 +88,60 @@ namespace CordobaAPI.API
 
                 if (httpPostedFile != null)
                 {
-                    string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString();
-                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    try
                     {
-                        if (!Directory.Exists(folderPath))
+                        string folderPath = ConfigurationManager.AppSettings["FileUploadPath"].ToString() + "data//" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString();
+                        if (!string.IsNullOrWhiteSpace(folderPath))
                         {
-                            Directory.CreateDirectory(folderPath);
-                        }
-
-                        string childFolderPath = folderPath + "/" + banner_id;
-                        if (!Directory.Exists(childFolderPath))
-                        {
-                            Directory.CreateDirectory(childFolderPath);
-                        }
-
-                        childFolderPath += "/" + banner_image_id;
-                        if (!Directory.Exists(childFolderPath))
-                        {
-                            Directory.CreateDirectory(childFolderPath);
-                        }
-
-                        string fileName = banner_id + "/" + banner_image_id + "/" + httpPostedFile.FileName;
-                        res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString() + "/" + fileName, 0);
-
-                        if (res == true)
-                        {
-                            httpPostedFile.SaveAs(folderPath + "\\" + fileName);
-
-                            var directoryFiles = Directory.GetFiles(childFolderPath);
-                            foreach (var filepath in directoryFiles)
+                            if (!Directory.Exists(folderPath))
                             {
-                                if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                Directory.CreateDirectory(folderPath);
+                            }
+
+                            string childFolderPath = folderPath + "/" + banner_id;
+                            if (!Directory.Exists(childFolderPath))
+                            {
+                                Directory.CreateDirectory(childFolderPath);
+                            }
+
+                            childFolderPath += "/" + banner_image_id;
+                            if (!Directory.Exists(childFolderPath))
+                            {
+                                Directory.CreateDirectory(childFolderPath);
+                            }
+
+                            string fileName = banner_id + "/" + banner_image_id + "/" + httpPostedFile.FileName;
+                            res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString() + "/" + fileName, 0);
+
+                            if (res == true)
+                            {
+                                httpPostedFile.SaveAs(folderPath + "\\" + fileName);
+
+                                var directoryFiles = Directory.GetFiles(childFolderPath);
+                                foreach (var filepath in directoryFiles)
                                 {
-                                    File.Delete(filepath);
+                                    if (Path.GetFileName(filepath) != httpPostedFile.FileName)
+                                    {
+                                        File.Delete(filepath);
+                                    }
                                 }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
-              
+
                 return Request.CreateResponse(HttpStatusCode.OK);
 
 
             }
             else
             {
-                res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, null, 0);               
+                res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, null, 0);
             }
             if (res == true)
             {

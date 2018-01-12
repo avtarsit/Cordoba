@@ -3,7 +3,7 @@ body {
 }
 
 a, .catagories h3, .show_cart a, .show_cart .glyphicon, .col-product a, .productlist .col-product a, .product .heading, .productlist .heading, .btn-empty, .cart-detail .remove-item, .order-desc .media-heading, [type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after, .saller .glyphicon-shopping-cart, .slider .banner-slider a.bx-prev:hover:before, .banner-slider a.bx-next:hover:before {
-    color: black;
+    color: red;
 }
 
     a:focus, a:hover, .popular-catagory h4, .heading, .show_cart .badge, .footer_menu ul li a, .col-product a:hover, .col-product a:focus, .catagories ul li a:hover, .order-desc .media-heading:hover, .delivery-address a, .chckout-add a, .login li .dropdown-menu > li > a:hover, .login li .dropdown-menu > li > a:focus, .login li .dropdown-menu > li > a:hover, .login li .dropdown-menu > li.active > a, .catagories ul .active > a {
@@ -11,12 +11,12 @@ a, .catagories h3, .show_cart a, .show_cart .glyphicon, .col-product a, .product
     }
 
     .showDesc, #back-to-top, .letest-product a.bx-prev:before, .letest-product a.bx-next:before, .points, .btn-empty:hover, .btn-empty:focus, .submit_btn, .login_page_left {
-        background-color: black;
+        background-color: red;
     }
 
 .copyright {
     background-color: #EDEDED;
-    color: black;
+    color: red;
 }
 
 .form-control:focus, .btn-empty, [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before, .submit_btn {
@@ -82,7 +82,7 @@ body {
 .add_cart {
     background-color: #EDEDED;
     padding: 5px 20px;
-    color: black;
+    color: red;
     border: #EDEDED;
     font-size: 17px;
     border-radius: 5px;
@@ -151,7 +151,7 @@ body {
 }
 
 .login ul li a {
-    color: black;
+    color: red;
 }
 
 .login_page_left, .submit_btn {
@@ -159,5 +159,9 @@ body {
 }
 
 .footerlinksbtn button {
-    color: black;
+    color: red;
+}
+
+.copyright p, .copyright a {
+    color: red;
 }
