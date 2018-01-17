@@ -87,6 +87,7 @@
 
                 aoData = BindSorting(aoData, oSettings);
                 var PageIndex = parseInt($('#tblTransactionReport').DataTable().page.info().page) + 1;
+                $scope.GridParams = aoData;
                 oSettings.jqXHR = $.ajax({
                     'dataSrc': 'aaData',
                     "dataType": 'json',
@@ -164,6 +165,56 @@
                 BindToolTip();
             }
         });
+    }
+
+    //export Employee List to Excel
+    $scope.TransactionReportExportToExcel = function () {
+        debugger;
+        var column = "";
+        if ($scope.GridParams.length != undefined) {
+            column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);
+            //  alert(JSON.stringify(column));
+        }
+
+        $http({
+            url: configurationService.basePath + 'api/Reportapi/TransactionReportExportToExcel?PageIndex=' + 1 + "&DateStart=" + $scope.TransactionReportObj.DateStart + "&DateEnd=" + $scope.TransactionReportObj.DateEnd + "&StoreId=" + ($scope.TransactionReportObj.store_id == null ? 0 : $scope.TransactionReportObj.store_id),
+            //"url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionReportObj.DateStart + '&DateEnd=' + $scope.TransactionReportObj.DateEnd + '&StoreId=' + $scope.TransactionReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+            method: "POST",
+            'dataSrc': 'aaData',
+            "dataType": 'json',
+            data: column != "" ? column[0].value : "",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            responseType: 'arraybuffer'
+        }).success(function (data, status, headers, config) {
+
+            var type = headers('Content-Type');
+            var disposition = headers('Content-Disposition');
+            if (disposition) {
+                var match = disposition.match(/.*filename=\"?([^;\"]+)\"?.*/);
+                if (match[1])
+                    defaultFileName = match[1];
+            }
+            defaultFileName = defaultFileName.replace(/[<>:"\/\\|?*]+/g, '_');
+
+            var blob = new Blob([data], { type: type });
+
+            if (navigator.appVersion.toString().indexOf('.NET') > 0) // For IE 
+                window.navigator.msSaveBlob(blob, defaultFileName);
+            else {
+                var objectUrl = URL.createObjectURL(blob);
+                var downloadLink = document.createElement("a");
+                downloadLink.href = objectUrl;
+                downloadLink.download = defaultFileName;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                //window.open(objectUrl);
+            }
+        }).error(function (data, status, headers, config) {
+        });
+
     }
 
     function init() {
