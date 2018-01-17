@@ -1,0 +1,17 @@
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\obj\Debug\CordobaServices.csprojResolveAssemblyReference.cache
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaServices.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaServices.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaCommon.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaModels.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\Newtonsoft.Json.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\EPPlus.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\System.Web.Mvc.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\EntityFramework.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaCommon.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\CordobaModels.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\Newtonsoft.Json.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\EPPlus.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\System.Web.Mvc.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\bin\Debug\EntityFramework.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\obj\Debug\CordobaServices.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaServices\obj\Debug\CordobaServices.pdb

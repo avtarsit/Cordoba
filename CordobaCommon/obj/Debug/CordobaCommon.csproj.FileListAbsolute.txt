@@ -1,0 +1,13 @@
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\obj\Debug\CordobaCommon.csprojResolveAssemblyReference.cache
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\CordobaCommon.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\CordobaCommon.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\CordobaModels.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\EPPlus.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\System.Web.Mvc.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\EntityFramework.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\CordobaModels.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\EPPlus.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\System.Web.Mvc.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\bin\Debug\EntityFramework.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\obj\Debug\CordobaCommon.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaCommon\obj\Debug\CordobaCommon.pdb
