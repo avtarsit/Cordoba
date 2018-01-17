@@ -20,4 +20,6 @@ CordobaWeb/obj/
 *.Cache
 
 CordobaWeb/bin/
- 
+
+packages/
+
