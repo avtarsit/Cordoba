@@ -1,5 +1,6 @@
 
 CordobaWeb/obj/
+ 
 *.dll
 *.pdb
 
@@ -19,4 +20,4 @@ CordobaWeb/obj/
 *.Cache
 
 CordobaWeb/bin/
-packages/
+ 
