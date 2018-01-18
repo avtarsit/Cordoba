@@ -206,6 +206,76 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage TransactionItemReportExportToExcel(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, object tableParameter)
+        {
+            SortColumn sr;
+            string sortColumn;
+            if (tableParameter != null)
+            {
+                sr = (SortColumn)JsonConvert.DeserializeObject(tableParameter.ToString(), typeof(SortColumn));
+                sortColumn = sr.Desc ? sr.Column + " desc" : sr.Column + " asc";
+            }
+            else
+            {
+                sortColumn = "Date desc";
+            }
+
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
+            DateTime date = DateTime.Now.Date;
+            string str = string.Concat("TransactionItemReport_export", date.ToString("ddMMyyyy"), ".xls");
+
+            DataSet ds = _reportServices.TransactionItemReportExportToExcel(sortColumn, tableParameter, DateStart, DateEnd, StoreId);
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
+                selectedColumn.Add(new ColumnConfiguration("Date", "Date"));
+                selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
+                selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
+                selectedColumn.Add(new ColumnConfiguration("email", "Email"));
+                selectedColumn.Add(new ColumnConfiguration("store", "Store"));
+                selectedColumn.Add(new ColumnConfiguration("adjustment", "Adjustment"));
+                selectedColumn.Add(new ColumnConfiguration("type_of_points", "Type Of Points"));
+                selectedColumn.Add(new ColumnConfiguration("comment", "Comments"));
+                selectedColumn.Add(new ColumnConfiguration("model", "Model"));
+                selectedColumn.Add(new ColumnConfiguration("product_name", "Item Name"));
+                selectedColumn.Add(new ColumnConfiguration("quantity", "Quantity"));
+
+                if (!string.IsNullOrEmpty(sortColumn))
+                {
+                    ds.Tables[0].DefaultView.Sort = sortColumn;
+                }
+                DataTable dt = ds.Tables[0].DefaultView.ToTable(false, selectedColumn.Select(s => s.OriginalColumnName).ToArray());
+
+                ds.Tables.RemoveAt(0); // Delete Existing Table 
+                ds.Tables.Add(dt); // Add Modified Table
+                ds = CordobaCommon.GeneralMethods.ChangeDataSetColumnTitleAndReorder(ds, selectedColumn); // Rename Selected Columns
+
+            }
+
+            try
+            {
+                if (ds == null)
+                {
+                    return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
+                }
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Customers");
+
+                HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+                Stream @null = Stream.Null;
+                streamContent.Content = new StreamContent(new MemoryStream(asByteArray));
+                streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                streamContent.Content.Headers.Add("content-disposition", string.Concat("attachment;  filename=\"", str, "\""));
+                httpResponseMessage = streamContent;
+
+            }
+            catch (Exception)
+            {
+                httpResponseMessage = base.Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+            }
+            return httpResponseMessage;
+        }
 
         [HttpPost]
         public TableParameter<ReportEntity> GetTransactionItemCategoryReportList(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> tableParameter)
@@ -234,6 +304,78 @@ namespace CordobaAPI.API
                 throw;
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage TransactionItemCategoryReportExportToExcel(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, object tableParameter)
+        {
+            SortColumn sr;
+            string sortColumn;
+            if (tableParameter != null)
+            {
+                sr = (SortColumn)JsonConvert.DeserializeObject(tableParameter.ToString(), typeof(SortColumn));
+                sortColumn = sr.Desc ? sr.Column + " desc" : sr.Column + " asc";
+            }
+            else
+            {
+                sortColumn = "Date desc";
+            }
+
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
+            DateTime date = DateTime.Now.Date;
+            string str = string.Concat("TransactionItemCategoryReport_export", date.ToString("ddMMyyyy"), ".xls");
+
+            DataSet ds = _reportServices.TransactionItemCategoryReportExportToExcel(sortColumn, tableParameter, DateStart, DateEnd, StoreId);
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
+                selectedColumn.Add(new ColumnConfiguration("Date", "Date"));
+                selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
+                selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
+                selectedColumn.Add(new ColumnConfiguration("email", "Email"));
+                selectedColumn.Add(new ColumnConfiguration("store", "Store"));
+                selectedColumn.Add(new ColumnConfiguration("adjustment", "Adjustment"));
+                selectedColumn.Add(new ColumnConfiguration("comment", "Comments"));
+                selectedColumn.Add(new ColumnConfiguration("model", "Model"));
+                selectedColumn.Add(new ColumnConfiguration("product_name", "Item Name"));
+                selectedColumn.Add(new ColumnConfiguration("category", "Category"));
+                selectedColumn.Add(new ColumnConfiguration("quantity", "Quantity"));
+
+                if (!string.IsNullOrEmpty(sortColumn))
+                {
+                    ds.Tables[0].DefaultView.Sort = sortColumn;
+                }
+                DataTable dt = ds.Tables[0].DefaultView.ToTable(false, selectedColumn.Select(s => s.OriginalColumnName).ToArray());
+
+                ds.Tables.RemoveAt(0); // Delete Existing Table 
+                ds.Tables.Add(dt); // Add Modified Table
+                ds = CordobaCommon.GeneralMethods.ChangeDataSetColumnTitleAndReorder(ds, selectedColumn); // Rename Selected Columns
+
+            }
+
+            try
+            {
+                if (ds == null)
+                {
+                    return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
+                }
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Customers");
+
+                HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+                Stream @null = Stream.Null;
+                streamContent.Content = new StreamContent(new MemoryStream(asByteArray));
+                streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                streamContent.Content.Headers.Add("content-disposition", string.Concat("attachment;  filename=\"", str, "\""));
+                httpResponseMessage = streamContent;
+
+            }
+            catch (Exception)
+            {
+                httpResponseMessage = base.Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+            }
+            return httpResponseMessage;
+        }
+
         [HttpPost]
         public TableParameter<ReportEntity> GetStoreReportList(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, TableParameter<ReportEntity> tableParameter)
         {

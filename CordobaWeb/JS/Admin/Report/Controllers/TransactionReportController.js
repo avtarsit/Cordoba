@@ -167,9 +167,8 @@
         });
     }
 
-    //export Employee List to Excel
+    //export Transaction Report List to Excel
     $scope.TransactionReportExportToExcel = function () {
-        debugger;
         var column = "";
         if ($scope.GridParams.length != undefined) {
             column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);

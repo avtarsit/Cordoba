@@ -26,8 +26,12 @@ namespace CordobaServices.Interfaces
         //Transaction Item Report
         IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
 
+        DataSet TransactionItemReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId);
+
         //Transaction Item Category Report
         IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
+
+        DataSet TransactionItemCategoryReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId);
 
         IEnumerable<ReportEntity> GetStoreReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, TableParameter<ReportEntity> filter, string PageFrom = "");
 

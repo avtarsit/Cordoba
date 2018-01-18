@@ -166,6 +166,44 @@ namespace CordobaServices.Services
         }
 
 
+        public DataSet TransactionItemReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                DataSet ds = new DataSet();
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                cmd = new SqlCommand("GetTransactionItemReportList", con);
+                cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
+                cmd.Parameters.Add(new SqlParameter("@PageSize", 10000000));
+                cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
+                cmd.Parameters.Add(new SqlParameter("@DateStart", dateStart ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@DateEnd", dateEnd));
+                cmd.Parameters.Add(new SqlParameter("@store_id", storeId ?? (object)DBNull.Value));
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds, "data");
+                return ds;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    cmd.Dispose();
+                }
+            }
+
+        }
+
         public IEnumerable<ReportEntity> GetTransactionItemCategoryReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "")
         {
             try
@@ -191,6 +229,44 @@ namespace CordobaServices.Services
             }
 
             //return result;
+        }
+
+        public DataSet TransactionItemCategoryReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                DataSet ds = new DataSet();
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                cmd = new SqlCommand("GetTransactionItemCategoryReportList", con);
+                cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
+                cmd.Parameters.Add(new SqlParameter("@PageSize", 10000000));
+                cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
+                cmd.Parameters.Add(new SqlParameter("@DateStart", dateStart ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@DateEnd", dateEnd));
+                cmd.Parameters.Add(new SqlParameter("@store_id", storeId ?? (object)DBNull.Value));
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds, "data");
+                return ds;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    cmd.Dispose();
+                }
+            }
+
         }
 
         public IEnumerable<ReportEntity> GetStoreReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int store_id, TableParameter<ReportEntity> filter, string PageFrom = "")
