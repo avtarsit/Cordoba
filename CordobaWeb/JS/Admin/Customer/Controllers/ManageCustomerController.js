@@ -159,7 +159,7 @@
     function ValidateAddress() {
         var IsValidAddress = true;
         angular.forEach($scope.CustomerObj.AddressList, function (col, i) {
-            if (col.firstname == undefined || col.firstname == '' || col.lastname == undefined || col.lastname == '' || col.address_1 == undefined || col.address_1 == ''
+            if (col.firstname == undefined || col.firstname == '' || col.lastname == undefined || col.lastname == '' //|| col.address_1 == undefined || col.address_1 == ''
                 || col.city == undefined || col.city == '' || col.country_id == undefined || col.country_id == '') {
                 IsValidAddress = false;
             }
@@ -295,12 +295,11 @@
 
 
     $scope.InsertUpdateCustomer = function (form) {
-        debugger;
         if (form.$valid) {
-            if (!ValidateAddress()) {
-                notificationFactory.customError("Not a valid address/add at least 1 address.");
-                return;
-            }
+            //if (!ValidateAddress()) {
+            //    notificationFactory.customError("Not a valid address/add at least 1 address.");
+            //    return;
+            //}
             var CustomerEntity = JSON.stringify($scope.CustomerObj);
             $http.post(configurationService.basePath + "api/CustomerApi/InsertUpdateCustomer?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, CustomerEntity)
               .then(function (response) {

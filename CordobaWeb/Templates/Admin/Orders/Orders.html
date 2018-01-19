@@ -61,8 +61,9 @@
                                                 <td><a href="{{OrderDetails.store_url}}" target="_blank">{{OrderDetails.store_url}}</a></td>
                                             </tr>
                                             <tr>
+                                                <!--{{OrderDetails.customer_id}}-->
                                                 <td class="col-sm-2">Customer:</td>
-                                                <td>{{OrderDetails.customer}}</td>
+                                                <td><a ui-sref="ManageCustomer({CustomerId:OrderDetails.customer_id})">{{OrderDetails.customer}}</a></td>
                                             </tr>
                                             <!--<tr ng-if="OrderDetails.customer_group_id!=0">
                                                 <td class="col-sm-2">Customer:</td>
@@ -70,7 +71,7 @@
                                             </tr>-->
                                             <tr>
                                                 <td class="col-sm-2">E-Mail:</td>
-                                                <td>{{OrderDetails.email}}</td>
+                                                <td><a href="mailto:{{OrderDetails.email}}">{{OrderDetails.email}}</a> </td>
                                             </tr>
                                             <tr>
                                                 <td class="col-sm-2">Telephone:</td>
@@ -111,6 +112,10 @@
                                             <tr>
                                                 <td class="col-sm-2">Date Modified:</td>
                                                 <td>{{OrderDetails.date_modified | date:GlobalDateFormat}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-sm-2">Comment:</td>
+                                                <td>{{OrderDetails.comment}}</td>
                                             </tr>
                                         </tbody>
 

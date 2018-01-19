@@ -167,6 +167,7 @@ namespace CordobaServices.Services_Layout
 
                 //strbody = strbody.Replace("##LeaveFeedback##", leaveFeedbackUrl);
                 strbody = strbody.Replace("##StoreLogo##", orderItemDetailsRecord.store_logo);
+                strbody = strbody.Replace("##Comment##", orderItemDetailsRecord.Comment);
             }
 
             var commonServices = new CommonService();

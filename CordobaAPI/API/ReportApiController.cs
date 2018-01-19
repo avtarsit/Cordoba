@@ -134,7 +134,7 @@ namespace CordobaAPI.API
             if (ds != null && ds.Tables.Count > 0)
             {
                 List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
-                selectedColumn.Add(new ColumnConfiguration("Date", "Date"));
+                selectedColumn.Add(new ColumnConfiguration("DateFormat", "Date"));
                 selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
                 selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
                 selectedColumn.Add(new ColumnConfiguration("email", "Email"));
@@ -230,7 +230,7 @@ namespace CordobaAPI.API
             if (ds != null && ds.Tables.Count > 0)
             {
                 List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
-                selectedColumn.Add(new ColumnConfiguration("Date", "Date"));
+                selectedColumn.Add(new ColumnConfiguration("DateFormat", "Date"));
                 selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
                 selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
                 selectedColumn.Add(new ColumnConfiguration("email", "Email"));
@@ -329,7 +329,7 @@ namespace CordobaAPI.API
             if (ds != null && ds.Tables.Count > 0)
             {
                 List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
-                selectedColumn.Add(new ColumnConfiguration("Date", "Date"));
+                selectedColumn.Add(new ColumnConfiguration("DateFormat", "Date"));
                 selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
                 selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
                 selectedColumn.Add(new ColumnConfiguration("email", "Email"));

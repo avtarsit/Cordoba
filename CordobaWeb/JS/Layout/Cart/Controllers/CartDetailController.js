@@ -156,12 +156,14 @@
         }
     }
 
-    $scope.PlaceOrder = function () {   
+    $scope.PlaceOrder = function () {
+        debugger;
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
             $scope.PlaceOrderObj.shipping_addressId = $scope.SelectedCustomerAddress.address_id;
             $scope.PlaceOrderObj.IpAddress = $scope.IpAddress;
+           // $scope.PlaceOrderObj.Comment = $scope.Comment;
             $scope.PlaceOrderObj.CartGroupId = UserDetail.cartgroup_id;
 
 
