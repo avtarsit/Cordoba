@@ -102,7 +102,7 @@
             <header class="w-hidden-small w-hidden-tiny top-nav">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>
+                        @*<li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>*@
                         <li class="active"><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                         <li><a href="" ng-click="GotoMyWishlist()">My Wishlist</a></li>
                         <li ng-if="!(CustomerDetail.customer_id>0)">
@@ -429,7 +429,7 @@
 
                 } else {
                     hidden.animate({ "right": "0px" }, "slow").addClass("visible");
-                    $(".showDesc").animate({ "right": "197px" }, "slow").addClass("visible");
+                    $(".showDesc").animate({ "right": "297px" }, "slow").addClass("visible");
                     $(".showDesc").text("Close");
                     $(".about-overlay").fadeIn("slow");
                 }

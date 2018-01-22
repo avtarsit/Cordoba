@@ -86,8 +86,7 @@
 
             // Charts setup
             function (ec, limitless) {
-
-
+                debugger;
                 // Initialize charts
 
                 var OrderSummary = ec.init(document.getElementById('StoreOrderSummary'), limitless);
@@ -97,7 +96,7 @@
 
                 var Top5Product_Chart = ec.init(document.getElementById('Top5Product_Chart'), limitless);
 
-
+                debugger;
                 // Charts setup
                 // ------------------------------                    
                 OrderSummary_options = {

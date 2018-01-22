@@ -146,8 +146,9 @@
                             </ul>*@-->
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="chart-container">
+                    <div class="panel-body" ng-class="{'fixHeight':DashboardSummary.DashboardOrderSummary.length==0}">
+                        <h1 ng-show="DashboardSummary.DashboardOrderSummary.length==0"><br />No Order Available to Display</h1>
+                        <div class="chart-container" ng-show="DashboardSummary.DashboardOrderSummary.length>0">
                             <div class="chart has-fixed-height" id="StoreOrderSummary"></div>
                         </div>
                     </div>
@@ -181,6 +182,7 @@
                             <div class="chart has-fixed-height" id="StoreSalesAnalytics"></div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -200,8 +202,15 @@
                             </ul>*@-->
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <!--<div class="panel-body">
                         <div class="chart-container">
+                            <div class="chart has-fixed-height" id="Top5Product_Chart"></div>
+                        </div>
+                    </div>-->
+
+                    <div class="panel-body" ng-class="{'fixHeight':DashboardSummary.DashboardTopPurchaseProductValue.length==0}">
+                        <h1 ng-show="DashboardSummary.DashboardTopPurchaseProductValue.length==0"><br />No Product Available to Display</h1>
+                        <div class="chart-container" ng-show="DashboardSummary.DashboardTopPurchaseProductValue.length>0">
                             <div class="chart has-fixed-height" id="Top5Product_Chart"></div>
                         </div>
                     </div>
@@ -226,8 +235,14 @@
                             </ul>*@-->
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <!--<div class="panel-body">
                         <div class="chart-container">
+                            <div class="chart has-fixed-height" id="Top5Customer_Chart"></div>
+                        </div>
+                    </div>-->
+                    <div class="panel-body" ng-class="{'fixHeight':DashboardSummary.DashboardTopCustomerValue.length==0}">
+                        <h1 ng-show="DashboardSummary.DashboardTopCustomerValue.length==0"><br />No Customer Available to Display</h1>
+                        <div class="chart-container" ng-show="DashboardSummary.DashboardTopCustomerValue.length>0">
                             <div class="chart has-fixed-height" id="Top5Customer_Chart"></div>
                         </div>
                     </div>
@@ -310,8 +325,11 @@
 </div>
 
 
-
-
+<style type="text/css">
+    .fixHeight {
+        height: 414px;
+    }
+</style>
 
 
 

@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 
 namespace CordobaServices.Services
@@ -242,6 +243,7 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("PointsXml", PointsXml);
 
                 List<PointsAuditEntity> result = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC ImportPointsXml", param).ToList();
+                SendPointImportMailToCustomer(PointsXml, store_id);
                 return result;
             }
             catch (Exception)
@@ -251,7 +253,58 @@ namespace CordobaServices.Services
             }
         }
 
+        public bool SendPointImportMailToCustomer(string PointsXml, int storeid)
+        {
+            if (storeid <= 0)
+            {
+                return false;
+            }
 
+            var storeIdParam = new SqlParameter
+            {
+                ParameterName = "StoreId",
+                DbType = DbType.Int32,
+                Value = storeid
+            };
+
+             var pointsXmlParam = new SqlParameter
+            {
+                ParameterName = "PointsXml",
+                DbType = DbType.String,
+                Value = PointsXml
+            };
+
+            SqlParameter[] param = new SqlParameter[3];
+            param[0] = new SqlParameter("StoreId", storeid);
+            param[1] = new SqlParameter("PointsXml", PointsXml);
+
+            var result = CustomerEntityGenericRepository.ExecuteSQL<ImportedPointEmailEntity>("GetExistingAndImportedPointsForEmail", pointsXmlParam, storeIdParam);
+
+            var listPointsOfCustomer = result.ToList();
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/ImportedPoint.html");
+            if (listPointsOfCustomer.Count > 0)
+            {
+                for (int i = 0; i < listPointsOfCustomer.Count; i++)
+                {
+                    string strSubject = listPointsOfCustomer[i].StoreName + " -  Reward Points";
+                    var strbody = CommonService.ReadTextFile(filepath);
+                    if (strbody.Length > 0)
+                    {
+                        strbody = strbody.Replace("##CustomerName##", listPointsOfCustomer[i].CustomerName);//
+                        strbody = strbody.Replace("##StoreName##", String.Format("<a href={0}>{1}</a>", listPointsOfCustomer[i].URL, listPointsOfCustomer[i].StoreName));
+                        strbody = strbody.Replace("##ImportedPoints##", Convert.ToString(listPointsOfCustomer[i].ImportedPoints));
+                        strbody = strbody.Replace("##TotalPoints##", Convert.ToString(listPointsOfCustomer[i].TotalPoints));
+                    }
+
+                    var commonServices = new CommonService();
+
+                    CommonService.SendMailMessage(listPointsOfCustomer[i].Email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null, listPointsOfCustomer[i].StoreName);
+                }
+            }
+
+            return true;
+        }
 
         public string CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable)
         {
