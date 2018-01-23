@@ -177,8 +177,15 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <!--<div class="panel-body">
                         <div class="chart-container">
+                            <div class="chart has-fixed-height" id="StoreSalesAnalytics"></div>
+                        </div>
+                    </div>-->
+
+                    <div class="panel-body" ng-class="{'fixHeight':DashboardSummary.DashboardSalesAnalyticsOrderCount.length==0 && DashboardSummary.DashboardSalesAnalyticsCustomerCount.length==0}">
+                        <h1 ng-show="DashboardSummary.DashboardSalesAnalyticsOrderCount.length==0 && DashboardSummary.DashboardSalesAnalyticsCustomerCount.length==0"><br />No Sales Analytics Available to Display</h1>
+                        <div class="chart-container" ng-show="DashboardSummary.DashboardSalesAnalyticsOrderCount.length >0 && DashboardSummary.DashboardSalesAnalyticsCustomerCount.length >0">
                             <div class="chart has-fixed-height" id="StoreSalesAnalytics"></div>
                         </div>
                     </div>

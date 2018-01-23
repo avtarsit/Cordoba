@@ -4,7 +4,7 @@
     $rootScope.storeId = AdminUserDetail.store_id;
     $rootScope.loggedInUserId = $scope.AdminUserDetail.user_id;
     $rootScope.userGroupId = $scope.AdminUserDetail.user_group_id;
-
+   
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $rootScope.storeId + "&LoggedInUserId=" + $rootScope.loggedInUserId)
           .then(function (response) {

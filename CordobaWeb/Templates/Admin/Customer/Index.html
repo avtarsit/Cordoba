@@ -17,7 +17,7 @@
                 <li>  This page allows you to lookup Customers.</li>
             </ul>
             <ul class="breadcrumb-elements">
-                <li><button type="button" class="btn btn-primary btn-md" data-placement="top" data-toggle="tooltip" title="Add Customer" ui-sref="ManageCustomer"><i class="glyphicon glyphicon-plus-sign position-left"></i> Create</button></li>
+                <li ng-if="IsStoreAdmin==0"><button type="button" class="btn btn-primary btn-md" data-placement="top" data-toggle="tooltip" title="Add Customer" ui-sref="ManageCustomer"><i class="glyphicon glyphicon-plus-sign position-left"></i> Create</button></li>
 
                 <li> &nbsp;<button type="button" class="btn btn-success btn-md" data-placement="top" data-toggle="tooltip" title="Export Customer Data" ng-click="CustomerExportToExcel()"> Export<i class="icon-arrow-right14 position-right"></i></button></li>
             </ul>

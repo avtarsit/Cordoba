@@ -123,8 +123,7 @@
                     </li>
                 </ul>*@
             @*<p class="navbar-text"><span class="label bg-success-400">Online</span></p>*@
-            <ul class="nav navbar-nav navbar-right pull-right">
-
+            <ul class="nav navbar-nav navbar-right pull-right">         
                 <li class="dropdown" title="Stores">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-life-ring fa-lg"></i></a>
 
@@ -270,22 +269,22 @@
                                 <li>
                                     <a href="#"><i class="icon-gear"></i>Store Management <span></span></a>
                                     <ul>
-                                        <li><a href="#" ui-sref="ShowStore"><i class="fa fa-building-o"></i> <span> Store</span></a></li>
+                                        <li ng-if="IsStoreAdmin==0"><a href="#" ui-sref="ShowStore"><i class="fa fa-building-o"></i> <span> Store</span></a></li>
                                         <li>
                                             <a href="#"><i class="fa fa-users"></i> <span> Customers</span></a>
                                             <ul>
                                                 <li><a href="#" ui-sref="Customer"><i class="icon-forward"></i> <span> Customer</span></a></li>
 
-                                                <li><a href="" ui-sref="CustomerImport" class="cursor-pointer"><i class="fa fa-file"></i> <span> Customers Import</span></a></li>
+                                                <li ng-if="IsStoreAdmin==0"><a href="" ui-sref="CustomerImport" class="cursor-pointer"><i class="fa fa-file"></i> <span> Customers Import</span></a></li>
                                                 @*<li><a href="" class="cursor-pointer"><i class="icon-forward"></i> <span> Customers Export</span></a></li>*@
-                                                <li><a href="" ui-sref="PointsImporter" class="cursor-pointer"><i class="fa fa-file"></i> <span> Points Importer</span></a></li>
+                                                <li ng-if="IsStoreAdmin==0"><a href="" ui-sref="PointsImporter" class="cursor-pointer"><i class="fa fa-file"></i> <span> Points Importer</span></a></li>
                                                 <li><a href="" ui-sref="ShowCustomerDepartment" class="cursor-pointer"><i class="fa fa-industry"></i> <span> Customer Department</span></a></li>
                                             </ul>
                                         </li>
 
-                                        <li><a href="#" ui-sref="Product"><i class="fa fa-product-hunt"></i> <span> Products</span></a></li>
-                                        <li><a href="#" ui-sref="PopularCategory"><i class="fa fa-list-alt"></i> <span> Popular Category</span></a></li>
-                                        <li><a href="#" ui-sref="Banner"><i class="fa fa-picture-o"></i> <span> Banners</span></a></li>
+                                        <li ng-if="IsStoreAdmin==0"><a href="#" ui-sref="Product"><i class="fa fa-product-hunt"></i> <span> Products</span></a></li>
+                                        <li ng-if="IsStoreAdmin==0"><a href="#" ui-sref="PopularCategory"><i class="fa fa-list-alt"></i> <span> Popular Category</span></a></li>
+                                        <li ng-if="IsStoreAdmin==0"><a href="#" ui-sref="Banner"><i class="fa fa-picture-o"></i> <span> Banners</span></a></li>
                                     </ul>
                                 </li>
 
@@ -310,10 +309,10 @@
                                 </li>
 
 
-                                <li>
+                                <li ng-if="IsStoreAdmin==0">
                                     <a href="#"><i class="fa fa-wrench fa-fw"></i>Tools <span></span></a>
                                     <ul>
-                                        <li><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
+                                        <li ng-if="IsStoreAdmin==0"><a href="#" ui-sref="ImportCatalogue"><i class="icon-forward"></i> <span>Import Catalogues </span></a></li>
                                         <li><a href="#" ui-sref="ShowProductCatalogue"><i class="icon-forward"></i> <span>  Product Catalogues</span></a></li>
                                     </ul>
 
@@ -330,7 +329,7 @@
                                                 @*<li><a href="#" ui-sref="CouponsReport"><i class="icon-forward"></i> <span> Coupons</span></a></li>*@
                                             </ul>
                                         </li>
-                                        <li>
+                                        <li ng-if="IsStoreAdmin==0">
                                             <a href="#"><i class="icon-forward"></i> <span> Product Analytics</span></a>
                                             <ul>
                                                 @*<li><a ui-sref="ProductViewedReport"><i class="icon-forward"></i> <span> Viewed</span></a></li>*@
@@ -346,7 +345,7 @@
                                                 <li><a ui-sref="TransactionItemCategoryReport" class="cursor-pointer"><i class="icon-forward"></i> <span> Transaction Item Category</span></a></li>
                                             </ul>
                                         </li>
-                                        <li>
+                                        <li ng-if="IsStoreAdmin==0">
                                             <a ui-sref="StoreReport"><i class="icon-forward"></i> <span>Store Report</span></a>
                                         </li>
 

@@ -99,7 +99,7 @@
                                                 <img ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals">
                                                 <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name"></a>
                                                 <p ng-bind="HotDeals.Model"></p>
-                                                <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
+                                                @*<span ng-bind="(HotDeals.points | number:0) +' Points'"></span>*@
                                                 @*<div class="add-cart" ng-controller="AddProductToCartController">
                                                     <input type="button" name="cart_btn" ng-click="AddProductToCart(HotDeals,$event)" class="add_cart" value="ADD TO CART">*@
                                                 </div>

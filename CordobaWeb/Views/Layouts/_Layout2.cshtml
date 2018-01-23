@@ -318,24 +318,26 @@
 
                                 </div>
                             </form>
-                            
+
                             @*Reset Password for first time visited customer*@
                             <form name="FirstTimeVisiteForm" id="FirstTimeVisiteForm" class="form-horizontal" ng-hide="IsVisibleFirstTimeVisiteForm" novalidate>
                                 <div class="login_page">
                                     <input type="hidden" class="form-control" name="email" id="email">
                                     <div class="form-group pt-20">
                                         <p>Hi .... </p>
-                                        <p> Welcome to new platform of {{StoreDetailInSession.name}}store.com We are here to serve you with better user experience. For security reason to access the store, we need your co-operation to set the secured password.
+                                        <p>
+                                            Welcome to new platform of {{StoreDetailInSession.name}}store.com We are here to serve you with better user experience. For security reason to access the store, we need your co-operation to set the secured password.
                                             Pressing on NEXT button will provide you acess for setup new password.
                                         </p>
-                                        <p>Thanks.<br/>
+                                        <p>
+                                            Thanks.<br />
                                             {{StoreDetailInSession.name}}store.com
                                         </p>
                                     </div>
                                     <button type="submit" class="btn btn-empty mt-4 text-center" ng-click="OpenResetPasswordForm()">NEXT</button>
                                 </div>
                             </form>
-                            
+
                             @*Reset Password with OTP cerification*@
                             <form name="ResetPassForm" id="ResetPassForm" class="form-horizontal" ng-hide="IsVisibleResetPassswordForm" novalidate>
                                 <div class="login_page">

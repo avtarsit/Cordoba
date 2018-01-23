@@ -16,6 +16,7 @@ using System.Configuration;
 using Newtonsoft.Json;
 using CordobaCommon;
 using System.Net.Http.Headers;
+using CordobaModels;
 
 
 namespace CordobaAPI.API
@@ -476,7 +477,17 @@ namespace CordobaAPI.API
                             // do something with dr
                         }
 
-                        var result = _CustomerService.CustomerImport(store_id, LoggedInUserId, customer_group_id, dtXLS);
+                        dtXLS.Columns.Add(new DataColumn("password", typeof(string)));
+
+                        Random r = new Random();
+                        string userPassword =   Convert.ToString(r.Next(1, 100000));  
+
+                        foreach (DataRow item in dtXLS.Rows)
+                        {
+                            item["password"] = Security.Encrypt(userPassword);
+                        }
+
+                        var result = _CustomerService.CustomerImport(store_id, LoggedInUserId, customer_group_id, dtXLS, userPassword);
                         return result;
                     }
                     catch (Exception)

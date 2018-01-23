@@ -26,7 +26,7 @@ namespace CordobaServices.Services
         public List<CustomerEntity> GetCustomerList(string sortColumn, TableParameter<CustomerEntity> filter, string customerName, string email, int? customer_group_id, int? status, int? approved, string ip, DateTime? date_added, int? storeId)
         {
             try
-            {               
+            {
                 var paramOrderBy = new SqlParameter { ParameterName = "OrderBy", DbType = DbType.String, Value = sortColumn };
                 var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
                 var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
@@ -62,7 +62,7 @@ namespace CordobaServices.Services
                 cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
                 cmd.Parameters.Add(new SqlParameter("@PageSize", 10000000));
                 cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
-                cmd.Parameters.Add(new SqlParameter("@customerName",customerName!=null?customerName:(object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@customerName", customerName != null ? customerName : (object)DBNull.Value));
                 cmd.Parameters.Add(new SqlParameter("@email", email));
                 cmd.Parameters.Add(new SqlParameter("@customer_group_id", customer_group_id));
                 cmd.Parameters.Add(new SqlParameter("@approved", 1));
@@ -141,8 +141,8 @@ namespace CordobaServices.Services
                         PointsAuditList = PointsAuditResult;
                     }
                     #endregion
-                    
-                    #region Transaction List 
+
+                    #region Transaction List
                     var TransactionListResult = CustomerEntityGenericRepository.ExecuteSQL<TransactionListEntity>("EXEC GetTransactionList", new SqlParameter { ParameterName = "Customer_Id", DbType = DbType.Int32, Value = customer_id }).ToList<TransactionListEntity>().ToList();
                     if (TransactionListResult != null)
                     {
@@ -267,12 +267,12 @@ namespace CordobaServices.Services
                 Value = storeid
             };
 
-             var pointsXmlParam = new SqlParameter
-            {
-                ParameterName = "PointsXml",
-                DbType = DbType.String,
-                Value = PointsXml
-            };
+            var pointsXmlParam = new SqlParameter
+           {
+               ParameterName = "PointsXml",
+               DbType = DbType.String,
+               Value = PointsXml
+           };
 
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("StoreId", storeid);
@@ -306,7 +306,7 @@ namespace CordobaServices.Services
             return true;
         }
 
-        public string CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable)
+        public string CustomerImport(int store_id, int LoggedInUserId, int customer_group_id, DataTable CustomerTable, string UserPassword)
         {
             string CustomerXml = GeneralMethods.ConvertDatatableToXML(CustomerTable);
             try
@@ -317,7 +317,14 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("customer_group_id", customer_group_id);
                 param[3] = new SqlParameter("CustomerXml", CustomerXml);
 
-                var result = CustomerEntityGenericRepository.ExecuteSQL<string>("EXEC ImportCustomerXml", param).FirstOrDefault();
+                //var result = CustomerEntityGenericRepository.ExecuteSQL<string>("EXEC ImportCustomerXml", param).FirstOrDefault();
+                var listPasswordOfCustomer = CustomerEntityGenericRepository.ExecuteSQL<ImportCustomerEmailEntity>("EXEC ImportCustomerXml", param).ToList();
+                //if (listPasswordOfCustomer != null && listPasswordOfCustomer.Count > 0)
+                if(string.IsNullOrWhiteSpace(listPasswordOfCustomer.FirstOrDefault().ErrorLog))
+                {
+                    SendCustomerImportMailToCustomer(listPasswordOfCustomer, store_id, UserPassword);
+                }
+                var result = string.IsNullOrWhiteSpace(listPasswordOfCustomer.FirstOrDefault().ErrorLog) ? string.Empty : listPasswordOfCustomer.FirstOrDefault().ErrorLog;
                 return result;
             }
             catch (Exception)
@@ -325,6 +332,53 @@ namespace CordobaServices.Services
 
                 throw;
             }
+        }
+
+        public bool SendCustomerImportMailToCustomer(List<ImportCustomerEmailEntity> listPasswordOfCustomer, int storeid, string UserPassword)
+        {
+            if (storeid <= 0)
+            {
+                return false;
+            }
+
+            var storeIdParam = new SqlParameter
+            {
+                ParameterName = "store_id",
+                DbType = DbType.Int32,
+                Value = storeid
+            };
+
+            //var customerXmlParam = new SqlParameter
+            //{
+            //    ParameterName = "CustomerXml",
+            //    DbType = DbType.String,
+            //    Value = CustomerXml
+            //};
+
+            // var result = CustomerEntityGenericRepository.ExecuteSQL<ImportCustomerEmailEntity>("GetCustomerEmailAndPasswordForEmail", storeIdParam, customerXmlParam);
+
+            // var listPasswordOfCustomer = result.ToList();
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/ImportCustomer.html");
+            if (listPasswordOfCustomer.Count > 0)
+            {
+                for (int i = 0; i < listPasswordOfCustomer.Count; i++)
+                {
+                    string strSubject = "welcome to XPO Rewards";
+                    var strbody = CommonService.ReadTextFile(filepath);
+                    if (strbody.Length > 0)
+                    {
+                        strbody = strbody.Replace("##CustomerName##", listPasswordOfCustomer[i].CustomerName);
+                        strbody = strbody.Replace("##Password##", UserPassword);
+                    }
+
+                    var commonServices = new CommonService();
+
+                    CommonService.SendMailMessage(listPasswordOfCustomer[i].Email, null, null, strSubject, strbody, commonServices.GetEmailSettings(), null, listPasswordOfCustomer[i].StoreName);
+                }
+            }
+
+            return true;
         }
 
         public bool UploadUserImage(int customerImage_id, int customer_id, string ImageName)
@@ -398,14 +452,14 @@ namespace CordobaServices.Services
                 var result = CustomerEntityGenericRepository.ExecuteSQL<int>("InsertPointAudit", sqlParameter).FirstOrDefault();
                 return result;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return 0;
             }
         }
 
 
-        
+
 
     }
 }
