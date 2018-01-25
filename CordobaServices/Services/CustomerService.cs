@@ -320,7 +320,7 @@ namespace CordobaServices.Services
                 //var result = CustomerEntityGenericRepository.ExecuteSQL<string>("EXEC ImportCustomerXml", param).FirstOrDefault();
                 var listPasswordOfCustomer = CustomerEntityGenericRepository.ExecuteSQL<ImportCustomerEmailEntity>("EXEC ImportCustomerXml", param).ToList();
                 //if (listPasswordOfCustomer != null && listPasswordOfCustomer.Count > 0)
-                if(string.IsNullOrWhiteSpace(listPasswordOfCustomer.FirstOrDefault().ErrorLog))
+                if (string.IsNullOrWhiteSpace(listPasswordOfCustomer.FirstOrDefault().ErrorLog))
                 {
                     SendCustomerImportMailToCustomer(listPasswordOfCustomer, store_id, UserPassword);
                 }
@@ -370,6 +370,7 @@ namespace CordobaServices.Services
                     {
                         strbody = strbody.Replace("##CustomerName##", listPasswordOfCustomer[i].CustomerName);
                         strbody = strbody.Replace("##Password##", UserPassword);
+                        strbody = strbody.Replace("##StoreName##", string.Format("<a href={0}>{1}</a>", listPasswordOfCustomer[i].URL, listPasswordOfCustomer[i].StoreName));
                     }
 
                     var commonServices = new CommonService();

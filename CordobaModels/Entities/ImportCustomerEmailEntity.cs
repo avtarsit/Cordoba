@@ -13,5 +13,6 @@ namespace CordobaModels.Entities
         public string Password { get; set; }
         public string StoreName { get; set; }
         public string ErrorLog { get; set; }
+        public string URL { get; set; }
     }
 }
