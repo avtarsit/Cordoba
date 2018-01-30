@@ -11,6 +11,20 @@
         return $sce.trustAsHtml(string);
     };
 
+    $scope.GetCustomerDetails = function () {
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+        .then(function (response) {
+            $rootScope.CustomerDetail.points = response.data.points;
+            UserDetail.points = $rootScope.CustomerDetail.points;
+        })
+      .catch(function (response) {
+
+      })
+      .finally(function () {
+
+      });
+    }
+
     //angular hack to html decode
     $scope.WelcomeMsg = $scope.StoreDetailInSession.description.split('##ReadMore##');
     //var encoded = $scope.WelcomeMsg[0];

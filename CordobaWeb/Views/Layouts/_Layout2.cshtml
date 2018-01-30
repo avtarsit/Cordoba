@@ -125,7 +125,7 @@
                                 </li>
                                 <li ng-if="CustomerDetail.customer_id>0">
                                     <p class="hi-text ">Hello</p>
-                                    <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-bind="CustomerDetail.firstname +' '+CustomerDetail.lastname"><span class="caret"></span></a>
+                                    <a href="javascript:;" class="dropdown-toggle" id="dropdownMenu1" ng-click="GetCustomerDetails();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-bind="CustomerDetail.firstname +' '+CustomerDetail.lastname"><span class="caret"></span></a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                         <li><p>you have: <span ng-bind="(CustomerDetail.points | number : 0)+' Points'"></span></p></li>
                                         <li role="separator" class="divider"></li>

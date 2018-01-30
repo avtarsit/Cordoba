@@ -106,9 +106,9 @@ namespace CordobaServices.Services
             }
 
 
-            if (!subject.ToLower().Contains("verify".ToString()))
+            if ((!subject.ToLower().Contains("verify".ToString())) && (!subject.ToLower().Contains("reward points".ToString())) && (!subject.ToLower().Contains("welcome to".ToString())))
             {
-
+                
                 if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["emailBCC"]))
                 {
                     string[] strBCC = ConfigurationManager.AppSettings["emailBCC"].Split(new char[] { ',' });

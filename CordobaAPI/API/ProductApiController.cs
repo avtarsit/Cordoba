@@ -275,6 +275,10 @@ namespace CordobaAPI.API
                         }
 
                         string fileName = product_id + "/" + httpPostedFile.FileName;
+
+                        //System.IO.File.AppendAllText(@"C:\FileCheck.txt", folderPath + Environment.NewLine );
+                        //System.IO.File.AppendAllText(@"C:\FileCheck.txt", childFolderPath + Environment.NewLine);
+
                         res = _ProductServices.UploadProductImage(product_id, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.productImage.ToString() + "/" + fileName);
 
                         if (res == true)

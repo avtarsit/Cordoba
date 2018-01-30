@@ -142,7 +142,8 @@
          });
     }
 
-    $scope.Checkout = function () {     
+    $scope.Checkout = function () {
+        $scope.GetCustomerDetails();
         if (UserDetail.customer_id > 0) {
             if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
                 $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });

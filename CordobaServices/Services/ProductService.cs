@@ -327,6 +327,8 @@ namespace CordobaServices.Services
         {
             try
             {
+                //System.IO.File.AppendAllText(@"C:\FileCheck.txt", image);
+
                 SqlParameter[] sqlParameter = new SqlParameter[] {
                     new SqlParameter("product_id", product_id),
                     new SqlParameter("image",image),
