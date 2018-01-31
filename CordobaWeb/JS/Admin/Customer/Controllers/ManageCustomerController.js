@@ -10,7 +10,8 @@
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                       .withOption('bDestroy', true)
                       .withOption("deferRender", true)
-                      .withOption('bFilter', false);
+                      .withOption('bFilter', false)
+                      .withOption('aaSorting', [0, 'desc']);
 
     $scope.CustomerObj = new Object();
     $scope.StoreObj = new Object();
@@ -216,7 +217,6 @@
 
 
     $scope.GetCustomerById = function () {
-
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
           .then(function (response) {
               $scope.CustomerObj = response.data;

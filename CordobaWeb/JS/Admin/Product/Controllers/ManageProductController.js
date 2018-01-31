@@ -272,7 +272,7 @@
         return CatalogueIdCSV;
     }
 
-    $scope.InsertUpdateProduct = function (form) {     
+    $scope.InsertUpdateProduct = function (form) {
         if (form.$valid) {            
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
