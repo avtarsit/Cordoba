@@ -175,7 +175,7 @@
     }
 
     $scope.UploadBannerImage = function (index) {      
-        var data = new FormData();  
+        var data = new FormData();
         var files = $("#Image" + index).get(0).files;
         if (files.length == 0 && !($scope.BannerImageObj[index]["banner_image_id"]>0)) {
             notificationFactory.customError("Please select Banner Image.");

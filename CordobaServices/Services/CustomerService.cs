@@ -243,7 +243,8 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("PointsXml", PointsXml);
 
                 List<PointsAuditEntity> result = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC ImportPointsXml", param).ToList();
-                SendPointImportMailToCustomer(PointsXml, store_id);
+                if (string.IsNullOrWhiteSpace(result.FirstOrDefault().invalidEmail))
+                    SendPointImportMailToCustomer(PointsXml, store_id);
                 return result;
             }
             catch (Exception)
@@ -364,13 +365,14 @@ namespace CordobaServices.Services
             {
                 for (int i = 0; i < listPasswordOfCustomer.Count; i++)
                 {
-                    string strSubject = "welcome to XPO Rewards";
+                    string strSubject = string.Format("welcome to {0}", listPasswordOfCustomer[i].StoreName);
                     var strbody = CommonService.ReadTextFile(filepath);
                     if (strbody.Length > 0)
                     {
                         strbody = strbody.Replace("##CustomerName##", listPasswordOfCustomer[i].CustomerName);
                         strbody = strbody.Replace("##Password##", UserPassword);
-                        strbody = strbody.Replace("##StoreName##", string.Format("<a href={0}>{1}</a>", listPasswordOfCustomer[i].URL, listPasswordOfCustomer[i].StoreName));
+                        strbody = strbody.Replace("##StoreName##", listPasswordOfCustomer[i].StoreName);
+                        strbody = strbody.Replace("##StoreNameLink##", string.Format("<a href={0}>{1}</a>", listPasswordOfCustomer[i].URL, listPasswordOfCustomer[i].StoreName));
                     }
 
                     var commonServices = new CommonService();

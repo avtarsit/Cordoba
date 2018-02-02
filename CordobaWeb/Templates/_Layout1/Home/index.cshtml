@@ -6,7 +6,7 @@
                 <div class="col-sm-12 banner-slider" ng-controller="Dashboard_BannerController">
                     <ul class="main-banner" data-bx-slider="pager:false,nextText:'',prevText:'',mode: 'fade',auto:true,autoStart: true">
                         <li ng-repeat="Banner in BannerList" data-notify-when-repeat-finished>
-                            <img ng-src="{{Banner.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Slider banner" height="355" width="1115" />
+                            <a ng-href="{{Banner.Link}}" target="_blank"> <img ng-src="{{Banner.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Slider banner" height="355" width="1115" /></a>
                         </li>
                     </ul>
                 </div>
