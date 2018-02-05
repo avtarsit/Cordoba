@@ -9,7 +9,7 @@ namespace CordobaModels.Entities
 {
     public class ProductEntity
     {
-        public int? product_id { get; set; }
+        public int product_id { get; set; }
         public string name { get; set; }
 
         #region Data Tab

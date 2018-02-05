@@ -110,16 +110,16 @@
 
     $scope.PrintOrder = function () {
         var htmlString = $("#OrderPrintSection").html();
-        var mywindow = window.open('', 'PRINT');
+        var mywindow = window.open('', '_blank');
         mywindow.document.write('<html><head><title></title>');
         mywindow.document.write('<style>.table-bordered th,.table-bordered td {border: 1px solid #ddd !important;padding:15px;font-size:11px;}</style>');
         mywindow.document.write('</head><body >');
         mywindow.document.write(htmlString);
         mywindow.document.write('</body></html>');
-        mywindow.document.close(); // necessary for IE >= 10
-        mywindow.focus(); // necessary for IE >= 10*/
-        mywindow.print();
-        mywindow.close();
+        //mywindow.document.close(); // necessary for IE >= 10
+        //mywindow.focus(); // necessary for IE >= 10*/
+        //mywindow.print();
+        //mywindow.close();
         return true;
     }
 
