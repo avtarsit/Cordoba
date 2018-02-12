@@ -8,13 +8,24 @@
     $scope.SpecialOfferList = [];
     //#endregion  
     $scope.StoreDetailInSession = StoreSessionDetail;
+    var totalproducts;
+    if ($scope.StoreDetailInSession != null) {
+        debugger;
+        totalproducts = $scope.StoreDetailInSession.template == "_Layout2" ? 3 : 2;
+    }
+
+    $scope.SpecialOfferIndexStart = 0;
+    $scope.SpecialOfferIndexEnd = 0;
+
+    $scope.SpecialOffer = [];
 
     $scope.GetSpecialOfferListByStoreId = function () {
 
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetSpecialOfferListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id)
           .then(function (response) {          
               if (response.data.length > 0) {                  
-                  $scope.SpecialOfferList = response.data;
+                  $scope.SpecialOffer = response.data;
+                  $scope.NextSpecialOffer();
               }
           })
       .catch(function (response) {
@@ -23,6 +34,55 @@
       .finally(function () {
 
       });
+    }
+
+     $scope.SpecialOffer = $scope.SpecialOfferList.length;
+
+    $scope.NextSpecialOffer = function () {
+        debugger;
+        $scope.SpecialOfferList = [];
+        
+        var LastIndex = $scope.SpecialOfferIndexStart;
+        for (var i = $scope.SpecialOfferIndexStart; i < $scope.SpecialOfferIndexStart + totalproducts; i++) {
+            if (i < $scope.SpecialOffer.length) {
+                $scope.SpecialOfferList.push($scope.SpecialOffer[i]);
+                LastIndex = LastIndex + 1;
+            }
+            else {
+                i = -1;
+                $scope.SpecialOfferIndexEnd = LastIndex;
+                LastIndex = 0;
+                break;
+            }
+        }
+        $scope.SpecialOfferIndexStart = LastIndex;
+        if ($scope.SpecialOfferIndexStart != 0) {
+            $scope.SpecialOfferIndexEnd = $scope.SpecialOfferIndexStart;
+        }
+    }
+
+    $scope.PreviousSpecialOffer = function () {
+        debugger;
+        $scope.SpecialOfferList = [];
+        var previousproductindex = $scope.SpecialOfferIndexEnd % totalproducts == 0 ? totalproducts : $scope.SpecialOfferIndexEnd % totalproducts == 1 ? 1 : 2;
+        var LastIndex = $scope.SpecialOfferIndexEnd;
+        var temp = totalproducts;
+        for (var i = LastIndex - previousproductindex ; temp > 0 ; i--) {
+            if (i > 0) {
+                $scope.SpecialOfferList.push($scope.SpecialOffer[i-1]);
+                LastIndex = LastIndex - 1;
+                temp = temp - 1;
+            }
+        }
+        if (i==0) {
+            LastIndex = 0;
+            $scope.SpecialOfferIndexStart = totalproducts;
+        }
+        else {
+            $scope.SpecialOfferIndexStart = LastIndex;
+        }
+        $scope.SpecialOfferList.reverse();
+        $scope.SpecialOfferIndexEnd = LastIndex;
     }
 
 
