@@ -7,7 +7,7 @@
     if ($rootScope.IsStoreAdmin == 0) {
         $state.go('Home');
     }
- 
+
 
     $scope.storeId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
@@ -86,7 +86,6 @@
 
             // Charts setup
             function (ec, limitless) {
-                debugger;
                 // Initialize charts
 
                 var OrderSummary = ec.init(document.getElementById('StoreOrderSummary'), limitless);
@@ -96,7 +95,6 @@
 
                 var Top5Product_Chart = ec.init(document.getElementById('Top5Product_Chart'), limitless);
 
-                debugger;
                 // Charts setup
                 // ------------------------------                    
                 OrderSummary_options = {
@@ -436,7 +434,7 @@
                                  show: true,
                                  interval: 0,    // {number}
                                  rotate: 45,
-                                 margin:-20,
+                                 margin: -20,
                                  formatter: '{value}',
                                  textStyle: {
                                      color: 'blue',
@@ -466,7 +464,7 @@
                                         return colorList[param.dataIndex]
                                     }
                                 }
-                            }   
+                            }
                         }
                     ]
                 };
@@ -485,6 +483,14 @@
 
                 Top5Customer_Chart.setOption(Top5Customer_Chart_option);
                 Top5Product_Chart.setOption(Top5Product_Chart_option);
+
+                setTimeout(function () {
+
+                    OrderSummary.resize();
+                    SalesAnalytics.resize();
+                    Top5Customer_Chart.resize();
+                    Top5Product_Chart.resize();
+                }, 100);
 
 
                 // Resize charts
@@ -507,7 +513,7 @@
     $scope.GetLatestOrderDetailsDashboard = function () {
         $http.get(configurationService.basePath + "api/DashboardApi/GetLatestOrderDetailsDashboard?storeId=" + $scope.storeId)
          .then(function (response) {
-     
+
              if (response.data.length > 0) {
                  $scope.Orders = response.data;
              }
@@ -522,7 +528,7 @@
 
     $scope.GetDashboardTopHeaderFields = function () {
         $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardTopHeaderFields?storeId=" + $scope.storeId)
-        .then(function (response) {  
+        .then(function (response) {
             if (response.data != null) {
                 $scope.DashboardSummary.DashboardHeaderSummary = response.data;
             }
@@ -540,8 +546,7 @@
         $http.get(configurationService.basePath + "api/DashboardApi/GetDashboardSummaryCharts?storeId=" + $scope.storeId + "&ChartFiltertype=" + $scope.ChartFiltertype + "&ChartOrFunctionTypeEnum=" + ChartOrFunctionTypeEnum)
         .then(function (response) {
             if (response.data != null) {
-                if ($scope.ChartOrFunctionTypeEnum.All == ChartOrFunctionTypeEnum)
-                {
+                if ($scope.ChartOrFunctionTypeEnum.All == ChartOrFunctionTypeEnum) {
                     $scope.DashboardSummary.DashboardOrderSummary = [];
                     $scope.DashboardSummary.DashboardOrderSummaryMonthName = [];
 
@@ -596,7 +601,7 @@
                             $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue.push(response.data.dashboardSalesAnalytics[i].MonthName)
                         }
                     }
-                                                    
+
                 }
                 else if ($scope.ChartOrFunctionTypeEnum.OrderSummary == ChartOrFunctionTypeEnum) {
                     $scope.DashboardSummary.DashboardOrderSummary = [];
@@ -607,8 +612,7 @@
                     }
 
                 }
-                else if ($scope.ChartOrFunctionTypeEnum.SalesAnalytics == ChartOrFunctionTypeEnum)
-                {
+                else if ($scope.ChartOrFunctionTypeEnum.SalesAnalytics == ChartOrFunctionTypeEnum) {
                     $scope.DashboardSummary.DashboardSalesAnalyticsOrderCount = [];
                     $scope.DashboardSummary.DashboardSalesAnalyticsCustomerCount = [];
                     $scope.DashboardSummary.DashboardSalesAnalyticsFilterValue = [];
@@ -641,8 +645,7 @@
                         }
                     }
                 }
-                else if ($scope.ChartOrFunctionTypeEnum.Top5PurchaseItem == ChartOrFunctionTypeEnum)
-                {
+                else if ($scope.ChartOrFunctionTypeEnum.Top5PurchaseItem == ChartOrFunctionTypeEnum) {
                     $scope.DashboardSummary.DashboardTopPurchaseProductValue = [];
                     $scope.DashboardSummary.DashboardTopPurchaseProductName = [];
 
@@ -652,8 +655,7 @@
                     }
 
                 }
-                else if ($scope.ChartOrFunctionTypeEnum.Top5Customers == ChartOrFunctionTypeEnum)
-                {
+                else if ($scope.ChartOrFunctionTypeEnum.Top5Customers == ChartOrFunctionTypeEnum) {
                     $scope.DashboardSummary.DashboardTopCustomerName = [];
                     $scope.DashboardSummary.DashboardTopCustomerValue = [];
 
@@ -662,9 +664,9 @@
                         $scope.DashboardSummary.DashboardTopCustomerName.push(response.data.dashboardTopCustomer[i].customer);
                     }
                 }
-             
+
             }
-                
+
             LoadCharts(ChartOrFunctionTypeEnum);
 
         })
@@ -675,25 +677,25 @@
     }
     $scope.getActivityList = function () {
         $http.get(configurationService.basePath + "api/ActivityApi/GetActivityList?store_id=" + $scope.storeId)
-         .then(function (response) {            
+         .then(function (response) {
              if (response.data.length > 0) {
                  $scope.activityList = response.data;
              }
          })
          .catch(function (response) {
-         
+
          })
          .finally(function () {
-         
+
          })
-       
+
     }
 
     $scope.getActivityList();
 
     $scope.GetDashboardSummaryCharts($scope.ChartOrFunctionTypeEnum.All);
 
-    
+
 
 
 });
