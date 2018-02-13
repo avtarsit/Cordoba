@@ -256,6 +256,8 @@
     <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="EmailTemplate\ForgotPassword.html" />
     <Content Include="EmailTemplate\ForntUserVerified.html" />
+    <Content Include="EmailTemplate\ImportCustomer.html" />
+    <Content Include="EmailTemplate\ImportedPoint.html" />
     <Content Include="EmailTemplate\OrderStatusUpdateTemplate.html" />
     <Content Include="EmailTemplate\VerifyOTP.html" />
     <Content Include="favicon.ico" />
