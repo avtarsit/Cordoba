@@ -95,6 +95,15 @@ namespace CordobaAPI.API
                 selectedColumn.Add(new ColumnConfiguration("storeId", "StoreID"));
                 selectedColumn.Add(new ColumnConfiguration("store_name", "Store Name"));
                 selectedColumn.Add(new ColumnConfiguration("store_url", "Store Url"));
+                selectedColumn.Add(new ColumnConfiguration("activated", "Activated"));
+                selectedColumn.Add(new ColumnConfiguration("telephone", "Telephone"));
+                selectedColumn.Add(new ColumnConfiguration("company", "Company"));
+                selectedColumn.Add(new ColumnConfiguration("address_1", "Address 1"));
+                selectedColumn.Add(new ColumnConfiguration("address_2", "Address 2"));
+                selectedColumn.Add(new ColumnConfiguration("postcode", "Postcode"));
+                selectedColumn.Add(new ColumnConfiguration("city", "City"));
+                selectedColumn.Add(new ColumnConfiguration("country", "Country"));
+                selectedColumn.Add(new ColumnConfiguration("customer_group_name", "Customer Group"));
 
                 if (!string.IsNullOrEmpty(sortColumn))
                 {
@@ -480,7 +489,7 @@ namespace CordobaAPI.API
                         dtXLS.Columns.Add(new DataColumn("password", typeof(string)));
 
                         Random r = new Random();
-                        string userPassword =   Convert.ToString(r.Next(1, 100000));  
+                        string userPassword = Convert.ToString(r.Next(1, 100000));
 
                         foreach (DataRow item in dtXLS.Rows)
                         {

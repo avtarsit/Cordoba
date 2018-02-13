@@ -504,6 +504,7 @@ namespace CordobaServices.Services
                 strbody = strbody.Replace("##CustumerPhone##", orderItemDetailsRecord.telephone);
                 strbody = strbody.Replace("##CustumerEmail##", orderItemDetailsRecord.email);
                 strbody = strbody.Replace("##OrderStatusName##", orderItemDetailsRecord.OrderStatusName);
+                strbody = strbody.Replace("##OrderDate##", orderItemDetailsRecord.OrderDate.ToString(Common.DateFormate));
                 strbody = strbody.Replace("##PaymentName##", orderItemDetailsRecord.payment_name);
                 strbody = strbody.Replace("##PaymentAddress##", orderItemDetailsRecord.payment_address);
                 strbody = strbody.Replace("##PaymentMethod##", orderItemDetailsRecord.payment_method);
