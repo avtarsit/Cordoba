@@ -154,6 +154,7 @@ namespace CordobaServices.Services_Layout
                 strbody = strbody.Replace("##CustumerPhone##", orderItemDetailsRecord.telephone);
                 strbody = strbody.Replace("##CustumerEmail##", orderItemDetailsRecord.email);
                 strbody = strbody.Replace("##OrderStatusName##", orderItemDetailsRecord.OrderStatusName);
+                strbody = strbody.Replace("##OrderDate##", orderItemDetailsRecord.OrderDate.ToString(Common.DateFormate));
                 strbody = strbody.Replace("##PaymentName##", orderItemDetailsRecord.payment_name);
                 strbody = strbody.Replace("##PaymentAddress##", orderItemDetailsRecord.payment_address);
                 strbody = strbody.Replace("##PaymentMethod##", orderItemDetailsRecord.payment_method);
@@ -161,6 +162,7 @@ namespace CordobaServices.Services_Layout
                 strbody = strbody.Replace("##ShippingName##", orderItemDetailsRecord.shipping_name);
                 strbody = strbody.Replace("##ShippingCompany##", orderItemDetailsRecord.shipping_company);
                 strbody = strbody.Replace("##ShippingMethod##", orderItemDetailsRecord.shipping_method);
+
                 //strbody = strbody.Replace("##Currency##", orderItemDetailsRecord.currencyTitle);
                 strbody = strbody.Replace("##FinalTable##", priceTableString);
                 //strbody = strbody.Replace("##RedirectPath##", redirectPath);
