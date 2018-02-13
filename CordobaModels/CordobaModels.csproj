@@ -138,6 +138,8 @@
     <Compile Include="Entities\DashboardSummaryEntity.cs" />
     <Compile Include="Entities\EmailNotification.cs" />
     <Compile Include="Entities\HotSpecialProductEntity.cs" />
+    <Compile Include="Entities\ImportCustomerEmailEntity.cs" />
+    <Compile Include="Entities\ImportedPointEmailEntity.cs" />
     <Compile Include="Entities\ImportProductCatalogueEntity.cs" />
     <Compile Include="Entities\LanguageEntity.cs" />
     <Compile Include="Entities\ManufacturersEntity.cs" />
