@@ -810,6 +810,7 @@
     <Content Include="JS\Layout\Reward\CustomerRewardDetailsControlller.js" />
     <Content Include="JS\Layout\Reward\RewardsController.js" />
     <Content Include="JS\Test\TestController.js" />
+    <Content Include="Scripts\AdBlock.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_advanced.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_axis.js" />
     <Content Include="Scripts\admin\js\charts\c3\c3_bars_pies.js" />

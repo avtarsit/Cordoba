@@ -14,28 +14,31 @@
                 <div class="col-sm-12 best-block" ng-controller="Dashboard_BestSellerController">
                     <div class="col-sm-12 white-bg">
                         <div class="block-heading">
-                            <h4>Best Sellers<span class="pull-right">
-                                                <button ng-click="NextBestSeller()" ng-disabled="BestSellerIndexEnd != null ? BestSellerIndexEnd == BestSeller.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
-                                                <button ng-click="PreviousBestSeller()" ng-disabled="BestSellerIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
-                            </span></h4>
+                            <h4>
+                                Best Sellers
+                                <span class="slider-nav">
+                                    <a ng-click="NextBestSeller()" class="bx-next"></a>
+                                    <a ng-click="PreviousBestSeller()" class="bx-prev"></a>
+                                </span>
+                            </h4>
                         </div>
-                        <div class="col-sm-12" >
+                        <div class="col-sm-12">
                             @*<div class="row best-seller" data-bx-slider="pager:false,nextText:'',prevText:''">*@
-                                <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
-                                    <div class="col-xs-4">
-                                        <img class="full-width" ng-src="{{BestSeller.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="seller" style="max-height:100px"/>
-                                    </div>
-                                    <div class="col-xs-8">
-                                        <a href="" ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" class="seller-desc" ng-bind="BestSeller.name"></a>
-                                        <p><span ng-bind="BestSeller.Model"></span></p>
-                                        <p class="seller-desc"><span ng-bind="BestSeller.points +' Points'"></span></p>
-                                        <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
-                                    </div>
+                            <div class="seller-block" ng-repeat="BestSeller in BestSellerList" data-notify-when-repeat-finished>
+                                <div class="col-xs-4">
+                                    <img class="full-width" ng-src="{{BestSeller.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="seller" style="max-height:100px" />
                                 </div>
+                                <div class="col-xs-8">
+                                    <a href="" ui-sref="LayoutProductDetail({ProductId:BestSeller.product_id})" class="seller-desc" ng-bind="BestSeller.name"></a>
+                                    <p><span ng-bind="BestSeller.Model"></span></p>
+                                    <p class="seller-desc"><span ng-bind="BestSeller.points +' Points'"></span></p>
+                                    <a href="" class="cursor-pointer" ng-controller="AddProductToCartController"><span class="glyphicon glyphicon-shopping-cart" ng-click="AddProductToCart(BestSeller,$event)" aria-hidden="true"></span></a>
+                                </div>
+                            </div>
                             @*</div>*@
                         </div>
                     </div>
-                </div>            
+                </div>
             </div>
         </div>
 
@@ -59,7 +62,7 @@
                                     <p ng-bind="rewardWinner.WinnerName"></p>
                                     <span ng-bind="rewardWinner.Rewards"></span>
                                     <span ng-bind="rewardWinner.winner_declared_date | date:GlobalDateFormat"></span>
-                                </div>                           
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -77,19 +80,19 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         @*<div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 1,mode: 'vertical'">*@
-                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                                <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
-                                </div>
-                                <div class="media-body">
-                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind-html="HotDeals.name"></a>
-                                    <p ng-bind="HotDeals.Model"></p>
-                                    <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
-                                </div>
-                                <div class="add-cart" ng-controller="AddProductToCartController">
-                                    <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
-                                </div>
+                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                            <div class="media-left">
+                                <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
                             </div>
+                            <div class="media-body">
+                                <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind-html="HotDeals.name"></a>
+                                <p ng-bind="HotDeals.Model"></p>
+                                <span ng-bind="(HotDeals.points | number:0) +' Points'"></span>
+                            </div>
+                            <div class="add-cart" ng-controller="AddProductToCartController">
+                                <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
+                            </div>
+                        </div>
                         @*</div>*@
                     </div>
                 </div>
@@ -104,19 +107,19 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         @*<div class="hot-deals" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 3,maxSlides: 2,mode: 'vertical' ">*@
-                            <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
-                                <div class="media-left">
-                                    <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
-                                </div>
-                                <div class="media-body">
-                                    <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name | limitTo:27" title="{{HotDeals.name}}"></a>
-                                    <p ng-bind="HotDeals.Model |limitTo:10" title="{{HotDeals.Model}}"></p>
-                                    @*<span ng-bind="(HotDeals.points | number:0) +' Points'"></span>*@
-                                </div>
-                                @*<div class="add-cart" ng-controller="AddProductToCartController">
+                        <div class="media col-sm-12" ng-repeat="HotDeals in HotDealsList" data-notify-when-repeat-finished>
+                            <div class="media-left">
+                                <img class="media-object" ng-src="{{HotDeals.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="deals" />
+                            </div>
+                            <div class="media-body">
+                                <a ui-sref="LayoutProductDetail({ProductId:HotDeals.product_id})" ng-bind="HotDeals.name | limitTo:27" title="{{HotDeals.name}}"></a>
+                                <p ng-bind="HotDeals.Model |limitTo:10" title="{{HotDeals.Model}}"></p>
+                                @*<span ng-bind="(HotDeals.points | number:0) +' Points'"></span>*@
+                            </div>
+                            @*<div class="add-cart" ng-controller="AddProductToCartController">
                                     <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(HotDeals,$event)">Add to Cart</button>
                                 </div>*@
-                            </div>
+                        </div>
                         @*</div>*@
                     </div>
                 </div>
@@ -124,7 +127,7 @@
         </div>
 
         @* Dashboard_PopularCategoryController *@
-        <div class="col-md-7 col-xs-12 mb-30" ng-controller="Dashboard_PopularCategoryController" >
+        <div class="col-md-7 col-xs-12 mb-30" ng-controller="Dashboard_PopularCategoryController">
             <div class="col-sm-12 block-bg popular-category" ng-if="PopularCategoryList.length>0">
                 <div class="block-heading">
                     <h4>Popular Categories</h4>
@@ -144,7 +147,7 @@
         @* Dashboard_StoreImageController *@
         <div class="col-md-5 col-xs-12  mb-30" ng-controller="Dashboard_StoreImageController">
             <div class="offer-block new-product" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 1 }">
-                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" alt="Store Image" />               
+                <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" alt="Store Image" />
             </div>
         </div>
         <div class="clearfix"></div>
@@ -158,7 +161,7 @@
                                 <h4>Categories</h4>
                             </div>
                         </div>
-                        <div class="category-list"  data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
+                        <div class="category-list" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical'">
                             <ul class="col-sm-12">
                                 <li ng-repeat="category in CategoryList"><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:category.Category_Id})" ng-bind-html="category.name"></a></li>
                             </ul>
@@ -166,32 +169,35 @@
                     </div>
                 </div>
                 @* Dashboard_SpecialOffersController *@
-                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController" >
+                <div class="col-md-12 col-sm-6 col-xs-12" ng-controller="Dashboard_SpecialOffersController">
                     <div class="col-sm-12 block-bg deals special-offer mb-30" ng-if="SpecialOfferList.length>0">
                         <div class="block-heading">
-                            <h4>Special Offers
-                                <span class="pull-right">
-                                    <button ng-click="NextSpecialOffer()" ng-disabled="SpecialOffer != null ? SpecialOfferIndexEnd == SpecialOffer.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
-                                    <button ng-click="PreviousSpecialOffer()" ng-disabled="SpecialOfferIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
+                            <h4>
+                                Special Offers
+                                <span class="slider-nav">
+                                    @*<button ng-click="NextSpecialOffer()" ng-disabled="SpecialOffer != null ? SpecialOfferIndexEnd == SpecialOffer.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
+                                     <button ng-click="PreviousSpecialOffer()" ng-disabled="SpecialOfferIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>*@
+                                    <a ng-click="NextSpecialOffer()" class="bx-next"></a>
+                                    <a ng-click="PreviousSpecialOffer()" class="bx-prev"></a>
                                 </span>
                             </h4>
                         </div>
                         <div class="clearfix"></div>
                         <div class="row">
                             @*<div id="special-offer" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 2,maxSlides: 1,mode: 'vertical',stopAuto: false">*@
-                                <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
-                                    <div class="media-left">
-                                        <img class="media-object" ng-src="{{SpecialOffer.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="special Offer" />
-                                    </div>
-                                    <div class="media-body">
-                                        <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo:35" title="{{SpecialOffer.name}}"></a>
-                                        <p ng-bind="SpecialOffer.Model | limitTo:15" title="{{SpecialOffer.Model}}"></p>
-                                        <span ng-bind="(SpecialOffer.points | number:0) +' Points'"></span>
-                                    </div>
-                                    <div class="add-cart" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">ADD TO CART</button>
-                                    </div>
+                            <div class="media col-sm-12" ng-repeat="SpecialOffer in SpecialOfferList" data-notify-when-repeat-finished>
+                                <div class="media-left">
+                                    <img class="media-object" ng-src="{{SpecialOffer.Image}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="special Offer" />
                                 </div>
+                                <div class="media-body">
+                                    <a ui-sref="LayoutProductDetail({ProductId:SpecialOffer.product_id})" ng-bind-html="SpecialOffer.name | limitTo:35" title="{{SpecialOffer.name}}"></a>
+                                    <p ng-bind="SpecialOffer.Model | limitTo:15" title="{{SpecialOffer.Model}}"></p>
+                                    <span ng-bind="(SpecialOffer.points | number:0) +' Points'"></span>
+                                </div>
+                                <div class="add-cart" ng-controller="AddProductToCartController">
+                                    <button class="btn btn-empty add_to_cart_dish" ng-click="AddProductToCart(SpecialOffer,$event)">ADD TO CART</button>
+                                </div>
+                            </div>
                             @*</div>*@
                         </div>
                     </div>
@@ -203,39 +209,40 @@
             <div class="row">
                 <div class="col-sm-12 latest-product" ng-if="LatestProductList.length>0">
                     <div class="block-heading">
-                        <h4>Latest Products
-                            <span class="pull-right">
-                                <button ng-click="NextLatestProduct()" ng-disabled="LatestProduct != null ? LatestProductIndexEnd == LatestProduct.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
-                                <button ng-click="PreviousLatestProduct()" ng-disabled="LatestProductIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
+                        <h4>
+                            Latest Products
+                            <span class="slider-nav">
+                                <a ng-click="NextLatestProduct()" class="bx-next"></a>
+                                <a ng-click="PreviousLatestProduct()" class="bx-prev"></a>
                             </span>
                         </h4>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row pull-left">
                         @*<div id="latest-product" class="col-sm-12" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 5,slideWidth: 250">*@
-                            <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
-                                <div class="product-block">
-                                    <div class="product-img">
-                                        <img ng-src='{{LatestProduct.Image}}' onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="latest product" />
-                                    </div>
-                                    <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
-                                    <p ng-bind="LatestProduct.Model| limitTo:15" title="{{LatestProduct.Model}}"></p>
-                                    <p><span ng-bind="LatestProduct.points +' Points'"></span></p>
-                                    <div class="row" ng-controller="AddProductToCartController">
-                                        <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
-                                    </div>
+                        <div class="col-sm-3" ng-repeat="LatestProduct in LatestProductList" data-notify-when-repeat-finished>
+                            <div class="product-block">
+                                <div class="product-img">
+                                    <img ng-src='{{LatestProduct.Image}}' onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="latest product" />
+                                </div>
+                                <a ui-sref="LayoutProductDetail({ProductId:LatestProduct.product_id})" ng-bind-html="LatestProduct.name | limitTo:27" title="{{LatestProduct.name}}"></a>
+                                <p ng-bind="LatestProduct.Model| limitTo:15" title="{{LatestProduct.Model}}"></p>
+                                <p><span ng-bind="LatestProduct.points +' Points'"></span></p>
+                                <div class="row" ng-controller="AddProductToCartController">
+                                    <button class="btn btn-default add_to_cart_dish" ng-click="AddProductToCart(LatestProduct,$event)">Add to Cart</button>
                                 </div>
                             </div>
+                        </div>
                         @*</div>*@
                     </div>
                 </div>
                 @* Dashboard_StoreImageController *@
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController" >
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
                     <div class="offer-block">
-                        <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 2 }" alt="Store Image" />                  
+                        <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 2 }" alt="Store Image" />
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController" >
+                <div class="col-sm-6 col-xs-12 mb-30" ng-controller="Dashboard_StoreImageController">
                     <div class="offer-block">
                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!='' " src="{{AdvImg.Image}}" ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 3 }" alt="Store Image" />
                     </div>
@@ -246,9 +253,9 @@
 </div>
 <script src="~/Scripts/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    
+
     $(document).ready(function () {
-        $.mCustomScrollbar.defaults.theme = 'dark-thick';       
+        $.mCustomScrollbar.defaults.theme = 'dark-thick';
         $('.category-list').mCustomScrollbar();
     });
 

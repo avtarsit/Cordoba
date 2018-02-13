@@ -25,7 +25,7 @@
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetBestSellerListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id )
           .then(function (response) {
               if (response.data.length > 0) {
-                  debugger;
+                  
                   $scope.BestSeller = response.data;
                   $scope.NextBestSeller();
               }
@@ -41,7 +41,10 @@
     $scope.BestSeller = $scope.BestSellerList.length;
 
     $scope.NextBestSeller = function () {
-        debugger;
+        
+        if ($scope.BestSellerIndexEnd == $scope.BestSeller.length) {
+            return false;
+        }
         $scope.BestSellerList = [];
 
         var LastIndex = $scope.BestSellerIndexStart;
@@ -96,7 +99,11 @@
     //}
 
     $scope.PreviousBestSeller = function () {
-        debugger;
+        
+        if ($scope.BestSellerIndexEnd == 0)
+        {
+            return false;
+        }
         $scope.BestSellerList = [];
         var previousproductindex = $scope.BestSellerIndexEnd % totalproducts == 0 ? totalproducts : $scope.BestSellerIndexEnd % totalproducts == 1 ? 1 : 2;
         var LastIndex = $scope.BestSellerIndexEnd;

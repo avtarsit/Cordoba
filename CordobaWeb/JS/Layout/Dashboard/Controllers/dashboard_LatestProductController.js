@@ -35,6 +35,11 @@
     $scope.LatestProduct = $scope.LatestProductList.length;
 
     $scope.NextLatestProduct = function () {
+        if ($scope.LatestProductIndexEnd == $scope.LatestProduct.length)
+        {
+            return false;
+        }
+
         $scope.LatestProductList = [];
         
         var LastIndex = $scope.LatestProductIndexStart;
@@ -57,7 +62,10 @@
     }
 
     $scope.PreviousLatestProduct = function () {
-        
+        if ($scope.LatestProductIndexEnd == 0)
+        {
+            return fale;
+        }
         $scope.LatestProductList = [];
         var previousproductindex = $scope.LatestProductIndexEnd % totalproducts == 0 ? totalproducts : $scope.LatestProductIndexEnd % totalproducts == 1 ? 1 : 2;
         var LastIndex = $scope.LatestProductIndexEnd;

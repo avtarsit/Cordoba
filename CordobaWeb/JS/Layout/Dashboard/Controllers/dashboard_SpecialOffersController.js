@@ -10,7 +10,7 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     var totalproducts;
     if ($scope.StoreDetailInSession != null) {
-        debugger;
+        
         totalproducts = $scope.StoreDetailInSession.template == "_Layout2" ? 3 : 2;
     }
 
@@ -39,7 +39,10 @@
      $scope.SpecialOffer = $scope.SpecialOfferList.length;
 
     $scope.NextSpecialOffer = function () {
-        debugger;
+        
+        if ($scope.SpecialOfferIndexEnd == $scope.SpecialOffer.length) {
+            return false;
+        }
         $scope.SpecialOfferList = [];
         
         var LastIndex = $scope.SpecialOfferIndexStart;
@@ -62,7 +65,10 @@
     }
 
     $scope.PreviousSpecialOffer = function () {
-        debugger;
+        
+        if ($scope.SpecialOfferIndexEnd == 0) {
+            return false;
+        }
         $scope.SpecialOfferList = [];
         var previousproductindex = $scope.SpecialOfferIndexEnd % totalproducts == 0 ? totalproducts : $scope.SpecialOfferIndexEnd % totalproducts == 1 ? 1 : 2;
         var LastIndex = $scope.SpecialOfferIndexEnd;

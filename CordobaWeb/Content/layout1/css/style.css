@@ -664,8 +664,9 @@ header {
 
     .block-heading h4 {
         float: left;
-        width: auto;
+        width: 100%;
         font-size: 17px;
+        position:relative;
         line-height: 26px;
         color: #333;
         border-bottom: solid 1px #cc0001;
@@ -690,7 +691,7 @@ header {
 .seller-block {
     float: left;
     width: 100%;
-    max-width: 370px;
+    max-width: 358px;
 }
 
 .best-seller {
@@ -717,10 +718,10 @@ header {
         right: 0;
     }
 
-.best-block a.bx-prev:before, .best-block a.bx-next:before {
+.slider-nav a.bx-prev:before, .slider-nav a.bx-next:before {
     content: "\00276C";
     position: absolute;
-    top: 0;
+    top: 90px;
     left: 0;
     font-size: 45px;
     line-height: 32px;
@@ -729,7 +730,8 @@ header {
 
 .best-block a.bx-next:before {
     content: "\00276D";
-    left: 40px;
+    left:99%;
+    left: calc(100% - 10px);
 }
 
 .best-seller .seller-block:first-child .col-xs-4 {
@@ -827,7 +829,7 @@ header {
         margin-bottom: 0;
     }
 
-    .deals .bx-controls-direction a {
+    .deals .slider-nav a {
         width: 15px;
         text-indent: 0;
         top: -50px;
@@ -836,12 +838,26 @@ header {
         color: #cc0001;
     }
 
-    .deals a.bx-prev {
+    .deals .slider-nav a.bx-prev {
         left: auto;
         right: 35px;
     }
 
-        .deals a.bx-prev:before, .deals a.bx-next:before {
+    .deals .slider-nav a.bx-prev:before, .deals .slider-nav a.bx-next:before {
+            content: "\f105";
+            position: absolute;
+            top: 0;
+            right: 0;
+            left:auto;
+            font-family: FontAwesome;
+            font-size:35px;
+        }
+
+        .deals .slider-nav a.bx-prev:before {
+            content: "\f104";
+            right:25px;
+        }
+        /*.deals .slider-nav a.bx-prev:before, .deals .slider-nav a.bx-next:before {
             content: "\f105";
             position: absolute;
             top: 0;
@@ -849,9 +865,9 @@ header {
             font-family: FontAwesome;
         }
 
-        .deals a.bx-prev:before {
+        .deals .slider-nav a.bx-prev:before {
             content: "\f104";
-        }
+        }*/
 
 .add-cart {
     float: left;
@@ -1064,12 +1080,15 @@ header {
             content: "\f105";
             position: absolute;
             top: 0;
-            left: 0;
+            right: 0;
+            left:auto;
             font-family: FontAwesome;
+            font-size:35px;
         }
 
         .latest-product a.bx-prev:before {
             content: "\f104";
+            right:25px;
         }
 
 /* latest product end */

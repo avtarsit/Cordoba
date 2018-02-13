@@ -175,6 +175,7 @@ namespace CordobaWeb
             Layout1Js.Include("~/Scripts/jquery.bootstrap-duallistbox.js");
             Layout1Js.Include("~/Scripts/bootbox.js");
             Layout1Js.Include("~/Scripts/ckeditor/ckeditor.js");
+            Layout1Js.Include("~/Scripts/AdBlock.js");
             bundles.Add(Layout1Js);
             //------------------------js-------------------------//
 
@@ -247,7 +248,8 @@ namespace CordobaWeb
 
 
             ////////////////////////Layout2 Complete Js Bundling////////////////
-            var Layout2AllJs = new Bundle("~/bundles/Layout2AllJs");        
+            var Layout2AllJs = new Bundle("~/bundles/Layout2AllJs");
+            Layout2AllJs.Include("~/Scripts/AdBlock.js");
                 Layout2AllJs.Include("~/Scripts/layout2/js/jquery.min.js");
                 Layout2AllJs.Include("~/Scripts/layout2/js/bootstrap.min.js");
                 Layout2AllJs.Include("~/Scripts/layout2/js/jquery.flexslider.js");

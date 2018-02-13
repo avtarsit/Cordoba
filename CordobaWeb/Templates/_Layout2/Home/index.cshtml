@@ -23,9 +23,10 @@
             <div class="col-md-9">
                 <div class="products letest-product" ng-controller="Dashboard_LatestProductController">
                     <h3 class="heading">
-                        LATEST PRODUCT  <span class="pull-right">
-                                            <button ng-click="NextLatestProduct()" ng-disabled="LatestProduct != null ? LatestProductIndexEnd == LatestProduct.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
-                            <button ng-click="PreviousLatestProduct()" ng-disabled="LatestProductIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
+                        LATEST PRODUCT 
+                        <span class="slider-nav">
+                                            <a ng-click="NextLatestProduct()" class="bx-next" ></a>
+                                            <a ng-click="PreviousLatestProduct()" class="bx-prev" ></a>
                         </span>
                     </h3>
                     @*<div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 250">*@
@@ -67,9 +68,9 @@
                             <div class="col-sm-8">
                                 <div class="special-offers">
                                     <h3 class="heading">
-                                        SPECIAL OFFERS <span class="pull-right">
-                                            <button ng-click="NextSpecialOffer()" ng-disabled="SpecialOfferIndexEnd == SpecialOffer.length"><i class="glyphicon glyphicon-plus"></i></button>
-                                            <button ng-click="PreviousSpecialOffer()" ng-disabled="SpecialOfferIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
+                                        SPECIAL OFFERS <span class="slider-nav">
+                                                           <a ng-click="NextSpecialOffer()" class="bx-next"  ></a>
+                                                           <a ng-click="PreviousSpecialOffer()" class="bx-prev" ></a>
                                         </span>
                                     </h3>
                                     @*<div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 220">*@
@@ -127,10 +128,10 @@
 
                 <div class="letest-product">
                     <h3 class="heading">
-                        BEST SELLER <span class="pull-right">
-                                        <button ng-click="NextBestSeller()" ng-disabled="BestSellerIndexEnd != null ? BestSellerIndexEnd == BestSeller.length : ''"><i class="glyphicon glyphicon-plus"></i></button>
-                                        <button ng-click="PreviousBestSeller()" ng-disabled="BestSellerIndexEnd == 0"><i class="glyphicon glyphicon-minus"></i></button>
-                        </span>
+                        BEST SELLER <span class="slider-nav">
+                        <a ng-click="NextBestSeller()" class="bx-next"></a>
+                        <a ng-click="PreviousBestSeller()" class="bx-prev"></a>
+                    </span>
                     </h3>
                     @*<div class="best-seller" data-bx-slider="pager:false,nextText:'',prevText:'',minSlides: 1,maxSlides: 5,slideWidth: 250">*@
                     <div class="col-sm-2" style="width:265px;" ng-repeat="BestSeller in BestSellerList " data-notify-when-repeat-finished>
