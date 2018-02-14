@@ -143,6 +143,8 @@
     }
 
     $scope.Checkout = function () {
+        $timeout(function () {
+        }, 5000);
         $scope.GetCustomerDetails();
         if (UserDetail.customer_id > 0) {
             if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
@@ -158,7 +160,6 @@
     }
 
     $scope.PlaceOrder = function () {
-        debugger;
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
