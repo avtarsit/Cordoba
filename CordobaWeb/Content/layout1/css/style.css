@@ -1316,6 +1316,7 @@ footer {
     margin-top: 3px;
 }
 /*.modal-backdrop { z-index: 9999; }*/
+.modal-backdrop.in{z-index: 1 !important}
 .login_page .btn {
     padding: 8px 10px;
     max-width: 100px;

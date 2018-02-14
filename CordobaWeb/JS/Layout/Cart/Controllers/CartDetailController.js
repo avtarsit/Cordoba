@@ -8,11 +8,10 @@
     $scope.cartgroup_id = 0;
     $scope.SelectedCustomerAddress = new Object();
     $scope.SelectedCustomerAddress.address_id = 0;
-    
-    $scope.GetCustomerDetails = function () {
 
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)       
-        .then(function (response) {            
+    $scope.GetCustomerDetails = function () {
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+        .then(function (response) {
             $rootScope.CustomerDetail.points = response.data.points;
             UserDetail.points = $rootScope.CustomerDetail.points;
         })
@@ -24,8 +23,7 @@
       });
     }
 
-    if ($state.current.name.toLowerCase() == 'checkout')
-    {
+    if ($state.current.name.toLowerCase() == 'checkout') {
         if (!(UserDetail.customer_id > 0)) {
             window.location.href = 'home/accessdenied';
         }
@@ -42,8 +40,8 @@
     //#endregion      
     $scope.GetCartDetailsByCartGroupId = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
-          .then(function (response) {             
-              if (response.data.length > 0) {                 
+          .then(function (response) {
+              if (response.data.length > 0) {
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotalPoints = $scope.CartItemList[0].AllItemSubtotalPoints;
@@ -103,7 +101,7 @@
 
     $scope.AddOrRemoveItemFromCart = function (productObj, Quantity) {
         $http.get(configurationService.basePath + "API/ProductApi/AddProductToCart?store_id=" + $scope.StoreDetailInSession.store_id + "&customer_id=" + UserDetail.customer_id + "&product_id=" + productObj.product_id + "&qty=" + Quantity + "&cartgroup_id=" + productObj.cartgroup_id)
-        .then(function (response) {         
+        .then(function (response) {
             productObj.quantity = productObj.quantity + Quantity;
             $scope.GetCartDetailsByCartGroupId();
             toastr.success("Shopping bag updated successfully.");
@@ -143,20 +141,29 @@
     }
 
     $scope.Checkout = function () {
-        $timeout(function () {
-        }, 5000);
-        $scope.GetCustomerDetails();
-        if (UserDetail.customer_id > 0) {
-            if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
-                $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
-            }
-            else {
-                toastr.warning("You don't have enough points to purchase items.");
-            }
-        }
-        else {
-            $scope.OpenLoginPopUp();
-        }
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+      .then(function (response) {
+          $rootScope.CustomerDetail.points = response.data.points;
+          UserDetail.points = $rootScope.CustomerDetail.points;
+
+          if (UserDetail.customer_id > 0) {
+              if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
+                  $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
+              }
+              else {
+                  toastr.warning("You don't have enough points to purchase items.");
+              }
+          }
+          else {
+              $scope.OpenLoginPopUp();
+          }
+      })
+    .catch(function (response) {
+
+    })
+    .finally(function () {
+
+    });
     }
 
     $scope.PlaceOrder = function () {
@@ -165,7 +172,7 @@
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;
             $scope.PlaceOrderObj.shipping_addressId = $scope.SelectedCustomerAddress.address_id;
             $scope.PlaceOrderObj.IpAddress = $scope.IpAddress;
-           // $scope.PlaceOrderObj.Comment = $scope.Comment;
+            // $scope.PlaceOrderObj.Comment = $scope.Comment;
             $scope.PlaceOrderObj.CartGroupId = UserDetail.cartgroup_id;
 
 

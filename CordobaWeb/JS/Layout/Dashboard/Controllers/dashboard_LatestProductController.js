@@ -64,7 +64,7 @@
     $scope.PreviousLatestProduct = function () {
         if ($scope.LatestProductIndexEnd == 0)
         {
-            return fale;
+            return false;
         }
         $scope.LatestProductList = [];
         var previousproductindex = $scope.LatestProductIndexEnd % totalproducts == 0 ? totalproducts : $scope.LatestProductIndexEnd % totalproducts == 1 ? 1 : 2;

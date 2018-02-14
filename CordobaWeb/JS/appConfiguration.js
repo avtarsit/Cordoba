@@ -546,7 +546,7 @@ function GetLayoutName() {
                  }
 
                  $rootScope.storeName = StoreSessionDetail.name;
-                 $rootScope.GlobalDateFormat = 'MM/dd/yyyy';
+                 $rootScope.GlobalDateFormat = 'dd/MM/yyyy';
 
                  //var now1 = new Date();
                  //var GETLocalStorageDateTime = localStorageService.get("CurrentDateTime");
