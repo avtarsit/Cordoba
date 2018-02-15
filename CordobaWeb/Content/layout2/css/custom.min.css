@@ -2264,6 +2264,9 @@ label {
 
 .productlist .col-product p {
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
 }
 
 /*Loader start*/
