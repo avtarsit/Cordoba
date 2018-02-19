@@ -104,8 +104,9 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-Categories">Parent Category</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control"  ng-model="CategoryObj.parent_Id">
-                                                        <option ng-repeat="options in ParentCategoryList | unique:'name'" ng-bind-html="options.name" value="{{options.Category_Id}}"></option>
+
+                                                    <select class="form-control" ng-model="CategoryObj.parent_Id" ng-options="options.Category_Id as options.name for   options in ParentCategoryList | unique:'name'">
+                                                        <option ng-bind-html="options.name" value="{{options.Category_Id}}"></option>
                                                     </select>
 
                                                 </div>

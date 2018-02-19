@@ -53,7 +53,7 @@
         $scope.IsVisibleOTPForm = true;
         $scope.CustomerObj = new Object();
         $scope.loginForm.$submitted = false;
-
+        $scope.otpObj = new Object();
     }
 
     $scope.Login = function (form) {
@@ -235,8 +235,7 @@
                           $scope.IsVisibleOTPForm = false;
                           $scope.IsVisibleChangePassswordForm = true;
                           $scope.otpObj = response.data;
-
-
+                          
                       }
                       else {
                           //notificationFactory.customError("Email does not exist");
@@ -256,7 +255,6 @@
         $scope.IsVisibleloginForm = true;
         $scope.IsVisibleforgotPasswordForm = true;
 
-
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
                   .then(function (response) {
@@ -266,6 +264,7 @@
                           $scope.IsVisibleOTPForm = true;
                           $scope.IsVisibleChangePassswordForm = false;
                           $scope.otpObj.password = '';
+                          $scope.otpObj.email = '';
                       }
                       else {
                           toastr.error("Please Enter valid OTP");
