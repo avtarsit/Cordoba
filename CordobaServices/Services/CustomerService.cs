@@ -65,7 +65,7 @@ namespace CordobaServices.Services
                 cmd.Parameters.Add(new SqlParameter("@customerName", customerName != null ? customerName : (object)DBNull.Value));
                 cmd.Parameters.Add(new SqlParameter("@email", email));
                 cmd.Parameters.Add(new SqlParameter("@customer_group_id", customer_group_id));
-                cmd.Parameters.Add(new SqlParameter("@approved", 1));
+                cmd.Parameters.Add(new SqlParameter("@approved", approved ?? (object)DBNull.Value));
                 cmd.Parameters.Add(new SqlParameter("@ip", ip));
                 cmd.Parameters.Add(new SqlParameter("@date_added", date_added ?? (object)DBNull.Value));
                 cmd.Parameters.Add(new SqlParameter("@status", status ?? (object)DBNull.Value));

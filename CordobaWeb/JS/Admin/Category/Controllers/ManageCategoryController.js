@@ -114,6 +114,36 @@
     //  });
 
 
+    $scope.CheckUnCheckList = function (index) {
+        var temp = 0;
+        if (index == 0) {
+            if ($scope.CategoryObj.StoreList[0]['IsSelected'] == true) {
+                for (var i = 1; i < $scope.CategoryObj.StoreList.length; i++) {
+                    $scope.CategoryObj.StoreList[i]['IsSelected'] = true;
+                }
+            }
+            else {
+                for (var i = 1; i < $scope.CategoryObj.StoreList.length; i++) {
+                    $scope.CategoryObj.StoreList[i]['IsSelected'] = false;
+                }
+            }
+        }
+        else {
+            for (var i = 1; i < $scope.CategoryObj.StoreList.length; i++) {
+                if($scope.CategoryObj.StoreList[i]['IsSelected'] == true)
+                {
+                    temp++;
+                }
+            }
+            if (temp != $scope.CategoryObj.StoreList.length-1) {
+                $scope.CategoryObj.StoreList[0]['IsSelected'] = false;
+            }
+            else {
+                $scope.CategoryObj.StoreList[0]['IsSelected'] = true;
+            }
+        }
+    }
+
 
     function CreateDescriptionObject() {
         var TempDescObject = [];
