@@ -339,10 +339,10 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <span ng-show="IsStoreAdmin==0">
-                                                        {{product.total | number : 0 | currency:'£'}}
+                                                        {{product.total | currency:'£'}}
                                                     </span>
                                                     <span>
-                                                        {{' ('+product.totalpoints+' Points)'}}
+                                                        {{' ('+ product.totalpoints * product.quantity+' Points)'}}
                                                     </span>
                                                 </td>
                                             </tr>
