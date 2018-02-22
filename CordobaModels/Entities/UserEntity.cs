@@ -22,5 +22,6 @@ namespace CordobaModels.Entities
        public Nullable<DateTime> date_added { get; set; }
        public int? store_id { get; set; }
        public int IsStoreAdmin { get; set; }
+       public int Is_ImportPoint { get; set; }
     }
 }

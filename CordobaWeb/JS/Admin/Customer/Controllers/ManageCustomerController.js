@@ -11,7 +11,7 @@
                       .withOption('bDestroy', true)
                       .withOption("deferRender", true)
                       .withOption('bFilter', false)
-                      .withOption('aaSorting', [0, 'desc']);
+                      .withOption('aaSorting', false);
 
     $scope.CustomerObj = new Object();
     $scope.StoreObj = new Object();

@@ -359,7 +359,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="Item in CustomerObj.PointsAuditList">
+                                                        <tr ng-repeat="Item in CustomerObj.PointsAuditList | orderBy : '-timestamp'">
                                                             <td ng-bind="Item.timestamp | date:GlobalDateFormat"></td>
                                                             <td ng-bind="Item.comment"></td>
                                                             <td>{{Item.Withdrawal!='-' ? Item.Withdrawal : Item.Deposit}} </td>

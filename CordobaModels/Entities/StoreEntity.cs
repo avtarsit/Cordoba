@@ -51,5 +51,6 @@ namespace CordobaModels.Entities
         public int? banner_id { get; set; }
         public string catalougeIdCsv { get; set; }
         public string no_image_path { get; set; }
+        public bool? Is_ImportPoint { get; set; }
     }
 }

@@ -23,6 +23,8 @@
                       , { 'TemplateId':'1', 'TemplateName': 'Theme2' }
     ];
 
+    $scope.Is_ImportPointList = [{ ID: true, Name: 'Enabled' }, { ID: false, Name: 'Disabled' }];
+
     function GetCountryList() {        
         $http.get(configurationService.basePath + "api/CountryApi/GetCountryList?storeId="+ $scope.store_id+"&LoggedInUserId=" + $scope.LoggedInUserId + "&countryId=0")
           .then(function (response) {

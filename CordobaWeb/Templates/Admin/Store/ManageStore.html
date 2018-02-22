@@ -71,10 +71,18 @@
                                     <div role="tabpanel" class="tab-pane active" id="GenaralTab">
                                         <!--General Tab-->
                                         <div class="col-md-12">
+                                            
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">Store URL</label>
                                                 <div class="col-lg-9">
                                                     <input type="text" class="form-control" name="StoreURL" maxlength="100" placeholder="Enter Store Url" ng-model="StoreObj.url" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label ">Allow ImportPoint</label>
+                                                <div class="col-lg-9">
+                                                    <select name="Is_ImportPoint" id="input-ImportPoint" ng-model="StoreObj.Is_ImportPoint" ng-options="Is_ImportPoint.ID as Is_ImportPoint.Name  for Is_ImportPoint in Is_ImportPointList"
+                                                            class="form-control"></select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
