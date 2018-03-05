@@ -94,7 +94,17 @@
 
     $scope.GetSpecialOfferListByStoreId();
 
-   
+    //$scope.HideUnHideLink = function () {
+    //    debugger;
+    //    //{ { (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') } }
+    //    if ($scope.SpecialOffer.length <= 3 && $scope.StoreDetailInSession.template == '_Layout2') {
+    //        return true;
+    //    }
+    //    else if ($scope.SpecialOffer.length <= 2 && $scope.StoreDetailInSession.template == '_Layout1') {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
 
 

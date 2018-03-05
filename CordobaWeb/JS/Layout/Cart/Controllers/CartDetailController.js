@@ -141,29 +141,34 @@
     }
 
     $scope.Checkout = function () {
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
-      .then(function (response) {
-          $rootScope.CustomerDetail.points = response.data.points;
-          UserDetail.points = $rootScope.CustomerDetail.points;
+        if (UserDetail.customer_id > 0) {
+            $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+          .then(function (response) {
+              $rootScope.CustomerDetail.points = response.data.points;
+              UserDetail.points = $rootScope.CustomerDetail.points;
 
-          if (UserDetail.customer_id > 0) {
-              if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
-                  $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
+              if (UserDetail.customer_id > 0) {
+                  if (($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints) >= 0) {
+                      $state.go('Checkout', { 'cartgroup_id': UserDetail.cartgroup_id });
+                  }
+                  else {
+                      toastr.warning("You don't have enough points to purchase items.");
+                  }
               }
               else {
-                  toastr.warning("You don't have enough points to purchase items.");
+                  $scope.OpenLoginPopUp();
               }
-          }
-          else {
-              $scope.OpenLoginPopUp();
-          }
-      })
-    .catch(function (response) {
+          })
+        .catch(function (response) {
 
-    })
-    .finally(function () {
+        })
+        .finally(function () {
 
-    });
+        });
+        }
+        else {
+            $scope.OpenLoginPopUp();
+        }
     }
 
     $scope.PlaceOrder = function () {

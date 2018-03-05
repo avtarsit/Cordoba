@@ -25,8 +25,8 @@
                     <h3 class="heading">
                         LATEST PRODUCTS 
                         <span class="slider-nav">
-                                            <a ng-click="NextLatestProduct()" class="bx-next" ></a>
-                                            <a ng-click="PreviousLatestProduct()" class="bx-prev" ></a>
+                            <a ng-click="NextLatestProduct()" ng-hide="LatestProduct == 0 || LatestProduct.length <=4" class="bx-next"></a>
+                            <a ng-click="PreviousLatestProduct()" ng-hide="LatestProduct == 0 || LatestProduct.length <=4" class="bx-prev"></a>
                         </span>
                     </h3>
                     @*<div id="latest-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 250">*@
@@ -69,8 +69,8 @@
                                 <div class="special-offers">
                                     <h3 class="heading">
                                         SPECIAL OFFERS <span class="slider-nav">
-                                                           <a ng-click="NextSpecialOffer()" class="bx-next"  ></a>
-                                                           <a ng-click="PreviousSpecialOffer()" class="bx-prev" ></a>
+                                                           <a ng-click="NextSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-next"></a>
+                                                           <a ng-click="PreviousSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-prev"></a>
                                         </span>
                                     </h3>
                                     @*<div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 220">*@
@@ -129,8 +129,8 @@
                 <div class="letest-product">
                     <h3 class="heading">
                         BEST SELLERS <span class="slider-nav">
-                        <a ng-click="NextBestSeller()" class="bx-next"></a>
-                        <a ng-click="PreviousBestSeller()" class="bx-prev"></a>
+                                         <a ng-click="NextBestSeller()" ng-hide="BestSeller == 0 || BestSeller.length <=4" class="bx-next"></a>
+                                         <a ng-click="PreviousBestSeller()" ng-hide="BestSeller == 0 || BestSeller.length <=4" class="bx-prev"></a>
                     </span>
                     </h3>
                     @*<div class="best-seller" data-bx-slider="pager:false,nextText:'',prevText:'',minSlides: 1,maxSlides: 5,slideWidth: 250">*@

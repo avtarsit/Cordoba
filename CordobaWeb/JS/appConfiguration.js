@@ -653,6 +653,12 @@ function GetLayoutName() {
                  //}
 
                  $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                     if (StoreSessionDetail.Is_AccessStore != null && StoreSessionDetail.Is_AccessStore == true && !$rootScope.CustomerDetail.customer_id > 0) {
+                         $rootScope.OpenLoginPopUpUsingRootScope();
+                     }
+                     //if (!$rootScope.CustomerDetail.customer_id > 0) {
+                     //    $rootScope.OpenLoginPopUpUsingRootScope();
+                     //}
                      var geturlparameters = next.toString().split('?')[1];
                      var isAlreadyDecoded = false;
                      if (geturlparameters != undefined) {

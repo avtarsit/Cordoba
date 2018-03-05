@@ -79,6 +79,7 @@ namespace CordobaServices.Services
                                                  ,new SqlParameter("banner_id", storeEntity.banner_id.HasValue? storeEntity.banner_id.Value:0)
                                                  ,new SqlParameter("catalougeIdCsv", storeEntity.catalougeIdCsv ?? DBNull.Value.ToString())
                                                  ,new SqlParameter("Is_ImportPoint", storeEntity.Is_ImportPoint ?? (object)DBNull.Value)
+                                                 ,new SqlParameter("Is_AccessStore", storeEntity.Is_AccessStore ?? (object)DBNull.Value)
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateStore", sqlParameter).FirstOrDefault();
             return result;
