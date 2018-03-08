@@ -23,11 +23,11 @@ namespace CordobaAPI.API_Layout
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory)
+        public HttpResponseMessage GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory, int customer_id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetCategoryListByStoreId(StoreID, NeedToGetAllSubcategory);
+                var result = _LayoutDashboardServices.GetCategoryListByStoreId(StoreID, NeedToGetAllSubcategory, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -62,11 +62,11 @@ namespace CordobaAPI.API_Layout
 
         }
         [HttpGet]
-        public HttpResponseMessage GetLatestProductByStoreId(int StoreID)
+        public HttpResponseMessage GetLatestProductByStoreId(int StoreID, int Customer_Id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetLatestProductByStoreId(StoreID);
+                var result = _LayoutDashboardServices.GetLatestProductByStoreId(StoreID, Customer_Id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -82,11 +82,11 @@ namespace CordobaAPI.API_Layout
         }
 
         [HttpGet]
-        public HttpResponseMessage GetPopularCategoryListByStoreId(int StoreID)
+        public HttpResponseMessage GetPopularCategoryListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetPopularCategoryListByStoreId(StoreID);
+                var result = _LayoutDashboardServices.GetPopularCategoryListByStoreId(StoreID, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -102,11 +102,11 @@ namespace CordobaAPI.API_Layout
         }
 
         [HttpGet]
-        public HttpResponseMessage GetHotDealsListByStoreId(int StoreID)
+        public HttpResponseMessage GetHotDealsListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetHotDealsListByStoreId(StoreID);
+                var result = _LayoutDashboardServices.GetHotDealsListByStoreId(StoreID,customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -122,11 +122,11 @@ namespace CordobaAPI.API_Layout
         }
 
         [HttpGet]
-        public HttpResponseMessage GetSpecialOfferListByStoreId(int StoreID)
+        public HttpResponseMessage GetSpecialOfferListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetSpecialOfferListByStoreId(StoreID);
+                var result = _LayoutDashboardServices.GetSpecialOfferListByStoreId(StoreID, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -166,11 +166,11 @@ namespace CordobaAPI.API_Layout
 
 
         [HttpGet]
-        public HttpResponseMessage GetBestSellerListByStoreId(int StoreID)
+        public HttpResponseMessage GetBestSellerListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                var result = _LayoutDashboardServices.GetBestSellerListByStoreId(StoreID);
+                var result = _LayoutDashboardServices.GetBestSellerListByStoreId(StoreID, customer_id);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);
@@ -490,6 +490,22 @@ namespace CordobaAPI.API_Layout
             }
         }
 
+
+         [HttpPost]
+        public HttpResponseMessage UpdateLanguageForCustomer(int customerid, int? languageid)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.UpdateLanguageForCustomer(customerid, languageid);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+        
 
         //[HttpPost]
         //public HttpResponseMessage ChangePassword(CustomerEntity CustomerObj)

@@ -6,11 +6,12 @@
     //#endregion      
     $scope.StoreDetailInSession = StoreSessionDetail;
     $rootScope.no_image_path = StoreSessionDetail.no_image_path;
+    $scope.selectedlanguage = localStorageService.get("selectedlanguage");
 
     $scope.trustAsHtml = function (string) {
         return $sce.trustAsHtml(string);
     };
-
+    
     $scope.GetCustomerDetails = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         .then(function (response) {
@@ -23,6 +24,36 @@
       .finally(function () {
 
       });
+    }
+
+    $scope.GetLanguageList = function () {
+        $http.get(configurationService.basePath + "API/CategoryAPI/GetLanguageList?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + UserDetail.customer_id)
+        .then(function (response) {
+            $scope.LanguageList = response.data;
+        })
+        .catch(function (response) {
+
+        })
+        .finally(function () {
+        });
+    }
+    $scope.GetLanguageList();
+
+    $scope.UpdateLanguageForCustomer = function (selectedlanguage) {
+        $http.post(configurationService.basePath + "API/LayoutDashboardAPI/UpdateLanguageForCustomer?customerid=" + UserDetail.customer_id + "&languageid=" + selectedlanguage)
+        .then(function (response) {
+            localStorageService.set("selectedlanguage", selectedlanguage);
+            if (selectedlanguage != "" &&  selectedlanguage != 0 )
+            { window.location.reload() };
+            
+        })
+        .catch(function () {
+
+        })
+        .finally(function () {
+
+        });
+
     }
 
     //angular hack to html decode
@@ -205,6 +236,7 @@
     }
 
     $scope.Logout = function () {
+        $scope.UpdateLanguageForCustomer("");
         UserDetail.customer_id = 0;
         UserDetail.firstname = "";
         UserDetail.lastname = "";

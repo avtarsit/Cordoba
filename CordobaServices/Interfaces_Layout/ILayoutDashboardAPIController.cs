@@ -9,15 +9,15 @@ namespace CordobaServices.Interfaces_Layout
 {
     public interface ILayoutDashboardServices
     {
-        List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory);
+        List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory, int customer_id);
         StoreEntity GetStoreDetailByUrl(String URL);
-        List<ProductEntity> GetLatestProductByStoreId(int StoreID);
-        List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID);
-        List<ProductEntity> GetHotDealsListByStoreId(int StoreID);
+        List<ProductEntity> GetLatestProductByStoreId(int StoreID, int Customer_Id);
+        List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID, int customer_id);
+        List<ProductEntity> GetHotDealsListByStoreId(int StoreID, int customer_id);
         CustomerEntity CustomerLogin(CustomerEntity CustomerObj);
         int? AddtoWishList(wishlistEntity WishlistObj);
         int? RemoveFromWishList(int storeid, int product_id, int customer_Id);
-        List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID);
+        List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID, int customer_id);
         CustomerEntity CustomerDetailLayout(int CustomerId, int StoreId);
         int? SaveCustomerBasicDetails_Layout(int StoreId, CustomerEntity CustomerObj);
         int? SaveChangedPassword_Layout(int StoreId, CustomerEntity CustomerObj);
@@ -25,7 +25,7 @@ namespace CordobaServices.Interfaces_Layout
         List<AddressEntity> AddOrUpdateAddressDetail_Layout(int StoreId, AddressEntity AddressObj);
         int? DeleteCustomerAddress(int StoreId, int customer_id, int address_id);
         List<StoreImageEntity> GetStoreImageList(int Store_Id);
-        List<ProductEntity> GetBestSellerListByStoreId(int StoreID);
+        List<ProductEntity> GetBestSellerListByStoreId(int StoreID, int customer_id);
         List<StoreTermsEntity> GetStoreTermsDetail(int Store_Id);
         CustomerEntity ForgotPassword(CustomerEntity CustomerObj);
         List<OrderDetailCountEntity> GetOrderStatusCount(int StoreID);
@@ -37,5 +37,6 @@ namespace CordobaServices.Interfaces_Layout
 
         CustomerEntity ResetPasswordAndVerifyOTP(CustomerEntity CustomerObj);
         //CustomerEntity ChangePassword(CustomerEntity CustomerObj);
+        CustomerEntity UpdateLanguageForCustomer(int customerid, int? languageid);
     }
 }

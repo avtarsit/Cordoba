@@ -230,7 +230,7 @@ namespace CordobaServices.Services
         }
 
 
-        public List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId)
+        public List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId, int customer_id)
         {
             try
             {
@@ -238,6 +238,7 @@ namespace CordobaServices.Services
                                                             new SqlParameter("StoreId",StoreId)
                                                            ,new SqlParameter("SelectedProductId", SelectedProductId)
                                                            ,new SqlParameter("RelatedProductId", RelatedProductId)
+                                                           ,new SqlParameter("customer_id", customer_id)
                                                                 };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetRelatedProductListForLayout", sqlParameter).ToList();
                 return result;

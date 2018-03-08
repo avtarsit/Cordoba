@@ -171,11 +171,11 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
-        public HttpResponseMessage GetRelatedProductList(int StoreID, int SelectedProductId, int RelatedProductId)
+        public HttpResponseMessage GetRelatedProductList(int StoreID, int SelectedProductId, int RelatedProductId, int customer_id)
         {
             try
             {
-                var result = _ProductServices.GetRelatedProductList(StoreID, SelectedProductId, RelatedProductId);
+                var result = _ProductServices.GetRelatedProductList(StoreID, SelectedProductId, RelatedProductId, customer_id);
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)

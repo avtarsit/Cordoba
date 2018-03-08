@@ -16,14 +16,15 @@ namespace CordobaServices.Services_Layout
     {
         private GenericRepository<CategoryEntity> objGenericRepository = new GenericRepository<CategoryEntity>();
 
-        public List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory)
+        public List<CategoryEntity> GetCategoryListByStoreId(int? StoreID, bool NeedToGetAllSubcategory, int customer_id)
         {
             try
             {
                 List<CategoryEntity> CategoryList = new List<CategoryEntity>();
                 var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = StoreID };
                 var paramNeedToGetAllSubcategory = new SqlParameter { ParameterName = "NeedToGetAllSubcategory", DbType = DbType.Boolean, Value = NeedToGetAllSubcategory };
-                CategoryList = objGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryListByStoreId", paramStoreId, paramNeedToGetAllSubcategory).ToList();
+                var paramcustomer_id = new SqlParameter { ParameterName = "customer_id", DbType = DbType.Int32, Value = customer_id };
+                CategoryList = objGenericRepository.ExecuteSQL<CategoryEntity>("GetCategoryListByStoreId", paramStoreId, paramNeedToGetAllSubcategory, paramcustomer_id).ToList();
                 return CategoryList;
             }
             catch (Exception)
@@ -51,11 +52,12 @@ namespace CordobaServices.Services_Layout
 
         }
 
-        public List<ProductEntity> GetLatestProductByStoreId(int StoreID)
+        public List<ProductEntity> GetLatestProductByStoreId(int StoreID, int Customer_Id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID),
+                 new SqlParameter("Customer_Id", Customer_Id) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetLatestProductByStoreId", sqlParameter).ToList();
                 return result;
             }
@@ -67,11 +69,11 @@ namespace CordobaServices.Services_Layout
 
         }
 
-        public List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID)
+        public List<CategoryPopularEntity> GetPopularCategoryListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID), new SqlParameter("customer_id", customer_id) };
                 var result = objGenericRepository.ExecuteSQL<CategoryPopularEntity>("GetPopularCategoryListByStoreId_Dashboard", sqlParameter).ToList();
                 return result;
             }
@@ -83,11 +85,11 @@ namespace CordobaServices.Services_Layout
 
         }
 
-        public List<ProductEntity> GetHotDealsListByStoreId(int StoreID)
+        public List<ProductEntity> GetHotDealsListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID), new SqlParameter("customer_id", customer_id) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetHotDealsListByStoreId_Dashboard", sqlParameter).ToList();
                 return result;
             }
@@ -99,11 +101,11 @@ namespace CordobaServices.Services_Layout
 
         }
 
-        public List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID)
+        public List<ProductEntity> GetSpecialOfferListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID), new SqlParameter("customer_id", customer_id) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetSpecialOfferListByStoreId_Dashboard", sqlParameter).ToList();
                 return result;
             }
@@ -348,11 +350,11 @@ namespace CordobaServices.Services_Layout
             }
         }
 
-        public List<ProductEntity> GetBestSellerListByStoreId(int StoreID)
+        public List<ProductEntity> GetBestSellerListByStoreId(int StoreID, int customer_id)
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID), new SqlParameter("customer_id", customer_id) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStoreId", sqlParameter).ToList();
                 return result;
             }
@@ -549,6 +551,24 @@ namespace CordobaServices.Services_Layout
                 throw;
             }
 
+        }
+
+        public CustomerEntity UpdateLanguageForCustomer(int customerid, int? languageid)
+        {
+            try
+            {
+                SqlParameter[] sqlParameter = new SqlParameter[] {
+                    new SqlParameter("CustomerId", customerid)
+                    ,new SqlParameter("LanguageId", languageid ?? (object)DBNull.Value )
+                };
+                var result = objGenericRepository.ExecuteSQL<CustomerEntity>("UpdateLanguageForCustomer", sqlParameter).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

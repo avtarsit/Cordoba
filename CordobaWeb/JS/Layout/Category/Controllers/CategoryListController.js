@@ -50,7 +50,7 @@
 
     }
     $scope.GetCategoryListForDashboard = function () {
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id + "&NeedToGetAllSubcategory=true")
+        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetCategoryListByStoreId?StoreID=" + $scope.StoreDetailInSession.store_id + "&NeedToGetAllSubcategory=true&customer_id=" + $rootScope.CustomerDetail.customer_id)
           .then(function (response) {
               if (response.data.length > 0) {
                   $scope.CategoryList = response.data;

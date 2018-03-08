@@ -20,7 +20,7 @@ namespace CordobaServices.Interfaces
 
         int DeleteProduct(int StoreId, int LoggedInUserId, int product_id);
         ProductEntity GetProductDetailForLayout(int StoreId, int ProductId, int CustomerId);
-        List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId);
+        List<ProductEntity> GetRelatedProductList(int StoreId, int SelectedProductId, int RelatedProductId, int customer_id);
 
         //InsertAsHotProduct
         int InsertAsHotProduct(int LoggedInUserId, HotSpecialProductEntity hotSpecialProductEntity);
