@@ -69,8 +69,10 @@
                                 <div class="special-offers">
                                     <h3 class="heading">
                                         SPECIAL OFFERS <span class="slider-nav">
-                                                           <a ng-click="NextSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-next"></a>
-                                                           <a ng-click="PreviousSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-prev"></a>
+                                                           @*<a ng-click="NextSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-next"></a>
+                                                           <a ng-click="PreviousSpecialOffer()" ng-hide="{{ (SpecialOffer.length <= 3 && StoreDetailInSession.template == '_Layout2') ? 'true' : ((SpecialOffer.length <= 2 && StoreDetailInSession.template == '_Layout1') ? 'true' : 'false') }}" class="bx-prev"></a>*@
+                                                           <a ng-click="NextSpecialOffer()" ng-hide="SpecialOffer == 0 || SpecialOffer.length <=3" class="bx-next"></a>
+                                                           <a ng-click="PreviousSpecialOffer()" ng-hide="SpecialOffer == 0 || SpecialOffer.length <=3" class="bx-prev"></a>
                                         </span>
                                     </h3>
                                     @*<div id="special-product" data-bx-slider="pager: false,nextText: '',prevText: '',minSlides: 1,maxSlides: 4,slideWidth: 220">*@

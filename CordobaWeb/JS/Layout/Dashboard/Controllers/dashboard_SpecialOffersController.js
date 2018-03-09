@@ -66,7 +66,7 @@
 
     $scope.PreviousSpecialOffer = function () {
         
-        if ($scope.SpecialOfferIndexEnd == 0) {
+        if ($scope.SpecialOfferIndexEnd == 0 || $scope.SpecialOfferIndexEnd == totalproducts) {
             return false;
         }
         $scope.SpecialOfferList = [];

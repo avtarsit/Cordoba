@@ -55,6 +55,7 @@
                 break;
             }
         }
+        
         $scope.LatestProductIndexStart = LastIndex;
         if ($scope.LatestProductIndexStart != 0) {
             $scope.LatestProductIndexEnd = $scope.LatestProductIndexStart;
@@ -62,10 +63,11 @@
     }
 
     $scope.PreviousLatestProduct = function () {
-        if ($scope.LatestProductIndexEnd == 0)
+        if ($scope.LatestProductIndexEnd == 0 || $scope.LatestProductIndexEnd == totalproducts)
         {
             return false;
         }
+        
         $scope.LatestProductList = [];
         var previousproductindex = $scope.LatestProductIndexEnd % totalproducts == 0 ? totalproducts : $scope.LatestProductIndexEnd % totalproducts == 1 ? 1 : 2;
         var LastIndex = $scope.LatestProductIndexEnd;

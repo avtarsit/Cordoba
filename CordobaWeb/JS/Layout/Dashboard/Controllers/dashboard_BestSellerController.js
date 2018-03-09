@@ -100,7 +100,7 @@
 
     $scope.PreviousBestSeller = function () {
         
-        if ($scope.BestSellerIndexEnd == 0)
+        if ($scope.BestSellerIndexEnd == 0 || $scope.BestSellerIndexEnd == totalproducts)
         {
             return false;
         }

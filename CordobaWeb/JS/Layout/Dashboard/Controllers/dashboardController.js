@@ -7,11 +7,30 @@
     $scope.StoreDetailInSession = StoreSessionDetail;
     $rootScope.no_image_path = StoreSessionDetail.no_image_path;
     $scope.selectedlanguage = localStorageService.get("selectedlanguage");
-
     $scope.trustAsHtml = function (string) {
         return $sce.trustAsHtml(string);
     };
     
+    $scope.LanguageList = [{
+        language_id: '1',
+        name: 'English'
+    }, {
+        language_id: '2',
+        name: 'Deutsch'
+    }, {
+        language_id: '3',
+        name: 'Français'
+    }, {
+        language_id: '4',
+        name: 'Italiano'
+    }, {
+        language_id: '5',
+        name: 'Español'
+    }, {
+        language_id: '6',
+        name: 'Português'
+    }];
+
     $scope.GetCustomerDetails = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         .then(function (response) {
@@ -26,26 +45,34 @@
       });
     }
 
-    $scope.GetLanguageList = function () {
-        $http.get(configurationService.basePath + "API/CategoryAPI/GetLanguageList?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + UserDetail.customer_id)
-        .then(function (response) {
-            $scope.LanguageList = response.data;
-        })
-        .catch(function (response) {
+    //$scope.GetLanguageList = function () {
+    //    $http.get(configurationService.basePath + "API/CategoryAPI/GetLanguageList?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + UserDetail.customer_id)
+    //    .then(function (response) {
+    //        $scope.LanguageList = response.data;
+    //    })
+    //    .catch(function (response) {
 
-        })
-        .finally(function () {
-        });
-    }
-    $scope.GetLanguageList();
+    //    })
+    //    .finally(function () {
+    //    });
+    //}
+    //$scope.GetLanguageList();
 
     $scope.UpdateLanguageForCustomer = function (selectedlanguage) {
         $http.post(configurationService.basePath + "API/LayoutDashboardAPI/UpdateLanguageForCustomer?customerid=" + UserDetail.customer_id + "&languageid=" + selectedlanguage)
         .then(function (response) {
             localStorageService.set("selectedlanguage", selectedlanguage);
-            if (selectedlanguage != "" &&  selectedlanguage != 0 )
-            { window.location.reload() };
-            
+            //if (selectedlanguage != "" )
+            //{
+            //    //window.location.reload();
+            //    $state.reload();
+            //}
+            //else 
+            if (selectedlanguage == "")
+            {
+                $scope.selectedlanguage = "";
+            }
+            $state.reload();
         })
         .catch(function () {
 
@@ -53,7 +80,6 @@
         .finally(function () {
 
         });
-
     }
 
     //angular hack to html decode
@@ -247,7 +273,7 @@
         localStorageService.set("loggedInUser", UserDetail);
         $rootScope.CustomerDetail = UserDetail;
         $state.go('Home');
-
+        //$state.reload();
     }
 
     $scope.ForgotPassword = function (form) {
