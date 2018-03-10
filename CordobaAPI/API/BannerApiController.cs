@@ -112,16 +112,24 @@ namespace CordobaAPI.API
 
                             string fileName = banner_id + "/" + banner_image_id + "/" + httpPostedFile.FileName;
                             res = _BannerServices.UploadBannerImage(banner_id, banner_image_id, link, sort_order, "data/" + CordobaCommon.Enum.CommonEnums.FolderName.BannerImage.ToString() + "/" + fileName, 0);
-
+                            
+                            //string childFolderPath1 = childFolderPath.Substring(0, childFolderPath.IndexOf(childFolderPath.Split('/')[4]));
+                            //Directory.Move(childFolderPath, childFolderPath1 + "11111");
                             if (res == true)
                             {
                                 httpPostedFile.SaveAs(folderPath + "\\" + fileName);
-
+                                //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "folderPath + fileName:" + folderPath + "\\" + fileName);
+                                //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "\n");
                                 var directoryFiles = Directory.GetFiles(childFolderPath);
+                                
                                 foreach (var filepath in directoryFiles)
                                 {
                                     if (Path.GetFileName(filepath) != httpPostedFile.FileName)
                                     {
+                                        //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "\n");
+                                        //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "filepath:" + filepath);
+                                        //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "\n");
+                                        //System.IO.File.AppendAllText("//192.168.1.145//Amitp//cordoba - original images//File.txt", "httpPostedFile.FileName:" + httpPostedFile.FileName);
                                         File.Delete(filepath);
                                     }
                                 }

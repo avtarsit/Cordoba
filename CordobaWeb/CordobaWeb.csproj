@@ -685,6 +685,7 @@
     <Content Include="Content\layout2\storecss\morechoicerewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\pbmakeadifferencethankyou.min.css" />
+    <Content Include="Content\layout2\storecss\rigbycapital-rewards.com.min.css" />
     <Content Include="Content\layout2\storecss\scccapitalloyalty.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.co.uk.min.css" />
     <Content Include="Content\layout2\storecss\shoretelrewards.eu.min.css" />

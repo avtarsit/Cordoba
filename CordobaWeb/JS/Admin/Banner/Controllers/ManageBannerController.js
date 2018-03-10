@@ -148,7 +148,7 @@
     $scope.GetBannerImageById = function () {
 
         $http.get(configurationService.basePath + "api/BannerApi/GetBannerImageList?bannerId=" + $scope.BannerId)
-        .then(function (response) {      
+        .then(function (response) {
             $scope.BannerImageObj = response.data;        
         })
       .catch(function (response) {
