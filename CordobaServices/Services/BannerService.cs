@@ -92,7 +92,34 @@ namespace CordobaServices.Services
             }
         }
 
-        public bool UploadBannerImage(int banner_id , int banner_image_id , string link , int sort_order , string ImageName , int ImageKey)
+        //public bool UploadBannerImage(int banner_id , int banner_image_id , string link , int sort_order , string ImageName , int ImageKey)
+        //{
+        //    try
+        //    {
+        //        SqlParameter[] sqlParameter = new SqlParameter[] { 
+        //            new SqlParameter("banner_id", banner_id),
+        //            new SqlParameter("banner_image_id",banner_image_id),
+        //            new SqlParameter("link",!string.IsNullOrWhiteSpace(link)?(object)link:(object)DBNull.Value),
+        //            new SqlParameter("sort_order" ,sort_order),
+        //            new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(ImageName)?(object)ImageName:(object)DBNull.Value)
+        //        };
+        //        int result = BannerEntityGenericRepository.ExecuteSQL<int>("UploadBannerImage", sqlParameter).FirstOrDefault();
+        //        if (result > 0)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        public long UploadBannerImage(int banner_id, int banner_image_id, string link, int sort_order, string ImageName, string ImageFileName, int ImageKey)
         {
             try
             {
@@ -101,17 +128,11 @@ namespace CordobaServices.Services
                     new SqlParameter("banner_image_id",banner_image_id),
                     new SqlParameter("link",!string.IsNullOrWhiteSpace(link)?(object)link:(object)DBNull.Value),
                     new SqlParameter("sort_order" ,sort_order),
-                    new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(ImageName)?(object)ImageName:(object)DBNull.Value)
+                    new SqlParameter("ImageName", !string.IsNullOrWhiteSpace(ImageName)?(object)ImageName:(object)DBNull.Value),
+                    new SqlParameter("ImageFileName",!string.IsNullOrWhiteSpace(ImageFileName)?(object)ImageFileName:(object)DBNull.Value)
                 };
                 int result = BannerEntityGenericRepository.ExecuteSQL<int>("UploadBannerImage", sqlParameter).FirstOrDefault();
-                if (result > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return result;
             }
             catch (Exception ex)
             {
