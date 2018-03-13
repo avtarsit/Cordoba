@@ -164,7 +164,23 @@ namespace CordobaServices.Services
             }
         }
         
-
+      public StoreHTMLEntity GetStoreHTMLCharts(int StoreID)
+      {
+           try
+            {
+                StoreHTMLEntity objStoreHTMLEntity = new StoreHTMLEntity();
+                SqlParameter[] sqlParameter = new SqlParameter[] { 
+                    new SqlParameter("StoreID", StoreID),                  
+                };
+                var objStoreHTMLStoreSummary = objGenericRepository.ExecuteSQL<StoreSummary>("GetActiveInAciveCustomersByStore", sqlParameter).ToList();
+                objStoreHTMLEntity.storeSummary = objStoreHTMLStoreSummary;
+                return objStoreHTMLEntity;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+      }
 
     }
 }

@@ -695,7 +695,10 @@
 
     $scope.GetDashboardSummaryCharts($scope.ChartOrFunctionTypeEnum.All);
 
-
+    $scope.GotoStorePDF = function () {
+        var url = $state.href('StoreHTML');
+        window.open(url, '_blank');
+    }
 
 
 });

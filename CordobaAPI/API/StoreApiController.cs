@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 
@@ -249,6 +250,43 @@ namespace CordobaAPI.API
             {
                 throw;
             }
+        }
+
+        public HttpResponseMessage GetStoreHTMLCharts(int StoreID)
+        {
+            try
+            {
+                var result = _StoreServices.GetStoreHTMLCharts(StoreID);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong? Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage ExportStoreHTMLPDF(StoreEntity storeentity)
+        {
+            var htmlContent = storeentity.template;//String.Format("<body>Hello world: {0}</body>", DateTime.Now);
+            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
+
+            HttpResponseMessage httpResponseMessage;
+
+            HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+            Stream @null = Stream.Null;
+            streamContent.Content = new StreamContent(new MemoryStream(pdfBytes));
+            streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+            streamContent.Content.Headers.Add("content-disposition", string.Concat("inline;  filename=\"", "AssociateObjective.pdf", "\""));
+            httpResponseMessage = streamContent;
+            return httpResponseMessage;
+
         }
 
     }

@@ -1,0 +1,34 @@
+﻿<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+
+<div ng-controller="StoreHTMLController">
+    <a ng-click="ExportStoreHTMLPDF()">Generate image</a>
+    <a id='Generatepdf' ng-hide="true">Generate pdf</a>
+    <div id="pdf" class="page-header-content">
+        <div class="row">
+            <!-- Quick stats boxes -->
+
+            <div class="col-lg-6">
+                <!-- Nightingale roses width hidden labels -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Store Summary</h5>
+                        <div class="heading-elements">
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.StoreHTMLStoreSummary.length==0}">
+                        <h1 ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length==0"><br />No Storesummary Available to Display</h1>
+                        <div class="chart-container" ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length>0">
+                            <div class="chart has-fixed-height" id="StoreHTMLStoreSummary"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /nightingale roses width hidden labels -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="img-out"></div>
+<div id="img-capture">
+<img id="imgCapture" alt="" style="display:none;border:1px solid #ccc" />
+</div>

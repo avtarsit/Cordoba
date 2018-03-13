@@ -22,6 +22,7 @@ namespace CordobaServices.Interfaces
        bool UploadStoreLogo(int store_id, string logo);
 
        List<StoreImageEntity> GetAdvertisementImageList(int StoreId);
-       
+
+       StoreHTMLEntity GetStoreHTMLCharts(int StoreID);
     }
 }

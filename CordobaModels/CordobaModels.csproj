@@ -162,6 +162,7 @@
     <Compile Include="Entities\StoreChartEntity.cs" />
     <Compile Include="Entities\StoreDescriptionEntity.cs" />
     <Compile Include="Entities\StoreEntity.cs" />
+    <Compile Include="Entities\StoreHTMLEntity.cs" />
     <Compile Include="Entities\StoreImageEntity.cs" />
     <Compile Include="Entities\StoreTermsEntity.cs" />
     <Compile Include="Entities\SupplierEntity.cs" />
