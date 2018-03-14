@@ -169,11 +169,22 @@ namespace CordobaServices.Services
            try
             {
                 StoreHTMLEntity objStoreHTMLEntity = new StoreHTMLEntity();
-                SqlParameter[] sqlParameter = new SqlParameter[] { 
-                    new SqlParameter("StoreID", StoreID),                  
-                };
-                var objStoreHTMLStoreSummary = objGenericRepository.ExecuteSQL<StoreSummary>("GetActiveInAciveCustomersByStore", sqlParameter).ToList();
+                
+                var objStoreHTMLStoreSummary = objGenericRepository.ExecuteSQL<StoreSummary>("GetActiveInAciveCustomersByStore", new SqlParameter("StoreID", StoreID)).ToList();
                 objStoreHTMLEntity.storeSummary = objStoreHTMLStoreSummary;
+
+                var objPointsRemaining = objGenericRepository.ExecuteSQL<PointsRemaining>("GetRemainingPointsByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.pointsRemaining = objPointsRemaining;
+
+                var objParticipantsLoadedByMonth = objGenericRepository.ExecuteSQL<ParticipantsLoadedByMonth>("GetParticipantByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.participantsLoadedByMonth = objParticipantsLoadedByMonth;
+
+                var objPointsloadedbyMonth = objGenericRepository.ExecuteSQL<PointsLoadedByMonth>("GetPointsLoadedByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.pointsLoadedByMonth = objPointsloadedbyMonth;
+
+                var objPointsRedeemedByMonth = objGenericRepository.ExecuteSQL<PointsRedeemedByMonth>("GetPointsRedeemedByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.pointsRedeemedByMonth = objPointsRedeemedByMonth;
+
                 return objStoreHTMLEntity;
             }
             catch (Exception e)

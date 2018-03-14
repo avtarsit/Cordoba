@@ -5,7 +5,8 @@
 
     $scope.StoreId = $rootScope.storeId;
     $scope.StoreHTMLSummary = [];
-
+    $scope.ParticipantsLoadedByMonthvalue = [];
+    $scope.ParticipantsLoadedByMonthname = [];
     function LoadCharts() {
         // Set paths
         // ------------------------------
@@ -32,7 +33,10 @@
                  // Initialize charts
 
                  var StoreSummary = ec.init(document.getElementById('StoreHTMLStoreSummary'), limitless);
-
+                 var PointsRemaining = ec.init(document.getElementById('PointsRemaining'), limitless);
+                 var ParticipantsLoadedByMonth = ec.init(document.getElementById('ParticipantsLoadedByMonth'), limitless);
+                 var PointsLoadedByMonth = ec.init(document.getElementById('PointsLoadedByMonth'), limitless);
+                 var PointsRedeemedByMonth = ec.init(document.getElementById('PointsRedeemedByMonth'), limitless);
                  // Charts setup
                  // ------------------------------                    
                  StoreSummary_options = {
@@ -103,40 +107,6 @@
                      // Add series
                      series: [
                          {
-                             ////name: 'Increase (brutto)',
-                             //type: 'pie',
-                             //radius: ['50%', '70%'],
-                             //center: ['50%', '59%'],
-                             //roseType: 'radius',
-
-                             //// Funnel
-                             //width: '40%',
-                             //height: '78%',
-                             //x: '30%',
-                             //y: '17.5%',
-                             //max: 400,
-
-                             //itemStyle: {
-                             //    normal: {
-                             //        label: {
-                             //            show: false
-                             //        },
-                             //        labelLine: {
-                             //            show: false
-                             //        }
-                             //    },
-                             //    emphasis: {
-                             //        label: {
-                             //            show: true
-                             //        },
-                             //        labelLine: {
-                             //            show: true
-                             //        }
-                             //    }
-                             //},
-                             //data: $scope.StoreHTMLSummary.StoreHTMLStoreSummary
-
-
                              name: '',
                              type: 'pie',
                              radius: ['50%', '70%'],
@@ -164,7 +134,223 @@
                          }
                      ]
                  };
+
+                 //PointsRemaining
+
+                 PointsRemaining_options = {
+
+                     //// Add title
+                     //title: {
+                     //    text: 'Current year Order details',
+                     //    subtext: 'Senior front end developer',
+                     //    x: 'center'
+                     //},
+
+                     // Add tooltip
+                     tooltip: {
+                         trigger: 'item',
+                         formatter: "{a} <br/>{b}: {c} ({d}%)"
+                     },
+
+                     // Add legend
+                     legend: {
+                         x: 'left',
+                         y: 'top',
+                         orient: 'vertical',
+                         data: $scope.StoreHTMLSummary.PointsRemaining
+                     },
+
+                     // Display toolbox
+                     toolbox: {
+                         show: true,
+                         orient: 'vertical',
+                         feature: {
+                             
+                             //}
+                         }
+                     },
+
+                     // Enable drag recalculate
+                     calculable: false,
+
+                     // Add series
+                     series: [
+                         {
+                             name: '',
+                             type: 'pie',
+                             radius: ['50%', '70%'],
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {
+                                     show: false,
+                                     position: 'center'
+                                 },
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false
+                                 }
+                             },
+                             data: $scope.StoreHTMLSummary.PointsRemaining
+
+                         }
+                     ]
+                 };
+                 
+                 //ParticipantsLoadedByMonth
+                 ParticipantsLoadedByMonth_options = {
+                    
+                     tooltip: {
+                         trigger: 'axis'
+                     },
+                     //legend: {
+                     //    data: ['sdfds']
+                     //},
+                     toolbox: {
+                         show: true,
+                         orient: 'vertical',
+                         feature: {
+                             //mark: { show: true },
+                             //dataView: { show: true, readOnly: false },
+                             //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                             //magicType: {
+                             //    show: true,
+                             //    title: {
+                             //        bar: 'Switch to pies',
+                             //        line: 'Switch to line',
+                             //    },
+                             //    type: ['bar', 'line']
+                             //},
+                             //restore: { show: true, title: 'Restore' },
+                             //saveAsImage: { show: true, title: 'Save as image' }
+                         }
+                     },
+                     calculable: false,
+                     xAxis: [
+                         {
+                             type: 'category',
+                             data: $scope.ParticipantsLoadedByMonthname
+                              , axisLabel: {
+                                  show: true,
+                                  interval: 0,    // {number}
+                                  rotate: 45,
+                                  margin: -20,
+                                  formatter: $scope.ParticipantsLoadedByMonthname,
+                                  textStyle: {
+                                      color: 'blue',
+                                      fontFamily: 'sans-serif',
+                                      fontSize: 10,
+                                      fontStyle: 'italic',
+                                      fontWeight: 'bold'
+                                  }
+
+                              }
+                         }
+                     ],
+                     yAxis: [
+                         {
+                             type: 'Month'
+                         }
+                     ],
+                     series: [
+                         {
+                             name: 'Month',
+                             type: 'bar',
+                             data: $scope.ParticipantsLoadedByMonthvalue,
+                             itemStyle: {
+                                 normal: {
+                                     color: function (param) {
+                                         var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
+                                         return colorList[param.dataIndex]
+                                     }
+                                 }
+                             }
+                         }
+                     ]
+                 };
+
+                 //PointsLoadedByMonth
+                 PointsLoadedByMonth_options = {
+                     tooltip: {
+                         trigger: 'axis',
+                         axisPointer: {
+                             type: 'shadow'
+                         }
+                     },
+                     legend: {
+                         data: ['Month', 'Points']
+                     },
+                     grid: {
+                         left: '3%',
+                         right: '4%',
+                         bottom: '3%',
+                         containLabel: true
+                     },
+                     xAxis: {
+                         type: 'value',
+                         boundaryGap: [0, 0.01]
+                     },
+                     yAxis: {
+                         type: 'category',
+                         data: $scope.StoreHTMLSummary.PointsLoadedByMonth
+                     },
+                     series: [
+
+                         {
+                             name: 'Points',
+                             type: 'bar',
+                             data: $scope.StoreHTMLSummary.PointsLoadedByMonthPoints
+                         }
+                     ]
+                 };
+
+                 //PointsRedeemedByMonth
+                 PointsRedeemedByMonth_options = {
+                     tooltip: {
+                         trigger: 'axis',
+                         axisPointer: {
+                             type: 'shadow'
+                         }
+                     },
+                     legend: {
+                         data: ['Month', 'Points']
+                     },
+                     grid: {
+                         left: '3%',
+                         right: '4%',
+                         bottom: '3%',
+                         containLabel: true
+                     },
+                     xAxis: {
+                         type: 'value',
+                         boundaryGap: [0, 0.01]
+                     },
+                     yAxis: {
+                         type: 'category',
+                         data: $scope.StoreHTMLSummary.PointsRedeemedByMonth
+                     },
+                     series: [
+
+                         {
+                             name: 'Points',
+                             type: 'bar',
+                             data: $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints
+                         }
+                     ]
+                 };
+
                  StoreSummary.setOption(StoreSummary_options);
+                 PointsRemaining.setOption(PointsRemaining_options);
+                 ParticipantsLoadedByMonth.setOption(ParticipantsLoadedByMonth_options);
+                 PointsLoadedByMonth.setOption(PointsLoadedByMonth_options);
+                 PointsRedeemedByMonth.setOption(PointsRedeemedByMonth_options);
 
                  setTimeout(function () {
 
@@ -186,19 +372,38 @@
     }
 
     $scope.GetActiveInAciveCustomersByStore = function () {
-        debugger;
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId)
         .then(function (response) {
             debugger;
             if (response.data != null) {
                 $scope.StoreHTMLSummary.StoreHTMLStoreSummary = [];
-                //for(var i=0; i<response.data.)
-                //$scope.StoreHTMLSummary.StoreHTMLStoreSummary = response.data.storeSummary;
+                
                 for (var i = 0; i < response.data.storeSummary.length; i++) {
                     $scope.StoreHTMLSummary.StoreHTMLStoreSummary.push({ value: response.data.storeSummary[i].Count, name: response.data.storeSummary[i].Status })
                 }
+                $scope.StoreHTMLSummary.PointsRemaining = [];
+                $scope.StoreHTMLSummary.PointsRemaining.push({ value: response.data.pointsRemaining[0].Count, name: response.data.pointsRemaining[0].Status })
                 
-                
+               
+                for (var i = 0; i < response.data.participantsLoadedByMonth.length; i++) {
+                    $scope.ParticipantsLoadedByMonthvalue.push(response.data.participantsLoadedByMonth[i].CustomerCount);
+                    $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month)
+                }
+                debugger;
+                $scope.StoreHTMLSummary.PointsLoadedByMonth = [];
+                $scope.StoreHTMLSummary.PointsLoadedByMonthPoints = [];
+                for (var i = 0; i < response.data.pointsLoadedByMonth.length; i++) {
+                    $scope.StoreHTMLSummary.PointsLoadedByMonth.push(response.data.pointsLoadedByMonth[i].Month);
+                    $scope.StoreHTMLSummary.PointsLoadedByMonthPoints.push(response.data.pointsLoadedByMonth[i].Points)
+                }
+
+                $scope.StoreHTMLSummary.PointsRedeemedByMonth = [];
+                $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints = [];
+                for (var i = 0; i < response.data.pointsRedeemedByMonth.length; i++) {
+                    $scope.StoreHTMLSummary.PointsRedeemedByMonth.push(response.data.pointsRedeemedByMonth[i].Month);
+                    $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints.push(response.data.pointsRedeemedByMonth[i].Points)
+                }
+             
             }
             // $scope.activeInactiveCustomer = response.data;
             LoadCharts();
@@ -215,8 +420,6 @@
 
     $scope.ExportStoreHTMLPDF = function () {
         debugger;
-        
-        
 
         html2canvas($("#pdf"), {
             onrendered: function (canvas) {
