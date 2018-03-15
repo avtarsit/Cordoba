@@ -96,7 +96,7 @@ namespace CordobaServices.Services
             return result;
         }
 
-        public bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey,int layout)
+        public bool UploadStoreImage(int Store_Id, string ImageName, int ImageKey, int layout)
         {
             try
             {
@@ -163,27 +163,37 @@ namespace CordobaServices.Services
                 throw;
             }
         }
-        
-      public StoreHTMLEntity GetStoreHTMLCharts(int StoreID)
-      {
-           try
+
+        public StoreHTMLEntity GetStoreHTMLCharts(int StoreID, int Month, int Year)
+        {
+            try
             {
                 StoreHTMLEntity objStoreHTMLEntity = new StoreHTMLEntity();
-                
+
                 var objStoreHTMLStoreSummary = objGenericRepository.ExecuteSQL<StoreSummary>("GetActiveInAciveCustomersByStore", new SqlParameter("StoreID", StoreID)).ToList();
                 objStoreHTMLEntity.storeSummary = objStoreHTMLStoreSummary;
 
                 var objPointsRemaining = objGenericRepository.ExecuteSQL<PointsRemaining>("GetRemainingPointsByStore", new SqlParameter("StoreID", StoreID)).ToList();
                 objStoreHTMLEntity.pointsRemaining = objPointsRemaining;
 
-                var objParticipantsLoadedByMonth = objGenericRepository.ExecuteSQL<ParticipantsLoadedByMonth>("GetParticipantByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                var objParticipantsLoadedByMonth = objGenericRepository.ExecuteSQL<ParticipantsLoadedByMonth>("GetParticipantByMonthByStore", new SqlParameter("StoreID", StoreID),
+                                                                                                                                              new SqlParameter("Month", Month),
+                                                                                                                                              new SqlParameter("Year", Year)).ToList();
+                    
                 objStoreHTMLEntity.participantsLoadedByMonth = objParticipantsLoadedByMonth;
 
-                var objPointsloadedbyMonth = objGenericRepository.ExecuteSQL<PointsLoadedByMonth>("GetPointsLoadedByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                var objPointsloadedbyMonth = objGenericRepository.ExecuteSQL<PointsLoadedByMonth>("GetPointsLoadedByMonthByStore", new SqlParameter("StoreID", StoreID),
+                                                                                                                                   new SqlParameter("Month", Month),
+                                                                                                                                   new SqlParameter("Year", Year)).ToList(); 
                 objStoreHTMLEntity.pointsLoadedByMonth = objPointsloadedbyMonth;
 
-                var objPointsRedeemedByMonth = objGenericRepository.ExecuteSQL<PointsRedeemedByMonth>("GetPointsRedeemedByMonthByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                var objPointsRedeemedByMonth = objGenericRepository.ExecuteSQL<PointsRedeemedByMonth>("GetPointsRedeemedByMonthByStore", new SqlParameter("StoreID", StoreID),
+                                                                                                                                         new SqlParameter("Month", Month),
+                                                                                                                                         new SqlParameter("Year", Year)).ToList();
                 objStoreHTMLEntity.pointsRedeemedByMonth = objPointsRedeemedByMonth;
+
+                var objTopPointsHolders = objGenericRepository.ExecuteSQL<TopPointsHoldersByStore>("GetTOPPointsHoldersByStore", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.topPointsHolders = objTopPointsHolders;
 
                 return objStoreHTMLEntity;
             }
@@ -191,7 +201,7 @@ namespace CordobaServices.Services
             {
                 throw;
             }
-      }
+        }
 
     }
 }

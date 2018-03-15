@@ -13,6 +13,7 @@ namespace CordobaModels.Entities
         public List<ParticipantsLoadedByMonth> participantsLoadedByMonth { get; set; }
         public List<PointsLoadedByMonth> pointsLoadedByMonth { get; set; }
         public List<PointsRedeemedByMonth> pointsRedeemedByMonth { get; set; }
+        public List<TopPointsHoldersByStore> topPointsHolders { get; set; }
     }
 
     public class StoreSummary
@@ -43,5 +44,15 @@ namespace CordobaModels.Entities
     {
         public string Month { get; set; }
         public int Points { get; set; }
+    }
+
+    public class TopPointsHoldersByStore
+    {
+        public string FullName { get; set; }
+        public string Email{ get; set; }
+        public int Points { get; set; }
+        public string Status { get; set; }
+        public Int16 Activated { get; set; }
+        public DateTime DateAdded { get; set; }
     }
 }

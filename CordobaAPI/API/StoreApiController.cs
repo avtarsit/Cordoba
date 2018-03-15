@@ -252,11 +252,11 @@ namespace CordobaAPI.API
             }
         }
 
-        public HttpResponseMessage GetStoreHTMLCharts(int StoreID)
+        public HttpResponseMessage GetStoreHTMLCharts(int StoreID, int Month, int Year)
         {
             try
             {
-                var result = _StoreServices.GetStoreHTMLCharts(StoreID);
+                var result = _StoreServices.GetStoreHTMLCharts(StoreID, Month, Year);
                 if (result != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, result);

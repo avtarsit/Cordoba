@@ -7,6 +7,36 @@
     $scope.StoreHTMLSummary = [];
     $scope.ParticipantsLoadedByMonthvalue = [];
     $scope.ParticipantsLoadedByMonthname = [];
+    debugger;
+    var currentTime = new Date();
+    $scope.Years = [{ id: currentTime.getFullYear(), name: currentTime.getFullYear() }, { id: currentTime.getFullYear() - 1, name: currentTime.getFullYear() - 1 }];
+    
+    $scope.selectedyear = $scope.Years[0].id;
+    //const MONTH_NAMES = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+    const MONTH_NAMES = [{ id: 1, name: "January" }, { id: 2, name: "February" }, { id: 3, name: "March" },
+                         { id: 4, name: "April" }, { id: 5, name: "May" }, { id: 6, name: "June" },
+                         { id: 7, name: "July" }, { id: 8, name: "August" }, { id: 9, name: "September" },
+                         { id: 10, name: "October" }, { id: 11, name: "November" }, { id: 12, name: "December" }];
+
+    $scope.selectedmonth = 0;
+    $scope.GetMonthData = function (year) {
+        debugger;
+        $scope.Months = [];
+        if (year == currentTime.getFullYear())
+        {
+            for (var i = 0 ; i < currentTime.getMonth()+1 ; i++) {
+                $scope.Months.push({ id: MONTH_NAMES[i].id, name: MONTH_NAMES[i].name });
+            }
+        }
+        else {
+            for (var i = 0 ; i < 12 ; i++) {
+                $scope.Months.push({ id: MONTH_NAMES[i].id, name: MONTH_NAMES[i].name });
+            }
+        }
+        $scope.selectedmonth = $scope.Months[0].id;
+        $scope.GetActiveInAciveCustomersByStore();
+
+    }
     function LoadCharts() {
         // Set paths
         // ------------------------------
@@ -372,7 +402,8 @@
     }
 
     $scope.GetActiveInAciveCustomersByStore = function () {
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId)
+        debugger;
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year="+$scope.selectedyear)
         .then(function (response) {
             debugger;
             if (response.data != null) {
@@ -403,6 +434,8 @@
                     $scope.StoreHTMLSummary.PointsRedeemedByMonth.push(response.data.pointsRedeemedByMonth[i].Month);
                     $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints.push(response.data.pointsRedeemedByMonth[i].Points)
                 }
+
+                $scope.StoreHTMLSummary.TopPointsHolders = response.data.topPointsHolders;
              
             }
             // $scope.activeInactiveCustomer = response.data;
@@ -416,8 +449,7 @@
         });
     }
 
-    $scope.GetActiveInAciveCustomersByStore();
-
+    
     $scope.ExportStoreHTMLPDF = function () {
         debugger;
 

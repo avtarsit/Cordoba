@@ -1,8 +1,18 @@
-﻿<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+﻿<!--<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>-->
+
 
 <div ng-controller="StoreHTMLController">
     <a ng-click="ExportStoreHTMLPDF()">Generate image</a>
     <a id='Generatepdf' ng-hide="true">Generate pdf</a>
+    <div>
+        
+        <div>
+            Select Year &nbsp; <select class="" data-ng-model="selectedyear" name="Years" ng-options="x.id as x.name for x in Years" ng-change="GetMonthData(selectedyear)"></select>
+        </div>
+        <div>
+            Select Month &nbsp; <select class="" data-ng-model="selectedmonth" name="Months" ng-init="GetMonthData(selectedyear)" ng-options="m.id as m.name for m in Months"></select>
+        </div>
+    </div>
     <div id="pdf" class="page-header-content">
         <div class="row">
             <!-- Quick stats boxes -->
@@ -12,6 +22,9 @@
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Store Summary</h5>
+                        Participant: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value + StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
+                        Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value}})<br />
+                        Not Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
                         <div class="heading-elements">
                         </div>
                     </div>
@@ -31,7 +44,7 @@
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Points Remaining</h5>
+                        <h5 class="panel-title">Points Remaining:({{StoreHTMLSummary.PointsRemaining[0].value}})</h5>
                         <div class="heading-elements">
                         </div>
                     </div>
@@ -102,7 +115,45 @@
                 <!-- /nightingale roses width hidden labels -->
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Nightingale roses width hidden labels -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Top Points Holders</h5>
+                        <div class="heading-elements">
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Full Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Points</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Activated</th>
+                                <th class="text-center">Date Added</th>
+                            </tr>
+                        </thead>
+                        <tr ng-repeat="Item in StoreHTMLSummary.TopPointsHolders">
+                            <td ng-bind="Item.FullName"></td>
+                            <td ng-bind="Item.Email"></td>
+                            <td ng-bind="Item.Points"></td>
+                            <td ng-bind="Item.Status"></td>
+                            <td ng-bind="Item.Activated"></td>
+                            <td ng-bind="Item.DateAdded | date:GlobalDateFormat"></td>
+                        </tr>
+                    </table>
+                    <!--<div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.PointsRedeemedByMonth.length==0 && StoreHTMLSummary.PointsRedeemedByMonthPoints.length==0}">
+                        <h1 ng-if="StoreHTMLSummary.PointsRedeemedByMonth.length==0 && StoreHTMLSummary.PointsRedeemedByMonthPoints.length==0"><br />No Points Available to Display</h1>
+                        <div class="chart-container" ng-show="StoreHTMLSummary.PointsRedeemedByMonth.length>0 && StoreHTMLSummary.PointsRedeemedByMonthPoints.length>0">
+                            <div class="chart has-fixed-height" id="PointsRedeemedByMonth"></div>
+                        </div>
+                    </div>-->
+                </div>
+                <!-- /nightingale roses width hidden labels -->
+            </div>
+        </div>
     </div>
 </div>
 
