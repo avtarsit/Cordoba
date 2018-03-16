@@ -170,6 +170,9 @@ namespace CordobaServices.Services
             {
                 StoreHTMLEntity objStoreHTMLEntity = new StoreHTMLEntity();
 
+                var objStoreImage = objGenericRepository.ExecuteSQL<StoreHTMLEntity>("GetStoreById", new SqlParameter("StoreID", StoreID)).FirstOrDefault();
+                objStoreHTMLEntity.logo = objStoreImage.logo;
+
                 var objStoreHTMLStoreSummary = objGenericRepository.ExecuteSQL<StoreSummary>("GetActiveInAciveCustomersByStore", new SqlParameter("StoreID", StoreID)).ToList();
                 objStoreHTMLEntity.storeSummary = objStoreHTMLStoreSummary;
 
@@ -194,6 +197,12 @@ namespace CordobaServices.Services
 
                 var objTopPointsHolders = objGenericRepository.ExecuteSQL<TopPointsHoldersByStore>("GetTOPPointsHoldersByStore", new SqlParameter("StoreID", StoreID)).ToList();
                 objStoreHTMLEntity.topPointsHolders = objTopPointsHolders;
+
+                var objOrderPlacedByType = objGenericRepository.ExecuteSQL<OrderPlacedByTypeByStore>("GetOrderPlacedByTypeByStore", new SqlParameter("StoreID", StoreID),
+                                                                                                                                  new SqlParameter("Month", Month),
+                                                                                                                                  new SqlParameter("Year", Year)).ToList();
+                objStoreHTMLEntity.orderPlacedByType = objOrderPlacedByType;
+                
 
                 return objStoreHTMLEntity;
             }

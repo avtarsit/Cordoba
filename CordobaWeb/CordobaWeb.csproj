@@ -450,6 +450,7 @@
     <Content Include="Content\admin\images\flags\zw.png" />
     <Content Include="Content\admin\images\login_cover.jpg" />
     <Content Include="Content\admin\images\logo\cordoba-logo.png" />
+    <Content Include="Content\admin\images\logo\homepdfimage.png" />
     <Content Include="Content\admin\images\logo\logo.png" />
     <Content Include="Content\admin\images\logo_dark.png" />
     <Content Include="Content\admin\images\logo_demo.png" />

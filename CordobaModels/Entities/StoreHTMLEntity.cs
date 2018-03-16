@@ -14,6 +14,8 @@ namespace CordobaModels.Entities
         public List<PointsLoadedByMonth> pointsLoadedByMonth { get; set; }
         public List<PointsRedeemedByMonth> pointsRedeemedByMonth { get; set; }
         public List<TopPointsHoldersByStore> topPointsHolders { get; set; }
+        public List<OrderPlacedByTypeByStore> orderPlacedByType { get; set; }
+        public string logo { get; set; }
     }
 
     public class StoreSummary
@@ -54,5 +56,11 @@ namespace CordobaModels.Entities
         public string Status { get; set; }
         public Int16 Activated { get; set; }
         public DateTime DateAdded { get; set; }
+    }
+
+    public class OrderPlacedByTypeByStore
+    {
+        public string Name { get; set; }
+        public int OrderCount { get; set; }
     }
 }

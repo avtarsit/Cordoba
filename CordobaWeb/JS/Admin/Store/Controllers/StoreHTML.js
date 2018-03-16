@@ -5,12 +5,10 @@
 
     $scope.StoreId = $rootScope.storeId;
     $scope.StoreHTMLSummary = [];
-    $scope.ParticipantsLoadedByMonthvalue = [];
-    $scope.ParticipantsLoadedByMonthname = [];
-    debugger;
+
     var currentTime = new Date();
     $scope.Years = [{ id: currentTime.getFullYear(), name: currentTime.getFullYear() }, { id: currentTime.getFullYear() - 1, name: currentTime.getFullYear() - 1 }];
-    
+
     $scope.selectedyear = $scope.Years[0].id;
     //const MONTH_NAMES = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
     const MONTH_NAMES = [{ id: 1, name: "January" }, { id: 2, name: "February" }, { id: 3, name: "March" },
@@ -19,12 +17,12 @@
                          { id: 10, name: "October" }, { id: 11, name: "November" }, { id: 12, name: "December" }];
 
     $scope.selectedmonth = 0;
+    $scope.monthname =''
     $scope.GetMonthData = function (year) {
         debugger;
         $scope.Months = [];
-        if (year == currentTime.getFullYear())
-        {
-            for (var i = 0 ; i < currentTime.getMonth()+1 ; i++) {
+        if (year == currentTime.getFullYear()) {
+            for (var i = 0 ; i < currentTime.getMonth() + 1 ; i++) {
                 $scope.Months.push({ id: MONTH_NAMES[i].id, name: MONTH_NAMES[i].name });
             }
         }
@@ -34,9 +32,21 @@
             }
         }
         $scope.selectedmonth = $scope.Months[0].id;
+        $scope.monthname = $scope.Months[0].name;
         $scope.GetActiveInAciveCustomersByStore();
 
     }
+
+    $scope.GetChartData = function (year, month) {
+        debugger;
+        $scope.selectedyear = year;
+        $scope.selectedmonth = month;
+        $scope.monthname = MONTH_NAMES[month-1].name;
+        //$state.go('StoreHTML');
+        $scope.GetActiveInAciveCustomersByStore();
+        
+    }
+
     function LoadCharts() {
         // Set paths
         // ------------------------------
@@ -61,12 +71,18 @@
             ],
              function (ec, limitless) {
                  // Initialize charts
-
+                 debugger;
                  var StoreSummary = ec.init(document.getElementById('StoreHTMLStoreSummary'), limitless);
                  var PointsRemaining = ec.init(document.getElementById('PointsRemaining'), limitless);
                  var ParticipantsLoadedByMonth = ec.init(document.getElementById('ParticipantsLoadedByMonth'), limitless);
                  var PointsLoadedByMonth = ec.init(document.getElementById('PointsLoadedByMonth'), limitless);
                  var PointsRedeemedByMonth = ec.init(document.getElementById('PointsRedeemedByMonth'), limitless);
+                 var OrdersPlacedByType = ec.init(document.getElementById('OrdersPlacedByType'), limitless);
+                 //window.onresize = OrdersPlacedByType.resize;
+
+                 //global._preResize && $(window).off('resize', global._preResize);
+                 //global._preResize = OrdersPlacedByType.resize;
+                 //$(window).on('resize', OrdersPlacedByType.resize);
                  // Charts setup
                  // ------------------------------                    
                  StoreSummary_options = {
@@ -160,7 +176,7 @@
                                  }
                              },
                              data: $scope.StoreHTMLSummary.StoreHTMLStoreSummary
-                             
+
                          }
                      ]
                  };
@@ -195,7 +211,7 @@
                          show: true,
                          orient: 'vertical',
                          feature: {
-                             
+
                              //}
                          }
                      },
@@ -233,10 +249,10 @@
                          }
                      ]
                  };
-                 
+
                  //ParticipantsLoadedByMonth
                  ParticipantsLoadedByMonth_options = {
-                    
+
                      tooltip: {
                          trigger: 'axis'
                      },
@@ -291,7 +307,7 @@
                      ],
                      series: [
                          {
-                             name: 'Month',
+                             name: 'Points',
                              type: 'bar',
                              data: $scope.ParticipantsLoadedByMonthvalue,
                              itemStyle: {
@@ -305,6 +321,8 @@
                          }
                      ]
                  };
+
+
 
                  //PointsLoadedByMonth
                  PointsLoadedByMonth_options = {
@@ -376,49 +394,177 @@
                      ]
                  };
 
+                 //Orders placed by Type
+                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeName);
+                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount);
+
+                 OrdersPlacedByType_options = {
+
+                     //color: ['#3398DB'],
+                     //tooltip: {
+                     //    trigger: 'axis',
+                     //    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                     //        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                     //    }
+                     //},
+                     //grid: {
+                     //    left: '3%',
+                     //    right: '4%',
+                     //    bottom: '3%',
+                     //    containLabel: true
+                     //},
+                     //xAxis: [
+                     //    {
+                     //        type: 'category',
+                     //        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                     //        axisTick: {
+                     //            alignWithLabel: true
+                     //        }
+                     //    }
+                     //],
+                     //yAxis: [
+                     //    {
+                     //        type: 'value'
+                     //    }
+                     //],
+                     //series: [
+                     //    {
+                     //        name: '直接访问',
+                     //        type: 'bar',
+                     //        barWidth: '60%',
+                     //        data: [10, 52, 200, 334, 390, 330, 220]
+                     //    }
+                     //]
+
+                     tooltip: {
+                         trigger: 'axis'
+                     },
+                     //legend: {
+                     //    data: ['sdfds']
+                     //},
+                     toolbox: {
+                         show: true,
+                         orient: 'vertical',
+                         feature: {
+                             //mark: { show: true },
+                             //dataView: { show: true, readOnly: false },
+                             //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                             //magicType: {
+                             //    show: true,
+                             //    title: {
+                             //        bar: 'Switch to pies',
+                             //        line: 'Switch to line',
+                             //    },
+                             //    type: ['bar', 'line']
+                             //},
+                             //restore: { show: true, title: 'Restore' },
+                             //saveAsImage: { show: true, title: 'Save as image' }
+                         }
+                     },
+                     calculable: false,
+                     xAxis: [
+                         {
+                             type: 'category',
+                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeName
+                              , axisLabel: {
+                                  show: true,
+                                  interval: 0,    // {number}
+                                  rotate: 45,
+                                  margin: -20,
+                                  formatter: $scope.StoreHTMLSummary.OrdersPlacedByTypeName,
+                                  textStyle: {
+                                      color: 'blue',
+                                      fontFamily: 'sans-serif',
+                                      fontSize: 10,
+                                      fontStyle: 'italic',
+                                      fontWeight: 'bold'
+                                  }
+
+                              }
+                         }
+                     ],
+                     yAxis: [
+                         {
+                             type: 'OrderCount'
+                         }
+                     ],
+                     series: [
+                         {
+                             name: 'OrderCount',
+                             type: 'bar',
+                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount,
+                             itemStyle: {
+                                 normal: {
+                                     color: function (param) {
+                                         var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
+                                         return colorList[param.dataIndex]
+                                     }
+                                 }
+                             }
+                         }
+                     ]
+                 };
+
                  StoreSummary.setOption(StoreSummary_options);
                  PointsRemaining.setOption(PointsRemaining_options);
                  ParticipantsLoadedByMonth.setOption(ParticipantsLoadedByMonth_options);
                  PointsLoadedByMonth.setOption(PointsLoadedByMonth_options);
                  PointsRedeemedByMonth.setOption(PointsRedeemedByMonth_options);
+                 OrdersPlacedByType.setOption(OrdersPlacedByType_options);
 
-                 setTimeout(function () {
+
+                 $timeout(function () {
 
                      StoreSummary.resize();
-                 }, 100);
+                     PointsRemaining.resize();
+                     ParticipantsLoadedByMonth.resize();
+                     PointsLoadedByMonth.resize();
+                     PointsRedeemedByMonth.resize();
+                     OrdersPlacedByType.resize();
+                 }, 0);
 
 
                  // Resize charts
                  // ------------------------------
 
                  window.onresize = function () {
-                     setTimeout(function () {
+                     $timeout(function () {
 
                          StoreSummary.resize();
-                     }, 200);
+                         PointsRemaining.resize();
+                         ParticipantsLoadedByMonth.resize();
+                         PointsLoadedByMonth.resize();
+                         PointsRedeemedByMonth.resize();
+                         OrdersPlacedByType.resize();
+                     }, 0);
                  }
              }
         );
     }
 
+    
+
     $scope.GetActiveInAciveCustomersByStore = function () {
         debugger;
-        $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year="+$scope.selectedyear)
+        $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year=" + $scope.selectedyear)
         .then(function (response) {
             debugger;
             if (response.data != null) {
                 $scope.StoreHTMLSummary.StoreHTMLStoreSummary = [];
-                
+
                 for (var i = 0; i < response.data.storeSummary.length; i++) {
                     $scope.StoreHTMLSummary.StoreHTMLStoreSummary.push({ value: response.data.storeSummary[i].Count, name: response.data.storeSummary[i].Status })
                 }
                 $scope.StoreHTMLSummary.PointsRemaining = [];
                 $scope.StoreHTMLSummary.PointsRemaining.push({ value: response.data.pointsRemaining[0].Count, name: response.data.pointsRemaining[0].Status })
-                
-               
+
+                $scope.ParticipantsLoadedByMonthvalue = [];
+                $scope.ParticipantsLoadedByMonthname = [];
+                $scope.ParticipantsLoadedByMonth = [];
                 for (var i = 0; i < response.data.participantsLoadedByMonth.length; i++) {
                     $scope.ParticipantsLoadedByMonthvalue.push(response.data.participantsLoadedByMonth[i].CustomerCount);
                     $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month)
+                    $scope.ParticipantsLoadedByMonth.push({ CustomerCount: response.data.participantsLoadedByMonth[i].CustomerCount, Month: response.data.participantsLoadedByMonth[i].Month });
                 }
                 debugger;
                 $scope.StoreHTMLSummary.PointsLoadedByMonth = [];
@@ -436,7 +582,35 @@
                 }
 
                 $scope.StoreHTMLSummary.TopPointsHolders = response.data.topPointsHolders;
-             
+                debugger;
+                
+                    $scope.StoreHTMLSummary.OrdersPlacedByTypeName = [];
+                    $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount = [];
+                    debugger;
+
+                    for (var i = 0; i < response.data.orderPlacedByType.length; i++) {
+                        $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount.push(response.data.orderPlacedByType[i].OrderCount);
+                        $scope.StoreHTMLSummary.OrdersPlacedByTypeName.push(response.data.orderPlacedByType[i].Name)
+                    }
+                    debugger;
+                    $scope.storelogo = response.data.logo;
+                    $scope.myObj = {
+                        "width": "456px",
+                        "height": "90px",
+                        "float": "right",
+                        "background-image": "url(" + $scope.storelogo + ")"
+                    }
+                //$timeout(function () {
+                //    $scope.$apply(function () {
+                //        $scope.StoreHTMLSummary.OrdersPlacedByTypeName = [];
+                //        $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount = [];
+                //        for (var i = 0; i < response.data.orderPlacedByType.length; i++) {
+                //            $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount.push(response.data.orderPlacedByType[i].OrderCount);
+                //            $scope.StoreHTMLSummary.OrdersPlacedByTypeName.push(response.data.orderPlacedByType[i].Name)
+                //        }
+                //    });
+                //}, 3000);
+
             }
             // $scope.activeInactiveCustomer = response.data;
             LoadCharts();
@@ -449,7 +623,7 @@
         });
     }
 
-    
+
     $scope.ExportStoreHTMLPDF = function () {
         debugger;
 
@@ -464,7 +638,7 @@
                 //Canvas2Image.saveAsPNG(canvas);
                 $("#img-out").html(canvas);
                 debugger;
-                
+
                 var base64 = $('#Div1')[0].toDataURL();
                 $("#imgCapture").attr("src", base64);
                 $("#imgCapture").show();
@@ -476,13 +650,13 @@
             }
         });
         //$scope.ExportStoreHTMLPDF1();
-        
+
         $timeout(function () { $("#Generatepdf").trigger("click"); }, 3000);
 
-        
+
     }
     $("#Generatepdf").click(function () {
-    //function ExportStoreHTMLPDF1() {
+        //function ExportStoreHTMLPDF1() {
         debugger;
         var template = $('#img-capture').html();
         debugger;
