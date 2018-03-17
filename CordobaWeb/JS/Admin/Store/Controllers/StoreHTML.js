@@ -19,7 +19,7 @@
     $scope.selectedmonth = 0;
     $scope.monthname =''
     $scope.GetMonthData = function (year) {
-        debugger;
+        //debugger;
         $scope.Months = [];
         if (year == currentTime.getFullYear()) {
             for (var i = 0 ; i < currentTime.getMonth() + 1 ; i++) {
@@ -33,17 +33,17 @@
         }
         $scope.selectedmonth = $scope.Months[0].id;
         $scope.monthname = $scope.Months[0].name;
-        $scope.GetActiveInAciveCustomersByStore();
+        $scope.GetStoreHTMLCharts();
 
     }
 
     $scope.GetChartData = function (year, month) {
-        debugger;
+        //debugger;
         $scope.selectedyear = year;
         $scope.selectedmonth = month;
         $scope.monthname = MONTH_NAMES[month-1].name;
         //$state.go('StoreHTML');
-        $scope.GetActiveInAciveCustomersByStore();
+        $scope.GetStoreHTMLCharts();
         
     }
 
@@ -71,7 +71,7 @@
             ],
              function (ec, limitless) {
                  // Initialize charts
-                 debugger;
+                 //debugger;
                  var StoreSummary = ec.init(document.getElementById('StoreHTMLStoreSummary'), limitless);
                  var PointsRemaining = ec.init(document.getElementById('PointsRemaining'), limitless);
                  var ParticipantsLoadedByMonth = ec.init(document.getElementById('ParticipantsLoadedByMonth'), limitless);
@@ -250,76 +250,171 @@
                      ]
                  };
 
+                 console.log($scope.ParticipantsLoadedByMonthname);
+                 console.log($scope.ParticipantsLoadedByMonthvalue);
                  //ParticipantsLoadedByMonth
                  ParticipantsLoadedByMonth_options = {
-
+                     title: {
+                         x: 'center',
+                         text: '',
+                         subtext: '',
+                         link: 'http://echarts.baidu.com/doc/example.html'
+                     },
                      tooltip: {
-                         trigger: 'axis'
+                         trigger: 'item'
                      },
-                     //legend: {
-                     //    data: ['sdfds']
-                     //},
                      toolbox: {
-                         show: true,
-                         orient: 'vertical',
-                         feature: {
-                             //mark: { show: true },
-                             //dataView: { show: true, readOnly: false },
-                             //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
-                             //magicType: {
-                             //    show: true,
-                             //    title: {
-                             //        bar: 'Switch to pies',
-                             //        line: 'Switch to line',
-                             //    },
-                             //    type: ['bar', 'line']
-                             //},
-                             //restore: { show: true, title: 'Restore' },
-                             //saveAsImage: { show: true, title: 'Save as image' }
-                         }
+                         //show: true,
+                         //feature: {
+                         //    dataView: { show: true, readOnly: false },
+                         //    restore: { show: true },
+                         //    saveAsImage: { show: true }
+                         //}
                      },
-                     calculable: false,
+                     calculable: true,
+                     grid: {
+                         borderWidth: 0,
+                         y: 80,
+                         y2: 60
+                     },
                      xAxis: [
                          {
                              type: 'category',
+                             show: false,
                              data: $scope.ParticipantsLoadedByMonthname
-                              , axisLabel: {
-                                  show: true,
-                                  interval: 0,    // {number}
-                                  rotate: 45,
-                                  margin: -20,
-                                  formatter: $scope.ParticipantsLoadedByMonthname,
-                                  textStyle: {
-                                      color: 'blue',
-                                      fontFamily: 'sans-serif',
-                                      fontSize: 10,
-                                      fontStyle: 'italic',
-                                      fontWeight: 'bold'
-                                  }
-
-                              }
                          }
                      ],
                      yAxis: [
                          {
-                             type: 'Month'
+                             type: 'value',
+                             show: false
                          }
                      ],
                      series: [
                          {
-                             name: 'Points',
+                             name: '',
                              type: 'bar',
-                             data: $scope.ParticipantsLoadedByMonthvalue,
                              itemStyle: {
                                  normal: {
-                                     color: function (param) {
-                                         var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
-                                         return colorList[param.dataIndex]
+                                     color: function (params) {
+                                         // build a color map as your need.
+                                         var colorList = [
+                                           '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                                         ];
+                                         return colorList[params.dataIndex]
+                                     },
+                                     label: {
+                                         show: true,
+                                         position: 'top',
+                                         formatter: '{b}\n{c}'
                                      }
                                  }
+                             },
+                             data: $scope.ParticipantsLoadedByMonthvalue,
+                             markPoint: {
+                                 tooltip: {
+                                     trigger: 'item',
+                                     backgroundColor: 'rgba(0,0,0,0)',
+                                     formatter: function (params) {
+                                         return '<img src="'
+                                                 + params.data.symbol.replace('image://', '')
+                                                 + '"/>';
+                                     }
+                                 },
+                                 data: [
+                                     { xAxis: 0, y: 350, name: 'Line', symbolSize: 20, symbol: 'image://../asset/ico/折线图.png' },
+                                     { xAxis: 1, y: 350, name: 'Bar', symbolSize: 20, symbol: 'image://../asset/ico/柱状图.png' },
+                                     { xAxis: 2, y: 350, name: 'Scatter', symbolSize: 20, symbol: 'image://../asset/ico/散点图.png' },
+                                     { xAxis: 3, y: 350, name: 'K', symbolSize: 20, symbol: 'image://../asset/ico/K线图.png' },
+                                     { xAxis: 4, y: 350, name: 'Pie', symbolSize: 20, symbol: 'image://../asset/ico/饼状图.png' },
+                                     { xAxis: 5, y: 350, name: 'Radar', symbolSize: 20, symbol: 'image://../asset/ico/雷达图.png' },
+                                     { xAxis: 6, y: 350, name: 'Chord', symbolSize: 20, symbol: 'image://../asset/ico/和弦图.png' },
+                                     { xAxis: 7, y: 350, name: 'Force', symbolSize: 20, symbol: 'image://../asset/ico/力导向图.png' },
+                                     { xAxis: 8, y: 350, name: 'Map', symbolSize: 20, symbol: 'image://../asset/ico/地图.png' },
+                                     { xAxis: 9, y: 350, name: 'Gauge', symbolSize: 20, symbol: 'image://../asset/ico/仪表盘.png' },
+                                     { xAxis: 10, y: 350, name: 'Funnel', symbolSize: 20, symbol: 'image://../asset/ico/漏斗图.png' },
+                                 ]
                              }
                          }
                      ]
+
+
+
+
+                     //tooltip: {
+                     //    trigger: 'axis'
+                     //},
+                     ////legend: {
+                     ////    data: ['sdfds']
+                     ////},
+                     //toolbox: {
+                     //    show: true,
+                     //    orient: 'vertical',
+                     //    feature: {
+                     //        //mark: { show: true },
+                     //        //dataView: { show: true, readOnly: false },
+                     //        //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                     //        //magicType: {
+                     //        //    show: true,
+                     //        //    title: {
+                     //        //        bar: 'Switch to pies',
+                     //        //        line: 'Switch to line',
+                     //        //    },
+                     //        //    type: ['bar', 'line']
+                     //        //},
+                     //        //restore: { show: true, title: 'Restore' },
+                     //        //saveAsImage: { show: true, title: 'Save as image' }
+                     //    }
+                     //},
+                     //calculable: true,
+                     //xAxis: [
+                     //    {
+                     //        type: 'category',
+                     //        data: $scope.ParticipantsLoadedByMonthname
+                     //         , axisLabel: {
+                     //             show: true,
+                     //             interval: 0,    // {number}
+                     //             rotate: 45,
+                     //             margin: -20,
+                     //             formatter: $scope.ParticipantsLoadedByMonthname,
+                     //             textStyle: {
+                     //                 color: 'blue',
+                     //                 fontFamily: 'sans-serif',
+                     //                 fontSize: 10,
+                     //                 fontStyle: 'italic',
+                     //                 fontWeight: 'bold'
+                     //             }
+
+                     //         }
+                     //    }
+                     //],
+                     //yAxis: [
+                     //    {
+                     //        type: 'Month'
+                     //    }
+                     //],
+                     //series: [
+                     //    {
+                     //        name: 'Points',
+                     //        type: 'bar',
+                     //        data: $scope.ParticipantsLoadedByMonthvalue,
+                     //        itemStyle: {
+                     //            normal: {
+                     //                color: function (param) {
+                     //                    var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
+                     //                    return colorList[param.dataIndex]
+                     //                }
+                     //            },
+                     //            label: {
+                     //                show: true,
+                     //                position: 'top',
+                     //                formatter: '{b}\n{c}'
+                     //            }
+                     //        }
+                     //    }
+                     //]
                  };
 
 
@@ -328,84 +423,53 @@
                  PointsLoadedByMonth_options = {
                      tooltip: {
                          trigger: 'axis',
-                         axisPointer: {
-                             type: 'shadow'
+                         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                             type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                          }
                      },
-                     legend: {
-                         data: ['Month', 'Points']
-                     },
-                     grid: {
-                         left: '3%',
-                         right: '4%',
-                         bottom: '3%',
-                         containLabel: true
-                     },
-                     xAxis: {
-                         type: 'value',
-                         boundaryGap: [0, 0.01]
-                     },
-                     yAxis: {
-                         type: 'category',
-                         data: $scope.StoreHTMLSummary.PointsLoadedByMonth
-                     },
+                     //legend: {
+                     //    data: $scope.StoreHTMLSummary.PointsLoadedByMonthPoints
+                     //},
+                     //toolbox: {
+                     //    show: true,
+                     //    feature: {
+                     //        mark: { show: true },
+                     //        dataView: { show: true, readOnly: false },
+                     //        magicType: { show: true, type: ['line', 'bar'] },
+                     //        restore: { show: true },
+                     //        saveAsImage: { show: true }
+                     //    }
+                     //},
+                     calculable: true,
+                     xAxis: [
+                         {
+                             type: 'value'
+                         }
+                     ],
+                     yAxis: [
+                         {
+                             type: 'category',
+                             axisTick: { show: false },
+                             data: $scope.StoreHTMLSummary.PointsLoadedByMonth
+                         }
+                     ],
                      series: [
-
                          {
                              name: 'Points',
                              type: 'bar',
+                             itemStyle: { normal: { label: { show: true } } },
                              data: $scope.StoreHTMLSummary.PointsLoadedByMonthPoints
-                         }
+                         }//,
                      ]
-                 };
 
-                 //PointsRedeemedByMonth
-                 PointsRedeemedByMonth_options = {
-                     tooltip: {
-                         trigger: 'axis',
-                         axisPointer: {
-                             type: 'shadow'
-                         }
-                     },
-                     legend: {
-                         data: ['Month', 'Points']
-                     },
-                     grid: {
-                         left: '3%',
-                         right: '4%',
-                         bottom: '3%',
-                         containLabel: true
-                     },
-                     xAxis: {
-                         type: 'value',
-                         boundaryGap: [0, 0.01]
-                     },
-                     yAxis: {
-                         type: 'category',
-                         data: $scope.StoreHTMLSummary.PointsRedeemedByMonth
-                     },
-                     series: [
-
-                         {
-                             name: 'Points',
-                             type: 'bar',
-                             data: $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints
-                         }
-                     ]
-                 };
-
-                 //Orders placed by Type
-                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeName);
-                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount);
-
-                 OrdersPlacedByType_options = {
-
-                     //color: ['#3398DB'],
                      //tooltip: {
                      //    trigger: 'axis',
-                     //    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                     //        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                     //    axisPointer: {
+                     //        type: 'shadow'
                      //    }
+                     //},
+                     //legend: {
+                     //    data: ['Month', 'Points']
                      //},
                      //grid: {
                      //    left: '3%',
@@ -413,96 +477,278 @@
                      //    bottom: '3%',
                      //    containLabel: true
                      //},
-                     //xAxis: [
-                     //    {
-                     //        type: 'category',
-                     //        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                     //        axisTick: {
-                     //            alignWithLabel: true
-                     //        }
-                     //    }
-                     //],
-                     //yAxis: [
-                     //    {
-                     //        type: 'value'
-                     //    }
-                     //],
+                     //xAxis: {
+                     //    type: 'value',
+                     //    boundaryGap: [0, 0.01]
+                     //},
+                     //yAxis: {
+                     //    type: 'category',
+                     //    data: $scope.StoreHTMLSummary.PointsLoadedByMonth
+                     //},
                      //series: [
+
                      //    {
-                     //        name: '直接访问',
+                     //        name: 'Points',
                      //        type: 'bar',
-                     //        barWidth: '60%',
-                     //        data: [10, 52, 200, 334, 390, 330, 220]
+                     //        data: $scope.StoreHTMLSummary.PointsLoadedByMonthPoints
                      //    }
                      //]
+                 };
 
+                 //PointsRedeemedByMonth
+                 PointsRedeemedByMonth_options = {
                      tooltip: {
-                         trigger: 'axis'
-                     },
-                     //legend: {
-                     //    data: ['sdfds']
-                     //},
-                     toolbox: {
-                         show: true,
-                         orient: 'vertical',
-                         feature: {
-                             //mark: { show: true },
-                             //dataView: { show: true, readOnly: false },
-                             //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
-                             //magicType: {
-                             //    show: true,
-                             //    title: {
-                             //        bar: 'Switch to pies',
-                             //        line: 'Switch to line',
-                             //    },
-                             //    type: ['bar', 'line']
-                             //},
-                             //restore: { show: true, title: 'Restore' },
-                             //saveAsImage: { show: true, title: 'Save as image' }
+                         trigger: 'axis',
+                         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                             type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                          }
                      },
-                     calculable: false,
+                     //legend: {
+                     //    data: 'Points'
+                     //},
+                     //toolbox: {
+                     //    show: true,
+                     //    feature: {
+                     //        mark: { show: true },
+                     //        dataView: { show: true, readOnly: false },
+                     //        magicType: { show: true, type: ['line', 'bar'] },
+                     //        restore: { show: true },
+                     //        saveAsImage: { show: true }
+                     //    }
+                     //},
+                     calculable: true,
                      xAxis: [
                          {
-                             type: 'category',
-                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeName
-                              , axisLabel: {
-                                  show: true,
-                                  interval: 0,    // {number}
-                                  rotate: 45,
-                                  margin: -20,
-                                  formatter: $scope.StoreHTMLSummary.OrdersPlacedByTypeName,
-                                  textStyle: {
-                                      color: 'blue',
-                                      fontFamily: 'sans-serif',
-                                      fontSize: 10,
-                                      fontStyle: 'italic',
-                                      fontWeight: 'bold'
-                                  }
-
-                              }
+                             type: 'value'
                          }
                      ],
                      yAxis: [
                          {
-                             type: 'OrderCount'
+                             type: 'category',
+                             axisTick: { show: false },
+                             data: $scope.StoreHTMLSummary.PointsRedeemedByMonth
                          }
                      ],
                      series: [
                          {
-                             name: 'OrderCount',
+                             name: 'Points',
                              type: 'bar',
-                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount,
+                             itemStyle: { normal: { label: { show: true } } },
+                             data: $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints
+                         }//,
+                     ]
+
+
+                     //tooltip: {
+                     //    trigger: 'axis',
+                     //    axisPointer: {
+                     //        type: 'shadow'
+                     //    }
+                     //},
+                     //legend: {
+                     //    data: ['Month', 'Points']
+                     //},
+                     //grid: {
+                     //    left: '3%',
+                     //    right: '4%',
+                     //    bottom: '3%',
+                     //    containLabel: true
+                     //},
+                     //xAxis: {
+                     //    type: 'value',
+                     //    boundaryGap: [0, 0.01]
+                     //},
+                     //yAxis: {
+                     //    type: 'category',
+                     //    data: $scope.StoreHTMLSummary.PointsRedeemedByMonth
+                     //},
+                     //series: [
+
+                     //    {
+                     //        name: 'Points',
+                     //        type: 'bar',
+                     //        data: $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints
+                     //    }
+                     //]
+                 };
+
+                 //Orders placed by Type
+                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeName);
+                 console.log($scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount);
+
+                 OrdersPlacedByType_options = {
+                     title: {
+                         x: 'center',
+                         text: '',
+                         subtext: '',
+                         link: 'http://echarts.baidu.com/doc/example.html'
+                     },
+                     tooltip: {
+                         trigger: 'item'
+                     },
+                     toolbox: {
+                         //show: true,
+                         //feature: {
+                         //    dataView: { show: true, readOnly: false },
+                         //    restore: { show: true },
+                         //    saveAsImage: { show: true }
+                         //}
+                     },
+                     calculable: true,
+                     grid: {
+                         borderWidth: 0,
+                         y: 80,
+                         y2: 60
+                     },
+                     xAxis: [
+                         {
+                             type: 'category',
+                             show: false,
+                             rotate: 45,
+                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeName
+                         }
+                     ],
+                     yAxis: [
+                         {
+                             type: 'value',
+                             show: false
+                         }
+                     ],
+                     series: [
+                         {
+                             name: '',
+                             type: 'bar',
                              itemStyle: {
                                  normal: {
-                                     color: function (param) {
-                                         var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
-                                         return colorList[param.dataIndex]
+                                     color: function (params) {
+                                         // build a color map as your need.
+                                         var colorList = [
+                                           '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0',
+                                            '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0',
+                                            '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                                         ];
+                                         return colorList[params.dataIndex]
+                                     },
+                                     label: {
+                                         show: true,
+                                         position: 'top',
+                                         formatter: '{b}\n{c}'
                                      }
                                  }
+                             },
+                             data: $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount,
+                             markPoint: {
+                                 tooltip: {
+                                     trigger: 'item',
+                                     backgroundColor: 'rgba(0,0,0,0)',
+                                     formatter: function (params) {
+                                         return '<img src="'
+                                                 + params.data.symbol.replace('image://', '')
+                                                 + '"/>';
+                                     }
+                                 },
+                                 data: [
+                                     { xAxis: 0, y: 350, name: 'Line', symbolSize: 20, symbol: 'image://../asset/ico/折线图.png' },
+                                     { xAxis: 1, y: 350, name: 'Bar', symbolSize: 20, symbol: 'image://../asset/ico/柱状图.png' },
+                                     { xAxis: 2, y: 350, name: 'Scatter', symbolSize: 20, symbol: 'image://../asset/ico/散点图.png' },
+                                     { xAxis: 3, y: 350, name: 'K', symbolSize: 20, symbol: 'image://../asset/ico/K线图.png' },
+                                     { xAxis: 4, y: 350, name: 'Pie', symbolSize: 20, symbol: 'image://../asset/ico/饼状图.png' },
+                                     { xAxis: 5, y: 350, name: 'Radar', symbolSize: 20, symbol: 'image://../asset/ico/雷达图.png' },
+                                     { xAxis: 6, y: 350, name: 'Chord', symbolSize: 20, symbol: 'image://../asset/ico/和弦图.png' },
+                                     { xAxis: 7, y: 350, name: 'Force', symbolSize: 20, symbol: 'image://../asset/ico/力导向图.png' },
+                                     { xAxis: 8, y: 350, name: 'Map', symbolSize: 20, symbol: 'image://../asset/ico/地图.png' },
+                                     { xAxis: 9, y: 350, name: 'Gauge', symbolSize: 20, symbol: 'image://../asset/ico/仪表盘.png' },
+                                     { xAxis: 10, y: 350, name: 'Funnel', symbolSize: 20, symbol: 'image://../asset/ico/漏斗图.png' },
+                                     { xAxis: 11, y: 350, name: 'Line', symbolSize: 20, symbol: 'image://../asset/ico/折线图.png' },
+                                     { xAxis: 12, y: 350, name: 'Bar', symbolSize: 20, symbol: 'image://../asset/ico/柱状图.png' },
+                                     { xAxis: 13, y: 350, name: 'Scatter', symbolSize: 20, symbol: 'image://../asset/ico/散点图.png' },
+                                     { xAxis: 14, y: 350, name: 'K', symbolSize: 20, symbol: 'image://../asset/ico/K线图.png' },
+                                     { xAxis: 15, y: 350, name: 'Pie', symbolSize: 20, symbol: 'image://../asset/ico/饼状图.png' },
+                                     { xAxis: 16, y: 350, name: 'Radar', symbolSize: 20, symbol: 'image://../asset/ico/雷达图.png' },
+                                     { xAxis: 17, y: 350, name: 'Chord', symbolSize: 20, symbol: 'image://../asset/ico/和弦图.png' },
+                                     { xAxis: 18, y: 350, name: 'Force', symbolSize: 20, symbol: 'image://../asset/ico/力导向图.png' },
+                                     { xAxis: 19, y: 350, name: 'Map', symbolSize: 20, symbol: 'image://../asset/ico/地图.png' },
+                                     { xAxis: 20, y: 350, name: 'Gauge', symbolSize: 20, symbol: 'image://../asset/ico/仪表盘.png' },
+                                     { xAxis: 21, y: 350, name: 'Funnel', symbolSize: 20, symbol: 'image://../asset/ico/漏斗图.png' },
+                                 ]
                              }
                          }
                      ]
+                     
+
+                     //tooltip: {
+                     //    trigger: 'axis'
+                     //},
+                     ////legend: {
+                     ////    data: ['sdfds']
+                     ////},
+                     //toolbox: {
+                     //    show: true,
+                     //    orient: 'vertical',
+                     //    feature: {
+                     //        //mark: { show: true },
+                     //        //dataView: { show: true, readOnly: false },
+                     //        //magicType: { show: true, type: ['line', 'bar'], title: 'Switch to line', },
+                     //        //magicType: {
+                     //        //    show: true,
+                     //        //    title: {
+                     //        //        bar: 'Switch to pies',
+                     //        //        line: 'Switch to line',
+                     //        //    },
+                     //        //    type: ['bar', 'line']
+                     //        //},
+                     //        //restore: { show: true, title: 'Restore' },
+                     //        //saveAsImage: { show: true, title: 'Save as image' }
+                     //    }
+                     //},
+                     //calculable: false,
+                     //xAxis: [
+                     //    {
+                     //        type: 'category',
+                     //        data: $scope.StoreHTMLSummary.OrdersPlacedByTypeName
+                     //         , axisLabel: {
+                     //             show: true,
+                     //             interval: 0,    // {number}
+                     //             rotate: 45,
+                     //             margin: -20,
+                     //             formatter: $scope.StoreHTMLSummary.OrdersPlacedByTypeName,
+                     //             textStyle: {
+                     //                 color: 'blue',
+                     //                 fontFamily: 'sans-serif',
+                     //                 fontSize: 10,
+                     //                 fontStyle: 'italic',
+                     //                 fontWeight: 'bold'
+                     //             }
+
+                     //         }
+                     //    }
+                     //],
+                     //yAxis: [
+                     //    {
+                     //        type: 'OrderCount'
+                     //    }
+                     //],
+                     //series: [
+                     //    {
+                     //        name: 'OrderCount',
+                     //        type: 'bar',
+                     //        data: $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount,
+                     //        itemStyle: {
+                     //            normal: {
+                     //                color: function (param) {
+                     //                    var colorList = ['#1976D2', '#00BCD4', '#C0CA33', '#795548', '#D7504B'];
+                     //                    return colorList[param.dataIndex]
+                     //                }
+                     //            }
+                     //        }
+                     //    }
+                     //]
                  };
 
                  StoreSummary.setOption(StoreSummary_options);
@@ -544,11 +790,11 @@
 
     
 
-    $scope.GetActiveInAciveCustomersByStore = function () {
-        debugger;
+    $scope.GetStoreHTMLCharts = function () {
+        //debugger;
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year=" + $scope.selectedyear)
         .then(function (response) {
-            debugger;
+            //debugger;
             if (response.data != null) {
                 $scope.StoreHTMLSummary.StoreHTMLStoreSummary = [];
 
@@ -566,7 +812,7 @@
                     $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month)
                     $scope.ParticipantsLoadedByMonth.push({ CustomerCount: response.data.participantsLoadedByMonth[i].CustomerCount, Month: response.data.participantsLoadedByMonth[i].Month });
                 }
-                debugger;
+                //debugger;
                 $scope.StoreHTMLSummary.PointsLoadedByMonth = [];
                 $scope.StoreHTMLSummary.PointsLoadedByMonthPoints = [];
                 for (var i = 0; i < response.data.pointsLoadedByMonth.length; i++) {
@@ -582,17 +828,17 @@
                 }
 
                 $scope.StoreHTMLSummary.TopPointsHolders = response.data.topPointsHolders;
-                debugger;
+                //debugger;
                 
                     $scope.StoreHTMLSummary.OrdersPlacedByTypeName = [];
                     $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount = [];
-                    debugger;
+                    //debugger;
 
                     for (var i = 0; i < response.data.orderPlacedByType.length; i++) {
                         $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount.push(response.data.orderPlacedByType[i].OrderCount);
                         $scope.StoreHTMLSummary.OrdersPlacedByTypeName.push(response.data.orderPlacedByType[i].Name)
                     }
-                    debugger;
+                    //debugger;
                     $scope.storelogo = response.data.logo;
                     $scope.myObj = {
                         "width": "456px",
@@ -600,19 +846,8 @@
                         "float": "right",
                         "background-image": "url(" + $scope.storelogo + ")"
                     }
-                //$timeout(function () {
-                //    $scope.$apply(function () {
-                //        $scope.StoreHTMLSummary.OrdersPlacedByTypeName = [];
-                //        $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount = [];
-                //        for (var i = 0; i < response.data.orderPlacedByType.length; i++) {
-                //            $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount.push(response.data.orderPlacedByType[i].OrderCount);
-                //            $scope.StoreHTMLSummary.OrdersPlacedByTypeName.push(response.data.orderPlacedByType[i].Name)
-                //        }
-                //    });
-                //}, 3000);
-
             }
-            // $scope.activeInactiveCustomer = response.data;
+            
             LoadCharts();
         })
         .catch(function (response) {
@@ -625,11 +860,11 @@
 
 
     $scope.ExportStoreHTMLPDF = function () {
-        debugger;
+        //debugger;
 
         html2canvas($("#pdf"), {
             onrendered: function (canvas) {
-                debugger;
+                //debugger;
                 theCanvas = canvas;
                 theCanvas.setAttribute("id", "Div1");
                 document.body.appendChild(canvas);
@@ -637,7 +872,7 @@
                 // Convert and download as image 
                 //Canvas2Image.saveAsPNG(canvas);
                 $("#img-out").html(canvas);
-                debugger;
+                //debugger;
 
                 var base64 = $('#Div1')[0].toDataURL();
                 $("#imgCapture").attr("src", base64);
@@ -657,9 +892,9 @@
     }
     $("#Generatepdf").click(function () {
         //function ExportStoreHTMLPDF1() {
-        debugger;
+        //debugger;
         var template = $('#img-capture').html();
-        debugger;
+        //debugger;
         var storeentity = { template: template };
         $http({
             url: configurationService.basePath + 'api/StoreApi/ExportStoreHTMLPDF',
@@ -668,7 +903,7 @@
             async: false,
             responseType: 'arraybuffer'
         }).success(function (data, status, headers, config) {
-            debugger;
+            //debugger;
             var type = headers('Content-Type');
             var disposition = headers('Content-Disposition');
             if (disposition) {
@@ -693,43 +928,8 @@
             toastr.error("Some error has occured, please contact to admin");
         });
     });
-
-    //$scope.ExportStoreHTMLPDF1 = function () {
-    //    debugger;
-    //    var template = $('#img-capture').html();
-    //    debugger;
-    //    var storeentity = { template: template };
-    //    $http({
-    //        url: configurationService.basePath + 'api/StoreApi/ExportStoreHTMLPDF',
-    //        method: "POST",
-    //        data: storeentity,
-    //        async: false,
-    //        responseType: 'arraybuffer'
-    //    }).success(function (data, status, headers, config) {
-    //        debugger;
-    //        var type = headers('Content-Type');
-    //        var disposition = headers('Content-Disposition');
-    //        if (disposition) {
-    //            var match = disposition.match(/.*filename=\"?([^;\"]+)\"?.*/);
-    //            if (match[1])
-    //                defaultFileName = match[1];
-    //        }
-    //        defaultFileName = defaultFileName.replace(/[<>:"\/\\|?*]+/g, '_');
-    //        var blob = new Blob([data], { type: type });
-    //        if (navigator.appVersion.toString().indexOf('.NET') > 0) // For IE 
-    //            window.navigator.msSaveBlob(blob, defaultFileName);
-    //        else {
-    //            var objectUrl = URL.createObjectURL(blob);
-    //            var downloadLink = document.createElement("a");
-    //            downloadLink.href = objectUrl;
-    //            downloadLink.download = defaultFileName;
-    //            document.body.appendChild(downloadLink);
-    //            downloadLink.click();
-    //            document.body.removeChild(downloadLink);
-    //        }
-    //    }).error(function (data, status, headers, config) {
-    //        toastr.error("Some error has occured, please contact to admin");
-    //    });
-    //}
+    $scope.getStoreWidth =function() {
+        return '1270px';   
+    }
 
 });

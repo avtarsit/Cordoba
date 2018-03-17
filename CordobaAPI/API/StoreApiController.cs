@@ -283,7 +283,7 @@ namespace CordobaAPI.API
             Stream @null = Stream.Null;
             streamContent.Content = new StreamContent(new MemoryStream(pdfBytes));
             streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-            streamContent.Content.Headers.Add("content-disposition", string.Concat("inline;  filename=\"", "AssociateObjective.pdf", "\""));
+            streamContent.Content.Headers.Add("content-disposition", string.Concat("inline;  filename=\"", "Store PDF.pdf", "\""));
             httpResponseMessage = streamContent;
             return httpResponseMessage;
 
