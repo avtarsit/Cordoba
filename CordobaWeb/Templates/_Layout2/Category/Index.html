@@ -34,7 +34,7 @@
 <div class="catagories_slider productlist" ng-controller="CategoryListController">
     <div class="container">
         <div class="col-md-3">
-            <div class="letest-product catagories" ng-if="SelectedSubCategory==-3">
+            <div class="letest-product catagories" > <!--ng-if="SelectedSubCategory==-3"-->
                 <h3>Search by Points</h3>
                 <div class="searchByPointsContent">
                     <ul>
@@ -91,7 +91,7 @@
                     </div>
 
                 </div>-->
-                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="SelectedSubCategory==-3 && ProductList.length>0">
+                <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="ProductList.length>0"> <!--"SelectedSubCategory==-3"-->
                     <div>
                         <label class="col-sm-3 rn_pad control-label mt-5">
                             Sort By
