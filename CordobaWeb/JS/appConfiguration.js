@@ -671,7 +671,7 @@ function GetLayoutName() {
                              isAlreadyDecoded = true;
                      }
                      if (isAlreadyDecoded) {
-                         window.location.href = 'home/accessdenied';
+                         //window.location.href = 'home/accessdenied';
                      }
 
                  });
