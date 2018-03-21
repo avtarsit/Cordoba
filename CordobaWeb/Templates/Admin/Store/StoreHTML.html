@@ -37,16 +37,6 @@
             </ul>
         </div>
     </div>
-    <!--<div class="col-sm-4">
-        <div >
-            <label class="control-label" for="selectedyear">Select Year</label>
-            <select data-ng-model="selectedyear" name="Years" class="form-control" ng-options="x.id as x.name for x in Years" ng-change="GetMonthData(selectedyear)"></select>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="selectedmonth">Select Month</label>
-            <select class="" data-ng-model="selectedmonth" name="Months" ng-init="GetMonthData(selectedyear)" ng-change="GetChartData(selectedyear,selectedmonth)" ng-options="m.id as m.name for m in Months"></select>
-        </div>
-    </div>-->
     <div class="drop" style="padding:0 20px 20px 20px;">
         <div class="form-inline">
             <div class="form-group">
@@ -58,106 +48,75 @@
             </div>
         </div>
     </div>
-
-
     <div id="pdf" class="page-header-content">
-        
-                <!-- Nightingale roses width hidden labels -->
-                <div class="panel">
-                    
-                    <!--<div class="panel-body">
-                        <div style="width:80%">
-                            <div style="float:left;">
-                                <img src="/Content/admin/images/logo/cordoba-logo.png" alt="">
-                            </div>
-                            <div style="float:right;">
-                                <img ng-src="{{storelogo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo">
-                            </div>
-                        </div>
-                        <div style="clear:both;">
-                            <h2>Review Meeting</h2>
-                            <h2>{{monthname}} {{selectedyear}}</h2>
-                        </div>
-                        <div>
-                            <img src="/Content/admin/images/logo/homepdfimage.png" alt="">
-                        </div>
 
-                    </div>-->
-                    <div class="panel-body" style="height: 456px !important;">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <img src="../../../Content/admin/images/logo/cordoba-logo.png" alt="Cordoba Rewards">
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <!--<img ng-src="{{storelogo}}" alt="Store Logo" />-->
-                                <img ng-src="../../Content/admin/images/Storelogo/{{StoreId}}.png" style="height:78px; width:230px" alt="Store Logo" />
-                            </div>
-                        </div>
-                            <div style="margin-top:30px;">
-                                <h2 style="margin-bottom:0;">Review Meeting</h2>
-                                <h2>{{monthname}} {{selectedyear}}</h2>
-                            </div>
-                            <img src="/Content/admin/images/logo/homepdfimage.png" style="max-width:100%" alt="" />
-                        </div>
-                        <!--<div ng-style="myObj">
-        </div>-->
-
+        <!-- Nightingale roses width hidden labels -->
+        <div class="panel">
+            <div class="panel-body" style="height: 456px !important;">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="../../../Content/admin/images/logo/cordoba-logo.png" alt="Cordoba Rewards">
                     </div>
-                    <!-- /nightingale roses width hidden labels -->
-            <!-- Quick stats boxes -->
-
+                    <div class="col-sm-6 text-right">
+                        <!--<img ng-src="{{storelogo}}" alt="Store Logo" />-->
+                        <img ng-src="../../Content/admin/images/Storelogo/{{StoreId}}.png" style="height:78px; width:230px" alt="Store Logo" />
+                    </div>
+                </div>
+                <div style="margin-top:30px;">
+                    <h2 style="margin-bottom:0;">Review Meeting</h2>
+                    <h2>{{monthname}} {{selectedyear}}</h2>
+                </div>
+                <img src="/Content/admin/images/logo/homepdfimage.png" style="max-width:100%" alt="" />
+            </div>
+        </div>
 
         <div class="panel" style="height:643px !important;">
             <div class="panel-body">
                 <img ng-src="../../Content/admin/images/Storescreen/{{StoreId}}.png" alt="Store Screen" style="height:621px;width:100%;" />
             </div>
         </div>
-
-
-
         <div class="row">
-            <div class="col-sm-6">
-                <!-- Nightingale roses width hidden labels -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Store Summary</h5>
-                        Participant: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value + StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
-                        Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value}})<br />
-                        Not Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
-                        <div class="heading-elements">
+            <div class="col-sm-12" style="height:539px !important;">
+                <div class="col-sm-6" style="height:539px !important;">
+                    <!-- Nightingale roses width hidden labels -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Store Summary</h5>
+                            Participant: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value + StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
+                            Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[0].value}})<br />
+                            Not Active: ({{StoreHTMLSummary.StoreHTMLStoreSummary[1].value}})<br />
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+                        <div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.StoreHTMLStoreSummary.length==0}">
+                            <h1 ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length==0"><br />No Storesummary Available to Display</h1>
+                            <div class="chart-container" ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length>0">
+                                <div class="chart has-fixed-height" id="StoreHTMLStoreSummary"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.StoreHTMLStoreSummary.length==0}">
-                        <h1 ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length==0"><br />No Storesummary Available to Display</h1>
-                        <div class="chart-container" ng-if="StoreHTMLSummary.StoreHTMLStoreSummary.length>0">
-                            <div class="chart has-fixed-height" id="StoreHTMLStoreSummary"></div>
-                        </div>
-                    </div>
+                    <!-- /nightingale roses width hidden labels -->
                 </div>
-                <!-- /nightingale roses width hidden labels -->
-            </div>
-
-            <!-- Quick stats boxes -->
-
-            <div class="col-sm-6">
-                <!-- Nightingale roses width hidden labels -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Points Remaining:({{StoreHTMLSummary.PointsRemaining[0].value}})</h5>
-                        <div class="heading-elements">
+                <!-- Quick stats boxes -->
+                <div class="col-sm-6" style="height:539px !important;">
+                    <!-- Nightingale roses width hidden labels -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Points Remaining:({{StoreHTMLSummary.PointsRemaining[0].value}})</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+                        <div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.PointsRemaining.length==0}">
+                            <h1 ng-if="StoreHTMLSummary.PointsRemaining.length==0"><br />No PointsRemaining Available to Display</h1>
+                            <div class="chart-container" ng-if="StoreHTMLSummary.PointsRemaining.length>0">
+                                <div class="chart" id="PointsRemaining" style="min-height:447px;"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="panel-body" ng-class="{'fixHeight':StoreHTMLSummary.PointsRemaining.length==0}">
-                        <h1 ng-if="StoreHTMLSummary.PointsRemaining.length==0"><br />No PointsRemaining Available to Display</h1>
-                        <div class="chart-container" ng-if="StoreHTMLSummary.PointsRemaining.length>0">
-                            <div class="chart" id="PointsRemaining" style="min-height:447px;"></div>
-                        </div>
-                    </div>
+                    <!-- /nightingale roses width hidden labels -->
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
-
-            <div class="col-sm-12" style="margin-top:510px;">
+            <div class="col-sm-12" style="height:496px !important; margin-top:510px;">
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
@@ -168,31 +127,31 @@
                     <div class="panel-body" ng-class="{'fixHeight':ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0}">
                         <h1 ng-if="ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0"><br />No PointsRemaining Available to Display</h1>
                         <!--<table>
-                        <thead>
-                            <tr>
-                                <th>Month</th>
-                                <th>Customer Count</th>
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Customer Count</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat=" item in ParticipantsLoadedByMonth">
+                                <td ng-bind="item.Month"></td>
+                                <td ng-bind="item.CustomerCount"></td>
                             </tr>
-                        </thead>
-                        <tr ng-repeat=" item in ParticipantsLoadedByMonth">
-                            <td ng-bind="item.Month"></td>
-                            <td ng-bind="item.CustomerCount"></td>
-                        </tr>
-                    </table>-->
+                        </table>-->
                         <div class="chart-container" ng-show="ParticipantsLoadedByMonthname.length>0 && ParticipantsLoadedByMonthvalue.length>0">
                             <div style="float:left;">
                                 <!--<table>
-                                <thead>
-                                    <tr>
-                                        <th>Month</th>
-                                        <th>Customer Count</th>
+                                    <thead>
+                                        <tr>
+                                            <th>Month</th>
+                                            <th>Customer Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat=" item in ParticipantsLoadedByMonth">
+                                        <td ng-bind="item.Month"></td>
+                                        <td ng-bind="item.CustomerCount"></td>
                                     </tr>
-                                </thead>
-                                <tr ng-repeat=" item in ParticipantsLoadedByMonth">
-                                    <td ng-bind="item.Month"></td>
-                                    <td ng-bind="item.CustomerCount"></td>
-                                </tr>
-                            </table>-->
+                                </table>-->
                             </div>
 
                             <div class="chart has-fixed-height" id="ParticipantsLoadedByMonth"></div>
@@ -202,7 +161,7 @@
                 </div>
                 <!-- /nightingale roses width hidden labels -->
             </div>
-            <div class="col-sm-12" style="margin-top:100px;">
+            <div class="col-sm-12" style="height:476px !important; margin-top:100px;">
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
@@ -219,7 +178,7 @@
                 </div>
                 <!-- /nightingale roses width hidden labels -->
             </div>
-            <div class="col-sm-12" style="min-height:780px;">
+            <div class="col-sm-12" style="height:780px !important;">
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
@@ -236,7 +195,7 @@
                 </div>
                 <!-- /nightingale roses width hidden labels -->
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="height:450px !important">
                 <!--style="margin-top:270px;"-->
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
@@ -268,7 +227,7 @@
                 </div>
                 <!-- /nightingale roses width hidden labels -->
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="height:496px !important">
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
@@ -290,11 +249,10 @@
                 <!-- /nightingale roses width hidden labels -->
             </div>
         </div>
-        </div>
     </div>
+</div>
 
-    <div id="img-out" style="width:100%;"></div>
-    <div id="img-capture">
-        <img id="imgCapture" alt="" style="display:none;width:100%;" />
-    </div>
+<div id="img-out" style="width:1323px;height:4988px;"></div>
+<div id="img-capture">
+    <img id="imgCapture" alt="" style="display:none;width:1323px;height:4988px;" />
 </div>
