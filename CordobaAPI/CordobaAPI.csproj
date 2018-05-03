@@ -286,7 +286,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.exe.config" />
+    <Content Include="DownloadProductImage\CordobaProductImageDownloadService.exe.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\API.pubxml" />
     <None Include="Properties\PublishProfiles\DF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

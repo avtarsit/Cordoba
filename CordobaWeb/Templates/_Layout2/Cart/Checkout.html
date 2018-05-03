@@ -1,4 +1,10 @@
-﻿<div class="container" ng-controller="CartDetailController">
+﻿<style>
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        left: -9999px;
+    }
+</style>
+<div class="container" ng-controller="CartDetailController">
     <div class="order-detail cart-detail mt-30">
         <div class="col-sm-12">
             <div class="points">
@@ -63,24 +69,42 @@
                     </div>
                 </div>
             </div>
+           
+
             <div class="orders">
                 <div class="address">
-                    <div class="addess-heading">
-                        <h2>Payment Summary</h2>
+                    <!--<div class="addess-desc mt-20">
+                        <input type="checkbox" class="cursor-pointer ng-pristine ng-valid ng-touched" ng-model="TermAndCondition"><span class="ml-10">Please accept Terms &amp; Conditions </span>
+                        <button class="cursor-pointer pr-10 btn-link" ng-click="OpenTermsCondition()">Terms &amp; Conditions</button>
+                        <br /><span style="color:red;" ng-show="validationmsg">Please select Terms &amp; Conditions</span>
+                    </div>-->
+                    <div class="chekbox-main checkbox secondary">
+                        <input type="checkbox" id="checkbox" ng-model="TermAndCondition">
+                        <label for="checkbox">Please accept Terms &amp; Conditions</label>
+                        <button class="cursor-pointer pr-10 btn-link" ng-click="OpenTermsCondition()">Terms &amp; Conditions</button>
                     </div>
+                    <br /><span style="color:red;" ng-show="validationmsg">Please select Terms &amp; Conditions</span>
+                </div>
+            </div>
 
-                    <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
-                        <p ng-bind="'- '+Item.name"></p>
-                        <p ng-bind="Item.totalpoints +' Points'"></p>
-                    </div>
-                    <div class="payment-summary total">
-                        <span>Order Total:</span>
-                        <span ng-bind="AllItemTotalPoints+' Points'"></span>
-                        <br />
-                        <a href="" ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
+                <div class="orders">
+                    <div class="address">
+                        <div class="addess-heading">
+                            <h2>Payment Summary</h2>
+                        </div>
+
+                        <div class="payment-summary mt-20" ng-repeat="Item in CartItemList">
+                            <p ng-bind="'- '+Item.name"></p>
+                            <p ng-bind="Item.totalpoints +' Points'"></p>
+                        </div>
+                        <div class="payment-summary total">
+                            <span>Order Total:</span>
+                            <span ng-bind="AllItemTotalPoints+' Points'"></span>
+                            <br />
+                            <a href="" ng-click="PlaceOrder()" class="btn btn-empty">Place Order</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>

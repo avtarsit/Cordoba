@@ -8,6 +8,7 @@
     $scope.cartgroup_id = 0;
     $scope.SelectedCustomerAddress = new Object();
     $scope.SelectedCustomerAddress.address_id = 0;
+    $scope.TermAndCondition = false;
 
     $scope.GetCustomerDetails = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
@@ -172,6 +173,14 @@
     }
 
     $scope.PlaceOrder = function () {
+        debugger;
+        if (!$scope.TermAndCondition) {
+            $scope.validationmsg = true;
+            return false;
+        }
+        else {
+            $scope.validationmsg = false;
+        }
         if ($scope.SelectedCustomerAddress.address_id > 0) {
             $scope.PlaceOrderObj.store_id = $scope.StoreDetailInSession.store_id;
             $scope.PlaceOrderObj.customer_id = UserDetail.customer_id;

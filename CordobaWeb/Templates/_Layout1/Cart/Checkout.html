@@ -60,6 +60,15 @@
                     <textarea class="form-control" ng-model="PlaceOrderObj.Comment" placeholder="Write your comment here..."></textarea>
                 </div>
             </div>
+            <div class="account-block comment">
+                <div class="chekbox-main checkbox secondary">
+                    <input type="checkbox" id="checkbox" ng-model="TermAndCondition">
+                    <label for="checkbox">Please accept Terms &amp; Conditions</label>
+                    <button class="cursor-pointer pr-10 btn-link" ng-click="OpenTermsCondition()">Terms &amp; Conditions</button>
+                </div>
+                <br /><span style="color:red;" ng-show="validationmsg">Please select Terms &amp; Conditions</span>
+            </div>
+
             <div class="account-block">
                 <h4 class="payment-heading">Payment Summary</h4>
                 <div class="payment-summary">

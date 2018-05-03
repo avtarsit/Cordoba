@@ -172,6 +172,7 @@ namespace CordobaServices.Services
                 cmd.Parameters.AddWithValue("@Catalogue_Id", catalogue_id);
                 cmd.Parameters.AddWithValue("@CreatedBy", LoggedInUserId);
                 cmd.Parameters.AddWithValue("@IsConfirmToIgnore", IsConfirmToIgnore);
+                cmd.CommandTimeout = 120000000;
 
                 System.Data.IDataReader dr = cmd.ExecuteReader();
                 List<ImportProductCatalogueEntity> lstEntity = new List<ImportProductCatalogueEntity>();

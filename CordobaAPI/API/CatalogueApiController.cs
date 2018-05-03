@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Management;
 using System.Diagnostics;
 using System.ServiceProcess;
+//using Spire.Xls;
 
 namespace CordobaAPI.API
 {
@@ -108,7 +109,7 @@ namespace CordobaAPI.API
             try
             {
                 var directoryPath = System.Web.HttpContext.Current.Server.MapPath("~/TempFiles");
-
+                //DataTable dtXLS = null;
                 if (!System.IO.Directory.Exists(directoryPath))
                 {
                     System.IO.Directory.CreateDirectory(directoryPath);
@@ -135,6 +136,15 @@ namespace CordobaAPI.API
                             File.WriteAllBytes(filePath, fileData);
                         }
                     }
+
+                    //// Get the uploaded image from the Files collection
+                    //var httpPostedFile = HttpContext.Current.Request.Files[0];
+                    //httpPostedFile.SaveAs(filePath);
+                    //Workbook workbook = new Workbook();
+                    //workbook.LoadFromFile(filePath);
+                    //Worksheet sheet = workbook.Worksheets[0];
+                    //dtXLS = sheet.ExportDataTable();
+                   
                 }
 
                 string excelfilepath = filePath;
@@ -162,7 +172,7 @@ namespace CordobaAPI.API
                 DataTable dtXLS = new DataTable(Convert.ToString(dtSheets.Rows[0]["Table_name"]).Replace("$", ""));
                 dtXLS.TableName = "Sheet1";
                 OleDbCommand oleDbcommand = new OleDbCommand(sql, OleDbConn);
-
+                oleDbcommand.CommandTimeout = 120000000;
                 OleDbAdapter.SelectCommand = oleDbcommand;
                 OleDbAdapter.Fill(dtXLS);
                 OleDbConn.Close();
@@ -192,6 +202,13 @@ namespace CordobaAPI.API
             {
                 string path = System.Web.Hosting.HostingEnvironment.MapPath("~/DownloadProductImage/CordobaProductImageDownloadService.exe");
                 System.Diagnostics.Process.Start(path);
+
+                //if (!System.Diagnostics.Debugger.IsAttached)
+                //{
+                //    System.Diagnostics.Debugger.Launch();
+                //    System.Diagnostics.Debugger.Break();
+                //}
+
                 //var sc = new System.ServiceProcess.ServiceController();
                 //sc.ServiceName = "CordobaInstaller";
                 //sc.MachineName = System.Environment.MachineName;

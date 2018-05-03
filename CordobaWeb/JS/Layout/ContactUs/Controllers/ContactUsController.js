@@ -22,7 +22,7 @@
         //    $scope.captchaValid = true;
         //}
         if (form.$valid) {
-            $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description, $scope.StoreDetailInSession)
+            $http.post(configurationService.basePath + "API/ContactUsAPI/SendContactUsDetails?firstname=" + $scope.contactUsObj.firstname + "&lastname=" + $scope.contactUsObj.lastname + "&email=" + $scope.contactUsObj.email + "&phone=" + $scope.contactUsObj.phone + "&description=" + $scope.contactUsObj.description.replace(/#/g, '%23'), $scope.StoreDetailInSession)
               .then(function (response) {
                   $scope.contactUsObj = new Object();
                   toastr.success("Successfully Submitted.");

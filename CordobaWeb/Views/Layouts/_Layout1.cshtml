@@ -162,7 +162,7 @@
                                 <li class="active"><a href="" class="cursor-pointer" ui-sref="Home">Home</a></li>
                                 <li><a href="" class="cursor-pointer" ui-sref="LayoutCategoryORProductList({CategoryId:-1})">Our Products</a></li>
                                 <li><a href="" ui-sref="ContactUs">Contact Us</a></li>
-                                <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Rewards</a></li>
+                                <li><a ui-sref="MyReward" ng-if="CustomerDetail.customer_id>0">Recognition</a></li>
                             </ul>
                         </div>
                     </div>
@@ -294,10 +294,10 @@
                                 <div class="login_page">
                                     <input type="hidden" class="form-control" name="email" id="emailOTP">
                                     <div class="form-group pt-20">
-                                        <label for="otp">OTP:</label>
-                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" ng-model="otpObj.otp" min="0" max="6" required="required">
-                                        <input type="text" class="form-control" name="otp" id="otpVerifyOTP" placeholder="Enter OTP" ng-model="otpObj.confirmotp" required="required">
-                                        <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid OTP!</p>
+                                        <label for="otp">One Time Password:</label>
+                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OneTimePassword" ng-model="otpObj.otp" min="0" max="6" required="required">
+                                        <input type="text" class="form-control" name="otp" id="otpVerifyOTP" placeholder="Enter OneTimePassword" ng-model="otpObj.confirmotp" required="required">
+                                        <p class="text-danger validationErrors" ng-show="OTPForm.$submitted && (!OTPForm.$valid) && (OTPForm.otp.$error.required || OTPForm.otp.$error.otp)">Enter valid One Time Password!</p>
                                     </div>
                                     <button type="submit" class="btn btn-empty mt-5 text-center" ng-disabled="otpObj.otp != otpObj.confirmotp" ng-click="VerifyOTP(OTPForm)">Submit</button>
 
@@ -345,10 +345,10 @@
                                 <div class="login_page">
                                     @*<input type="hidden" class="form-control" name="email" id="emailreset">*@
                                     <div class="form-group pt-20">
-                                        <p>Kindly check your email that contains OTP.</p>
-                                        <label for="otp">OTP:</label>
-                                        <input type="text" class="form-control" name="otpreset" id="otpreset" placeholder="Enter OTP" ng-model="resetObj.otp" min="0" max="6" required="required">
-                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!ResetPassForm.$valid) && (ResetPassForm.otpreset.$error.required || ResetPassForm.otpreset.$error.otp)">Enter valid OTP!</p>
+                                        <p>Kindly check your email that contains One Time Password.</p>
+                                        <label for="otp">One Time Password:</label>
+                                        <input type="text" class="form-control" name="otpreset" id="otpreset" placeholder="Enter OneTimePassword" ng-model="resetObj.otp" min="0" max="6" required="required">
+                                        <p class="text-danger validationErrors" ng-show="ResetPassForm.$submitted && (!ResetPassForm.$valid) && (ResetPassForm.otpreset.$error.required || ResetPassForm.otpreset.$error.otp)">Enter valid One Time Password!</p>
 
                                         <label for="otp">Password:</label>
                                         <input type="password" class="form-control" name="password" id="pass" placeholder="Enter Password" ng-model="resetObj.password" min="0" max="6" required="required">
