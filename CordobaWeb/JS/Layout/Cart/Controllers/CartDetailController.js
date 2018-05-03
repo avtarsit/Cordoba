@@ -9,8 +9,10 @@
     $scope.SelectedCustomerAddress = new Object();
     $scope.SelectedCustomerAddress.address_id = 0;
     $scope.TermAndCondition = false;
+    $scope.ValidateAddress = false;
 
     $scope.GetCustomerDetails = function () {
+        debugger;
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         .then(function (response) {
             $rootScope.CustomerDetail.points = response.data.points;
@@ -83,6 +85,7 @@
         .then(function (response) {
             if (response.data.length > 0) {
                 $scope.CustomerAddressList = response.data;
+                debugger;
                 $scope.SelectedCustomerAddress = $scope.CustomerAddressList[0];
                 $scope.SelectedCustomerAddress.SelectedIndex = 0;
             }
@@ -174,6 +177,11 @@
 
     $scope.PlaceOrder = function () {
         debugger;
+        if ($scope.SelectedCustomerAddress.address_1 == "" || ($scope.SelectedCustomerAddress.address_1 == null && $scope.SelectedCustomerAddress.address_1 == undefined) || ($scope.SelectedCustomerAddress.postcode == null && $scope.SelectedCustomerAddress.postcode == undefined)) {
+            $scope.ValidateAddress = true;
+            return false;
+        }
+
         if (!$scope.TermAndCondition) {
             $scope.validationmsg = true;
             return false;
@@ -225,6 +233,7 @@
     }
 
     $scope.NavigateAddressSlide = function (index, IsNext) {
+        debugger;
         var totalAddress = $scope.CustomerAddressList.length;
         var CurrIndex = 0;
         if (index >= 0) {

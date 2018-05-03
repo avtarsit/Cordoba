@@ -47,6 +47,7 @@
                 <div class="payment-summary">
                     <span>{{CustomerDetail.firstname}} {{CustomerDetail.lastname}}</span>
                     <p> {{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}},{{SelectedCustomerAddress.county}}</p>
+                    <span style="color:red;" ng-show="ValidateAddress">Please add Address1 and Postcode for selected address.</span>
                 </div>
             </div>
             <div class="chckout-add">
