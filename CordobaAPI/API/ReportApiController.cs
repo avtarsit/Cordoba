@@ -111,6 +111,34 @@ namespace CordobaAPI.API
         }
 
         [HttpPost]
+        public TableParameter<ReportEntity> GetCustomerBalanceReportList(int PageIndex, string StoreIDs, Nullable<DateTime> Date, TableParameter<ReportEntity> tableParameter)
+        {
+            try
+            {
+                tableParameter.PageIndex = PageIndex;
+                string sortColumn = tableParameter.SortColumn.Desc ? tableParameter.SortColumn.Column + " desc" : tableParameter.SortColumn.Column + " asc";
+                var result = _reportServices.GetCustomerBalanceReportList(sortColumn, StoreIDs,Date, tableParameter).ToList();
+
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
+                {
+                    totalRecords = result.FirstOrDefault().TotalRecords;
+                }
+
+                return new TableParameter<ReportEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
         public HttpResponseMessage TransactionReportExportToExcel(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, object tableParameter)
         {
             SortColumn sr;
@@ -276,6 +304,70 @@ namespace CordobaAPI.API
             }
             return httpResponseMessage;
         }
+
+        [HttpPost]
+        public HttpResponseMessage CustomerBalanceReportExportToExcel(int PageIndex, string StoreIDs, Nullable<DateTime> Date, object tableParameter)
+        {
+            SortColumn sr;
+            string sortColumn;
+            if (tableParameter != null)
+            {
+                sr = (SortColumn)JsonConvert.DeserializeObject(tableParameter.ToString(), typeof(SortColumn));
+                sortColumn = sr.Desc ? sr.Column + " desc" : sr.Column + " asc";
+            }
+            else
+            {
+                sortColumn = "StoreName desc";
+            }
+
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
+            DateTime date = DateTime.Now.Date;
+            string str = string.Concat("CustomerBalanceReport_export", date.ToString("ddMMyyyy"), ".xls");
+
+            DataSet ds = _reportServices.CustomerBalanceReportExportToExcel(sortColumn, tableParameter, StoreIDs, Date );
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
+                selectedColumn.Add(new ColumnConfiguration("StoreName", "Store Name"));
+                selectedColumn.Add(new ColumnConfiguration("email", "Email"));
+                selectedColumn.Add(new ColumnConfiguration("Balance", "Balance"));
+
+                if (!string.IsNullOrEmpty(sortColumn))
+                {
+                    ds.Tables[0].DefaultView.Sort = sortColumn;
+                }
+                DataTable dt = ds.Tables[0].DefaultView.ToTable(false, selectedColumn.Select(s => s.OriginalColumnName).ToArray());
+
+                ds.Tables.RemoveAt(0); // Delete Existing Table 
+                ds.Tables.Add(dt); // Add Modified Table
+                ds = CordobaCommon.GeneralMethods.ChangeDataSetColumnTitleAndReorder(ds, selectedColumn); // Rename Selected Columns
+
+            }
+
+            try
+            {
+                if (ds == null)
+                {
+                    return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "No records found.");
+                }
+                byte[] asByteArray = GeneralMethods.ExportToExcel(ds, "Customers");
+
+                HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+                Stream @null = Stream.Null;
+                streamContent.Content = new StreamContent(new MemoryStream(asByteArray));
+                streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                streamContent.Content.Headers.Add("content-disposition", string.Concat("attachment;  filename=\"", str, "\""));
+                httpResponseMessage = streamContent;
+
+            }
+            catch (Exception)
+            {
+                httpResponseMessage = base.Request.CreateResponse<bool>(HttpStatusCode.OK, false);
+            }
+            return httpResponseMessage;
+        }
+               
 
         [HttpPost]
         public TableParameter<ReportEntity> GetTransactionItemCategoryReportList(int PageIndex, Nullable<DateTime> DateStart, Nullable<DateTime> DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> tableParameter)

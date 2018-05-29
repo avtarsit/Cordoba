@@ -23,6 +23,11 @@ namespace CordobaServices.Interfaces
 
         DataSet TransactionReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId);
 
+        //Customer Balance Report 
+        IEnumerable<ReportEntity> GetCustomerBalanceReportList(string sortColumn, string storeids, DateTime? Date, TableParameter<ReportEntity> filter);
+
+        DataSet CustomerBalanceReportExportToExcel(string sortColumn, object tableParameter, string StoreIDs, DateTime? Date);
+
         //Transaction Item Report
         IEnumerable<ReportEntity> GetTransactionItemReportList(string sortColumn, DateTime? DateStart, DateTime? DateEnd, int StoreId, int LoggedInUserId, TableParameter<ReportEntity> filter, string PageFrom = "");
 

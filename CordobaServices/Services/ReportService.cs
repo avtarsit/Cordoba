@@ -100,6 +100,29 @@ namespace CordobaServices.Services
             //return result;
         }
 
+        public IEnumerable<ReportEntity> GetCustomerBalanceReportList(string sortColumn,string storeids,DateTime? Date, TableParameter<ReportEntity> filter)
+        {
+            try
+            {
+                SqlParameter[] param = new SqlParameter[] {
+                     new SqlParameter("OrderBy", sortColumn!=null ? sortColumn:(object)DBNull.Value)
+                    ,new SqlParameter("PageSize",filter != null ? filter.iDisplayLength : 10)
+                    ,new SqlParameter("PageIndex",filter != null ? filter.PageIndex : 1)                   
+                    ,new SqlParameter("storeids", !string.IsNullOrWhiteSpace(storeids) ? storeids:(object)DBNull.Value)
+                    ,new SqlParameter("Date", Date!=null ? Date:(object)DBNull.Value)
+                };
+
+                var query = ReportEntityGenericRepository.ExecuteSQL<ReportEntity>("GetCustomerBalanceReportList", param).AsQueryable();
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            //return result;
+        }
+
         public DataSet TransactionReportExportToExcel(string sortColumn, object tableParameter, DateTime? dateStart, DateTime? dateEnd, int? storeId)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
@@ -117,6 +140,43 @@ namespace CordobaServices.Services
                 cmd.Parameters.Add(new SqlParameter("@DateEnd", dateEnd));
                 cmd.Parameters.Add(new SqlParameter("@store_id", storeId?? (object)DBNull.Value));
                 
+                cmd.CommandType = CommandType.StoredProcedure;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(ds, "data");
+                return ds;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    cmd.Dispose();
+                }
+            }
+
+        }
+
+        public DataSet CustomerBalanceReportExportToExcel(string sortColumn, object tableParameter, string StoreIDs, DateTime? Date)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                DataSet ds = new DataSet();
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                cmd = new SqlCommand("GetCustomerBalanceReportList", con);
+                cmd.Parameters.Add(new SqlParameter("@OrderBy", sortColumn));
+                cmd.Parameters.Add(new SqlParameter("@PageSize", 10000000));
+                cmd.Parameters.Add(new SqlParameter("@PageIndex", 1));
+                cmd.Parameters.Add(new SqlParameter("@StoreIDs", StoreIDs ?? (object)DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@Date", Date?? (object)DBNull.Value));
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 adapter.SelectCommand = cmd;
                 adapter.Fill(ds, "data");

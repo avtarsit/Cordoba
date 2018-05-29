@@ -45,5 +45,9 @@ namespace CordobaModels.Entities
 
        public DateTime Date_Added { get; set; }
 
+       //customer report list
+       public string StoreName { get; set; }
+       public int? Balance { get; set; }
+
     }
 }

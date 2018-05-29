@@ -780,6 +780,7 @@
     <Content Include="JS\Admin\PointsImporter\Controllers\PointsImporterController.js" />
     <Content Include="JS\Admin\Report\Controllers\CouponReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\CustomerActivityReportController.js" />
+    <Content Include="JS\Admin\Report\Controllers\CustomerBalanceReport.js" />
     <Content Include="JS\Admin\Report\Controllers\OnlineCustomerReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\OrderReportController.js" />
     <Content Include="JS\Admin\Report\Controllers\ProductPurchasedReportController.js" />
@@ -3893,6 +3894,7 @@
     <Content Include="Templates\Admin\PointsImporter\PointsImporter.html" />
     <Content Include="Templates\Admin\Report\CouponsReport.html" />
     <Content Include="Templates\Admin\Report\CustomerActivityReport.html" />
+    <Content Include="Templates\Admin\Report\CustomerBalanceReport.html" />
     <Content Include="Templates\Admin\Report\OnlineCustomerReport.html" />
     <Content Include="Templates\Admin\Report\OrderReport.html" />
     <Content Include="Templates\Admin\Report\RewardPointsReport.html" />
