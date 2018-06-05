@@ -49,5 +49,6 @@ namespace CordobaModels.Entities
        public string StoreName { get; set; }
        public int? Balance { get; set; }
 
+       public DateTime timestamp { get; set; }
     }
 }
