@@ -17,7 +17,6 @@
 
     var StoreIdCSV = "";
     function GetSelectedStoreListCSV(StoreObj) {
-        debugger;
         var SelectedStoreList = $filter('filter')(StoreObj, { IsSelected: true }, true);
         StoreIdCSV = GetCSVFromJsonArray(SelectedStoreList, "store_id");
         return StoreIdCSV;
@@ -68,7 +67,6 @@
             "aaSorting": [[0, 'desc']],
             "sAjaxSource": configurationService.basePath + 'api/ReportApi/GetCustomerBalanceReportList',
             "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                debugger;
 
                 StoreIdCSV = GetSelectedStoreListCSV($scope.StoreList);
                 aoData = BindSearchCriteria(aoData);
@@ -93,15 +91,15 @@
 
                 {
                     "mData": "StoreName", "bSortable": true,
-                    "render": function (data, type, row) {
-                        if (data != null) {
-                            return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+                    //"render": function (data, type, row) {
+                    //    if (data != null) {
+                    //        return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
 
-                        }
-                        else {
-                            return "";
-                        }
-                    }
+                    //    }
+                    //    else {
+                    //        return "";
+                    //    }
+                    //}
                 },
                    //{
                    //    "mData": "DateEnd", "bSortable": true,
@@ -137,16 +135,9 @@
 
 
     $scope.GetStoreList = function () {
-        debugger;
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
-        //$http({
-        //    url: configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
-        //    method: 'GET',
-        //    async: false
-        //})
             .then(function (response) {
               if (response.data.length > 0) {
-                  debugger;
                   $scope.StoreList = response.data;
                   $scope.CustomerBalanceReportObj.StoreIDs = GetSelectedStoreListCSV($scope.StoreList);
               }
@@ -208,7 +199,6 @@
     }
 
     function init() {
-        debugger;
         $scope.GetStoreList();
         $scope.GetCustomerBalanceReportList();
     }

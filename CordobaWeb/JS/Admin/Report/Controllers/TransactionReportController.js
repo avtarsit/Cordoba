@@ -104,7 +104,7 @@
             "aoColumns": [
 
                 {
-                    "mData": "Date", "bSortable": true,
+                    "mData": "timestamp", "bSortable": true,
                     "render": function (data, type, row) {
                         if (data != null) {
                             return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
