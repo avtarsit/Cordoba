@@ -54,7 +54,7 @@
                                         <ul ng-show="NewAddressForm.$submitted && (!NewAddressForm.$valid)">
                                             <li ng-show="NewAddressForm.firstname.$error.required">First name is required.</li>
                                             <li ng-show="NewAddressForm.lastname.$error.required">Last name is required.</li>
-                                            <li ng-show="NewAddressForm.company.$error.required">Company name is required.</li>
+                                            <!--<li ng-show="NewAddressForm.company.$error.required">Company name is required.</li>-->
                                             <li ng-show="NewAddressForm.address_1.$error.required">Address1 is required.</li>
                                             <li ng-show="NewAddressForm.city.$error.required">City is required.</li>
                                             <li ng-show="NewAddressForm.county.$error.required">County is required.</li>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Company</label>
-                            <input type="text" maxlength="50" class="form-control" name="company" value="" ng-model="AddressObj.company" required="required" />
+                            <input type="text" maxlength="50" class="form-control" name="company" value="" ng-model="AddressObj.company" />
                         </div>
                         <div class="col-sm-4">
                             <label>Address 1</label>
