@@ -28,7 +28,7 @@
                             <div class="col-sm-4">
                                 <!--ng-disabled="StoreId != 0"-->
                                 <label class="control-label" for="input-status">Store</label>
-                                <select ng-model="filter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
+                                <select ng-model="filter.storeId" ng-change="ContainStoreOrNot()" ng-options=" store.store_id as store.name for store in StoreList"
                                         class="form-control cursor-pointer" name="store" ng-disabled="StoreId != 0">
                                     <option value="">All</option>
                                 </select>
@@ -37,20 +37,20 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label"> Order Id</label>
-                                    <input type="text" class="form-control" my-enter="GetOrderList()" ng-model="filter.orderID" />
+                                    <input type="text" class="form-control" ng-blur="ContainValueOrNot()" my-enter="GetOrderList()" ng-model="filter.orderID" />
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label"> Order Status</label>
-                                    <select ng-options="orderstatus.order_status_id as orderstatus.name for orderstatus in OrderStatusList | orderBy:'name'" ng-model="filter.selectedOrderStatus" class="form-control"></select>
+                                    <select ng-change="ContainOrderStatusOrNot()" ng-options="orderstatus.order_status_id as orderstatus.name for orderstatus in OrderStatusList | orderBy:'name'" ng-model="filter.selectedOrderStatus" class="form-control"></select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label" for="input-date-start">Date Added</label>
                                     <div class="input-group myDatePicker date">
-                                        <input type="text" class="form-control" ng-model="filter.dateAdded" />
+                                        <input type="text" class="form-control" ng-blur="ContainValueOrNot()" ng-model="filter.dateAdded" />
                                         <span class="input-group-addon cursor-pointer">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -60,7 +60,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="control-label"> Customer</label>
-                                    <input type="text" class="form-control" my-enter="GetOrderList()" ng-model="filter.Customer" />
+                                    <input type="text" class="form-control" ng-blur="ContainValueOrNot()" my-enter="GetOrderList()" ng-model="filter.Customer" />
                                 </div>
                             </div>
                             <!--<div class="col-sm-4">
@@ -74,7 +74,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="input-date-start">Date Modified</label>
                                     <div class="input-group myDatePicker date">
-                                        <input type="text" class="form-control" ng-model="filter.dateModified" />
+                                        <input type="text" ng-blur="ContainValueOrNot()" class="form-control" ng-model="filter.dateModified" />
                                         <span class="input-group-addon cursor-pointer">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>

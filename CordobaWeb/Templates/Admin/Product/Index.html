@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <!--ng-disabled="StoreId != 0"-->
                                 <label class="control-label" for="input-status">Store</label>
-                                <select ng-model="ProductFilter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
+                                <select ng-change="ContainStoreOrNot()" ng-model="ProductFilter.storeId" ng-options=" store.store_id as store.name for store in StoreList"
                                         class="form-control" name="store" ng-disabled="StoreId != 0">
                                     <option value="">All</option>
                                 </select>
@@ -56,7 +56,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="control-label" for="input-status">Status</label>
-                                <select name="filter_status" id="input-status" ng-model="ProductFilter.status" class="form-control">
+                                <select ng-change="ContainStatusOrNot()" name="filter_status" id="input-status" ng-model="ProductFilter.status" class="form-control">
                                     <option value=""></option>
                                     <option value="1">Enabled</option>
                                     <option value="0">Disabled</option>

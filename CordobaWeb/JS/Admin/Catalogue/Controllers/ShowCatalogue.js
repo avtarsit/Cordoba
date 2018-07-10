@@ -16,6 +16,11 @@
 
     $scope.PageTitle = "Product Catalogues";
 
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
 
     $scope.GetCatalogueList = function () {    
         $http.get(configurationService.basePath + "api/CatalogueApi/GetCatalogueList?StoreId=" + $scope.storeId + '&LoggedInUserId=' + $scope.LoggedInUserId)

@@ -814,21 +814,24 @@
                 $scope.ParticipantsLoadedByMonth = [];
                 for (var i = 0; i < response.data.participantsLoadedByMonth.length; i++) {
                     $scope.ParticipantsLoadedByMonthvalue.push(response.data.participantsLoadedByMonth[i].CustomerCount);
-                    $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month)
+                    //$scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month)
+                    $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month.split("-")[0].substring(0, 3) + "-" + response.data.participantsLoadedByMonth[i].Month.split("-")[1].substring(0, 4));
                     $scope.ParticipantsLoadedByMonth.push({ CustomerCount: response.data.participantsLoadedByMonth[i].CustomerCount, Month: response.data.participantsLoadedByMonth[i].Month });
                 }
                 //debugger;
                 $scope.StoreHTMLSummary.PointsLoadedByMonth = [];
                 $scope.StoreHTMLSummary.PointsLoadedByMonthPoints = [];
                 for (var i = 0; i < response.data.pointsLoadedByMonth.length; i++) {
-                    $scope.StoreHTMLSummary.PointsLoadedByMonth.push(response.data.pointsLoadedByMonth[i].Month);
+                    $scope.StoreHTMLSummary.PointsLoadedByMonth.push(response.data.pointsLoadedByMonth[i].Month.split("-")[0].substring(0, 3) + "-" + response.data.pointsLoadedByMonth[i].Month.split("-")[1].substring(0, 4));
+                    //$scope.StoreHTMLSummary.PointsLoadedByMonth.push(response.data.pointsLoadedByMonth[i].Month);
                     $scope.StoreHTMLSummary.PointsLoadedByMonthPoints.push(response.data.pointsLoadedByMonth[i].Points)
                 }
 
                 $scope.StoreHTMLSummary.PointsRedeemedByMonth = [];
                 $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints = [];
                 for (var i = 0; i < response.data.pointsRedeemedByMonth.length; i++) {
-                    $scope.StoreHTMLSummary.PointsRedeemedByMonth.push(response.data.pointsRedeemedByMonth[i].Month);
+                    //$scope.StoreHTMLSummary.PointsRedeemedByMonth.push(response.data.pointsRedeemedByMonth[i].Month);
+                    $scope.StoreHTMLSummary.PointsRedeemedByMonth.push(response.data.pointsRedeemedByMonth[i].Month.split("-")[0].substring(0, 3) + "-" + response.data.pointsRedeemedByMonth[i].Month.split("-")[1].substring(0, 4));
                     $scope.StoreHTMLSummary.PointsRedeemedByMonthPoints.push(response.data.pointsRedeemedByMonth[i].Points)
                 }
 
@@ -869,7 +872,31 @@
     $scope.ExportStoreHTMLPDF = function () {
         //debugger;
 
-        html2canvas($("#pdf"), {
+        //html2canvas($("#pdf"), {
+        //    onrendered: function (canvas) {
+        //        //debugger;
+        //        theCanvas = canvas;
+        //        theCanvas.setAttribute("id", "Div1");
+        //        document.body.appendChild(canvas);
+
+        //        // Convert and download as image 
+        //        //Canvas2Image.saveAsPNG(canvas);
+        //        $("#img-out").html(canvas);
+        //        //debugger;
+
+        //        var base64 = $('#Div1')[0].toDataURL();
+        //        $("#imgCapture").attr("src", base64);
+        //        $("#imgCapture").show();
+
+        //        $("#img-out").hide();
+        //        $("#img-capture").hide();
+        //        // Clean up 
+        //        //document.body.removeChild(canvas);
+        //    }
+        //});
+
+        //Heading
+        html2canvas($("#heading"), {
             onrendered: function (canvas) {
                 //debugger;
                 theCanvas = canvas;
@@ -889,9 +916,111 @@
                 $("#img-capture").hide();
                 // Clean up 
                 //document.body.removeChild(canvas);
+
             }
         });
-        //$scope.ExportStoreHTMLPDF1();
+
+        //Store Image
+        html2canvas($("#storeimage"), {
+            onrendered: function (canvas1) {
+                //debugger;
+                theCanvas1 = canvas1;
+                theCanvas1.setAttribute("id", "Divstoreimage");
+                document.body.appendChild(canvas1);
+
+                // Convert and download as image 
+                //Canvas2Image.saveAsPNG(canvas);
+                $("#img-outstoreimage").html(canvas1);
+                //debugger;
+
+                var base64 = $('#Divstoreimage')[0].toDataURL();
+                $("#imgCapturestoreimage").attr("src", base64);
+                $("#imgCapturestoreimage").show();
+
+                $("#img-outstoreimage").hide();
+                $("#img-capturestoreimage").hide();
+                // Clean up 
+                //document.body.removeChild(canvas);
+
+            }
+        });
+
+        //Store Summary
+        html2canvas($("#storesummary"), {
+            onrendered: function (canvasStoreSummary) {
+                //debugger;
+                theCanvas1 = canvasStoreSummary;
+                theCanvas1.setAttribute("id", "DivStoreSummary");
+                document.body.appendChild(canvasStoreSummary);
+
+                // Convert and download as image 
+                //Canvas2Image.saveAsPNG(canvas);
+                $("#img-outStoreSummary").html(canvasStoreSummary);
+                //debugger;
+
+                var base64 = $('#DivStoreSummary')[0].toDataURL();
+                $("#imgCaptureStoreSummary").attr("src", base64);
+                $("#imgCaptureStoreSummary").show();
+
+                $("#img-outStoreSummary").hide();
+                $("#img-captureStoreSummary").hide();
+                // Clean up 
+                //document.body.removeChild(canvas);
+
+            }
+        });
+
+        //Points Remaining
+        html2canvas($("#pointsremaining"), {
+            onrendered: function (canvasPointsRemaining) {
+                //debugger;
+                theCanvas1 = canvasPointsRemaining;
+                theCanvas1.setAttribute("id", "DivPointsRemaining");
+                document.body.appendChild(canvasPointsRemaining);
+
+                // Convert and download as image 
+                //Canvas2Image.saveAsPNG(canvas);
+                $("#img-outPointsRemaining").html(canvasPointsRemaining);
+                //debugger;
+
+                var base64 = $('#DivPointsRemaining')[0].toDataURL();
+                $("#imgCapturePointsRemaining").attr("src", base64);
+                $("#imgCapturePointsRemaining").show();
+
+                $("#img-outPointsRemaining").hide();
+                $("#img-capturePointsRemaining").hide();
+                // Clean up 
+                //document.body.removeChild(canvas);
+
+            }
+        });
+
+        //Participants Loaded By Month
+        html2canvas($("#participantsloadedbymonth"), {
+            onrendered: function (canvasParticipantsLoadedByMonth) {
+                //debugger;
+                theCanvas1 = canvasParticipantsLoadedByMonth;
+                theCanvas1.setAttribute("id", "DivParticipantsLoadedByMonth");
+                document.body.appendChild(canvasParticipantsLoadedByMonth);
+
+                // Convert and download as image 
+                //Canvas2Image.saveAsPNG(canvas);
+                $("#img-outParticipantsLoadedByMonth").html(canvasParticipantsLoadedByMonth);
+                //debugger;
+
+                var base64 = $('#DivParticipantsLoadedByMonth')[0].toDataURL();
+                $("#imgCaptureParticipantsLoadedByMonth").attr("src", base64);
+                $("#imgCaptureParticipantsLoadedByMonth").show();
+
+                $("#img-outParticipantsLoadedByMonth").hide();
+                $("#img-captureParticipantsLoadedByMonth").hide();
+                // Clean up 
+                //document.body.removeChild(canvas);
+
+            }
+        });
+
+
 
         $timeout(function () { $("#Generatepdf").trigger("click"); }, 3000);
 
@@ -899,10 +1028,18 @@
     }
     $("#Generatepdf").click(function () {
         //function ExportStoreHTMLPDF1() {
-        //debugger;
+        debugger;
         var template = $('#img-capture').html();
-        //debugger;
-        var storeentity = { template: template };
+        var description = $('#img-capturestoreimage').html();
+        var address = $('#img-captureStoreSummary').html();
+        var county = $('#img-capturePointsRemaining').html();
+        var telephone = $('#img-captureParticipantsLoadedByMonth').html();
+        //var heading = $("#heading").html();
+        //var storeimage = $("#storeimage").html();
+
+        debugger;
+        //var storeentity = { template: template };
+        var storeentity = { template: template, description: description, address: address, county: county, telephone: telephone };
         $http({
             url: configurationService.basePath + 'api/StoreApi/ExportStoreHTMLPDF',
             method: "POST",

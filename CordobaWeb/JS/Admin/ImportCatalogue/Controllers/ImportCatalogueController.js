@@ -23,6 +23,12 @@
                               
     $scope.PageTitle = "Import Catalogue";
 
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
+
     $scope.ImportCatalogueObject = new Object();
     GetSupplierList();
     GetLanguageList();

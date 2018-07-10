@@ -24,6 +24,12 @@
     $scope.PopularCategoryObj = new Object();
     $scope.PopularCategoryObj.store_id = $scope.StoreId;
 
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
+
     $scope.GetCategoryListByStoreIdPopular = function () {
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryListByStoreIdPopular?storeID=" + $scope.PopularCategoryObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {

@@ -53,7 +53,7 @@ namespace CordobaCatalogImageService
                     recordProductCatalog.image_full = Convert.ToString(dr["image_full"]);
                     recordProductCatalog.image_full_url = Convert.ToString(dr["image_full_url"]);
                     recordProductCatalog.IsOperationCompleted = Convert.ToBoolean(dr["IsOperationCompleted"] == null ? false : true);
-                    recordProductCatalog.product_id = Convert.ToInt32(dr["product_id"]);
+                    recordProductCatalog.product_id = Convert.ToInt32(dr["product_id"]);//Convert.ToString(dr["product_id"]);
                     recordProductCatalog.CatalogueName = Convert.ToString(dr["CatalogueName"]);
                     objProductCatalogue.Add(recordProductCatalog);
                 }
@@ -70,6 +70,12 @@ namespace CordobaCatalogImageService
             {
                 for (int i = 0; i < productCatalogue.Count; i++)
                 {
+                    //For issue: Can not create SSL/TLS secure channel
+                    ServicePointManager.Expect100Continue = true;
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                    //For issue: Can not create SSL/TLS secure channel
+
                     WebClient request = new WebClient();
                     if (productCatalogue[i].CatalogueName == null || productCatalogue[i].CatalogueName == "")
                     {

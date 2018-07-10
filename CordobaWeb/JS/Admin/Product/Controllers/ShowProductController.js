@@ -1,4 +1,4 @@
-﻿app.controller('ShowProductController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q) {
+﻿app.controller('ShowProductController', function ($timeout, $state, $http, $rootScope, $stateParams, $filter, $scope, $window, $state, notificationFactory, configurationService, $compile, $interval, DTOptionsBuilder, $http, $log, $q, localStorageService) {
     //#region CallGlobalFunctions
     decodeParams($stateParams);
     BindToolTip();
@@ -24,6 +24,11 @@
     $scope.ProductFilter.Quantity = "";
     $scope.ProductFilter.status = "";
     
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    //$rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
 
     if ($stateParams.Quantity != undefined && $stateParams.Quantity != null) {
         $scope.ProductFilter.Quantity = parseInt($stateParams.Quantity);
@@ -70,7 +75,121 @@
         return aoData;
     }
 
+    var userid = $scope.LoggedInUserId;
+    function MaintainLocalStorage() {
+        debugger;
+        //Store
+        if ((localStorageService.get(userid + "_Product_Store") == "" || localStorageService.get(userid + "_Product_Store") == null)) {
+            localStorageService.set(userid + "_Product_Store", $scope.ProductFilter.storeId);
+        }
+        else if ($scope.ProductFilter.storeId != "" ? (localStorageService.get(userid + "_Product_Store") != $scope.ProductFilter.storeId) : false) {
+            localStorageService.set(userid + "_Product_Store", $scope.ProductFilter.storeId);
+        }
+        else if ((localStorageService.get(userid + "_Product_Store") != null || localStorageService.get(userid + "_Product_Store") != "")) {
+            $scope.ProductFilter.storeId = localStorageService.get(userid + "_Product_Store");
+        }
+
+        //Price
+        if ((localStorageService.get(userid + "_Product_Price") == "" || localStorageService.get(userid + "_Product_Price") == null)) {
+            localStorageService.set(userid + "_Product_Price", $scope.ProductFilter.Price);
+        }
+        else if ($scope.ProductFilter.Price != "" ? (localStorageService.get(userid + "_Product_Price") != $scope.ProductFilter.Price) : false) {
+            localStorageService.set(userid + "_Product_Price", $scope.ProductFilter.Price);
+        }
+        else if ((localStorageService.get(userid + "_Product_Price") != null || localStorageService.get(userid + "_Product_Price") != "")) {
+            $scope.ProductFilter.Price = localStorageService.get(userid + "_Product_Price");
+        }
+
+        //Status
+        if ((localStorageService.get(userid + "_Product_status") == "" || localStorageService.get(userid + "_Product_status") == null)) {
+            localStorageService.set(userid + "_Product_status", $scope.ProductFilter.status);
+        }
+        else if ($scope.ProductFilter.status != "" ? (localStorageService.get(userid + "_Product_status") != $scope.ProductFilter.status) : false) {
+            localStorageService.set(userid + "_Product_status", $scope.ProductFilter.status);
+        }
+        else if ((localStorageService.get(userid + "_Product_status") != null || localStorageService.get(userid + "_Product_status") != "")) {
+            $scope.ProductFilter.status = localStorageService.get(userid + "_Product_status");
+        }
+
+        //name
+        if ((localStorageService.get(userid + "_Product_name") == "" || localStorageService.get(userid + "_Product_name") == null)) {
+            localStorageService.set(userid + "_Product_name", $scope.ProductFilter.name);
+        }
+        else if ($scope.ProductFilter.name != "" ? (localStorageService.get(userid + "_Product_name") != $scope.ProductFilter.name) : false) {
+            localStorageService.set(userid + "_Product_name", $scope.ProductFilter.name);
+        }
+        else if ((localStorageService.get(userid + "_Product_name") != null || localStorageService.get(userid + "_Product_name") != "")) {
+            $scope.ProductFilter.name = localStorageService.get(userid + "_Product_name");
+        }
+
+        //Quantity
+        if ((localStorageService.get(userid + "_Product_Quantity") == "" || localStorageService.get(userid + "_Product_Quantity") == null)) {
+            localStorageService.set(userid + "_Product_Quantity", $scope.ProductFilter.Quantity);
+        }
+        else if ($scope.ProductFilter.Quantity != "" ? (localStorageService.get(userid + "_Product_Quantity") != $scope.ProductFilter.Quantity) : false) {
+            localStorageService.set(userid + "_Product_Quantity", $scope.ProductFilter.Quantity);
+        }
+        else if ((localStorageService.get(userid + "_Product_Quantity") != null || localStorageService.get(userid + "_Product_Quantity") != "")) {
+            $scope.ProductFilter.Quantity = localStorageService.get(userid + "_Product_Quantity");
+        }
+
+        //Model
+        if ((localStorageService.get(userid + "_Product_Model") == "" || localStorageService.get(userid + "_Product_Model") == null)) {
+            localStorageService.set(userid + "_Product_Model", $scope.ProductFilter.Model);
+        }
+        else if ($scope.ProductFilter.Model != "" ? (localStorageService.get(userid + "_Product_Model") != $scope.ProductFilter.Model) : false) {
+            localStorageService.set(userid + "_Product_Model", $scope.ProductFilter.Model);
+        }
+        else if ((localStorageService.get(userid + "_Product_Model") != null || localStorageService.get(userid + "_Product_Model") != "")) {
+            $scope.ProductFilter.Model = localStorageService.get(userid + "_Product_Model");
+        }
+    }
+
+    $scope.ContainStoreOrNot = function () {
+        debugger;
+        //Store
+        if ($scope.ProductFilter.storeId == "" || $scope.ProductFilter.storeId == null) {
+            localStorageService.set(userid + "_Product_Store", "");
+        }
+        //MaintainLocalStorage();
+    }
+
+    $scope.ContainStatusOrNot = function () {
+        debugger;
+        //Store
+        if ($scope.ProductFilter.status == "" || $scope.ProductFilter.status == null) {
+            localStorageService.set(userid + "_Product_status", "");
+        }
+        //MaintainLocalStorage();
+    }
+
+    $scope.ContainValueOrNot = function () {
+        debugger;
+
+        //Price
+        if ($scope.ProductFilter.Price == "" || $scope.ProductFilter.Price == null) {
+            localStorageService.set(userid + "_Product_Price", "");
+        }
+
+        //name
+        if ($scope.ProductFilter.name == "" || $scope.ProductFilter.name == null) {
+            localStorageService.set(userid + "_Product_name", "");
+        }
+        //Quantity
+        if ($scope.ProductFilter.Quantity == "" || $scope.ProductFilter.Quantity == null) {
+            //localStorageService.removeItem(userid + "_Customer_Email");
+            localStorageService.set(userid + "_Product_Quantity", "");
+        }
+
+        //Model
+        if ($scope.ProductFilter.Model == "" || $scope.ProductFilter.Model == null) {
+            localStorageService.set(userid + "_Product_Model", "");
+        }
+    }
+
     $scope.GetProductList = function () {
+        MaintainLocalStorage();
+
         var filter = $.param({
             name: $scope.ProductFilter.name,
             Price: $scope.ProductFilter.Price,

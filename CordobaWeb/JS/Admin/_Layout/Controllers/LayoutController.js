@@ -21,6 +21,11 @@
       });
     }
 
+    $scope.ClearLocalStorage = function () {
+        debugger;
+        $window.localStorage.clear();
+    }
+
     $interval(function () { CheckVersionNumber(); }, 3000);
     function CheckVersionNumber() {
         $.ajax({

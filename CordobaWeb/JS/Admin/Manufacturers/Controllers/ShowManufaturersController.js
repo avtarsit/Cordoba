@@ -17,6 +17,11 @@
 
     $scope.PageTitle = "Show Manufacturers";
 
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
 
     $scope.GetManufacturersList = function () {
         $http.get(configurationService.basePath + "api/ManufacturersApi/GetManufacturersList?ManufacturersID=" + $scope.ManufacturersID + '&StoreId=' + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)

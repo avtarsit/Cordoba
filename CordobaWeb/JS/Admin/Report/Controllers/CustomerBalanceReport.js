@@ -15,6 +15,12 @@
 
     $scope.PageTitle = "Reports - Customer Balance Report";
 
+    //Remove local storage of ther pages
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Product');
+    $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
+
     var StoreIdCSV = "";
     function GetSelectedStoreListCSV(StoreObj) {
         var SelectedStoreList = $filter('filter')(StoreObj, { IsSelected: true }, true);

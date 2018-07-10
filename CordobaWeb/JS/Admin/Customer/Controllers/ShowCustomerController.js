@@ -21,6 +21,7 @@
     $scope.CustomerFilter.approved = "";
     $scope.CustomerFilter.ip = "";
     $scope.CustomerFilter.date_added = "";
+    $scope.CustomerFilter.storeId = "";
     $scope.CustomerFilter.storeId = $scope.StoreId;
 
 
@@ -50,10 +51,139 @@
         });
         return aoData;
     }
+    var userid = $scope.LoggedInUserId;
+    function MaintainLocalStorage() {
+        debugger;
+        //Store
+        if ((localStorageService.get(userid + "_Customer_Store") == "" || localStorageService.get(userid + "_Customer_Store") == null)) {
+            localStorageService.set(userid + "_Customer_Store", $scope.CustomerFilter.storeId);
+        }
+        else if ($scope.CustomerFilter.storeId != "" ? (localStorageService.get(userid + "_Customer_Store") != $scope.CustomerFilter.storeId) : false) {
+            localStorageService.set(userid + "_Customer_Store", $scope.filter.storeId);
+        }
+        else if ((localStorageService.get(userid + "_Customer_Store") != null || localStorageService.get(userid + "_Customer_Store") != "")) {
+            $scope.CustomerFilter.storeId = localStorageService.get(userid + "_Customer_Store");
+        }
+
+        //name
+        if ((localStorageService.get(userid + "_Customer_customerName") == "" || localStorageService.get(userid + "_Customer_customerName") == null)) {
+            localStorageService.set(userid + "_Customer_customerName", $scope.CustomerFilter.customerName);
+        }
+        else if ($scope.CustomerFilter.customerName != "" ? (localStorageService.get(userid + "_Customer_customerName") != $scope.CustomerFilter.customerName) : false) {
+            localStorageService.set(userid + "_Customer_customerName", $scope.CustomerFilter.customerName);
+        }
+        else if ((localStorageService.get(userid + "_Customer_customerName") != null || localStorageService.get(userid + "_Customer_customerName") != "")) {
+            $scope.CustomerFilter.customerName = localStorageService.get(userid + "_Customer_customerName");
+        }
+
+        //approved
+        if ((localStorageService.get(userid + "_Customer_approved") == "" || localStorageService.get(userid + "_Customer_approved") == null)) {
+            localStorageService.set(userid + "_Customer_approved", $scope.CustomerFilter.approved);
+        }
+        else if ($scope.CustomerFilter.approved != "" ? (localStorageService.get(userid + "_Customer_approved") != $scope.CustomerFilter.approved) : false) {
+            localStorageService.set(userid + "_Customer_approved", $scope.CustomerFilter.approved);
+        }
+        else if ((localStorageService.get(userid + "_Customer_approved") != null || localStorageService.get(userid + "_Customer_approved") != "")) {
+            $scope.CustomerFilter.approved = localStorageService.get(userid + "_Customer_approved");
+        }
+
+        //date_added
+        if ((localStorageService.get(userid + "_Customer_dateadded") == "" || localStorageService.get(userid + "_Customer_dateadded") == null)) {
+            localStorageService.set(userid + "_Customer_dateadded", $scope.CustomerFilter.date_added);
+        }
+        else if ($scope.CustomerFilter.date_added != "" ? (localStorageService.get(userid + "_Customer_dateadded") != $scope.CustomerFilter.date_added) : false) {
+            localStorageService.set(userid + "_Customer_dateadded", $scope.CustomerFilter.date_added);
+        }
+        else if ((localStorageService.get(userid + "_Customer_dateadded") != null || localStorageService.get(userid + "_Customer_dateadded") != "")) {
+            $scope.CustomerFilter.date_added = localStorageService.get(userid + "_Customer_dateadded");
+        }
+
+        //email
+        if ((localStorageService.get(userid + "_Customer_email") == "" || localStorageService.get(userid + "_Customer_email") == null)) {
+            localStorageService.set(userid + "_Customer_email", $scope.CustomerFilter.email);
+        }
+        else if ($scope.CustomerFilter.email != "" ? (localStorageService.get(userid + "_Customer_email") != $scope.CustomerFilter.email) : false) {
+            localStorageService.set(userid + "_Customer_email", $scope.CustomerFilter.email);
+        }
+        else if ((localStorageService.get(userid + "_Customer_email") != null || localStorageService.get(userid + "_Customer_email") != "")) {
+            $scope.CustomerFilter.email = localStorageService.get(userid + "_Customer_email");
+        }
+
+        //status
+        if ((localStorageService.get(userid + "_Customer_status") == "" || localStorageService.get(userid + "_Customer_status") == null)) {
+            localStorageService.set(userid + "_Customer_status", $scope.CustomerFilter.status);
+        }
+        else if ($scope.CustomerFilter.status != "" ? (localStorageService.get(userid + "_Customer_status") != $scope.CustomerFilter.status) : false) {
+            localStorageService.set(userid + "_Customer_status", $scope.CustomerFilter.status);
+        }
+        else if ((localStorageService.get(userid + "_Customer_status") != null || localStorageService.get(userid + "_Customer_status") != "")) {
+            $scope.CustomerFilter.status = localStorageService.get(userid + "_Customer_status");
+        }
+
+        //ip
+        if ((localStorageService.get(userid + "_Customer_ip") == "" || localStorageService.get(userid + "_Customer_ip") == null)) {
+            localStorageService.set(userid + "_Customer_ip", $scope.CustomerFilter.ip);
+        }
+        else if ($scope.CustomerFilter.ip != "" ? (localStorageService.get(userid + "_Customer_ip") != $scope.CustomerFilter.ip) : false) {
+            localStorageService.set(userid + "_Customer_ip", $scope.CustomerFilter.ip);
+        }
+        else if ((localStorageService.get(userid + "_Customer_ip") != null || localStorageService.get(userid + "_Customer_ip") != "")) {
+            $scope.CustomerFilter.ip = localStorageService.get(userid + "_Customer_ip");
+        }
+    }
+
+    $scope.ContainValueOrNot = function () {
+        debugger;
+        //Order Id
+        if ($scope.CustomerFilter.customerName == "" || $scope.CustomerFilter.customerName == null) {
+            localStorageService.set(userid + "_Customer_customerName", "");
+        }
+        //date Added
+        if ($scope.CustomerFilter.date_added == "" || $scope.CustomerFilter.date_added == null) {
+            localStorageService.set(userid + "_Customer_dateadded", "");
+        }
+        //email
+        if ($scope.CustomerFilter.email == "" || $scope.CustomerFilter.email == null) {
+            localStorageService.set(userid + "_Customer_email", "");
+        }
+        //ip
+        if ($scope.CustomerFilter.ip == "" || $scope.CustomerFilter.ip == null) {
+            localStorageService.set(userid + "_Customer_ip", "");
+        }
+        MaintainLocalStorage();
+    }
+
+    $scope.ContainStoreOrNot = function () {
+        debugger;
+        //Store
+        if ($scope.CustomerFilter.approved == "" || $scope.CustomerFilter.approved == null) {
+            localStorageService.set(userid + "_Customer_Store", "");
+        }
+        MaintainLocalStorage();
+    }
+
+    $scope.ContainApprovedOrNot = function () {
+        debugger;
+        //Store
+        if ($scope.CustomerFilter.storeId == "" || $scope.CustomerFilter.storeId == null) {
+            localStorageService.set(userid + "_Customer_approved", "");
+        }
+        MaintainLocalStorage();
+    }
+
+    $scope.ContainStatusOrNot = function () {
+        debugger;
+        //Store
+        if ($scope.CustomerFilter.status == "" || $scope.CustomerFilter.status == null) {
+            localStorageService.set(userid + "_Customer_status", "");
+        }
+        MaintainLocalStorage();
+    }
 
 
     $scope.GetCustomerList = function () {
         //$scope.CustomerFilter = new Object();
+        MaintainLocalStorage();
 
         if ($.fn.DataTable.isDataTable("#tblCustomer")) {
             $('#tblCustomer').DataTable().destroy();
@@ -252,11 +382,11 @@
     }
 
     function Init() {
-
+        debugger;
         GetCustomerGroupList();
         GetStoreList();
         $scope.GetCustomerList();
-        $scope.CustomerFilter.storeId = $scope.StoreId;
+        $scope.CustomerFilter.storeId = (localStorageService.get(userid + "_Customer_Store") != "" || localStorageService.get(userid + "_Customer_Store") != null) ?localStorageService.get(userid + "_Customer_Store"):0;
     }
 
     Init();

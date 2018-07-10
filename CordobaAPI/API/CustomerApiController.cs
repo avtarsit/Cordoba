@@ -85,7 +85,9 @@ namespace CordobaAPI.API
             {
                 List<ColumnConfiguration> selectedColumn = new List<ColumnConfiguration>();
                 selectedColumn.Add(new ColumnConfiguration("customer_id", "ID"));
-                selectedColumn.Add(new ColumnConfiguration("customerName", "Name"));
+                selectedColumn.Add(new ColumnConfiguration("firstname", "First Name"));
+                selectedColumn.Add(new ColumnConfiguration("lastname", "Last Name"));
+                //selectedColumn.Add(new ColumnConfiguration("customerName", "Name"));
                 selectedColumn.Add(new ColumnConfiguration("email", "Email"));
                 selectedColumn.Add(new ColumnConfiguration("StatusName", "Status"));
                 selectedColumn.Add(new ColumnConfiguration("ip", "IP"));

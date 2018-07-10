@@ -20,6 +20,7 @@ function GetAdminUserDetail() {
 }
 
 function GetLayoutName() {
+    
     $.ajax({
         url: window.location.origin + "/Home/GetStoreDetail?URL=" + window.location.href,
         async: false,
@@ -661,10 +662,38 @@ function GetLayoutName() {
                  //    }
 
                  //}
+                 $rootScope.RemoveAllFromLocalStorage_StartWith = function (startWith) {
+                     debugger;
+                     var CmpStrLength = 0;
+
+                     if (startWith == null || startWith === undefined || startWith == "") {
+                         CmpStrLength = 0;
+                     } else {
+                         CmpStrLength = startWith.length;
+                     }
+                     if (CmpStrLength > 0) {
+                         if (localStorage.length > 0) {
+                             var arr = []; // Array to hold the keys
+                             // Iterate over localStorage and insert the keys that meet the condition into arr
+                             for (var i = 0; i < localStorage.length; i++) {
+                                 //if (localStorage.key(i).substring(0, 3) == startWith) {
+                                 if (localStorage.key(i).substring(3, localStorage.key(i).length).split('_')[0] + '_' + localStorage.key(i).split('_')[1] == startWith) {
+                                     arr.push(localStorage.key(i));
+                                 }
+                             }
+
+                             // Iterate over arr and remove the items by key
+                             for (var i = 0; i < arr.length; i++) {
+                                 localStorage.removeItem(arr[i]);
+                             }
+                         }
+                     }
+
+                 }
 
                  $rootScope.$on('$locationChangeStart', function (event, next, current) {
                      if (StoreSessionDetail.Is_AccessStore != null && StoreSessionDetail.Is_AccessStore == true && !$rootScope.CustomerDetail.customer_id > 0) {
-                         $rootScope.OpenLoginPopUpUsingRootScope();
+                       //  $rootScope.OpenLoginPopUpUsingRootScope();
                      }
                      //if (!$rootScope.CustomerDetail.customer_id > 0) {
                      //    $rootScope.OpenLoginPopUpUsingRootScope();
@@ -682,6 +711,7 @@ function GetLayoutName() {
                  });
                  // Redirect to login if route requires auth and you're not logged in
                  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
                      $state.previous = fromState;
                      $state.previousParams = fromParams;
                      if (fromState.name != "") {

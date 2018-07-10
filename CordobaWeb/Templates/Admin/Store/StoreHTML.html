@@ -51,7 +51,7 @@
     <div id="pdf" class="page-header-content">
 
         <!-- Nightingale roses width hidden labels -->
-        <div class="panel">
+        <div class="panel" id="heading">
             <div class="panel-body" style="height: 456px !important;">
                 <div class="row">
                     <div class="col-sm-6">
@@ -70,14 +70,14 @@
             </div>
         </div>
 
-        <div class="panel" style="height:643px !important;">
+        <div class="panel" id="storeimage" style="height:643px !important;">
             <div class="panel-body">
                 <img ng-src="../../Content/admin/images/Storescreen/{{StoreId}}.png" alt="Store Screen" style="height:621px;width:100%;" />
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col-sm-12" style="height:539px !important;">
-                <div class="col-sm-6" style="height:539px !important;">
+                <div class="col-sm-6" id="storesummary" style="height:539px !important;">
                     <!-- Nightingale roses width hidden labels -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -98,7 +98,7 @@
                     <!-- /nightingale roses width hidden labels -->
                 </div>
                 <!-- Quick stats boxes -->
-                <div class="col-sm-6" style="height:539px !important;">
+                <div class="col-sm-6" id="pointsremaining" style="height:539px !important;">
                     <!-- Nightingale roses width hidden labels -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -116,7 +116,7 @@
                     <!-- /nightingale roses width hidden labels -->
                 </div>
             </div>
-            <div class="col-sm-12" style="height:496px !important; margin-top:510px;">
+            <div class="col-sm-12" id="participantsloadedbymonth" style="height:496px !important; margin-top:510px;">
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
@@ -127,6 +127,20 @@
                     <div class="panel-body" ng-class="{'fixHeight':ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0}">
                         <h1 ng-if="ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0"><br />No PointsRemaining Available to Display</h1>
                         <!--<table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Customer Count</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat=" item in ParticipantsLoadedByMonth">
+                        <td ng-bind="item.Month"></td>
+                        <td ng-bind="item.CustomerCount"></td>
+                    </tr>
+                </table>-->
+                        <div class="chart-container" ng-show="ParticipantsLoadedByMonthname.length>0 && ParticipantsLoadedByMonthvalue.length>0">
+                            <div style="float:left;">
+                                <!--<table>
                             <thead>
                                 <tr>
                                     <th>Month</th>
@@ -138,20 +152,6 @@
                                 <td ng-bind="item.CustomerCount"></td>
                             </tr>
                         </table>-->
-                        <div class="chart-container" ng-show="ParticipantsLoadedByMonthname.length>0 && ParticipantsLoadedByMonthvalue.length>0">
-                            <div style="float:left;">
-                                <!--<table>
-                                    <thead>
-                                        <tr>
-                                            <th>Month</th>
-                                            <th>Customer Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tr ng-repeat=" item in ParticipantsLoadedByMonth">
-                                        <td ng-bind="item.Month"></td>
-                                        <td ng-bind="item.CustomerCount"></td>
-                                    </tr>
-                                </table>-->
                             </div>
 
                             <div class="chart has-fixed-height" id="ParticipantsLoadedByMonth"></div>
@@ -195,7 +195,7 @@
                 </div>
                 <!-- /nightingale roses width hidden labels -->
             </div>
-            <div class="col-sm-12" style="height:450px !important">
+            <div class="col-sm-12" style="height:500px !important">
                 <!--style="margin-top:270px;"-->
                 <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
@@ -252,7 +252,26 @@
     </div>
 </div>
 
-<div id="img-out" style="width:1323px;height:4988px;"></div>
-<div id="img-capture">
-    <img id="imgCapture" alt="" style="display:none;width:1323px;height:4988px;" />
+<!--<div id="img-out" style="width:1323px;height:4988px;"></div>-->
+<div id="img-out" style=""></div>
+<div id="img-capture" style="vertical-align:middle">
+    <img id="imgCapture" alt="" style="display:none;width:1283px;height:458px;" />
+</div>
+
+<div id="img-outstoreimage" style=""></div>
+<div id="img-capturestoreimage" style="vertical-align:middle">
+    <img id="imgCapturestoreimage" alt="" style="display:none;width:1283px;height:458px;" />
+</div>
+
+<div id="img-outStoreSummary" style=""></div>
+<div id="img-captureStoreSummary" style="vertical-align:middle">
+    <img id="imgCaptureStoreSummary" alt="" style="display:none;width:560px;height:400px;" />
+</div>
+<div id="img-outPointsRemaining" style=""></div>
+<div id="img-capturePointsRemaining" style="vertical-align:middle">
+    <img id="imgCapturePointsRemaining" alt="" style="display:none;width:560px;height:400px;" />
+</div>
+<div id="img-outParticipantsLoadedByMonth" style=""></div>
+<div id="img-captureParticipantsLoadedByMonth" style="vertical-align:middle">
+    <img id="imgCaptureParticipantsLoadedByMonth" alt="" style="display:none;height:496px;" />
 </div>

@@ -1,6 +1,8 @@
 ﻿using CordobaModels.Entities;
 using CordobaServices.Interfaces;
 using CordobaServices.Services;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -273,20 +275,103 @@ namespace CordobaAPI.API
         [HttpPost]
         public HttpResponseMessage ExportStoreHTMLPDF(StoreEntity storeentity)
         {
-            var htmlContent = storeentity.template;//String.Format("<body>Hello world: {0}</body>", DateTime.Now);
-            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-            var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
+
+            var htmlContent1 = storeentity.template;//String.Format("<body>Hello world: {0}</body>", DateTime.Now);
+            var htmlToPdf1 = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes1 = htmlToPdf1.GeneratePdf(htmlContent1);
+            //var headingfile = File.Create(HttpContext.Current.Server.MapPath("~/Files//") + "Heading.pdf");
+            //headingfile.Write(pdfBytes1,0,pdfBytes1.Length);
+            //File.Open(HttpContext.Current.Server.MapPath("~/Files//") + "Heading.pdf", FileMode.Open);
+            File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Files//") + "Heading.pdf", pdfBytes1);
+
+            var htmlContent2 = storeentity.description;
+            var htmlToPdf2 = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes2 = htmlToPdf2.GeneratePdf(htmlContent2);
+            File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Files//") + "StoreImage.pdf", pdfBytes2);
+
+            var htmlContent3 = storeentity.address;
+            var htmlToPdf3 = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes3 = htmlToPdf3.GeneratePdf(htmlContent3);
+            File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Files//") + "StoreSummary.pdf", pdfBytes3);
+
+            var htmlContent4 = storeentity.county;
+            var htmlToPdf4 = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes4 = htmlToPdf4.GeneratePdf(htmlContent4);
+            File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Files//") + "PointsRemaining.pdf", pdfBytes4);
+
+            var htmlContent5 = storeentity.telephone;
+            var htmlToPdf5 = new NReco.PdfGenerator.HtmlToPdfConverter();
+            var pdfBytes5 = htmlToPdf5.GeneratePdf(htmlContent5);
+            File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Files//") + "ParticipantsLoadedByMonth.pdf", pdfBytes5);
+
+            
+            MergePDFs(HttpContext.Current.Server.MapPath("~/Files//") + "Heading.pdf",
+                HttpContext.Current.Server.MapPath("~/Files//") + "StoreImage.pdf", 
+                HttpContext.Current.Server.MapPath("~/Files//") + "StoreSummary.pdf",
+                HttpContext.Current.Server.MapPath("~/Files//") + "PointsRemaining.pdf",
+                HttpContext.Current.Server.MapPath("~/Files//") + "ParticipantsLoadedByMonth.pdf");
+
+           // headingfile.Close();
 
             HttpResponseMessage httpResponseMessage;
+            httpResponseMessage = new HttpResponseMessage();
+            //HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
+            //Stream @null = Stream.Null;
 
-            HttpResponseMessage streamContent = new HttpResponseMessage(HttpStatusCode.OK);
-            Stream @null = Stream.Null;
-            streamContent.Content = new StreamContent(new MemoryStream(pdfBytes));
-            streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-            streamContent.Content.Headers.Add("content-disposition", string.Concat("inline;  filename=\"", "Store PDF.pdf", "\""));
-            httpResponseMessage = streamContent;
+            //streamContent.Content = new StreamContent(new MemoryStream(pdfBytes1));
+            //streamContent.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+            //streamContent.Content.Headers.Add("content-disposition", string.Concat("inline;  filename=\"", "Create.pdf", "\""));
+            //httpResponseMessage = streamContent;
+
+            //return httpResponseMessage;
             return httpResponseMessage;
+        }
 
+        private void MergePDFs(params string[] filesPath)
+        {
+            List<PdfReader> readerList = new List<PdfReader>();
+            foreach (string filePath in filesPath)
+            {
+                PdfReader pdfReader = new PdfReader(filePath);
+                readerList.Add(pdfReader);
+            }
+
+            //Define a new output document and its size, type
+            Document document = new Document(PageSize.A4, 0, 0, 0, 0);
+            //Create blank output pdf file and get the stream to write on it.
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(HttpContext.Current.Server.MapPath("~/Files//") + "Merge.pdf", FileMode.Create));
+            document.Open();
+            
+            foreach (PdfReader reader in readerList)
+            {
+                for (int i = 1; i <= reader.NumberOfPages; i++)
+                {
+                    PdfImportedPage page = writer.GetImportedPage(reader, i);
+                    document.Add(iTextSharp.text.Image.GetInstance(page));
+                }
+            }
+            document.Close();
+            
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ContentType = "application/pdf";
+            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=Store PDF.pdf");
+            HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            HttpContext.Current.Response.WriteFile(HttpContext.Current.Server.MapPath("~/Files//") + "Merge.pdf");
+
+            System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
+            //if (File.Exists(HttpContext.Current.Server.MapPath("~/Files//Heading.pdf")))
+            //{
+                
+            //    File.Delete(HttpContext.Current.Server.MapPath("~/Files//Heading.pdf"));
+            //}
+            //if (File.Exists(HttpContext.Current.Server.MapPath("~/Files//StoreSummary.pdf")))
+            //{
+            //    File.Delete(HttpContext.Current.Server.MapPath("~/Files//StoreSummary.pdf"));
+            //}
+            //if (File.Exists(HttpContext.Current.Server.MapPath("~/Files//Merge.pdf")))
+            //{
+            //    File.Delete(HttpContext.Current.Server.MapPath("~/Files//Merge.pdf"));
+            //}
         }
 
     }
