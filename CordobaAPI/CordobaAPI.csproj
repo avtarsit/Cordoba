@@ -55,6 +55,15 @@
     <Reference Include="NReco.PdfGenerator">
       <HintPath>..\packages\NReco.PdfGenerator.1.1.15\lib\net20\NReco.PdfGenerator.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Presentation">
+      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -258,6 +267,61 @@
     <Content Include="ContactUsTemplate\template1.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\logo\cordoba-logo.png" />
+    <Content Include="Content\images\logo\homepdfimage.png" />
+    <Content Include="Content\images\logo\red.png" />
+    <Content Include="Content\images\Storelogo\1079.png" />
+    <Content Include="Content\images\Storelogo\1080.png" />
+    <Content Include="Content\images\Storelogo\1082.png" />
+    <Content Include="Content\images\Storelogo\1083.png" />
+    <Content Include="Content\images\Storelogo\1084.png" />
+    <Content Include="Content\images\Storelogo\1085.png" />
+    <Content Include="Content\images\Storelogo\14.png" />
+    <Content Include="Content\images\Storelogo\16.png" />
+    <Content Include="Content\images\Storelogo\18.png" />
+    <Content Include="Content\images\Storelogo\20.png" />
+    <Content Include="Content\images\Storelogo\21.png" />
+    <Content Include="Content\images\Storelogo\22.png" />
+    <Content Include="Content\images\Storelogo\23.png" />
+    <Content Include="Content\images\Storelogo\24.png" />
+    <Content Include="Content\images\Storelogo\25.png" />
+    <Content Include="Content\images\Storelogo\26.png" />
+    <Content Include="Content\images\Storelogo\27.png" />
+    <Content Include="Content\images\Storelogo\28.png" />
+    <Content Include="Content\images\Storelogo\29.png" />
+    <Content Include="Content\images\Storelogo\30.png" />
+    <Content Include="Content\images\Storelogo\33.png" />
+    <Content Include="Content\images\Storelogo\35.png" />
+    <Content Include="Content\images\Storelogo\4.png" />
+    <Content Include="Content\images\Storelogo\44.png" />
+    <Content Include="Content\images\Storelogo\45.png" />
+    <Content Include="Content\images\Storelogo\46.png" />
+    <Content Include="Content\images\Storescreen\1079.PNG" />
+    <Content Include="Content\images\Storescreen\1080.PNG" />
+    <Content Include="Content\images\Storescreen\1082.PNG" />
+    <Content Include="Content\images\Storescreen\1083.PNG" />
+    <Content Include="Content\images\Storescreen\1084.PNG" />
+    <Content Include="Content\images\Storescreen\1085.PNG" />
+    <Content Include="Content\images\Storescreen\14.PNG" />
+    <Content Include="Content\images\Storescreen\16.PNG" />
+    <Content Include="Content\images\Storescreen\18.PNG" />
+    <Content Include="Content\images\Storescreen\20.PNG" />
+    <Content Include="Content\images\Storescreen\21.PNG" />
+    <Content Include="Content\images\Storescreen\22.PNG" />
+    <Content Include="Content\images\Storescreen\23.PNG" />
+    <Content Include="Content\images\Storescreen\24.PNG" />
+    <Content Include="Content\images\Storescreen\25.PNG" />
+    <Content Include="Content\images\Storescreen\26.PNG" />
+    <Content Include="Content\images\Storescreen\27.PNG" />
+    <Content Include="Content\images\Storescreen\28.PNG" />
+    <Content Include="Content\images\Storescreen\29.PNG" />
+    <Content Include="Content\images\Storescreen\30.PNG" />
+    <Content Include="Content\images\Storescreen\33.PNG" />
+    <Content Include="Content\images\Storescreen\35.PNG" />
+    <Content Include="Content\images\Storescreen\4.PNG" />
+    <Content Include="Content\images\Storescreen\44.PNG" />
+    <Content Include="Content\images\Storescreen\45.PNG" />
+    <Content Include="Content\images\Storescreen\46.PNG" />
     <Content Include="EmailTemplate\ContactUs.html" />
     <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="EmailTemplate\ForgotPassword.html" />
