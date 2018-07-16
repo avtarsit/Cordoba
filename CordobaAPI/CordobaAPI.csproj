@@ -356,6 +356,7 @@
     <Content Include="DownloadProductImage\CordobaProductImageDownloadService.exe.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Files\result2.pptx" />
     <None Include="Properties\PublishProfiles\API.pubxml" />
     <None Include="Properties\PublishProfiles\DF.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
