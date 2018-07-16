@@ -483,6 +483,11 @@ namespace CordobaAPI.API
                 RectangleF rect = new RectangleF(10, 100, 750, 420);
                 IChart participantloadedbymonthchart = ppt.Slides[3].Shapes.AppendChart(ChartType.ColumnClustered, rect);
 
+                IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                participantloadedshape.Fill.FillType = FillFormatType.Solid;
+                participantloadedshape.Fill.SolidColor.Color = Color.Red;
+                participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
+
                 //set chart title  
                 participantloadedbymonthchart.ChartTitle.TextProperties.Text = "Participants loaded by month";
                 participantloadedbymonthchart.ChartTitle.TextProperties.IsCentered = true;
@@ -554,6 +559,11 @@ namespace CordobaAPI.API
 
                 RectangleF OrderPlacedByTypeByMonthrect = new RectangleF(10, 100, 750, 420);
                 IChart OrderPlacedByTypeByMonthchart = ppt.Slides[4].Shapes.AppendChart(ChartType.ColumnClustered, OrderPlacedByTypeByMonthrect);
+
+                IAutoShape orderplacedbytypemonthshape = (IAutoShape)ppt.Slides[4].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                orderplacedbytypemonthshape.Fill.FillType = FillFormatType.Solid;
+                orderplacedbytypemonthshape.Fill.SolidColor.Color = Color.Red;
+                orderplacedbytypemonthshape.ShapeStyle.LineColor.Color = Color.White;
 
                 //set chart title  
                 OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.Text = "Order Placed By Type By Loaded By Month";
@@ -627,6 +637,11 @@ namespace CordobaAPI.API
                 //TopPointsHoldersByStore[] pointhoders = result.topPointsHolders.ToList().ToArray();
                 DataTable dtpointhoders = ToDataTable(result.topPointsHolders.ToList());
 
+                IAutoShape pointhodersshape = (IAutoShape)ppt.Slides[5].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                pointhodersshape.Fill.FillType = FillFormatType.Solid;
+                pointhodersshape.Fill.SolidColor.Color = Color.Red;
+                pointhodersshape.ShapeStyle.LineColor.Color = Color.White;
+
                 Double[] widths = new double[] { 100, 100, 100, 100, 100, 100 };
                 Double[] heights = new double[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
                 ITable table = ppt.Slides[5].Shapes.AppendTable(ppt.SlideSize.Size.Width / 2 - 275, 80, widths, heights);
@@ -688,6 +703,11 @@ namespace CordobaAPI.API
 
                 ppt.SlideSize.Type = SlideSizeType.Screen16x9;
                 SizeF slidesize = ppt.SlideSize.Size;
+
+                IAutoShape pointsloadedbymonthshape = (IAutoShape)ppt.Slides[6].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                pointsloadedbymonthshape.Fill.FillType = FillFormatType.Solid;
+                pointsloadedbymonthshape.Fill.SolidColor.Color = Color.Red;
+                pointsloadedbymonthshape.ShapeStyle.LineColor.Color = Color.White;
 
                 var pointsloadedbymonthslide = ppt.Slides[6];
 
@@ -787,6 +807,11 @@ namespace CordobaAPI.API
                 SizeF pointsredeemedslidesize = ppt.SlideSize.Size;
 
                 var pointsredeemedslide = ppt.Slides[7];
+
+                IAutoShape pointsredeemedshape = (IAutoShape)ppt.Slides[7].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                pointsredeemedshape.Fill.FillType = FillFormatType.Solid;
+                pointsredeemedshape.Fill.SolidColor.Color = Color.Red;
+                pointsredeemedshape.ShapeStyle.LineColor.Color = Color.White;
 
                 //Add title
                 RectangleF pointsredeemedtitleRect = new RectangleF(10, 60, 250, 50);

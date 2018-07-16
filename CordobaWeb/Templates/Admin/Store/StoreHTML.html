@@ -75,10 +75,9 @@
                 <img ng-src="../../Content/admin/images/Storescreen/{{StoreId}}.png" alt="Store Screen" style="height:621px;width:100%;" />
             </div>
         </div>
-        <div class="row" >
+        <!--<div class="row" >
             <div class="col-sm-12" style="height:539px !important;">
                 <div class="col-sm-6" id="storesummary" style="height:539px !important;">
-                    <!-- Nightingale roses width hidden labels -->
                     <div class="panel">
                         <div class="panel-heading">
                             <h5 class="panel-title">Store Summary</h5>
@@ -95,11 +94,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /nightingale roses width hidden labels -->
                 </div>
-                <!-- Quick stats boxes -->
                 <div class="col-sm-6" id="pointsremaining" style="height:539px !important;">
-                    <!-- Nightingale roses width hidden labels -->
                     <div class="panel">
                         <div class="panel-heading">
                             <h5 class="panel-title">Points Remaining:({{StoreHTMLSummary.PointsRemaining[0].value}})</h5>
@@ -113,11 +109,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /nightingale roses width hidden labels -->
                 </div>
             </div>
             <div class="col-sm-12" id="participantsloadedbymonth" style="height:496px !important; margin-top:510px;">
-                <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Participants loaded by Month</h5>
@@ -126,43 +120,15 @@
                     </div>
                     <div class="panel-body" ng-class="{'fixHeight':ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0}">
                         <h1 ng-if="ParticipantsLoadedByMonthname.length==0 && ParticipantsLoadedByMonthvalue.length==0"><br />No PointsRemaining Available to Display</h1>
-                        <!--<table>
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Customer Count</th>
-                        </tr>
-                    </thead>
-                    <tr ng-repeat=" item in ParticipantsLoadedByMonth">
-                        <td ng-bind="item.Month"></td>
-                        <td ng-bind="item.CustomerCount"></td>
-                    </tr>
-                </table>-->
                         <div class="chart-container" ng-show="ParticipantsLoadedByMonthname.length>0 && ParticipantsLoadedByMonthvalue.length>0">
                             <div style="float:left;">
-                                <!--<table>
-                            <thead>
-                                <tr>
-                                    <th>Month</th>
-                                    <th>Customer Count</th>
-                                </tr>
-                            </thead>
-                            <tr ng-repeat=" item in ParticipantsLoadedByMonth">
-                                <td ng-bind="item.Month"></td>
-                                <td ng-bind="item.CustomerCount"></td>
-                            </tr>
-                        </table>-->
                             </div>
-
                             <div class="chart has-fixed-height" id="ParticipantsLoadedByMonth"></div>
-
                         </div>
                     </div>
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
             <div class="col-sm-12" style="height:476px !important; margin-top:100px;">
-                <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Points loaded by Month</h5>
@@ -176,10 +142,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
             <div class="col-sm-12" style="height:780px !important;">
-                <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Points Redeemed by Month</h5>
@@ -193,11 +157,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
             <div class="col-sm-12" style="height:500px !important">
-                <!--style="margin-top:270px;"-->
-                <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Top Points Holders</h5>
@@ -225,10 +186,8 @@
                         </tr>
                     </table>
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
             <div class="col-sm-12" style="height:496px !important">
-                <!-- Nightingale roses width hidden labels -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Order Placed By Type loaded by Month</h5>
@@ -246,9 +205,8 @@
 
                     </div>
                 </div>
-                <!-- /nightingale roses width hidden labels -->
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
