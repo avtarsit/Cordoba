@@ -901,19 +901,19 @@ namespace CordobaAPI.API
 
 
                 //save to file  
-                ppt.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "result2.pptx", FileFormat.Pptx2010);
+                ppt.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx", FileFormat.Pptx2010);
                 //presentation.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "CombinationChart.pptx", FileFormat.Pptx2010);
 
                 HttpResponseMessage response = Request.CreateResponse();
 
-                string filePath = HttpContext.Current.Server.MapPath("~/Files//") + "result2.pptx";
+                string filePath = HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx";
                 FileInfo fileInfo = new FileInfo(filePath);
 
                 HttpContext.Current.Response.Clear();
-                HttpContext.Current.Response.ContentType = GetMimeType("result2.pptx");
-                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=result2.pptx");
+                HttpContext.Current.Response.ContentType = GetMimeType("StoreDetail.pptx");
+                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=StoreDetail.pptx");
                 HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                HttpContext.Current.Response.WriteFile(HttpContext.Current.Server.MapPath("~/Files//") + "result2.pptx");
+                HttpContext.Current.Response.WriteFile(HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx");
 
                 System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
                 if (result != null)
