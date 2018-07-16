@@ -278,7 +278,9 @@ namespace CordobaAPI.API
                 IAutoShape shape = (IAutoShape)ppt.Slides[0].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
                 shape.Fill.FillType = FillFormatType.Solid;
                 shape.Fill.SolidColor.Color = Color.Red;
-                shape.ShapeStyle.LineColor.Color = Color.White;
+                shape.ShapeStyle.LineColor.Color = Color.Red;
+
+                //ppt.Slides[0].Shapes.ZOrder(1, shape);
 
                 ////insert image to PPT
                 //string ImageFile2 = HttpContext.Current.Server.MapPath("~/Content//images//logo//") + "red.png";
@@ -290,13 +292,13 @@ namespace CordobaAPI.API
 
                 string logoFile = HttpContext.Current.Server.MapPath("~/Content//images//logo//") + "cordoba-logo.png";//"logo.png";
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
-                RectangleF logoRect = new RectangleF(10, 60, 100, 78);
+                RectangleF logoRect = new RectangleF(10, 70, 200, 78);
                 IEmbedImage image = slide.Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFile, logoRect);
                 image.Line.FillType = FillFormatType.None;
 
                 string logoFile1 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
-                RectangleF logoRect1 = new RectangleF(600, 60, 100, 78);
+                RectangleF logoRect1 = new RectangleF(500, 70, 200, 78);
                 IEmbedImage image1 = slide.Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFile1, logoRect1);
                 image1.Line.FillType = FillFormatType.None;
 
@@ -306,7 +308,7 @@ namespace CordobaAPI.API
                 ////Content format
                 //string text = "Review Meeting";
                 //textShape.AppendTextFrame(text);
-                RectangleF titleRect = new RectangleF(10, 200, 200, 130);
+                RectangleF titleRect = new RectangleF(10, 150, 200, 130);
                 IAutoShape titleShape = slide.Shapes.AppendShape(ShapeType.Rectangle, titleRect);
                 titleShape.Fill.FillType = FillFormatType.None;
                 titleShape.ShapeStyle.LineColor.Color = Color.Empty;
@@ -317,7 +319,7 @@ namespace CordobaAPI.API
                 titlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
                 titlePara.Alignment = TextAlignmentType.Center;
 
-                RectangleF titleRect1 = new RectangleF(10, 220, 200, 130);
+                RectangleF titleRect1 = new RectangleF(10, 170, 200, 130);
                 IAutoShape titleShape1 = slide.Shapes.AppendShape(ShapeType.Rectangle, titleRect1);
                 titleShape1.Fill.FillType = FillFormatType.None;
                 titleShape1.ShapeStyle.LineColor.Color = Color.Empty;
@@ -371,7 +373,7 @@ namespace CordobaAPI.API
 
                 string logoFile2 = HttpContext.Current.Server.MapPath("~/Content//images//logo//") + "homepdfimage.png";//"logo.png";
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
-                RectangleF logoRect2 = new RectangleF(10, 380, 700, 160);
+                RectangleF logoRect2 = new RectangleF(10, 310, 700, 200);
                 IEmbedImage image2 = slide.Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFile2, logoRect2);
                 image1.Line.FillType = FillFormatType.None;
 
@@ -408,6 +410,17 @@ namespace CordobaAPI.API
                 chart.ChartTitle.TextProperties.Text = "Store Summary";
                 chart.ChartTitle.TextProperties.IsCentered = true;
                 chart.ChartTitle.Height = 30;
+
+                RectangleF storesummarytitleRect = new RectangleF(10, 500, 200, 20);
+                IAutoShape storesummarytitleShape = ppt.Slides[2].Shapes.AppendShape(ShapeType.Rectangle, titleRect);
+                storesummarytitleShape.Fill.FillType = FillFormatType.None;
+                storesummarytitleShape.ShapeStyle.LineColor.Color = Color.Empty;
+                TextParagraph storesummarytitlePara = storesummarytitleShape.TextFrame.Paragraphs[0];
+                storesummarytitlePara.Text = "Participant: (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";
+                storesummarytitlePara.FirstTextRange.FontHeight = 20;
+                storesummarytitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
+                storesummarytitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
+                storesummarytitlePara.Alignment = TextAlignmentType.Center;
 
                 IAutoShape storesummaryshape = (IAutoShape)ppt.Slides[2].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
                 storesummaryshape.Fill.FillType = FillFormatType.Solid;
@@ -480,7 +493,7 @@ namespace CordobaAPI.API
 
                 //insert a column chart  
                 //insert a column participantloadedbymonthchart  
-                RectangleF rect = new RectangleF(10, 100, 750, 420);
+                RectangleF rect = new RectangleF(10, 100, 700, 420);
                 IChart participantloadedbymonthchart = ppt.Slides[3].Shapes.AppendChart(ChartType.ColumnClustered, rect);
 
                 IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
@@ -500,7 +513,7 @@ namespace CordobaAPI.API
                 //dataTable1 = dataTablenew.Copy();
                 dataTable1.Columns.Add(new DataColumn("Month", Type.GetType("System.String")));
                 dataTable1.Columns.Add(new DataColumn("CustomerCount", Type.GetType("System.Int32")));
-                dataTable1.Columns.Add(new DataColumn("Growth rate", Type.GetType("System.Decimal")));
+                dataTable1.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
 
                 //dataTable1.Rows.Clear();
                 for (int i = 0; i < dataTablenew.Rows.Count; i++)
@@ -539,11 +552,11 @@ namespace CordobaAPI.API
                 //change the chart type of series 2 to line chart with markers  
                 participantloadedbymonthchart.Series[1].Type = ChartType.LineMarkers;
 
-                //plot data of series 2 on the secondary axis  
-                participantloadedbymonthchart.Series[1].UseSecondAxis = true;
+                ////plot data of series 2 on the secondary axis  
+                //participantloadedbymonthchart.Series[1].UseSecondAxis = true;
 
-                //set the number format as percentage   
-                participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
+                ////set the number format as percentage   
+                //participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
 
                 //hide grid lines of secondary axis  
                 participantloadedbymonthchart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
@@ -557,80 +570,111 @@ namespace CordobaAPI.API
                 //Fifth slide
                 ppt.Slides.Append();
 
-                RectangleF OrderPlacedByTypeByMonthrect = new RectangleF(10, 100, 750, 420);
-                IChart OrderPlacedByTypeByMonthchart = ppt.Slides[4].Shapes.AppendChart(ChartType.ColumnClustered, OrderPlacedByTypeByMonthrect);
-
+                RectangleF OrderPlacedByTypeByMonthrect = new RectangleF(10, 100, 700, 420);
                 IAutoShape orderplacedbytypemonthshape = (IAutoShape)ppt.Slides[4].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
                 orderplacedbytypemonthshape.Fill.FillType = FillFormatType.Solid;
                 orderplacedbytypemonthshape.Fill.SolidColor.Color = Color.Red;
                 orderplacedbytypemonthshape.ShapeStyle.LineColor.Color = Color.White;
 
-                //set chart title  
-                OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.Text = "Order Placed By Type By Loaded By Month";
-                OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.IsCentered = true;
-                OrderPlacedByTypeByMonthchart.ChartTitle.Height = 30;
-                OrderPlacedByTypeByMonthchart.HasTitle = true;
+
 
 
                 //create a datatable  
                 System.Data.DataTable dtMakeOrderPlacedByTypeByMonth = new DataTable();
                 System.Data.DataTable dataTableMakeOrderPlacedByTypeDynamic = ToDataTable(result.orderPlacedByType.ToList());
-                //dataTable1 = dataTablenew.Copy();
-                dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("Name", Type.GetType("System.String")));
-                dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("OrderCount", Type.GetType("System.Int32")));
-                dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("Growth rate", Type.GetType("System.Decimal")));
 
-                //dataTable1.Rows.Clear();
-                for (int i = 0; i < dataTableMakeOrderPlacedByTypeDynamic.Rows.Count; i++)
+                if (dataTableMakeOrderPlacedByTypeDynamic != null && dataTableMakeOrderPlacedByTypeDynamic.Rows.Count > 0)
                 {
-                    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
-                    dtMakeOrderPlacedByTypeByMonth.ImportRow(dataTableMakeOrderPlacedByTypeDynamic.Rows[i]);
-                }
+                    IChart OrderPlacedByTypeByMonthchart = ppt.Slides[4].Shapes.AppendChart(ChartType.ColumnClustered, OrderPlacedByTypeByMonthrect);
 
-                //import data from datatable to chart data  
-                for (int c = 0; c < dtMakeOrderPlacedByTypeByMonth.Columns.Count; c++)
-                {
-                    OrderPlacedByTypeByMonthchart.ChartData[0, c].Text = dtMakeOrderPlacedByTypeByMonth.Columns[c].Caption;
-                }
-                for (int r = 0; r < dtMakeOrderPlacedByTypeByMonth.Rows.Count; r++)
-                {
-                    object[] datas = dtMakeOrderPlacedByTypeByMonth.Rows[r].ItemArray;
-                    for (int c = 0; c < datas.Length; c++)
+
+                    //set chart title  
+                    OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.Text = "Order Placed By Type By Loaded By Month";
+                    OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.IsCentered = true;
+                    OrderPlacedByTypeByMonthchart.ChartTitle.Height = 30;
+                    OrderPlacedByTypeByMonthchart.HasTitle = true;
+
+                    dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("Name", Type.GetType("System.String")));
+                    dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("OrderCount", Type.GetType("System.Int32")));
+                    dtMakeOrderPlacedByTypeByMonth.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
+
+                    //dataTable1.Rows.Clear();
+                    for (int i = 0; i < dataTableMakeOrderPlacedByTypeDynamic.Rows.Count; i++)
                     {
-                        OrderPlacedByTypeByMonthchart.ChartData[r + 1, c].Value = datas[c];
-
+                        //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
+                        dtMakeOrderPlacedByTypeByMonth.ImportRow(dataTableMakeOrderPlacedByTypeDynamic.Rows[i]);
                     }
+
+                    //import data from datatable to chart data  
+                    for (int c = 0; c < dtMakeOrderPlacedByTypeByMonth.Columns.Count; c++)
+                    {
+                        OrderPlacedByTypeByMonthchart.ChartData[0, c].Text = dtMakeOrderPlacedByTypeByMonth.Columns[c].Caption;
+                    }
+                    for (int r = 0; r < dtMakeOrderPlacedByTypeByMonth.Rows.Count; r++)
+                    {
+                        object[] datas = dtMakeOrderPlacedByTypeByMonth.Rows[r].ItemArray;
+                        for (int c = 0; c < datas.Length; c++)
+                        {
+                            OrderPlacedByTypeByMonthchart.ChartData[r + 1, c].Value = datas[c];
+
+                        }
+                    }
+
+                    //set series labels  
+                    OrderPlacedByTypeByMonthchart.Series.SeriesLabel = OrderPlacedByTypeByMonthchart.ChartData["B1", "C1"];
+
+                    int totalRowsOrderPlacedByTypeByMonthchart = dtMakeOrderPlacedByTypeByMonth.Rows.Count + 1;
+
+                    //set categories labels      
+                    OrderPlacedByTypeByMonthchart.Categories.CategoryLabels = OrderPlacedByTypeByMonthchart.ChartData["A2", "A" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
+
+                    //assign data to series values  
+                    OrderPlacedByTypeByMonthchart.Series[0].Values = OrderPlacedByTypeByMonthchart.ChartData["B2", "B" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
+                    OrderPlacedByTypeByMonthchart.Series[1].Values = OrderPlacedByTypeByMonthchart.ChartData["C2", "C" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
+
+                    //change the chart type of series 2 to line chart with markers  
+                    OrderPlacedByTypeByMonthchart.Series[1].Type = ChartType.LineMarkers;
+
+                    ////plot data of series 2 on the secondary axis  
+                    //OrderPlacedByTypeByMonthchart.Series[1].UseSecondAxis = true;
+
+                    ////set the number format as percentage   
+                    //OrderPlacedByTypeByMonthchart.SecondaryValueAxis.NumberFormat = "0%";
+
+                    //hide grid lines of secondary axis  
+                    OrderPlacedByTypeByMonthchart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
+
+                    //set overlap  
+                    OrderPlacedByTypeByMonthchart.OverLap = -50;
+
+                    //set gap width  
+                    OrderPlacedByTypeByMonthchart.GapWidth = 200;
+                }
+                else
+                {
+                    RectangleF OrderPlacedByTypeByMonthtitleRect1 = new RectangleF(60, 10, 500, 130);
+                    IAutoShape OrderPlacedByTypeByMonthtitleShape1 = ppt.Slides[4].Shapes.AppendShape(ShapeType.Rectangle, OrderPlacedByTypeByMonthtitleRect1);
+                    OrderPlacedByTypeByMonthtitleShape1.Fill.FillType = FillFormatType.None;
+                    OrderPlacedByTypeByMonthtitleShape1.ShapeStyle.LineColor.Color = Color.Empty;
+                    TextParagraph OrderPlacedByTypeByMonthtitlePara1 = OrderPlacedByTypeByMonthtitleShape1.TextFrame.Paragraphs[0];
+                    OrderPlacedByTypeByMonthtitlePara1.Text = "Order Placed By Type By Loaded By Month";
+                    OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.FontHeight = 20;
+                    OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.Fill.FillType = FillFormatType.Solid;
+                    OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.Fill.SolidColor.Color = Color.Black;
+                    OrderPlacedByTypeByMonthtitlePara1.Alignment = TextAlignmentType.Center;
+
+                    RectangleF OrderPlacedByTypeByMonthtitleRect = new RectangleF(60, 100, 500, 130);
+                    IAutoShape OrderPlacedByTypeByMonthtitleShape = ppt.Slides[4].Shapes.AppendShape(ShapeType.Rectangle, OrderPlacedByTypeByMonthtitleRect);
+                    OrderPlacedByTypeByMonthtitleShape.Fill.FillType = FillFormatType.None;
+                    OrderPlacedByTypeByMonthtitleShape.ShapeStyle.LineColor.Color = Color.Empty;
+                    TextParagraph OrderPlacedByTypeByMonthtitlePara = OrderPlacedByTypeByMonthtitleShape.TextFrame.Paragraphs[0];
+                    OrderPlacedByTypeByMonthtitlePara.Text = "No Orders Available.";
+                    OrderPlacedByTypeByMonthtitlePara.FirstTextRange.FontHeight = 20;
+                    OrderPlacedByTypeByMonthtitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
+                    OrderPlacedByTypeByMonthtitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
+                    OrderPlacedByTypeByMonthtitlePara.Alignment = TextAlignmentType.Center;
                 }
 
-                //set series labels  
-                OrderPlacedByTypeByMonthchart.Series.SeriesLabel = OrderPlacedByTypeByMonthchart.ChartData["B1", "C1"];
-
-                int totalRowsOrderPlacedByTypeByMonthchart = dtMakeOrderPlacedByTypeByMonth.Rows.Count + 1;
-
-                //set categories labels      
-                OrderPlacedByTypeByMonthchart.Categories.CategoryLabels = OrderPlacedByTypeByMonthchart.ChartData["A2", "A" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
-
-                //assign data to series values  
-                OrderPlacedByTypeByMonthchart.Series[0].Values = OrderPlacedByTypeByMonthchart.ChartData["B2", "B" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
-                OrderPlacedByTypeByMonthchart.Series[1].Values = OrderPlacedByTypeByMonthchart.ChartData["C2", "C" + totalRowsOrderPlacedByTypeByMonthchart.ToString()];
-
-                //change the chart type of series 2 to line chart with markers  
-                OrderPlacedByTypeByMonthchart.Series[1].Type = ChartType.LineMarkers;
-
-                //plot data of series 2 on the secondary axis  
-                OrderPlacedByTypeByMonthchart.Series[1].UseSecondAxis = true;
-
-                //set the number format as percentage   
-                OrderPlacedByTypeByMonthchart.SecondaryValueAxis.NumberFormat = "0%";
-
-                //hide grid lines of secondary axis  
-                OrderPlacedByTypeByMonthchart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
-
-                //set overlap  
-                OrderPlacedByTypeByMonthchart.OverLap = -50;
-
-                //set gap width  
-                OrderPlacedByTypeByMonthchart.GapWidth = 200;
 
                 //Sixth slide
                 ppt.Slides.Append();
@@ -901,19 +945,19 @@ namespace CordobaAPI.API
 
 
                 //save to file  
-                ppt.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx", FileFormat.Pptx2010);
+                ppt.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "Monthly Report.pptx", FileFormat.Pptx2010);
                 //presentation.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "CombinationChart.pptx", FileFormat.Pptx2010);
 
                 HttpResponseMessage response = Request.CreateResponse();
 
-                string filePath = HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx";
+                string filePath = HttpContext.Current.Server.MapPath("~/Files//") + "Monthly Report.pptx";
                 FileInfo fileInfo = new FileInfo(filePath);
 
                 HttpContext.Current.Response.Clear();
-                HttpContext.Current.Response.ContentType = GetMimeType("StoreDetail.pptx");
-                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=StoreDetail.pptx");
+                HttpContext.Current.Response.ContentType = GetMimeType("Monthly Report.pptx");
+                HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=Monthly Report.pptx");
                 HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                HttpContext.Current.Response.WriteFile(HttpContext.Current.Server.MapPath("~/Files//") + "StoreDetail.pptx");
+                HttpContext.Current.Response.WriteFile(HttpContext.Current.Server.MapPath("~/Files//") + "Monthly Report.pptx");
 
                 System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
                 if (result != null)
