@@ -56,13 +56,13 @@
       <HintPath>..\packages\NReco.PdfGenerator.1.1.15\lib\net20\NReco.PdfGenerator.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License">
-      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.License.dll</HintPath>
+      <HintPath>..\packages\Spire DLL\Spire.License.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Pdf">
-      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.Pdf.dll</HintPath>
+      <HintPath>..\packages\Spire DLL\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Presentation">
-      <HintPath>..\packages\Spire.Presentation.3.6.9\lib\net40\Spire.Presentation.dll</HintPath>
+      <HintPath>..\packages\Spire DLL\Spire.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
