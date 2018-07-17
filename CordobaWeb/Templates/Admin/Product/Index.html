@@ -36,21 +36,21 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-name">Product Name</label>
-                                <input type="text"  name="filter_name" ng-model="ProductFilter.name" placeholder="Product Name" id="input-name" class="form-control">
+                                <input type="text" ng-blur="ContainValueOrNot()" name="filter_name" ng-keypress="checkIfEnterKeyWasPressed($event)" ng-model="ProductFilter.name" placeholder="Product Name" id="input-name" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-model">Model</label>
-                                <input type="text" name="filter_model" ng-model="ProductFilter.Model" placeholder="Model" id="input-model" class="form-control">
+                                <input type="text" ng-blur="ContainValueOrNot()" name="filter_model" ng-keypress="checkIfEnterKeyWasPressed($event)" ng-model="ProductFilter.Model" placeholder="Model" id="input-model" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="control-label" for="input-price">Price</label>
-                                <input type="number" maxlength="5" name="filter_price" ng-model="ProductFilter.Price" placeholder="Price" id="input-price" class="form-control">
+                                <input type="number" ng-blur="ContainValueOrNot()" maxlength="5" ng-keypress="checkIfEnterKeyWasPressed($event)" name="filter_price" ng-model="ProductFilter.Price" placeholder="Price" id="input-price" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="input-quantity">Quantity</label>
-                                <input type="number"  maxlength="4" name="filter_quantity" ng-model="ProductFilter.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
+                                <input type="number" ng-blur="ContainValueOrNot()" maxlength="4" ng-keypress="checkIfEnterKeyWasPressed($event)" name="filter_quantity" ng-model="ProductFilter.Quantity" placeholder="Quantity" id="input-quantity" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">

@@ -145,6 +145,15 @@
         }
     }
 
+    $scope.checkIfEnterKeyWasPressed = function ($event) {
+        debugger;
+        var keyCode = $event.which || $event.keyCode;
+        if (keyCode === 13) {
+            $scope.ContainValueOrNot();
+            $scope.GetProductList();
+        }
+    };
+
     $scope.ContainStoreOrNot = function () {
         debugger;
         //Store

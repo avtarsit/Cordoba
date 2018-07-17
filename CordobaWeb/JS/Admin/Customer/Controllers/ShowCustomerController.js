@@ -132,6 +132,15 @@
         }
     }
 
+    $scope.checkIfEnterKeyWasPressed = function ($event) {
+        debugger;
+        var keyCode = $event.which || $event.keyCode;
+        if (keyCode === 13) {
+            $scope.ContainValueOrNot();
+            $scope.GetCustomerList();
+        }
+    };
+
     $scope.ContainValueOrNot = function () {
         debugger;
         //Order Id

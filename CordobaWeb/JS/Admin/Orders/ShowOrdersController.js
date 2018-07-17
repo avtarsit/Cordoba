@@ -85,6 +85,15 @@
         MaintainLocalStorage();
     }
 
+    $scope.checkIfEnterKeyWasPressed = function ($event) {
+        debugger;
+        var keyCode = $event.which || $event.keyCode;
+        if (keyCode === 13) {
+            $scope.ContainValueOrNot();
+            $scope.GetOrderList();
+        }
+    };
+
     $scope.ContainStoreOrNot = function () {
         debugger;
         //Store
