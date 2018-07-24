@@ -471,7 +471,7 @@ namespace CordobaAPI.API
             //        pointsummarychart.ChartData[i + 1, 0].Value = pointsummarycountries[i];
             //        pointsummarychart.ChartData[i + 1, 1].Value = pointsummarysales[i];
             //    }
-                
+
             //    pointsummarychart.Series.SeriesLabel = pointsummarychart.ChartData["B1", "B1"];
             //    pointsummarychart.Categories.CategoryLabels = pointsummarychart.ChartData["A2", "A5"];
             //    pointsummarychart.Series[0].Values = pointsummarychart.ChartData["B2", "B2"];
@@ -487,7 +487,7 @@ namespace CordobaAPI.API
             //    pointsummarychart.Series[0].DataPoints[1].Fill.FillType = FillFormatType.Solid;
             //    pointsummarychart.Series[0].DataPoints[1].Fill.SolidColor.Color = Color.MediumPurple;
             //    pointsummarychart.Series[0].DataLabels.LabelValueVisible = true;
-               
+
             //    pointsummarychart.Series[0].DoughnutHoleSize = 60;
 
             //    //Fourth slide
@@ -1110,22 +1110,24 @@ namespace CordobaAPI.API
                 //Third slide
                 ppt.Slides.Append();
 
-                RectangleF dougnutrect = new RectangleF(10, 20, 300, 300);
-                IChart chart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, dougnutrect, false);
-                chart.ChartTitle.TextProperties.Text = "Store Summary";
-                chart.ChartTitle.TextProperties.IsCentered = true;
-                chart.ChartTitle.Height = 30;
-
-                RectangleF storesummarytitleRect = new RectangleF(10, 380, 200, 20);
-                IAutoShape storesummarytitleShape = ppt.Slides[2].Shapes.AppendShape(ShapeType.Rectangle, titleRect);
+                RectangleF storesummarytitleRect = new RectangleF(10, 10, 200, 30);
+                IAutoShape storesummarytitleShape = ppt.Slides[2].Shapes.AppendShape(ShapeType.Rectangle, storesummarytitleRect);
                 storesummarytitleShape.Fill.FillType = FillFormatType.None;
                 storesummarytitleShape.ShapeStyle.LineColor.Color = Color.Empty;
                 TextParagraph storesummarytitlePara = storesummarytitleShape.TextFrame.Paragraphs[0];
-                storesummarytitlePara.Text = "Participant: (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";
+                storesummarytitlePara.Text = "Store Summary";
                 storesummarytitlePara.FirstTextRange.FontHeight = 20;
                 storesummarytitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
                 storesummarytitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
                 storesummarytitlePara.Alignment = TextAlignmentType.Center;
+
+                RectangleF dougnutrect = new RectangleF(10, 40, 300, 300);
+                IChart chart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, dougnutrect, false);
+                chart.ChartTitle.TextProperties.Text = "Participant: (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";//"Store Summary";
+                chart.ChartTitle.TextProperties.IsCentered = true;
+                chart.ChartTitle.Height = 30;
+
+
 
                 //IAutoShape storesummaryshape = (IAutoShape)ppt.Slides[2].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
                 //storesummaryshape.Fill.FillType = FillFormatType.Solid;
@@ -1161,13 +1163,13 @@ namespace CordobaAPI.API
 
                 //Point Summary
 
-                RectangleF pointsummaryrect = new RectangleF(400, 20, 300, 300);
+                RectangleF pointsummaryrect = new RectangleF(400, 40, 300, 300);
                 IChart pointsummarychart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, pointsummaryrect, false);
                 pointsummarychart.ChartTitle.TextProperties.Text = "Points Remaining";
                 pointsummarychart.ChartTitle.TextProperties.IsCentered = true;
                 pointsummarychart.ChartTitle.Height = 30;
-                string[] pointsummarycountries = new string[] { "Activated accounts" };
-                int[] pointsummarysales = new int[] { result.pointsRemaining[0].Count };
+                string[] pointsummarycountries = new string[] { "Activated accounts", "Non activated accounts" };
+                int[] pointsummarysales = new int[] { result.pointsRemaining[0].Count, result.pointsRemaining[1].Count };
                 pointsummarychart.ChartData[0, 0].Text = "Countries";
                 pointsummarychart.ChartData[0, 1].Text = "Sales";
                 for (int i = 0; i < pointsummarycountries.Length; ++i)
@@ -1177,12 +1179,12 @@ namespace CordobaAPI.API
                 }
 
                 pointsummarychart.Series.SeriesLabel = pointsummarychart.ChartData["B1", "B1"];
-                pointsummarychart.Categories.CategoryLabels = pointsummarychart.ChartData["A2", "A2"];
-                pointsummarychart.Series[0].Values = pointsummarychart.ChartData["B2", "B2"];
+                pointsummarychart.Categories.CategoryLabels = pointsummarychart.ChartData["A2", "A3"];
+                pointsummarychart.Series[0].Values = pointsummarychart.ChartData["B2", "B3"];
                 //for (int i = 0; i < chart.Series[0].Values.Count; i++)
                 for (int i = 0; i < 2; i++)
                 {
-                    ChartDataPoint cdp = new ChartDataPoint(chart.Series[0]);
+                    ChartDataPoint cdp = new ChartDataPoint(pointsummarychart.Series[0]);
                     cdp.Index = i;
                     pointsummarychart.Series[0].DataPoints.Add(cdp);
                 }

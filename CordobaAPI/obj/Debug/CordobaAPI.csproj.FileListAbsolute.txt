@@ -73,3 +73,10 @@ E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\System.Web.Http.Owin.xml
 E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\EPPlus.xml
 E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\obj\Debug\CordobaAPI.dll
 E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\obj\Debug\CordobaAPI.pdb
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\itextsharp.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\NReco.PdfGenerator.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\Spire.License.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\Spire.Pdf.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\Spire.Presentation.dll
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\itextsharp.xml
+E:\Harsh\Projects\Cordoba\Cordoba\CordobaAPI\bin\NReco.PdfGenerator.xml

@@ -16,7 +16,7 @@ namespace CordobaServices.Services
         private GenericRepository<CategoryEntity> CategoryEntityGenericRepository = new GenericRepository<CategoryEntity>();
         private GenericRepository<CategoryPopularEntity> CategoryPopularEntityGenericRepository = new GenericRepository<CategoryPopularEntity>();
         private GenericRepository<LanguageEntity> LanguageEntityGenericRepository = new GenericRepository<LanguageEntity>();
-
+        private GenericRepository<ReportCategoryEntity> ReportCategoryEntityGenericRepository = new GenericRepository<ReportCategoryEntity>();
 
         public List<CategoryEntity> GetCategoryList(int StoreId, int LoggedInUserId, int Category_Id = 0)
         
@@ -217,6 +217,18 @@ namespace CordobaServices.Services
             }
         }
 
+        public List<ReportCategoryEntity> GetReportCategories()
+        {
+            try
+            {
+                var reportcategoryEntity = ReportCategoryEntityGenericRepository.ExecuteSQL<ReportCategoryEntity>("EXEC GetReportCategories").ToList<ReportCategoryEntity>().ToList();
+                return reportcategoryEntity;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public List<CategoryEntity> GetParentCategoryList(int StoreId, int LoggedInUserId)
         {
@@ -260,6 +272,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("status", categoryEntity.status !=null?categoryEntity.status :1)
                                                  , new SqlParameter("StoreIdCSV", categoryEntity.StoreIdCSV !=null?categoryEntity.StoreIdCSV:"")
                                                  , new SqlParameter("CategoryDescriptionXml", CategoryDescriptionXml !=null?CategoryDescriptionXml:"")
+                                                 , new SqlParameter("ReportCategoryId",(object) categoryEntity.ReportCategoryId ?? DBNull.Value)
                                                 };
 
                 int result = CategoryEntityGenericRepository.ExecuteSQL<int>("InsertOrUpdateCategory", sqlParameter).FirstOrDefault();

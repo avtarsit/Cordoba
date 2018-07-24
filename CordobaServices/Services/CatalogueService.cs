@@ -164,7 +164,7 @@ namespace CordobaServices.Services
                 SqlParameter parameter = new SqlParameter();
                 parameter.ParameterName = "@importTypetbl";
                 parameter.SqlDbType = SqlDbType.Structured;
-                parameter.TypeName = "dbo.ImportCatalogType";
+                parameter.TypeName = "dbo.ImportCatalogType2";
                 parameter.Value = XLS;
                 cmd.Parameters.Add(parameter);
                 cmd.Parameters.AddWithValue("@Supplier_Id", supplier_id);

@@ -30,7 +30,9 @@ namespace CordobaServices.Interfaces
         int DeleteCategory(int Category_Id, int StoreId, int LoggedInUserId);
 
         List<LanguageEntity> GetLanguageList(int StoreId, int LoggedInUserId);
-        
+
+        List<ReportCategoryEntity> GetReportCategories();
+
         bool UpdateCategoryImage(int Category_Id, string fileName);
 
     }

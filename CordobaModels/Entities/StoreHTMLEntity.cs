@@ -54,7 +54,7 @@ namespace CordobaModels.Entities
         public string Email{ get; set; }
         public int Points { get; set; }
         public string Status { get; set; }
-        public Int16 Activated { get; set; }
+        public string Activated { get; set; }
         public DateTime DateAdded { get; set; }
     }
 

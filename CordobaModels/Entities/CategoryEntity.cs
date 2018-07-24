@@ -34,7 +34,7 @@ namespace CordobaModels.Entities
         public int parent_Id { get; set; }
         public string image { get; set; }
 
-
+        public int? ReportCategoryId{ get; set; }
         
   
       

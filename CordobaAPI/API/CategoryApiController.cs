@@ -145,6 +145,26 @@ namespace CordobaAPI.API
         }
 
         [HttpGet]
+        public HttpResponseMessage GetReportCategories()
+        {
+            try
+            {
+                var result = _categoryServices.GetReportCategories();
+
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
         public HttpResponseMessage GetParentCategoryList(int StoreId, int LoggedInUserId)
         {
             try

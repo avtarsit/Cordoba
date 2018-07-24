@@ -7,33 +7,23 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CordobaCatalogImageService
+namespace CordobaProductImageDownloadService
 {
-    public partial class Service1 : ServiceBase
+    static class Program
     {
-        public Service1()
+        static void Main(string[] args)
         {
-            InitializeComponent();
+            GetImportCatalogImageURLs();
         }
-
-        protected override void OnStart(string[] args)
-        {
-            this.GetImportCatalogImageURLs();
-        }
-
-        protected override void OnStop()
-        {
-        }
-
-        public List<ProductCatalogue> GetImportCatalogImageURLs()
+        static string fileimageyrl = string.Empty;
+        public static List<ProductCatalogue> GetImportCatalogImageURLs()
         {
             List<ProductCatalogue> objProductCatalogue = new List<ProductCatalogue>();
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;
+            con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities1"].ConnectionString;
 
             con.Open();
 
@@ -64,16 +54,9 @@ namespace CordobaCatalogImageService
             //return lstOfImageUrls;
         }
 
-        string fileimageyrl = string.Empty;
-        //void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        //{
-        //    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\WriteLines2.txt"))
-        //    {
-        //        file.WriteLine(fileimageyrl);
-        //    }
-        //}
 
-        public void DownloadCatalogueImages(List<ProductCatalogue> productCatalogue)
+
+        public static void DownloadCatalogueImages(List<ProductCatalogue> productCatalogue)
         {
             List<ProductCatalogue> notdownloadableproducts = new List<ProductCatalogue>();
             ProductCatalogue objproductCatalogue = new ProductCatalogue();
@@ -122,10 +105,10 @@ namespace CordobaCatalogImageService
             }
             try
             {
-             for (int i = 0; i < notdownloadableproducts.Count; i++)
+                for (int i = 0; i < notdownloadableproducts.Count; i++)
                 {
-                    //added code
-                    //For issue: Can not create SSL/TLS secure channel
+                //added code
+                //For issue: Can not create SSL/TLS secure channel
                 out2: ServicePointManager.Expect100Continue = true;
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -162,7 +145,7 @@ namespace CordobaCatalogImageService
                         }
                         else if (ex.Message == "The remote server returned an error: (403) Forbidden." ||
                                  ex.Message == "Unable to connect to the remote server." ||
-                                 ex.Message == "The remote server returned an error: (404) Not Found."||
+                                 ex.Message == "The remote server returned an error: (404) Not Found." ||
                                  ex.Message == "The remote server returned an error: (400) Bad Request.")
                         {
                             i++;
@@ -197,12 +180,12 @@ namespace CordobaCatalogImageService
 
         }
 
-        public void UpdateStatusDownloadedImage(int ProductId)
+        public static void UpdateStatusDownloadedImage(int ProductId)
         {
             try
             {
                 SqlConnection con = new SqlConnection();
-                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities1"].ConnectionString;
                 con.Open();
                 SqlCommand cmd = new SqlCommand("UpdateStatusDownloadedImage", con);
                 cmd.Parameters.AddWithValue("@ProductId", ProductId);
@@ -216,12 +199,12 @@ namespace CordobaCatalogImageService
 
         }
 
-        public void ProductActive_CatalogImport()
+        public static void ProductActive_CatalogImport()
         {
             try
             {
                 SqlConnection con = new SqlConnection();
-                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities"].ConnectionString;
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CordobaEntities1"].ConnectionString;
                 con.Open();
                 SqlCommand cmd = new SqlCommand("ProductActive_CatalogImport", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -231,7 +214,6 @@ namespace CordobaCatalogImageService
             {
                 throw;
             }
-
         }
     }
 }
