@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B66F8E9D-62DF-40D2-80AA-ED03A7996603}</ProjectGuid>
+    <ProjectGuid>{1A6C1619-7470-492E-A65B-38F2413DC015}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CordobaProductImageDownloadService</RootNamespace>
