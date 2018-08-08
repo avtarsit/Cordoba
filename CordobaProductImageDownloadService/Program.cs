@@ -149,7 +149,14 @@ namespace CordobaProductImageDownloadService
                                  ex.Message == "The remote server returned an error: (400) Bad Request.")
                         {
                             i++;
-                            goto out2;
+                            if (i < notdownloadableproducts.Count)
+                            {
+                                goto out2;
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
                         throw;
                     }
