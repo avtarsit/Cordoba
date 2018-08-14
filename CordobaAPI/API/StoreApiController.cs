@@ -1463,101 +1463,177 @@ namespace CordobaAPI.API
 
 
 
-                ppt.SlideSize.Type = SlideSizeType.Screen16x9;
-                SizeF slidesize = ppt.SlideSize.Size;
+                //ppt.SlideSize.Type = SlideSizeType.Screen16x9;
+                //SizeF slidesize = ppt.SlideSize.Size;
 
-                //IAutoShape pointsloadedbymonthshape = (IAutoShape)ppt.Slides[6].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
-                //pointsloadedbymonthshape.Fill.FillType = FillFormatType.Solid;
-                //pointsloadedbymonthshape.Fill.SolidColor.Color = Color.Red;
-                //pointsloadedbymonthshape.ShapeStyle.LineColor.Color = Color.White;
+                ////IAutoShape pointsloadedbymonthshape = (IAutoShape)ppt.Slides[6].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                ////pointsloadedbymonthshape.Fill.FillType = FillFormatType.Solid;
+                ////pointsloadedbymonthshape.Fill.SolidColor.Color = Color.Red;
+                ////pointsloadedbymonthshape.ShapeStyle.LineColor.Color = Color.White;
 
-                var pointsloadedbymonthslide = ppt.Slides[6];
+                //var pointsloadedbymonthslide = ppt.Slides[6];
 
-                //Add title
-                RectangleF pointsloadedbymonthtitleRect = new RectangleF(10, 10, 250, 50);
-                IAutoShape pointsloadedbymonthtitleShape = pointsloadedbymonthslide.Shapes.AppendShape(ShapeType.Rectangle, pointsloadedbymonthtitleRect);
-                pointsloadedbymonthtitleShape.Fill.FillType = FillFormatType.None;
-                pointsloadedbymonthtitleShape.ShapeStyle.LineColor.Color = Color.Empty;
-                TextParagraph pointsloadedbymonthtitlePara = pointsloadedbymonthtitleShape.TextFrame.Paragraphs[0];
-                pointsloadedbymonthtitlePara.Text = "Points Loaded By Month";
-                pointsloadedbymonthtitlePara.FirstTextRange.FontHeight = 20;
-                pointsloadedbymonthtitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
-                pointsloadedbymonthtitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
-                pointsloadedbymonthtitlePara.Alignment = TextAlignmentType.Center;
+                ////Add title
+                //RectangleF pointsloadedbymonthtitleRect = new RectangleF(10, 10, 250, 50);
+                //IAutoShape pointsloadedbymonthtitleShape = pointsloadedbymonthslide.Shapes.AppendShape(ShapeType.Rectangle, pointsloadedbymonthtitleRect);
+                //pointsloadedbymonthtitleShape.Fill.FillType = FillFormatType.None;
+                //pointsloadedbymonthtitleShape.ShapeStyle.LineColor.Color = Color.Empty;
+                //TextParagraph pointsloadedbymonthtitlePara = pointsloadedbymonthtitleShape.TextFrame.Paragraphs[0];
+                //pointsloadedbymonthtitlePara.Text = "Points Loaded By Month";
+                //pointsloadedbymonthtitlePara.FirstTextRange.FontHeight = 20;
+                //pointsloadedbymonthtitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
+                //pointsloadedbymonthtitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
+                //pointsloadedbymonthtitlePara.Alignment = TextAlignmentType.Center;
 
-                RectangleF pointsloadedbymonthrect = new RectangleF(60, 20, slidesize.Width - 40, slidesize.Height - 10);
-                IChart pointsloadedbymonthchart = pointsloadedbymonthslide.Shapes.AppendChart(Spire.Presentation.Charts.ChartType.BarStacked, pointsloadedbymonthrect);
+                //RectangleF pointsloadedbymonthrect = new RectangleF(60, 20, slidesize.Width - 40, slidesize.Height - 10);
+                //IChart pointsloadedbymonthchart = pointsloadedbymonthslide.Shapes.AppendChart(Spire.Presentation.Charts.ChartType.BarStacked, pointsloadedbymonthrect);
 
-                string[] columnlabels = { "Points Loaded By Month" };
+                //string[] columnlabels = { "Points Loaded By Month" };
 
-                DataTable dtpointsloadedbymonth = ToDataTable(result.pointsLoadedByMonth.ToList());
+                //DataTable dtpointsloadedbymonth = ToDataTable(result.pointsLoadedByMonth.ToList());
 
-                String[] cols = columnlabels.ToArray();
-                for (Int32 c = 0; c < dtpointsloadedbymonth.Columns.Count; ++c)
-                    pointsloadedbymonthchart.ChartData[0, c + 1].Text = dtpointsloadedbymonth.Columns[c].ToString();
+                //String[] cols = columnlabels.ToArray();
+                //for (Int32 c = 0; c < dtpointsloadedbymonth.Columns.Count; ++c)
+                //    pointsloadedbymonthchart.ChartData[0, c + 1].Text = dtpointsloadedbymonth.Columns[c].ToString();
 
-                string[] rowlabels = new string[dtpointsloadedbymonth.Rows.Count];
+                //string[] rowlabels = new string[dtpointsloadedbymonth.Rows.Count];
 
-                for (int i = 0; i < dtpointsloadedbymonth.Rows.Count; i++)
+                //for (int i = 0; i < dtpointsloadedbymonth.Rows.Count; i++)
+                //{
+                //    rowlabels[i] = dtpointsloadedbymonth.Rows[i][0].ToString();
+                //}
+
+                //String[] rows = rowlabels.ToArray();
+                //for (Int32 r = 0; r < rows.Count(); ++r)
+                //    pointsloadedbymonthchart.ChartData[r + 1, 0].Text = rows[r];
+
+                //string[,] values = new string[dtpointsloadedbymonth.Rows.Count, 1];
+
+                //for (int i = 0; i < dtpointsloadedbymonth.Rows.Count; i++)
+                //{
+                //    values[i, 0] = dtpointsloadedbymonth.Rows[i][1].ToString();
+                //}
+
+                //double value = 0.0;
+                //for (Int32 r = 0; r < rows.Count(); ++r)
+                //{
+                //    for (Int32 c = 0; c < cols.Count(); ++c)
+                //    {
+                //        value = Math.Round(Convert.ToDouble(values[r, c]), 2);
+                //        pointsloadedbymonthchart.ChartData[r + 1, c + 1].Value = value;
+                //    }
+                //}
+
+                //pointsloadedbymonthchart.Series.SeriesLabel = pointsloadedbymonthchart.ChartData[0, 1, 0, columnlabels.Count()];
+                //pointsloadedbymonthchart.Categories.CategoryLabels = pointsloadedbymonthchart.ChartData[1, 0, rowlabels.Count(), 0];
+
+                //pointsloadedbymonthchart.PrimaryCategoryAxis.Position = AxisPositionType.Left;
+                //pointsloadedbymonthchart.SecondaryCategoryAxis.Position = AxisPositionType.Left;
+                //pointsloadedbymonthchart.PrimaryCategoryAxis.TickLabelPosition = TickLabelPositionType.TickLabelPositionLow;
+
+                //for (Int32 c = 0; c < cols.Count(); ++c)
+                //{
+                //    pointsloadedbymonthchart.Series[c].Values = pointsloadedbymonthchart.ChartData[1, c + 1, rowlabels.Count(), c + 1];
+                //    pointsloadedbymonthchart.Series[c].Fill.FillType = FillFormatType.Solid;
+                //    pointsloadedbymonthchart.Series[c].InvertIfNegative = true;
+                //    pointsloadedbymonthchart.Series[c].Fill.SolidColor.Color = Color.LightBlue;
+
+                //    for (Int32 r = 0; r < rows.Count(); ++r)
+                //    {
+                //        var label = pointsloadedbymonthchart.Series[c].DataLabels.Add();
+                //        label.LabelValueVisible = true;
+                //        //label.Position = ChartDataLabelPosition.InsideEnd;
+                //        pointsloadedbymonthchart.Series[c].DataLabels[r].HasDataSource = false;
+                //        pointsloadedbymonthchart.Series[c].DataLabels.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+                //    }
+                //}
+                //pointsloadedbymonthchart.Series[0].Fill.SolidColor.Color = Color.LightBlue;
+                ////chart.Series[1].Fill.SolidColor.Color = Color.Red;
+                ////chart.Series[2].Fill.SolidColor.Color = Color.Green;
+
+                //TextFont font = new TextFont("Tw Cen MT");
+
+                //for (int k = 0; k < pointsloadedbymonthchart.ChartLegend.EntryTextProperties.Length; k++)
+                //{
+                //    pointsloadedbymonthchart.ChartLegend.EntryTextProperties[k].LatinFont = font;
+                //    pointsloadedbymonthchart.ChartLegend.EntryTextProperties[k].FontHeight = 10;
+                //}
+
+                //insert a column chart  
+                //insert a column participantloadedbymonthchart  
+                RectangleF pointsloadedrect = new RectangleF(10, 10, 700, 400);
+                IChart pointsloadedbymonthchart = ppt.Slides[6].Shapes.AppendChart(ChartType.ColumnClustered, pointsloadedrect);
+
+                //IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                //participantloadedshape.Fill.FillType = FillFormatType.Solid;
+                //participantloadedshape.Fill.SolidColor.Color = Color.Red;
+                //participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
+
+                //set chart title  
+                pointsloadedbymonthchart.ChartTitle.TextProperties.Text = "Points loaded by month";
+                pointsloadedbymonthchart.ChartTitle.TextProperties.IsCentered = true;
+                pointsloadedbymonthchart.ChartTitle.Height = 30;
+                pointsloadedbymonthchart.HasTitle = true;
+
+                //create a datatable  
+                System.Data.DataTable pointsloadeddataTable1 = new DataTable();
+                System.Data.DataTable pointsloadeddataTablenew = ToDataTable(result.pointsLoadedByMonth.ToList());
+                //dataTable1 = dataTablenew.Copy();
+                pointsloadeddataTable1.Columns.Add(new DataColumn("Month", Type.GetType("System.String")));
+                pointsloadeddataTable1.Columns.Add(new DataColumn("Points", Type.GetType("System.Int32")));
+                pointsloadeddataTable1.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
+
+                //dataTable1.Rows.Clear();
+                for (int i = 0; i < pointsloadeddataTablenew.Rows.Count; i++)
                 {
-                    rowlabels[i] = dtpointsloadedbymonth.Rows[i][0].ToString();
+                    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
+                    pointsloadeddataTable1.ImportRow(dataTablenew.Rows[i]);
                 }
 
-                String[] rows = rowlabels.ToArray();
-                for (Int32 r = 0; r < rows.Count(); ++r)
-                    pointsloadedbymonthchart.ChartData[r + 1, 0].Text = rows[r];
-
-                string[,] values = new string[dtpointsloadedbymonth.Rows.Count, 1];
-
-                for (int i = 0; i < dtpointsloadedbymonth.Rows.Count; i++)
+                //import data from datatable to chart data  
+                for (int c = 0; c < pointsloadeddataTable1.Columns.Count; c++)
                 {
-                    values[i, 0] = dtpointsloadedbymonth.Rows[i][1].ToString();
+                    pointsloadedbymonthchart.ChartData[0, c].Text = pointsloadeddataTable1.Columns[c].Caption;
                 }
-
-                double value = 0.0;
-                for (Int32 r = 0; r < rows.Count(); ++r)
+                for (int r = 0; r < pointsloadeddataTable1.Rows.Count; r++)
                 {
-                    for (Int32 c = 0; c < cols.Count(); ++c)
+                    object[] datas = pointsloadeddataTable1.Rows[r].ItemArray;
+                    for (int c = 0; c < datas.Length; c++)
                     {
-                        value = Math.Round(Convert.ToDouble(values[r, c]), 2);
-                        pointsloadedbymonthchart.ChartData[r + 1, c + 1].Value = value;
+                        pointsloadedbymonthchart.ChartData[r + 1, c].Value = datas[c];
+
                     }
                 }
 
-                pointsloadedbymonthchart.Series.SeriesLabel = pointsloadedbymonthchart.ChartData[0, 1, 0, columnlabels.Count()];
-                pointsloadedbymonthchart.Categories.CategoryLabels = pointsloadedbymonthchart.ChartData[1, 0, rowlabels.Count(), 0];
+                //set series labels  
+                pointsloadedbymonthchart.Series.SeriesLabel = pointsloadedbymonthchart.ChartData["B1", "C1"];
 
-                pointsloadedbymonthchart.PrimaryCategoryAxis.Position = AxisPositionType.Left;
-                pointsloadedbymonthchart.SecondaryCategoryAxis.Position = AxisPositionType.Left;
-                pointsloadedbymonthchart.PrimaryCategoryAxis.TickLabelPosition = TickLabelPositionType.TickLabelPositionLow;
+                int pointsloadedtotalRows = pointsloadeddataTable1.Rows.Count + 1;
 
-                for (Int32 c = 0; c < cols.Count(); ++c)
-                {
-                    pointsloadedbymonthchart.Series[c].Values = pointsloadedbymonthchart.ChartData[1, c + 1, rowlabels.Count(), c + 1];
-                    pointsloadedbymonthchart.Series[c].Fill.FillType = FillFormatType.Solid;
-                    pointsloadedbymonthchart.Series[c].InvertIfNegative = true;
-                    pointsloadedbymonthchart.Series[c].Fill.SolidColor.Color = Color.LightBlue;
+                //set categories labels      
+                pointsloadedbymonthchart.Categories.CategoryLabels = pointsloadedbymonthchart.ChartData["A2", "A" + pointsloadedtotalRows.ToString()];
 
-                    for (Int32 r = 0; r < rows.Count(); ++r)
-                    {
-                        var label = pointsloadedbymonthchart.Series[c].DataLabels.Add();
-                        label.LabelValueVisible = true;
-                        //label.Position = ChartDataLabelPosition.InsideEnd;
-                        pointsloadedbymonthchart.Series[c].DataLabels[r].HasDataSource = false;
-                        pointsloadedbymonthchart.Series[c].DataLabels.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
-                    }
-                }
-                pointsloadedbymonthchart.Series[0].Fill.SolidColor.Color = Color.LightBlue;
-                //chart.Series[1].Fill.SolidColor.Color = Color.Red;
-                //chart.Series[2].Fill.SolidColor.Color = Color.Green;
+                //assign data to series values  
+                pointsloadedbymonthchart.Series[0].Values = participantloadedbymonthchart.ChartData["B2", "B" + pointsloadedtotalRows.ToString()];
+                pointsloadedbymonthchart.Series[1].Values = participantloadedbymonthchart.ChartData["C2", "C" + pointsloadedtotalRows.ToString()];
 
-                TextFont font = new TextFont("Tw Cen MT");
+                //change the chart type of series 2 to line chart with markers  
+                pointsloadedbymonthchart.Series[1].Type = ChartType.LineMarkers;
 
-                for (int k = 0; k < pointsloadedbymonthchart.ChartLegend.EntryTextProperties.Length; k++)
-                {
-                    pointsloadedbymonthchart.ChartLegend.EntryTextProperties[k].LatinFont = font;
-                    pointsloadedbymonthchart.ChartLegend.EntryTextProperties[k].FontHeight = 10;
-                }
+                ////plot data of series 2 on the secondary axis  
+                //participantloadedbymonthchart.Series[1].UseSecondAxis = true;
+
+                ////set the number format as percentage   
+                //participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
+
+                //hide grid lines of secondary axis  
+                pointsloadedbymonthchart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
+
+                //set overlap  
+                //participantloadedbymonthchart.OverLap = -50;
+
+                //set gap width  
+                pointsloadedbymonthchart.GapWidth = 200;
 
 
 
@@ -1565,101 +1641,177 @@ namespace CordobaAPI.API
                 //Eightth slide
                 //Points Redeemed By Month
                 ppt.Slides.Append();
-                ppt.SlideSize.Type = SlideSizeType.Screen16x9;
-                SizeF pointsredeemedslidesize = ppt.SlideSize.Size;
+                //ppt.SlideSize.Type = SlideSizeType.Screen16x9;
+                //SizeF pointsredeemedslidesize = ppt.SlideSize.Size;
 
-                var pointsredeemedslide = ppt.Slides[7];
+                //var pointsredeemedslide = ppt.Slides[7];
 
-                //IAutoShape pointsredeemedshape = (IAutoShape)ppt.Slides[7].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
-                //pointsredeemedshape.Fill.FillType = FillFormatType.Solid;
-                //pointsredeemedshape.Fill.SolidColor.Color = Color.Red;
-                //pointsredeemedshape.ShapeStyle.LineColor.Color = Color.White;
+                ////IAutoShape pointsredeemedshape = (IAutoShape)ppt.Slides[7].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                ////pointsredeemedshape.Fill.FillType = FillFormatType.Solid;
+                ////pointsredeemedshape.Fill.SolidColor.Color = Color.Red;
+                ////pointsredeemedshape.ShapeStyle.LineColor.Color = Color.White;
 
-                //Add title
-                RectangleF pointsredeemedtitleRect = new RectangleF(10, 10, 250, 50);
-                IAutoShape pointsredeemedtitleShape = pointsredeemedslide.Shapes.AppendShape(ShapeType.Rectangle, pointsredeemedtitleRect);
-                pointsredeemedtitleShape.Fill.FillType = FillFormatType.None;
-                pointsredeemedtitleShape.ShapeStyle.LineColor.Color = Color.Empty;
-                TextParagraph pointsredeemedtitlePara = pointsredeemedtitleShape.TextFrame.Paragraphs[0];
-                pointsredeemedtitlePara.Text = "Points Reedemed By Month";
-                pointsredeemedtitlePara.FirstTextRange.FontHeight = 20;
-                pointsredeemedtitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
-                pointsredeemedtitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
-                pointsredeemedtitlePara.Alignment = TextAlignmentType.Center;
+                ////Add title
+                //RectangleF pointsredeemedtitleRect = new RectangleF(10, 10, 250, 50);
+                //IAutoShape pointsredeemedtitleShape = pointsredeemedslide.Shapes.AppendShape(ShapeType.Rectangle, pointsredeemedtitleRect);
+                //pointsredeemedtitleShape.Fill.FillType = FillFormatType.None;
+                //pointsredeemedtitleShape.ShapeStyle.LineColor.Color = Color.Empty;
+                //TextParagraph pointsredeemedtitlePara = pointsredeemedtitleShape.TextFrame.Paragraphs[0];
+                //pointsredeemedtitlePara.Text = "Points Reedemed By Month";
+                //pointsredeemedtitlePara.FirstTextRange.FontHeight = 20;
+                //pointsredeemedtitlePara.FirstTextRange.Fill.FillType = FillFormatType.Solid;
+                //pointsredeemedtitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
+                //pointsredeemedtitlePara.Alignment = TextAlignmentType.Center;
 
-                RectangleF pointsredeemedrect = new RectangleF(60, 20, pointsredeemedslidesize.Width - 40, pointsredeemedslidesize.Height - 10);
-                IChart pointsredeemedchart = pointsredeemedslide.Shapes.AppendChart(Spire.Presentation.Charts.ChartType.BarStacked, pointsredeemedrect);
+                //RectangleF pointsredeemedrect = new RectangleF(60, 20, pointsredeemedslidesize.Width - 40, pointsredeemedslidesize.Height - 10);
+                //IChart pointsredeemedchart = pointsredeemedslide.Shapes.AppendChart(Spire.Presentation.Charts.ChartType.BarStacked, pointsredeemedrect);
 
-                string[] pointsredeemedcolumnlabels = { "Points Reedemed By Month" };
+                //string[] pointsredeemedcolumnlabels = { "Points Reedemed By Month" };
 
-                DataTable dtpointsredeemed = ToDataTable(result.pointsRedeemedByMonth.ToList());
+                //DataTable dtpointsredeemed = ToDataTable(result.pointsRedeemedByMonth.ToList());
 
-                String[] pointsredeemedcols = pointsredeemedcolumnlabels.ToArray();
-                for (Int32 c = 0; c < dtpointsredeemed.Columns.Count; ++c)
-                    pointsredeemedchart.ChartData[0, c + 1].Text = dtpointsredeemed.Columns[c].ToString();
+                //String[] pointsredeemedcols = pointsredeemedcolumnlabels.ToArray();
+                //for (Int32 c = 0; c < dtpointsredeemed.Columns.Count; ++c)
+                //    pointsredeemedchart.ChartData[0, c + 1].Text = dtpointsredeemed.Columns[c].ToString();
 
-                string[] pointsredeemedrowlabels = new string[dtpointsredeemed.Rows.Count];
+                //string[] pointsredeemedrowlabels = new string[dtpointsredeemed.Rows.Count];
 
-                for (int i = 0; i < dtpointsredeemed.Rows.Count; i++)
+                //for (int i = 0; i < dtpointsredeemed.Rows.Count; i++)
+                //{
+                //    pointsredeemedrowlabels[i] = dtpointsredeemed.Rows[i][0].ToString();
+                //}
+
+                //String[] pointsredeemedrows = pointsredeemedrowlabels.ToArray();
+                //for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
+                //    pointsredeemedchart.ChartData[r + 1, 0].Text = pointsredeemedrows[r];
+
+                //string[,] pointsredeemedvalues = new string[dtpointsredeemed.Rows.Count, 1];
+
+                //for (int i = 0; i < dtpointsredeemed.Rows.Count; i++)
+                //{
+                //    pointsredeemedvalues[i, 0] = dtpointsredeemed.Rows[i][1].ToString();
+                //}
+
+                //double pointsredeemedvalue = 0.0;
+                //for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
+                //{
+                //    for (Int32 c = 0; c < pointsredeemedcols.Count(); ++c)
+                //    {
+                //        pointsredeemedvalue = Math.Round(Convert.ToDouble(pointsredeemedvalues[r, c]), 2);
+                //        pointsredeemedchart.ChartData[r + 1, c + 1].Value = pointsredeemedvalue;
+                //    }
+                //}
+
+                //pointsredeemedchart.Series.SeriesLabel = pointsredeemedchart.ChartData[0, 1, 0, columnlabels.Count()];
+                //pointsredeemedchart.Categories.CategoryLabels = pointsredeemedchart.ChartData[1, 0, rowlabels.Count(), 0];
+
+                //pointsredeemedchart.PrimaryCategoryAxis.Position = AxisPositionType.Left;
+                //pointsredeemedchart.SecondaryCategoryAxis.Position = AxisPositionType.Left;
+                //pointsredeemedchart.PrimaryCategoryAxis.TickLabelPosition = TickLabelPositionType.TickLabelPositionLow;
+
+                //for (Int32 c = 0; c < pointsredeemedcols.Count(); ++c)
+                //{
+                //    pointsredeemedchart.Series[c].Values = pointsredeemedchart.ChartData[1, c + 1, rowlabels.Count(), c + 1];
+                //    pointsredeemedchart.Series[c].Fill.FillType = FillFormatType.Solid;
+                //    pointsredeemedchart.Series[c].InvertIfNegative = true;
+                //    pointsredeemedchart.Series[c].Fill.SolidColor.Color = Color.LightBlue;
+
+                //    for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
+                //    {
+                //        var pointsredeemedlabel = pointsredeemedchart.Series[c].DataLabels.Add();
+                //        pointsredeemedlabel.LabelValueVisible = true;
+                //        //pointsredeemedlabel.Position = ChartDataLabelPosition.InsideEnd;
+                //        pointsredeemedchart.Series[c].DataLabels[r].HasDataSource = false;
+                //        pointsredeemedchart.Series[c].DataLabels.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+                //    }
+                //}
+                //pointsredeemedchart.Series[0].Fill.SolidColor.Color = Color.LightBlue;
+                ////chart.Series[1].Fill.SolidColor.Color = Color.Red;
+                ////chart.Series[2].Fill.SolidColor.Color = Color.Green;
+
+                //TextFont pointsredeemedfont = new TextFont("Tw Cen MT");
+
+                //for (int k = 0; k < pointsredeemedchart.ChartLegend.EntryTextProperties.Length; k++)
+                //{
+                //    pointsredeemedchart.ChartLegend.EntryTextProperties[k].LatinFont = font;
+                //    pointsredeemedchart.ChartLegend.EntryTextProperties[k].FontHeight = 10;
+                //}
+                //insert a column chart  
+                //insert a column participantloadedbymonthchart  
+                RectangleF pointsredeemedtitleRect = new RectangleF(10, 10, 700, 400);
+                IChart pointsredeemedbymonthchart = ppt.Slides[7].Shapes.AppendChart(ChartType.ColumnClustered, pointsredeemedtitleRect);
+
+                //IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                //participantloadedshape.Fill.FillType = FillFormatType.Solid;
+                //participantloadedshape.Fill.SolidColor.Color = Color.Red;
+                //participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
+
+                //set chart title  
+                pointsredeemedbymonthchart.ChartTitle.TextProperties.Text = "Points Reedemed By Month";
+                pointsredeemedbymonthchart.ChartTitle.TextProperties.IsCentered = true;
+                pointsredeemedbymonthchart.ChartTitle.Height = 30;
+                pointsredeemedbymonthchart.HasTitle = true;
+
+                //create a datatable  
+                System.Data.DataTable pointsredeemdataTable1 = new DataTable();
+                //System.Data.DataTable pointsredeemdataTablenew = ToDataTable(result.participantsLoadedByMonth.ToList());
+                System.Data.DataTable pointsredeemdataTablenew = ToDataTable(result.pointsRedeemedByMonth.ToList());
+                //dataTable1 = dataTablenew.Copy();
+                pointsredeemdataTable1.Columns.Add(new DataColumn("Month", Type.GetType("System.String")));
+                pointsredeemdataTable1.Columns.Add(new DataColumn("Points", Type.GetType("System.Int32")));
+                pointsredeemdataTable1.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
+
+                //dataTable1.Rows.Clear();
+                for (int i = 0; i < pointsredeemdataTablenew.Rows.Count; i++)
                 {
-                    pointsredeemedrowlabels[i] = dtpointsredeemed.Rows[i][0].ToString();
+                    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
+                    pointsredeemdataTable1.ImportRow(pointsredeemdataTablenew.Rows[i]);
                 }
 
-                String[] pointsredeemedrows = pointsredeemedrowlabels.ToArray();
-                for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
-                    pointsredeemedchart.ChartData[r + 1, 0].Text = pointsredeemedrows[r];
-
-                string[,] pointsredeemedvalues = new string[dtpointsredeemed.Rows.Count, 1];
-
-                for (int i = 0; i < dtpointsredeemed.Rows.Count; i++)
+                //import data from datatable to chart data  
+                for (int c = 0; c < pointsredeemdataTable1.Columns.Count; c++)
                 {
-                    pointsredeemedvalues[i, 0] = dtpointsredeemed.Rows[i][1].ToString();
+                    pointsredeemedbymonthchart.ChartData[0, c].Text = pointsredeemdataTable1.Columns[c].Caption;
                 }
-
-                double pointsredeemedvalue = 0.0;
-                for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
+                for (int r = 0; r < pointsredeemdataTable1.Rows.Count; r++)
                 {
-                    for (Int32 c = 0; c < pointsredeemedcols.Count(); ++c)
+                    object[] datas = pointsredeemdataTable1.Rows[r].ItemArray;
+                    for (int c = 0; c < datas.Length; c++)
                     {
-                        pointsredeemedvalue = Math.Round(Convert.ToDouble(pointsredeemedvalues[r, c]), 2);
-                        pointsredeemedchart.ChartData[r + 1, c + 1].Value = pointsredeemedvalue;
+                        pointsredeemedbymonthchart.ChartData[r + 1, c].Value = datas[c];
+
                     }
                 }
 
-                pointsredeemedchart.Series.SeriesLabel = pointsredeemedchart.ChartData[0, 1, 0, columnlabels.Count()];
-                pointsredeemedchart.Categories.CategoryLabels = pointsredeemedchart.ChartData[1, 0, rowlabels.Count(), 0];
+                //set series labels  
+                pointsredeemedbymonthchart.Series.SeriesLabel = pointsredeemedbymonthchart.ChartData["B1", "C1"];
 
-                pointsredeemedchart.PrimaryCategoryAxis.Position = AxisPositionType.Left;
-                pointsredeemedchart.SecondaryCategoryAxis.Position = AxisPositionType.Left;
-                pointsredeemedchart.PrimaryCategoryAxis.TickLabelPosition = TickLabelPositionType.TickLabelPositionLow;
+                int pointsredeemedtotalRows = pointsredeemdataTable1.Rows.Count + 1;
 
-                for (Int32 c = 0; c < pointsredeemedcols.Count(); ++c)
-                {
-                    pointsredeemedchart.Series[c].Values = pointsredeemedchart.ChartData[1, c + 1, rowlabels.Count(), c + 1];
-                    pointsredeemedchart.Series[c].Fill.FillType = FillFormatType.Solid;
-                    pointsredeemedchart.Series[c].InvertIfNegative = true;
-                    pointsredeemedchart.Series[c].Fill.SolidColor.Color = Color.LightBlue;
+                //set categories labels      
+                pointsredeemedbymonthchart.Categories.CategoryLabels = pointsredeemedbymonthchart.ChartData["A2", "A" + pointsredeemedtotalRows.ToString()];
 
-                    for (Int32 r = 0; r < pointsredeemedrows.Count(); ++r)
-                    {
-                        var pointsredeemedlabel = pointsredeemedchart.Series[c].DataLabels.Add();
-                        pointsredeemedlabel.LabelValueVisible = true;
-                        //pointsredeemedlabel.Position = ChartDataLabelPosition.InsideEnd;
-                        pointsredeemedchart.Series[c].DataLabels[r].HasDataSource = false;
-                        pointsredeemedchart.Series[c].DataLabels.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
-                    }
-                }
-                pointsredeemedchart.Series[0].Fill.SolidColor.Color = Color.LightBlue;
-                //chart.Series[1].Fill.SolidColor.Color = Color.Red;
-                //chart.Series[2].Fill.SolidColor.Color = Color.Green;
+                //assign data to series values  
+                pointsredeemedbymonthchart.Series[0].Values = pointsredeemedbymonthchart.ChartData["B2", "B" + pointsredeemedtotalRows.ToString()];
+                pointsredeemedbymonthchart.Series[1].Values = pointsredeemedbymonthchart.ChartData["C2", "C" + pointsredeemedtotalRows.ToString()];
 
-                TextFont pointsredeemedfont = new TextFont("Tw Cen MT");
+                //change the chart type of series 2 to line chart with markers  
+                pointsredeemedbymonthchart.Series[1].Type = ChartType.LineMarkers;
 
-                for (int k = 0; k < pointsredeemedchart.ChartLegend.EntryTextProperties.Length; k++)
-                {
-                    pointsredeemedchart.ChartLegend.EntryTextProperties[k].LatinFont = font;
-                    pointsredeemedchart.ChartLegend.EntryTextProperties[k].FontHeight = 10;
-                }
+                ////plot data of series 2 on the secondary axis  
+                //participantloadedbymonthchart.Series[1].UseSecondAxis = true;
+
+                ////set the number format as percentage   
+                //participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
+
+                //hide grid lines of secondary axis  
+                pointsredeemedbymonthchart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
+
+                //set overlap  
+                //participantloadedbymonthchart.OverLap = -50;
+
+                //set gap width  
+                pointsredeemedbymonthchart.GapWidth = 200;
 
 
                 //save to file  

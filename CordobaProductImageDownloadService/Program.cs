@@ -162,7 +162,14 @@ namespace CordobaProductImageDownloadService
                     }
 
                     System.IO.Stream stream = webResponse.GetResponseStream();
-                    image = System.Drawing.Image.FromStream(stream);
+                    try
+                    {
+                        image = System.Drawing.Image.FromStream(stream);
+                    }
+                    catch (Exception) 
+                    {
+                        continue;
+                    }
                     webResponse.Close();
                     string DirectoryPath = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["ImportProductImagePath"]) + "data//" + notdownloadableproducts[i].CatalogueName;
                     if (!System.IO.Directory.Exists(DirectoryPath))
