@@ -3,7 +3,8 @@
     decodeParams($stateParams);
     BindToolTip();
     Tab();
-    //#endregion      
+    //#endregion
+    $scope.customerpoint = 0;
     $scope.StoreDetailInSession = StoreSessionDetail;
     $rootScope.no_image_path = StoreSessionDetail.no_image_path;
     $scope.selectedlanguage = localStorageService.get("selectedlanguage");
@@ -36,7 +37,7 @@
         .then(function (response) {
             $rootScope.CustomerDetail.points = response.data.points;
             UserDetail.points = $rootScope.CustomerDetail.points;
-        })
+      })
       .catch(function (response) {
 
       })
@@ -122,6 +123,7 @@
 
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
                   .then(function (response) {
+                      debugger;
                       if (response.data != null) {
                           switch (response.data.ErrorTypeId) {
                               case 0:
@@ -133,9 +135,10 @@
                                   UserDetail.address_id = response.data.address_id;
                                   UserDetail.cartgroup_id = response.data.cartgroup_id;
                                   UserDetail.TotalItemAdded = response.data.TotalItemAdded;
-
+                                  
                                   localStorageService.set("loggedInUser", response.data);
                                   $rootScope.CustomerDetail = response.data;
+                                  $scope.customerpoint = $rootScope.CustomerDetail.points;
 
                                   angular.element("#DivLoginModel").modal('hide');
 

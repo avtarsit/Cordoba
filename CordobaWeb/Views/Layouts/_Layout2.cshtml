@@ -119,6 +119,9 @@
                         <div class="login">
                             <ul class="topnavbar-nav">
                                 @*<li><a href="{{StoreDetailInSession.url}}" target="_blank" ng-bind="StoreDetailInSession.url"></a></li>*@
+                                <li ng-if="CustomerDetail.customer_id>0">
+                                    <span style="color:white">You have {{customerpoint}} Points</span>
+                                </li>
                                 <li ng-if="CustomerDetail.customer_id>0 && (StoreDetailInSession.store_id == 45 || StoreDetailInSession.store_id == 25 || StoreDetailInSession.store_id == 23 || StoreDetailInSession.store_id == 46 ||StoreDetailInSession.store_id == 47 ||StoreDetailInSession.store_id == 1080 )">
                                     <select name="Language" id="input-Language" ng-model="selectedlanguage" ng-change="UpdateLanguageForCustomer(selectedlanguage)"
                                             ng-options="Language.language_id as Language.name  for Language in LanguageList"
