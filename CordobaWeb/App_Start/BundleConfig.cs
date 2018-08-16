@@ -218,7 +218,7 @@ namespace CordobaWeb
             bundles.Add(new ScriptBundle("~/bundles/Layout2Js").Include(
                      "~/Scripts/layout2/js/jquery.min.js",
                      "~/Scripts/layout2/js/bootstrap.min.js",
-                     "~/Scripts/layout2/js/jquery.flexslider.js",
+                     //"~/Scripts/layout2/js/jquery.flexslider.js",
                      "~/Scripts/bootstrap-modalmanager.js",
                     "~/Scripts/bootstrap-modal.js",
                     "~/Scripts/bootstrap-datepicker.js",
@@ -250,7 +250,7 @@ namespace CordobaWeb
             var Layout2AllJs = new Bundle("~/bundles/Layout2AllJs");
                 Layout2AllJs.Include("~/Scripts/layout2/js/jquery.min.js");
                 Layout2AllJs.Include("~/Scripts/layout2/js/bootstrap.min.js");
-                Layout2AllJs.Include("~/Scripts/layout2/js/jquery.flexslider.js");
+                //Layout2AllJs.Include("~/Scripts/layout2/js/jquery.flexslider.js");
                 Layout2AllJs.Include("~/Scripts/layout2/js/jquery.mCustomScrollbar.concat.min.js");
                 Layout2AllJs.Include("~/Scripts/bootstrap-modalmanager.js");
                 Layout2AllJs.Include("~/Scripts/bootstrap-modal.js");
