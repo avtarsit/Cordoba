@@ -16,7 +16,7 @@ namespace CordobaProductImageDownloadService
     {
         static void Main(string[] args)
         {
-            GetImportCatalogImageURLs();
+            GetImportCatalogImageURLs(); 
         }
         static string fileimageyrl = string.Empty;
         public static List<ProductCatalogue> GetImportCatalogImageURLs()
