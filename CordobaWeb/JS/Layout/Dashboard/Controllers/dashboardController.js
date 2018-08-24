@@ -37,6 +37,7 @@
         .then(function (response) {
             $rootScope.CustomerDetail.points = response.data.points;
             UserDetail.points = $rootScope.CustomerDetail.points;
+            $scope.customerpoint = $rootScope.CustomerDetail.points;
       })
       .catch(function (response) {
 
