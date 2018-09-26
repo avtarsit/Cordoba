@@ -147,7 +147,7 @@
                     </div>
                 </li>
 
-                <li class="dropdown" ng-controller="dashboard_OrderCountController">
+                @*<li class="dropdown" ng-controller="dashboard_OrderCountController">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <span class="label label-danger pull-left" ng-bind="TopAlertStatusDropDown[0].total"></span>
                         <i class="fa fa-bell fa-lg"></i>
@@ -170,8 +170,8 @@
                                 <span ng-if="AlertObj.Name!='Completed' && AlertObj.IncludeInTotal==1" class="label label-danger pull-right" ng-bind="AlertObj.NumberOfCount"></span>
                                 {{AlertObj.Name}}
                             </a>
-                        </li>
-                        <li class="dropdown-header">Products</li>
+                        </li>*@
+                        @*<li class="dropdown-header">Products</li>
                         <li ng-if="AlertObj.type==3" ng-repeat="AlertObj in TopAlertStatusDropDown | filter:{ 'Active' : 1}">
                             <a class="cursor-pointer" href="" ng-click="GoToState(AlertObj)">
                                 <span ng-if="AlertObj.Name=='Completed' && AlertObj.IncludeInTotal!=1" class="label label-success pull-right" ng-bind="AlertObj.NumberOfCount"></span>
@@ -179,7 +179,7 @@
                                 <span ng-if="AlertObj.Name!='Completed' && AlertObj.IncludeInTotal==1" class="label label-danger pull-right" ng-bind="AlertObj.NumberOfCount"></span>
                                 {{AlertObj.Name}}
                             </a>
-                        </li>
+                        </li>*@
 
                         @*<li><a class="cursor-pointer"  href=""><span class="label label-success pull-right">{{DeliveredOrderCount}}</span>Delivered</a></li>
                             <li><a class="cursor-pointer"  href=""><span class="label label-danger pull-right">{{ReturnedOrderCount}}</span>Returned</a></li>*@
@@ -189,8 +189,8 @@
                             <li class="divider"></li>
                             <li class="dropdown-header">Products</li>
                                         @*<li class="divider"></li>*@
-                    </ul>
-                </li>
+                    @*</ul>
+                </li>*@
 
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle " data-toggle="dropdown">

@@ -692,8 +692,9 @@ function GetLayoutName() {
                  }
 
                  $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                     debugger;
                      if (StoreSessionDetail.Is_AccessStore != null && StoreSessionDetail.Is_AccessStore == true && !$rootScope.CustomerDetail.customer_id > 0) {
-                       //  $rootScope.OpenLoginPopUpUsingRootScope();
+                         $rootScope.OpenLoginPopUpUsingRootScope();
                      }
                      //if (!$rootScope.CustomerDetail.customer_id > 0) {
                      //    $rootScope.OpenLoginPopUpUsingRootScope();
