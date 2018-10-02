@@ -18,5 +18,7 @@ namespace CordobaModels.Entities
         public string Deposit { get; set; }
         public string invalidEmail { get; set; }
         public int code { get; set; }
+
+        public string MinusPointTotalEmail{ get; set; }
     }
 }

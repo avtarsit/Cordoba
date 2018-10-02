@@ -243,7 +243,8 @@ namespace CordobaServices.Services
                 param[2] = new SqlParameter("PointsXml", PointsXml);
 
                 List<PointsAuditEntity> result = CustomerEntityGenericRepository.ExecuteSQL<PointsAuditEntity>("EXEC ImportPointsXml", param).ToList();
-                if (IsSendEmail && string.IsNullOrWhiteSpace(result.FirstOrDefault().invalidEmail))
+                //if (IsSendEmail && string.IsNullOrWhiteSpace(result.FirstOrDefault().invalidEmail))
+                if (IsSendEmail)
                 {
                     SendPointImportMailToCustomer(PointsXml, store_id);
                 }
