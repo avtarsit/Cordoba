@@ -136,7 +136,8 @@
                                   UserDetail.address_id = response.data.address_id;
                                   UserDetail.cartgroup_id = response.data.cartgroup_id;
                                   UserDetail.TotalItemAdded = response.data.TotalItemAdded;
-                                  
+                                  UserDetail.store_id = response.data.store_id;
+                                  debugger;
                                   localStorageService.set("loggedInUser", response.data);
                                   $rootScope.CustomerDetail = response.data;
                                   $scope.customerpoint = $rootScope.CustomerDetail.points;

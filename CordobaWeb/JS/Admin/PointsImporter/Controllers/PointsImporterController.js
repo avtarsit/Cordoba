@@ -70,6 +70,7 @@
                         if (invalidEmails[0]["invalidEmail"]!='' || invalidEmails[0]["MinusPointTotalEmail"]!='') {
                             //var uploadHtml = "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"].substring(0, invalidEmails[0]["invalidEmail"].length - 1) + "</p>";
                             var uploadHtml = "";
+                            
                             if (invalidEmails[0]["invalidEmail"] != '')
                             {
                                 uploadHtml += "<p>This Email does not exist: " + invalidEmails[0]["invalidEmail"] + "</p></br>";
