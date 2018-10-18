@@ -1587,7 +1587,7 @@ namespace CordobaAPI.API
                 for (int i = 0; i < pointsloadeddataTablenew.Rows.Count; i++)
                 {
                     //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
-                    pointsloadeddataTable1.ImportRow(dataTablenew.Rows[i]);
+                    pointsloadeddataTable1.ImportRow(pointsloadeddataTablenew.Rows[i]);
                 }
 
                 //import data from datatable to chart data  
@@ -1614,8 +1614,8 @@ namespace CordobaAPI.API
                 pointsloadedbymonthchart.Categories.CategoryLabels = pointsloadedbymonthchart.ChartData["A2", "A" + pointsloadedtotalRows.ToString()];
 
                 //assign data to series values  
-                pointsloadedbymonthchart.Series[0].Values = participantloadedbymonthchart.ChartData["B2", "B" + pointsloadedtotalRows.ToString()];
-                pointsloadedbymonthchart.Series[1].Values = participantloadedbymonthchart.ChartData["C2", "C" + pointsloadedtotalRows.ToString()];
+                pointsloadedbymonthchart.Series[0].Values = pointsloadedbymonthchart.ChartData["B2", "B" + pointsloadedtotalRows.ToString()];
+                pointsloadedbymonthchart.Series[1].Values = pointsloadedbymonthchart.ChartData["C2", "C" + pointsloadedtotalRows.ToString()];
 
                 //change the chart type of series 2 to line chart with markers  
                 pointsloadedbymonthchart.Series[1].Type = ChartType.LineMarkers;
