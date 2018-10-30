@@ -202,7 +202,12 @@ namespace CordobaServices.Services
                                                                                                                                   new SqlParameter("Month", Month),
                                                                                                                                   new SqlParameter("Year", Year)).ToList();
                 objStoreHTMLEntity.orderPlacedByType = objOrderPlacedByType;
-                
+
+                var objVoucherOrderByType = objGenericRepository.ExecuteSQL<VoucherOrderByType>("GetVoucherOrderByType", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.voucherOrderByType = objVoucherOrderByType;
+
+                var objOrdersPlacedByTypeLastYear = objGenericRepository.ExecuteSQL<OrdersPlacedByTypeLastYear>("GetOrdersPlacedByTypeLast12Months", new SqlParameter("StoreID", StoreID)).ToList();
+                objStoreHTMLEntity.ordersPlacedByTypeLastYear = objOrdersPlacedByTypeLastYear;
 
                 return objStoreHTMLEntity;
             }
