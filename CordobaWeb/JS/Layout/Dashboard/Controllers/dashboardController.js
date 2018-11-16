@@ -35,6 +35,7 @@
     $scope.GetCustomerDetails = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         .then(function (response) {
+            debugger;
             $rootScope.CustomerDetail.points = response.data.points;
             UserDetail.points = $rootScope.CustomerDetail.points;
             $scope.customerpoint = $rootScope.CustomerDetail.points;
@@ -46,7 +47,7 @@
 
       });
     }
-
+    $scope.GetCustomerDetails();
     //$scope.GetLanguageList = function () {
     //    $http.get(configurationService.basePath + "API/CategoryAPI/GetLanguageList?StoreId=" + $scope.StoreDetailInSession.store_id + "&LoggedInUserId=" + UserDetail.customer_id)
     //    .then(function (response) {
