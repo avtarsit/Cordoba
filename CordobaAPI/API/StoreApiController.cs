@@ -376,7 +376,7 @@ namespace CordobaAPI.API
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
                 RectangleF logoRect2 = new RectangleF(10, 350, 700, 160);
                 IEmbedImage image2 = slide.Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFile2, logoRect2);
-                image1.Line.FillType = FillFormatType.None;
+                image2.Line.FillType = FillFormatType.None;
 
                 //Set footer
                 ppt.SetDateTimeVisible(false);
@@ -443,7 +443,7 @@ namespace CordobaAPI.API
 
                 RectangleF dougnutrect = new RectangleF(10, 200, 300, 300);
                 IChart chart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, dougnutrect, false);
-                chart.ChartTitle.TextProperties.Text = "Participant: (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";//"Store Summary";
+                chart.ChartTitle.TextProperties.Text = "PARTICIPANTS (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";//"Store Summary";
                 chart.ChartTitle.TextProperties.IsCentered = true;
                 chart.ChartTitle.Height = 30;
 
@@ -485,7 +485,7 @@ namespace CordobaAPI.API
 
                 RectangleF pointsummaryrect = new RectangleF(400, 200, 300, 300);
                 IChart pointsummarychart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, pointsummaryrect, false);
-                pointsummarychart.ChartTitle.TextProperties.Text = "Points Remaining";
+                pointsummarychart.ChartTitle.TextProperties.Text = "POINTS (" +Convert.ToInt32(result.pointsRemaining[0].Count + result.pointsRemaining[1].Count) + ")";
                 pointsummarychart.ChartTitle.TextProperties.IsCentered = true;
                 pointsummarychart.ChartTitle.Height = 30;
                 string[] pointsummarycountries = new string[] { "Activated accounts", "Non activated accounts" };
@@ -528,7 +528,7 @@ namespace CordobaAPI.API
 
                 //insert a column chart  
                 //insert a column participantloadedbymonthchart  
-                RectangleF rect = new RectangleF(10, 100, 700, 400);
+                RectangleF rect = new RectangleF(10, 100, 800, 400);
                 IChart participantloadedbymonthchart = ppt.Slides[3].Shapes.AppendChart(ChartType.ColumnClustered, rect);
 
                 //IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
@@ -630,7 +630,7 @@ namespace CordobaAPI.API
 
 
                     //set chart title  
-                    OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.Text = "Order Placed By Type By Loaded By Month";
+                    OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.Text = "Order Placed By Type";
                     OrderPlacedByTypeByMonthchart.ChartTitle.TextProperties.IsCentered = true;
                     OrderPlacedByTypeByMonthchart.ChartTitle.Height = 30;
                     OrderPlacedByTypeByMonthchart.HasTitle = true;
@@ -698,7 +698,7 @@ namespace CordobaAPI.API
                     OrderPlacedByTypeByMonthtitleShape1.Fill.FillType = FillFormatType.None;
                     OrderPlacedByTypeByMonthtitleShape1.ShapeStyle.LineColor.Color = Color.Empty;
                     TextParagraph OrderPlacedByTypeByMonthtitlePara1 = OrderPlacedByTypeByMonthtitleShape1.TextFrame.Paragraphs[0];
-                    OrderPlacedByTypeByMonthtitlePara1.Text = "Order Placed By Type By Loaded By Month";
+                    OrderPlacedByTypeByMonthtitlePara1.Text = "Order Placed By Type";
                     OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.FontHeight = 20;
                     OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.Fill.FillType = FillFormatType.Solid;
                     OrderPlacedByTypeByMonthtitlePara1.FirstTextRange.Fill.SolidColor.Color = Color.Black;
@@ -719,7 +719,7 @@ namespace CordobaAPI.API
 
                 //Sixth slide
                 ppt.Slides.Append();
-                
+
                 string logoFileslide6 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
                 RectangleF logoRectslide6 = new RectangleF(500, 10, 200, 78);
@@ -744,7 +744,7 @@ namespace CordobaAPI.API
                 pointhoderstitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
                 pointhoderstitlePara.Alignment = TextAlignmentType.Center;
 
-                Double[] widths = new double[] { 100, 100, 100, 100, 100, 100 };
+                Double[] widths = new double[] { 100, 100, 100, 100, 100 };
                 Double[] heights = new double[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
                 ITable table = ppt.Slides[5].Shapes.AppendTable(ppt.SlideSize.Size.Width / 2 - 275, 150, widths, heights);
                 //set the style of table
@@ -785,7 +785,14 @@ namespace CordobaAPI.API
                     for (int j = 0; j < dtpointhoders.Columns.Count; j++)
                     {
                         //fill the table with data
-                        table[j, i + 1].TextFrame.Text = dtpointhoders.Rows[i][j].ToString();// dataStr[i, j];
+                        if (j == 4)
+                        {
+                            table[j, i + 1].TextFrame.Text = dtpointhoders.Rows[i][j].ToString().Split(' ')[0];
+                        }
+                        else
+                        {
+                            table[j, i + 1].TextFrame.Text = dtpointhoders.Rows[i][j].ToString();
+                        }
                         //set the Font
                         table[j, i + 1].TextFrame.Paragraphs[0].TextRanges[0].LatinFont = new TextFont("Arial Narrow");
                         table[j, i + 1].TextFrame.Paragraphs[0].TextRanges[0].FontHeight = 10;
@@ -888,7 +895,7 @@ namespace CordobaAPI.API
                 //Eightth slide
                 //Points Redeemed By Month
                 ppt.Slides.Append();
-                
+
                 string logoFileslide8 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
                 //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
                 RectangleF logoRectslide8 = new RectangleF(500, 10, 200, 78);
@@ -972,173 +979,173 @@ namespace CordobaAPI.API
                 //set gap width  
                 pointsredeemedbymonthchart.GapWidth = 200;
 
-                //Ninth slide
-                ppt.Slides.Append();
-                string logoFileslide9 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
-                //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
-                RectangleF logoRectslide9 = new RectangleF(500, 10, 200, 78);
-                IEmbedImage imageslide9 = ppt.Slides[8].Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFileslide9, logoRectslide9);
-                imageslide9.Line.FillType = FillFormatType.None;
+                ////Ninth slide
+                //ppt.Slides.Append();
+                //string logoFileslide9 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
+                ////RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
+                //RectangleF logoRectslide9 = new RectangleF(500, 10, 200, 78);
+                //IEmbedImage imageslide9 = ppt.Slides[8].Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFileslide9, logoRectslide9);
+                //imageslide9.Line.FillType = FillFormatType.None;
 
-                //insert a column chart  
-                //insert a column participantloadedbymonthchart  
-                RectangleF vouchercountrect9 = new RectangleF(10, 100, 700, 400);
-                IChart vouchercountchart9 = ppt.Slides[8].Shapes.AppendChart(ChartType.ColumnClustered, vouchercountrect9);
+                ////insert a column chart  
+                ////insert a column participantloadedbymonthchart  
+                //RectangleF vouchercountrect9 = new RectangleF(10, 100, 700, 400);
+                //IChart vouchercountchart9 = ppt.Slides[8].Shapes.AppendChart(ChartType.ColumnClustered, vouchercountrect9);
 
-                //IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
-                //participantloadedshape.Fill.FillType = FillFormatType.Solid;
-                //participantloadedshape.Fill.SolidColor.Color = Color.Red;
-                //participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
+                ////IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                ////participantloadedshape.Fill.FillType = FillFormatType.Solid;
+                ////participantloadedshape.Fill.SolidColor.Color = Color.Red;
+                ////participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
 
-                //set chart title  
-                vouchercountchart9.ChartTitle.TextProperties.Text = "Voucher Orders By Type";
-                vouchercountchart9.ChartTitle.TextProperties.IsCentered = true;
-                vouchercountchart9.ChartTitle.Height = 30;
-                vouchercountchart9.HasTitle = true;
+                ////set chart title  
+                //vouchercountchart9.ChartTitle.TextProperties.Text = "Voucher Orders By Type";
+                //vouchercountchart9.ChartTitle.TextProperties.IsCentered = true;
+                //vouchercountchart9.ChartTitle.Height = 30;
+                //vouchercountchart9.HasTitle = true;
 
-                //create a datatable  
-                System.Data.DataTable vouchercountdataTable19 = new DataTable();
-                System.Data.DataTable vouchercountdataTablenew9 = ToDataTable(result.voucherOrderByType.ToList());
-                //dataTable1 = dataTablenew.Copy();
-                vouchercountdataTable19.Columns.Add(new DataColumn("ReportCategoryName", Type.GetType("System.String")));
-                vouchercountdataTable19.Columns.Add(new DataColumn("Orders", Type.GetType("System.Int32")));
-                vouchercountdataTable19.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
+                ////create a datatable  
+                //System.Data.DataTable vouchercountdataTable19 = new DataTable();
+                //System.Data.DataTable vouchercountdataTablenew9 = ToDataTable(result.voucherOrderByType.ToList());
+                ////dataTable1 = dataTablenew.Copy();
+                //vouchercountdataTable19.Columns.Add(new DataColumn("ReportCategoryName", Type.GetType("System.String")));
+                //vouchercountdataTable19.Columns.Add(new DataColumn("Orders", Type.GetType("System.Int32")));
+                //vouchercountdataTable19.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
 
-                //dataTable1.Rows.Clear();
-                for (int i = 0; i < vouchercountdataTablenew9.Rows.Count; i++)
-                {
-                    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
-                    vouchercountdataTable19.ImportRow(vouchercountdataTablenew9.Rows[i]);
-                }
+                ////dataTable1.Rows.Clear();
+                //for (int i = 0; i < vouchercountdataTablenew9.Rows.Count; i++)
+                //{
+                //    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
+                //    vouchercountdataTable19.ImportRow(vouchercountdataTablenew9.Rows[i]);
+                //}
 
-                //import data from datatable to chart data  
-                for (int c = 0; c < vouchercountdataTable19.Columns.Count; c++)
-                {
-                    vouchercountchart9.ChartData[0, c].Text = vouchercountdataTable19.Columns[c].Caption;
-                }
-                for (int r = 0; r < vouchercountdataTable19.Rows.Count; r++)
-                {
-                    object[] datas = vouchercountdataTable19.Rows[r].ItemArray;
-                    for (int c = 0; c < datas.Length; c++)
-                    {
-                        vouchercountchart9.ChartData[r + 1, c].Value = datas[c];
+                ////import data from datatable to chart data  
+                //for (int c = 0; c < vouchercountdataTable19.Columns.Count; c++)
+                //{
+                //    vouchercountchart9.ChartData[0, c].Text = vouchercountdataTable19.Columns[c].Caption;
+                //}
+                //for (int r = 0; r < vouchercountdataTable19.Rows.Count; r++)
+                //{
+                //    object[] datas = vouchercountdataTable19.Rows[r].ItemArray;
+                //    for (int c = 0; c < datas.Length; c++)
+                //    {
+                //        vouchercountchart9.ChartData[r + 1, c].Value = datas[c];
 
-                    }
-                }
+                //    }
+                //}
 
-                //set series labels  
-                vouchercountchart9.Series.SeriesLabel = vouchercountchart9.ChartData["B1", "C1"];
+                ////set series labels  
+                //vouchercountchart9.Series.SeriesLabel = vouchercountchart9.ChartData["B1", "C1"];
 
-                int vouchercounttotalRows9 = vouchercountdataTable19.Rows.Count + 1;
+                //int vouchercounttotalRows9 = vouchercountdataTable19.Rows.Count + 1;
 
-                //set categories labels      
-                vouchercountchart9.Categories.CategoryLabels = vouchercountchart9.ChartData["A2", "A" + vouchercounttotalRows9.ToString()];
+                ////set categories labels      
+                //vouchercountchart9.Categories.CategoryLabels = vouchercountchart9.ChartData["A2", "A" + vouchercounttotalRows9.ToString()];
 
-                //assign data to series values  
-                vouchercountchart9.Series[0].Values = vouchercountchart9.ChartData["B2", "B" + vouchercounttotalRows9.ToString()];
-                vouchercountchart9.Series[1].Values = vouchercountchart9.ChartData["C2", "C" + vouchercounttotalRows9.ToString()];
+                ////assign data to series values  
+                //vouchercountchart9.Series[0].Values = vouchercountchart9.ChartData["B2", "B" + vouchercounttotalRows9.ToString()];
+                //vouchercountchart9.Series[1].Values = vouchercountchart9.ChartData["C2", "C" + vouchercounttotalRows9.ToString()];
 
-                //change the chart type of series 2 to line chart with markers  
-                vouchercountchart9.Series[1].Type = ChartType.LineMarkers;
+                ////change the chart type of series 2 to line chart with markers  
+                //vouchercountchart9.Series[1].Type = ChartType.LineMarkers;
 
-                ////plot data of series 2 on the secondary axis  
-                //participantloadedbymonthchart.Series[1].UseSecondAxis = true;
+                //////plot data of series 2 on the secondary axis  
+                ////participantloadedbymonthchart.Series[1].UseSecondAxis = true;
 
-                ////set the number format as percentage   
-                //participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
+                //////set the number format as percentage   
+                ////participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
 
-                //hide grid lines of secondary axis  
-                vouchercountchart9.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
+                ////hide grid lines of secondary axis  
+                //vouchercountchart9.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
 
-                //set overlap  
-                //participantloadedbymonthchart.OverLap = -50;
+                ////set overlap  
+                ////participantloadedbymonthchart.OverLap = -50;
 
-                //set gap width  
-                vouchercountchart9.GapWidth = 200;
-                
-                //Tenth
-                ppt.Slides.Append();
-                string logoFileslide10 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
-                //RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
-                RectangleF logoRectslide10 = new RectangleF(500, 10, 200, 78);
-                IEmbedImage imageslide10 = ppt.Slides[9].Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFileslide10, logoRectslide10);
-                imageslide10.Line.FillType = FillFormatType.None;
+                ////set gap width  
+                //vouchercountchart9.GapWidth = 200;
 
-                //insert a column chart  
-                //insert a column participantloadedbymonthchart  
-                RectangleF ordersPlacedByTypeRect = new RectangleF(10, 100, 700, 400);
-                IChart ordersPlacedByTypechart = ppt.Slides[9].Shapes.AppendChart(ChartType.ColumnClustered, ordersPlacedByTypeRect);
+                ////Tenth
+                //ppt.Slides.Append();
+                //string logoFileslide10 = HttpContext.Current.Server.MapPath("~/Content//images//Storelogo//") + StoreID + ".png";//"logo.png";
+                ////RectangleF logoRect = new RectangleF(pptSize.Width / 2 - 40, 60, 80, 80);
+                //RectangleF logoRectslide10 = new RectangleF(500, 10, 200, 78);
+                //IEmbedImage imageslide10 = ppt.Slides[9].Shapes.AppendEmbedImage(ShapeType.Rectangle, logoFileslide10, logoRectslide10);
+                //imageslide10.Line.FillType = FillFormatType.None;
 
-                //IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
-                //participantloadedshape.Fill.FillType = FillFormatType.Solid;
-                //participantloadedshape.Fill.SolidColor.Color = Color.Red;
-                //participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
+                ////insert a column chart  
+                ////insert a column participantloadedbymonthchart  
+                //RectangleF ordersPlacedByTypeRect = new RectangleF(10, 100, 700, 400);
+                //IChart ordersPlacedByTypechart = ppt.Slides[9].Shapes.AppendChart(ChartType.ColumnClustered, ordersPlacedByTypeRect);
 
-                //set chart title  
-                ordersPlacedByTypechart.ChartTitle.TextProperties.Text = "Orders placed by Type";
-                ordersPlacedByTypechart.ChartTitle.TextProperties.IsCentered = true;
-                ordersPlacedByTypechart.ChartTitle.Height = 30;
-                ordersPlacedByTypechart.HasTitle = true;
+                ////IAutoShape participantloadedshape = (IAutoShape)ppt.Slides[3].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(10, 10, 700, 50));
+                ////participantloadedshape.Fill.FillType = FillFormatType.Solid;
+                ////participantloadedshape.Fill.SolidColor.Color = Color.Red;
+                ////participantloadedshape.ShapeStyle.LineColor.Color = Color.White;
 
-                //create a datatable  
-                System.Data.DataTable ordersPlacedByTypechartaTable1 = new DataTable();
-                System.Data.DataTable ordersPlacedByTypechartTablenew = ToDataTable(result.ordersPlacedByTypeLastYear.ToList());
-                //dataTable1 = dataTablenew.Copy();
-                ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("name", Type.GetType("System.String")));
-                ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("Orders", Type.GetType("System.Int32")));
-                ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
+                ////set chart title  
+                //ordersPlacedByTypechart.ChartTitle.TextProperties.Text = "Orders placed by Type";
+                //ordersPlacedByTypechart.ChartTitle.TextProperties.IsCentered = true;
+                //ordersPlacedByTypechart.ChartTitle.Height = 30;
+                //ordersPlacedByTypechart.HasTitle = true;
 
-                //dataTable1.Rows.Clear();
-                for (int i = 0; i < ordersPlacedByTypechartTablenew.Rows.Count; i++)
-                {
-                    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
-                    ordersPlacedByTypechartaTable1.ImportRow(ordersPlacedByTypechartTablenew.Rows[i]);
-                }
+                ////create a datatable  
+                //System.Data.DataTable ordersPlacedByTypechartaTable1 = new DataTable();
+                //System.Data.DataTable ordersPlacedByTypechartTablenew = ToDataTable(result.ordersPlacedByTypeLastYear.ToList());
+                ////dataTable1 = dataTablenew.Copy();
+                //ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("name", Type.GetType("System.String")));
+                //ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("Orders", Type.GetType("System.Int32")));
+                //ordersPlacedByTypechartaTable1.Columns.Add(new DataColumn("Chart", Type.GetType("System.Decimal")));
 
-                //import data from datatable to chart data  
-                for (int c = 0; c < ordersPlacedByTypechartaTable1.Columns.Count; c++)
-                {
-                    ordersPlacedByTypechart.ChartData[0, c].Text = ordersPlacedByTypechartaTable1.Columns[c].Caption;
-                }
-                for (int r = 0; r < ordersPlacedByTypechartaTable1.Rows.Count; r++)
-                {
-                    object[] datas = ordersPlacedByTypechartaTable1.Rows[r].ItemArray;
-                    for (int c = 0; c < datas.Length; c++)
-                    {
-                        ordersPlacedByTypechart.ChartData[r + 1, c].Value = datas[c];
+                ////dataTable1.Rows.Clear();
+                //for (int i = 0; i < ordersPlacedByTypechartTablenew.Rows.Count; i++)
+                //{
+                //    //dataTable1.Rows.Add("Customer" + i.ToString(), 0);
+                //    ordersPlacedByTypechartaTable1.ImportRow(ordersPlacedByTypechartTablenew.Rows[i]);
+                //}
 
-                    }
-                }
+                ////import data from datatable to chart data  
+                //for (int c = 0; c < ordersPlacedByTypechartaTable1.Columns.Count; c++)
+                //{
+                //    ordersPlacedByTypechart.ChartData[0, c].Text = ordersPlacedByTypechartaTable1.Columns[c].Caption;
+                //}
+                //for (int r = 0; r < ordersPlacedByTypechartaTable1.Rows.Count; r++)
+                //{
+                //    object[] datas = ordersPlacedByTypechartaTable1.Rows[r].ItemArray;
+                //    for (int c = 0; c < datas.Length; c++)
+                //    {
+                //        ordersPlacedByTypechart.ChartData[r + 1, c].Value = datas[c];
 
-                //set series labels  
-                ordersPlacedByTypechart.Series.SeriesLabel = ordersPlacedByTypechart.ChartData["B1", "C1"];
+                //    }
+                //}
 
-                int ordersPlacedByTypetotalRows = ordersPlacedByTypechartaTable1.Rows.Count + 1;
+                ////set series labels  
+                //ordersPlacedByTypechart.Series.SeriesLabel = ordersPlacedByTypechart.ChartData["B1", "C1"];
 
-                //set categories labels      
-                ordersPlacedByTypechart.Categories.CategoryLabels = ordersPlacedByTypechart.ChartData["A2", "A" + ordersPlacedByTypetotalRows.ToString()];
+                //int ordersPlacedByTypetotalRows = ordersPlacedByTypechartaTable1.Rows.Count + 1;
 
-                //assign data to series values  
-                ordersPlacedByTypechart.Series[0].Values = ordersPlacedByTypechart.ChartData["B2", "B" + ordersPlacedByTypetotalRows.ToString()];
-                ordersPlacedByTypechart.Series[1].Values = ordersPlacedByTypechart.ChartData["C2", "C" + ordersPlacedByTypetotalRows.ToString()];
+                ////set categories labels      
+                //ordersPlacedByTypechart.Categories.CategoryLabels = ordersPlacedByTypechart.ChartData["A2", "A" + ordersPlacedByTypetotalRows.ToString()];
 
-                //change the chart type of series 2 to line chart with markers  
-                ordersPlacedByTypechart.Series[1].Type = ChartType.LineMarkers;
+                ////assign data to series values  
+                //ordersPlacedByTypechart.Series[0].Values = ordersPlacedByTypechart.ChartData["B2", "B" + ordersPlacedByTypetotalRows.ToString()];
+                //ordersPlacedByTypechart.Series[1].Values = ordersPlacedByTypechart.ChartData["C2", "C" + ordersPlacedByTypetotalRows.ToString()];
 
-                ////plot data of series 2 on the secondary axis  
-                //participantloadedbymonthchart.Series[1].UseSecondAxis = true;
+                ////change the chart type of series 2 to line chart with markers  
+                //ordersPlacedByTypechart.Series[1].Type = ChartType.LineMarkers;
 
-                ////set the number format as percentage   
-                //participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
+                //////plot data of series 2 on the secondary axis  
+                ////participantloadedbymonthchart.Series[1].UseSecondAxis = true;
 
-                //hide grid lines of secondary axis  
-                ordersPlacedByTypechart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
+                //////set the number format as percentage   
+                ////participantloadedbymonthchart.SecondaryValueAxis.NumberFormat = "0%";
 
-                //set overlap  
-                //participantloadedbymonthchart.OverLap = -50;
+                ////hide grid lines of secondary axis  
+                //ordersPlacedByTypechart.SecondaryValueAxis.MajorGridTextLines.FillType = FillFormatType.None;
 
-                //set gap width  
-                ordersPlacedByTypechart.GapWidth = 200;
+                ////set overlap  
+                ////participantloadedbymonthchart.OverLap = -50;
+
+                ////set gap width  
+                //ordersPlacedByTypechart.GapWidth = 200;
 
                 //save to file  
                 ppt.SaveToFile(HttpContext.Current.Server.MapPath("~/Files//") + "Monthly Report.pptx", FileFormat.Pptx2010);
