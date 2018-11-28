@@ -59,9 +59,10 @@
   color: #fff;
 }
 .bg-danger-400 {
-  background-color: #EF5350;
+  background-color: #EF5350 !important;
   border-color: #EF5350;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-danger-600 {
   background-color: #E53935;
@@ -174,14 +175,16 @@
   color: #fff;
 }
 .bg-pink-300 {
-  background-color: #F06292;
+  background-color: #F06292 !important;
   border-color: #F06292;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-pink-400 {
-  background-color: #EC407A;
+  background-color: #EC407A !important;
   border-color: #EC407A;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-pink-600 {
   background-color: #D81B60;
@@ -204,9 +207,10 @@
   color: #fff;
 }
 .bg-violet-300 {
-  background-color: #BA68C8;
+  background-color: #BA68C8 !important;
   border-color: #BA68C8;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-violet-400 {
   background-color: #AB47BC;
@@ -294,14 +298,16 @@
   color: #fff;
 }
 .bg-blue-300 {
-  background-color: #4FC3F7;
+  background-color: #4FC3F7 !important;
   border-color: #4FC3F7;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-blue-400 {
-  background-color: #29B6F6;
+  background-color: #29B6F6 !important;
   border-color: #29B6F6;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-blue-600 {
   background-color: #039BE5;
@@ -329,9 +335,10 @@
   color: #fff;
 }
 .bg-teal-400 {
-  background-color: #26A69A;
+  background-color: #26A69A !important;
   border-color: #26A69A;
   color: #fff;
+  -webkit-print-color-adjust: exact;
 }
 .bg-teal-600 {
   background-color: #00897B;

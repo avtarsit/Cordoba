@@ -6,7 +6,7 @@
     Tab();
     $scope.StoreId = $rootScope.storeId; 
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
-
+   
     $scope.dtOptions = DTOptionsBuilder.newOptions()
                       .withOption('bDestroy', true)
                       .withOption("deferRender", true)
@@ -410,7 +410,29 @@
       });
     }
 
+    $scope.SendCustomerPassword = function () {
+        angular.element("#DivSendPasswrod").modal('show');
+        $scope.NewPassword = "";
+          
+    }
 
+    $scope.SendCustomerPasswordEmail = function (form1) {
+        if (form1.$valid) {
+            $http.get(configurationService.basePath + "api/CustomerApi/SendCustomerPassword?customer_id=" + $scope.customer_id + "&NewPassword=" + $scope.NewPassword)
+                .then(function (response) {
+                    if (response.data != null) {
+                        notificationFactory.customSuccess("Password sent Successfully.");
+                    }
+                    angular.element("#DivSendPasswrod").modal('hide');
+                })
+            .catch(function (response) {
+                notificationFactory.customError("Error occur during save record.");
+            })
+            .finally(function () {
+
+            });
+        }
+    };
 
     function Init() {
         GetCountryList();

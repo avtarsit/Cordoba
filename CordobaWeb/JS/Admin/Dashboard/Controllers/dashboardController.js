@@ -755,4 +755,7 @@
     $scope.GetLatestOrderDetailsDashboard();
     $scope.GetDashboardSummaryCharts($scope.ChartOrFunctionTypeEnum.All);
 
+    $scope.printDiv = function () {
+        window.print();
+    }
 });

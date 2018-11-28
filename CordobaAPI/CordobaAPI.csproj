@@ -329,6 +329,7 @@
     <Content Include="EmailTemplate\ImportCustomer.html" />
     <Content Include="EmailTemplate\ImportedPoint.html" />
     <Content Include="EmailTemplate\OrderStatusUpdateTemplate.html" />
+    <Content Include="EmailTemplate\SendPassword.html" />
     <Content Include="EmailTemplate\VerifyOTP.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

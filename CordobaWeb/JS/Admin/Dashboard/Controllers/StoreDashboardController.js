@@ -699,6 +699,32 @@
         var url = $state.href('StoreHTML');
         window.open(url, '_blank');
     }
+    
+    $scope.printDiv = function () {
+        //debugger;
+        //var printContents = document.getElementById(divName).innerHTML;
+        //var popupWin = window.open('', '_blank', 'width=300,height=300');
+        //popupWin.document.open();
+        //popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="http://localhost:1012/Content/admin/css/colors.css" />' +
+            
+        //    '</head><body onload="window.print()">' + printContents + '</body></html>');
+        //popupWin.document.close();
 
+    //    var css = '@page { size: landscape; }',
+    //head = document.head || document.getElementsByTagName('head')[0],
+    //style = document.createElement('style');
+
+    //    style.type = 'text/css';
+    //    style.media = 'print';
+
+    //    if (style.styleSheet) {
+    //        style.styleSheet.cssText = css;
+    //    } else {
+    //        style.appendChild(document.createTextNode(css));
+    //    }
+
+    //    head.appendChild(style);
+        window.print();
+    }
 
 });

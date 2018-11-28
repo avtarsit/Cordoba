@@ -194,6 +194,24 @@ namespace CordobaServices.Services
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);
         }
 
+        public bool SendCustomerPasswordEmail(string email, string password, string name, string store_name)
+        {
+            string strSubject = store_name + " -  Password";
+
+            var filepath = HttpContext.Current.Server.MapPath("~/EmailTemplate/SendPassword.html");
+            var strbody = ReadTextFile(filepath);
+
+            if (strbody.Length <= 0)
+                return false;
+
+            strbody = strbody.Replace("##name##", name);
+            strbody = strbody.Replace("##Password##",password);
+            strbody = strbody.Replace("##StoreName##", store_name);
+            //strbody = strbody.Replace("##LogoPath##", logopath);
+
+            return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);
+        }
+
         public bool SendResetPassOTPEmail(string email, string otp, string name, string store_name, string logopath)
         {
             string strSubject = store_name + " - Reset Password";

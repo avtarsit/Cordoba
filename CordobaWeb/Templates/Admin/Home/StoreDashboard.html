@@ -19,10 +19,11 @@
             <ul class="breadcrumb">
                 <li><a><i class="icon-home2 position-left"></i> Home</a></li>
                 <li class="active">Dashboard</li>
+                <li><button type="button" class="btn btn-success btn-md" data-placement="top" data-toggle="tooltip" title="Print Dashboard" ng-click="printDiv();"> Print Dashboard<i class="icon-arrow-right14 position-left"></i></button></li>
             </ul>
-            <ul class="breadcrumb-elements" ng-show="storeId == 25 || storeId == 35 || storeId == 1082 || storeId == 23 || storeId == 44 || storeId == 33">
+            <ul class="breadcrumb-elements" ng-show="storeId == 25 || storeId == 35 || storeId == 1082 || storeId == 23 || storeId == 44 || storeId == 33 || storeId=27">
                 <li><button type="button" class="btn btn-success btn-md" data-placement="top" data-toggle="tooltip" title="Export Store" ng-click="GotoStorePDF()"> Monthly Summary<i class="icon-arrow-right14 position-right"></i></button></li>
-            </ul>
+                </ul>
         </div>
     </div>
     <div class="page-header-content">
@@ -191,7 +192,7 @@
                             <div class="chart has-fixed-height" id="StoreSalesAnalytics"></div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
 

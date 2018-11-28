@@ -629,6 +629,26 @@ namespace CordobaAPI.API
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage SendCustomerPassword(int customer_id, string NewPassword)
+        {
+            try
+            {
+                //Random rnd = new Random();
+                //string password = rnd.Next(0, 1000000).ToString("D6");
+                //string encryptedpasssword = Security.Encrypt(rnd.Next(0, 1000000).ToString("D6"));
+
+                var result = _CustomerService.SendCustomerPassword(customer_id, NewPassword);
+               
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+        
+
         public bool IsValidEmail(string email)
         {
             try

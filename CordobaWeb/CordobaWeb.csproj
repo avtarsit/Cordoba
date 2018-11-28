@@ -197,6 +197,7 @@
     <Content Include="Content\admin\css\font-awesome.min.css" />
     <Content Include="Content\admin\css\icons\fontawesome\styles.min.css" />
     <Content Include="Content\admin\css\icons\icomoon\styles.css" />
+    <Content Include="Content\admin\css\print.css" />
     <Content Include="Content\admin\images\backgrounds\boxed_bg.png" />
     <Content Include="Content\admin\images\backgrounds\boxed_bg_retina.png" />
     <Content Include="Content\admin\images\cover.jpg" />

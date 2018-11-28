@@ -1,4 +1,8 @@
-﻿
+﻿<style>
+    .zindex {
+        z-index: 999999;
+    }
+</style>
 <div ng-controller="ManageCustomerController">
     <form name="form" id="form" class="form-horizontal" novalidate>
         <div class="page-header">
@@ -82,9 +86,9 @@
                                                     <li class=" cursor-pointer"><a role="tab" data-toggle="tab" ng-click="AddAddress()"><i class="icon-plus-circle2"></i>&nbsp;&nbsp;Add Address</a></li>
                                                 </ul>
 
-                                                <div  ng-disabled="IsEditMode != true" class="customerImage">
-                                                    <img ng-src="{{CustomerImageObj.Image}}" alt="no image" style="max-height:150px"/>
-                                                    <br/>
+                                                <div ng-disabled="IsEditMode != true" class="customerImage">
+                                                    <img ng-src="{{CustomerImageObj.Image}}" alt="no image" style="max-height:150px" />
+                                                    <br />
                                                     <br />
                                                     <input type="button" class="btn btn-info" ng-disabled="store_id==0" ng-click="UploadImagePopUp()" value="Upload">
                                                     <button type="button" ng-if="CustomerImageObj.Image != undefined" ng-click="deleteCustomerImage()" data-toggle="tooltip" title="Remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
@@ -146,6 +150,8 @@
                                                                 <label class="col-lg-2 control-label mandatoryField">Password</label>
                                                                 <div class="col-lg-9">
                                                                     <input type="password" class="form-control" name="Password" maxlength="35" placeholder="Enter Password" ng-model="CustomerObj.password" required="required">
+                                                                    <br />
+                                                                    <button type="button" ng-click="SendCustomerPassword()" class="btn btn-success cursor-pointer">Send Password<i class="icon-arrow-right14 position-right"></i></button>&nbsp;
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -161,8 +167,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-2 control-label ">Status</label>
                                                                 <div class="col-lg-9">
-                                                                    <select name="status" id="input-status" ng-model="CustomerObj.status" ng-options="status.ID as status.Name  for status in Status" class="form-control">
-                                                                    </select>
+                                                                    <select name="status" id="input-status" ng-model="CustomerObj.status" ng-options="status.ID as status.Name  for status in Status" class="form-control"></select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -304,7 +309,7 @@
                                                     </div>
 
                                                 </div>
-                                                <button class="btn btn-primary pull-right" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add history"  ><i class="icon-plus-circle2"></i> Add History</button>
+                                                <button class="btn btn-primary pull-right" data-placement="top" data-toggle="tooltip" title="" data-original-title="Add history"><i class="icon-plus-circle2"></i> Add History</button>
                                             </div>
                                             <!--End History Tab-->
                                         </div>
@@ -406,11 +411,29 @@
 
         </div>
     </form>
+
+    <!--Send Password Popup-->
+
+    <div class="modal zindex" id="DivSendPasswrod" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <a href="javascript:;" class="close-modal" data-dismiss="modal">Ok</a>
+                    <div class="modal-body">
+                        <form name="form1" id="form1" class="form-horizontal" novalidate>
+                            <input type="password" class="form-control" name="NewPassword" required="required" id="abcd" placeholder="Enter Password" ng-model="NewPassword">
+                            <p class="text-danger validationErrors" ng-show="form1.$submitted && (!form1.$valid) && (form1.NewPassword.$error.required || form1.NewPassword.$error.email)">Enter new password</p>
+                            <br />
+                            <button type="submit" ng-click="SendCustomerPasswordEmail(form1)" class="btn btn-success cursor-pointer">Send Email<i class="icon-arrow-right14 position-right"></i></button>&nbsp;
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script>
-
-</script>
 
 
 
