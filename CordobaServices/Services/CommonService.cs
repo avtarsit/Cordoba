@@ -194,7 +194,7 @@ namespace CordobaServices.Services
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);
         }
 
-        public bool SendCustomerPasswordEmail(string email, string password, string name, string store_name)
+        public bool SendCustomerPasswordEmail(string email, string password, string name, string store_name, string store_url)
         {
             string strSubject = store_name + " -  Password";
 
@@ -207,6 +207,7 @@ namespace CordobaServices.Services
             strbody = strbody.Replace("##name##", name);
             strbody = strbody.Replace("##Password##",password);
             strbody = strbody.Replace("##StoreName##", store_name);
+            strbody = strbody.Replace("##store_url##", store_url);
             //strbody = strbody.Replace("##LogoPath##", logopath);
 
             return SendMailMessage(email, null, null, strSubject, strbody, GetEmailSettings(), null, store_name);

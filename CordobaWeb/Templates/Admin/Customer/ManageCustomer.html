@@ -418,15 +418,16 @@
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
                 <div class="modal-content">
-                    <a href="javascript:;" class="close-modal" data-dismiss="modal">Ok</a>
+                    
                     <div class="modal-body">
                         <form name="form1" id="form1" class="form-horizontal" novalidate>
                             <input type="password" class="form-control" name="NewPassword" required="required" id="abcd" placeholder="Enter Password" ng-model="NewPassword">
                             <p class="text-danger validationErrors" ng-show="form1.$submitted && (!form1.$valid) && (form1.NewPassword.$error.required || form1.NewPassword.$error.email)">Enter new password</p>
                             <br />
                             <button type="submit" ng-click="SendCustomerPasswordEmail(form1)" class="btn btn-success cursor-pointer">Send Email<i class="icon-arrow-right14 position-right"></i></button>&nbsp;
-
+                            <a style="float:right" href="javascript:;" class="close-modal" data-dismiss="modal"><img src="../../../Content/Images/ic-close.png" /></a>    
                         </form>
+                        
                     </div>
                 </div>
             </div>

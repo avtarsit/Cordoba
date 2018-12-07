@@ -464,7 +464,7 @@ namespace CordobaServices.Services
             }
         }
 
-        public CustomerEntity SendCustomerPassword(int customer_id,string NewPassword)
+        public CustomerEntity SendCustomerPassword(int customer_id, string NewPassword)
         {
             try
             {
@@ -474,10 +474,10 @@ namespace CordobaServices.Services
                 };
                 var result = CustomerEntityGenericRepository.ExecuteSQL<CustomerEntity>("GetCustomerPassword", sqlParameter).FirstOrDefault();
                 CommonService customerService = new CommonService();
-                var result1 = customerService.SendCustomerPasswordEmail(result.email, NewPassword, result.firstname, result.store_name);
+                var result1 = customerService.SendCustomerPasswordEmail(result.email, NewPassword, result.firstname, result.store_name, result.store_url);
                 return result;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }

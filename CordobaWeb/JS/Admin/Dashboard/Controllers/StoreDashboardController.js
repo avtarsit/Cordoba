@@ -228,7 +228,7 @@
 
                     //Add legend
                     legend: {
-                        data: ['Orders', 'Customers']
+                        data: ['Total Orders', 'Customers With Orders']
                     },
 
                     // Display toolbox

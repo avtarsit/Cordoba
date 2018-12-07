@@ -441,7 +441,7 @@ namespace CordobaAPI.API
                 storesummarytitlePara.FirstTextRange.Fill.SolidColor.Color = Color.Black;
                 storesummarytitlePara.Alignment = TextAlignmentType.Center;
 
-                RectangleF dougnutrect = new RectangleF(10, 200, 400, 300);
+                RectangleF dougnutrect = new RectangleF(10, 200, 320, 300);
                 IChart chart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, dougnutrect, false);
                 chart.ChartTitle.TextProperties.Text = "PARTICIPANTS (" + Convert.ToInt32(result.storeSummary.ToList()[0].Count + result.storeSummary.ToList()[1].Count) + ")";//"Store Summary";
                 chart.ChartTitle.TextProperties.IsCentered = true;
@@ -483,7 +483,7 @@ namespace CordobaAPI.API
 
                 //Point Summary
 
-                RectangleF pointsummaryrect = new RectangleF(400, 200, 400, 300);
+                RectangleF pointsummaryrect = new RectangleF(400, 200, 320, 300);
                 IChart pointsummarychart = ppt.Slides[2].Shapes.AppendChart(ChartType.Doughnut, pointsummaryrect, false);
                 pointsummarychart.ChartTitle.TextProperties.Text = "POINTS (" +Convert.ToInt32(result.pointsRemaining[0].Count + result.pointsRemaining[1].Count) + ")";
                 pointsummarychart.ChartTitle.TextProperties.IsCentered = true;
