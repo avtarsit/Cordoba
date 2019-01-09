@@ -21,11 +21,14 @@
     ];
 
     $scope.SearchByPointsEnum = [
-{ Id: 1, Name: '1 to 10', Checked: false },
-{ Id: 2, Name: '11 to 25', Checked: false },
-{ Id: 3, Name: '26 to 50', Checked: false },
-{ Id: 4, Name: '50 to 100', Checked: false },
-{ Id: 5, Name: 'Above 100', Checked: false },
+        { Id: 1, Name: '1 to 24', Checked: false },
+        { Id: 2, Name: '25 to 49', Checked: false },
+        { Id: 3, Name: '50 to 99', Checked: false },
+        { Id: 4, Name: '100 to 199', Checked: false },
+        { Id: 5, Name: '200 to 499', Checked: false },
+        { Id: 6, Name: '500 to 999', Checked: false },
+        { Id: 7, Name: '1000 to 1999', Checked: false },
+        { Id: 8, Name: 'Above 2000', Checked: false },
     ];
 
 
