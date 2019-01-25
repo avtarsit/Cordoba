@@ -3929,6 +3929,9 @@
     <Content Include="Templates\_Layout1\Cart\OrderSuccessful.html" />
     <Content Include="Templates\_Layout1\Category\Index.html" />
     <Content Include="Templates\_Layout1\ContactUs\index.html" />
+    <Content Include="Templates\_Layout1\Footer\CookiePolicy.html" />
+    <Content Include="Templates\_Layout1\Footer\TermsOfUse.html" />
+    <Content Include="Templates\_Layout1\Footer\WebsitePrivacyStatement.html" />
     <Content Include="Templates\_Layout1\MyAccount\AddressBook.html" />
     <Content Include="Templates\_Layout1\MyAccount\ChangePassword.html" />
     <Content Include="Templates\_Layout1\MyAccount\EditProfile.html" />
@@ -3945,6 +3948,9 @@
     <Content Include="Templates\_Layout2\Cart\OrderSuccessful.html" />
     <Content Include="Templates\_Layout2\Category\Index.html" />
     <Content Include="Templates\_Layout2\ContactUs\index.html" />
+    <Content Include="Templates\_Layout2\Footer\CookiePolicy.html" />
+    <Content Include="Templates\_Layout2\Footer\TermsOfUse.html" />
+    <Content Include="Templates\_Layout2\Footer\WebsitePrivacyStatement.html" />
     <Content Include="Templates\_Layout2\MyAccount\AddressBook.html" />
     <Content Include="Templates\_Layout2\MyAccount\ChangePassword.html" />
     <Content Include="Templates\_Layout2\MyAccount\editProfile.html" />
