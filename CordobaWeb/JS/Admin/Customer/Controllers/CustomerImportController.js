@@ -50,7 +50,6 @@
   
     $scope.CustomerImport = function ()
     {
-        debugger;
         if (!($scope.store_id >=0) || $scope.files.length ==0)
         {
             toastr.error("Select Store & file");

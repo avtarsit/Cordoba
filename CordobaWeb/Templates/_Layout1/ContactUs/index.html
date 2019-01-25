@@ -3,6 +3,8 @@
         <div id="main-container">
             <div id="sitecontent">
                 <div class="wrapper">
+                    <div class="row">
+                    <div class="col-md-6 col-md-offset-2">
                     <form id="contact-form" name="contactForm" class="styled-form" novalidate>
                         <h1 class="pagetitle">Contact us</h1>
                         <div class="note">
@@ -28,22 +30,24 @@
                                 </ul>
                             </div>
                         </div>
-                        <p class="row half first">
+                        <div class="row">
+                        <div class="form-group col-md-6 col-sm-12">
                             <label for="id_name">First Name: <span class="required">*</span></label>
                             <span class="field"><input type="text" ng-model="contactUsObj.firstname" name="FirstName" required="required" /></span>
-                        </p>
-                        <p class="row half">
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
                             <label for="id_name">Last Name: <span class="required">*</span></label>
                             <span class="field"><input type="text" ng-model="contactUsObj.lastname" name="LastName" required="required" /></span>
-                        </p>
-                        <p class="row full">
+                        </div>
+                         <div class="form-group col-md-12 col-sm-12">
                             <label for="id_email">Email: <span class="required">*</span></label>
                             <span class="field"><input type="email" ng-model="contactUsObj.email" name="Email" required="required" /></span>
-                        </p>
-                        <p class="row full ">
+                        </div>
+                         <div class="form-group col-md-12 col-sm-12">
                             <label for="id_message">Enquiry<span class="required">*</span> : If your enquiry relates to an order placed on the site, please include your Order Id below:</label>
                             <span class="field"><textarea cols="40" ng-model="contactUsObj.description" rows="5" name="Message" required="required"></textarea></span>
-                        </p>
+                        </div>
+                    </div>
                         <!--<div class="row half first">
                             <label for="id_tapcha_0">Verify: <span class="required">*</span></label>
                             <div class="g-recaptcha" data-sitekey="6LdVYCoUAAAAAKY0fQMj0adUreM8txNLs59ULs8J"></div>
@@ -53,7 +57,8 @@
                             <button type="submit" ng-click="SendContactUsDetail(contactForm)">SEND</button>
                         </p>
                     </form>
-
+                    </div>
+                <div class="col-md-4">
                     <aside id="contact-info">
                         <dl>
                             <dt>Find us on:</dt>
@@ -63,6 +68,8 @@
                             </dd>
                         </dl>
                     </aside>
+                </div>
+            </div>  
                 </div>
             </div>
         </div>

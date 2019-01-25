@@ -93,10 +93,10 @@
                 </div>-->
                 <div class="filterProductDiv col-sm-6 form-group pull-left" ng-if="ProductList.length>0"> <!--"SelectedSubCategory==-3"-->
                     <div>
-                        <label class="col-sm-3 rn_pad control-label mt-5">
+                        <label class="col-sm-4 rn_pad control-label mt-5">
                             Sort By
                         </label>
-                        <div class="pull-left">
+                        <div class="pull-left col-sm-8">
                             <select ng-options="SortByObject.Id as SortByObject.Name  for SortByObject in SortByEnum"
                                     class="form-control" ng-model="SortById" ng-change="SortBy(SortById)" name="NameSort"></select>
                         </div>
@@ -105,6 +105,7 @@
                 <div class="pull-right">
                     <ul ng-show="((SelectedCategoryId>0 && SelectedSubCategory>0)|| (SelectedCategoryId==-1) || (SelectedCategoryId==-2) || (SelectedCategoryId==-3)) && totalRecords>0 " pagination total-items="totalRecords" items-per-page="20" max-size="maxSize" ng-model="SelectedPageIndex" ng-click="GoToPage(SelectedPageIndex)" ng-init="set()">></ul>
                 </div>
+                
                 <div class="col-sm-12">
                     <div class="col-sm-3" ng-repeat="product in ProductList">
                         <div class="col-product text-center">
@@ -140,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-
+            
             </div>
         </div>
     </div>

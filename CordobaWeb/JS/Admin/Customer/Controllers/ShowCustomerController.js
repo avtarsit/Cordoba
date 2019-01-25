@@ -53,7 +53,6 @@
     }
     var userid = $scope.LoggedInUserId;
     function MaintainLocalStorage() {
-        debugger;
         //Store
         if ((localStorageService.get(userid + "_Customer_Store") == "" || localStorageService.get(userid + "_Customer_Store") == null)) {
             localStorageService.set(userid + "_Customer_Store", $scope.CustomerFilter.storeId);
@@ -133,7 +132,6 @@
     }
 
     $scope.checkIfEnterKeyWasPressed = function ($event) {
-        debugger;
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
             $scope.ContainValueOrNot();
@@ -142,7 +140,6 @@
     };
 
     $scope.ContainValueOrNot = function () {
-        debugger;
         //Order Id
         if ($scope.CustomerFilter.customerName == "" || $scope.CustomerFilter.customerName == null) {
             localStorageService.set(userid + "_Customer_customerName", "");
@@ -163,7 +160,6 @@
     }
 
     $scope.ContainStoreOrNot = function () {
-        debugger;
         //Store
         if ($scope.CustomerFilter.approved == "" || $scope.CustomerFilter.approved == null) {
             localStorageService.set(userid + "_Customer_Store", "");
@@ -172,7 +168,6 @@
     }
 
     $scope.ContainApprovedOrNot = function () {
-        debugger;
         //Store
         if ($scope.CustomerFilter.storeId == "" || $scope.CustomerFilter.storeId == null) {
             localStorageService.set(userid + "_Customer_approved", "");
@@ -181,7 +176,6 @@
     }
 
     $scope.ContainStatusOrNot = function () {
-        debugger;
         //Store
         if ($scope.CustomerFilter.status == "" || $scope.CustomerFilter.status == null) {
             localStorageService.set(userid + "_Customer_status", "");
@@ -384,14 +378,12 @@
         var row = table.row($($event.target).parents('tr')).data();
         angular.element("#DivCreateOrderModel").modal('show');
         $scope.CreatedOrderUrl = $sce.trustAsResourceUrl(row.localhosturl) + "/#/Home" + "?IsFromAdmin=" + Encodestring(true) + "&Email=" + Encodestring(row.email);
-        debugger;
         $scope.Email = row.email;
         $scope.IsFromAdmin = true;
         $scope.StoreName = row.store_name;
     }
 
     function Init() {
-        debugger;
         GetCustomerGroupList();
         GetStoreList();
         $scope.GetCustomerList();

@@ -14,7 +14,7 @@
                      .withOption("deferRender", true);
 
     $scope.PageTitle = "Customer Points Importer";
-    debugger;
+    
     //Remove local storage of ther pages
     //$rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
     $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');

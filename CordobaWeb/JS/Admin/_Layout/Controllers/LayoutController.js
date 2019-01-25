@@ -22,7 +22,6 @@
     }
 
     $scope.ClearLocalStorage = function () {
-        debugger;
         $window.localStorage.clear();
     }
 

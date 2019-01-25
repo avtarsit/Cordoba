@@ -54,8 +54,31 @@
                                     <option value=""> --- Please Select --- </option>
                                 </select>
                             </div>
-                            <button ng-click="GetTransactionItemReportList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                            
                         </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Category:</label>
+                            <div class="col-md-12">
+                                <div class="well well-sm" style="height:150px; overflow: auto;">
+                                    <div class="col-sm-6 checkbox" ng-repeat="category in CategoryList | orderBy : 'ParentCategoryName'">
+                                        <label ng-if="category.parent_Id==0">
+                                            <input type="checkbox" class="cursor-pointer" ng-change="selectCategoryChange(category.IsSelected,category.Category_Id)" ng-model="category.IsSelected">
+                                            {{category.name}}
+                                        </label>
+                                        <label ng-if="category.parent_Id>0">
+                                            <input type="checkbox" class="cursor-pointer" ng-change="selectCategoryChange(category.IsSelected,category.Category_Id)" ng-model="category.IsSelected">
+                                            {{category.ParentCategoryName}}>{{category.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>-->
+                    <div class="row">
+                            <button ng-click="GetTransactionItemReportList()" type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -71,6 +94,7 @@
                                 <th>Adjustment</th>
                                 <th>Type of points</th>
                                 <th>Comment</th>
+                                <!--<th>Category</th>-->
                                 <th>Model</th>
                                 <th>Item Name</th>
                                 <th>Quantity</th>

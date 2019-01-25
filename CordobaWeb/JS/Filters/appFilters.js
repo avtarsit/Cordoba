@@ -40,7 +40,7 @@ app.filter('trusted', ['$sce', function ($sce) {
 }]);
 
 //app.filter('decodeHTML', [function (text) {
-//    debugger;
+//     
 //    if (text) {
 //        return text.
 //            replace(/&/g, '&amp;').

@@ -11,7 +11,7 @@
     $scope.trustAsHtml = function (string) {
         return $sce.trustAsHtml(string);
     };
-    
+
     $scope.LanguageList = [{
         language_id: '1',
         name: 'English'
@@ -33,19 +33,21 @@
     }];
 
     $scope.GetCustomerDetails = function () {
-        $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
-        .then(function (response) {
-            debugger;
-            $rootScope.CustomerDetail.points = response.data.points;
-            UserDetail.points = $rootScope.CustomerDetail.points;
-            $scope.customerpoint = $rootScope.CustomerDetail.points;
-      })
-      .catch(function (response) {
+        if (UserDetail.customer_id > 0) {
+            $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
+                .then(function (response) {
+                     
+                    $rootScope.CustomerDetail.points = response.data.points;
+                    UserDetail.points = $rootScope.CustomerDetail.points;
+                    $scope.customerpoint = $rootScope.CustomerDetail.points;
+                })
+                .catch(function (response) {
 
-      })
-      .finally(function () {
+                })
+                .finally(function () {
 
-      });
+                });
+        }
     }
     $scope.GetCustomerDetails();
     //$scope.GetLanguageList = function () {
@@ -63,26 +65,25 @@
 
     $scope.UpdateLanguageForCustomer = function (selectedlanguage) {
         $http.post(configurationService.basePath + "API/LayoutDashboardAPI/UpdateLanguageForCustomer?customerid=" + UserDetail.customer_id + "&languageid=" + selectedlanguage)
-        .then(function (response) {
-            localStorageService.set("selectedlanguage", selectedlanguage);
-            //if (selectedlanguage != "" )
-            //{
-            //    //window.location.reload();
-            //    $state.reload();
-            //}
-            //else 
-            if (selectedlanguage == "")
-            {
-                $scope.selectedlanguage = "";
-            }
-            $state.reload();
-        })
-        .catch(function () {
+            .then(function (response) {
+                localStorageService.set("selectedlanguage", selectedlanguage);
+                //if (selectedlanguage != "" )
+                //{
+                //    //window.location.reload();
+                //    $state.reload();
+                //}
+                //else 
+                if (selectedlanguage == "") {
+                    $scope.selectedlanguage = "";
+                }
+                $state.reload();
+            })
+            .catch(function () {
 
-        })
-        .finally(function () {
+            })
+            .finally(function () {
 
-        });
+            });
     }
 
     //angular hack to html decode
@@ -91,7 +92,7 @@
     //var old = $scope.WelcomeMsg[0].toString();
     ////"&lt;h1 style=&quot;font-size:40px;color:#3E53A4;font-weight:bold;line-height:50px;margin-bottom:20px&quot;&gt;\r\n	Welcome to the Make a Difference &amp;lsquo;thank you&amp;rsquo; store&lt;/h1&gt;\r\n&lt;p&gt;\r\n	The Pitney Bowes &amp;lsquo;thank you&amp;rsquo; site is the official mechanism for rewarding employees for excellence in what they do, and living the behaviours that support our Client, Team, Win philosophy.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Many team programmes are rewarded using this gift catalogue including the &lt;strong&gt;Make a Difference employee reward programme&lt;/strong&gt; outlined below:&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;img alt=&quot;Make a Difference Thank You&quot; height=&quot;140&quot; src=&quot;http://static.cordobarewards.co.uk/image/data/pitney-bowes/pitney-bowes-power.png&quot; width=&quot;140&quot; /&gt;&lt;/p&gt;\r\n&lt;div style=&quot;color:#4E4E4E;line-height:16px&quot;&gt;\r\n	&lt;p&gt;\r\n		Putting customers first is a company value that Make a Difference award winners bring to life. We all have the ability to deliver on this value. Whether you support internal customers or external customers, striving for excellence in everything you do will impact our customers and support our businesses growth.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Winners of this award are given points which can be accumulated and exchanged for a range of gifts.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		So, if you&amp;rsquo;ve received points, Pitney Bowes thanks you again for all your efforts and trusts you enjoy your shopping experience.&lt;/p&gt;\r\n&lt;/div&gt;"
     //$scope.WelcomeMsg[0] = $scope.trustAsHtml(old);
-    //debugger;
+
     //$scope.WelcomeMsg[1] = $scope.WelcomeMsg[1].replace('\\r\\n', '<br/>');
     $scope.TermsConditionMsg = "";
 
@@ -124,53 +125,53 @@
             $scope.CustomerObj.IsFromAdmin = $("#IsFromAdmin").val();
 
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/CustomerLogin", $scope.CustomerObj)
-                  .then(function (response) {
-                      debugger;
-                      if (response.data != null) {
-                          switch (response.data.ErrorTypeId) {
-                              case 0:
+                .then(function (response) {
 
-                                  UserDetail.customer_id = response.data.customer_id;
-                                  UserDetail.firstname = response.data.firstname;
-                                  UserDetail.lastname = response.data.lastname;
-                                  UserDetail.points = response.data.points;
-                                  UserDetail.address_id = response.data.address_id;
-                                  UserDetail.cartgroup_id = response.data.cartgroup_id;
-                                  UserDetail.TotalItemAdded = response.data.TotalItemAdded;
-                                  UserDetail.store_id = response.data.store_id;
-                                  debugger;
-                                  localStorageService.set("loggedInUser", response.data);
-                                  $rootScope.CustomerDetail = response.data;
-                                  $scope.customerpoint = $rootScope.CustomerDetail.points;
+                    if (response.data != null) {
+                        switch (response.data.ErrorTypeId) {
+                            case 0:
 
-                                  angular.element("#DivLoginModel").modal('hide');
+                                UserDetail.customer_id = response.data.customer_id;
+                                UserDetail.firstname = response.data.firstname;
+                                UserDetail.lastname = response.data.lastname;
+                                UserDetail.points = response.data.points;
+                                UserDetail.address_id = response.data.address_id;
+                                UserDetail.cartgroup_id = response.data.cartgroup_id;
+                                UserDetail.TotalItemAdded = response.data.TotalItemAdded;
+                                UserDetail.store_id = response.data.store_id;
 
-                                  break;
-                              case 1:
-                                  toastr.error('Please enter correct email!');
-                                  $scope.CustomerObj.email = null;
-                                  break;
-                              case 2:
-                                  toastr.error('Please enter correct password!');
-                                  $scope.CustomerObj.password = null;
-                                  break;
-                              case 3:
-                                  toastr.error('Please enter correct email and password!');
-                                  $scope.CustomerObj = null;
-                                  break;
-                          }
-                      } else {
-                          toastr.error('Please enter correct email and password!');
-                          //$scope.CustomerObj = null;
-                      }
+                                localStorageService.set("loggedInUser", response.data);
+                                $rootScope.CustomerDetail = response.data;
+                                $scope.customerpoint = $rootScope.CustomerDetail.points;
 
-                  })
-              .catch(function (response) {
+                                angular.element("#DivLoginModel").modal('hide');
 
-              })
-              .finally(function () {
+                                break;
+                            case 1:
+                                toastr.error('Please enter correct email!');
+                                $scope.CustomerObj.email = null;
+                                break;
+                            case 2:
+                                toastr.error('Please enter correct password!');
+                                $scope.CustomerObj.password = null;
+                                break;
+                            case 3:
+                                toastr.error('Please enter correct email and password!');
+                                $scope.CustomerObj = null;
+                                break;
+                        }
+                    } else {
+                        toastr.error('Please enter correct email and password!');
+                        //$scope.CustomerObj = null;
+                    }
 
-              });
+                })
+                .catch(function (response) {
+
+                })
+                .finally(function () {
+
+                });
         }
     }
 
@@ -292,26 +293,26 @@
             $scope.otpObj.store_name = $scope.StoreDetailInSession.name;
             $scope.otpObj.logo = $scope.StoreDetailInSession.logo;
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/ForgotPassword", $scope.otpObj)
-                  .then(function (response) {
-                      if (response.data.errorcode > 0) {
-                          $scope.IsVisibleloginForm = true;
-                          $scope.IsVisibleforgotPasswordForm = true;
-                          $scope.IsVisibleOTPForm = false;
-                          $scope.IsVisibleChangePassswordForm = true;
-                          $scope.otpObj = response.data;
-                          
-                      }
-                      else {
-                          //notificationFactory.customError("Email does not exist");
-                          toastr.error("Email does not exist");
-                      }
-                  })
-              .catch(function (response) {
+                .then(function (response) {
+                    if (response.data.errorcode > 0) {
+                        $scope.IsVisibleloginForm = true;
+                        $scope.IsVisibleforgotPasswordForm = true;
+                        $scope.IsVisibleOTPForm = false;
+                        $scope.IsVisibleChangePassswordForm = true;
+                        $scope.otpObj = response.data;
 
-              })
-              .finally(function () {
+                    }
+                    else {
+                        //notificationFactory.customError("Email does not exist");
+                        toastr.error("Email does not exist");
+                    }
+                })
+                .catch(function (response) {
 
-              });
+                })
+                .finally(function () {
+
+                });
         }
     }
 
@@ -321,26 +322,26 @@
 
         if (form.$valid) {
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/VerifyOTP", $scope.otpObj)
-                  .then(function (response) {
-                      if (response.data.errorcode > 0) {
-                          //$scope.IsVisibleloginForm = true;
-                          //$scope.IsVisibleforgotPasswordForm = true;
-                          $scope.IsVisibleOTPForm = true;
-                          $scope.IsVisibleChangePassswordForm = false;
-                          $scope.otpObj.password = '';
-                          $scope.otpObj.email = '';
-                      }
-                      else {
-                          toastr.error("Please Enter valid OTP");
-                      }
+                .then(function (response) {
+                    if (response.data && response.data.errorcode > 0) {
+                        //$scope.IsVisibleloginForm = true;
+                        //$scope.IsVisibleforgotPasswordForm = true;
+                        $scope.IsVisibleOTPForm = true;
+                        $scope.IsVisibleChangePassswordForm = false;
+                        $scope.otpObj.password = '';
+                        $scope.otpObj.email = '';
+                    }
+                    else {
+                        toastr.error("Please Enter valid OTP");
+                    }
 
-                  })
-              .catch(function (response) {
+                })
+                .catch(function (response) {
 
-              })
-              .finally(function () {
+                })
+                .finally(function () {
 
-              });
+                });
         }
     }
 
@@ -367,51 +368,51 @@
 
     $scope.GetTermsCondition = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/GetStoreTermsDetail?Store_Id=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {
-              if (response.data.length > 0) {
-                  $scope.TermsConditionMsg = response.data[0].Terms;
-              }
-          })
-      .catch(function (response) {
+            .then(function (response) {
+                if (response.data.length > 0) {
+                    $scope.TermsConditionMsg = response.data[0].Terms;
+                }
+            })
+            .catch(function (response) {
 
-      })
-      .finally(function () {
+            })
+            .finally(function () {
 
-      });
+            });
     }
 
     $scope.ChangePassword = function (form) {
         if (form.$valid) {
 
             $http.post(configurationService.basePath + "API/LayoutDashboardAPI/SaveChangedPassword_Layout?StoreId=" + $scope.StoreDetailInSession.store_id, $scope.otpObj)
-                      .then(function (response) {
-                          if (response.data > 0) {
-                              notificationFactory.customSuccess("Password changed Successfully.");
+                .then(function (response) {
+                    if (response.data > 0) {
+                        notificationFactory.customSuccess("Password changed Successfully.");
 
-                              $scope.IsVisibleforgotPasswordForm = true;
-                              $scope.IsVisibleOTPForm = true;
-                              $scope.IsVisibleChangePassswordForm = true;
-                              $scope.IsVisibleloginForm = false;
-                              $scope.otpObj.otp = '';
-                              $scope.otpObj.password = '';
-                              $scope.otpObj.confirmPassword = '';
-                              $scope.otpObj.email = '';
-                              form.$valid = true;
-                              $scope.forgotPasswordForm.$valid = true;
-                          }
-                          else {
-                              //notificationFactory.customError("Something went wrong");
-                              toastr.error("Something went wrong");
-                          }
+                        $scope.IsVisibleforgotPasswordForm = true;
+                        $scope.IsVisibleOTPForm = true;
+                        $scope.IsVisibleChangePassswordForm = true;
+                        $scope.IsVisibleloginForm = false;
+                        $scope.otpObj.otp = '';
+                        $scope.otpObj.password = '';
+                        $scope.otpObj.confirmPassword = '';
+                        $scope.otpObj.email = '';
+                        form.$valid = true;
+                        $scope.forgotPasswordForm.$valid = true;
+                    }
+                    else {
+                        //notificationFactory.customError("Something went wrong");
+                        toastr.error("Something went wrong");
+                    }
 
 
-                      })
-                  .catch(function (response) {
+                })
+                .catch(function (response) {
 
-                  })
-                  .finally(function () {
+                })
+                .finally(function () {
 
-                  });
+                });
         }
     }
 

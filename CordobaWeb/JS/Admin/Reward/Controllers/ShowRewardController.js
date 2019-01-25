@@ -16,7 +16,6 @@
     //$rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowReward');
 
     $scope.GetRewardList = function () {
-        debugger;
         MaintainLocalStorage();
             //Store
             if ($scope.StoreId == "" || $scope.StoreId == null) {
@@ -43,7 +42,6 @@
 
     var userid = $scope.LoggedInUserId;
     function MaintainLocalStorage() {
-        debugger;
         //Store
         if ((localStorageService.get(userid + "_ShowReward_Store") == "" || localStorageService.get(userid + "_ShowReward_Store") == null)) {
             localStorageService.set(userid + "_ShowReward_Store", $scope.StoreId);

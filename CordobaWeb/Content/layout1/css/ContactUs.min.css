@@ -29,22 +29,22 @@ button[type=submit].simple:active, .button.simple:active { top: 0; margin-bottom
 html, body { height: auto; }
 html { overflow: auto; }*/
 /*html { overflow: auto; }*/
-#page { width: 978px; margin: 0 auto; text-align: center; }
-#page #main-container { width: 1498px; margin: 0 auto; margin-left: -260px; background: #f6f7f0; -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
+#page { margin: 0 auto; text-align: center; }
+#page #main-container { margin: 0 auto;  background: #f6f7f0; -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 .pagetitle { color: #204a65; font-size: 35px; line-height: 40px; margin-bottom: 30px; font-weight: 300; }
 #sitecontent { *zoom: 1; }
 #sitecontent:after { content: ""; display: table; clear: both; }
 
 /* contact */
-#contact #sitecontent .wrapper { width: 978px; margin: 0 auto; text-align: left; }
+#contact #sitecontent .wrapper { margin: 0 auto; text-align: left; }
 #contact #sitecontent .wrapper.box { *zoom: 1; margin-top: 80px;  background: white; -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
 #contact #sitecontent .wrapper.box:after { content: ""; display: table; clear: both; }
 #contact #sitecontent .wrapper { position: relative; background-color: white; -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); *zoom: 1; margin-bottom:40px; }
 #contact #sitecontent .wrapper:after { content: ""; display: table; clear: both; }
 #contact #sitecontent #register-link { position: absolute; right: 0; top: -30px; }
-#contact #sitecontent #contact-form { position: relative; display: inline; float: left; width: 622px; padding: 25px 30px; }
+#contact #sitecontent #contact-form {  padding: 25px 30px;margin-top: 20px; }
 #contact #sitecontent #contact-form .submit-row { text-align: right; }
-#contact #sitecontent #contact-info { position: absolute; right: 0; top: 0; height: 100%; border: 10px solid white; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 306px; padding: 30px 25px; background: white url('/Content/Images/wave-pattern-white9441.png') repeat; }
+#contact #sitecontent #contact-info { padding: 30px 25px;}
 #contact #sitecontent #contact-info dt { text-transform: uppercase; font-family: "brandon-grotesque", Helvetica, Arial, sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 12px; color: #e8554e; }
 #contact #sitecontent #contact-info dd { margin-bottom: 25px; }
 #contact #sitecontent #contact-info dd, #contact #sitecontent #contact-info dd a { color: #204a65; }

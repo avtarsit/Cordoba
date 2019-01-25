@@ -19,7 +19,6 @@
     $scope.selectedmonth = 0;
     $scope.monthname =''
     $scope.GetMonthData = function (year) {
-        //debugger;
         $scope.Months = [];
         if (year == currentTime.getFullYear()) {
             for (var i = 0 ; i < currentTime.getMonth() + 1 ; i++) {
@@ -38,7 +37,6 @@
     }
 
     $scope.GetChartData = function (year, month) {
-        //debugger;
         $scope.selectedyear = year;
         $scope.selectedmonth = month;
         $scope.monthname = MONTH_NAMES[month-1].name;
@@ -71,7 +69,6 @@
             ],
              function (ec, limitless) {
                  // Initialize charts
-                 //debugger;
                  var StoreSummary = ec.init(document.getElementById('StoreHTMLStoreSummary'), limitless);
                  var PointsRemaining = ec.init(document.getElementById('PointsRemaining'), limitless);
                  var ParticipantsLoadedByMonth = ec.init(document.getElementById('ParticipantsLoadedByMonth'), limitless);
@@ -796,7 +793,6 @@
     
 
     $scope.GetStoreHTMLCharts = function () {
-        debugger;
         //$http({
         //    url: configurationService.basePath +  "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year=" + $scope.selectedyear,
         //    method: "GET",
@@ -804,7 +800,7 @@
         //    async: false,
         //    responseType: 'arraybuffer'
         //}).success(function (data, status, headers, config) {
-        //    //debugger;
+        //     
         //    var type = headers('Content-Type');
         //    var disposition = headers('Content-Disposition');
         //    if (disposition) {
@@ -833,7 +829,7 @@
         //$http.get(configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year=" + $scope.selectedyear)
         //.then(function (response) {
            
-        //    //debugger;
+        //     
         //    if (response.data != null) {
         //        $scope.StoreHTMLSummary.StoreHTMLStoreSummary = [];
 
@@ -852,7 +848,7 @@
         //            $scope.ParticipantsLoadedByMonthname.push(response.data.participantsLoadedByMonth[i].Month.split("-")[0].substring(0, 3) + "-" + response.data.participantsLoadedByMonth[i].Month.split("-")[1].substring(0, 4));
         //            $scope.ParticipantsLoadedByMonth.push({ CustomerCount: response.data.participantsLoadedByMonth[i].CustomerCount, Month: response.data.participantsLoadedByMonth[i].Month });
         //        }
-        //        //debugger;
+        //        
         //        $scope.StoreHTMLSummary.PointsLoadedByMonth = [];
         //        $scope.StoreHTMLSummary.PointsLoadedByMonthPoints = [];
         //        for (var i = 0; i < response.data.pointsLoadedByMonth.length; i++) {
@@ -870,19 +866,19 @@
         //        }
 
         //        $scope.StoreHTMLSummary.TopPointsHolders = response.data.topPointsHolders;
-        //        //debugger;
+        //         
                 
         //            $scope.StoreHTMLSummary.OrdersPlacedByType = [];
         //            $scope.StoreHTMLSummary.OrdersPlacedByTypeName = [];
         //            $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount = [];
-        //            //debugger;
+        //             
 
         //            for (var i = 0; i < response.data.orderPlacedByType.length; i++) {
         //                $scope.StoreHTMLSummary.OrdersPlacedByType.push({ OrderCount: response.data.orderPlacedByType[i].OrderCount, Name: response.data.orderPlacedByType[i].Name });
         //                $scope.StoreHTMLSummary.OrdersPlacedByTypeOrderCount.push(response.data.orderPlacedByType[i].OrderCount);
         //                $scope.StoreHTMLSummary.OrdersPlacedByTypeName.push(response.data.orderPlacedByType[i].Name)
         //            }
-        //            //debugger;
+        //             
         //            $scope.storelogo = response.data.logo;
         //            $scope.myObj = {
         //                "width": "456px",
@@ -904,7 +900,7 @@
 
 
     $scope.ExportStoreHTMLPDF = function () {
-        debugger;
+         
         $http({
             url: configurationService.basePath + "api/StoreApi/GetStoreHTMLCharts?StoreID=" + $scope.StoreId + "&Month=" + $scope.selectedmonth + "&Year=" + $scope.selectedyear,
             method: "GET",
@@ -912,7 +908,7 @@
             async: false,
             responseType: 'arraybuffer'
         }).success(function (data, status, headers, config) {
-            //debugger;
+             
             var type = headers('Content-Type');
             var disposition = headers('Content-Disposition');
             if (disposition) {
@@ -940,7 +936,7 @@
 
         ////html2canvas($("#pdf"), {
         ////    onrendered: function (canvas) {
-        ////        //debugger;
+        ////         
         ////        theCanvas = canvas;
         ////        theCanvas.setAttribute("id", "Div1");
         ////        document.body.appendChild(canvas);
@@ -948,7 +944,7 @@
         ////        // Convert and download as image 
         ////        //Canvas2Image.saveAsPNG(canvas);
         ////        $("#img-out").html(canvas);
-        ////        //debugger;
+        ////        
 
         ////        var base64 = $('#Div1')[0].toDataURL();
         ////        $("#imgCapture").attr("src", base64);
@@ -964,7 +960,7 @@
         ////Heading
         //html2canvas($("#heading"), {
         //    onrendered: function (canvas) {
-        //        //debugger;
+        //         
         //        theCanvas = canvas;
         //        theCanvas.setAttribute("id", "Div1");
         //        document.body.appendChild(canvas);
@@ -972,7 +968,7 @@
         //        // Convert and download as image 
         //        //Canvas2Image.saveAsPNG(canvas);
         //        $("#img-out").html(canvas);
-        //        //debugger;
+        //         
 
         //        var base64 = $('#Div1')[0].toDataURL();
         //        $("#imgCapture").attr("src", base64);
@@ -989,7 +985,7 @@
         ////Store Image
         //html2canvas($("#storeimage"), {
         //    onrendered: function (canvas1) {
-        //        //debugger;
+        //         
         //        theCanvas1 = canvas1;
         //        theCanvas1.setAttribute("id", "Divstoreimage");
         //        document.body.appendChild(canvas1);
@@ -997,7 +993,7 @@
         //        // Convert and download as image 
         //        //Canvas2Image.saveAsPNG(canvas);
         //        $("#img-outstoreimage").html(canvas1);
-        //        //debugger;
+        //         
 
         //        var base64 = $('#Divstoreimage')[0].toDataURL();
         //        $("#imgCapturestoreimage").attr("src", base64);
@@ -1014,7 +1010,7 @@
         ////Store Summary
         //html2canvas($("#storesummary"), {
         //    onrendered: function (canvasStoreSummary) {
-        //        //debugger;
+        //        
         //        theCanvas1 = canvasStoreSummary;
         //        theCanvas1.setAttribute("id", "DivStoreSummary");
         //        document.body.appendChild(canvasStoreSummary);
@@ -1022,7 +1018,7 @@
         //        // Convert and download as image 
         //        //Canvas2Image.saveAsPNG(canvas);
         //        $("#img-outStoreSummary").html(canvasStoreSummary);
-        //        //debugger;
+        //         
 
         //        var base64 = $('#DivStoreSummary')[0].toDataURL();
         //        $("#imgCaptureStoreSummary").attr("src", base64);
@@ -1039,7 +1035,7 @@
         ////Points Remaining
         //html2canvas($("#pointsremaining"), {
         //    onrendered: function (canvasPointsRemaining) {
-        //        //debugger;
+        //         
         //        theCanvas1 = canvasPointsRemaining;
         //        theCanvas1.setAttribute("id", "DivPointsRemaining");
         //        document.body.appendChild(canvasPointsRemaining);
@@ -1047,7 +1043,7 @@
         //        // Convert and download as image 
         //        //Canvas2Image.saveAsPNG(canvas);
         //        $("#img-outPointsRemaining").html(canvasPointsRemaining);
-        //        //debugger;
+        //        
 
         //        var base64 = $('#DivPointsRemaining')[0].toDataURL();
         //        $("#imgCapturePointsRemaining").attr("src", base64);
@@ -1064,7 +1060,7 @@
         ////Participants Loaded By Month
         //html2canvas($("#participantsloadedbymonth"), {
         //    onrendered: function (canvasParticipantsLoadedByMonth) {
-        //        //debugger;
+        //         
         //        theCanvas1 = canvasParticipantsLoadedByMonth;
         //        theCanvas1.setAttribute("id", "DivParticipantsLoadedByMonth");
         //        document.body.appendChild(canvasParticipantsLoadedByMonth);
@@ -1072,7 +1068,7 @@
         //        // Convert and download as image 
         //        //Canvas2Image.saveAsPNG(canvas);
         //        $("#img-outParticipantsLoadedByMonth").html(canvasParticipantsLoadedByMonth);
-        //        //debugger;
+        //         
 
         //        var base64 = $('#DivParticipantsLoadedByMonth')[0].toDataURL();
         //        $("#imgCaptureParticipantsLoadedByMonth").attr("src", base64);
@@ -1094,7 +1090,7 @@
     }
     $("#Generatepdf").click(function () {
         //function ExportStoreHTMLPDF1() {
-        debugger;
+         
         var template = $('#img-capture').html();
         var description = $('#img-capturestoreimage').html();
         var address = $('#img-captureStoreSummary').html();
@@ -1103,7 +1099,7 @@
         //var heading = $("#heading").html();
         //var storeimage = $("#storeimage").html();
 
-        debugger;
+         
         //var storeentity = { template: template };
         var storeentity = { template: template, description: description, address: address, county: county, telephone: telephone };
         $http({
@@ -1113,7 +1109,7 @@
             async: false,
             responseType: 'arraybuffer'
         }).success(function (data, status, headers, config) {
-            //debugger;
+            
             var type = headers('Content-Type');
             var disposition = headers('Content-Disposition');
             if (disposition) {

@@ -256,6 +256,7 @@
             }
         });
         $scope.SearchByFilterId = SearchByFilterId.slice(0, -1);
+        $scope.SelectedPageIndex = 1;
         $scope.GetOurProductListByByStoreId();
     }
 

@@ -19,6 +19,14 @@
 	.hot-deals .flex-direction-nav .flex-next {
 		top: -13%;
 	}
+	.add_cart {
+	padding: 5px 5px !important;
+	max-width: 100% !important;
+	margin-bottom: 10px;
+	}
+	/*.col-product img {
+		max-height: 90px !important;
+	}*/
 }
 @media screen and (max-width: 991px) {
 	.search_products::before {
@@ -51,11 +59,17 @@
 	.footer_menu img {
 		padding: 0px;
 	}
+	.navbar-nav > li > a {
+        font-size: 13px;
+		padding:15px 5px;
+    }
 }
 @media screen and (max-width: 767px) {
 	.navbar-header {
     	width: auto;
 	}
+	
+	.account-block{margin-bottom: 30px;}
 	.logo {
     	float: left;
     	width: 185px;
@@ -98,7 +112,9 @@
 	
 }
 @media screen and (max-width: 480px) {
-
+	.my-account {
+    margin-top: 60px;
+	}
 	.heading {
 		font-size: 17px;
 	}

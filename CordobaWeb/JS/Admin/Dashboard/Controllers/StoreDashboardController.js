@@ -701,7 +701,6 @@
     }
     
     $scope.printDiv = function () {
-        //debugger;
         //var printContents = document.getElementById(divName).innerHTML;
         //var popupWin = window.open('', '_blank', 'width=300,height=300');
         //popupWin.document.open();

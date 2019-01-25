@@ -34,7 +34,7 @@
                          <tr ng-repeat="Item in CategoryList">
                              <td><div ng-if="Item.parent_Id==0" ng-bind-html="Item.name"></div> <div ng-if="Item.parent_Id>0" ng-bind-html="Item.ParentCategoryName +' > '+Item.name"></div></td>
                              <td ng-bind="Item.sort_order"></td>
-                             <td class="cursor-pointer text-center" data-placement="top" data-toggle="tooltip" title="Edit" ui-sref="ManageCategory({CategoryId:Item.Category_Id})"><i class="glyphicon glyphicon-edit curso"></i></td>
+                             <td class="cursor-pointer text-center"><i class="glyphicon glyphicon-edit curso" data-placement="top" data-toggle="tooltip" title="Edit Category" ui-sref="ManageCategory({CategoryId:Item.Category_Id})"></i></td>
                          </tr>
                      </tbody>
                  </table>

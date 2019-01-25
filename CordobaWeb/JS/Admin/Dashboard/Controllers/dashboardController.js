@@ -693,7 +693,7 @@
    
 
     //$scope.GeneratePNG = function () {
-    //    debugger;
+    //     
     //    var node = document.getElementById("aaaaa");
     //    var canvas = document.createElement("canvas");
     //    canvas.height = node.offsetHeight;

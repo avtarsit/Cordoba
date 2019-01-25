@@ -7,7 +7,6 @@
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.PageTitle = "Order List";
 
-    debugger;
     //Remove local storage of ther pages
     $rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_Customer');
     //$rootScope.RemoveAllFromLocalStorage_StartWith($scope.LoggedInUserId + '_ShowOrders');
@@ -65,7 +64,6 @@
 
     var userid = $scope.LoggedInUserId;
     $scope.ContainValueOrNot = function () {
-        debugger;
         //Order Id
         if ($scope.filter.orderID == "" || $scope.filter.orderID == null) {
             localStorageService.set(userid + "_ShowOrders_orderID", "");
@@ -86,7 +84,6 @@
     }
 
     $scope.checkIfEnterKeyWasPressed = function ($event) {
-        debugger;
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
             $scope.ContainValueOrNot();
@@ -95,7 +92,6 @@
     };
 
     $scope.ContainStoreOrNot = function () {
-        debugger;
         //Store
         if ($scope.filter.storeId == "" || $scope.filter.storeId == null) {
             localStorageService.set(userid + "_ShowOrders_Store", "");
@@ -104,7 +100,6 @@
     }
 
     $scope.ContainOrderStatusOrNot = function () {
-        debugger;
         //Order Status
         if ($scope.filter.selectedOrderStatus == "" || $scope.filter.selectedOrderStatus == null) {
             localStorageService.set(userid + "_ShowOrders_selectedOrderStatus", "");
@@ -113,7 +108,6 @@
     }
 
     function MaintainLocalStorage() {
-        debugger;
         //Store
         if ((localStorageService.get(userid + "_ShowOrders_Store") == "" || localStorageService.get(userid + "_ShowOrders_Store") == null)) {
             localStorageService.set(userid + "_ShowOrders_Store", $scope.filter.storeId);

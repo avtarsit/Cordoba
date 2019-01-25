@@ -174,7 +174,7 @@
     }
 
     $scope.PlaceOrder = function () {
-        debugger;
+         
         if (($scope.SelectedCustomerAddress.address_1 == "" || $scope.SelectedCustomerAddress.address_1 == null || $scope.SelectedCustomerAddress.address_1 == undefined) || ($scope.SelectedCustomerAddress.postcode == "" || $scope.SelectedCustomerAddress.postcode == null || $scope.SelectedCustomerAddress.postcode == undefined)) {
             $scope.ValidateAddress = true;
             return false;

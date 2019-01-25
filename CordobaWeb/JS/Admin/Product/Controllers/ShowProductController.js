@@ -77,7 +77,7 @@
 
     var userid = $scope.LoggedInUserId;
     function MaintainLocalStorage() {
-        debugger;
+
         //Store
         if ((localStorageService.get(userid + "_Product_Store") == "" || localStorageService.get(userid + "_Product_Store") == null)) {
             localStorageService.set(userid + "_Product_Store", $scope.ProductFilter.storeId);
@@ -146,7 +146,6 @@
     }
 
     $scope.checkIfEnterKeyWasPressed = function ($event) {
-        debugger;
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
             $scope.ContainValueOrNot();
@@ -155,7 +154,6 @@
     };
 
     $scope.ContainStoreOrNot = function () {
-        debugger;
         //Store
         if ($scope.ProductFilter.storeId == "" || $scope.ProductFilter.storeId == null) {
             localStorageService.set(userid + "_Product_Store", "");
@@ -164,7 +162,6 @@
     }
 
     $scope.ContainStatusOrNot = function () {
-        debugger;
         //Store
         if ($scope.ProductFilter.status == "" || $scope.ProductFilter.status == null) {
             localStorageService.set(userid + "_Product_status", "");
@@ -173,8 +170,6 @@
     }
 
     $scope.ContainValueOrNot = function () {
-        debugger;
-
         //Price
         if ($scope.ProductFilter.Price == "" || $scope.ProductFilter.Price == null) {
             localStorageService.set(userid + "_Product_Price", "");

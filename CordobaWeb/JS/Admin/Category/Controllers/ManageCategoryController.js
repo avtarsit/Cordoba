@@ -92,7 +92,6 @@
         $http.get(configurationService.basePath + "api/CategoryApi/GetReportCategories")
           .then(function (response) {
               if (response.data.length > 0) {
-                  debugger;
                   $scope.ReportCategoryList = response.data;
               }
           })
@@ -105,10 +104,8 @@
     }
 
     $scope.GetCategoryById = function () {
-        debugger;
         $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryById?Category_Id=" + $scope.Category_Id + "&StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId)
                   .then(function (response) {
-                      debugger;
                       $scope.CategoryObj = response.data;
                       $scope.CategoryObj.ReportCategoryID = response.data.ReportCategoryId;
                       CreateDescriptionObject();

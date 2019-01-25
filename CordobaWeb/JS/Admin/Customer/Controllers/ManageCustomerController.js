@@ -220,7 +220,6 @@
         $http.get(configurationService.basePath + "api/CustomerApi/GetCustomerById?StoreId=" + $scope.StoreId + "&LoggedInUserId=" + $scope.LoggedInUserId+"&customer_id=" + $scope.customer_id)
           .then(function (response) {
               $scope.CustomerObj = response.data;
-              debugger;
               if (!($scope.customer_id>0)) {
                    $scope.CustomerObj.status=1;
               }

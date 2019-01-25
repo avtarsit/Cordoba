@@ -184,16 +184,18 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-3 col-xs-12 pb-15">
+                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 pb-15">
                         <a class="footer-logo" href="#" ui-sref="Home"><img ng-src="{{StoreDetailInSession.logo}}" onerror="angular.element(this).scope().SetNoImageSrc(this)" alt="Logo" style="max-height:60px"></a>
                     </div>
-                    <div class="col-lg-8 col-md-9 col-xs-12 pb-15">
+                    <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12 pb-15">
                         <div id="navbar">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active"><a href="#" class="cursor-pointer" ui-sref="Home">Home</a></li>
                                 <li><a href="" class="cursor-pointer" ui-sref="EditProfile" ng-if="CustomerDetail.customer_id>0">My Account</a></li>
                                 <li><a href="" class="cursor-pointer" ng-click="OpenTermsCondition()">Terms &amp; Conditions</a></li>
-                                <li><a href="" class="cursor-pointer" ui-sref="ContactUs">Contact Us</a></li>
+                                <li><a href="" class="cursor-pointer"  ng-if="StoreDetailInSession.store_id==1087" ui-sref="TermsOfUse">Terms of Use</a></li>
+                                <li><a href="" class="cursor-pointer" ng-if="StoreDetailInSession.store_id==1087" ui-sref="WebsitePrivacyStatement">Website Privacy Statement</a></li>
+                                <li><a href="" class="cursor-pointer" ng-if="StoreDetailInSession.store_id==1087" ui-sref="CookiePolicy">Cookie Policy</a></li>
                             </ul>
                         </div>
                     </div>

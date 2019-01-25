@@ -30,7 +30,6 @@
 
     var userid = $scope.LoggedInUserId;
     function MaintainLocalStorage() {
-        debugger;
         //Store
         if ((localStorageService.get(userid + "_ShowCustomerDepartment_Store") == "" || localStorageService.get(userid + "_ShowCustomerDepartment_Store") == null)) {
             localStorageService.set(userid + "_ShowReward_Store", $scope.StoreId);
@@ -44,7 +43,6 @@
     }
 
     $scope.GetCustomerDepartmentList = function () {
-        debugger;
         MaintainLocalStorage();
         //Store
         if ($scope.StoreId == "" || $scope.StoreId == null) {

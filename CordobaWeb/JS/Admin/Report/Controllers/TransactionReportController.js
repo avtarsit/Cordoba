@@ -110,7 +110,6 @@
                 {
                     "mData": "timestamp", "bSortable": true,
                     "render": function (data, type, row) {
-                        debugger;
                         if (data != null) {
                             return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
 

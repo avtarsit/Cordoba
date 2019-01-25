@@ -68,7 +68,7 @@
 
 
     //$scope.PreviousBestSeller = function () {
-    //    debugger;
+    //     
     //    $scope.BestSellerList = [];
     //    var count = 1;
     //    //if ($scope.BestSellerIndexEnd - 5 < 0) {

@@ -185,7 +185,6 @@
 
     //export Transaction Item Category Report List to Excel
     $scope.TransactionItemCategoryReportExportToExcel = function () {
-        debugger;
         var column = "";
         if ($scope.GridParams.length != undefined) {
             column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);

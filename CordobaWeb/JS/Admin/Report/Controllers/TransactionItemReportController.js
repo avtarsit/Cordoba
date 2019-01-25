@@ -4,6 +4,8 @@
     BindToolTip();
     Tab();
     createDatePicker();
+    $scope.CategoryList = [];
+    $scope.SelectedCategoryList = [];
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
     $scope.store_id = $rootScope.storeId;
 
@@ -23,17 +25,17 @@
 
     $scope.GetStoreList = function () {
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreID=" + $scope.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId)
-          .then(function (response) {
-              if (response.data.length > 0) {
-                  $scope.StoreList = response.data;
-              }
-          })
-      .catch(function (response) {
+            .then(function (response) {
+                if (response.data.length > 0) {
+                    $scope.StoreList = response.data;
+                }
+            })
+            .catch(function (response) {
 
-      })
-      .finally(function () {
+            })
+            .finally(function () {
 
-      });
+            });
     }
 
     $scope.GetStoreList();
@@ -62,6 +64,11 @@
     }
 
     $scope.GetTransactionItemReportList = function () {
+         
+        if ($scope.SelectedCategoryList && $scope.SelectedCategoryList.length > 0) {
+            $scope.selectedCategorystr = $scope.SelectedCategoryList.toString();
+        }
+
         if ($.fn.DataTable.isDataTable("#tblTransactionItemReport")) {
             $('#tblTransactionItemReport').DataTable().destroy();
         }
@@ -95,7 +102,7 @@
                     'dataSrc': 'aaData',
                     "dataType": 'json',
                     "type": "POST",
-                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemReportObj.DateEnd + '&StoreId=' + $scope.TransactionItemReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId,
+                    "url": sSource + '?PageIndex=' + PageIndex + '&DateStart=' + $scope.TransactionItemReportObj.DateStart + '&DateEnd=' + $scope.TransactionItemReportObj.DateEnd + '&StoreId=' + $scope.TransactionItemReportObj.store_id + '&LoggedInUserId=' + $scope.LoggedInUserId + '&categoryIds=' + $scope.selectedCategorystr,
                     "data": aoData,
                     "success": fnCallback,
                     "error": function (data, statusCode) {
@@ -118,18 +125,18 @@
                         }
                     }
                 },
-                   //{
-                   //    "mData": "DateEnd", "bSortable": true,
-                   //    "render": function (data, type, row) {
-                   //        if (data != null) {
-                   //            return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
+                //{
+                //    "mData": "DateEnd", "bSortable": true,
+                //    "render": function (data, type, row) {
+                //        if (data != null) {
+                //            return '<label>' + $filter("date")(data, $rootScope.GlobalDateFormat); '</label>';
 
-                   //        }
-                   //        else {
-                   //            return "";
-                   //        }
-                   //    }
-                   //},
+                //        }
+                //        else {
+                //            return "";
+                //        }
+                //    }
+                //},
                 {
                     "mData": "firstname",
                     "bSortable": true
@@ -158,6 +165,10 @@
                     "mData": "comment",
                     "bSortable": true
                 },
+                //{
+                //    "mData": "category",
+                //    "bSortable": true
+                //},
                 {
                     "mData": "model",
                     "bSortable": true
@@ -169,8 +180,7 @@
                 {
                     "mData": "quantity",
                     "bSortable": true
-                },
-
+                }
 
             ],
             "fnCreatedRow": function (nRow, aData, iDataIndex) {
@@ -184,15 +194,17 @@
 
     //export Transaction Item Report List to Excel
     $scope.TransactionItemReportExportToExcel = function () {
-        debugger;
         var column = "";
         if ($scope.GridParams.length != undefined) {
             column = $filter('filter')($scope.GridParams, { name: "SortColumns" }, true);
             //  alert(JSON.stringify(column));
         }
+        if ($scope.SelectedCategoryList && $scope.SelectedCategoryList.length > 0) {
+            $scope.selectedCategorystr = $scope.SelectedCategoryList.toString();
+        }
 
         $http({
-            url: configurationService.basePath + 'api/Reportapi/TransactionItemReportExportToExcel?PageIndex=' + 1 + "&DateStart=" + $scope.TransactionItemReportObj.DateStart + "&DateEnd=" + $scope.TransactionItemReportObj.DateEnd + "&StoreId=" + ($scope.TransactionItemReportObj.store_id == null ? 0 : $scope.TransactionItemReportObj.store_id),
+            url: configurationService.basePath + 'api/Reportapi/TransactionItemReportExportToExcel?PageIndex=' + 1 + "&DateStart=" + $scope.TransactionItemReportObj.DateStart + "&DateEnd=" + $scope.TransactionItemReportObj.DateEnd + "&StoreId=" + ($scope.TransactionItemReportObj.store_id == null ? 0 : $scope.TransactionItemReportObj.store_id) +"&categoryIds=" + $scope.selectedCategorystr,
             method: "POST",
             'dataSrc': 'aaData',
             "dataType": 'json',
@@ -230,7 +242,34 @@
         });
 
     }
+    //function getCategoryList() {
+    //    $http.get(configurationService.basePath + "api/CategoryApi/GetCategoryList?CategoryId=0&StoreId=" + $scope.TransactionItemReportObj.store_id + "&LoggedInUserId=" + $scope.LoggedInUserId)
+    //        .then(function (response) {
+    //            if (response.data.length > 0) {
+    //                $scope.CategoryList = response.data;
+    //            }
+    //        })
+    //        .catch(function (response) {
+
+    //        })
+    //        .finally(function () {
+
+    //        });
+    //}
+    $scope.selectCategoryChange = function (status, categoryId) {
+        if (status && !$scope.SelectedCategoryList.includes(categoryId)) {
+            $scope.SelectedCategoryList.push(categoryId);
+        }
+        else if (!status && $scope.SelectedCategoryList.includes(categoryId)) {
+            var index = $scope.SelectedCategoryList.indexOf(categoryId);
+            if (index > -1) {
+                $scope.SelectedCategoryList.splice(index, 1);
+            }
+        }
+    }
+
 
     $scope.GetTransactionItemReportList();
+    //getCategoryList();
 
 });
