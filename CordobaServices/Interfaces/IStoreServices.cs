@@ -1,4 +1,5 @@
 ﻿using CordobaModels.Entities;
+using CordobaServices.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,9 @@ namespace CordobaServices.Interfaces
        List<StoreImageEntity> GetAdvertisementImageList(int StoreId);
 
        StoreHTMLEntity GetStoreHTMLCharts(int StoreID, int Month, int Year);
+
+       void InsertProuduct_to_BestSeller(int storeId, string productIds);
+
+        List<BestSellerEntity> GetBestSellerByStoreId(int storeId, string name, string Model, TableParameter<BestSellerEntity> filter);
     }
 }

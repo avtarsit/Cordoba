@@ -1,4 +1,5 @@
 ﻿using CordobaModels.Entities;
+using CordobaServices.Helpers;
 using CordobaServices.Interfaces;
 using CordobaServices.Services;
 using iTextSharp.text;
@@ -1319,5 +1320,46 @@ namespace CordobaAPI.API
             //}
         }
 
+
+        [HttpPost]
+        public TableParameter<BestSellerEntity> GetBestSellerByStoreId(int storeId,string name,string model, int PageIndex, TableParameter<BestSellerEntity> tableParameter)
+        {
+            try
+            {
+                tableParameter.PageIndex = PageIndex;
+                var result = _StoreServices.GetBestSellerByStoreId(storeId,name,model,tableParameter);
+                int totalRecords = 0;
+                if (result != null && result.Count > 0)
+                {
+                    totalRecords = result.FirstOrDefault().TotalRecords;
+                }
+                return new TableParameter<BestSellerEntity>
+                {
+                    aaData = result.ToList(),
+                    iTotalRecords = totalRecords,
+                    iTotalDisplayRecords = totalRecords
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertProuduct_to_BestSeller(int storeId,string productIds)
+        {
+            try
+            {
+                 _StoreServices.InsertProuduct_to_BestSeller(storeId, productIds);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

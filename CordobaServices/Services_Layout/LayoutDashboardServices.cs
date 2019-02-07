@@ -354,8 +354,24 @@ namespace CordobaServices.Services_Layout
         {
             try
             {
-                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreID", StoreID), new SqlParameter("customer_id", customer_id) };
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreId", StoreID), new SqlParameter("customer_id", customer_id) };
                 var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStoreId", sqlParameter).ToList();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        public List<ProductEntity> GetBestSellerListByStore(int storeId, int customer_id)
+        {
+            try
+            {
+                
+                SqlParameter[] sqlParameter = new SqlParameter[] { new SqlParameter("StoreId", storeId), new SqlParameter("Customer_id", customer_id) };
+                var result = objGenericRepository.ExecuteSQL<ProductEntity>("GetBestSellerListByStore", sqlParameter).ToList();
                 return result;
             }
             catch (Exception)

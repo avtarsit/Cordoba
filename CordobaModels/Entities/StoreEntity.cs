@@ -53,5 +53,6 @@ namespace CordobaModels.Entities
         public string no_image_path { get; set; }
         public bool? Is_ImportPoint { get; set; }
         public bool? Is_AccessStore { get; set; }
+        public string ProductIds { get; set; }
     }
 }

@@ -9,6 +9,7 @@
     $scope.StoreObj = new Object();
     $scope.StoreObj.template = '0';
     $scope.IsEditMode = false;
+    $scope.selectedBestSeller = [];
     if ($stateParams.StoreID != undefined && $stateParams.StoreID != null && $stateParams.StoreID != 0) {
         $scope.PageTitle = "Update Store";
         $scope.IsEditMode = true;
@@ -178,7 +179,10 @@
 
     $scope.InsertUpdateStore = function (form) {
         if (form.$valid) {
-            $scope.StoreObj.catalougeIdCsv = GetSelectedCatalogueListCSV($scope.CatalougeListObj);            
+            $scope.StoreObj.catalougeIdCsv = GetSelectedCatalogueListCSV($scope.CatalougeListObj);
+            if ($scope.selectedBestSeller && $scope.selectedBestSeller.length > 0) {
+                $scope.StoreObj.ProductIds = $scope.selectedBestSeller.toString();
+            }
             var StoreEntity = JSON.stringify($scope.StoreObj);
             $http.post(configurationService.basePath + "api/StoreApi/InsertUpdateStore?LoggedInUserId=" + $scope.LoggedInUserId, StoreEntity)
               .then(function (response) {           
@@ -407,8 +411,105 @@
         
     }
 
+    $scope.getBestSellerProducts=function() {
+        $scope.ProductNameFilter = $scope.ProductNameFilter ? $scope.ProductNameFilter : '';
+        $scope.ProductModelFilter = $scope.ProductModelFilter ? $scope.ProductModelFilter : '';
+        var filter = $.param({
+            name: "",
+            Price: "",
+            status: "",
+            Model: "",
+            Quantity: "",
+        });
+        if ($.fn.DataTable.isDataTable("#tblBestSellerProduct")) {
+            $('#tblBestSellerProduct').DataTable().destroy();
+        }
+        var table = $('#tblBestSellerProduct').DataTable({
+            stateSave: false,
+            "oLanguage": {
+                "sProcessing": "",
+                "sZeroRecords": "<span class='pull-left'>No records found</span>",
+            },
+            "autoWidth": false,
+            "searching": false,
+            "dom": '<"table-responsive"><"top"lrt><"bottom"ip<"clear">>',
+            "bProcessing": true,
+            "bServerSide": true,
+            "iDisplayStart": 0,
+            "iDisplayLength": configurationService.pageSize,
+            "lengthMenu": configurationService.lengthMenu,
+            "sAjaxDataProp": "aaData",
+            "aaSorting": [],
+            "sAjaxSource": configurationService.basePath + 'api/StoreApi/GetBestSellerByStoreId',
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                var PageIndex = parseInt($('#tblBestSellerProduct').DataTable().page.info().page) + 1;
+                oSettings.jqXHR = $.ajax({
+                    'dataSrc': 'aaData',
+                    "dataType": 'json',
+                    "type": "POST",
+                    "url": sSource + "?storeId=" + $scope.store_id + "&name=" + $scope.ProductNameFilter + "&model=" + $scope.ProductModelFilter +"&PageIndex=" + PageIndex,
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function (data, statusCode) {
+                        //exceptionService.ShowException(data.responseJSON, data.status);
+                    }
+                });
+            },
+
+            "aoColumns": [
+                {
+                    "mData": "image", "bSortable": false, "width": "10%"
+                    , "render": function (data, type, row) {
+                        return '<img ng-src=' + row.image + ' class="img-thumbnail" />'
+                    }
+                },
+                { "mData": "name", "bSortable": false },
+                { "mData": "model", "bSortable": false },
+                {
+                    "mData": null, "bSortable": false,
+                    "sClass": "action text-center",
+                    "render": function (data, type, row) {
+                        var status = row.bestseller_Id > 0 ? true : false;
+                        if (status) {
+                            $scope.selectedBestSeller.push(row.product_id);
+                        }
+                        return '<input type="checkbox" ng-checked=' + status + ' class="cursor-pointer" id="chkstatus' + row.product_id + '"  ng-click="bestSellerChecked(' + row.product_id + ')">'
+                    }
+                },
+            ],
+            "initComplete": function () {
+                $compile(angular.element("#tblBestSellerProduct").contents())($scope);
+            },
+            "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                $compile(angular.element(nRow).contents())($scope);
+            },
+            "fnDrawCallback": function () {
+                BindToolTip();
+            }
+        });
+    }
+       
+    $scope.bestSellerChecked = function (productId)
+    {
+        if (productId) {
+            var status = angular.element('#chkstatus' + productId).prop("checked");
+            if (status === true) {
+                var objProduct = $filter('filter')($scope.selectedBestSeller, productId, true);
+                if (!(objProduct.length>0)) {
+                    $scope.selectedBestSeller.push(productId);
+                }
+            } else {
+                var index = $scope.selectedBestSeller.indexOf(productId);
+                if (index > -1) {
+                    $scope.selectedBestSeller.splice(index, 1);
+                }
+            }
+        }
+        
+    }
+
 
     init();
-
+    $scope.getBestSellerProducts();
 
 });

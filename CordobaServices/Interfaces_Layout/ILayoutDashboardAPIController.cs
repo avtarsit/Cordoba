@@ -38,5 +38,6 @@ namespace CordobaServices.Interfaces_Layout
         CustomerEntity ResetPasswordAndVerifyOTP(CustomerEntity CustomerObj);
         //CustomerEntity ChangePassword(CustomerEntity CustomerObj);
         CustomerEntity UpdateLanguageForCustomer(int customerid, int? languageid);
+        List<ProductEntity> GetBestSellerListByStore(int StoreID,int customerId);
     }
 }

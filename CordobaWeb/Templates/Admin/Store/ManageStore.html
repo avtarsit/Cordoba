@@ -65,13 +65,14 @@
                                     <li role="presentation"><a data-target="#LocalTab" role="tab" data-toggle="tab">Local</a></li>
                                     <li role="presentation" ng-if="store_id>0"><a data-target="#ImageTab" role="tab" data-toggle="tab">Advertisement</a></li>
                                     <li role="presentation" ng-if="store_id>0"><a data-target="#Catalouge" role="tab" data-toggle="tab">Catalouge</a></li>
+                                    <li role="presentation" ng-if="store_id>0"><a data-target="#BestSeller" role="tab" data-toggle="tab">Best Sellers</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="GenaralTab">
                                         <!--General Tab-->
                                         <div class="col-md-12">
-                                            
+
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">Store URL</label>
                                                 <div class="col-lg-9">
@@ -99,11 +100,11 @@
                                                 </div>
                                             </div>
                                             <!--<div class="form-group">
-                                                <label class="col-lg-2 control-label mandatoryField">Store Owner</label>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control" name="StoreOwner" maxlength="200" placeholder="Enter Store Owner" ng-model="StoreObj.title" required="required">
-                                                </div>
-                                            </div>-->
+                <label class="col-lg-2 control-label mandatoryField">Store Owner</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="StoreOwner" maxlength="200" placeholder="Enter Store Owner" ng-model="StoreObj.title" required="required">
+                </div>
+            </div>-->
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label mandatoryField">Welcome Message</label>
                                                 <div class="col-lg-9">
@@ -116,31 +117,31 @@
                                                 <label class="col-lg-2 control-label">Store Terms and Conditions</label>
                                                 <div class="col-lg-9">
                                                     <!--<textarea ckeditor="" name="CkStoreTermCondition" id="CkStoreTermCondition" rows="4" cols="4" ng-model="StoreObj.terms"></textarea>-->
-                                                    <div text-angular="text-angular" name="CkStoreTermCondition"  id="CkStoreTermCondition" rows="4" cols="4" ng-model="StoreObj.terms"></div>
+                                                    <div text-angular="text-angular" name="CkStoreTermCondition" id="CkStoreTermCondition" rows="4" cols="4" ng-model="StoreObj.terms"></div>
                                                 </div>
                                             </div>
                                             <!--<div class="form-group">
-                                                <label class="col-lg-2 control-label mandatoryField"> Address</label>
-                                                <div class="col-lg-9">
-                                                    <textarea type="text" class="form-control" name="StoreAddress" maxlength="2000" placeholder="Enter Store Address" ng-model="StoreObj.address" required="required"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label mandatoryField">E-mail</label>
-                                                <div class="col-lg-9">
-                                                    <input type="email" class="form-control" validate-email name="Email" maxlength="50" placeholder="Enter Store Email" ng-model="StoreObj.email" required="required" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label mandatoryField">Telephone</label>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="StoreObj.telephone" required="required" />
-                                                </div>
-                                            </div>-->
+                <label class="col-lg-2 control-label mandatoryField"> Address</label>
+                <div class="col-lg-9">
+                    <textarea type="text" class="form-control" name="StoreAddress" maxlength="2000" placeholder="Enter Store Address" ng-model="StoreObj.address" required="required"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label mandatoryField">E-mail</label>
+                <div class="col-lg-9">
+                    <input type="email" class="form-control" validate-email name="Email" maxlength="50" placeholder="Enter Store Email" ng-model="StoreObj.email" required="required" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label mandatoryField">Telephone</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="Telephone" maxlength="50" placeholder="Enter Telephone" ng-model="StoreObj.telephone" required="required" />
+                </div>
+            </div>-->
                                             <div class="form-group" ng-if="store_id>0">
                                                 <label class="col-lg-2 control-label">Logo</label>
                                                 <div class="col-lg-5">
-                                                    <img class="pull-left" src="{{StoreObj.logo}}" ng-if="StoreObj.logo != undefined"  style="max-height:150px" />
+                                                    <img class="pull-left" src="{{StoreObj.logo}}" ng-if="StoreObj.logo != undefined" style="max-height:150px" />
                                                     <img class="pull-left" src="../../../Content/Images/Manufacturer/no_image-100x100.png" ng-if="StoreObj.logo == undefined" style="max-height:150px">
                                                     <!--<input type="hidden" name="image" ng-model="StoreObj.logo" id="input-image">-->
                                                     <div class="col-sm-4">
@@ -162,17 +163,17 @@
                                             <!--General Tab-->
                                             <div class="col-md-12">
                                                 <!--<div class="form-group">
-                                                    <label class="col-lg-2 control-label mandatoryField">Meta Title</label>
-                                                    <div class="col-lg-9">
-                                                        <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.meta_title" required="required">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 control-label"> Meta Tag Description</label>
-                                                    <div class="col-lg-9">
-                                                        <textarea type="text" class="form-control" name="MetaTagDescription" maxlength="2000" placeholder="Enter Meta Tag Description" ng-model="StoreObj.meta_description"></textarea>
-                                                    </div>
-                                                </div>-->
+                    <label class="col-lg-2 control-label mandatoryField">Meta Title</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="MetaTitle" maxlength="200" placeholder="Enter Meta Title" ng-model="StoreObj.meta_title" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label"> Meta Tag Description</label>
+                    <div class="col-lg-9">
+                        <textarea type="text" class="form-control" name="MetaTagDescription" maxlength="2000" placeholder="Enter Meta Tag Description" ng-model="StoreObj.meta_description"></textarea>
+                    </div>
+                </div>-->
 
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Css Overrides</label>
@@ -181,11 +182,11 @@
                                                     </div>
                                                 </div>
                                                 <!--<div class="form-group">
-                                                    <label class="col-lg-2 control-label">Meta Tag Keywords</label>
-                                                    <div class="col-lg-9">
-                                                        <textarea type="text" class="form-control" name="MetaTagKeywords" maxlength="2000" placeholder="Meta Tag Keywords" ng-model="StoreObj.MetaTagDescription"></textarea>
-                                                    </div>
-                                                </div>-->
+                    <label class="col-lg-2 control-label">Meta Tag Keywords</label>
+                    <div class="col-lg-9">
+                        <textarea type="text" class="form-control" name="MetaTagKeywords" maxlength="2000" placeholder="Meta Tag Keywords" ng-model="StoreObj.MetaTagDescription"></textarea>
+                    </div>
+                </div>-->
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Template</label>
                                                     <div class="col-lg-9">
@@ -199,11 +200,11 @@
                                                     </div>
                                                 </div>
                                                 <!--<div class="form-group">
-                                                    <label class="col-lg-2 control-label">Default Layout</label>
-                                                    <div class="col-lg-9">
-                                                        <select class="form-control cursor-pointer" name="LayoutId" ng-model="StoreObj.layout" ng-options="option.LayoutName as option.LayoutName for option in LayoutList"></select>
-                                                    </div>
-                                                </div>-->
+                    <label class="col-lg-2 control-label">Default Layout</label>
+                    <div class="col-lg-9">
+                        <select class="form-control cursor-pointer" name="LayoutId" ng-model="StoreObj.layout" ng-options="option.LayoutName as option.LayoutName for option in LayoutList"></select>
+                    </div>
+                </div>-->
                                             </div>
                                             <!--End Store Tab-->
                                         </div>
@@ -246,15 +247,15 @@
                                     <div role="tabpanel" class="tab-pane" id="ImageTab">
                                         <!--General Tab-->
                                         <div class="col-md-12">
-                                            <h4 class="heading">Theme 1</h4>                                           
+                                            <h4 class="heading">Theme 1</h4>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Beside Categories Image </label>
                                                 <div class="col-sm-2">
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 1 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
-                                              
+
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image1Layout1" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
 
@@ -266,10 +267,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Below Products Image1 </label>
-                                                <div class="col-sm-2" >
+                                                <div class="col-sm-2">
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 2 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
-                                                    </div>                                                  
+                                                    </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image2Layout1" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
@@ -282,11 +283,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Below Products Image2 </label>
-                                                <div class="col-sm-2" >
+                                                <div class="col-sm-2">
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 3 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
                                                     </div>
-                                                   
+
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image3Layout1" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
@@ -303,10 +304,10 @@
                                             <h4 class="heading">Theme 2</h4>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Beside special offers</label>
-                                                <div class="col-sm-2" >
+                                                <div class="col-sm-2">
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 4 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
-                                                    </div>                                                  
+                                                    </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image1Layout2" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
@@ -319,11 +320,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Below Products Image1 </label>
-                                                <div class="col-sm-2" >
+                                                <div class="col-sm-2">
                                                     <div ng-repeat="AdvImg in StoreAdvertisementImageList | filter: { ImageKey: 5 }">
                                                         <img ng-if="AdvImg.Image!=undefined && AdvImg.Image!=''" ng-src="{{AdvImg.Image}}" alt="Img" style="max-height:150px; max-width:150px" />
                                                     </div>
-                                                   
+
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <input type="file" id="Image2Layout2" ng-disabled="store_id==0" class="upload" file-model="fileUpload">
@@ -334,7 +335,7 @@
                                                     <label class="control-label" ng-show="store_id==0">Upload functionality will be available in Edit Mode</label>
                                                 </div>
                                             </div>
-                                    
+
                                         </div>
                                         <!--End General Tab-->
                                     </div>
@@ -343,7 +344,7 @@
                                     <div role="tabpanel" class="tab-pane" id="Catalouge">
                                         <!--General Tab-->
                                         <div class="col-md-12">
-                                        
+
                                             <div class="form-group">
                                                 <label class="col-md-1 control-label">Catalouge:</label>
                                                 <div class="col-md-12">
@@ -362,45 +363,89 @@
                                                 <label class="col-md-1 control-label">Products:</label>
                                                 <!--<label class="col-md-1 control-label pull-left">Category</label>-->
                                                 <div class="col-md-12">
-                                                    <select class="form-control cursor-pointer" name="CategoryId"  ng-options="option.Category_Id as option.name for option in categoryListObj" ng-model="StoreObj.category_id" ng-change="getProductByCategory(StoreObj.category_id , store_id)"></select>
+                                                    <select class="form-control cursor-pointer" name="CategoryId" ng-options="option.Category_Id as option.name for option in categoryListObj" ng-model="StoreObj.category_id" ng-change="getProductByCategory(StoreObj.category_id , store_id)"></select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                
+
                                                 <div class="col-md-12">
-                                                <div class="col-md-5">
-                                                    <div class="well well-sm" style="height:200px; overflow: auto; font-size: 11px">
-                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj | orderBy: 'name' ">
-                                                            <label>
-                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
-                                                                {{Item.name}}
-                                                            </label>
+                                                    <div class="col-md-5">
+                                                        <div class="well well-sm" style="height:200px; overflow: auto; font-size: 11px">
+                                                            <div class="col-sm-12 checkbox" ng-repeat="Item in IncludedProductListObj | orderBy: 'name' ">
+                                                                <label>
+                                                                    <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
+                                                                    {{Item.name}}
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <span class="col-md-2 pull-left">
-                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 col-md-5" ng-click="ExcludeProduct('remove')"><span class="glyphicon glyphicon-backward"></span></button>
-                                                    <button type="button" class="btn btn-info cursor-pointer mt-10 mb-10 col-md-5 ml-15 pull-right" ng-click="ExcludeProduct('add')"><span class="glyphicon glyphicon-forward"></span></button>
-                                                   
-                                                </span>
-                                                <div class="col-md-5">
-                                                    <div class="well well-sm" style="height: 200px; overflow: auto; font-size: 11px">
-                                                        <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj | orderBy: 'name'">
-                                                            <label>
-                                                                <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
-                                                                {{Item.name}}
-                                                            </label>
+                                                    <span class="col-md-2 pull-left">
+                                                        <button type="button" class="btn btn-info cursor-pointer mt-10 col-md-5" ng-click="ExcludeProduct('remove')"><span class="glyphicon glyphicon-backward"></span></button>
+                                                        <button type="button" class="btn btn-info cursor-pointer mt-10 mb-10 col-md-5 ml-15 pull-right" ng-click="ExcludeProduct('add')"><span class="glyphicon glyphicon-forward"></span></button>
+
+                                                    </span>
+                                                    <div class="col-md-5">
+                                                        <div class="well well-sm" style="height: 200px; overflow: auto; font-size: 11px">
+                                                            <div class="col-sm-12 checkbox" ng-repeat="Item in ExcludedProductListObj | orderBy: 'name'">
+                                                                <label>
+                                                                    <input type="checkbox" class="cursor-pointer" ng-model="Item.IsSelected">
+                                                                    {{Item.name}}
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 </div>
                                             </div>
 
                                         </div>
                                         <!--End General Tab-->
                                     </div>
+                                    <!-- Start Best Seller-->
+                                    <div role="tabpanel" class="tab-pane" id="BestSeller">
 
+                                        <div class="panel-heading">
+                                            <div class="well">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label" for="input-name">Product Name</label>
+                                                        <input type="text"   name="filter_Productname"  ng-model="ProductNameFilter" placeholder="Product Name" id="input-name" class="form-control">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label" for="input-model">Model</label>
+                                                        <input type="text"  name="filter_model" ng-model="ProductModelFilter" placeholder="Model" id="input-model" class="form-control">
+                                                    </div>
+                                                    
+                                                        <div class="col-sm-2" style="padding-top:5px;">
+                                                            <br />
+                                                            <button ng-click="getBestSellerProducts()" type="button" id="bestSeller-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> Filter</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                        </div>
+
+
+
+                                        <div class="panel-body">
+                                            <div class="row" style="margin:0px">
+                                                <table id="tblBestSellerProduct" class="table table-bordered table-striped datatable-responsive" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Image</th>
+                                                            <th>Product Name</th>
+                                                            <th>Model</th>
+                                                            <th>Select</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--End Best Seller-->
                                 </div>
                             </div>
                         </div>

@@ -1384,16 +1384,22 @@ label {
     }
 
 .background-bg {
-    width: 300px;
+    width: 100%;
     position: relative;
     height: 180px;
    /* background-color: #eee;*/
-    vertical-align: middle;
-    display: table-cell;
+   display:-ms-flexbox;
+    display: flex;
+	-ms-flex-wrap:wrap;
+	flex-wrap:wrap;
+	align-items:center;
+	justify-content:center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
+.background-bg img {
+	flex:0 0 auto;
+}
 .productlist .col-product {
     width: 100%;
     float: left;
@@ -2567,8 +2573,6 @@ label {
 .textAlignRight {
     text-align: right;
 }
-
-
 
 .slider .bx-wrapper a{height: 300px;}
 .popular_categories{height:150px;margin-bottom: 10px;}
