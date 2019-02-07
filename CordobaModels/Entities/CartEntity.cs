@@ -43,8 +43,9 @@ namespace CordobaModels.Entities
 
         public bool? IsProductInWishlist { get; set; }
 
-        public int? status { get; set; }
-        public int? parentstatus { get; set; }
+        public int? categoryStatus { get; set; }
+        public int? parentCategorystatus { get; set; }
+        public int? productStatus { get; set; }
         public int? productQty { get; set; }
 
     }

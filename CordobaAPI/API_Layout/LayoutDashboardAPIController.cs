@@ -185,6 +185,26 @@ namespace CordobaAPI.API_Layout
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetBestSellerListByStore(int StoreID,int customer_id)
+        {
+            try
+            {
+                var result = _LayoutDashboardServices.GetBestSellerListByStore(StoreID, customer_id);
+                if (result != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Something wrong! Please try again later.");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         [HttpPost]
         public HttpResponseMessage AddtoWishList(wishlistEntity WishObj)
         {

@@ -10,12 +10,15 @@
     $scope.SelectedCustomerAddress.address_id = 0;
     $scope.TermAndCondition = false;
     $scope.ValidateAddress = false;
-
+    $scope.orderSuccess = false;
     $scope.GetCustomerDetails = function () {
         $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
         .then(function (response) {
             $rootScope.CustomerDetail.points = response.data.points;
             UserDetail.points = $rootScope.CustomerDetail.points;
+            if ($scope.orderSuccess) {
+                $state.go('OrderSuccessful', { 'OrderId': response.data });
+            }
         })
       .catch(function (response) {
 
@@ -30,7 +33,7 @@
             window.location.href = 'home/accessdenied';
         }
         else {
-
+            $scope.orderSuccess = false;
             $scope.GetCustomerDetails();
         }
     }
@@ -42,12 +45,20 @@
     //#endregion      
     $scope.GetCartDetailsByCartGroupId = function () {
         $http.get(configurationService.basePath + "API/CartApi/GetCartDetailsByCartGroupId?StoreID=" + $scope.StoreDetailInSession.store_id + "&cartgroup_id=" + $scope.cartgroup_id)
-          .then(function (response) {
-              if (response.data.length > 0) {
+            .then(function (response) {
+                if (response.data.length > 0) {
+                    $scope.disabletotalPoints = 0;
+                    angular.forEach(response.data, function (item) {
+                        if (item.productStatus != 1 || item.categoryStatus != 1 || item.parentCategorystatus == 0) {
+                            item.quantity = 0;
+                            $scope.disabletotalPoints += item.totalpoints;
+                            item.totalpoints = 0;
+                        };
+                    });
                   $scope.CartItemList = response.data;
                   $scope.TotalItems = $scope.CartItemList.length;
                   $scope.AllItemSubtotalPoints = $scope.CartItemList[0].AllItemSubtotalPoints;
-                  $scope.AllItemTotalPoints = $scope.CartItemList[0].AllItemTotalPoints;
+                  $scope.AllItemTotalPoints = $scope.CartItemList[0].AllItemTotalPoints - $scope.disabletotalPoints;
                   UserDetail.cartgroup_id = response.data[0].cartgroup_id;
                   UserDetail.TotalItemAdded = response.data[0].TotalItemAdded;
                   $rootScope.CustomerDetail = UserDetail;
@@ -144,8 +155,12 @@
 
     $scope.Checkout = function () {
         if (UserDetail.customer_id > 0) {
+            if ($scope.disabletotalPoints > 0) {
+                toastr.warning("To Checkout,Remove Items that are Out Of Stock from the Shopping Bag.");
+                return;
+            }
             $http.get(configurationService.basePath + "API/LayoutDashboardAPI/CustomerDetailLayout?CustomerId=" + UserDetail.customer_id + "&StoreId=" + $scope.StoreDetailInSession.store_id)
-          .then(function (response) {
+                .then(function (response) {
               $rootScope.CustomerDetail.points = response.data.points;
               UserDetail.points = $rootScope.CustomerDetail.points;
 
@@ -205,7 +220,9 @@
                     $scope.GetCartDetailsByCartGroupId();
                     UserDetail.points = Math.ceil($rootScope.CustomerDetail.points - $scope.AllItemTotalPoints);
                     localStorageService.set("loggedInUser", UserDetail);
-                    $state.go('OrderSuccessful', { 'OrderId': response.data });
+                    $scope.orderSuccess = true;
+                    $scope.GetCustomerDetails();
+                   
 
                 }
 

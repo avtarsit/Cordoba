@@ -31,7 +31,7 @@
                                         </span>
                                         <label class="form-control ItemQuantity" ng-bind="Item.quantity"></label>
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-success btn-number" ng-click="IncreaseQuantity(Item)">
+                                            <button type="button" class="btn btn-success btn-number"ng-disabled="(Item.productStatus != 1 || Item.categoryStatus != 1 || Item.parentCategorystatus == 0)"  ng-click="IncreaseQuantity(Item)">
                                                 <span class="glyphicon glyphicon-plus"></span>
                                             </button>
                                         </span>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="stock-img"></div>
                             <div class="stock">
-                                <p ng-if="Item.IsOutOfStock=='false'">Out Of Stock</p>
+                                <p ng-if="Item.IsOutOfStock=='false'||(Item.productStatus != 1 || Item.categoryStatus != 1 || Item.parentCategorystatus == 0)">Out Of Stock</p>
                             </div>
                         </div>                       
                     </div>

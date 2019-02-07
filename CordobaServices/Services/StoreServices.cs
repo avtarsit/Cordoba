@@ -81,7 +81,7 @@ namespace CordobaServices.Services
                                                  ,new SqlParameter("catalougeIdCsv", storeEntity.catalougeIdCsv ?? DBNull.Value.ToString())
                                                  ,new SqlParameter("Is_ImportPoint", storeEntity.Is_ImportPoint ?? (object)DBNull.Value)
                                                  ,new SqlParameter("Is_AccessStore", storeEntity.Is_AccessStore ?? (object)DBNull.Value)
-                                                 ,new SqlParameter("ProductIds", storeEntity.ProductIds)
+                                                 ,new SqlParameter("ProductIds", storeEntity.ProductIds ??   DBNull.Value.ToString())
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateStore", sqlParameter).FirstOrDefault();
             return result;
