@@ -118,24 +118,27 @@ namespace CordobaServices.Services_Layout
             priceTableString = priceTableString +
             @"<table cellspacing='0' cellpadding='0' style='width:100%;font-family:Arial,Helvetica,sans-serif'>
                               <tr style='font-weight:bold;height:25px;'>
-                                    <td style='text-align:left;border-bottom: 1px solid #ddd;width:50%;'>
+                                    <td style='text-align:left;border-bottom: 1px solid #ddd;width:60%;'>
                                               Item
                                     </td>
-                                    <td style='text-align:center;border-bottom: 1px solid #ddd;width:20%;'>
+                                    <td style='text-align:left;border-bottom: 1px solid #ddd;width:25%;'>
+                                              Model
+                                    </td>
+                                    <td style='text-align:center;border-bottom: 1px solid #ddd;width:5%;'>
                                               Quantity
                                     </td>
-                                    <td style='text-align:right;border-bottom: 1px solid #ddd;width:30%' >
+                                    <td style='text-align:right;border-bottom: 1px solid #ddd;width:10%' >
                                               Point
                                     </td>
                               </tr>";
             priceTableString = listOrderDetailsresponse.Aggregate(priceTableString, (current, a) => current + @"<tr style='font-weight:normal;height:25px;'>
-                                     <td  style='text-align: left;width:50%;'>" + a.product_name + "</td><td style='text-align:center;width:15%;'>" + a.quantity + "</td><td style='text-align:right;width:35%;'>" + a.product_price + "</td></tr>");
+                                     <td  style='text-align: left;'>" + a.product_name + "</td><td style='text-align:left;'>" + a.model + "</td><td style='text-align:center;'>" + a.quantity + "</td><td style='text-align:right;'>" + a.product_price + "</td></tr>");
 
 
             priceTableString = priceTableString +
                // ReSharper disable once PossibleNullReferenceException
                @"<tr style='font-weight:bold;height:25px;'>
-                                     <td   style='text-align:left;border-top: 1px solid #ddd; width:50%;'>Total</td><td style='text-align:center;border-top: 1px solid #ddd;width:15%;'></td><td style='text-align:right;border-top: 1px solid #ddd;width:35%;'>" + (orderItemDetailsRecord != null ? orderItemDetailsRecord.total.ToString() : "") + "</td></tr>";
+                                     <td   style='text-align:left;border-top: 1px solid #ddd;' colspan='3'>Total</td><td style='text-align:right;border-top: 1px solid #ddd;'>" + (orderItemDetailsRecord != null ? orderItemDetailsRecord.total.ToString() : "") + "</td></tr>";
 
             priceTableString = priceTableString + "<table>";
 

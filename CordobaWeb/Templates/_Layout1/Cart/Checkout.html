@@ -46,13 +46,13 @@
                 </div>
                 <div class="payment-summary">
                     <span>{{CustomerDetail.firstname}} {{CustomerDetail.lastname}}</span>
-                    <p> {{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}},{{SelectedCustomerAddress.county}}</p>
+                    <p>{{SelectedCustomerAddress.company}}<br /> {{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}},{{SelectedCustomerAddress.county}}</p>
                     <span style="color:red;" ng-show="ValidateAddress">Please add Address1 and Postcode for selected address.</span>
                 </div>
             </div>
             <div class="chckout-add">
                 <a href="" class="cursor-pointer" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)"><i class="fa fa-angle-left"></i></a>
-                <p>{{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}}</p>
+                <p>{{SelectedCustomerAddress.company}},{{SelectedCustomerAddress.address_1}} {{SelectedCustomerAddress.address_2}},{{SelectedCustomerAddress.postcode}},{{SelectedCustomerAddress.city}}</p>
                 <a href="" ng-click="NavigateAddressSlide(SelectedCustomerAddress.SelectedIndex,1)" ><i class="fa fa-angle-right"></i></a>
             </div>
             <div class="account-block comment">

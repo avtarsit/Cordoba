@@ -40,5 +40,7 @@ namespace CordobaModels.Entities
         public string currencyTitle { get; set; }
         public DateTime OrderDate { get; set; }
 
+        public string model { get; set; }
+
     }
 }

@@ -26,7 +26,7 @@
                 <div class="col-md-3 col-sm-4 col-xs-12 address-block"  ng-repeat="AddressObj in AddressList">
                     <div class="address-info" data-ng-style="AddressObj.IsDefaultAddress && {'border-color':'green'}">
                         <label ng-bind="AddressObj.firstname+' '+AddressObj.lastname"></label>
-                        <p>{{AddressObj.address_1}}<br>{{AddressObj.address_2}}<br>{{AddressObj.city}} <br>{{AddressObj.postcode}}<br />{{AddressObj.county}}</p>
+                        <p> {{AddressObj.company}}<br>{{AddressObj.address_1}}<br>{{AddressObj.address_2}}<br>{{AddressObj.city}} <br>{{AddressObj.postcode}}<br />{{AddressObj.county}}</p>
                     </div>
                     <div class="update-address">
                         <a href="" class="cursor-pointer" ng-click="AddORUpdateAddressBinding(AddressObj)"><i class="fa fa-pencil"></i></a>
