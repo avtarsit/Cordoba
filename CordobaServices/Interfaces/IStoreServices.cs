@@ -26,8 +26,6 @@ namespace CordobaServices.Interfaces
 
        StoreHTMLEntity GetStoreHTMLCharts(int StoreID, int Month, int Year);
 
-       void InsertProuduct_to_BestSeller(int storeId, string productIds);
-
-        List<BestSellerEntity> GetBestSellerByStoreId(int storeId, string name, string Model, TableParameter<BestSellerEntity> filter);
+       
     }
 }

@@ -66,6 +66,8 @@ namespace CordobaModels.Entities
         #endregion Extra Details
 
         //public dynamic data { get; set; }
+        public string StoreIds { get; set; }
+        public int? store_id { get; set; }
 
     }
 }

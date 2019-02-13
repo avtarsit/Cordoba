@@ -169,6 +169,7 @@ namespace CordobaServices.Services
                                                  , new SqlParameter("supplier_id", productEntity.supplier_id ??  (object)DBNull.Value)
                                                  , new SqlParameter("CatalogueIdCSV", productEntity.CatalogueIdCSV ??  (object)DBNull.Value)
                                                  , new SqlParameter("ProductDescriptionXml", ProductDescriptionXml ??  (object)DBNull.Value)
+                                                 ,new SqlParameter("StoreIds", productEntity.StoreIds ??   DBNull.Value.ToString())
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateProduct", sqlParameter).FirstOrDefault();
             return result;
@@ -465,6 +466,13 @@ namespace CordobaServices.Services
             {
                 throw ex;
             }
+        }
+
+        public List<BestSellerEntity> GetBestSellerByProductId(int productId)
+        {
+            var paramProductId = new SqlParameter { ParameterName = "ProductId", DbType = DbType.Int32, Value = productId };
+            var result = objGenericRepository.ExecuteSQL<BestSellerEntity>("GetBestSellerByProductId", paramProductId).ToList();
+            return result;
         }
     }
 

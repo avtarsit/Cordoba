@@ -37,5 +37,7 @@ namespace CordobaServices.Interfaces
         List<CountryEntity> GetShippingCostDetail(int product_id);
         int updateShippingCost(int product_id, int country_id, decimal shipping_cost);
 
+        List<BestSellerEntity> GetBestSellerByProductId(int productId);
+
     }
 }

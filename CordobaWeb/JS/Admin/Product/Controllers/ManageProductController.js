@@ -6,6 +6,8 @@
     //#endregion
     $scope.StoreId = $rootScope.storeId;
     $scope.LoggedInUserId = $rootScope.loggedInUserId;
+    $scope.ProductStoresList = [];
+    $scope.selectedBestSellerStore = [];
     function Init() {
         $scope.ProductObjSubtract = [{ ID: 1, Name: 'Yes' }, { ID: 0, Name: 'No' }];
         $scope.ProductStatus = [{ ID: 1, Name: 'Enabled' }, { ID: 0, Name: 'Disabled' }];
@@ -276,6 +278,9 @@
         if (form.$valid) {            
             $scope.ProductObj.CatalogueIdCSV = "";
             $scope.ProductObj.CatalogueIdCSV = GetSelectedCatalogueListCSV($scope.ProductObj.CatalogueList);
+            if ($scope.selectedBestSellerStore && $scope.selectedBestSellerStore.length > 0) {
+                $scope.ProductObj.StoreIds = $scope.selectedBestSellerStore.toString();
+            }
             var productEntity = JSON.stringify($scope.ProductObj);
             $http.post(configurationService.basePath + "api/ProductApi/InsertUpdateProduct?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId, productEntity)
               .then(function (response) {            
@@ -572,7 +577,9 @@
         $http.get(configurationService.basePath + "api/StoreApi/GetStoreList?StoreId=" + $scope.StoreId + '&LoggedInUserId=' + $scope.LoggedInUserId)
           .then(function (response) {
               if (response.data.length > 0) {
-                  $scope.StoreList = response.data;          
+                  $scope.StoreList = response.data;
+                  $scope.ProductStoresList = angular.copy(response.data);
+                  getBestSellerByProductId();
               }
           })
       .catch(function (response) {
@@ -645,9 +652,47 @@
 
     //#region init
 
+    $scope.bestSellerChecked = function (storeId, status) {
+        if (storeId) {
+            if (status === true) {
+                $scope.selectedBestSellerStore.push(storeId);
+            } else {
+                var index = $scope.selectedBestSellerStore.indexOf(storeId);
+                if (index > -1) {
+                    $scope.selectedBestSellerStore.splice(index, 1);
+                }
+            }
+        }
+
+    }
+
+    function getBestSellerByProductId() {
+        $http.get(configurationService.basePath + "api/ProductApi/GetBestSellerByProductId?productId=" + $scope.product_id)
+            .then(function (response) {
+                if (response && response.data && response.data.length > 0) {
+                    $scope.bestSellerStoreList = response.data;
+                    angular.forEach($scope.bestSellerStoreList, function (item) {
+                        $scope.ProductStoresList.find(x => x.store_id === item.store_id).IsSelected = true;
+                    });
+                    var selectedStoreList = $filter('filter')($scope.ProductStoresList, { IsSelected: true }, true);
+                    if (selectedStoreList && selectedStoreList.length > 0) {
+                        angular.forEach(selectedStoreList, function (item) {
+                            $scope.selectedBestSellerStore.push(item.store_id);
+                        }); 
+                    }
+                }
+            })
+            .catch(function (response) {
+
+            })
+            .finally(function () {
+
+            });
+
+    }
+
     GetStoreList();
     Init();
     $scope.GetShippingCostDetail();
-   
     //#endregion Image Tab
 });

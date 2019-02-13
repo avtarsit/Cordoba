@@ -81,7 +81,6 @@ namespace CordobaServices.Services
                                                  ,new SqlParameter("catalougeIdCsv", storeEntity.catalougeIdCsv ?? DBNull.Value.ToString())
                                                  ,new SqlParameter("Is_ImportPoint", storeEntity.Is_ImportPoint ?? (object)DBNull.Value)
                                                  ,new SqlParameter("Is_AccessStore", storeEntity.Is_AccessStore ?? (object)DBNull.Value)
-                                                 ,new SqlParameter("ProductIds", storeEntity.ProductIds ??   DBNull.Value.ToString())
                                                 };
             int result = objGenericRepository.ExecuteSQL<int>("InsertUpdateStore", sqlParameter).FirstOrDefault();
             return result;
@@ -220,27 +219,6 @@ namespace CordobaServices.Services
         }
 
 
-        public List<BestSellerEntity> GetBestSellerByStoreId(int storeId, string name, string Model, TableParameter<BestSellerEntity> filter)
-        {
-            List<BestSellerEntity> bestSellerList = new List<BestSellerEntity>();
-            var paramStoreId = new SqlParameter { ParameterName = "StoreId", DbType = DbType.Int32, Value = storeId };
-            var paramPageIndex = new SqlParameter { ParameterName = "PageIndex", DbType = DbType.Int32, Value = filter != null ? filter.PageIndex : 1 };
-            var paramName = new SqlParameter { ParameterName = "Name", DbType = DbType.String, Value = name ?? DBNull.Value.ToString() };
-            var paramModel = new SqlParameter { ParameterName = "Model", DbType = DbType.String, Value = Model ?? DBNull.Value.ToString() };
-            var paramPageSize = new SqlParameter { ParameterName = "PageSize", DbType = DbType.Int32, Value = filter != null ? filter.iDisplayLength : 10 };
-            var query = objGenericRepository.ExecuteSQL<BestSellerEntity>("GetBestSellerByStoreId", paramStoreId, paramPageSize, paramPageIndex, paramName, paramModel).ToList();
-            return query;
-        }
-
-        public void InsertProuduct_to_BestSeller(int storeId,string productIds)
-        {
-            SqlParameter[] sqlParameter = new SqlParameter[] {
-
-                                                   new SqlParameter("StoreId", storeId)
-                                                 , new SqlParameter("ProductIds", productIds)
-                                                };
-            objGenericRepository.ExecuteSQL<int>("InsertProuduct_to_BestSeller", sqlParameter).FirstOrDefault();
-
-        }
+         
     }
 }
