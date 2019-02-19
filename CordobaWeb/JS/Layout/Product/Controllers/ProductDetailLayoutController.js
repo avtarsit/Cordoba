@@ -13,8 +13,9 @@
 
     $scope.GetProductDetail = function () {
         $http.get(configurationService.basePath + "API/ProductApi/GetProductDetailForLayout?StoreID=" + $scope.StoreDetailInSession.store_id + "&ProductId=" + $scope.SelectedProductId + "&CustomerId=" + $scope.CustomerId)
-          .then(function (response) {
+            .then(function (response) {
               $scope.ProductObj = response.data;
+              $scope.ProductObj.descriptionHtml = $scope.ProductObj.description;
               $scope.ProductObj.description = $('<div />').html($scope.ProductObj.description).text();
               $scope.SelectedProductId = $scope.ProductObj.product_id;
               $scope.GetRelatedProductList($scope.ProductObj.product_id);

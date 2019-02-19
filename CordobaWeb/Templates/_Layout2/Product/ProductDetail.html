@@ -44,7 +44,8 @@
     <div class="col-sm-12">
         <div class="description mb-15">
             <h3 class="heading">Description</h3>
-            <p ng-bind-html="ProductObj.description"></p>
+            <!--<p ng-bind-html="ProductObj.description"></p>-->
+            <p ng-bind-html="ProductObj.descriptionHtml"></p>
         </div>
     </div>
     <div class="recently-viewed mb-30" ng-if="RelatedProductList.length>0">

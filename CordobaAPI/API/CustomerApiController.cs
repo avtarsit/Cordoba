@@ -471,12 +471,12 @@ namespace CordobaAPI.API
                         dtXLS.Columns["Last Name"].ColumnName = "lastname";
                         dtXLS.Columns["Email Address"].ColumnName = "email";
                         dtXLS.Columns["Initial Points"].ColumnName = "points";
-                        dtXLS.Columns["Company (Address)"].ColumnName = "company";
-                        dtXLS.Columns["Address 1"].ColumnName = "address_1";
-                        dtXLS.Columns["Address 2"].ColumnName = "address_2";
-                        dtXLS.Columns["City"].ColumnName = "city";
-                        dtXLS.Columns["County"].ColumnName = "county";
-                        dtXLS.Columns["Post Code"].ColumnName = "postcode";
+                        //dtXLS.Columns["Company (Address)"].ColumnName = "company";
+                        //dtXLS.Columns["Address 1"].ColumnName = "address_1";
+                        //dtXLS.Columns["Address 2"].ColumnName = "address_2";
+                        //dtXLS.Columns["City"].ColumnName = "city";
+                        //dtXLS.Columns["County"].ColumnName = "county";
+                        //dtXLS.Columns["Post Code"].ColumnName = "postcode";
 
                         for (int i = 0; i < dtXLS.Rows.Count; i++)
                         {
