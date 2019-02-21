@@ -34,7 +34,7 @@
                         <div class="tabbable">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a data-target="#OrderDetails" role="tab" data-toggle="tab">Order Details</a></li>
-                                <li role="presentation"><a data-target="#PaymentDetail" role="tab" data-toggle="tab">Payment Details</a></li>
+                                <li role="presentation" ng-if="false"><a data-target="#PaymentDetail" role="tab" data-toggle="tab">Payment Details</a></li>
                                 <li role="presentation"><a data-target="#Shippingdetail" role="tab" data-toggle="tab">Shipping Details</a></li>
                                 <li role="presentation"><a data-target="#Products" role="tab" data-toggle="tab">Products</a></li>
                                 <li role="presentation"><a data-target="#History" role="tab" data-toggle="tab">History</a></li>
@@ -218,7 +218,7 @@
                                     </div>-->
 
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="PaymentDetail">
+                                <div role="tabpanel" class="tab-pane" id="PaymentDetail" ng-if="false">
                                     <!--OrderDetails Tab-->
                                     <table class="table  table-bordered">
                                         <tbody>
